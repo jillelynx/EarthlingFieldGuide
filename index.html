@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Earthling Field Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Chakra+Petch:wght@600;700&display=swap">
+<style>
+/* Layout: the 3D game fills the screen; menus and the question panel float over it. */
+:root {
+  color-scheme: dark;
+  --deep: #0b1d2a; --panel: #12303f; --panel-2: #1b4257; --ink: #f2f7f5; --dim: #a9c3cc;
+  --signal: #ffd166; --good: #7be0ad; --bad: #ffb09c; --line: #2f5d73;
+  --display: "Chakra Petch", "Trebuchet MS", sans-serif; --body: "Atkinson Hyperlegible", Arial, sans-serif;
+  --ts: 1;
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--deep); color: var(--ink); font-family: var(--body); font-size: calc(16px * var(--ts)); line-height: 1.4; overflow: hidden; }
+#app { position: relative; height: 100%; overflow: hidden; }
+#stage { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: calc(34px * var(--ts)); letter-spacing: .02em; line-height: 1.05; }
+h1 small { display: block; font-size: .42em; color: var(--signal); letter-spacing: .18em; text-transform: uppercase; margin-top: 6px; }
+h2 { font-size: calc(24px * var(--ts)); }
+h3 { font-size: calc(16px * var(--ts)); color: var(--signal); margin-top: 18px; }
+p { margin: 8px 0; }
+.dim { color: var(--dim); }
+button, select, input { font: inherit; color: inherit; }
+button { cursor: pointer; border: 2px solid var(--line); background: var(--panel-2); border-radius: 10px; padding: 8px 14px; }
+button:hover:not(:disabled) { border-color: var(--signal); }
+button:disabled { opacity: .45; cursor: default; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+.primary { background: var(--signal); color: #1a1300; border-color: var(--signal); font-family: var(--display); font-weight: 700; font-size: 1.15em; padding: 12px 18px; }
+
+.screen { position: absolute; inset: 0; display: flex; padding-inline: 16px; padding-block: 16px; overflow: auto; }
+.card { background: color-mix(in srgb, var(--panel) 94%, transparent); border: 2px solid var(--line); border-radius: 16px; padding: 20px; width: 100%; max-width: 440px; margin: auto; display: flex; flex-direction: column; gap: 12px; }
+.card.wide { max-width: 640px; }
+#menu { background: linear-gradient(90deg, transparent 30%, rgba(11, 29, 42, .7)); }
+#menu .card { margin-right: 4%; }
+#levels, #progress, #settings, #pause, #done, #about { background: rgba(11, 29, 42, .82); }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.btns > * { flex: 1 1 auto; }
+.row { display: flex; gap: 10px; align-items: flex-start; }
+.rl { flex: 0 0 5.2em; color: var(--dim); padding-top: 6px; }
+.rb { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.chip { padding: 5px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
+.chip[aria-pressed="true"] { border-color: var(--signal); background: var(--deep); box-shadow: inset 0 0 0 1px var(--signal); }
+.sw { width: 14px; height: 14px; border-radius: 50%; background: var(--sw); border: 1px solid #fff; }
+.lvls { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; margin-top: 8px; }
+.lvl { text-align: left; display: flex; flex-direction: column; gap: 2px; }
+.lvl span { color: var(--signal); letter-spacing: .1em; }
+.bar { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(60px, 1fr) 6.5em; gap: 10px; align-items: center; margin-top: 8px; }
+.track { height: 10px; background: var(--deep); border-radius: 5px; overflow: hidden; border: 1px solid var(--line); }
+.fill { height: 100%; background: var(--good); }
+.num { font-variant-numeric: tabular-nums; text-align: right; }
+.board { margin: 8px 0; padding-left: 1.4em; }
+.board li { margin: 4px 0; }
+.board li span { display: inline-block; min-width: 9em; }
+label.set { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); }
+label.set input[type=checkbox] { width: 22px; height: 22px; }
+label.set input[type=range] { width: 9em; accent-color: var(--signal); }
+select, input[type=text] { background: var(--deep); border: 2px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 8px 0; }
+dt { color: var(--dim); } dd { margin: 0; }
+#guide { display: block; max-height: 34vh; overflow: auto; }
+#guide dt { color: var(--signal); margin-top: 8px; }
+#doneStars { font-size: 44px; color: var(--signal); letter-spacing: .12em; line-height: 1; }
+.unlock { color: var(--good); font-weight: 700; }
+
+#hud { position: absolute; top: env(safe-area-inset-top, 0px); left: 0; right: 0; display: flex; gap: 12px; align-items: center; padding: 8px 12px; pointer-events: none; font-family: var(--display); text-shadow: 0 1px 3px #000; }
+#hud > * { pointer-events: auto; }
+#hudHp { color: var(--bad); letter-spacing: .15em; font-size: 1.2em; }
+#hudScore { font-variant-numeric: tabular-nums; color: var(--signal); font-size: 1.2em; }
+#hudLevel { margin-left: auto; color: var(--ink); }
+#btnPause { padding: 4px 12px; }
+#qpanel { position: absolute; top: calc(46px * var(--ts)); left: 50%; transform: translateX(-50%); width: min(720px, calc(100% - 32px)); max-height: 56%; overflow: auto; background: color-mix(in srgb, var(--panel) 95%, transparent); border: 2px solid var(--signal); border-radius: 14px; padding: 10px 14px; }
+#qmeta { font-family: var(--display); color: var(--signal); font-size: .85em; letter-spacing: .08em; text-transform: uppercase; }
+#qprompt { font-weight: 700; margin: 4px 0 8px; }
+.stem { display: block; font-weight: 400; background: var(--deep); border-left: 4px solid var(--signal); padding: 6px 10px; margin-top: 6px; border-radius: 4px; }
+#qopts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px; }
+.opt { text-align: left; padding: 6px 10px; }
+.opt b { font-family: var(--display); color: var(--signal); margin-right: 4px; }
+.opt.no { text-decoration: line-through; }
+#qfb { color: var(--bad); font-weight: 700; margin-top: 6px; min-height: 1.3em; }
+#qhow { color: var(--dim); font-size: .85em; }
+#qpanel.compact { max-height: 30%; }
+#qpanel.short #qopts { grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); }
+.crowd { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 2px 0 6px; }
+.crowd > span { min-width: 0; }
+.dots { color: var(--signal); letter-spacing: .05em; font-size: .8em; }
+.slots { margin: 4px 0 6px; padding-left: 1.4em; display: grid; gap: 2px; }
+.slots .blank { display: inline-block; min-width: 4em; border-bottom: 2px solid var(--signal); color: var(--signal); text-align: center; }
+ul.slots { list-style: none; padding-left: 0; }
+.debrief { margin: 4px 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.strand { font-variant-numeric: tabular-nums; letter-spacing: .06em; margin: 2px 0; }
+.strand > span:first-child { color: var(--dim); letter-spacing: 0; margin-right: 4px; }
+.strand .cur { color: #10202c; background: var(--signal); padding: 0 6px; border-radius: 4px; }
+.strand .done { color: var(--good); } .strand .todo { color: var(--dim); }
+.rule { color: var(--dim); font-size: .9em; }
+.gauge { position: relative; height: 16px; background: var(--deep); border: 1px solid var(--line); border-radius: 8px; margin: 6px 0; }
+.gauge .band { position: absolute; top: 0; bottom: 0; background: rgba(123, 224, 173, .4); }
+.gauge .mark { position: absolute; top: -5px; width: 5px; height: 26px; margin-left: -2px; background: var(--signal); border-radius: 2px; }
+.ftab { border-collapse: collapse; margin: 4px 0 8px; font-variant-numeric: tabular-nums; }
+.ftab th, .ftab td { border: 1px solid var(--line); padding: 3px 10px; text-align: left; }
+.ftab th { background: var(--deep); color: var(--signal); }
+.fsvg { display: block; width: 100%; max-width: 330px; margin: 0 0 8px; color: var(--ink); }
+#note { position: absolute; left: 12px; bottom: calc(140px + env(safe-area-inset-bottom, 0px)); max-width: min(330px, calc(100% - 24px)); background: var(--deep); border: 2px solid #9fe0ff; border-radius: 12px; padding: 8px 12px; box-shadow: 0 0 18px rgba(159,224,255,.35); }
+#note small { display: block; color: #9fe0ff; font-size: .75em; letter-spacing: .04em; text-transform: uppercase; }
+#note b { display: block; font-family: var(--display); font-size: 1.25em; color: #fff; }
+#note span { display: block; line-height: 1.35; }
+.opt.help { box-shadow: 0 0 0 3px #ffd700, 0 0 14px #ffd700; }
+#menu .card { max-height: calc(100dvh - 24px); overflow-y: auto; }
+.card.map { max-width: 980px; width: calc(100% - 24px); max-height: calc(100dvh - 24px); overflow-y: auto; }
+.mapsvg { width: 100%; height: auto; display: block; border-radius: 14px; }
+.mapsvg .mapw { font: 700 22px var(--display, sans-serif); fill: #fff; }
+.mapsvg .mapu { font: 13px var(--body, sans-serif); fill: #e8f4ff; }
+.mapsvg .maps { font: 700 15px var(--body, sans-serif); fill: #ffd166; }
+.mapsvg .mid { font: 700 13px var(--display, sans-serif); fill: #10202c; }
+.mapsvg .locked .mid { font-size: 15px; }
+.mapsvg .mstar { font: 14px sans-serif; fill: #ffd166; }
+.mapsvg .mflag, .mapsvg .mrare { font-size: 16px; }
+.mapsvg .mnode { cursor: pointer; outline: none; }
+.mapsvg .mnode.locked { cursor: not-allowed; }
+.mapsvg .mnode:hover > circle:not(.pulse), .mapsvg .mnode:focus > circle:not(.pulse) { stroke: #ffffff; stroke-width: 5; }
+.mapsvg .pulse { animation: mpulse 1.4s ease-in-out infinite; transform-origin: center; }
+.mapsvg .malien { animation: mbob 1.2s ease-in-out infinite; }
+@keyframes mpulse { 0%, 100% { opacity: .9; } 50% { opacity: .25; } }
+@keyframes mbob { 0%, 100% { transform: translate(0px, -46px); } 50% { transform: translate(0px, -52px); } }
+@media (prefers-reduced-motion: reduce) { .mapsvg .pulse, .mapsvg .malien { animation: none; } }
+.mapinfo { margin: 10px 2px; min-height: 2.8em; }
+.mapinfo .st { color: var(--signal); letter-spacing: .1em; }
+#done { background: linear-gradient(90deg, transparent 30%, rgba(11, 29, 42, .78)); }
+.card.station { margin-right: 4%; max-width: 560px; max-height: calc(100dvh - 24px); overflow-y: auto; }
+.sttop { margin: 0; color: var(--signal); font-family: var(--display); letter-spacing: .08em; text-transform: uppercase; font-size: .85em; }
+.tabs button[aria-pressed="true"] { border-color: var(--signal); background: var(--deep); box-shadow: inset 0 0 0 1px var(--signal); }
+.shop { display: flex; flex-direction: column; gap: 8px; }
+.shop .item { display: flex; gap: 10px; align-items: center; padding: 8px; border: 1px solid var(--line); border-radius: 12px; }
+.shop .ic { font-size: 26px; }
+.shop .tx { flex: 1; }
+.shop .own { color: var(--signal); font-size: .85em; }
+.bank b { color: var(--signal); }
+.pqo { display: flex; flex-direction: column; gap: 6px; }
+.pqp { font-weight: 600; }
+#hudInv button { padding: 2px 8px; margin-left: 6px; font-size: .9em; }
+#hudInv small { opacity: .7; }
+@media (max-width: 700px) { #done { align-items: flex-end; background: linear-gradient(180deg, transparent 15%, rgba(11, 29, 42, .85)); } .card.station { margin: auto auto 0; } }
+#mini { position: absolute; inset: 0; pointer-events: none; }
+#mini > * { pointer-events: auto; }
+#miniTop { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); background: rgba(11, 29, 42, .8); border-radius: 12px; padding: 6px 14px; font-family: var(--display); white-space: pre; }
+#miniAim { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 0 10px #fff; pointer-events: none; }
+#miniAim::after { content: ''; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; background: #fff; border-radius: 50%; }
+#miniMsg { position: absolute; top: 58px; left: 50%; transform: translateX(-50%); max-width: min(560px, 92%); background: rgba(11, 29, 42, .9); border: 2px solid #7be0ad; border-radius: 12px; padding: 6px 12px; text-align: center; }
+#miniPick { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+#miniPick button { font-size: 20px; padding: 6px 12px; display: inline-flex; gap: 6px; align-items: center; }
+#miniPick button[aria-pressed="true"] { border-color: var(--c); box-shadow: 0 0 0 2px var(--c), 0 0 14px var(--c); }
+#miniPick .ys { font-weight: 700; }
+#miniCard { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 520px; width: calc(100% - 32px); max-height: calc(100% - 32px); overflow-y: auto; }
+#miniCard[hidden] { display: none; }
+#miniPow { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; align-items: center; background: rgba(11, 29, 42, .85); padding: 6px 12px; border-radius: 12px; }
+#miniPow div { width: 220px; height: 14px; border: 2px solid #fff; border-radius: 8px; overflow: hidden; }
+#miniPow i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #7be0ad, #ffd166, #ff6b6b); }
+.pcode { font-family: var(--display); font-size: 1.6em; letter-spacing: .15em; color: var(--signal); }
+.opt.pclose { opacity: .8; }
+.nickbad { color: #ffb09c; font-weight: 700; }
+.ver { font-size: .8em; margin: 0; }
+.about ul { margin: 4px 0; padding-left: 1.2em; } .about li { margin: 3px 0; }
+#achPop { position: absolute; top: 56px; right: 12px; display: flex; gap: 10px; align-items: center; max-width: min(340px, calc(100% - 24px)); background: var(--deep); border: 2px solid #ffd166; border-radius: 12px; padding: 8px 12px; box-shadow: 0 0 18px rgba(255, 209, 102, .35); z-index: 5; }
+#achPop .ai { font-size: 30px; } #achPop small { display: block; color: #ffd166; text-transform: uppercase; font-size: .72em; letter-spacing: .05em; } #achPop b { display: block; } #achPop em { font-style: normal; font-size: .85em; opacity: .85; }
+#jBody h3 { margin: 14px 0 6px; } .jn { font-size: .8em; color: var(--dim); } .jn.ok { color: #7be0ad; } .jr { font-size: .8em; color: #c59cff; }
+.jcs { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+.jc { display: flex; gap: 8px; align-items: flex-start; border: 1px solid var(--line); border-radius: 12px; padding: 6px; background: rgba(255, 255, 255, .03); }
+.jc img { width: 64px; height: 64px; flex: 0 0 64px; border-radius: 10px; background: radial-gradient(#1f4a5a, #0e2433); }
+.jc.unk img { filter: brightness(0) opacity(.45); } .jc p { margin: 2px 0 0; font-size: .88em; } .jw { font-size: .8em; color: #9fe0ff; }
+.ji { width: 64px; height: 64px; display: grid; place-items: center; font-size: 28px; }
+.achs { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.ach { display: flex; gap: 8px; align-items: center; border: 1px solid var(--line); border-radius: 12px; padding: 8px; opacity: .6; } .ach.on { opacity: 1; border-color: #ffd166; } .ach .ai { font-size: 26px; }
+.modeh { margin: 4px 0 -6px; color: var(--dim); font-size: .9em; } .modes { display: flex; gap: 8px; flex-wrap: wrap; } .modes > * { flex: 1 1 180px; } .cozyb { background: #7be0ad; border-color: #7be0ad; color: #10202c; }
+.gearinfo { margin: 4px 0 0; font-size: .9em; }
+#guide .gh { color: #9fe0ff; margin-top: 8px; }
+#toast { position: absolute; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); background: var(--deep); border: 2px solid var(--line); border-radius: 12px; padding: 8px 14px; text-align: center; }
+#cap { position: absolute; left: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); background: #000; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: .85em; }
+#touch { position: absolute; left: 0; right: 0; bottom: env(safe-area-inset-bottom, 0px); display: flex; justify-content: space-between; padding: 12px; pointer-events: none; }
+#touch div { display: flex; gap: 10px; pointer-events: auto; }
+#touch button { width: 64px; height: 64px; border-radius: 50%; font-family: var(--display); font-size: 18px; background: rgba(18, 48, 63, .75); touch-action: none; user-select: none; -webkit-user-select: none; }
+#err { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; background: var(--deep); }
+@media (max-width: 700px) {
+  #menu { align-items: flex-end; background: linear-gradient(180deg, transparent 20%, rgba(11, 29, 42, .8)); }
+  #menu .card { margin: auto auto 0; padding: 14px; gap: 8px; }
+  h1 { font-size: calc(26px * var(--ts)); }
+  #hudLevel { display: none; }
+  #qpanel { max-height: 46%; } #qhow { display: none; }
+  #btnPause { margin-left: auto; }
+  .bar { grid-template-columns: 1fr 5.5em; } .bar .track { grid-column: 1 / -1; order: 3; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+#miniPick button.hint { box-shadow: 0 0 0 3px #ffd166, 0 0 18px #ffd166; animation: hintPulse 1s infinite alternate; }
+@keyframes hintPulse { from { transform: scale(1); } to { transform: scale(1.08); } }
+#miniPick button[data-base] { font-size: 30px; min-width: 64px; justify-content: center; font-family: var(--display); }
+#dnaRule { position: absolute; left: 12px; top: 64px; background: rgba(11, 29, 42, .9); border: 2px solid #7be0ad; border-radius: 14px; padding: 10px 14px; font-size: 22px; line-height: 1.45; text-align: center; min-width: 140px; }
+#dnaRule[hidden] { display: none; }
+#dnaRule .codon { font-family: var(--display); font-size: 40px; letter-spacing: 6px; margin: 2px 0 4px; }
+#dnaRule .codon span { display: inline-block; padding: 0 3px; border-bottom: 4px solid transparent; }
+#dnaRule .codon .now { border-bottom-color: #ffd166; }
+#dnaRule .codon .did { opacity: .55; }
+#dnaWheel { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; touch-action: none; filter: drop-shadow(0 4px 14px rgba(0,0,0,.5)); }
+#dnaWheel[hidden] { display: none; }
+#miniCard p.big { font-size: 1.3em; text-align: center; }
+.dnaWord { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 10px 0; }
+.dnaWord span { display: flex; flex-direction: column; align-items: center; border: 3px solid var(--c); border-radius: 12px; padding: 4px 10px; font-family: var(--display); font-size: 40px; line-height: 1; color: var(--c); background: rgba(11, 29, 42, .6); }
+.dnaWord small { font-size: 15px; color: #e8f4ff; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <canvas id="stage" aria-label="Earthling Field Guide game view"></canvas>
+
+  <div id="hud" hidden>
+    <span id="hudHp"></span><span id="hudScore">0</span><span id="hudStreak"></span>
+    <span id="hudInv"></span><span id="hudLevel"></span><button type="button" id="btnPause" aria-label="Pause">Pause</button>
+  </div>
+  <div id="qpanel" hidden>
+    <div id="qmeta"></div><div id="qprompt"></div><div id="qfig"></div><div id="qopts"></div>
+    <div id="qfb" role="status" aria-live="polite"></div>
+    <div id="qhow">Press A, B, C, or D to answer (or click an answer).</div>
+  </div>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <div id="note" role="status" aria-live="polite" hidden></div>
+  <div id="mini" hidden><div id="miniTop" aria-live="off"></div><div id="miniAim" aria-hidden="true"></div><div id="miniMsg" role="status" aria-live="polite" hidden></div>
+    <div id="miniPick" role="group" aria-label="Choose an antibody"></div><div id="miniPow" hidden><span>Power</span><div><i id="miniPowFill"></i></div></div><div id="miniCard" class="card"></div></div>
+  <div id="cap" hidden></div>
+  <div id="touch" hidden>
+    <div><button type="button" data-k="left" aria-label="Move left">◀</button><button type="button" data-k="right" aria-label="Move right">▶</button><button type="button" data-k="duck" aria-label="Duck">▼</button><button type="button" data-k="run" aria-label="Run (hold)">Run</button></div>
+    <div><button type="button" data-k="act" aria-label="Choose answer">E</button><button type="button" data-k="jump" aria-label="Jump">Jump</button></div>
+  </div>
+
+  <section id="menu" class="screen" hidden>
+    <div class="card">
+      <h1>Earthling Field Guide<small>A Keystone Biology mission</small></h1>
+      <p class="dim">You are a visitor studying life on Earth. Build your explorer, then start the mission.</p>
+      <div id="cust"></div>
+      <p class="modeh">Choose how to play</p><div class="modes"><button type="button" id="btnPlay" class="primary">🎮 Platformer Adventure</button><button type="button" id="btnCozy" class="primary cozyb" hidden>🌿 Cozy Exploration</button></div>
+      <div class="btns">
+        <button type="button" id="btnLevels">Map</button><button type="button" id="btnJournal">📓 Journal</button><button type="button" id="btnProgress">Progress</button><button type="button" id="btnSettings">Settings</button><button type="button" id="btnAbout">About</button>
+      </div>
+      <p id="menuStars" class="dim"></p>
+      <p id="menuVer" class="dim ver"></p>
+    </div>
+  </section>
+
+  <section id="about" class="screen" hidden>
+    <div class="card wide about"><h2>About Earthling Field Guide</h2>
+      <p><b>Earthling Field Guide: A Keystone Biology Mission</b><br>Created by J.E. Lynch<br><span id="aboutVer" class="dim"></span></p>
+      <p>A free learning game for Pennsylvania high school biology. Players explore as an alien field researcher, discover vocabulary and key ideas, and practice the Keystone Biology eligible content.</p>
+      <h3>Standards</h3>
+      <ul>
+        <li>Pennsylvania Department of Education. <i>Keystone Exams: Biology. Assessment Anchors and Eligible Content.</i> Harrisburg, PA.</li>
+        <li>Pennsylvania Department of Education. <i>Pennsylvania Integrated Standards for Science, Environment, Ecology, Technology and Engineering (STEELS), Grades 9–12.</i> Harrisburg, PA.</li>
+      </ul>
+      <h3>About the content</h3>
+      <ul>
+        <li>All questions, notes, and activities were written for this game. They are aligned to the standards above but are not official Keystone Exam items.</li>
+        <li>The data sets in "Read the Data" (for example, potato cores in sugar solutions and enzyme activity) are illustrative, modeled on classic classroom labs. They are not real measurements.</li>
+      </ul>
+      <h3>Credits</h3>
+      <ul>
+        <li>Game design and curriculum: J.E. Lynch.</li>
+        <li>Programming help: Claude, an AI model made by Anthropic.</li>
+        <li>3-D graphics: three.js (r128), MIT License.</li>
+        <li>Fonts: Chakra Petch (Cadson Demak) and Atkinson Hyperlegible (Braille Institute), SIL Open Font License, from Google Fonts.</li>
+        <li>Flying heron and egret models: the Stork and Flamingo models from the three.js examples ("ro.me" project by mirada), MIT License, recolored in the game. Model loader: three.js GLTFLoader, MIT License.</li>
+        <li>Earth picture and clouds in the opening story: from the three.js examples (MIT License), based on NASA Blue Marble imagery (public domain).</li>
+        <li>All other pictures, animals, models, music, and sounds are drawn or generated by the game's own code.</li>
+      </ul>
+      <button type="button" data-back>Back</button></div>
+  </section>
+
+  <section id="levels" class="screen" hidden>
+    <div class="card map"><h2>Mission Map</h2><div id="levelList"></div><div class="btns"><button type="button" id="btnMapPlay" class="primary">Play</button><button type="button" data-back>Back</button></div></div>
+  </section>
+
+  <section id="progress" class="screen" hidden>
+    <div class="card wide"><h2>Progress</h2><div id="progBody"></div>
+      <label class="set" for="nick"><span>Nickname for high scores<br><span class="dim">Use a made-up name, not your real one.</span></span><input type="text" id="nick" maxlength="16" autocomplete="off"></label>
+      <p id="nickMsg" class="dim" role="status" aria-live="polite"></p>
+      <button type="button" data-back>Back</button></div>
+  </section>
+
+  <section id="settings" class="screen" hidden>
+    <div class="card"><h2>Settings</h2>
+      <label class="set" for="setText">Text size<select id="setText"><option value="0">Small</option><option value="1">Medium</option><option value="2">Large</option><option value="3">Extra large</option></select></label>
+      <label class="set" for="setLow">Low graphics (for slower computers)<input type="checkbox" id="setLow"></label>
+      <label class="set" for="setMusic">Music (press M to switch on or off)<input type="checkbox" id="setMusic"></label>
+      <label class="set" for="setVol">Music volume<input type="range" id="setVol" min="0" max="100" step="5"></label>
+      <label class="set" for="setSound">Sound effects<input type="checkbox" id="setSound"></label>
+      <label class="set" for="setSvol">Sound effects and nature sounds volume<input type="range" id="setSvol" min="0" max="100" step="5"></label>
+      <label class="set" for="setCap">Captions for sounds<input type="checkbox" id="setCap"></label>
+      <label class="set" for="setUnlock" id="teacherRow" hidden>Teacher: unlock every level<input type="checkbox" id="setUnlock"></label>
+      <button type="button" id="btnReset">Erase progress on this device</button>
+      <button type="button" data-back>Back</button></div>
+  </section>
+
+  <section id="journal" class="screen" hidden>
+    <div class="card map"><h2>📓 Field Journal</h2><div id="jTabs" class="btns tabs" role="group" aria-label="Journal sections"></div><div id="jBody"></div><button type="button" data-back>Back</button></div>
+  </section>
+  <div id="achPop" role="status" aria-live="polite" hidden></div>
+
+  <section id="pause" class="screen" hidden>
+    <div class="card wide"><h2>Paused</h2>
+      <div class="btns"><button type="button" id="btnResume" class="primary">Resume</button><button type="button" id="btnRestart">Restart level</button><button type="button" id="btnPauseJournal">📓 Field Journal</button><button type="button" id="btnPauseSet">Settings</button><button type="button" id="btnQuit">Main menu</button></div>
+      <h3>Field guide</h3><dl id="guide"></dl></div>
+  </section>
+
+  <section id="done" class="screen" hidden>
+    <div class="card station"><p class="sttop">🛸 Mothership Station</p>
+      <div id="stTabs" class="btns tabs" role="group" aria-label="Station areas"><button type="button" data-tab="report">📋 Report</button><button type="button" data-tab="shop">🛒 Supply Shop</button><button type="button" data-tab="practice">🎯 Practice Bay</button><button type="button" data-tab="wardrobe">👕 Wardrobe</button><button type="button" data-tab="journal">📓 Journal</button></div>
+      <div id="doneReport"><h2 id="doneTitle"></h2><div id="doneStars"></div><div id="doneBody"></div></div>
+      <div id="stBody" hidden></div>
+      <p class="dim beamtx">When you are ready, beam back down to keep exploring.</p>
+      <div class="btns"><button type="button" id="btnNext" class="primary">Beam down: next level ▶</button><button type="button" id="btnReplay">Play again</button><button type="button" id="btnMap">Map</button><button type="button" id="btnMenu">Main menu</button></div></div>
+  </section>
+
+  <div id="err" hidden><p>This browser could not start 3D graphics. Try a current version of Chrome, Edge, Firefox, or Safari.</p></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="namefilter.js"></script>
+<script src="engine.js"></script>
+<script src="GLTFLoader.js"></script>
+<script src="birdmodels.js"></script>
+<script src="creatures.js"></script>
+<script src="fauna.js"></script>
+<script src="cozy.js"></script>
+<script src="domesim.js"></script>
+<script src="biodome.js"></script>
+<script src="wordlab.js"></script>
+<script src="ambient.js"></script>
+<script src="earthtex.js"></script>
+<script src="intro.js"></script>
+<script>FieldGuide.loadWorlds(5);</script>
+</body>
+</html>
