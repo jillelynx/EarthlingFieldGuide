@@ -40,6 +40,9 @@ Object.assign(C.I18N.en, {
   'bd.needFirst.plants': 'Plants need water and soil first.', 'bd.needFirst.herb': 'Rabbits would starve: place a producer (grass or wildflowers) first.',
   'bd.needFirst.pred': 'Hawks would starve: place their prey (rabbits) first.', 'bd.needFirst.poll': 'Pollinators need flowers to feed on: place wildflowers first.',
   'bd.needFirst.pond': 'Pond animals need a pond (2 water barrels) and pondweed first.', 'bd.needStart': 'To start: place water, living soil and at least one kind of plant.',
+  'bd.missT': 'You can\'t start yet. Still missing:', 'bd.miss.water': '💧 Water barrels', 'bd.miss.soil': '🪱 Living soil', 'bd.miss.plant': '🌾 At least one kind of plant (grass, wildflowers or trees)',
+  'bd.miss.packed': 'packed: place it from the list on the left', 'bd.miss.notPacked': 'not packed: go back and add it to your crates', 'bd.miss.locked': 'not earned yet: go back to Earth for it',
+  'bd.needPack': 'To start a season you will need:', 'bd.repack': '⬅ Go back and repack', 'bd.repackH': 'Your placed crates go back into the ship so you can change what you bring.',
   'bd.season': 'Season', 'bd.of': 'of', 'bd.end': 'End season ▶', 'bd.next': 'Next season ▶', 'bd.rewind': '↶ Rewind a season', 'bd.listen': '👂 Listen',
   'bd.act.shade': 'Dome cover: OFF', 'bd.act.shadeOn': 'Dome cover: ON', 'bd.act.shadeH': 'Keeps the dome nearer 22 °C, but lets in less light.',
   'bd.act.pull': 'Pull the invasive vine', 'bd.act.cure': 'Use the cell-care kit', 'bd.act.penR': 'Move 1 rabbit group to the pen', 'bd.act.penH': 'Move a hawk to the pen', 'bd.act.skim': 'Scoop out extra algae',
@@ -106,6 +109,9 @@ Object.assign(C.I18N.es, {
   'bd.needFirst.plants': 'Las plantas necesitan agua y suelo primero.', 'bd.needFirst.herb': 'Los conejos morirían de hambre: coloca primero un productor (pasto o flores).',
   'bd.needFirst.pred': 'Los halcones morirían de hambre: coloca primero a sus presas (conejos).', 'bd.needFirst.poll': 'Los polinizadores necesitan flores: coloca primero las flores silvestres.',
   'bd.needFirst.pond': 'Los animales del estanque necesitan un estanque (2 barriles de agua) y plantas acuáticas primero.', 'bd.needStart': 'Para empezar: coloca agua, suelo vivo y al menos un tipo de planta.',
+  'bd.missT': 'Todavía no puedes empezar. Falta:', 'bd.miss.water': '💧 Barriles de agua', 'bd.miss.soil': '🪱 Suelo vivo', 'bd.miss.plant': '🌾 Al menos un tipo de planta (hierba, flores silvestres o árboles)',
+  'bd.miss.packed': 'empacado: colócalo desde la lista de la izquierda', 'bd.miss.notPacked': 'no empacado: vuelve y agrégalo a tus cajas', 'bd.miss.locked': 'aún no lo has ganado: vuelve a la Tierra a buscarlo',
+  'bd.needPack': 'Para empezar una temporada necesitarás:', 'bd.repack': '⬅ Volver a empacar', 'bd.repackH': 'Tus cajas colocadas vuelven a la nave para que cambies lo que traes.',
   'bd.season': 'Temporada', 'bd.of': 'de', 'bd.end': 'Terminar temporada ▶', 'bd.next': 'Siguiente temporada ▶', 'bd.rewind': '↶ Retroceder una temporada', 'bd.listen': '👂 Escuchar',
   'bd.act.shade': 'Cubierta del domo: NO', 'bd.act.shadeOn': 'Cubierta del domo: SÍ', 'bd.act.shadeH': 'Mantiene el domo cerca de 22 °C, pero deja pasar menos luz.',
   'bd.act.pull': 'Arrancar la enredadera invasora', 'bd.act.cure': 'Usar el kit de cuidado celular', 'bd.act.penR': 'Llevar un grupo de conejos al corral', 'bd.act.penH': 'Llevar un halcón al corral', 'bd.act.skim': 'Sacar las algas sobrantes',
@@ -189,7 +195,7 @@ function ensureUI() {
 .bdG .st { padding: 0 7px; border-radius: 6px; font-size: .85em; } .bdG .ok { background: #1f6a48; } .bdG .warn { background: #8a6a10; } .bdG .bad { background: #9a2a2a; }
 .bdG .meter { grid-column: 1 / 3; height: 6px; background: #22384a; border-radius: 3px; overflow: hidden; } .bdG .meter i { display: block; height: 100%; }
 .bdBtns { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; } .bdNote { margin: 4px 0; padding: 5px 8px; border-left: 3px solid #ffd166; background: rgba(255,209,102,.08); border-radius: 4px; }
-.bdWarn { color: #ffb38a; } .bdVoice { font-style: italic; }
+.bdWarn { color: #ffb38a; } .bdVoice { font-style: italic; } .bdMiss { margin: 4px 0 8px; padding-left: 1.2em; } .bdMiss li { margin: 3px 0; } .bdNeed { font-size: .9em; margin: 8px 0 2px; } .bdNeed span { display: inline-block; margin: 2px 6px 2px 0; padding: 1px 6px; border-radius: 6px; } .bdNeed .ok { background: rgba(123,224,173,.18); color: #7be0ad; } .bdNeed .no { background: rgba(255,179,138,.16); color: #ffb38a; }
 #bdStory { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(5,8,20,.55); } #bdStory .card { max-width: 560px; text-align: left; }
 @media (max-width: 900px) { #bdCard { left: 8px; right: 8px; transform: none; width: auto; bottom: 8px; } #bdLeft { bottom: 46%; } #bdRight { display: none; } }`;
   document.head.appendChild(css);
@@ -219,7 +225,7 @@ function left() {
   if (B.phase === 'pack') { const u = used();
     L.innerHTML = '<h3>' + esc(tx('bd.pack.t')) + '</h3><p class="ds">' + esc(tx('bd.pack.h')) + '</p>' + (C.teach || C.S.set.unlock ? '<p class="ds">' + esc(tx('bd.teach')) + '</p>' : '') +
       '<b>' + esc(tx('bd.cargo')) + ': ' + u + ' / ' + CAP + '</b><div class="bdBar' + (u >= CAP ? ' full' : '') + '"><i style="width:' + Math.round(u / CAP * 100) + '%"></i></div>' +
-      ITEMS.map(function (it) { return itemRow(it, 'pack'); }).join('') +
+      ITEMS.map(function (it) { return itemRow(it, 'pack'); }).join('') + packCheck() +
       '<div class="bdBtns">' + (ITEMS.some(function (it) { return !earned(it); }) ? '<button type="button" data-a="earth">🌍 ' + esc(tx('bd.earth')) + '</button>' : '') + '<button type="button" class="primary" data-a="launch"' + (u ? '' : ' disabled') + '>' + esc(tx('bd.launch')) + '</button></div>';
   } else {
     const left0 = ITEMS.reduce(function (n, it) { return n + (B.store[it.id] || 0); }, 0);
@@ -241,7 +247,11 @@ function card() {
   const K = $('bdCard'), s = B.sim; let h = '';
   if (B.phase === 'pack') { K.hidden = true; return; } K.hidden = false;
   if (B.phase === 'build') {
-    const can = canStart(); h = '<h3>🧱 ' + esc(tx('bd.build.t')) + '</h3><p>' + esc(tx(can ? 'bd.build.h' : 'bd.needStart')) + '</p><div class="bdBtns"><button type="button" class="primary" data-a="start"' + (can ? '' : ' disabled') + '>' + esc(tx('bd.start')) + '</button></div>';
+    /* never a dead end: if something is missing, say exactly what and why, and always offer a way back to packing */
+    const can = canStart(), miss = missing();
+    h = '<h3>🧱 ' + esc(tx('bd.build.t')) + '</h3>' + (can ? '<p>' + esc(tx('bd.build.h')) + '</p>' :
+      '<p class="bdWarn"><b>⚠️ ' + esc(tx('bd.missT')) + '</b></p><ul class="bdMiss">' + miss.map(function (m) { return '<li>' + esc(tx('bd.miss.' + m.k)) + ' <span class="ds">(' + esc(tx('bd.miss.' + m.why)) + ')</span></li>'; }).join('') + '</ul>') +
+      '<div class="bdBtns"><button type="button" data-a="repack" title="' + esc(tx('bd.repackH')) + '">' + esc(tx('bd.repack')) + '</button><button type="button" class="primary" data-a="start"' + (can ? '' : ' disabled') + '>' + esc(tx('bd.start')) + '</button></div>';
   } else if (B.phase === 'season') {
     const evKey = s.ev ? 'bd.ev.' + s.ev : 'bd.ev.calm';
     h = '<h3>' + esc(tx('bd.season')) + ' ' + s.season + ' ' + esc(tx('bd.of')) + ' ' + DS.SEASONS + '</h3>';
@@ -272,6 +282,13 @@ function render() {
   if (B.phase === 'fly') { top(); $('bdLeft').hidden = true; $('bdRight').hidden = true; const K = $('bdCard'); K.hidden = false; K.innerHTML = '<p id="bdFlyCap" class="bdVoice"></p><div class="bdBtns"><button type="button" data-a="skipfly">' + esc(tx('bd.skip')) + '</button></div>'; return; }
   $('bdLeft').hidden = false; top(); left(); right(); card(); }
 function storeLeft() { return ITEMS.reduce(function (n, it) { return n + (B.store[it.id] || 0); }, 0); }
+/* what still has to be placed before season 1, and whether it is waiting in storage, was never packed, or is not earned yet */
+function missing() { const p = B.placed, out = [], why = function (ids) { if (ids.some(function (id) { return (B.store[id] || 0) > 0; })) return 'packed'; if (ids.some(function (id) { const it = ITEMS.find(function (q) { return q.id === id; }); return earned(it); })) return 'notPacked'; return 'locked'; };
+  if (!((p.water || 0) >= 1)) out.push({ k: 'water', why: why(['water']) }); if (!((p.soil || 0) >= 1)) out.push({ k: 'soil', why: why(['soil']) });
+  if (((p.grass || 0) + (p.flowers || 0) + (p.trees || 0)) < 1) out.push({ k: 'plant', why: why(['grass', 'flowers', 'trees']) }); return out; }
+/* a small checklist before launch: the three things every dome needs to begin */
+function packCheck() { const c = B.cargo, has = { water: (c.water || 0) > 0, soil: (c.soil || 0) > 0, plant: ((c.grass || 0) + (c.flowers || 0) + (c.trees || 0)) > 0 };
+  return '<p class="bdNeed">' + esc(tx('bd.needPack')) + ' ' + ['water', 'soil', 'plant'].map(function (k) { return '<span class="' + (has[k] ? 'ok' : 'no') + '">' + (has[k] ? '✓ ' : '✗ ') + esc(tx('bd.miss.' + k).split(' (')[0]) + '</span>'; }).join(' ') + '</p>'; }
 function canStart() { const p = B.placed; return (p.water || 0) >= 1 && (p.soil || 0) >= 1 && ((p.grass || 0) + (p.flowers || 0) + (p.trees || 0)) >= 1; }
 function story() {
   const S0 = $('bdStory'); S0.hidden = false;
@@ -301,6 +318,7 @@ function click(d) {
   if (a === 'skipfly') { B.flyT = 99; return; }
   if (a === 'place') { const why = placeCheck(d.id); if (why) { B.warn = tx(why); C.beep(220, 0.12, 'triangle'); left(); return; } B.warn = null;
     if ((B.store[d.id] || 0) > 0) { B.store[d.id]--; B.placed[d.id] = (B.placed[d.id] || 0) + 1; DS.place(B.sim, d.id); sfx('pop'); B.dirty = true; } render(); return; }
+  if (a === 'repack') { /* back to packing: crates you placed go back into the ship's cargo list (which never changed) */ B.phase = 'pack'; B.store = {}; B.placed = {}; B.sim = DS.fresh(); B.hist = []; B.warn = null; B.voice = null; B.dirty = true; render(); return; }
   if (a === 'start') { if (!canStart()) return; B.phase = 'season'; B.hist = []; DS.beginSeason(B.sim); B.voice = null; render(); return; }
   const s = B.sim;
   if (a === 'shade') { DS.act(s, 'shade'); render(); return; }
