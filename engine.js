@@ -2958,7 +2958,7 @@ function wire() {
 /* HIDDEN ADMIN MODE (for the game's author): type the password anywhere on the main menu, or tap the version line 5 times and enter it.
    Only a scrambled number of the password is stored here, not the password itself. Admin mode unlocks every level and Biodome supply,
    lets you fly right away in the reserve, removes the map fog, and lets you tap the map to jump anywhere. Enter the password again to turn it off. */
-const ADMIN_HASH = 4052282525, ADMIN_LEN = 13;
+const ADMIN_HASH = 4052282519, ADMIN_LEN = 13;
 function pwHash(t) { let h = 5381; for (const ch of String(t).toLowerCase()) h = ((h * 33) ^ ch.charCodeAt(0)) >>> 0; return h; }
 function adminNote(text) { let n = $('adminNote'); if (!n) { n = document.createElement('div'); n.id = 'adminNote'; n.setAttribute('role', 'status'); n.style.cssText = 'position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:99;background:#0b1d2a;color:#ffd166;border:2px solid #ffd166;border-radius:10px;padding:8px 14px;font-weight:700;max-width:90vw;text-align:center'; document.body.appendChild(n); }
   n.textContent = text; n.hidden = false; clearTimeout(adminNote.t); adminNote.t = setTimeout(function () { n.hidden = true; }, 5000); }
