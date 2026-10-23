@@ -33,6 +33,13 @@ Object.assign(C.I18N.en, {
   'bd.d.hawks': 'Predators (secondary consumers). They eat rabbits and keep their numbers in check.', 'bd.d.pond': 'Fish and frogs (consumers). They need pondweed and oxygen in the water.',
   'bd.d.cellkit': 'What you learned about cells: helps living things fight disease and stay in balance (homeostasis).',
   'bd.rq.pond': 'Willow Creek reserve: solve the Quiet Pond mystery (clean water).', 'bd.rq.l22': 'Platformer World 2, level 2: Building Blocks.', 'bd.rq.l21': 'Platformer World 2, level 1: Water and Carbon.',
+  'bd.it.wetland': 'Wetland filter plants', 'bd.it.seedbank': 'Seed bank (many alleles)', 'bd.it.hardy': 'Hardy seeds from drought survivors',
+  'bd.d.wetland': 'Cattails and reeds soak up extra nutrients before they reach the pond, which helps stop algal blooms.',
+  'bd.d.seedbank': 'Grass seeds with lots of genetic variation. Some plants carry alleles that resist disease, so a blight cannot wipe them all out.',
+  'bd.d.hardy': 'Seeds collected from plants that survived a drought. Natural selection already favored their heat-tolerant traits.',
+  'bd.rq.l32': 'Platformer World 3, level 2: Living Together.', 'bd.rq.l35': 'Platformer World 3, level 5: Human Footprints.', 'bd.rq.l42': 'Platformer World 4, level 2: Making Gametes.', 'bd.rq.l51': 'Platformer World 5, level 1: Survival of the Fittest.',
+  'bd.n.wetland': 'The wetland plants soaked up extra nutrients, so the pond stayed clear.', 'bd.n.seedbank': 'Some grass plants in the seed bank had alleles that resist the blight. Genetic variation helped the population survive.',
+  'bd.n.hardy': 'Your hardy seeds came from drought survivors, so the grass was already adapted to the heat.',
   'bd.rq.w1': 'Platformer World 1: finish all 5 levels.', 'bd.rq.l24': 'Platformer World 2, level 4: Energy in Cells.', 'bd.rq.l25': 'Platformer World 2, level 5: Food Webs and Cycles.',
   'bd.rq.soil': 'Willow Creek reserve: discover the earthworms and the rotting log.', 'bd.rq.poll': 'Willow Creek reserve: do a pollinator survey.', 'bd.rq.pondlife': 'Willow Creek reserve: do a frog count or a stream bug sample.',
   'bd.build.t': 'Build the biodome', 'bd.build.h': 'Place your supplies. Living things need what they eat (and water and soil) to be there first. You can keep some crates in storage for later.',
@@ -102,6 +109,13 @@ Object.assign(C.I18N.es, {
   'bd.d.hawks': 'Depredadores (consumidores secundarios). Comen conejos y controlan su número.', 'bd.d.pond': 'Peces y ranas (consumidores). Necesitan plantas acuáticas y oxígeno en el agua.',
   'bd.d.cellkit': 'Lo que aprendiste sobre las células: ayuda a los seres vivos a combatir enfermedades y mantener el equilibrio (homeostasis).',
   'bd.rq.pond': 'Reserva Arroyo de los Sauces: resuelve el misterio del estanque silencioso (agua limpia).', 'bd.rq.l22': 'Plataformas, Mundo 2, nivel 2: Building Blocks.', 'bd.rq.l21': 'Plataformas, Mundo 2, nivel 1: Water and Carbon.',
+  'bd.it.wetland': 'Plantas filtradoras de humedal', 'bd.it.seedbank': 'Banco de semillas (muchos alelos)', 'bd.it.hardy': 'Semillas resistentes de sobrevivientes de sequía',
+  'bd.d.wetland': 'Las espadañas y los juncos absorben el exceso de nutrientes antes de que lleguen al estanque, lo que ayuda a evitar la proliferación de algas.',
+  'bd.d.seedbank': 'Semillas de pasto con mucha variación genética. Algunas plantas tienen alelos que resisten enfermedades, así que un tizón no puede acabar con todas.',
+  'bd.d.hardy': 'Semillas de plantas que sobrevivieron a una sequía. La selección natural ya favoreció sus rasgos resistentes al calor.',
+  'bd.rq.l32': 'Plataformas, Mundo 3, nivel 2: Living Together.', 'bd.rq.l35': 'Plataformas, Mundo 3, nivel 5: Human Footprints.', 'bd.rq.l42': 'Plataformas, Mundo 4, nivel 2: Making Gametes.', 'bd.rq.l51': 'Plataformas, Mundo 5, nivel 1: Survival of the Fittest.',
+  'bd.n.wetland': 'Las plantas del humedal absorbieron el exceso de nutrientes y el estanque se mantuvo limpio.', 'bd.n.seedbank': 'Algunas plantas del banco de semillas tenían alelos que resisten el tizón. La variación genética ayudó a la población a sobrevivir.',
+  'bd.n.hardy': 'Tus semillas resistentes venían de sobrevivientes de la sequía, así que el pasto ya estaba adaptado al calor.',
   'bd.rq.w1': 'Plataformas, Mundo 1: termina los 5 niveles.', 'bd.rq.l24': 'Plataformas, Mundo 2, nivel 4: Energy in Cells.', 'bd.rq.l25': 'Plataformas, Mundo 2, nivel 5: Food Webs and Cycles.',
   'bd.rq.soil': 'Reserva: descubre las lombrices y el tronco podrido.', 'bd.rq.poll': 'Reserva: haz un muestreo de polinizadores.', 'bd.rq.pondlife': 'Reserva: haz un conteo de ranas o una muestra de bichos del arroyo.',
   'bd.build.t': 'Construye el biodomo', 'bd.build.h': 'Coloca tus suministros. Los seres vivos necesitan que su alimento (y el agua y el suelo) estén primero. Puedes guardar cajas para después.',
@@ -155,13 +169,17 @@ const ITEMS = [
   { id: 'water', ic: '💧', size: 1, max: 10, rq: 'pond' }, { id: 'air', ic: '🫧', size: 1, max: 2, rq: 'l21' }, { id: 'blocks', ic: '🧬', size: 2, max: 1, rq: 'l22' },
   { id: 'soil', ic: '🪱', size: 1, max: 4, rq: 'soil' }, { id: 'grass', ic: '🌾', size: 1, max: 4, rq: 'l24' }, { id: 'flowers', ic: '🌼', size: 1, max: 3, rq: 'l24' },
   { id: 'trees', ic: '🌳', size: 2, max: 2, rq: 'l24' }, { id: 'pondweed', ic: '🌿', size: 1, max: 2, rq: 'l24' }, { id: 'bees', ic: '🐝', size: 1, max: 2, rq: 'poll' },
-  { id: 'rabbits', ic: '🐇', size: 1, max: 4, rq: 'l25' }, { id: 'hawks', ic: '🦅', size: 2, max: 2, rq: 'l25' }, { id: 'pond', ic: '🐟', size: 1, max: 2, rq: 'pondlife' },
-  { id: 'cellkit', ic: '🩺', size: 1, max: 1, rq: 'w1' }];
+  { id: 'rabbits', ic: '🐇', size: 1, max: 4, rq: 'l25' }, { id: 'hawks', ic: '🦅', size: 2, max: 2, rq: 'l32' }, { id: 'pond', ic: '🐟', size: 1, max: 2, rq: 'pondlife' },
+  { id: 'cellkit', ic: '🩺', size: 1, max: 1, rq: 'w1' },
+  /* earned in Worlds 3 to 5 */
+  { id: 'wetland', ic: '🪷', size: 1, max: 1, rq: 'l35' }, { id: 'seedbank', ic: '🌰', size: 1, max: 1, rq: 'l42' }, { id: 'hardy', ic: '🌵', size: 1, max: 1, rq: 'l51' }];
 const CAP = 24;
 function lvDone(id) { const L0 = C.S.levels[id]; return !!(L0 && L0.stars); }
 function cz() { return C.S.cozy || {}; }
 const REQ = {
   pond: function () { return !!(cz().f && cz().f.solved); }, l21: function () { return lvDone('2-1'); }, l22: function () { return lvDone('2-2'); }, l24: function () { return lvDone('2-4'); }, l25: function () { return lvDone('2-5'); },
+  /* predators are earned where predation is taught (World 3); students who already finished the biodome with hawks keep them */
+  l32: function () { return lvDone('3-2') || (!!sv().done && lvDone('2-5')); }, l35: function () { return lvDone('3-5'); }, l42: function () { return lvDone('4-2'); }, l51: function () { return lvDone('5-1'); },
   w1: function () { return ['1-1', '1-2', '1-3', '1-4', '1-5'].every(lvDone); }, soil: function () { const f = cz().found || {}; return !!(f.worms && f.log); },
   poll: function () { const s = cz().surveys || {}; return Object.keys(s).some(function (k) { return k.indexOf('poll') === 0; }); },
   pondlife: function () { const s = cz().surveys || {}; return Object.keys(s).some(function (k) { return k.indexOf('frog') === 0 || k.indexOf('kick') === 0; }); } };
