@@ -229,6 +229,10 @@ const SONGS = {
   gut: { name: 'enzyme groove theme', bpm: 100, root: 57, scale: 'dorian', prog: [0, 3, 0, 4], seed: 29, drums: 2, lead: 'triangle' },
   leaf: { name: 'sunlit leaf theme', bpm: 96, root: 64, scale: 'major', prog: [0, 5, 3, 4], seed: 31, drums: 1, lead: 'triangle' },
   meadow: { name: 'wild meadow theme', bpm: 112, root: 60, scale: 'major', prog: [0, 4, 3, 4], seed: 37, drums: 1, lead: 'square' },
+  forest: { name: 'forest trail theme', bpm: 100, root: 62, scale: 'dorian', prog: [0, 4, 3, 4], seed: 41, drums: 1, lead: 'square' },
+  garden: { name: 'pea garden theme', bpm: 108, root: 60, scale: 'major', prog: [0, 4, 3, 4], seed: 43, drums: 1, lead: 'square' },
+  island: { name: 'island breeze theme', bpm: 96, root: 64, scale: 'mixo', prog: [0, 4, 3, 4], seed: 47, drums: 1, lead: 'square' },
+  canyon: { name: 'canyon dig theme', bpm: 90, root: 57, scale: 'dorian', prog: [0, 4, 3, 4], seed: 53, drums: 1, lead: 'square' },
   boss: { name: 'boss battle theme', bpm: 138, root: 55, scale: 'minor', prog: [0, 0, 5, 4], seed: 17, drums: 3, lead: 'square' }
 };
 const Music = { want: null, cur: null, song: null, mel: null, step: 0, next: 0, timer: 0, gain: null, duck: 1, gesture: false, noise: null };
@@ -289,7 +293,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 35 · October 22, 2026';
+const VERSION = 'Version 36 · October 22, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -318,6 +322,15 @@ const THEMES = {
     mote: '#d8ff8a', shafts: '#c8ff9a', pal: ['#2f7a3a', '#7be06a', '#c8ff7a'], shapes: ['disc', 'bean', 'pillar'], density: 0.5, glow: true, fogD: 0.012, hemi: ['#d8ffb0', '#06140a'], key: '#e8ffd0' },
   meadow: { skyTop: '#2a6fd4', horizon: '#cfeeff', skyBottom: '#8fc9f0', sun: ['#fff6d0', 40, 18, 240], ridge: '#5a8a4a', ground: '#3a4a22', top: '#7aa84a', rim: '#fff6c0',
     mote: '#ffffff', shafts: '#fff6d0', pal: ['#4a7a3a', '#6a9a4a', '#8aba5a'], shapes: ['tree', 'hill'], density: 0.8, fogD: 0.008, hemi: ['#e8f6ff', '#3a4a2a'], key: '#fff6e0' },
+  /* Worlds 3 to 5 */
+  forest: { skyTop: '#123a2a', horizon: '#f0c878', skyBottom: '#6a8a4a', sun: ['#fff0b0', 35, 16, 230], ridge: '#1f4a2a', ground: '#2e3a1e', top: '#5f8a3a', rim: '#fff0c0',
+    mote: '#fff6c0', shafts: '#ffe8a0', pal: ['#1f4a2a', '#2f6a34', '#4a8a3a'], shapes: ['tree', 'tree', 'hill'], density: 0.85, fogD: 0.011, hemi: ['#f0f8d0', '#1a2a12'], key: '#fff0c8' },
+  garden: { skyTop: '#3a6ad0', horizon: '#ffe6c0', skyBottom: '#a8d0f0', sun: ['#fff6d0', -35, 16, 240], ridge: '#6a9a4a', ground: '#4a3a22', top: '#8ab84a', rim: '#fff6d0',
+    mote: '#ffffff', shafts: '#fff6d0', pal: ['#6aaa4a', '#c59cff', '#ffffff', '#ff9fbf'], shapes: ['tree', 'blob', 'hill'], density: 0.7, fogD: 0.008, hemi: ['#f0f8ff', '#3a4a2a'], key: '#fff6e0' },
+  island: { skyTop: '#0a4a8a', horizon: '#ffe0a0', skyBottom: '#4ab0d8', sun: ['#fff4c0', 25, 14, 240], ridge: '#2a6a5a', ground: '#4a3a2a', top: '#d8c08a', rim: '#fff4d0',
+    mote: '#e8fbff', shafts: '#fff0c0', pal: ['#2a7a5a', '#4a9a6a', '#8ac07a'], shapes: ['hill', 'tree', 'blob'], density: 0.6, fogD: 0.009, hemi: ['#e0f6ff', '#2a2a1a'], key: '#fff4d8' },
+  canyon: { skyTop: '#2a3a7a', horizon: '#ffb070', skyBottom: '#d07a4a', sun: ['#ffd090', -30, 12, 230], ridge: '#8a4a2a', ground: '#5a3020', top: '#c8784a', rim: '#ffe0b0',
+    mote: '#ffd8a8', shafts: '#ffc890', pal: ['#a85a3a', '#c8784a', '#e0a070'], shapes: ['pillar', 'hill', 'pillar'], density: 0.6, fogD: 0.010, hemi: ['#ffe0c0', '#2a140a'], key: '#ffd8b0' },
   body: { skyTop: '#120206', horizon: '#a82a3c', skyBottom: '#3a0a12', sun: ['#ff6b7a', 0, 16, 230], pulse: true, ridge: '#3a0a16', ground: '#45101e', top: '#9a3c52', rim: '#ffc0c8',
     mote: '#ff9aa8', shafts: '#ff8090', pal: ['#e85d5d', '#ffb3a7', '#c9364a'], shapes: ['disc', 'disc', 'blob'], density: 0.5, glow: true, fogD: 0.013, hemi: ['#ff9aa8', '#1a0408'], key: '#ffb0b8' }
 };
@@ -1018,7 +1031,7 @@ function builder() {
     }
   };
   function mixPick(n, codes) {
-    const pool = shuffle(Object.keys(QMAP).map(function (k) { return QMAP[k]; }).filter(function (q) { return q.world === L.world.id && codes.indexOf(q.code) >= 0 && !L.used[q.id] && !(q.tags && q.tags.length); }));
+    const pool = shuffle(Object.keys(QMAP).map(function (k) { return QMAP[k]; }).filter(function (q) { return q.world <= L.world.id && codes.indexOf(q.code) >= 0 && !L.used[q.id] && !(q.tags && q.tags.length); })); /* interleaving: the listed codes from this world or earlier worlds */
     const rank = function (q) { return S.missed[q.id] ? 0 : S.seen[q.id] ? 1 : 2; };
     pool.sort(function (a, c) { return rank(a) - rank(c) || (S.seen[a.id] || 0) - (S.seen[c.id] || 0); });
     const qs = pool.slice(0, n); qs.forEach(function (q) { L.used[q.id] = 1; }); return qs;
