@@ -225,6 +225,7 @@ const SONGS = {
   membrane: { name: 'flowing membrane theme', bpm: 92, root: 60, scale: 'mixo', prog: [0, 6, 3, 0], seed: 9, drums: 1, lead: 'triangle' },
   body: { name: 'heartbeat theme', bpm: 112, root: 57, scale: 'minor', prog: [0, 5, 3, 4], seed: 13, drums: 2, lead: 'triangle' },
   shore: { name: 'ocean breeze theme', bpm: 92, root: 62, scale: 'major', prog: [0, 4, 5, 3], seed: 19, drums: 1, lead: 'triangle' },
+  reef: { name: 'coral reef theme', bpm: 84, root: 62, scale: 'major', prog: [0, 4, 5, 3], seed: 59, drums: 1, lead: 'triangle' },
   lab: { name: 'molecule builder theme', bpm: 104, root: 60, scale: 'mixo', prog: [0, 3, 6, 4], seed: 23, drums: 1, lead: 'square' },
   gut: { name: 'enzyme groove theme', bpm: 100, root: 57, scale: 'dorian', prog: [0, 3, 0, 4], seed: 29, drums: 2, lead: 'triangle' },
   leaf: { name: 'sunlit leaf theme', bpm: 96, root: 64, scale: 'major', prog: [0, 5, 3, 4], seed: 31, drums: 1, lead: 'triangle' },
@@ -293,7 +294,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 37 · October 22, 2026';
+const VERSION = 'Version 38 · October 23, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -323,6 +324,8 @@ const THEMES = {
   meadow: { skyTop: '#2a6fd4', horizon: '#cfeeff', skyBottom: '#8fc9f0', sun: ['#fff6d0', 40, 18, 240], ridge: '#5a8a4a', ground: '#3a4a22', top: '#7aa84a', rim: '#fff6c0',
     mote: '#ffffff', shafts: '#fff6d0', pal: ['#4a7a3a', '#6a9a4a', '#8aba5a'], shapes: ['tree', 'hill'], density: 0.8, fogD: 0.008, hemi: ['#e8f6ff', '#3a4a2a'], key: '#fff6e0' },
   /* Worlds 3 to 5 */
+  reef: { skyTop: '#2a8ad8', horizon: '#9fe6f0', skyBottom: '#1f6a9a', sun: ['#fff8d8', 30, 20, 240], ridge: '#1f5f7a', ground: '#d8c08a', top: '#f0dca8', rim: '#fff6d0',
+    mote: '#e8fbff', shafts: '#cff6ff', pal: ['#ff7a8a', '#ffb070', '#c59cff', '#ffd166', '#5fd0c5', '#ff9fdf'], shapes: ['coral', 'fan', 'kelp', 'coral'], density: 0.9, fogD: 0.012, hemi: ['#d8f6ff', '#1a3a4a'], key: '#fff6e0', seabed: -9, doorWall: '#b08a6a' },
   forest: { skyTop: '#123a2a', horizon: '#f0c878', skyBottom: '#6a8a4a', sun: ['#fff0b0', 35, 16, 230], ridge: '#1f4a2a', ground: '#2e3a1e', top: '#5f8a3a', rim: '#fff0c0',
     mote: '#fff6c0', shafts: '#ffe8a0', pal: ['#1f4a2a', '#2f6a34', '#4a8a3a'], shapes: ['tree', 'tree', 'hill'], density: 0.85, fogD: 0.011, hemi: ['#f0f8d0', '#1a2a12'], key: '#fff0c8' },
   garden: { skyTop: '#3a6ad0', horizon: '#ffe6c0', skyBottom: '#a8d0f0', sun: ['#fff6d0', -35, 16, 240], ridge: '#6a9a4a', ground: '#4a3a22', top: '#8ab84a', rim: '#fff6d0',
@@ -532,10 +535,16 @@ function decor(th, x0, x1, grp, anim) {
     for (let i = 0; i < count; i++) {
       const shape = ly.fore ? 'blob' : th.shapes[Math.floor(Math.random() * th.shapes.length)];
       const c = new T.Color(th.pal[Math.floor(Math.random() * th.pal.length)]).lerp(fog, ly.f);
-      const col = '#' + c.getHexString(), s = ly.s * rnd(0.7, 1.4);
+      const col = '#' + c.getHexString(); let s = ly.s * rnd(0.7, 1.4);
       const x = rnd(x0 - 30 - Math.abs(ly.z), x1 + 30 + Math.abs(ly.z)), z = ly.z + rnd(-2, 2);
       let m, floaty = true, y = rnd(-4, 14) * (ly.fore ? 0.7 : Math.max(1, ly.s * 0.45));
-      if (shape === 'tree') { m = new T.Mesh(G.cone, basic(col)); m.scale.set(s * 0.8, s * 2.4, s * 0.8); y = -1 + s * 2.4; floaty = false; }
+      if (shape === 'coral' || shape === 'fan' || shape === 'kelp') { /* reef life standing on the sea floor */
+        const fl = (th.seabed || -9) - 0.5 - (ly.s > 2 ? ly.s * 0.6 : 0); m = new T.Group(); floaty = false; y = fl; s = Math.min(s, 2.6);
+        if (shape === 'coral') { for (let k = 0; k < 5; k++) { const br = new T.Mesh(G.cyl, emat(col, '#2a1a1a')); const h = s * rnd(0.8, 1.6); br.scale.set(s * 0.18, h, s * 0.18); br.position.set(rnd(-0.6, 0.6) * s, h / 2, rnd(-0.3, 0.3)); br.rotation.z = rnd(-0.5, 0.5); m.add(br); const tip = new T.Mesh(G.sph, emat(col, '#2a1a1a')); tip.scale.setScalar(s * 0.24); tip.position.set(br.position.x - Math.sin(br.rotation.z) * h / 2, h, br.position.z); m.add(tip); } }
+        else if (shape === 'fan') { const f = new T.Mesh(G.sph, emat(col, '#2a102a')); f.scale.set(s * 1.4, s * 1.3, s * 0.06); f.position.y = s * 1.2; m.add(f); }
+        else { const k2 = new T.Mesh(G.cyl, emat('#5a8a3a', '#1a2a0a')); const h = s * rnd(3, 6); k2.scale.set(s * 0.12, h, s * 0.12); k2.position.y = h / 2; m.add(k2); }
+        m.rotation.y = rnd(0, 3); anim.push({ m: m, y: y, ph: rnd(0, 6), amp: 0, rot: 0, sway: true }); }
+      else if (shape === 'tree') { m = new T.Mesh(G.cone, basic(col)); m.scale.set(s * 0.8, s * 2.4, s * 0.8); y = -1 + s * 2.4; floaty = false; }
       else if (shape === 'hill') { m = mesh('sph', col); m.scale.set(s * 5, s * 2.4, s * 3); y = -2; floaty = false; }
       else if (shape === 'pillar') { m = mesh('cyl', col); m.scale.set(s * 0.5, s * 7, s * 0.5); y = rnd(-3, 3); floaty = false; }
       else if (shape === 'bean') { m = mesh('sph', col); m.scale.set(s * 1.7, s * 0.75, s * 0.75); m.rotation.z = rnd(0, 3); }
@@ -788,6 +797,13 @@ function addGround(x0, x1, y) {
 }
 function builder() {
   const D = BQ.data[L.world.id] || {};
+  /* MORAY EEL: lives in a rock hole on the reef and lunges out on a steady beat (a reef version of the snapper) */
+  function eelHole(dx, period, offset) {
+    const x = b.x + dx, rock = new T.Mesh(G.sph, emat('#6a5a4a', '#1a120a')); rock.scale.set(1.3, 1.1, 1); rock.position.set(x, b.y + 0.3, -0.4); L.group.add(rock);
+    const hole = new T.Mesh(G.sph, basic('#0a0a10')); hole.scale.set(0.5, 0.42, 0.2); hole.position.set(x, b.y + 0.55, 0.55); L.group.add(hole);
+    const g = new T.Group(), head = foeMesh('eel'); g.add(head); g.position.set(x, b.y, 0); L.group.add(g);
+    L.hazards.push({ kind: 'snapper', foe: 'eel', m: g, head: head, arms: [new T.Group(), new T.Group()], x: x, y: b.y, gy: b.y, period: period || 4, offset: offset || 0, t: 0, alive: true }); return b;
+  }
   const b = {
     x: 0, y: 0,
     ground: function (len) { addGround(b.x, b.x + len, b.y); b.x += len; return b; },
@@ -856,6 +872,25 @@ function builder() {
       return b;
     },
     checkpoint: function () { L.cps.push({ x: b.x - 2, y: b.y }); return b; },
+    /* ---------- WATER (bubble helmet) ----------
+       sea(top): water starts here; its surface is "top" above the current ground. shore() ends it.
+       Below the surface the alien swims: hold jump to rise, duck to dive. An air meter drains while the
+       head is under water; air bubbles from a vent (bubbles) or the surface refill it. */
+    sea: function (top) { const w = { x0: b.x, x1: 1e9, top: b.y + (top || 0) }; L.waters.push(w); L.waterOpen = w; return b; },
+    shore: function () { if (L.waterOpen) { L.waterOpen.x1 = b.x; L.waterOpen = null; } return b; },
+    /* a current: a stream of water that pushes you (vx, vy); shown as drifting streaks */
+    current: function (dx, len, dy0, dy1, vx, vy) {
+      const c = { x0: b.x + dx, x1: b.x + dx + len, y0: b.y + dy0, y1: b.y + dy1, vx: vx || 0, vy: vy || 0, streaks: [] };
+      const n = S.set.low ? 6 : 14;
+      for (let i = 0; i < n; i++) { const m = new T.Mesh(G.box, basic('#cff6ff', 0.35, true)); m.scale.set(vx ? 1.1 : 0.06, vy && !vx ? 1.1 : 0.06, 0.06); m.position.set(rnd(c.x0, c.x1), rnd(c.y0, c.y1), rnd(-0.8, 0.8)); L.group.add(m); c.streaks.push(m); }
+      L.currents.push(c); return b;
+    },
+    /* an air vent on the sea floor: a column of bubbles that refills your air */
+    bubbles: function (dx) {
+      const x = b.x + dx, g = new T.Group(), rock = new T.Mesh(G.sph, emat('#5a6a7a', '#101820')); rock.scale.set(0.9, 0.45, 0.7); g.add(rock); g.position.set(x, b.y, -0.3); L.group.add(g);
+      const bs = []; for (let i = 0; i < (S.set.low ? 6 : 12); i++) { const m = new T.Mesh(G.sph, basic('#e8fbff', 0.55, true)); m.scale.setScalar(rnd(0.08, 0.2)); m.position.set(x + rnd(-0.3, 0.3), b.y + rnd(0, 8), 0.3); L.group.add(m); bs.push(m); }
+      L.airs.push({ x: x, y: b.y, bs: bs }); return b;
+    },
     /* REFUEL STATION: an optional bonus quiz. Stand on the glowing pad and press E. */
     refuel: function () {
       const x0 = b.x, cx = x0 + 4; addGround(x0, x0 + 8, b.y); const g = new T.Group();
@@ -916,10 +951,12 @@ function builder() {
     wordbank: function (id) { const wb = (D.wordbanks || []).find(function (e) { return e.id === id; }); if (wb) makeWordbank(wb); return b; },
     /* ACTION PIECES: free radicals to dodge or stomp, moving platforms, ATP boosts, catch games */
     hazard: function (dx, dy, o) {
-      o = o || {}; const g = new T.Group(), core = new T.Mesh(G.ico, emat('#ff6b4a', '#7a1a0a')); core.scale.setScalar(0.55); g.add(core);
-      const sp = new T.Mesh(G.oct, emat('#ffb09c', '#7a2a1a')); sp.scale.set(0.95, 0.25, 0.25); g.add(sp); const sp2 = sp.clone(); sp2.rotation.z = Math.PI / 2; g.add(sp2);
-      g.add(glow('#ff6b4a', 2.8, 0.55)); g.position.set(b.x + dx, b.y + dy, 0); L.group.add(g);
-      L.hazards.push({ m: g, bx: b.x + dx, by: b.y + dy, x: b.x + dx, y: b.y + dy, ax: o.ax || 0, ay: o.ay == null ? 0.6 : o.ay, sp: o.sp || 1.5, ph: Math.random() * 6, t: 0, alive: true }); return b;
+      o = o || {}; const g = o.look ? foeMesh(o.look) : new T.Group();
+      if (!o.look) { const core = new T.Mesh(G.ico, emat('#ff6b4a', '#7a1a0a')); core.scale.setScalar(0.55); g.add(core);
+        const sp = new T.Mesh(G.oct, emat('#ffb09c', '#7a2a1a')); sp.scale.set(0.95, 0.25, 0.25); g.add(sp); const sp2 = sp.clone(); sp2.rotation.z = Math.PI / 2; g.add(sp2);
+        g.add(glow('#ff6b4a', 2.8, 0.55)); }
+      g.position.set(b.x + dx, b.y + dy, 0); L.group.add(g);
+      L.hazards.push({ m: g, look: o.look || null, bx: b.x + dx, by: b.y + dy, x: b.x + dx, y: b.y + dy, ax: o.ax || 0, ay: o.ay == null ? 0.6 : o.ay, sp: o.sp || 1.5, ph: Math.random() * 6, t: 0, alive: true }); return b;
     },
     bridge: function (len, o) {
       o = o || {}; const w = o.w || 3.6, cx = b.x + len / 2, sl = addSolid(cx - w / 2, cx + w / 2, b.y - 0.5, b.y, { oneWay: true });
@@ -940,7 +977,8 @@ function builder() {
     /* SNAPPER: a phagocyte (an amoeba in the pond, a white blood cell in the body) that pops out of a
        pore on a steady beat to engulf whatever is nearby. It shakes just before it pops up.
        Time your jump to get past; it cannot be stomped. */
-    snapper: function (dx, period, offset) {
+    snapper: function (dx, period, offset, look) {
+      if (look === 'eel') return eelHole(dx, period, offset);
       const x = b.x + dx, g = new T.Group(), pore = new T.Mesh(G.tor, emat('#6a4a7a', '#200a2a')); pore.scale.set(0.8, 0.8, 0.8); pore.rotation.x = Math.PI / 2; pore.position.set(x, b.y + 0.05, 0); L.group.add(pore);
       const head = new T.Group(), body = new T.Mesh(G.sph, emat('#e6f0ff', '#3a4a6a')); body.scale.set(0.85, 0.75, 0.7); head.add(body); head.add(glow('#cfe0ff', 2.6, 0.35));
       const nuc = new T.Mesh(G.sph, emat('#8a5ac8', '#2a0a4a')); nuc.scale.set(0.32, 0.26, 0.2); nuc.position.set(0.15, -0.15, 0.55); head.add(nuc);
@@ -992,9 +1030,10 @@ function builder() {
       s.qb = { m: m, q: q, gl: gl, reward: reward || 'sparks', used: false, x: x0 + 0.6, y: y0 + 1.2 }; return b;
     },
     /* RARE SPECIMEN: one hidden bonus per level, usually somewhere only a double jump can reach. */
-    rare: function (dx, dy) {
+    rare: function (dx, dy, o) {
       const g = new T.Group(), core = new T.Mesh(G.ico, emat('#ffd700', '#8a6a00')); core.scale.setScalar(0.45); g.add(core); g.add(glow('#ffd700', 4, 0.8));
-      g.position.set(b.x + dx, b.y + dy, 0); L.group.add(g); L.rare = { x: b.x + dx, y: b.y + dy, m: g, got: false }; return b;
+      if (o && o.name) { const lb = label('✦ ' + o.name, 3.2, { bd: '#ffd700' }); lb.position.y = 1.2; g.add(lb); }
+      g.position.set(b.x + dx, b.y + dy, 0); L.group.add(g); L.rare = { x: b.x + dx, y: b.y + dy, m: g, got: false, name: o && o.name, fact: o && o.fact }; return b;
     },
     /* a trail of sparks along a jump arc: shows the player where to jump */
     arc: function (dx, len, h) {
@@ -1086,7 +1125,7 @@ function builder() {
     const x0 = b.x, y = b.y, wx = x0 + 17, end = x0 + 31;
     addGround(x0, end, y);
     const op = [[0, 2.3], [2.7, 4.9], [5.3, 7.5]].map(function (o) { return [y + o[0], y + o[1]]; });
-    [[y + 2.3, y + 2.7], [y + 4.9, y + 5.3], [y + 7.5, y + 18]].forEach(function (g) { addSolid(wx, wx + 1.4, g[0], g[1]); L.group.add(bilayer(wx, wx + 1.4, g[0], g[1])); });
+    [[y + 2.3, y + 2.7], [y + 4.9, y + 5.3], [y + 7.5, y + 18]].forEach(function (g) { addSolid(wx, wx + 1.4, g[0], g[1]); L.group.add(L.th.doorWall ? box(wx, wx + 1.4, g[0], g[1], 4.6, L.th.doorWall) : bilayer(wx, wx + 1.4, g[0], g[1])); });
     [[wx - 6.5, y + 2.7], [wx - 4, y + 5.3]].forEach(function (p) { const sl = addSolid(p[0], wx, p[1] - 0.4, p[1], { oneWay: true }); L.group.add(box(sl.x0, sl.x1, sl.y0, sl.y1, 3, L.th.top)); });
     const KC = { lipid: '#f2c078', protein: '#c59cff', pump: '#ff9f6e', flow: '#7fd4ff', organelle: '#ffd166', vesicle: '#7be0ad' };
     const doors = shuffle(it.doors).map(function (d, i) {
@@ -1097,7 +1136,7 @@ function builder() {
       const lb = label(d.label, 3.2, { bd: KC[d.kind] || '#7fd4ff' }); lb.position.set(wx - 1.9, mid + 0.2, -0.9); g.add(lb);
       L.group.add(g); return { d: d, s: sd, g: g, plate: plate, cool: 0, kc: KC[d.kind] || '#7fd4ff' };
     });
-    for (let i = doors.length; i < 3; i++) { addSolid(wx, wx + 1.4, op[i][0], op[i][1]); L.group.add(bilayer(wx, wx + 1.4, op[i][0], op[i][1])); }
+    for (let i = doors.length; i < 3; i++) { addSolid(wx, wx + 1.4, op[i][0], op[i][1]); L.group.add(L.th.doorWall ? box(wx, wx + 1.4, op[i][0], op[i][1], 4.6, L.th.doorWall) : bilayer(wx, wx + 1.4, op[i][0], op[i][1])); }
     if (it.hereCrowd != null) {
     crowd(x0 + 1, wx - 0.4, y, it.hereCrowd * 3, it.dotColor || it.color);
     crowd(wx + 1.8, end - 1, y, it.thereCrowd * 3, it.dotColor || it.color);
@@ -1688,13 +1727,88 @@ function zoneAct(z) {
 function doorText(d) {
   d.label.material.map = labelTex('Collected ' + d.got + ' of ' + d.need); d.label.material.needsUpdate = true;
 }
+/* ---------- REAL EARTH CREATURES (used instead of the cell-world enemies in Earth-biome levels) ---------- */
+const FOES = {
+  jelly: { name: 'jellyfish', stomp: false, msg: 'Stung by a jellyfish! Its tentacles are lined with stinging cells. Swim around it.' },
+  shark: { name: 'reef shark', stomp: false, msg: 'A reef shark bumped you! Predators patrol the reef. Wait in the coral until it passes.' },
+  eel: { name: 'moray eel', stomp: false, msg: 'A moray eel lunged from its hole! Morays are ambush predators. Swim past while it is hiding.' }
+};
+function foeMesh(look) {
+  const g = new T.Group();
+  if (look === 'jelly') {
+    const bell = new T.Mesh(new T.SphereGeometry(0.55, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), new T.MeshLambertMaterial({ color: '#ffb3e0', emissive: '#6a2a5a', transparent: true, opacity: 0.75 })); g.add(bell);
+    for (let i = 0; i < 6; i++) { const t = new T.Mesh(G.cyl, emat('#ffc8ea', '#5a2a4a')); t.scale.set(0.03, 0.75, 0.03); t.position.set(Math.cos(i) * 0.3, -0.45, Math.sin(i) * 0.3); g.add(t); }
+    g.add(glow('#ff9fdf', 2.4, 0.45)); g.userData.tent = g.children.slice(1, 7);
+  } else if (look === 'shark') {
+    const M = emat('#7a8a9a', '#1a2028'), body = new T.Mesh(G.sph, M); body.scale.set(1.9, 0.5, 0.5); g.add(body);
+    const belly = new T.Mesh(G.sph, emat('#e8ecef', '#2a2a2a')); belly.scale.set(1.6, 0.3, 0.42); belly.position.y = -0.18; g.add(belly);
+    const fin = new T.Mesh(G.cone, M); fin.scale.set(0.35, 0.6, 0.12); fin.position.set(0.1, 0.55, 0); fin.rotation.z = -0.3; g.add(fin);
+    const tail = new T.Mesh(G.cone, M); tail.scale.set(0.4, 0.7, 0.1); tail.position.set(-1.9, 0.2, 0); tail.rotation.z = 0.9; g.add(tail);
+    const tail2 = tail.clone(); tail2.position.y = -0.15; tail2.rotation.z = 2.3; g.add(tail2);
+    const eye = new T.Mesh(G.sph, emat('#10202c', '#000000')); eye.scale.setScalar(0.08); eye.position.set(1.35, 0.1, 0.42); g.add(eye);
+  } else if (look === 'eel') {
+    const M = emat('#6a8a3a', '#1a2a0a'); for (let i = 0; i < 5; i++) { const s = new T.Mesh(G.sph, M); s.scale.set(0.42 - i * 0.04, 0.42 - i * 0.04, 0.42 - i * 0.04); s.position.y = -i * 0.5; g.add(s); }
+    const jaw = new T.Mesh(G.sph, emat('#c8d87a', '#2a3a0a')); jaw.scale.set(0.3, 0.12, 0.3); jaw.position.set(0, -0.12, 0.25); g.add(jaw);
+    [-0.15, 0.15].forEach(function (ex) { const e = new T.Mesh(G.sph, emat('#ffe08a', '#6a5010')); e.scale.setScalar(0.08); e.position.set(ex, 0.12, 0.36); g.add(e); });
+  }
+  return g;
+}
+/* ---------- WATER helpers ---------- */
+function waterAt(x, y) { if (!L || !L.waters.length) return null; for (let i = 0; i < L.waters.length; i++) { const w = L.waters[i]; if (x >= w.x0 && x <= w.x1 && y < w.top) return w; } return null; }
+function buildWater() {
+  L.waters.forEach(function (w) {
+    if (w.x1 > 1e8) w.x1 = L.len + 20;
+    const deep = new T.Mesh(G.plane, new T.MeshBasicMaterial({ color: '#0e6a8a', transparent: true, opacity: 0.22, depthWrite: false })); deep.scale.set(w.x1 - w.x0, 60, 1); deep.position.set((w.x0 + w.x1) / 2, w.top - 30, 4.6); L.group.add(deep);
+    const surf = new T.Mesh(G.plane, new T.MeshBasicMaterial({ color: '#bff4ff', transparent: true, opacity: 0.55, depthWrite: false })); surf.scale.set(w.x1 - w.x0, 0.12, 1); surf.position.set((w.x0 + w.x1) / 2, w.top, 4.7); L.group.add(surf);
+    const sheet = new T.Mesh(G.plane, new T.MeshBasicMaterial({ color: '#7fd4ff', transparent: true, opacity: 0.25, depthWrite: false, side: T.DoubleSide })); sheet.rotation.x = -Math.PI / 2; sheet.scale.set(w.x1 - w.x0, 14, 1); sheet.position.set((w.x0 + w.x1) / 2, w.top, -2); L.group.add(sheet);
+    /* the open sea stretching to the horizon: from above it hides the reef below; from below it is the shimmering surface */
+    const ocean = new T.Mesh(G.plane, new T.MeshLambertMaterial({ color: '#2a8ab0', emissive: '#0a3a50', transparent: true, opacity: 0.88, side: T.DoubleSide, depthWrite: false }));
+    ocean.rotation.x = -Math.PI / 2; ocean.scale.set(w.x1 - w.x0 + 600, 420, 1); ocean.position.set((w.x0 + w.x1) / 2, w.top - 0.02, -212); L.group.add(ocean);
+    w.surf = surf;
+  });
+}
+function hudAir(show) {
+  let el = $('hudAir'); if (!el) { el = document.createElement('span'); el.id = 'hudAir'; $('hud').insertBefore(el, $('hudLevel')); }
+  el.hidden = !show; if (!show) return; const n = Math.max(0, Math.round(P.air * 10));
+  el.textContent = '🫧 Air ' + '▮'.repeat(n) + '▯'.repeat(10 - n) + ' ' + Math.round(P.air * 100) + '%'; el.classList.toggle('low', P.air < 0.3);
+}
+/* swimming: steer in any direction, hold jump to rise, duck to dive; the helmet shows while you swim */
+function swimStep(w, dt, ax) {
+  if (!P.swim) { P.swim = true; P.vy *= 0.3; splash(P.x, w.top); if (!S.stat || !S.stat.swamOnce) { S.stat = S.stat || {}; S.stat.swamOnce = 1; save(); toast('🫧 Bubble helmet on! Hold jump (Space or Up) to swim up, duck (Down or S) to dive. Watch your air.', 6); }
+    if (!P.helm) { P.helm = new T.Mesh(G.sph, new T.MeshLambertMaterial({ color: '#cff6ff', emissive: '#2a5a6a', transparent: true, opacity: 0.28, depthWrite: false })); P.helm.scale.setScalar(1.05); P.helm.position.y = 0.95; P.m.add(P.helm); } P.helm.visible = true; }
+  const up = (keys.jump && !L.active ? 1 : 0) - (keys.duck && !L.active ? 1 : 0), fast = keys.run ? 1.35 : 1;
+  P.vx += (ax * SPEED * 0.72 * fast - P.vx) * Math.min(1, dt * 5);
+  P.vy += (up * 5.2 * fast - 0.7 - P.vy) * Math.min(1, dt * 4);
+  if (up > 0 && P.y + PH > w.top - 0.15) { P.vy = JUMP * 0.78; P.swim = false; splash(P.x, w.top); } /* hop out at the surface */
+  L.currents.forEach(function (c) { if (P.x > c.x0 && P.x < c.x1 && P.y + 0.7 > c.y0 && P.y + 0.7 < c.y1) { P.vx += c.vx * dt * 3; P.vy += c.vy * dt * 3; } });
+  if (!S.set.low && Math.random() < dt * 3) { const g = glow('#e8fbff', 0.5, 0.8); g.position.set(P.x + 0.2, P.y + 1.3, 0.8); L.group.add(g); L.fx.push({ o: g, t: 0, vx: 0, vy: 2, life: 1.2 }); }
+}
+function splash(x, y) { if (S.set.low) return; for (let i = 0; i < 8; i++) { const g = glow('#e8fbff', 0.8, 0.9); g.position.set(x, y, 0.8); L.group.add(g); const a = Math.PI * (0.15 + 0.7 * i / 7); L.fx.push({ o: g, t: 0, vx: Math.cos(a) * 3, vy: Math.sin(a) * 4, life: 0.5 }); } beep(300, 0.12, 'sine', 'splash'); }
+/* air: drains while your head is under water; refills at the surface and in bubble columns */
+function airStep(w, dt) {
+  if (P.air == null) P.air = 1;
+  const under = !!w && P.y + PH < w.top - 0.05;
+  let refill = !under;
+  L.airs.forEach(function (a) { a.bs.forEach(function (m) { m.position.y += dt * 2.2; if (m.position.y > (waterAt(a.x, a.y + 1) || { top: a.y + 8 }).top) m.position.y = a.y; }); if (Math.abs(P.x - a.x) < 1 && P.y > a.y - 1) refill = true; });
+  if (refill) P.air = Math.min(1, P.air + dt * 0.9); else P.air = Math.max(0, P.air - dt / 24);
+  if (P.air <= 0) { P.airT = (P.airT || 0) - dt; if (P.airT <= 0) { P.airT = 2.5; toast('Out of air! Swim up to the surface or into a bubble column.', 3); hurt(true); } }
+  hudAir(!!w || P.air < 1);
+}
+/* underwater view: no sky, deep blue haze, slowly darker with depth */
+function underwaterView(w) {
+  const under = !!w && cam.position.y - 3 < w.top;
+  if (under !== !!L.camUnder) { L.camUnder = under; if (SKY) SKY.visible = !under; }
+  if (under) { const d = Math.max(0, Math.min(1, (w.top - P.y) / 14)); const c = new T.Color('#1b7fa0').lerp(new T.Color('#06283a'), d); scene.background = c; scene.fog.color.copy(c); scene.fog.density = 0.022 + d * 0.02; }
+  else if (L.th) { scene.background = new T.Color(L.th.horizon); scene.fog.color.set(L.th.horizon); scene.fog.density = L.th.fogD; }
+}
 function startLevel(w, lv) {
   teardown();
   const th = THEMES[lv.theme] || THEMES.cell;
   L = { world: w, lv: lv, th: th, group: new T.Group(), solids: [], tokens: [], sparks: [], stations: [], doors: [], cps: [{ x: 2, y: 0 }], anim: [], used: {}, scans: [], helps: [], models: [], flies: [], secrets: [], ghosts: [], crumbs: [], told: {}, temps: [], clues: [], portal: null,
-    refuels: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
+    refuels: [], waters: [], currents: [], airs: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
   scene.add(L.group);
-  const b = builder(); lv.build(b); L.len = b.x;
+  const b = builder(); lv.build(b); L.len = b.x; if (L.waters.length) buildWater();
+  L.floor = Math.min(-16, L.solids.reduce(function (m, s) { return Math.min(m, s.y1); }, 0) - 14);
   scenery(th, 0, L.len, L.group, L.anim);
   /* checkpoint flags: they light up when you pass them */
   L.cps.forEach(function (c, i) {
@@ -1913,6 +2027,7 @@ function step(dt) {
   if (!L.started && !L.active && (keys.left || keys.right || keys.jump || keys.duck || jumpBuf > 0)) L.started = true;
   if (L.started) L.time += dt; P.t += dt; hudTime();
   const ax = L.active ? 0 : (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
+  const inW = waterAt(P.x, P.y + 0.75); if (!inW && P.swim) { P.swim = false; if (P.helm) P.helm.visible = false; }
   if (L.active) jumpBuf = 0;
   if (ax) P.face = ax;
   const bo = P.boost > 0; P.boost -= dt; if (!bo && P.boostM) { P.m.remove(P.boostM); P.boostM = null; }
@@ -1931,10 +2046,11 @@ function step(dt) {
   const running = keys.run && !P.duck; P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
   jumpBuf -= dt; coyote = P.ground ? 0.1 : coyote - dt;
   if (P.ground) P.dbl = true;
+  if (inW) jumpBuf = 0; /* in water, jump means swim up (handled in swimStep) */
   if (jumpBuf > 0 && coyote > 0) { P.vy = JUMP * (bo ? 1.15 : 1); jumpBuf = 0; coyote = 0; beep(420, 0.08, 'triangle'); }
   else if (jumpBuf > 0 && !P.ground && P.dbl && P.vy < 10) { P.vy = JUMP * 1.05 * (bo ? 1.1 : 1); P.dbl = false; jumpBuf = 0; beep(620, 0.08, 'triangle'); burst(P.x, P.y + 0.2, '#ffffff'); }
   if (!keys.jump && P.vy > 0) P.vy -= 50 * dt;
-  if (S.alien.gear === 2 && !(P.fly > 0)) { /* Explorer cape: hold jump while falling to fly a little */
+  if (S.alien.gear === 2 && !(P.fly > 0) && !inW) { /* Explorer cape: hold jump while falling to fly a little */
     if (P.cape == null) P.cape = 1.5;
     if (P.ground) P.cape = Math.min(1.5, P.cape + dt * 1.5);
     else if (keys.jump && (P.vy < 0.5 || P.capeOn) && P.cape > 0 && !L.active) { P.capeOn = true; P.cape -= dt; P.vy = Math.min(5, P.vy + 30 * dt) + GRAV * dt; P.capeT = 0.15; }
@@ -1951,9 +2067,11 @@ function step(dt) {
     if (P.fly < 3 && !P.flyWarn) { P.flyWarn = true; toast('Flight power is running out. Find a place to land!', 3); }
     if (P.fly <= 0 && P.flyM) { P.m.remove(P.flyM); P.flyM = null; }
   }
-  P.vy = Math.max(-30, P.vy - GRAV * dt);
+  if (inW && !(P.fly > 0)) swimStep(inW, dt, ax); else P.vy = Math.max(-30, P.vy - GRAV * dt);
+  if (L.waters.length) { airStep(inW, dt); underwaterView(waterAt(cam.position.x, cam.position.y - 3)); }
+  if (L.currents.length) L.currents.forEach(function (c) { c.streaks.forEach(function (m, i) { m.position.x += c.vx * dt * 1.6; m.position.y += c.vy * dt * 1.6; if (m.position.x > c.x1) m.position.x = c.x0; if (m.position.x < c.x0) m.position.x = c.x1; if (m.position.y > c.y1) m.position.y = c.y0; if (m.position.y < c.y0) m.position.y = c.y1; }); });
   moveX(P.vx * dt); moveY(P.vy * dt);
-  if (P.y < -16) { respawn(); L.score = Math.max(0, L.score - 25); toast('You fell. Back to the last checkpoint.', 3); hud(); }
+  if (P.y < (L.floor != null ? L.floor : -16)) { respawn(); L.score = Math.max(0, L.score - 25); toast('You fell. Back to the last checkpoint.', 3); hud(); }
   for (let i = L.cp + 1; i < L.cps.length; i++) if (P.x > L.cps[i].x) {
     L.cp = i; const f = L.flags[i];
     if (f && !f.lit) { f.lit = true; f.fl.material = emat('#7be0ad', '#2f7a50'); f.g.add(glow('#7be0ad', 2.4, 0.6)); beep(760, 0.15, 'triangle', 'bell, checkpoint'); popup(L.cps[i].x, L.cps[i].y + 2, 'Checkpoint', '#7be0ad'); }
@@ -1967,7 +2085,7 @@ function step(dt) {
       h.head.position.set(c > upStart - 0.6 && !up ? (Math.random() - 0.5) * 0.12 : 0, lift, 0);
       const open = up ? 0.2 + Math.abs(Math.sin(h.t * 6)) * 0.6 : 0.9; h.arms[0].rotation.z = -open; h.arms[1].rotation.z = open;
       h.y = h.gy + lift + 0.2;
-      if (lift > -0.2 && P.inv <= 0 && Math.abs(P.x - h.x) < 0.75 && P.y < h.gy + lift + 0.6 && P.y + PH > h.gy) { P.inv = 1.3; P.vx = P.x < h.x ? -8 : 8; P.vy = 8; toast('Engulfed! Phagocytes eat by wrapping around things. Jump past while it is hiding.', 3.5); hurt(true); }
+      if (lift > -0.2 && P.inv <= 0 && Math.abs(P.x - h.x) < 0.75 && P.y < h.gy + lift + 0.6 && P.y + PH > h.gy) { P.inv = 1.3; P.vx = P.x < h.x ? -8 : 8; P.vy = 8; toast(h.foe ? FOES[h.foe].msg : 'Engulfed! Phagocytes eat by wrapping around things. Jump past while it is hiding.', 3.5); hurt(true); }
       return;
     }
     if (h.kind === 'antibody') {
@@ -1978,10 +2096,14 @@ function step(dt) {
       return;
     }
     if (h.kind === 'virus') { const k = Math.asin(Math.sin(h.t * h.sp + h.ph)) * 2 / Math.PI; h.x = h.bx + k * h.range; h.y = h.by + Math.abs(Math.sin(h.t * 6)) * 0.12; h.m.position.set(h.x, h.y, 0); h.m.rotation.y = Math.cos(h.t * h.sp + h.ph) > 0 ? 0.6 : -0.6; }
-    else { h.x = h.bx + Math.sin(h.t * h.sp + h.ph) * h.ax; h.y = h.by + Math.sin(h.t * h.sp * 1.3 + h.ph) * h.ay; h.m.position.set(h.x, h.y, 0); h.m.rotation.z += dt * 2.5; }
+    else { const px = h.x; h.x = h.bx + Math.sin(h.t * h.sp + h.ph) * h.ax; h.y = h.by + Math.sin(h.t * h.sp * 1.3 + h.ph) * h.ay; h.m.position.set(h.x, h.y, 0);
+      if (h.look === 'shark') { h.m.rotation.y = h.x >= px ? 0 : Math.PI; h.m.rotation.z = Math.sin(h.t * 3) * 0.05; }
+      else if (h.look === 'jelly') { const pulse = 1 + Math.sin(h.t * 3) * 0.12; h.m.scale.set(pulse, 2 - pulse, pulse); }
+      else h.m.rotation.z += dt * 2.5; }
     const dx = P.x - h.x, dy = P.y + PH * 0.52 - h.y;
     if (Math.abs(dx) > 0.85 || Math.abs(dy) > PH * 0.52 + 0.3) return;
-    const name = h.kind === 'virus' ? 'virus' : 'free radical';
+    const foe = h.look ? FOES[h.look] : null, name = foe ? foe.name : h.kind === 'virus' ? 'virus' : 'free radical';
+    if (foe && !foe.stomp) { if (P.inv > 0 || P.shield > 0) return; P.inv = 1.3; P.vx = dx >= 0 ? 7 : -7; P.vy = 5; toast(foe.msg, 3.5); hurt(true); return; } /* real wildlife is never stomped: you just get bumped */
     if ((P.vy < -1 && P.y > h.y - 0.25) || P.shield > 0) { h.alive = false; h.m.visible = false; if (P.shield <= 0) P.vy = 12; L.score += 50; popup(h.x, h.y, '+50', '#ffd166'); burst(h.x, h.y, h.kind === 'virus' ? '#9be36b' : '#ff6b4a'); beep(900, 0.12, 'square', 'pop, ' + name + ' stopped'); hud(); return; }
     if (P.inv > 0) return;
     P.inv = 1.3; P.vx = dx >= 0 ? 9 : -9; P.vy = 7; toast(h.kind === 'virus' ? 'Ouch! A virus got you. Jump on top of it, or jump over it.' : 'Ouch! Free radicals damage cells. Jump on top of them instead.', 3); hurt(true);
@@ -1992,7 +2114,7 @@ function step(dt) {
   });
   if (P.shield > 0) { P.shield -= dt; if (P.shieldM) P.shieldM.rotation.y += dt * 4; if (P.shield <= 0 && P.shieldM) { P.m.remove(P.shieldM); P.shieldM = null; toast('Shield used up.', 2); } }
   if (L.rare && !L.rare.got) { L.rare.m.rotation.y += dt * 2; L.rare.m.position.y = L.rare.y + Math.sin(P.t * 2) * 0.2;
-    if (Math.abs(P.x - L.rare.x) < 1 && Math.abs(P.y + 0.7 - L.rare.y) < 1.1) { L.rare.got = true; L.rare.m.visible = false; L.score += 500; S.rare[L.lv.id] = true; save(); award('first-rare'); checkBig(); popup(L.rare.x, L.rare.y, 'Rare specimen! +500', '#ffd700'); burst(L.rare.x, L.rare.y, '#ffd700'); beep(1320, 0.4, 'triangle', 'sparkle, rare specimen found'); hud(); } }
+    if (Math.abs(P.x - L.rare.x) < 1 && Math.abs(P.y + 0.7 - L.rare.y) < 1.1) { L.rare.got = true; L.rare.m.visible = false; L.score += 500; S.rare[L.lv.id] = true; save(); award('first-rare'); checkBig(); popup(L.rare.x, L.rare.y, (L.rare.name ? L.rare.name + '! ' : 'Rare specimen! ') + '+500', '#ffd700'); if (L.rare.fact) toast('✦ Rare specimen: ' + L.rare.name + '. ' + L.rare.fact, 7); burst(L.rare.x, L.rare.y, '#ffd700'); beep(1320, 0.4, 'triangle', 'sparkle, rare specimen found'); hud(); } }
   L.fx = L.fx.filter(function (f) {
     f.t += dt; f.o.position.x += (f.vx || 0) * dt; f.o.position.y += f.vy * dt; f.o.material.opacity = Math.max(0, 1 - f.t / f.life);
     if (f.t >= f.life) { L.group.remove(f.o); return false; } return true;
@@ -2091,7 +2213,7 @@ function step(dt) {
   if (L.shake > 0) { L.shake -= dt; cam.position.x += (Math.random() - 0.5) * L.shake; cam.position.y += (Math.random() - 0.5) * L.shake; }
   cam.lookAt(cam.position.x, cam.position.y - 0.6, 0);
   sceneryTick(dt, P.t);
-  L.anim.forEach(function (a) { a.m.position.y = a.y + Math.sin(P.t * 0.6 + a.ph) * a.amp; a.m.rotation.z += a.rot * dt; });
+  L.anim.forEach(function (a) { if (a.sway) { a.m.rotation.z = Math.sin(P.t * 0.8 + a.ph) * 0.08; return; } a.m.position.y = a.y + Math.sin(P.t * 0.6 + a.ph) * a.amp; a.m.rotation.z += a.rot * dt; });
 }
 let LAST = null, STTAB = 'report', PQ = null;
 function finish() {
