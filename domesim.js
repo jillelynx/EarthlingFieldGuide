@@ -39,7 +39,7 @@ const GAUGES = {
 function gauges(s) { const o = {}; Object.keys(GAUGES).forEach(function (k) { o[k] = GAUGES[k](s); }); return o; }
 /* start a season: apply its disruption */
 function beginSeason(s) {
-  s.season++; s.ev = EVENTS[s.season - 1] || null; s.evDone = false; s.cured = false;
+  s.season++; s.ev = EVENTS[s.season - 1] || null; s.evDone = false; s.cured = false; s.condensed = false; s.composted = false;
   if (s.ev === 'boom') { if (s.rabbits > 0.25) s.rabbits *= 1.8; }
   if (s.ev === 'invasive') s.vine = 1.5;
   if (s.ev === 'disease') s.sick = true;
@@ -52,8 +52,13 @@ function act(s, a) {
   else if (a === 'pull' && s.vine > 0) { s.vine = Math.max(0, s.vine - 1.2); }
   else if (a === 'cure' && s.sick && s.kit >= 1) { s.kit -= 1; s.cured = true; }
   else if (a === 'penRabbits' && s.rabbits > 0.6) { s.rabbits -= 0.75; s.pen = (s.pen || 0) + 0.75; }
-  else if (a === 'penHawks' && s.hawks > 0.3) { s.hawks -= 0.4; }
+  else if (a === 'penHawks' && s.hawks > 0.3) { s.hawks -= 0.4; s.penH = (s.penH || 0) + 0.4; }
   else if (a === 'skim' && s.nut > 2) { s.nut -= 2; s.skimmed = (s.skimmed || 0) + 1; } /* scoop out extra algae and dry it outside the dome */
+  /* dome tools (each once per season) */
+  else if (a === 'condense' && !s.condensed) { s.water += 1.5; s.condensed = true; } /* collect the water that condenses on the cool glass: the water cycle */
+  else if (a === 'compost' && !s.composted && s.decomp >= 0.3) { const w = Math.min(2, s.waste); s.waste -= w; s.nut += 0.4 + w * 0.6; s.co2 = Math.min(100, s.co2 + 2); s.composted = true; } /* turning the pile gives decomposers air: they break waste into nutrients (and breathe out carbon dioxide) */
+  else if (a === 'releaseR' && (s.pen || 0) > 0.1) { const r = Math.min(0.75, s.pen); s.pen -= r; s.rabbits += r; }
+  else if (a === 'releaseH' && (s.penH || 0) > 0.1) { const h = Math.min(0.4, s.penH); s.penH -= h; s.hawks += h; }
   return s;
 }
 /* run one season and explain the biggest changes */
@@ -103,7 +108,7 @@ function runSeason(s) {
   s.o2 = clamp(s.o2 + ps - resp, 0, 100); s.co2 = clamp(s.co2 + resp - ps, 0, 100);
   if (s.o2 < 25) notes.push('lowO2'); if (s.co2 < 12) notes.push('lowCO2'); if (s.co2 > 60) notes.push('highCO2');
   /* a little water vapor escapes through the seals each season */
-  s.water = Math.max(0, s.water - (ev === 'heat' ? 0.9 : 0.25));
+  s.water = Math.max(0, s.water - (ev === 'heat' ? (s.shade ? 0.5 : 0.9) : 0.25)); /* the dome cover cuts evaporation in a heat wave */
   ['grass', 'flowers', 'trees', 'pondweed', 'bees', 'rabbits', 'hawks', 'fish'].forEach(function (k) { s[k] = clamp(s[k], 0, 12); if (s[k] < 0.2) s[k] = 0; });
   s.temp = Math.round(s.temp * 10) / 10; s.notes = notes; s.evDone = true;
   return s;
