@@ -294,7 +294,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 38 · October 23, 2026';
+const VERSION = 'Version 39 · October 23, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -712,7 +712,7 @@ function refuelSummary() {
   $('qopts').innerHTML = '<div class="rfSum"><div><b>' + st.answered + '</b><span>answered</span></div><div><b>' + st.right + '</b><span>correct</span></div><div><b>+' + st.pts + '</b><span>points</span></div></div><button type="button" class="opt" data-rf="done">Continue (E)</button>';
   $('qfb').textContent = ''; if (st.pts) burst(P.x, P.y + 1, '#5ff5e6'); beep(990, 0.25, 'sine', 'rising chime, refueled'); hud();
 }
-function nearScan() { return L.scans.find(function (k) { return Math.abs(P.x - k.x) < 1.6 && P.y > k.y - 1 && P.y < k.y + 2.4; }); }
+function nearScan() { return L.scans.find(function (k) { return !k.buried && Math.abs(P.x - k.x) < 1.6 && P.y > k.y - 1 && P.y < k.y + 2.4; }); }
 function showNote(sc) {
   const n = $('note'); n.innerHTML = '<small>New word for your Field Guide</small><b>' + esc(sc.word) + '</b><span>' + esc(sc.note) + '</span>';
   n.hidden = false; noteT = Math.max(8, sc.note.split(' ').length / 2.6);
@@ -780,6 +780,7 @@ function disposeGroup(g) {
   g.traverse(function (o) { if (o.geometry && shared.indexOf(o.geometry) < 0) o.geometry.dispose(); });
 }
 function teardown() {
+  caveLight(false);
   if (L) { scene.remove(L.group); disposeGroup(L.group); }
   if (menuGrp) { scene.remove(menuGrp); disposeGroup(menuGrp); menuGrp = null; }
   SKY = null; MOTES = null;
@@ -890,6 +891,40 @@ function builder() {
       const x = b.x + dx, g = new T.Group(), rock = new T.Mesh(G.sph, emat('#5a6a7a', '#101820')); rock.scale.set(0.9, 0.45, 0.7); g.add(rock); g.position.set(x, b.y, -0.3); L.group.add(g);
       const bs = []; for (let i = 0; i < (S.set.low ? 6 : 12); i++) { const m = new T.Mesh(G.sph, basic('#e8fbff', 0.55, true)); m.scale.setScalar(rnd(0.08, 0.2)); m.position.set(x + rnd(-0.3, 0.3), b.y + rnd(0, 8), 0.3); L.group.add(m); bs.push(m); }
       L.airs.push({ x: x, y: b.y, bs: bs }); return b;
+    },
+    /* ---------- DIGGING (burrow drill) ----------
+       digShaft(w, depth, roomLen, o): a shaft of soft rock to drill DOWN through into the next, older rock layer.
+       Hard rock to the right is the ceiling of the room below, so drilling is the only way down. */
+    digShaft: function (w, depth, o) {
+      o = o || {}; closeSlab(b.x + w); const x0 = b.x, yTop = b.y, yBot = b.y - depth, cols = Math.max(1, Math.round(w / 1.5)), rows = Math.max(1, Math.round(depth / 1.5)), tw = w / cols, th = depth / rows;
+      for (let c = 0; c < cols; c++) for (let r = 0; r < rows; r++) digTile(x0 + c * tw, x0 + (c + 1) * tw, yTop - (r + 1) * th, yTop - r * th, o.color);
+      addGround(x0, x0 + w, yBot);
+      L.slab = { x0: x0 + w, yTop: yTop, rock: o.rock || '#5a4a3a' }; /* the hard-rock ceiling over the next room; closed when the room ends */
+      const sg = label('⛏️ Soft rock: hold ↓ to drill down', 4.4, { bd: '#ffd166' }); sg.position.set(x0 + w / 2, yTop + 2.6, 0.5); L.group.add(sg);
+      L.digHint = L.digHint || x0; b.x = x0 + w; b.y = yBot; return b;
+    },
+    /* the tunnel comes out into daylight (the canyon floor) */
+    caveEnd: function () { closeSlab(b.x + 1); L.darkEnd = b.x + 1; const sg = label('☀️ Daylight! The canyon floor', 4.4, { bd: '#ffd166' }); sg.position.set(b.x + 4, b.y + 4.6, 0.5); L.group.add(sg); return b; },
+    /* a block of soft rock (for example a wall hiding a secret chamber) */
+    digBlock: function (dx, dy, w, h, color) {
+      const cols = Math.max(1, Math.round(w / 1.5)), rows = Math.max(1, Math.round(h / 1.5)), tw = w / cols, th = h / rows;
+      for (let c = 0; c < cols; c++) for (let r = 0; r < rows; r++) digTile(b.x + dx + c * tw, b.x + dx + (c + 1) * tw, b.y + dy + r * th, b.y + dy + (r + 1) * th, color);
+      return b;
+    },
+    /* a rock layer: a sign with its age, a back wall in the layer's color, and darkness (the drill's light shows the way) */
+    stratum: function (o) {
+      const len = o.len || 60, wall = box(b.x - 2, b.x + len, b.y - 1, b.y + 10, 0.5, o.color || '#8a6a4a'); wall.position.z = -4; L.group.add(wall);
+      for (let i = 0; i < len / 3; i++) { const st = box(b.x + i * 3, b.x + i * 3 + rnd(1, 2.5), b.y + rnd(0, 9), 0, 0.2, new T.Color(o.color || '#8a6a4a').offsetHSL(0, 0, rnd(-0.08, 0.08)).getStyle()); st.scale.y = rnd(0.15, 0.4); st.position.y = b.y + rnd(0.5, 9); st.position.z = -3.7; L.group.add(st); }
+      const sg = label(o.name, 7.5, { bg: '#fff8e1', fg: '#10202c', bd: '#10202c' }); sg.position.set(b.x + 9, b.y + 8.3, -1.5); L.group.add(sg);
+      if (o.sub) { const s2 = label(o.sub, 7.5, { bd: '#ffd166' }); s2.position.set(b.x + 9, b.y + 6.9, -1.5); L.group.add(s2); }
+      if (L.darkX == null) { L.darkX = b.x - 1; L.darkTop = b.y + 10; }
+      return b;
+    },
+    /* CAVE-IN: a rock shakes loose from the ceiling and drops on a steady beat; dust falls first as a warning */
+    rockfall: function (dx, period, offset, h) {
+      const x = b.x + dx, top = b.y + (h || 7.9), g = new T.Group(), r = new T.Mesh(G.ico, emat('#7a6a5a', '#1a140a')); r.scale.set(0.7, 0.55, 0.6); g.add(r); g.position.set(x, top, 0); L.group.add(g);
+      const dust = glow('#e8d8b8', 1.6, 0); dust.position.set(x, top - 0.4, 0.5); L.group.add(dust);
+      L.hazards.push({ kind: 'rock', m: g, dust: dust, x: x, y: top, top: top, gy: b.y, period: period || 4, offset: offset || 0, t: 0, alive: true }); return b;
     },
     /* REFUEL STATION: an optional bonus quiz. Stand on the glowing pad and press E. */
     refuel: function () {
@@ -1006,6 +1041,14 @@ function builder() {
       const ring = new T.Mesh(G.tor, basic('#9fe0ff', 0.7, true)); ring.scale.setScalar(0.45); ring.position.set(x, y + 2.7, 0.6); L.group.add(ring);
       const nm = label('🔍 ' + sc.name, 3, { bd: '#9fe0ff' }); nm.position.set(x, y + 3.6, 0.6); L.group.add(nm);
       L.scans.push({ sc: sc, x: x, y: y, g: g, ring: ring, nm: nm, done: false, t: Math.random() * 6 }); return b;
+    },
+    /* FOSSIL: a specimen buried in a mound of soft rock. Drill it out to uncover the fact card, then press E. */
+    fossil: function (dx, id) {
+      b.scan(dx, id); const k = L.scans[L.scans.length - 1]; if (!k || k.sc.id !== id) return b;
+      const x0 = k.x - 1.5, tiles = []; for (let c = 0; c < 2; c++) for (let r = 0; r < 2; r++) tiles.push(digTile(x0 + c * 1.5, x0 + (c + 1) * 1.5, b.y + r * 1.5, b.y + (r + 1) * 1.5, '#a08060'));
+      const bone = new T.Mesh(G.box, basic('#f4ecd8', 0.9)); bone.scale.set(0.9, 0.18, 0.05); bone.rotation.z = 0.5; bone.position.set(k.x, b.y + 1.6, 3.64); L.group.add(bone); tiles[1].digM.push(bone);
+      const tag = label('⛏️ Buried fossil! Push into the rock to drill it out.', 4.2, { bd: '#ffd166' }); tag.position.set(k.x, b.y + 3.9, 0.6); L.group.add(tag);
+      k.buried = tiles; k.tag = tag; k.g.visible = k.ring.visible = k.nm.visible = false; return b;
     },
     /* SQUEEZE: a low tunnel of fibers. Duck (down arrow or S) and crawl through. */
     squeeze: function (dx, len) {
@@ -1753,6 +1796,53 @@ function foeMesh(look) {
   }
   return g;
 }
+/* ---------- DIGGING helpers ---------- */
+function closeSlab(x1) {
+  const sl = L.slab; if (!sl) return; L.slab = null;
+  addSolid(sl.x0, x1, sl.yTop - 1.5, sl.yTop + 30); L.group.add(box(sl.x0, x1, sl.yTop - 1.5, sl.yTop + 16, 7.4, sl.rock));
+  for (let x = sl.x0 + 1; x < x1 - 1; x += rnd(2.5, 5)) { const st = new T.Mesh(G.cone || G.oct, emat('#6a5a48', '#140e08')); st.scale.set(0.35, rnd(0.6, 1.4), 0.35); st.rotation.x = Math.PI; st.position.set(x, sl.yTop - 1.8, 2.6); L.group.add(st); }
+}
+function digTile(x0, x1, y0, y1, color) {
+  const s = addSolid(x0, x1, y0, y1); s.dig = true; const col = color || '#b08a5a';
+  const m = box(x0 + 0.03, x1 - 0.03, y0 + 0.03, y1 - 0.03, 7.2, col); L.group.add(m);
+  const crack = new T.Mesh(G.box, basic('#3a2a1a', 0.55)); crack.scale.set((x1 - x0) * 0.5, 0.06, 0.05); crack.rotation.z = rnd(-0.6, 0.6); crack.position.set((x0 + x1) / 2, (y0 + y1) / 2, 3.62); L.group.add(crack);
+  s.digM = [m, crack]; s.col = col; return s;
+}
+function breakTile(t) {
+  t.off = true; t.digM.forEach(function (m) { m.visible = false; }); if (P.ground === t) P.ground = null;
+  if (!S.set.low) for (let i = 0; i < 6; i++) { const g = glow(t.col, 0.8, 0.9); g.position.set((t.x0 + t.x1) / 2, (t.y0 + t.y1) / 2, 0.8); L.group.add(g); const a = rnd(0, 6.3); L.fx.push({ o: g, t: 0, vx: Math.cos(a) * 3, vy: Math.sin(a) * 3 + 2, life: 0.5 }); }
+  beep(140 + Math.random() * 60, 0.08, 'sawtooth');
+  L.scans.forEach(function (k) {
+    if (!k.buried || k.buried.some(function (q) { return !q.off; })) return;
+    k.buried = null; k.g.visible = k.ring.visible = k.nm.visible = true; k.tag.visible = false; burst(k.x, k.y + 1, '#f4ecd8');
+    popup(k.x, k.y + 2, 'Fossil uncovered!', '#ffd166'); toast('🦴 Fossil uncovered: ' + k.sc.name + '. Press E to study it.', 3.5); beep(880, 0.25, 'triangle', 'chime, fossil uncovered');
+  });
+}
+/* drill: hold down on soft rock to dig down; push sideways into soft rock to dig across. Hard rock can't be drilled. */
+function digStep(dt, ax) {
+  if (L.active) { P.digT = 0; return; }
+  if (!L.toldDig && L.digHint != null && (Math.abs(P.x - L.digHint) < 8 || L.scans.some(function (k) { return k.buried && Math.abs(P.x - k.x) < 6; }))) { L.toldDig = true; toast('⛏️ Burrow drill! Hold Down (or S) to drill through soft, cracked rock. Push sideways into it to drill across. Smooth hard rock can\'t be drilled.', 7); }
+  let t = null;
+  if (keys.duck && P.ground && P.ground.dig && !P.ground.off) t = P.ground;
+  else if (ax) { const fx = P.x + ax * (HW + 0.15), fy = P.y + 0.6; t = L.solids.find(function (q) { return q.dig && !q.off && fx > q.x0 && fx < q.x1 && fy > q.y0 && fy < q.y1; }); }
+  if (!t) { P.digT = 0; return; }
+  P.digT = (P.digT || 0) + dt; if (!S.set.low && Math.random() < dt * 20) { const g = glow('#ffd8a0', 0.5, 0.9); g.position.set(P.x + (keys.duck ? 0 : ax * 0.6), P.y + (keys.duck ? 0 : 0.6), 0.9); L.group.add(g); L.fx.push({ o: g, t: 0, vx: rnd(-2, 2), vy: rnd(1, 3), life: 0.3 }); }
+  if (P.digT > 0.28) { breakTile(t); P.digT = 0; }
+}
+const _cv = new T.Vector3();
+function caveSpot() { const ov = $('caveDark'); if (!ov) return; _cv.set(P.x, P.y + 0.8, 0).project(cam); const x = (_cv.x + 1) * 50, y = (1 - _cv.y) * 50;
+  ov.style.background = 'radial-gradient(circle at ' + x.toFixed(1) + '% ' + y.toFixed(1) + '%, rgba(0,0,0,0) 0, rgba(0,0,0,0) 24vmin, rgba(5,3,2,.5) 50vmin, rgba(5,3,2,.8) 85vmin)'; }
+/* caves: the world goes dark and a warm light around the alien shows the way */
+let BASE_LIGHT = null;
+function caveLight(on) {
+  if (!HEMI) return; if (!BASE_LIGHT) BASE_LIGHT = { h: HEMI.intensity, k: KEYL.intensity };
+  let ov = $('caveDark'); if (!ov && on) { ov = document.createElement('div'); ov.id = 'caveDark'; document.body.appendChild(ov); }
+  if (ov) ov.hidden = !on;
+  if (on) { HEMI.intensity = BASE_LIGHT.h * 0.55; KEYL.intensity = BASE_LIGHT.k * 0.3; if (SKY) SKY.visible = false; scene.background = new T.Color('#0a0806'); if (scene.fog) { scene.fog.color.set('#0a0806'); scene.fog.density = 0.045; }
+    if (P && P.m && !P.lamp) { P.lamp = new T.PointLight(0xffd8a0, 2.6, 22, 1); P.lamp.position.set(0, 1.4, 1.5); P.m.add(P.lamp); } }
+  else { HEMI.intensity = BASE_LIGHT.h; KEYL.intensity = BASE_LIGHT.k; if (P && P.lamp) { P.m.remove(P.lamp); P.lamp = null; } if (L && L.th) { if (SKY) SKY.visible = true; scene.background = new T.Color(L.th.horizon); if (scene.fog) { scene.fog.color.set(L.th.horizon); scene.fog.density = L.th.fogD; } } }
+  if (L) L.inCave = on;
+}
 /* ---------- WATER helpers ---------- */
 function waterAt(x, y) { if (!L || !L.waters.length) return null; for (let i = 0; i < L.waters.length; i++) { const w = L.waters[i]; if (x >= w.x0 && x <= w.x1 && y < w.top) return w; } return null; }
 function buildWater() {
@@ -1774,7 +1864,7 @@ function hudAir(show) {
 }
 /* swimming: steer in any direction, hold jump to rise, duck to dive; the helmet shows while you swim */
 function swimStep(w, dt, ax) {
-  if (!P.swim) { P.swim = true; P.vy *= 0.3; splash(P.x, w.top); if (!S.stat || !S.stat.swamOnce) { S.stat = S.stat || {}; S.stat.swamOnce = 1; save(); toast('🫧 Bubble helmet on! Hold jump (Space or Up) to swim up, duck (Down or S) to dive. Watch your air.', 6); }
+  if (!P.swim) { P.swim = true; P.vy *= 0.3; splash(P.x, w.top); if (!S.stat || !S.stat.swamOnce) { S.stat = S.stat || {}; S.stat.swamOnce = 1; save(); toast('🫧 Bubble helmet on! Hold jump (Space or Up) to swim up, duck (Down or S) to dive. Shift swims faster.', 6); }
     if (!P.helm) { P.helm = new T.Mesh(G.sph, new T.MeshLambertMaterial({ color: '#cff6ff', emissive: '#2a5a6a', transparent: true, opacity: 0.28, depthWrite: false })); P.helm.scale.setScalar(1.05); P.helm.position.y = 0.95; P.m.add(P.helm); } P.helm.visible = true; }
   const up = (keys.jump && !L.active ? 1 : 0) - (keys.duck && !L.active ? 1 : 0), fast = keys.run ? 1.35 : 1;
   P.vx += (ax * SPEED * 0.72 * fast - P.vx) * Math.min(1, dt * 5);
@@ -1784,7 +1874,8 @@ function swimStep(w, dt, ax) {
   if (!S.set.low && Math.random() < dt * 3) { const g = glow('#e8fbff', 0.5, 0.8); g.position.set(P.x + 0.2, P.y + 1.3, 0.8); L.group.add(g); L.fx.push({ o: g, t: 0, vx: 0, vy: 2, life: 1.2 }); }
 }
 function splash(x, y) { if (S.set.low) return; for (let i = 0; i < 8; i++) { const g = glow('#e8fbff', 0.8, 0.9); g.position.set(x, y, 0.8); L.group.add(g); const a = Math.PI * (0.15 + 0.7 * i / 7); L.fx.push({ o: g, t: 0, vx: Math.cos(a) * 3, vy: Math.sin(a) * 4, life: 0.5 }); } beep(300, 0.12, 'sine', 'splash'); }
-/* air: drains while your head is under water; refills at the surface and in bubble columns */
+function bubbleStep(dt) { L.airs.forEach(function (a) { a.bs.forEach(function (m) { m.position.y += dt * 2.2; if (m.position.y > (waterAt(a.x, a.y + 1) || { top: a.y + 8 }).top) m.position.y = a.y; }); }); }
+/* (old air meter, no longer used: the alien does not need to breathe) */
 function airStep(w, dt) {
   if (P.air == null) P.air = 1;
   const under = !!w && P.y + PH < w.top - 0.05;
@@ -1807,7 +1898,7 @@ function startLevel(w, lv) {
   L = { world: w, lv: lv, th: th, group: new T.Group(), solids: [], tokens: [], sparks: [], stations: [], doors: [], cps: [{ x: 2, y: 0 }], anim: [], used: {}, scans: [], helps: [], models: [], flies: [], secrets: [], ghosts: [], crumbs: [], told: {}, temps: [], clues: [], portal: null,
     refuels: [], waters: [], currents: [], airs: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
   scene.add(L.group);
-  const b = builder(); lv.build(b); L.len = b.x; if (L.waters.length) buildWater();
+  const b = builder(); lv.build(b); closeSlab(b.x); L.len = b.x; if (L.waters.length) buildWater();
   L.floor = Math.min(-16, L.solids.reduce(function (m, s) { return Math.min(m, s.y1); }, 0) - 14);
   scenery(th, 0, L.len, L.group, L.anim);
   /* checkpoint flags: they light up when you pass them */
@@ -2049,7 +2140,7 @@ function step(dt) {
   if (inW) jumpBuf = 0; /* in water, jump means swim up (handled in swimStep) */
   if (jumpBuf > 0 && coyote > 0) { P.vy = JUMP * (bo ? 1.15 : 1); jumpBuf = 0; coyote = 0; beep(420, 0.08, 'triangle'); }
   else if (jumpBuf > 0 && !P.ground && P.dbl && P.vy < 10) { P.vy = JUMP * 1.05 * (bo ? 1.1 : 1); P.dbl = false; jumpBuf = 0; beep(620, 0.08, 'triangle'); burst(P.x, P.y + 0.2, '#ffffff'); }
-  if (!keys.jump && P.vy > 0) P.vy -= 50 * dt;
+  if (!keys.jump && P.vy > 0 && !inW) P.vy -= 50 * dt; /* short hop when jump is let go (not in water: currents and plumes can lift you) */
   if (S.alien.gear === 2 && !(P.fly > 0) && !inW) { /* Explorer cape: hold jump while falling to fly a little */
     if (P.cape == null) P.cape = 1.5;
     if (P.ground) P.cape = Math.min(1.5, P.cape + dt * 1.5);
@@ -2068,7 +2159,9 @@ function step(dt) {
     if (P.fly <= 0 && P.flyM) { P.m.remove(P.flyM); P.flyM = null; }
   }
   if (inW && !(P.fly > 0)) swimStep(inW, dt, ax); else P.vy = Math.max(-30, P.vy - GRAV * dt);
-  if (L.waters.length) { airStep(inW, dt); underwaterView(waterAt(cam.position.x, cam.position.y - 3)); }
+  if (L.solids.length && (L.digHint != null)) digStep(dt, ax);
+  if (L.darkX != null) { const cave = P.x > L.darkX && P.y < L.darkTop && !(L.darkEnd != null && P.x > L.darkEnd); if (cave !== !!L.inCave) caveLight(cave); if (L.inCave) caveSpot(); }
+  if (L.waters.length) { bubbleStep(dt); underwaterView(waterAt(cam.position.x, cam.position.y - 3)); } /* the alien does not need air: bubble vents are just scenery */
   if (L.currents.length) L.currents.forEach(function (c) { c.streaks.forEach(function (m, i) { m.position.x += c.vx * dt * 1.6; m.position.y += c.vy * dt * 1.6; if (m.position.x > c.x1) m.position.x = c.x0; if (m.position.x < c.x0) m.position.x = c.x1; if (m.position.y > c.y1) m.position.y = c.y0; if (m.position.y < c.y0) m.position.y = c.y1; }); });
   moveX(P.vx * dt); moveY(P.vy * dt);
   if (P.y < (L.floor != null ? L.floor : -16)) { respawn(); L.score = Math.max(0, L.score - 25); toast('You fell. Back to the last checkpoint.', 3); hud(); }
@@ -2086,6 +2179,13 @@ function step(dt) {
       const open = up ? 0.2 + Math.abs(Math.sin(h.t * 6)) * 0.6 : 0.9; h.arms[0].rotation.z = -open; h.arms[1].rotation.z = open;
       h.y = h.gy + lift + 0.2;
       if (lift > -0.2 && P.inv <= 0 && Math.abs(P.x - h.x) < 0.75 && P.y < h.gy + lift + 0.6 && P.y + PH > h.gy) { P.inv = 1.3; P.vx = P.x < h.x ? -8 : 8; P.vy = 8; toast(h.foe ? FOES[h.foe].msg : 'Engulfed! Phagocytes eat by wrapping around things. Jump past while it is hiding.', 3.5); hurt(true); }
+      return;
+    }
+    if (h.kind === 'rock') {
+      const c = (h.t + h.offset) % h.period, warn = c > h.period - 1.3 && c < h.period - 0.55, fall = c >= h.period - 0.55, u = fall ? (c - (h.period - 0.55)) / 0.55 : 0;
+      h.dust.material.opacity = warn ? 0.4 + 0.3 * Math.sin(h.t * 30) : 0; h.y = fall ? h.top - (h.top - h.gy - 0.4) * u * u : h.top; h.m.visible = fall || warn || c < 0.2;
+      h.m.position.set(h.x + (warn ? Math.sin(h.t * 50) * 0.06 : 0), h.y, 0); if (fall) h.m.rotation.z += dt * 6;
+      if (fall && u > 0.3 && P.inv <= 0 && P.shield <= 0 && Math.abs(P.x - h.x) < 0.8 && P.y < h.y && P.y + PH > h.y - 0.5) { P.inv = 1.3; P.vx = P.x < h.x ? -6 : 6; P.vy = 4; toast('Cave-in! Watch for falling dust: it means a rock is about to drop.', 3.5); hurt(true); }
       return;
     }
     if (h.kind === 'antibody') {
@@ -2208,7 +2308,7 @@ function step(dt) {
   const sq = P.duck ? 0.58 : P.ground ? 1 : 1 + Math.min(0.18, Math.abs(P.vy) * 0.012); P.m.scale.set(P.duck ? 1.2 : 1 / sq, sq, P.duck ? 1.2 : 1 / sq);
   P.shadow.position.set(P.x, (P.ground ? P.y : P.y - 0.5) + 0.04, 0); P.shadow.visible = !!P.ground;
   cam.position.x += (P.x + P.face * 2.5 - cam.position.x) * Math.min(1, dt * 4);
-  const lift = L.active && L.active.chart ? 2.4 : 0;
+  const lift = L.active && L.active.chart ? 2.4 : L.inCave ? -1.8 : 0;
   cam.position.y += (P.y + 5.2 + lift - cam.position.y) * Math.min(1, dt * 3); cam.position.z = camZ;
   if (L.shake > 0) { L.shake -= dt; cam.position.x += (Math.random() - 0.5) * L.shake; cam.position.y += (Math.random() - 0.5) * L.shake; }
   cam.lookAt(cam.position.x, cam.position.y - 0.6, 0);

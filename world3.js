@@ -34,7 +34,7 @@ FieldGuide.registerWorld({
       outro: 'Report sent: species interact through predation, competition, and symbiosis: mutualism (both benefit), commensalism (one benefits, one is unaffected), and parasitism (one benefits, the host is harmed).',
       build: function (b) {
         /* REEF LEVEL: a short dock, then everything happens under water (swim with jump and duck). Air bubbles mark refill spots. */
-        b.hint(5, 4.6, 'The coral reef! Your bubble helmet lets you breathe under water. Jump in!').sparks(8, 1.2, 3).ground(13).review()
+        b.hint(5, 4.6, 'The coral reef! Your bubble helmet lets you swim anywhere. Jump in!').sparks(8, 1.2, 3).ground(13).review()
           .sea(-0.6).gap(1).rise(-8)
           .bubbles(2).scan(5, 's3r-shark').scan(10, 's3r-prey').scan(15, 's3r-compete').hazard(12, 4.6, { look: 'shark', ax: 7, ay: 0.4, sp: 0.35 }).ground(19)
           .plat(2, 2.6, 4).plat(8, 4.6, 3).sparks(8.5, 5.6, 3).ground(13)
