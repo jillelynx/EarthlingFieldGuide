@@ -174,6 +174,9 @@ const ITEMS = [
   /* earned in Worlds 3 to 5 */
   { id: 'wetland', ic: '🪷', size: 1, max: 1, rq: 'l35' }, { id: 'seedbank', ic: '🌰', size: 1, max: 1, rq: 'l42' }, { id: 'hardy', ic: '🌵', size: 1, max: 1, rq: 'l51' }];
 const CAP = 24;
+/* tested with the dome model: this pack stays in balance for all 8 seasons when you respond to each season's event
+   (sun shade in the heat wave, cell-care kit for the disease, pull the vine, insulating panels in the cold) */
+const SUGGEST = [['water', 6], ['air', 1], ['blocks', 1], ['soil', 2], ['grass', 1], ['flowers', 2], ['trees', 1], ['pondweed', 1], ['bees', 2], ['rabbits', 1], ['hawks', 1], ['pond', 1], ['cellkit', 1]];
 function lvDone(id) { const L0 = C.S.levels[id]; return !!(L0 && L0.stars); }
 function cz() { return C.S.cozy || {}; }
 const REQ = {
@@ -245,6 +248,7 @@ function left() {
   if (B.phase === 'pack') { const u = used();
     L.innerHTML = '<h3>' + esc(tx('bd.pack.t')) + '</h3><p class="ds">' + esc(tx('bd.pack.h')) + '</p>' + (C.teach || C.S.set.unlock ? '<p class="ds">' + esc(tx('bd.teach')) + '</p>' : '') +
       '<b>' + esc(tx('bd.cargo')) + ': ' + u + ' / ' + CAP + '</b><div class="bdBar' + (u >= CAP ? ' full' : '') + '"><i style="width:' + Math.round(u / CAP * 100) + '%"></i></div>' +
+      '<div class="bdBtns"><button type="button" data-a="suggest" title="' + esc(tx('bd.suggestH')) + '">💡 ' + esc(tx('bd.suggest')) + '</button></div><p class="ds">' + esc(tx('bd.suggestH')) + '</p>' + (B.warn && B.phase === 'pack' ? '<p class="bdWarn">⚠️ ' + esc(B.warn) + '</p>' : '') +
       ITEMS.map(function (it) { return itemRow(it, 'pack'); }).join('') + packCheck() +
       '<div class="bdBtns">' + (ITEMS.some(function (it) { return !earned(it); }) ? '<button type="button" data-a="earth">🌍 ' + esc(tx('bd.earth')) + '</button>' : '') + '<button type="button" class="primary" data-a="launch"' + (u ? '' : ' disabled') + '>' + esc(tx('bd.launch')) + '</button></div>';
   } else {
@@ -337,6 +341,10 @@ function click(d) {
   if (a === 'menu') { exit(); return; }
   if (a === 'go') { $('bdStory').hidden = true; sv().seen = 1; C.save(); render(); return; }
   if (a === 'earth') { exit(); return; }
+  if (a === 'suggest') { /* a starter pack the dome's model shows can stay in balance (one of every kind of living thing), limited to what you have earned */
+    B.cargo = {}; const missed = [];
+    SUGGEST.forEach(function (q) { const it = ITEMS.find(function (x) { return x.id === q[0]; }); if (!earned(it)) { missed.push(tx('bd.it.' + it.id)); return; } for (let k = 0; k < q[1]; k++) if ((B.cargo[it.id] || 0) < it.max && used() + it.size <= CAP) B.cargo[it.id] = (B.cargo[it.id] || 0) + 1; });
+    B.warn = missed.length ? tx('bd.suggestMiss') + ' ' + missed.join(', ') : null; sfx('pop'); render(); return; }
   if (a === 'inc' || a === 'dec') { const it = ITEMS.find(function (q) { return q.id === d.id; }), n = B.cargo[it.id] || 0;
     if (a === 'inc' && n < it.max && used() + it.size <= CAP) B.cargo[it.id] = n + 1; else if (a === 'dec' && n > 0) B.cargo[it.id] = n - 1; else C.beep(200, 0.08, 'sine');
     left(); return; }
@@ -366,6 +374,8 @@ function click(d) {
   if (a === 'rewind') { const h = B.hist.pop(); if (!h) return; const o = JSON.parse(h); B.sim = o.sim; B.store = o.store; B.placed = o.placed; B.rewinds++; B.phase = 'season'; B.sim.evDone = false; B.dirty = true; render(); return; }
   if (a === 'again') { exit(); start(); return; }
 }
+Object.assign(C.I18N.en, {"bd.suggest": "Suggested pack", "bd.suggestH": "Not sure what to bring? This pack has one of every kind of living thing and was tested to stay in balance, if you respond to each season's problem. You can still change it.", "bd.suggestMiss": "Not earned yet, so left out:"});
+Object.assign(C.I18N.es, {"bd.suggest": "Carga sugerida", "bd.suggestH": "¿No sabes qué llevar? Esta carga tiene un ser vivo de cada tipo y se probó que se mantiene en equilibrio, si respondes al problema de cada temporada. Igual puedes cambiarla.", "bd.suggestMiss": "Todavía no ganados, así que quedan fuera:"});
 Object.assign(C.I18N.en, {"bd.airlock": "Spare crates come in through the airlock, so the dome stays sealed.", "bd.act.skim": "Scoop extra algae onto the compost pile", "bd.sun": "☀️ Sunlight", "bd.sun0": "full sun", "bd.sun1": "half shade", "bd.sun2": "deep shade", "bd.sunLess": "⛱️ Less sun", "bd.sunMore": "☀️ More sun", "bd.sunH": "The dome always stays sealed. A sun shade over the glass lets in less sunlight: the dome gets cooler and loses less water in a heat wave, but plants grow and make oxygen more slowly.", "bd.insul": "🧱 Insulating panels", "bd.insulOn": "ON", "bd.insulOff": "OFF", "bd.insulH": "Panels that keep the dome's own heat in during a cold snap. They warm the dome toward 22 °C but never cool it.", "bd.tool.sunLess": "⛱️ Less sun (sun shade)", "bd.tool.sunMore": "☀️ More sun (raise the shade)", "bd.tool.insulOn": "🧱 Turn ON the insulating panels", "bd.tool.insulOff": "🧱 Turn OFF the insulating panels", "bd.tool.plant": "🌱 Plant cuttings and seeds from your own plants", "bd.tool.plantH": "More producers to take up carbon dioxide and make oxygen. New plants use some nutrients. Once per season.", "bd.tool.plantNo": "🌱 Plant cuttings and seeds (needs some plants and nutrients in the dome)", "bd.placeAll": "📦 Place all", "bd.placeAllH": "Places every crate in storage in a safe order (water and soil first, then plants, then animals).", "bd.placeAllLeft": "Could not place yet:", "bd.placeTip": "Tip: keeping a few crates in storage gives you ways to fix problems later.", "bd.min": "Minimize", "bd.max": "Show"});
 Object.assign(C.I18N.es, {"bd.airlock": "Las cajas de repuesto entran por la esclusa, así el domo sigue sellado.", "bd.act.skim": "Echar las algas sobrantes a la pila de compost", "bd.sun": "☀️ Luz del sol", "bd.sun0": "sol pleno", "bd.sun1": "media sombra", "bd.sun2": "sombra densa", "bd.sunLess": "⛱️ Menos sol", "bd.sunMore": "☀️ Más sol", "bd.sunH": "El domo siempre está sellado. Una malla de sombra sobre el vidrio deja pasar menos luz: el domo se enfría y pierde menos agua en una ola de calor, pero las plantas crecen y producen oxígeno más despacio.", "bd.insul": "🧱 Paneles aislantes", "bd.insulOn": "SÍ", "bd.insulOff": "NO", "bd.insulH": "Paneles que guardan el calor del propio domo durante una ola de frío. Lo calientan hacia 22 °C, pero nunca lo enfrían.", "bd.tool.sunLess": "⛱️ Menos sol (malla de sombra)", "bd.tool.sunMore": "☀️ Más sol (quitar sombra)", "bd.tool.insulOn": "🧱 Poner los paneles aislantes", "bd.tool.insulOff": "🧱 Quitar los paneles aislantes", "bd.tool.plant": "🌱 Plantar esquejes y semillas de tus propias plantas", "bd.tool.plantH": "Más productores para absorber dióxido de carbono y producir oxígeno. Las plantas nuevas usan algunos nutrientes. Una vez por temporada.", "bd.tool.plantNo": "🌱 Plantar esquejes y semillas (necesita plantas y nutrientes en el domo)", "bd.placeAll": "📦 Colocar todo", "bd.placeAllH": "Coloca todas las cajas del almacén en un orden seguro (primero agua y suelo, luego plantas, luego animales).", "bd.placeAllLeft": "Todavía no se pudo colocar:", "bd.placeTip": "Consejo: guardar algunas cajas en el almacén te da formas de arreglar problemas después.", "bd.min": "Minimizar", "bd.max": "Mostrar"});
 /* ---------- FIX IT: every yellow or red gauge explains why, and offers things you can do right now ---------- */

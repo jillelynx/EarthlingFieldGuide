@@ -15,7 +15,7 @@ Object.assign(C.I18N.en, {
   'cz.reserve': 'Willow Creek Reserve', 'cz.mode': 'Cozy Exploration',
   'cz.controls': 'Move: WASD or arrows · Run: Shift · Jump: Space (hold in the air to glide) · Swim down: C · Interact: E · Listen: L · Map: M · Hint: H · Look around: drag the mouse, Q / R, T / G · Zoom: mouse wheel or − / + · Look closer: V · Journal: J · Menu: Esc · Show or hide this list: K',
   'cz.swimTip': 'You are swimming! Hold C to dive under the water. Hold Space to rise. Press Space at the surface near the shore to climb out.',
-  'cz.diveTip': 'Underwater! Look around with the mouse. You float back up on your own whenever you let go of C.',
+  'cz.diveTip': 'Underwater! Your suit lets you stay down here as long as you like. Swim with WASD, hold C to go deeper, hold Space to rise. Look around with the mouse.',
   'cz.edgeTip': 'The hills beyond the reserve are steep and wild. This is as far as the trail goes. Turn around and keep exploring!',
   'cz.edgeTip2': 'This is the edge of the lookout. Enjoy the view from here, but it is a long way down!',
   'cz.flyTip': 'Flying! Space: go up · C: go down · Shift: faster. Watch your energy bar. When it runs out you glide down gently.',
@@ -114,7 +114,7 @@ Object.assign(C.I18N.es, {
   'cz.reserve': 'Reserva Arroyo de los Sauces', 'cz.mode': 'Exploración tranquila',
   'cz.controls': 'Moverse: WASD o flechas · Correr: Shift · Saltar: Espacio (mantenlo en el aire para planear) · Bucear: C · Interactuar: E · Escuchar: L · Mapa: M · Pista: H · Mirar alrededor: arrastra el ratón, Q / R, T / G · Zoom: rueda del ratón o − / + · Mirar de cerca: V · Diario: J · Menú: Esc · Mostrar u ocultar esta lista: K',
   'cz.swimTip': '¡Estás nadando! Mantén C para bucear bajo el agua. Mantén Espacio para subir. Pulsa Espacio en la superficie cerca de la orilla para salir.',
-  'cz.diveTip': '¡Bajo el agua! Mira alrededor con el ratón. Vuelves a flotar solo cuando sueltas C.',
+  'cz.diveTip': '¡Bajo el agua! Tu traje te deja quedarte aquí todo el tiempo que quieras. Nada con WASD, mantén C para bajar más y Espacio para subir. Mira alrededor con el ratón.',
   'cz.edgeTip': 'Las colinas más allá de la reserva son empinadas y salvajes. Hasta aquí llega el sendero. ¡Da la vuelta y sigue explorando!',
   'cz.edgeTip2': 'Este es el borde del mirador. Disfruta la vista desde aquí, ¡pero hay una gran caída!',
   'cz.flyTip': '¡Volando! Espacio: subir · C: bajar · Shift: más rápido. Mira tu barra de energía. Cuando se acaba, bajas planeando con suavidad.',
@@ -516,6 +516,8 @@ Object.assign(C.I18N.es, {
   C.I18N.es['a.' + id] = C.I18N.es['cz.a.' + id]; C.I18N.es['a.' + id + '.d'] = C.I18N.es['cz.a.' + id + '.d'];
 });
 
+Object.assign(C.I18N.en, {"cz.t.crayfish": "the crayfish", "cz.n.crayfish": "Crayfish", "cz.d.crayfish": "Crayfish are crustaceans, relatives of crabs and shrimp. They hide under rocks by day and come out at night to eat dead plants, dead animals and small living things, so they help recycle nutrients in the pond. Many kinds are sensitive to pollution."});
+Object.assign(C.I18N.es, {"cz.t.crayfish": "el cangrejo de río", "cz.n.crayfish": "Cangrejo de río", "cz.d.crayfish": "Los cangrejos de río son crustáceos, parientes de los cangrejos y los camarones. De día se esconden bajo las rocas y de noche salen a comer plantas y animales muertos y pequeños seres vivos, así que ayudan a reciclar los nutrientes del estanque. Muchas especies son sensibles a la contaminación."});
 /* ---------- TEXT FOR THE NEW AREAS (Pennsylvania places beyond the hills) ---------- */
 Object.assign(C.I18N.en, {
  "cz.ar.bog": "Pocono Bog",
@@ -587,7 +589,7 @@ const FINDS = [
   { id: 'willow', look: 'grass', col: '#8aba5a' }, { id: 'dogwood', look: 'sprout', col: '#fff0f4' }, { id: 'hickory', look: 'sprout', col: '#e0b03a' },
   { id: 'seaview', look: 'drop', col: '#2a9ab0' }, { id: 'valleyview', look: 'grass', col: '#c8b858' }, { id: 'canyonview', look: 'rock', col: '#c8805a' },
   { id: 'fireflies', look: 'sun', col: '#d8ff7a' }, { id: 'lunamoth', look: 'sprout', col: '#9ae08a' },
-  { id: 'pondweed', look: 'grass', col: '#3a9a5a' }, { id: 'mussel', look: 'rock', col: '#4a4a6a' }, { id: 'tadpole', look: 'frog', col: '#4a5a3a' },
+  { id: 'pondweed', look: 'grass', col: '#3a9a5a' }, { id: 'mussel', look: 'rock', col: '#4a4a6a' }, { id: 'tadpole', look: 'frog', col: '#4a5a3a' }, { id: 'crayfish', look: 'critter', col: '#9a4a2a' },
   /* Pocono Bog */
   { id: 'sphagnum', look: 'grass', col: '#8aa040', area: 'bog' }, { id: 'pitcher', look: 'sprout', col: '#a0403a', area: 'bog' }, { id: 'sundew', look: 'sun', col: '#d8402a', area: 'bog' }, { id: 'cranberry', look: 'eggs', col: '#c0283a', area: 'bog' },
   { id: 'tamarack', look: 'sprout', col: '#a8c060', area: 'bog' }, { id: 'blackspruce', look: 'sprout', col: '#1f3a2a', area: 'bog' }, { id: 'kettle', look: 'drop', col: '#5a3a18', area: 'bog' }, { id: 'peat', look: 'rock', col: '#5a3a20', area: 'bog' }];
@@ -1306,6 +1308,16 @@ function build() {
   for (let i = 0; i < 5; i++) { const a = 4.6 + i * 0.5, rr = 6 + (i % 2) * 2.5; rock(POND.x + Math.cos(a) * rr, POND.z + Math.sin(a) * rr, 0.8 + (i % 3) * 0.3); }
   W.tads = []; for (let i = 0; i < 10; i++) { const t0 = new T.Group(), b0 = new T.Mesh(LP.sph, C.basic('#2a2a1a')); b0.scale.set(0.12, 0.1, 0.16); t0.add(b0); const tl = new T.Mesh(G.box, C.basic('#3a3a2a')); tl.scale.set(0.02, 0.07, 0.22); tl.position.z = -0.18; t0.add(tl); W.uw.add(t0); W.tads.push({ m: t0, tail: tl, ph: i * 0.7 }); }
   W.tadAt = [POND.x - 9, POND.z + 6];
+  /* crayfish under the rocks on the pond floor */
+  W.cray = []; [[5.2, 6.8], [5.9, 7.6]].forEach(function (q, k) { const a = q[0], rr = q[1], x = POND.x + Math.cos(a) * rr, z = POND.z + Math.sin(a) * rr, c = new T.Group(), M = C.emat('#9a4a2a', '#2a0a04');
+    for (let j = 0; j < 4; j++) { const seg = new T.Mesh(LP.sph, M); seg.scale.set(0.16 - j * 0.02, 0.1, 0.13 - j * 0.015); seg.position.z = -j * 0.17; c.add(seg); }
+    const fan = new T.Mesh(LP.cone, M); fan.scale.set(0.12, 0.05, 0.12); fan.rotation.x = Math.PI / 2; fan.position.z = -0.72; c.add(fan);
+    [-1, 1].forEach(function (sd) { const arm = new T.Mesh(LP.cyl, M); arm.scale.set(0.03, 0.26, 0.03); arm.rotation.x = Math.PI / 2; arm.rotation.z = sd * 0.5; arm.position.set(sd * 0.12, 0, 0.22); c.add(arm);
+      const cl = new T.Mesh(LP.sph, M); cl.scale.set(0.07, 0.04, 0.12); cl.position.set(sd * 0.2, 0, 0.42); c.add(cl);
+      for (let L0 = 0; L0 < 3; L0++) { const lg = new T.Mesh(LP.cyl, M); lg.scale.set(0.012, 0.14, 0.012); lg.rotation.z = sd * 1.1; lg.position.set(sd * 0.14, -0.05, -0.05 - L0 * 0.12); c.add(lg); }
+      const an = new T.Mesh(LP.cyl, C.emat('#c08a6a', '#2a0a04')); an.scale.set(0.006, 0.3, 0.006); an.rotation.x = 1.2; an.rotation.z = sd * 0.3; an.position.set(sd * 0.05, 0.05, 0.4); c.add(an); });
+    c.scale.setScalar(1.6); c.position.set(x, H(x, z) + 0.12, z); W.uw.add(c); W.cray.push({ m: c, x: x, z: z, ph: k * 2 }); });
+  W.crayAt = [W.cray[0].x, W.cray[0].z];
   { const rc = document.createElement('canvas'); rc.width = 16; rc.height = 128; const rx = rc.getContext('2d'), grd = rx.createLinearGradient(0, 0, 0, 128); grd.addColorStop(0, 'rgba(255,255,230,0.55)'); grd.addColorStop(1, 'rgba(255,255,230,0)'); rx.fillStyle = grd; rx.fillRect(0, 0, 16, 128);
     const rt = new T.CanvasTexture(rc); W.rays = []; for (let i = 0; i < 9; i++) { const m = new T.Mesh(new T.PlaneGeometry(1.4, 7), new T.MeshBasicMaterial({ map: rt, transparent: true, depthWrite: false, blending: T.AdditiveBlending, side: T.DoubleSide, fog: false })); const a = i * 0.7, rr = 2 + (i * 3.1 % 9);
       m.position.set(POND.x + Math.cos(a) * rr, WL0 - 3.4, POND.z + Math.sin(a) * rr); m.rotation.set(0.15, a, 0.1); m.visible = false; g.add(m); W.rays.push({ m: m, ph: i }); } }
@@ -1456,7 +1468,8 @@ function spots() {
     { id: 'sv-kick.down', x: -38.5, z: -25, r: 2.4, verb: 'cz.svStart', t: 'cz.svPost', noMark: true, use: function () { svStart('kick.down'); } },
     { id: 'pondweed', x: POND.x + 3, z: POND.z - 4, r: 4.5, uw: true, verb: 'cz.observe', t: 'cz.t.pondweed', noMark: true, use: function () { find('pondweed'); } },
     { id: 'mussel', x: POND.x + Math.cos(1.6) * 5.2, z: POND.z + Math.sin(1.6) * 5.2, r: 3.5, uw: true, verb: 'cz.observe', t: 'cz.t.mussel', noMark: true, use: function () { find('mussel'); } },
-    { id: 'tadpole', x: POND.x - 9, z: POND.z + 6, r: 4, uw: true, verb: 'cz.observe', t: 'cz.t.tadpole', noMark: true, use: function () { find('tadpole'); } }
+    { id: 'tadpole', x: POND.x - 9, z: POND.z + 6, r: 4, uw: true, verb: 'cz.observe', t: 'cz.t.tadpole', noMark: true, use: function () { find('tadpole'); } },
+    { id: 'crayfish', x: POND.x + Math.cos(5.2) * 6.8, z: POND.z + Math.sin(5.2) * 6.8, r: 3, uw: true, verb: 'cz.observe', t: 'cz.t.crayfish', noMark: true, use: function () { find('crayfish'); } }
   ].concat(W && W.plants ? W.plants.map(function (p) { return { id: 'plant' + p.i, x: p.x, z: p.z, r: 2, verb: 'cz.plant', t: 'cz.t.spot', noMark: true, when: function () { return s.f.solved && !s.f.fixed && !(s.f['p' + p.i]); }, use: function () { plant(p); } }; }) : []);
 }
 function nearest() {
@@ -1611,9 +1624,11 @@ function underwaterLook(cam) {
   const wb = waterAt(cam.position.x, cam.position.z), under = !!wb && cam.position.y < wb.y - 0.05, scene = C.scene, clear = st().f.fixed;
   if (under !== W.camUnder) {
     W.camUnder = under;
-    if (under) { W.airFog = scene.fog; W.airBg = scene.background; scene.fog = new T.FogExp2(clear ? '#1f6a80' : '#3a6a3a', clear ? 0.07 : 0.16); scene.background = new T.Color(clear ? '#1f6a80' : '#3a6a3a'); }
+    if (under) { W.airFog = scene.fog; W.airBg = scene.background; scene.fog = new T.FogExp2(clear ? '#1f6a80' : '#3a6a3a', clear ? 0.06 : 0.11); scene.background = new T.Color(clear ? '#1f6a80' : '#3a6a3a'); }
     else if (W.airFog) { scene.fog = W.airFog; scene.background = W.airBg; }
     W.specks.visible = under; W.rays.forEach(function (r) { r.m.visible = under; }); amb('underwater', under);
+    if (under && !W.lamp) { W.lamp = new T.PointLight(0xd8f8ff, 1.3, 11, 1.2); W.lamp.position.set(0, 1.6, 0.6); W.me.add(W.lamp); } /* the antennae glow underwater so you can see */
+    else if (!under && W.lamp) { W.me.remove(W.lamp); W.lamp = null; }
     if (BQ.amb) BQ.amb.mood(under ? 'under' : (W.moodNow || 'meadow'), 2.5);
   }
   if (under) W.rays.forEach(function (r) { r.m.material.opacity = (clear ? 0.75 : 0.35) * (0.6 + 0.4 * Math.sin(W.t * 0.8 + r.ph)); r.m.rotation.z = 0.1 + Math.sin(W.t * 0.4 + r.ph) * 0.05; });
@@ -1981,6 +1996,7 @@ function step(dt) {
   if (W.heronM) { W.heronNext -= dt; if (W.heronNext <= 0 && !W.heronStrike) { W.heronStrike = 0.001; W.heronNext = 7 + Math.random() * 8; } if (W.heronStrike) { W.heronStrike += dt / 1.4; if (W.heronStrike >= 1) W.heronStrike = 0; } BQ.creatures.poseHeron(W.heronM, dt, W.heronStrike); }
   if (W.springFish) W.springFish.forEach(function (f, i) { const a = W.t * 0.9 + i * 2.1; f.position.set(SPRING.x + Math.cos(a) * 1.8, H(SPRING.x, SPRING.z) + 0.2, SPRING.z + Math.sin(a) * 1.2); f.rotation.y = Math.atan2(-Math.sin(a) * 1.8, Math.cos(a) * 1.2); BQ.creatures.poseFish(W.springFishM[i], dt, 0.5); });
   if (W.listenFx) { if (W.listenT > 0 || (W.talk && W.talk.lines[0] && W.talk.lines[0].animal)) { W.listenT = Math.max(0, (W.listenT || 0) - dt); W.listenFx.material.opacity = 0.45 + Math.sin(W.t * 8) * 0.3; W.listenFx.position.set(W.px, W.py + 2.3, W.pz); } else W.listenFx.material.opacity = 0; }
+  if (W.cray) W.cray.forEach(function (c) { const u = Math.sin(W.t * 0.5 + c.ph); c.m.position.x = c.x + u * 0.4; c.m.rotation.y = u > 0 ? 0.3 : -0.3; });
   W.tads.forEach(function (t0, i) { const a = W.t * 0.6 + t0.ph, x = W.tadAt[0] + Math.cos(a) * (1.2 + (i % 3) * 0.7), z = W.tadAt[1] + Math.sin(a * 1.3) * 1.4; t0.m.position.set(x, Math.max(H(x, z) + 0.3, WL0 - 0.6 - (i % 4) * 0.25), z); t0.m.rotation.y = -a; t0.tail.rotation.y = Math.sin(W.t * 18 + i) * 0.6; });
   if (W.camUnder) { const o = W._wo || (W._wo = new T.Object3D()); W.weedList.forEach(function (b, i) { if (i % 2) return; o.position.set(b[0], b[1], b[2]); o.scale.set(b[3], b[4], b[5]); o.rotation.set(Math.sin(W.t * 1.3 + i) * 0.12, b[6], Math.cos(W.t * 1.1 + i) * 0.1); o.updateMatrix(); W.weed.setMatrixAt(i, o.matrix); }); W.weed.instanceMatrix.needsUpdate = true; }
   /* pond fish wander: each picks a spot, swims there, sometimes rests; catfish stay near the bottom, pike hang still and then dart */
@@ -2065,6 +2081,7 @@ function step(dt) {
     const surf = wl - 0.5; /* head and shoulders above the water while swimming at the surface */
     if (!busy && k.dive) W.vy += (-3.4 - W.vy) * Math.min(1, dt * 4);
     else if (!busy && k.jump) { if (W.py > surf - 0.25 && wl - gy < 2.2) { W.vy = 8; W.swim = false; amb('sfx', 'splash', 0.6); } else W.vy += (3.2 - W.vy) * Math.min(1, dt * 4); }
+    else if (W.py < wl - 1.3) W.vy += (0 - W.vy) * Math.min(1, dt * 3); /* underwater the alien hovers at its depth (its suit is neutrally buoyant), so you can explore; Space swims up */
     else W.vy += ((surf - W.py) * 2.2 - W.vy) * Math.min(1, dt * 3);
     W.py += W.vy * dt; if (W.py > surf && !k.jump) { W.py = surf; W.vy = Math.min(0, W.vy); } if (W.py < gy + 0.25) { W.py = gy + 0.25; W.vy = Math.max(0, W.vy); }
     W.ground = false; W.gliding = false;
