@@ -84,7 +84,7 @@ Object.assign(C.I18N.en, {
   'bd.vl.decomp.ok': 'Leftovers again? Delicious. I turn them back into nutrients for the plants.', 'bd.vl.decomp.busy': 'So. Much. Waste. Send help. (More worms, please.)',
   'bd.vl.fish.ok': 'Clear water, plenty of pondweed. Blub!', 'bd.vl.fish.bad': 'The water is green and I can barely breathe. Blub...',
   'bd.vl.grass.ok': 'Sun, water, carbon dioxide... I am turning them into sugar. Try it sometime.', 'bd.vl.grass.bad': 'I am thirsty, or too hot, or being eaten too fast. Maybe all three.',
-  'bd.fly1': 'Leaving Earth with everything I packed...', 'bd.fly2': 'Past the other planets and out of our solar system.', 'bd.fly3': 'Out of the Milky Way: our galaxy, with hundreds of billions of stars. The Sun is just one of them.', 'bd.fly4': 'Into a wormhole: a shortcut through space. Scientists have imagined wormholes, but no one has ever found one.', 'bd.fly5': 'Out into another galaxy, very far away...', 'bd.fly6': 'Home! My world looks a lot like Callisto, one of Jupiter\'s moons: dark, icy and covered with bright craters.', 'bd.fly7': 'Landing beside the dome.', 'bd.skip': 'Skip ⏭',
+  'bd.fly1': 'Leaving Earth with everything I packed...', 'bd.fly2': 'Past the other planets and out of our solar system.', 'bd.fly3': 'Out of the Milky Way: our galaxy, with hundreds of billions of stars. The Sun is just one of them.', 'bd.fly4': 'Into a wormhole: a shortcut through space. Scientists have imagined wormholes, but no one has ever found one.', 'bd.fly5': 'Out into another galaxy, very far away...', 'bd.fly6': 'Home! My world is a small, dark, icy moon covered with bright craters, circling a giant planet.', 'bd.fly7': 'Landing beside the dome.', 'bd.skip': 'Skip ⏭',
   'bd.storeLeft': 'crates left in storage', 'bd.helpCam': 'Drag to look around the dome. Wheel or + / − to zoom.'
 });
 Object.assign(C.I18N.es, {
@@ -160,7 +160,7 @@ Object.assign(C.I18N.es, {
   'bd.vl.decomp.ok': '¿Sobras otra vez? Deliciosas. Las convierto en nutrientes para las plantas.', 'bd.vl.decomp.busy': 'Tantos. Desechos. Ayuda. (Más lombrices, por favor.)',
   'bd.vl.fish.ok': 'Agua clara y muchas plantas acuáticas. ¡Blub!', 'bd.vl.fish.bad': 'El agua está verde y casi no puedo respirar. Blub...',
   'bd.vl.grass.ok': 'Sol, agua, dióxido de carbono... los convierto en azúcar. Pruébalo algún día.', 'bd.vl.grass.bad': 'Tengo sed, o hace mucho calor, o me comen demasiado rápido. Quizá las tres cosas.',
-  'bd.fly1': 'Dejo la Tierra con todo lo que empaqué...', 'bd.fly2': 'Paso los otros planetas y salgo de nuestro sistema solar.', 'bd.fly3': 'Salgo de la Vía Láctea: nuestra galaxia, con cientos de miles de millones de estrellas. El Sol es solo una de ellas.', 'bd.fly4': 'Entro en un agujero de gusano: un atajo a través del espacio. Los científicos han imaginado agujeros de gusano, pero nadie ha encontrado uno.', 'bd.fly5': 'Salgo a otra galaxia, muy, muy lejos...', 'bd.fly6': '¡En casa! Mi mundo se parece mucho a Calisto, una de las lunas de Júpiter: oscuro, helado y cubierto de cráteres brillantes.', 'bd.fly7': 'Aterrizando junto al domo.', 'bd.skip': 'Saltar ⏭',
+  'bd.fly1': 'Dejo la Tierra con todo lo que empaqué...', 'bd.fly2': 'Paso los otros planetas y salgo de nuestro sistema solar.', 'bd.fly3': 'Salgo de la Vía Láctea: nuestra galaxia, con cientos de miles de millones de estrellas. El Sol es solo una de ellas.', 'bd.fly4': 'Entro en un agujero de gusano: un atajo a través del espacio. Los científicos han imaginado agujeros de gusano, pero nadie ha encontrado uno.', 'bd.fly5': 'Salgo a otra galaxia, muy, muy lejos...', 'bd.fly6': '¡En casa! Mi mundo es una luna pequeña, oscura y helada, cubierta de cráteres brillantes, que gira alrededor de un planeta gigante.', 'bd.fly7': 'Aterrizando junto al domo.', 'bd.skip': 'Saltar ⏭',
   'bd.storeLeft': 'cajas en el almacén', 'bd.helpCam': 'Arrastra para mirar el domo. Rueda o + / − para acercar.'
 });
 C.I18N.en['a.biodome'] = 'Biodome Builder'; C.I18N.en['a.biodome.d'] = 'Keep a biodome in balance for all 8 seasons.'; C.I18N.es['a.biodome'] = 'Constructor de biodomos'; C.I18N.es['a.biodome.d'] = 'Mantén un biodomo en equilibrio durante las 8 temporadas.';
@@ -446,13 +446,13 @@ function voiceLine() {
 }
 function sfx(k) { if (!BQ.amb) return; if (k === 'pop') BQ.amb.sfx('step', 0.5); else if (k === 'whoosh') BQ.amb.sfx('whoosh', 0.6); else if (k === 'season') BQ.amb.sfx('chime', 0.5); }
 
-/* ---------- textures for the home world (an icy, cratered moon like Jupiter's moon Callisto) and its giant planet ---------- */
+/* ---------- textures for the home world (an icy, cratered moon) and its giant planet ---------- */
 function craterTex(w, h) {
   const cv = document.createElement('canvas'); cv.width = w; cv.height = h; const x = cv.getContext('2d'), R = Math.random;
   x.fillStyle = '#2e2620'; x.fillRect(0, 0, w, h);
   const blot = function (cx, cy, r, col, a) { const g = x.createRadialGradient(cx, cy, 0, cx, cy, r); g.addColorStop(0, col); g.addColorStop(1, 'rgba(0,0,0,0)'); x.globalAlpha = a; x.fillStyle = g; x.fillRect(cx - r, cy - r, r * 2, r * 2); };
   for (let i = 0; i < 260; i++) blot(R() * w, R() * h, (0.02 + R() * 0.12) * w, ['#4a3628', '#141210', '#5a4230', '#26303e', '#1c1814'][i % 5], 0.4);
-  /* two huge ringed basins (Callisto has Valhalla and Asgard) */
+  /* two huge ringed basins */
   [[0.32, 0.45, 0.16], [0.74, 0.62, 0.1]].forEach(function (q) { blot(q[0] * w, q[1] * h, q[2] * w * 0.4, '#e8dcc8', 0.55); x.globalAlpha = 0.18; x.strokeStyle = '#e8dcc8'; for (let k = 1; k < 6; k++) { x.lineWidth = 1 + R() * 2; x.beginPath(); x.arc(q[0] * w, q[1] * h, q[2] * w * k / 5, 0, 6.283); x.stroke(); } });
   /* hundreds of bright young craters: fresh ice thrown out of each impact (mostly small, a few big) */
   for (let i = 0; i < 1400; i++) { const r = Math.pow(R(), 4) * 0.02 * w + 0.6, cx = R() * w, cy = R() * h; blot(cx, cy, r * 1.6, '#f4ecd8', 0.35 + R() * 0.5);
@@ -461,8 +461,9 @@ function craterTex(w, h) {
   x.globalAlpha = 1; let g = x.createLinearGradient(0, 0, w, 0); g.addColorStop(0, 'rgba(60,110,170,0.3)'); g.addColorStop(0.5, 'rgba(160,80,40,0.25)'); g.addColorStop(1, 'rgba(60,110,170,0.3)'); x.fillStyle = g; x.fillRect(0, 0, w, h);
   return new T.CanvasTexture(cv);
 }
-function bandTex() {
-  const cv = document.createElement('canvas'); cv.width = 16; cv.height = 256; const x = cv.getContext('2d'), cols = ['#e8d8bc', '#c89a6a', '#f0e4cc', '#a8704a', '#e0c8a0', '#d8b088', '#f4ead6', '#b07a52', '#e8d4b4'];
+const HOME_GIANT = ['#7fd8c8', '#4a8aa8', '#b8e8d8', '#6a5aa8', '#9fc8e8', '#3a6a8a', '#d8f0e8', '#8a6ab8', '#5ab0a8'];
+function bandTex(cols) {
+  const cv = document.createElement('canvas'); cv.width = 16; cv.height = 256; const x = cv.getContext('2d'); cols = cols || ['#e8d8bc', '#c89a6a', '#f0e4cc', '#a8704a', '#e0c8a0', '#d8b088', '#f4ead6', '#b07a52', '#e8d4b4'];
   for (let y = 0; y < 256; y += 4) { x.fillStyle = cols[Math.floor((Math.sin(y * 0.09) + Math.sin(y * 0.031) + 2) * 2.2) % cols.length]; x.fillRect(0, y, 16, 4); }
   return new T.CanvasTexture(cv);
 }
@@ -478,7 +479,7 @@ function build() {
   g.add(new T.Mesh(new T.SphereGeometry(400, 24, 16), new T.MeshBasicMaterial({ map: new T.CanvasTexture(cv), side: T.BackSide, fog: false, depthWrite: false })));
   { const n = 1300, pos = new Float32Array(n * 3); for (let i = 0; i < n; i++) { const a = Math.random() * 6.283, u = 0.05 + Math.random() * 0.95, r = 380; pos[i * 3] = Math.cos(a) * Math.sqrt(1 - u * u) * r; pos[i * 3 + 1] = u * r; pos[i * 3 + 2] = Math.sin(a) * Math.sqrt(1 - u * u) * r; }
     const sg = new T.BufferGeometry(); sg.setAttribute('position', new T.BufferAttribute(pos, 3)); g.add(new T.Points(sg, new T.PointsMaterial({ color: '#ffffff', size: 1.4, sizeAttenuation: false, fog: false }))); }
-  B.gTex = bandTex(); const giant = new T.Mesh(new T.SphereGeometry(95, 40, 28), new T.MeshLambertMaterial({ map: B.gTex, fog: false })); giant.position.set(-170, 70, -300); giant.rotation.z = 0.12; g.add(giant); B.giant = giant;
+  B.gTex = bandTex(HOME_GIANT); const giant = new T.Mesh(new T.SphereGeometry(95, 40, 28), new T.MeshLambertMaterial({ map: B.gTex, fog: false })); giant.position.set(-170, 70, -300); giant.rotation.z = 0.12; g.add(giant); B.giant = giant;
   const sun = C.glow('#fff8e8', 30, 0.95, false); sun.position.set(220, 150, -200); g.add(sun);
   /* the icy, cratered ground: dark rock and dust, with bright frost on crater rims */
   const CRS = []; for (let i = 0; i < 46; i++) { const a = Math.random() * 6.283, d = 26 + Math.random() * 200, r = 3 + Math.pow(Math.random(), 2) * 22; CRS.push([Math.cos(a) * d, Math.sin(a) * d, r, 0.5 + r * 0.12]); }
@@ -600,7 +601,7 @@ function buildFlight() {
   /* 6. home: a giant banded planet and the icy, cratered moon the alien lives on */
   const s6 = shot('home'); B.homeTex = craterTex(low ? 512 : 1024, low ? 256 : 512);
   const home = new T.Mesh(new T.SphereGeometry(40, 48, 32), new T.MeshLambertMaterial({ map: B.homeTex, fog: false })); s6.add(home); B.flyHome = home;
-  const gp = new T.Mesh(new T.SphereGeometry(120, 40, 28), new T.MeshLambertMaterial({ map: bandTex(), fog: false })); gp.position.set(-260, 40, -420); gp.rotation.z = 0.1; s6.add(gp);
+  const gp = new T.Mesh(new T.SphereGeometry(120, 40, 28), new T.MeshLambertMaterial({ map: bandTex(HOME_GIANT), fog: false })); gp.position.set(-260, 40, -420); gp.rotation.z = 0.1; s6.add(gp);
   const sun2 = C.glow('#fff4d8', 40, 0.9, false); sun2.position.set(520, 200, 300); s6.add(sun2);
   B.fade = document.createElement('div'); B.fade.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0;background:#000'; document.body.appendChild(B.fade);
   C.scene.add(f);
