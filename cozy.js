@@ -1351,6 +1351,7 @@ function build() {
     CR.makeWader('heron', function (w) { if (!w || !W) return; w.g.visible = false; g.add(w.g); w.t = -12 - Math.random() * 10; w.fly = null; W.waders.push(w); });
     for (let i = 0; i < (low ? 1 : 2); i++) CR.makeWader('egret', function (w) { if (!w || !W) return; g.add(w.g); w.circle = { cx: -18, cz: 86, r: 8 + i * 5, y: VALLEY_Y + 14 + i * 3, a: i * 3 }; W.waders.push(w); }); }
   /* player */
+  if (BQ.coast) { const tr = BQ.coast.cozyTrail(g, H); W.colliders.push({ x: tr.x, z: tr.z, r: 0.25, top: H(tr.x, tr.z) + 2.6 }); } /* the trailhead down to the coast */
   W.me = C.buildAlien(C.S.alien); W.me.scale.multiplyScalar(0.78); g.add(W.me); /* a little smaller, so more of the reserve fits on screen */
   { const cv = document.createElement('canvas'); cv.width = cv.height = 64; const x0 = cv.getContext('2d'), gr0 = x0.createRadialGradient(32, 32, 2, 32, 32, 31); gr0.addColorStop(0, 'rgba(20,30,10,0.55)'); gr0.addColorStop(0.6, 'rgba(20,30,10,0.25)'); gr0.addColorStop(1, 'rgba(20,30,10,0)'); x0.fillStyle = gr0; x0.fillRect(0, 0, 64, 64);
     const smat = new T.MeshBasicMaterial({ map: new T.CanvasTexture(cv), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }), sgeo = new T.PlaneGeometry(1, 1); sgeo.rotateX(-Math.PI / 2);
@@ -1457,6 +1458,7 @@ function spots() {
     { id: 'peat', x: BOGP.peat[0], z: BOGP.peat[1], r: 2.8, verb: 'cz.observe', t: 'cz.t.peat', my: 2.2, use: function () { find('peat'); } },
     { id: 'seaview', x: Math.cos(-3 * Math.PI / 180) * (EDGE + 0.2), z: Math.sin(-3 * Math.PI / 180) * (EDGE + 0.2), r: 3.4, verb: 'cz.lookout', t: 'cz.t.seaview', my: 2.6, use: function () { viewer('sea'); find('seaview'); } },
     { id: 'valleyview', x: Math.cos(88.5 * Math.PI / 180) * (EDGE + 0.2), z: Math.sin(88.5 * Math.PI / 180) * (EDGE + 0.2), r: 3.4, verb: 'cz.lookout', t: 'cz.t.valleyview', my: 2.6, use: function () { viewer('valley'); find('valleyview'); } },
+    { id: 'coast', x: Math.cos(95.5 * Math.PI / 180) * 61.2, z: Math.sin(95.5 * Math.PI / 180) * 61.2, r: 3, verb: 'cz.hike', t: 'cz.t.coast', noMark: true, use: function () { if (BQ.coast) BQ.coast.enter(); } },
     { id: 'canyonview', x: Math.cos(177.5 * Math.PI / 180) * (EDGE + 0.2), z: Math.sin(177.5 * Math.PI / 180) * (EDGE + 0.2), r: 3.4, verb: 'cz.lookout', t: 'cz.t.canyonview', my: 2.6, use: function () { viewer('canyon'); find('canyonview'); } },
     { id: 'fire', x: 16.5, z: 53.5, r: 4.4, verb: function () { return W.fire && W.fire.lit ? 'cz.sit' : 'cz.light'; }, t: 'cz.t.fire', noMark: true, use: fireUse },
     { id: 'fireflies', x: 8, z: 38, r: 9, verb: 'cz.observe', t: 'cz.t.fireflies', noMark: true, when: function () { return isNight(); }, use: function () { find('fireflies'); } },
@@ -1608,6 +1610,7 @@ function start() {
   const s = st(); if (!s.f.met) setTimeout(function () { if (W && !W.talk) talkAma(); }, 800);
 }
 function exit() {
+  if (W.coast && BQ.coast) BQ.coast.leave(true);
   if (W.scope) closeScope();
   const s = st(); s.pos = [W.px, W.pz]; C.save(); if (W.camUnder && W.airFog) { C.scene.fog = W.airFog; C.scene.background = W.airBg; }
   C.cam.fov = 42; C.cam.updateProjectionMatrix(); if (BQ.amb) BQ.amb.stop(1);
@@ -1973,7 +1976,7 @@ function kickDraw() {
 function kickSort(i, v) { const q = W.kick.items[i]; q.ok = (BUGS[q.k] ? 1 : 0) === v ? true : false; C.beep(q.ok ? 880 : 220, 0.12, q.ok ? 'triangle' : 'sawtooth'); kickDraw(); }
 /* ---------- EVERY FRAME ---------- */
 function step(dt) {
-  if (!W) return; W.t += dt; const cam = C.cam, s = st();
+  if (!W) return; if (W.coast) { if (BQ.coast) BQ.coast.step(dt); return; } /* down at the coast: Willow Creek waits, hidden */ W.t += dt; const cam = C.cam, s = st();
   /* scenery life: swaying trees, bees, rabbit, hawk, fish, fireflies, frog */
   W.anim.forEach(function (a) { if (a.sway) a.m.rotation.z = Math.sin(W.t * 1.2 + a.ph) * 0.03; if (a.fly) { a.m.position.y = a.y + Math.sin(W.t * 1.5 + a.ph) * 0.6; a.m.position.x = a.x + Math.sin(W.t * 0.7 + a.ph) * 0.8; } });
   if (W.wild) W.wild.update(dt, { x: W.px, z: W.pz }, { night: isNight() });
@@ -2185,7 +2188,7 @@ function act() {
   if (W.near) W.near.use();
 }
 function key(e, down) {
-  if (!W) return; const kk = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+  if (!W) return; if (W.coast) { if (BQ.coast) BQ.coast.key(e, down); return; } const kk = e.key.length === 1 ? e.key.toLowerCase() : e.key;
   if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
   if (down && W.ui === 'map' && (kk === 'Escape' || kk === 'm')) { e.preventDefault(); closeMap(); return; }
   if (W.ui === 'survey' && down) { if (kk === ' ' || kk === 'Enter') { e.preventDefault(); if (W.sv && !W.sv.on && W.sv.t >= 30) { W.sv.on = true; svPanel(); } else svTally(); return; } if (kk === 'Escape') { e.preventDefault(); svStop(); return; } }
@@ -2212,6 +2215,7 @@ function key(e, down) {
   if (map[kk]) { W.k[map[kk]] = down; e.preventDefault(); }
 }
 function pointer(e, type) {
+  if (W && W.coast) { if (BQ.coast) BQ.coast.pointer(e, type); return; }
   if (!W || W.pause) return;
   if (W.ui === 'scope' && W.scope) { const c = W.scope; if (type === 'wheel') { scopeZoom(e.deltaY > 0 ? 1 / 1.15 : 1.15); e.preventDefault(); } else if (type === 'pointerdown') c.drag = { x: e.clientX, y: e.clientY, a: c.a, p: c.p }; else if (type === 'pointermove' && c.drag && e.buttons) { c.a = c.drag.a - (e.clientX - c.drag.x) * 0.004 / c.zoom; c.p = c.drag.p + (e.clientY - c.drag.y) * 0.004 / c.zoom; } else if (type === 'pointerup') c.drag = null; return; }
   if (type === 'wheel') { W.distT = Math.max(2.2, Math.min(30, W.distT * (e.deltaY > 0 ? 1.12 : 1 / 1.12))); e.preventDefault(); return; }
@@ -2236,7 +2240,7 @@ function journalHTML() {
   const logSec = logs.length ? '<section class="jl"><h3>' + C.esc(tx('cz.logT')) + '</h3>' + logs.map(function (k) { return '<p><i>' + C.esc(tx('cz.' + k)) + '</i></p>'; }).join('') + '</section>' : '';
   return '<p class="dim">' + C.esc(tx('cz.j.tip')) + '</p><p><b>' + C.esc(tx('cz.j.found', { n: n, m: FINDS.length })) + '</b></p>' + logSec + myst + voiceSec + svSec + '<section class="jl"><h3>🌿 ' + C.esc(tx('cz.reserve')) + '</h3><div class="jcs">' + cards + '</div></section>';
 }
-function blur() { if (W) W.k = {}; }
+function blur() { if (W) W.k = {}; if (BQ.coast) BQ.coast.blur(); }
 const cb = document.getElementById('btnCozy'); if (cb) cb.hidden = false;
 /* language choice lives on the main menu (and in the reserve's pause panel), not in the game view */
 (function () { const card = document.querySelector('#menu .card'), modes = card && card.querySelector('.modes'); if (!card || document.getElementById('menuLang')) return;
@@ -2246,7 +2250,7 @@ const cb = document.getElementById('btnCozy'); if (cb) cb.hidden = false;
   const mark = function () { d.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.ml === (C.S.set.lang || 'en'))); }); };
   d.addEventListener('click', function (e) { const b = e.target.closest('button'); if (!b) return; C.S.set.lang = b.dataset.ml; C.save(); mark(); const wb = document.getElementById('btnIntro'); if (wb && C.tx) wb.textContent = C.tx('in.watch'); });
   mark(); const st0 = document.createElement('style'); st0.textContent = '#menuLang { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; margin: 8px 0; } #menuLang button[aria-pressed="true"] { border-color: #ffd166; box-shadow: inset 0 0 0 1px #ffd166; }'; document.head.appendChild(st0); })();
-BQ.cozy = { start: start, step: step, key: key, pointer: pointer, journalHTML: journalHTML, resume: resume, blur: blur, _w: function () { return W; }, _s: st, _H: H, _GH: GH, _spots: function () { return spots(); }, _creeks: function () { return CREEKS; }, _scopeT: function (id) { return SCOPE[id]; } };
+BQ.cozy = { _exit: function () { if (W) exit(); }, start: start, step: step, key: key, pointer: pointer, journalHTML: journalHTML, resume: resume, blur: blur, _w: function () { return W; }, _s: st, _H: H, _GH: GH, _spots: function () { return spots(); }, _creeks: function () { return CREEKS; }, _scopeT: function (id) { return SCOPE[id]; } };
 }
 if (BQ.core) init(); else BQ.onCore = init;
 })();
