@@ -5,7 +5,7 @@ You are helping me, Jill Lynch, a science teacher, make a **new, separate middle
 ## 1. Where the files are
 
 - **The high school game (read only):** my Mac folder `~/Desktop/Earthling_Field_Guide`. It is also on GitHub at https://github.com/jillelynx/EarthlingFieldGuide, published with GitHub Pages.
-- **The new game:** a new folder on my Desktop, named after the new game's name once I choose it (see section 5). Until then, call it `~/Desktop/MiddleSchool_Science_Game`. It gets its own git history and its own GitHub repository, which I will create and push myself.
+- **The new game:** the folder `/Users/jilllynch/Desktop/Science_Game_PSSA_MS` (create it if it doesn't exist yet). It gets its own git history and its own GitHub repository, which I will create and push myself.
 - **How to reach the files:** this chat must be linked to my computer through the Claude desktop app, with both folders connected. If you can't reach them, tell me how to link this chat or ask me to attach the files. **Never write to, commit in, or push from the high school folder.** Copy what you need into the new folder.
 
 ### What to read first, in this order
@@ -78,7 +78,7 @@ Carry these over from the high school game unless I say otherwise:
 - **The Biodome stays sealed:** nothing ever opens it to the outside air. Players may control how much sunlight gets in.
 - **Features to keep:**
   - cozy mode and the Biodome, both in English and Spanish
-  - admin mode (pick a new password and tell me)
+  - admin mode: make a new password, tell me what it is only in our chat, and store only a scrambled code of it in the game. **Never write the password itself in any file in the folder, including code, notes, the design notes, and commit messages.** Anything in the folder can end up public on GitHub.
   - speedrun timer, saved progress, stars, gear, the Supply Shop
   - the Low graphics and Text size settings
 - **Chromebooks:** everything must run smoothly on school Chromebooks.
@@ -109,7 +109,7 @@ Carry these over from the high school game unless I say otherwise:
 - **A new name.** The game needs its own name, because it covers more than Earth and biology. For example, 3.3.6-8.B and 3.3.6-8.C are about the solar system and galaxies (check the exact wording in the PDF).
   - Propose 4 to 6 names, each with a one-line reason and a title screen idea.
   - Names may keep the alien explorer idea, but must not be confused with "Earthling Field Guide".
-  - I choose the name. The folder name and repository name follow from it, so **ask me before creating the folder**.
+  - I choose the name. The folder stays `Science_Game_PSSA_MS` whatever the name is.
 - **Language:** ask me whether the platformer should be English only (as in the high school game) or also Spanish.
 
 ## 6. A starting idea for the worlds (a draft for me to approve, not a decision)

@@ -10,7 +10,7 @@ I am a teacher, not a developer. Use plain language, with no unexplained jargon.
 ## Design rules that always apply
 - **The Earth rule.** Platformer levels take place in real places on Earth and follow real Earth physics. Anything unusual comes from the alien's own gear or abilities.
 - **The Biodome stays closed.** It is a sealed system the player must balance. Nothing ever opens it to the planet's air. Players may control how much sunlight gets in (more or less sun).
-- **Keep what works:** the English/Spanish switch (cozy mode and Biodome), admin mode (password willowcreek79), the speedrun timer, saved progress, stars, gear, the Supply Shop, and the Low graphics setting. The platformer stays English-only.
+- **Keep what works:** the English/Spanish switch (cozy mode and Biodome), admin mode (password kept private: never write it in any file), the speedrun timer, saved progress, stars, gear, the Supply Shop, and the Low graphics setting. The platformer stays English-only.
 - **Chromebooks:** everything must run smoothly on school Chromebooks.
 
 ## Part 1: Fix bugs I found (do these first)
