@@ -563,7 +563,7 @@ FieldGuide.registerQuestions(4, {
   {
    "id": "w4q24",
    "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.R",
+   "steels": "3.1.9-12.Q",
    "prompt": "During meiosis, homologous chromosomes swap matching pieces. What is this called?",
    "options": [
     "crossing over, which makes new combinations of alleles",
@@ -578,7 +578,7 @@ FieldGuide.registerQuestions(4, {
   {
    "id": "w4q25",
    "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.R",
+   "steels": "3.1.9-12.Q",
    "prompt": "Down syndrome is usually caused by an extra copy of chromosome 21. Which error causes this?",
    "options": [
     "nondisjunction",
@@ -593,7 +593,7 @@ FieldGuide.registerQuestions(4, {
   {
    "id": "w4q26",
    "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.R",
+   "steels": "3.1.9-12.Q",
    "prompt": "In meiosis, each chromosome pair separates independently of the other pairs. What does this produce?",
    "options": [
     "many different combinations of chromosomes in gametes",
@@ -608,7 +608,7 @@ FieldGuide.registerQuestions(4, {
   {
    "id": "w4q27",
    "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.R",
+   "steels": "3.1.9-12.Q",
    "prompt": "A piece of chromosome 9 breaks off and attaches to chromosome 22. What kind of change is this?",
    "options": [
     "translocation",
@@ -854,7 +854,7 @@ FieldGuide.registerQuestions(4, {
   {
    "id": "w4q43",
    "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.R",
+   "steels": "3.1.9-12.Q",
    "prompt": "Which processes make each gamete genetically unique?",
    "options": [
     "crossing over and independent assortment during meiosis",
@@ -1170,7 +1170,7 @@ FieldGuide.registerQuestions(4, {
   {
    "id": "c-chromo",
    "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.R",
+   "steels": "3.1.9-12.Q",
    "short": "Chromosome changes",
    "title": "Name the chromosome change: grab the term that matches each event.",
    "cueLabel": "Event",
