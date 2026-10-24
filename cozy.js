@@ -607,13 +607,13 @@ function edgeW(x, z, id) { let a = Math.atan2(z, x) * 180 / Math.PI, best = 0, w
   EDGES.forEach(function (e) { if (id && e.id !== id) return; let b = a; const mid = (e.a0 + e.a1) / 2; while (b < mid - 180) b += 360; while (b > mid + 180) b -= 360; const w = Math.max(0, Math.min(1, (Math.min(b - e.a0, e.a1 - b) + 6) / 12)); if (w > best) { best = w; which = e.id; } });
   return id ? best : { w: best, id: which }; }
 const OUTLET = [[-14, 34], [-12, 44], [-8, 53], [-4, 61], [-2.5, 66.2]];
-const RIVER = [[-2, 73], [6, 92], [-6, 116], [10, 140], [40, 160], [70, 190], [90, 240]];
+const RIVER = [[-2, 73], [6, 92], [-6, 116], [10, 140], [40, 160], [56, 174]]; /* the valley river ends in a lake (it used to climb into the far hills) */
 const CANYONR = [[-104, -46], [-112, -12], [-106, 22], [-114, 60]];
 const CREEKS = [{ id: 'stream', pts: smoothLine(STREAM, 90), w0: 1.5, w1: 2.6 }, { id: 'outlet', pts: smoothLine(OUTLET, 40), w0: 2.2, w1: 1.8 },
   { id: 'river', pts: smoothLine(RIVER, 90), w0: 3, w1: 7, far: true }, { id: 'canyon', pts: smoothLine(CANYONR, 80), w0: 5, w1: 6, far: true }];
 function farRiverDist(x, z) { let d = 1e9; CREEKS.forEach(function (c) { if (!c.far) return; const P = c.pts; for (let i = 0; i < P.length - 1; i++) { const a = P[i]; if (Math.abs(a[0] - x) > 30 || Math.abs(a[1] - z) > 30) continue; d = Math.min(d, segDist(x, z, a, P[i + 1])); } }); return d; }
 function streamDist(x, z) { let d = 1e9; CREEKS.forEach(function (c) { if (c.far) return; const P = c.pts; for (let i = 0; i < P.length - 1; i++) { const a = P[i]; if (Math.abs(a[0] - x) > 12 || Math.abs(a[1] - z) > 12) continue; d = Math.min(d, segDist(x, z, a, P[i + 1])); } }); return d; }
-function H0(x, z) {
+function H00(x, z) {
   let h = 1.4 * Math.sin(x * 0.05) * Math.cos(z * 0.045) + 1.0 * Math.sin((x - z) * 0.032) + 0.5 * Math.sin(x * 0.13 + 1) * Math.sin(z * 0.11);
   h += 13 * Math.exp(-((x - HILL.x) ** 2 + (z - HILL.z) ** 2) / 520);
   h -= 8.5 * Math.exp(-((x - POND.x) ** 2 + (z - POND.z) ** 2) / 170);
@@ -647,6 +647,25 @@ POCKETS.forEach(function (p) { const ar = p.a * Math.PI / 180; p.x = Math.cos(ar
 const BOGP = (function () { const p = POCKETS.find(function (q) { return q.id === 'bog'; }), a = p.a * Math.PI / 180, dx = Math.cos(a), dz = Math.sin(a), nx = -dz, nz = dx;
   const at = function (fd, fn) { return [+(p.x + dx * fd + nx * fn).toFixed(2), +(p.z + dz * fd + nz * fn).toFixed(2)]; };
   return { p: p, at: at, dx: dx, dz: dz, nx: nx, nz: nz, sph: at(-10, 3.2), pit: at(-5, -8.5), sun: at(2, 9), cran: at(9, 3), tam: at(12, -6), spr: at(-2, -13), ket: at(-7.4, 0.6), peat: at(4, -7.5) }; })();
+/* WATER ALWAYS FLOWS DOWNHILL: each creek gets a water level that only goes down along its course,
+   and the ground under and beside the creek is carved a little below that level */
+let CPROF = null;
+function creekProfiles() {
+  CPROF = CREEKS.map(function (c) { const P = c.pts, pr = []; let m = 1e9;
+    for (let i = 0; i < P.length; i++) { const inPond = Math.hypot(P[i][0] - POND.x, P[i][1] - POND.z) < 15.8; /* a creek leaving the pond starts at the pond's water level, not its muddy bottom */
+      m = Math.min(m, inPond ? (WLK !== null ? WLK : H00(POND.x, POND.z) + 6) - 0.12 : H00(P[i][0], P[i][1])); pr.push(m); } return pr; });
+}
+function creekCarve(x, z) { /* the nearest creek point within reach: its water level and how far away it is */
+  if (!CPROF) creekProfiles(); let best = null;
+  for (let k = 0; k < CREEKS.length; k++) { const c = CREEKS[k], P = c.pts, reach = (c.far ? 10 : 5.5); /* wide enough that the ground's triangles (about 2.3 steps apart) really show the channel */
+    for (let i = 0; i < P.length - 1; i++) { const a = P[i]; if (Math.abs(a[0] - x) > reach + 4 || Math.abs(a[1] - z) > reach + 4) continue;
+      const b = P[i + 1], vx = b[0] - a[0], vz = b[1] - a[1], u = Math.max(0, Math.min(1, ((x - a[0]) * vx + (z - a[1]) * vz) / (vx * vx + vz * vz || 1))), d = Math.hypot(x - a[0] - u * vx, z - a[1] - u * vz);
+      if (d < reach && (!best || d < best.d)) best = { d: d, y: CPROF[k][i] + (CPROF[k][i + 1] - CPROF[k][i]) * u, reach: reach }; } }
+  return best;
+}
+const LAKE = { x: 60, z: 178, r: 9 };
+function H0(x, z) { let h = H00(x, z); const dl = Math.hypot(x - LAKE.x, z - LAKE.z); if (dl < LAKE.r + 6) { if (!CPROF) creekProfiles(); const ly = CPROF[2][CPROF[2].length - 1] - 0.6, u = Math.max(0, (dl - LAKE.r) / 6), w0 = dl < LAKE.r ? 1 : 1 - u * u * (3 - 2 * u); if (h > ly) h -= (h - ly) * w0; }
+  const c = creekCarve(x, z); if (!c) return h; const bed = c.y - 0.55, t = Math.max(0, Math.min(1, (c.d - c.reach * 0.3) / (c.reach * 0.7))), w = 1 - t * t * (3 - 2 * t); return h > bed ? h - (h - bed) * w : h; }
 function pocketFloor(p, x, z) {
   const dc = Math.hypot(x - p.x, z - p.z);
   if (p.id === 'bog') { /* a flat, spongy mat of moss with little hummocks, sinking into a small dark pond in the middle (a glacial kettle) */
@@ -670,7 +689,7 @@ function pocketColor(p, x, z, y, cc) {
   if (p.id === 'bog') { if (dc < 5.6) { cc.set('#3a2a18'); return; } const n = Math.sin(x * 1.3 + Math.cos(z * 0.9) * 2) * Math.cos(z * 1.1 - x * 0.4);
     cc.set(n > 0.62 ? '#a8584a' : n > 0.3 ? '#b0a048' : n < -0.45 ? '#5f8a3a' : '#8aa848'); }
 }
-let WLK = null; const WL0 = H(POND.x, POND.z) + 6; WLK = WL0;
+let WLK = null; const WL0 = H(POND.x, POND.z) + 6; WLK = WL0; CPROF = null; /* work out the creek levels again, now that the pond's level is known */
 /* THE DRAWN GROUND: the ground is drawn as a grid of flat triangles, so between grid points it is a little higher or lower than H().
    Anything that stands, walks or swims uses this height, so it matches what the player actually sees. */
 let GRID_N = 140;
@@ -1043,6 +1062,7 @@ function build() {
       const dc = [];
       for (let i = 0; i < n; i++) { dc.push(dH(P[i][0], P[i][1])); ys.push(dc[i] + 0.12); }
       for (let i = 0; i < n; i++) { let a = 0, m = 0; for (let k = -3; k <= 3; k++) { const j = i + k; if (j >= 0 && j < n) { a += ys[j]; m++; } } ys[i] = Math.max(dc[i] + 0.06, Math.min(dc[i] + 0.22, a / m)); }
+      for (let i = 1; i < n; i++) ys[i] = Math.min(ys[i], ys[i - 1]); /* downstream, the water surface never goes up */
       for (let i = 0; i < n; i++) {
         const a = P[Math.max(0, i - 1)], b = P[Math.min(n - 1, i + 1)], tx0 = b[0] - a[0], tz0 = b[1] - a[1], L0 = Math.hypot(tx0, tz0) || 1, nx = -tz0 / L0, nz = tx0 / L0, w = (c.w0 + (c.w1 - c.w0) * i / (n - 1)) / 2 * 1.3;
         if (i > 0) along += Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]);
@@ -1052,6 +1072,7 @@ function build() {
       }
       const geo = new T.BufferGeometry(); geo.setAttribute('position', new T.BufferAttribute(pos, 3)); geo.setAttribute('uv', new T.BufferAttribute(uv, 2)); geo.setIndex(idx); geo.computeVertexNormals();
       const m = new T.Mesh(geo, cmat); m.material.side = T.DoubleSide; g.add(m);
+      if (c.id === 'river') { const lk = new T.Mesh(new T.CircleGeometry(LAKE.r + 0.6, 28), new T.MeshLambertMaterial({ color: '#3a9ab8', emissive: '#0a2a3a', transparent: true, opacity: 0.92 })); lk.rotation.x = -Math.PI / 2; lk.position.set(LAKE.x, ys[n - 1] - 0.02, LAKE.z); g.add(lk); } /* the river flows into a lake */
       /* little white riffles where the water runs over stones */
       for (let i = 6; i < n - 4; i += 9) { const st1 = new T.Mesh(LP.sph, C.emat('#9a9a8a', '#1a1a18')); st1.scale.set(0.35, 0.18, 0.3); st1.position.set(P[i][0] + Math.sin(i) * 0.5, ys[i] - 0.05, P[i][1] + Math.cos(i) * 0.4); g.add(st1); }
     }); }
@@ -2049,9 +2070,16 @@ function step(dt) {
     W.ground = false; W.gliding = false;
     if (moving && (!W.strokeT || W.t > W.strokeT)) { W.strokeT = W.t + 0.7; amb('sfx', W.under ? 'bubble' : 'swim', 0.8); }
   } else {
-    if (!busy && k.jump && W.ground) { W.vy = 9; W.ground = false; C.beep(420, 0.06, 'triangle'); }
-    W.vy -= 24 * dt; if (!W.ground && k.jump && W.vy < -2.2) { W.vy = -2.2; W.gliding = true; } else W.gliding = false;
-    W.py += W.vy * dt; if (W.py <= gy) { if (!W.ground && W.vy < -6) amb('sfx', 'step', 1.4); W.py = gy; W.vy = 0; W.ground = true; } else if (W.py > gy + 0.05) W.ground = false;
+    /* jumping is forgiving: a press counts for a moment before landing (buffer) and just after running off an edge or down a slope (coyote time) */
+    if (k.jump && !W.jumpHeld) W.jumpBuf = 0.15; W.jumpHeld = !!k.jump; W.jumpBuf = Math.max(0, (W.jumpBuf || 0) - dt);
+    W.coyote = W.ground ? 0.15 : Math.max(0, (W.coyote || 0) - dt);
+    if (!busy && W.jumpBuf > 0 && W.coyote > 0 && W.vy <= 0.5) { W.vy = 9; W.ground = false; W.coyote = 0; W.jumpBuf = 0; W.jumpT = 0.35; C.beep(420, 0.06, 'triangle'); }
+    W.jumpT = Math.max(0, (W.jumpT || 0) - dt);
+    W.vy -= 24 * dt; if (!W.ground && k.jump && W.vy < -2.2 && !W.jumpT) { W.vy = -2.2; W.gliding = true; } else W.gliding = false;
+    const wasG = W.ground; W.py += W.vy * dt;
+    if (W.py <= gy) { if (!W.ground && W.vy < -6) amb('sfx', 'step', 1.4); W.py = gy; W.vy = 0; W.ground = true; }
+    else if (wasG && W.vy <= 0 && W.py - gy < 0.6) { W.py = gy; W.vy = 0; W.ground = true; } /* running downhill: stay on the ground instead of skipping into the air */
+    else if (W.py > gy + 0.05) W.ground = false;
   }
   W.trail.forEach(function (t0) { if (t0.visible) { t0.material.opacity -= dt * 1.6; if (t0.material.opacity <= 0) t0.visible = false; } });
   W.under = W.swim && W.py < wl - 1.3;
@@ -2201,7 +2229,7 @@ const cb = document.getElementById('btnCozy'); if (cb) cb.hidden = false;
   const mark = function () { d.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.ml === (C.S.set.lang || 'en'))); }); };
   d.addEventListener('click', function (e) { const b = e.target.closest('button'); if (!b) return; C.S.set.lang = b.dataset.ml; C.save(); mark(); const wb = document.getElementById('btnIntro'); if (wb && C.tx) wb.textContent = C.tx('in.watch'); });
   mark(); const st0 = document.createElement('style'); st0.textContent = '#menuLang { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; margin: 8px 0; } #menuLang button[aria-pressed="true"] { border-color: #ffd166; box-shadow: inset 0 0 0 1px #ffd166; }'; document.head.appendChild(st0); })();
-BQ.cozy = { start: start, step: step, key: key, pointer: pointer, journalHTML: journalHTML, resume: resume, blur: blur, _w: function () { return W; }, _s: st, _H: H, _GH: GH, _spots: function () { return spots(); }, _scopeT: function (id) { return SCOPE[id]; } };
+BQ.cozy = { start: start, step: step, key: key, pointer: pointer, journalHTML: journalHTML, resume: resume, blur: blur, _w: function () { return W; }, _s: st, _H: H, _GH: GH, _spots: function () { return spots(); }, _creeks: function () { return CREEKS; }, _scopeT: function (id) { return SCOPE[id]; } };
 }
 if (BQ.core) init(); else BQ.onCore = init;
 })();

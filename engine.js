@@ -295,7 +295,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 42 · October 23, 2026';
+const VERSION = 'Version 43 · October 24, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -460,13 +460,18 @@ function labelTex(text, o) {
   g.fillStyle = bg; g.fill(); g.lineWidth = 6; g.strokeStyle = bd; g.stroke();
   g.fillStyle = fg; g.textAlign = 'center'; g.textBaseline = 'middle';
   lines.forEach(function (l, i) { g.fillText(l, 256, 128 - (lines.length - 1) * lh / 2 + i * lh); });
-  const t = new T.CanvasTexture(c); texCache[key] = t; return t;
+  const t = new T.CanvasTexture(c); t.userData = { h: H / 256 }; texCache[key] = t; return t;
 }
 function label(text, w, o) {
   /* readable everywhere: small labels get a minimum size, and all labels follow the Text size setting */
   const ts = [0.9, 1, 1.15, 1.3][S.set.text] || 1; if (!(o && o.big) && w < 2.6) w = 2.6; w *= ts;
-  const sp = new T.Sprite(new T.SpriteMaterial({ map: labelTex(text, o), transparent: true }));
-  sp.scale.set(w, w / 2, 1); return sp;
+  const tex = labelTex(text, o), sp = new T.Sprite(new T.SpriteMaterial({ map: tex, transparent: true, fog: false })); /* signs stay readable in fog, deep water and caves */
+  sp.scale.set(w, w / 2, 1); sp.userData.lbl = { text: String(text), w: w, h: w / 2 * ((tex.userData && tex.userData.h) || 1) }; return sp;
+}
+/* stack signs from the top down so they never overlap: each sign is placed just under the one before it, using its real height */
+function stackLabels(list, x, yTop, z, gap) {
+  let y = yTop; list.forEach(function (sp) { if (!sp) return; const h = sp.userData.lbl ? sp.userData.lbl.h : sp.scale.y; sp.position.set(x, y - h / 2, z); y -= h + (gap == null ? 0.15 : gap); });
+  return y;
 }
 function buildAlien(a) {
   const g = new T.Group(), col = COLORS[a.color][1], shape = a.shape || 0;
@@ -579,7 +584,7 @@ function addPickup(kind, x, y) {
 function cellModel(kind) {
   const g = new T.Group(), inner = new T.Group(); g.add(inner);
   const M = function (c, e) { return emat(c, e || '#1a2a3a'); }, parts = {}, euk = kind === 'animal';
-  const part = function (name, lx, ly) { const p = new T.Group(); p.visible = false; inner.add(p); const lb = label('✓ ' + name, 2.3, { bd: '#7be0ad' }); lb.position.set(lx, ly, 3.2); lb.visible = false; g.add(lb); parts[name] = { g: p, lb: lb, s: 0 }; return p; };
+  const part = function (name, lx, ly) { const p = new T.Group(); p.visible = false; inner.add(p); const lb = label('✓ ' + name, 2.3, { bd: '#7be0ad' }); lb.position.set(lx, ly, 3.2); lb.visible = false; g.add(lb); parts[name] = { g: p, lb: lb, s: 0, lx: lx, ly: ly }; return p; };
   const blob = function (p, c, sx, sy, sz, x, y, z, op) { const m = new T.Mesh(G.sph, op ? basic(c, op, false) : M(c)); m.scale.set(sx, sy, sz); m.position.set(x, y, z || 0); p.add(m); return m; };
   const R = euk ? [2.7, 2.4, 2.1] : [3.1, 1.45, 1.45];
   /* ghost outline that shows where the cell will be */
@@ -604,7 +609,7 @@ function cellModel(kind) {
     const rib = part('Ribosomes', 2.6, 0.2); for (let i = 0; i < 30; i++) { const a = i * 2.39, r = 1.4 + (i % 4) * 0.18; blob(rib, '#ffd166', 0.07, 0.07, 0.07, -0.4 + Math.cos(a) * r, 0.3 + Math.sin(a) * r * 0.8, Math.sin(a * 2.3) * 0.9); }
   }
   inner.rotation.x = 0.25;
-  return { g: g, inner: inner, parts: parts, ghost: ghost, tag: tag, kind: kind, name: euk ? 'animal cell' : 'prokaryotic cell', t: 0, finishAt: 0, done: false, scale: euk ? 0.95 : 1 };
+  return { g: g, inner: inner, parts: parts, ghost: ghost, tag: tag, kind: kind, R: R, name: euk ? 'animal cell' : 'prokaryotic cell', t: 0, finishAt: 0, done: false, scale: euk ? 0.95 : 1 };
 }
 function flyPart(md, name, x, y, tok) {
   const p = md.parts[name] || null;
@@ -613,15 +618,42 @@ function flyPart(md, name, x, y, tok) {
 }
 function modelTick(md, dt, z) {
   md.t += dt;
-  md.inner.rotation.y = md.done ? md.t * 0.5 : Math.sin(md.t * 0.6) * 0.6;
-  const h = md.home, bob = Math.sin(md.t * 1.2) * 0.12; md.g.position.set(h.x, h.y + bob, h.z);
+  md.inner.rotation.y = md.done ? md.inner.rotation.y * (1 - Math.min(1, dt * 2)) + Math.sin(md.t * 0.5) * 0.12 * Math.min(1, dt * 2) : Math.sin(md.t * 0.6) * 0.6; /* when finished it holds still so the labels' lines point at the right parts */
+  const h = md.home, bob = Math.sin(md.t * 1.2) * 0.12; md.g.position.set(h.x, h.y + bob + (md.lift || 0), h.z);
+  if (md.done && md.g.scale.x < md.big) { const sc = Math.min(md.big, md.g.scale.x + dt * 0.8); md.g.scale.setScalar(sc); md.lift = (sc - 1) * 1.6; }
+  if (md.halo) md.halo.material.opacity = 0.48 + Math.sin(md.t * 2) * 0.06;
   Object.keys(md.parts).forEach(function (n) { const p = md.parts[n]; if (p.g.visible && p.s < 1) { p.s = Math.min(1, p.s + dt * 3); const e = p.s < 1 ? 1 + Math.sin(p.s * Math.PI) * 0.25 : 1; p.g.scale.setScalar(e * Math.max(0.05, p.s)); } if (p.g.userData.spin) p.g.userData.spin.rotation.z += dt * 0.8; });
   if (md.finishAt > 0 && !md.done) { md.finishAt -= dt; if (md.finishAt <= 0) finishModel(md); }
+}
+/* textbook-style labels: in two columns beside the cell, each with a thin line to its part */
+function calloutLabels(md) {
+  const R = md.R, names = Object.keys(md.parts), cols = { l: [], r: [] };
+  names.forEach(function (n) { const p = md.parts[n]; (p.lx < 0 ? cols.l : cols.r).push(n); });
+  const lineM = new T.LineBasicMaterial({ color: '#e8fbff', transparent: true, opacity: 0.85 });
+  ['l', 'r'].forEach(function (side) { const list = cols[side].sort(function (a, c) { return md.parts[c].ly - md.parts[a].ly; }), sg = side === 'l' ? -1 : 1;
+    const hs = list.map(function (n) { return md.parts[n].lb.userData.lbl ? md.parts[n].lb.userData.lbl.h : 0.9; }), gap = 0.35, tot = hs.reduce(function (a, c) { return a + c; }, 0) + gap * (list.length - 1);
+    let y = tot / 2;
+    list.forEach(function (n, i) { const p = md.parts[n], lb = p.lb, w = lb.userData.lbl ? lb.userData.lbl.w : 2.6, cx = sg * (R[0] + 1.4 + w / 2), cy = y - hs[i] / 2; y -= hs[i] + gap;
+      lb.position.set(cx, cy, 3.2); lb.visible = true;
+      /* where the line points: the membrane's edge, or a spot inside the cell near where the part is */
+      let ax, ay; if (n === 'Plasma membrane') { ax = sg * R[0] * 0.97; ay = cy * 0.3; } else { const k = Math.min(1, 0.72 / Math.hypot(p.lx / R[0], p.ly / R[1])); ax = p.lx * k; ay = p.ly * k; }
+      const ex = cx - sg * (w / 2 + 0.05), geo = new T.BufferGeometry().setFromPoints([new T.Vector3(ex, cy, 3.2), new T.Vector3(sg * (R[0] + 0.6), cy, 2.4), new T.Vector3(ax, ay, 1.2)]);
+      const ln = new T.Line(geo, lineM); md.g.add(ln); const dot = new T.Mesh(G.sph, basic('#ffffff')); dot.scale.setScalar(0.08); dot.position.set(ax, ay, 1.2); md.g.add(dot); });
+  });
 }
 function finishModel(md) {
   award('cell');
   md.done = true; md.ghost.visible = false; md.tag.material.map = labelTex('✓ Your ' + md.name, { bd: '#7be0ad' }); md.tag.material.needsUpdate = true; md.tag.scale.set(3.6, 1.8, 1);
-  Object.keys(md.parts).forEach(function (n) { md.parts[n].lb.visible = true; });
+  calloutLabels(md); md.big = 1.35; md.tag.position.y = md.R[1] + 1.7;
+  /* the finished cell lights itself up so it is easy to see, even in the dark deep sea */
+  const euk0 = md.kind === 'animal', lt = new T.PointLight(euk0 ? 0xffe0ec : 0xe8ffd8, 3.2, 28, 1); lt.position.set(0, 0, 5); md.g.add(lt);
+  /* every part of the finished cell glows with its own color, so it is bright even in the darkest water */
+  const shellP = md.parts['Plasma membrane'];
+  md.inner.traverse(function (o) { if (!o.isMesh || !o.material) return; const m = o.material.clone(), isShell = shellP && o.parent === shellP.g && o.geometry === G.sph;
+    if (m.emissive) m.emissive.copy(m.color).multiplyScalar(isShell ? 0.35 : 0.9); else if (m.color) m.color.offsetHSL(0, 0.1, 0.15);
+    if (isShell) m.opacity = 0.16; /* a clearer skin, so the bright organelles show through */
+    o.material = m; });
+  md.halo = glow(euk0 ? '#ffd0e4' : '#d8ffb0', md.R[0] * 3.6, 0.5, false); md.halo.position.z = -1.2; md.g.add(md.halo);
   burst(md.home.x, md.home.y, '#7be0ad'); beep(990, 0.4, 'sine', 'fanfare, cell model complete');
   const euk = md.kind === 'animal', w = euk ? 'Eukaryote' : 'Prokaryote';
   S.words[w] = 1; save(); giveFlight(20, euk ? '' : 'A flagellum tail, like a bacterium\'s! ');
@@ -965,8 +997,9 @@ function builder() {
     stratum: function (o) {
       const len = o.len || 60, wall = box(b.x - 2, b.x + len, b.y - 1, b.y + 10, 0.5, o.color || '#8a6a4a'); wall.position.z = -4; L.group.add(wall);
       for (let i = 0; i < len / 3; i++) { const st = box(b.x + i * 3, b.x + i * 3 + rnd(1, 2.5), b.y + rnd(0, 9), 0, 0.2, new T.Color(o.color || '#8a6a4a').offsetHSL(0, 0, rnd(-0.08, 0.08)).getStyle()); st.scale.y = rnd(0.15, 0.4); st.position.y = b.y + rnd(0.5, 9); st.position.z = -3.7; L.group.add(st); }
-      const sg = label(o.name, 7.5, { bg: '#fff8e1', fg: '#10202c', bd: '#10202c' }); sg.position.set(b.x + 9, b.y + 8.3, -1.5); L.group.add(sg);
-      if (o.sub) { const s2 = label(o.sub, 7.5, { bd: '#ffd166' }); s2.position.set(b.x + 9, b.y + 6.9, -1.5); L.group.add(s2); }
+      const sg = label(o.name, 5.6, { bg: '#fff8e1', fg: '#10202c', bd: '#10202c' }), s2 = o.sub ? label(o.sub, 7.4, { bd: '#ffd166' }) : null;
+      const top = b.y + 8.2, wn = sg.userData.lbl.w; sg.position.set(b.x + 3.5, top - sg.userData.lbl.h / 2, -1.5); L.group.add(sg); /* layer name and its age sit side by side under the cave ceiling */
+      if (s2) { s2.position.set(b.x + 3.5 + wn / 2 + s2.userData.lbl.w / 2 + 0.3, top - s2.userData.lbl.h / 2, -1.5); L.group.add(s2); }
       if (L.darkX == null) { L.darkX = b.x - 1; L.darkTop = b.y + 10; }
       return b;
     },
@@ -1895,7 +1928,7 @@ function digStep(dt, ax) {
   if (P.digT > 0.28) { breakTile(t); P.digT = 0; }
 }
 const _cv = new T.Vector3();
-function caveSpot() { const ov = $('caveDark'); if (!ov) return; _cv.set(P.x, P.y + 0.8, 0).project(cam); const x = (_cv.x + 1) * 50, y = (1 - _cv.y) * 50;
+function caveSpot() { const ov = $('caveDark'); if (!ov) return; ov.style.opacity = L.models && L.models.some(function (md) { return md.done && Math.abs(md.home.x - P.x) < 16 && Math.abs(md.home.y - P.y) < 12; }) ? 0.3 : 1; /* the dark edges lift near a finished, glowing cell */ _cv.set(P.x, P.y + 0.8, 0).project(cam); const x = (_cv.x + 1) * 50, y = (1 - _cv.y) * 50;
   ov.style.background = 'radial-gradient(circle at ' + x.toFixed(1) + '% ' + y.toFixed(1) + '%, rgba(0,0,0,0) 0, rgba(0,0,0,0) 24vmin, rgba(' + (L.darkTone || '5,3,2') + ',' + (L.darkTone ? '.3' : '.5') + ') 50vmin, rgba(' + (L.darkTone || '5,3,2') + ',' + (L.darkTone ? '.55' : '.8') + ') 85vmin)'; }
 function deepStep(dt) {
   L.glowers.forEach(function (gw) { gw.t += dt; gw.list.forEach(function (m, i) { const u = m.userData;
