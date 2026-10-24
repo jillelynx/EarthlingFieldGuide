@@ -295,7 +295,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 50 · October 24, 2026';
+const VERSION = 'Version 51 · October 24, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -3581,7 +3581,7 @@ function wire() {
 /* HIDDEN ADMIN MODE (for the game's author): type the password anywhere on the main menu, or tap the version line 5 times and enter it.
    Only a scrambled number of the password is stored here, not the password itself. Admin mode unlocks every level and Biodome supply,
    lets you fly right away in the reserve, removes the map fog, and lets you tap the map to jump anywhere. Enter the password again to turn it off. */
-const ADMIN_HASH = '6dc1558c58efca6a', ADMIN_LEN = 12; /* never write the password itself in this repository (code or notes) */
+const ADMIN_HASH = '8ecb0befe4fd156c', ADMIN_LEN = 11; /* never write the password itself in this repository (code or notes) */
 function pwHash(t) { t = 'efg-salt:' + String(t).toLowerCase(); let h1 = 0xdeadbeef, h2 = 0x41c6ce57; /* a salted, many-times-repeated scramble: slow to guess, and the password itself is never stored */
   for (let r = 0; r < 2000; r++) for (let i = 0; i < t.length; i++) { const c = t.charCodeAt(i) + r; h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909); h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909); }
   return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0'); }

@@ -542,3 +542,4 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 ## v50 (Oct 24, 2026): admin password changed
 - The old admin password had been written in a notes file on GitHub. It no longer works. The new password is NOT written anywhere in the repository (teacher rule: never put it in code, notes or commit messages). engine.js stores only a salted, many-times-repeated scramble (pwHash, 64-bit hex in ADMIN_HASH); typing is still case-insensitive.
 - Safety check on the teacher's Mac: a git pre-commit hook (.git/hooks/pre-commit, local only, never uploaded) refuses any commit whose changes contain a word listed in .git/info/forbidden-words (old and new passwords).
+- v51: admin password changed again at the teacher's request (still not written anywhere in the repository).
