@@ -775,6 +775,7 @@ function ensureUI() {
 #czPause { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(11, 29, 42, .7); }
 #czPause .card { max-width: 380px; }
 #cozyUI.talking #czHelp, #cozyUI.mapping #czHelp, #cozyUI.mapping #czHint { display: none; }
+#czTime { align-self: center; display: flex; align-items: center; gap: 4px; background: rgba(60, 20, 20, .75); border: 1px solid #ffd166; border-radius: 999px; padding: 2px 10px; font-size: .9em; white-space: nowrap; } #czTime input { width: 120px; } #czTime[hidden] { display: none; }
 #czClock { align-self: center; background: rgba(11, 29, 42, .7); border-radius: 999px; padding: 4px 10px; font-size: .9em; white-space: nowrap; }
 #czRest { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); width: min(720px, calc(100% - 24px)); background: rgba(40, 20, 8, .88); border: 2px solid #ffb03a; border-radius: 14px; padding: 6px 12px; font-size: .92em; }
 #czRest h3 { margin: 2px 0; font-size: 1em; } #czRest p { margin: 3px 0; }
@@ -803,7 +804,7 @@ function ensureUI() {
   document.head.appendChild(css);
   const ui = document.createElement('div'); ui.id = 'cozyUI'; ui.hidden = true;
   ui.innerHTML = '<div id="czGrade" aria-hidden="true"></div><div id="czTop"><div id="czObj" aria-live="polite"></div><div id="czBtns">' +
-    '<span id="czClock" aria-live="off"></span><button type="button" id="czMapB"></button><button type="button" id="czHintB"></button><button type="button" id="czJ"></button><button type="button" id="czKeys" aria-pressed="false"></button><button type="button" id="czM"></button></div></div><div id="czHint" role="status" aria-live="polite" hidden></div><div id="czRest" hidden></div><div id="czSurvey" hidden></div>' +
+    '<span id="czClock" aria-live="off"></span><span id="czTime" hidden title="Admin: time of day">🕒 <input type="range" id="czTimeR" min="0" max="24" step="0.25" aria-label="Time of day (admin)"> <b id="czTimeV"></b></span><button type="button" id="czMapB"></button><button type="button" id="czHintB"></button><button type="button" id="czJ"></button><button type="button" id="czKeys" aria-pressed="false"></button><button type="button" id="czM"></button></div></div><div id="czHint" role="status" aria-live="polite" hidden></div><div id="czRest" hidden></div><div id="czSurvey" hidden></div>' +
     '<div id="czMapP" hidden><div class="card mapcard"><div class="mh"><h2 id="czMapT"></h2><span class="mz"><button type="button" data-mz="in">+</button><button type="button" data-mz="out">−</button><button type="button" data-mz="me" id="czMapMe"></button><button type="button" id="czMapClose"></button></span></div>' +
     '<canvas id="czMapC" aria-label="Map"></canvas><div class="mf"><div id="czMapInfo" aria-live="polite"></div><div id="czMapLeg"></div></div><p class="dim" id="czMapH"></p></div></div><div id="czPrompt" hidden></div><div id="czCard" role="status" aria-live="polite" hidden></div>' +
     '<div id="czTalk" hidden></div><div id="czHelp"></div><div id="czPause" hidden><div class="card"><h2 id="czPT"></h2><button type="button" id="czRes" class="primary"></button><button type="button" id="czPJ"></button><span class="czLang btns" role="group" aria-label="Language"><button type="button" data-lang="en">English</button><button type="button" data-lang="es">Español</button></span><label><span id="czMvL"></span><input type="range" id="czMv" min="0" max="100" step="5"></label><label><span id="czSvL"></span><input type="range" id="czSv" min="0" max="100" step="5"></label><label><span id="czSensL"></span><input type="range" id="czSens" min="0.4" max="2" step="0.1"></label><label><span id="czInvL"></span><input type="checkbox" id="czInv"></label><button type="button" id="czQuit"></button></div></div><div id="czFly" hidden aria-hidden="true"><i></i></div>';
@@ -842,6 +843,9 @@ function refreshText() {
   $('czJ').textContent = '📓 ' + tx('cz.journal'); $('czM').textContent = '☰ ' + tx('cz.menu'); $('czPT').textContent = tx('cz.paused');
   $('czRes').textContent = tx('cz.resume'); $('czPJ').textContent = '📓 ' + tx('cz.journal'); $('czQuit').textContent = tx('cz.toMenu'); $('czHelp').textContent = tx('cz.controls');
   W.clock = $('czClock'); W.todLast = null; W.lightT = 0;
+  /* ADMIN: a slider to set the time of day (to check how the reserve looks at dawn, noon, sunset and night) */
+  { const tw = $('czTime'), tr = $('czTimeR'); tw.hidden = !C.S.set.admin; tr.value = W.tod; timeLabel();
+    tr.oninput = function () { if (!W) return; W.tod = +tr.value % 24; st().tod = W.tod; W.todLast = null; dayLight(); timeLabel(); W.moodNow = moodNow(); }; }
   $('czKeys').textContent = '⌨️ ' + tx('cz.keys'); $('czMapB').textContent = '🗺️ ' + tx('cz.map'); $('czHintB').textContent = '💡 ' + tx('cz.hint'); $('czMapT').textContent = '🗺️ ' + tx('cz.mapTitle'); $('czMapClose').textContent = tx('cz.close') + ' (M)'; $('czMapMe').textContent = '⌖ ' + tx('cz.mapMe'); $('czMapH').textContent = tx('cz.mapHelp');
   $('czMapLeg').innerHTML = [['#e0403a', 'cz.lg.you'], ['#ffd166', 'cz.lg.find'], ['#5fb8ff', 'cz.lg.person'], ['#c59cff', 'cz.lg.view'], ['#3aa8c0', 'cz.lg.water'], ['#4a7a3a', 'cz.lg.forest'], ['#8cbc52', 'cz.lg.meadow'], ['#c8a050', 'cz.lg.farm'], ['#d8a060', 'cz.lg.path'], ['#e9dfc4', 'cz.unexplored']].map(function (l) { return '<span><i style="background:' + l[0] + '"></i>' + C.esc(tx(l[1])) + '</span>'; }).join('');
   if (W.ui === 'map') drawMap();
@@ -1836,6 +1840,7 @@ function giveHint() {
 
 /* ---------- DAY AND NIGHT: one full day takes about 20 minutes ---------- */
 const SKYK = [[0, '#060a1e', '#121a36'], [4.6, '#0a1230', '#1c2448'], [5.6, '#3a4a8a', '#d08a7a'], [6.6, '#5a8ad0', '#ffd0a0'], [8.2, '#4a9ee0', '#d8eef8'], [16.2, '#4a9ee0', '#d8eef8'], [17.6, '#5a80c4', '#ffd090'], [18.6, '#4a4a90', '#ff9060'], [19.4, '#2a2a68', '#c06a6a'], [20.4, '#101640', '#3a3a62'], [21.4, '#070c24', '#141c3a'], [24, '#060a1e', '#121a36']];
+function timeLabel() { const v = $('czTimeV'); if (!v || !W) return; const h = Math.floor(W.tod), m = Math.floor((W.tod - h) * 60); v.textContent = ((h + 11) % 12 + 1) + ':' + (m < 10 ? '0' : '') + m + (h < 12 ? ' AM' : ' PM'); }
 function isNight() { const t = W ? W.tod : 12; return t < 5.4 || t > 20.2; }
 function todName(t) { return t < 5.4 || t >= 21 ? 'night' : t < 7 ? 'dawn' : t < 11 ? 'morning' : t < 13.5 ? 'noon' : t < 16.5 ? 'afternoon' : t < 18.3 ? 'golden' : t < 19.6 ? 'sunset' : 'twilight'; }
 function skyAt(t) { for (let i = 0; i < SKYK.length - 1; i++) { const a = SKYK[i], b = SKYK[i + 1]; if (t >= a[0] && t <= b[0]) { const u = (t - a[0]) / (b[0] - a[0]); return [new T.Color(a[1]).lerp(new T.Color(b[1]), u), new T.Color(a[2]).lerp(new T.Color(b[2]), u)]; } } return [new T.Color(SKYK[0][1]), new T.Color(SKYK[0][2])]; }
@@ -2161,7 +2166,7 @@ function step(dt) {
   W.seenT = (W.seenT || 0) - dt; if (W.seenT <= 0) { W.seenT = 0.6; markSeen(); }
   { const fast = W.sitting && W.restTo != null; W.tod = (W.tod + dt * (fast ? 0.7 : 1 / 50)) % 24; s.tod = W.tod;
     if (fast && Math.abs(((W.tod - W.restTo + 36) % 24) - 12) > 11.6) W.restTo = null;
-    W.lightT = (W.lightT || 0) - dt; if (W.lightT <= 0 || fast) { W.lightT = 0.3; dayLight(); } }
+    W.lightT = (W.lightT || 0) - dt; if (W.lightT <= 0 || fast) { W.lightT = 0.3; dayLight(); if (C.S.set.admin) { const tr = $('czTimeR'); if (tr && document.activeElement !== tr) tr.value = W.tod; timeLabel(); } } }
   soundscape(dt); svStep(dt);
   if (W.ffly && W.ffly[0].visible) W.ffly.forEach(function (f, i) { const u = f.userData, a = W.t * 0.4 + u.ph; f.position.set(u.cx + Math.sin(a) * 2, H(u.cx, u.cz) + 0.8 + Math.sin(W.t * 0.9 + u.ph) * 0.6, u.cz + Math.cos(a * 0.8) * 2); f.material.opacity = Math.max(0, Math.sin(W.t * 2.2 + u.ph * 3)) * 0.95; });
   if (W.moth.visible) { W.moth.position.set(W.porch.position.x + Math.sin(W.t * 2.3) * 0.6, W.porch.position.y + Math.sin(W.t * 3.1) * 0.3, W.porch.position.z + 0.5 + Math.cos(W.t * 2) * 0.4); W.moth.children.forEach(function (w, j) { w.rotation.z = (j ? -1 : 1) * Math.sin(W.t * 18) * 0.7; }); }
