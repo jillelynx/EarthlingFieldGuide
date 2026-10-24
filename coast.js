@@ -319,10 +319,11 @@ function build() {
       const bd = new T.Mesh(new T.BoxGeometry(w * 0.55, 0.6, 0.1), new T.MeshLambertMaterial({ color: '#a07a4a' })); bd.position.set(x, y + 2.3, z); bd.lookAt(x, y + 2.3, z + 10); g.add(bd);
       const lb = C.label(text, w, { bd: '#ffd166' }); lb.position.set(x, y + 3.2, z); g.add(lb); K.colliders.push({ x: x, z: z, r: 0.25, top: y + 2.6 }); };
     post(START.x - 3.2, START.z - 0.5, tx('co.signBack'), 2.4); post(6.5, 3, '🌅 ' + tx('co.title'), 2.6); }
-  K.me = C.buildAlien(C.S.alien); K.me.scale.multiplyScalar(0.78); g.add(K.me);
-  K.shadow = new T.Mesh(new T.CircleGeometry(0.45, 16), new T.MeshBasicMaterial({ color: '#000', transparent: true, opacity: 0.25, depthWrite: false })); K.shadow.rotation.x = -Math.PI / 2; g.add(K.shadow);
+  addPlayer(g);
 }
 
+function addPlayer(g) { K.me = C.buildAlien(C.S.alien); K.me.scale.multiplyScalar(0.78); g.add(K.me);
+  K.shadow = new T.Mesh(new T.CircleGeometry(0.45, 16), new T.MeshBasicMaterial({ color: '#000', transparent: true, opacity: 0.25, depthWrite: false })); K.shadow.rotation.x = -Math.PI / 2; g.add(K.shadow); }
 /* ---------- UI ---------- */
 function ensureUI() {
   if ($('coUI')) return;
@@ -342,40 +343,45 @@ function ensureUI() {
   $('coPauseB').onclick = function () { setPause(true); }; $('coRes').onclick = function () { setPause(false); }; $('coLeave').onclick = function () { setPause(false); leave(); };
   $('coMenu').onclick = function () { setPause(false); leave(true); if (BQ.cozy && BQ.cozy._exit) BQ.cozy._exit(); };
 }
-function refreshText() { $('coT').textContent = '🌅 ' + tx('co.title'); $('coKeys').textContent = tx('co.keys'); $('coPT').textContent = tx('co.pause'); $('coRes').textContent = tx('co.resume'); $('coLeave').textContent = tx('co.leave'); $('coMenu').textContent = tx('co.menu'); }
+function refreshText() { $('coT').textContent = K && K.A ? K.A.icon + ' ' + tx(K.A.title) : ''; $('coKeys').textContent = tx('co.keys'); $('coPT').textContent = tx('co.pause'); $('coRes').textContent = tx('co.resume'); $('coLeave').textContent = tx('co.leave'); $('coMenu').textContent = tx('co.menu'); }
 function card(text, secs) { const c = $('coCard'); c.textContent = text; c.hidden = false; K.cardT = secs || 6; }
 function setPause(on) { if (!K) return; K.pause = on; K.k = {}; $('coPause').hidden = !on; if (on) $('coRes').focus(); }
 function fade(text, then) { const f = $('coFade'); f.textContent = text; f.style.opacity = 1; setTimeout(function () { then(); setTimeout(function () { f.style.opacity = 0; }, 350); }, 650); }
 
 /* ---------- ENTER / LEAVE (from Willow Creek's valley trailhead) ---------- */
-function enter() {
-  const W = BQ.cozy && BQ.cozy._w(); if (!W || K) return; ensureUI(); W.k = {};
-  fade(tx('co.down'), function () {
+function enter(id) {
+  const W = BQ.cozy && BQ.cozy._w(), A = AREAS[id || 'cove']; if (!W || K || !A) return; ensureUI(); W.k = {};
+  const START = A.start, Hc = A.H, build = A.build;
+  fade(tx(A.down), function () {
     K = { W: W, t: 0, k: {}, yaw: Math.PI, pitch: 0.32, dist: 11, distT: 11, vx: 0, vy: 0, vz: 0, px: START.x, pz: START.z, py: 0, face: Math.PI * 0, ground: true, pause: false, cardT: 0, fpsT: 0, fpsN: 0,
       save: { bg: C.scene.background, fog: C.scene.fog, light: [C.HEMI.intensity, C.HEMI.color.clone(), C.HEMI.groundColor.clone(), C.KEYL.intensity, C.KEYL.color.clone(), C.KEYL.position.clone()], fov: C.cam.fov } };
-    K.yaw = Math.atan2(START.x - 2, START.z - 20); K.face = K.yaw + Math.PI; K.pitch = 0.3; W.coast = true; /* arrive looking down the valley toward the sea */ W.g.visible = false; $('cozyUI').hidden = true; build(); K.py = Hc(K.px, K.pz);
-    $('coUI').hidden = false; refreshText(); amb('mood', 'water', 2); amb('underwater', false);
-    const s = BQ.cozy._s(); if (!s.f.coast) { s.f.coast = 1; C.save(); setTimeout(function () { if (K) card(tx('co.welcome'), 12); }, 900); } });
+    K.A = A; K.yaw = Math.atan2(START.x - A.look[0], START.z - A.look[1]); K.face = K.yaw + Math.PI; K.pitch = 0.3; W.coast = true; /* arrive looking toward the best view */ W.g.visible = false; $('cozyUI').hidden = true; build(K); K.py = Hc(K.px, K.pz);
+    $('coUI').hidden = false; refreshText(); amb('mood', A.mood, 2); amb('underwater', false);
+    const s = BQ.cozy._s(); if (!s.f[A.flag]) { s.f[A.flag] = 1; C.save(); setTimeout(function () { if (K) card(tx(A.welcome), 14); }, 900); } });
 }
 function leave(quick) {
-  if (!K) return; const W = K.W, done = function () { if (!K) return;
+  if (!K) return; const W = K.W, A = K.A, done = function () { if (!K) return;
     C.scene.remove(K.g); C.disposeGroup(K.g); const s0 = K.save; C.scene.background = s0.bg; C.scene.fog = s0.fog; C.HEMI.intensity = s0.light[0]; C.HEMI.color.copy(s0.light[1]); C.HEMI.groundColor.copy(s0.light[2]); C.KEYL.intensity = s0.light[3]; C.KEYL.color.copy(s0.light[4]); C.KEYL.position.copy(s0.light[5]);
     C.cam.fov = s0.fov; C.cam.updateProjectionMatrix(); amb('underwater', false); K = null; $('coUI').hidden = true;
-    if (W) { W.coast = false; W.g.visible = true; $('cozyUI').hidden = false; W.k = {}; const a = 95 * Math.PI / 180, r = 58.5; W.px = Math.cos(a) * r; W.pz = Math.sin(a) * r; W.py = BQ.cozy._GH(W.px, W.pz); W.vx = W.vz = W.vy = 0; W.yaw = Math.atan2(W.px, W.pz); W.face = W.yaw + Math.PI; W.camUnder = false; amb('mood', 'meadow', 2); } };
-  if (quick) done(); else fade(tx('co.up'), done);
+    if (W) { W.coast = false; W.g.visible = true; $('cozyUI').hidden = false; W.k = {}; const a = A.trail.a * Math.PI / 180, r = A.trail.r - 2.7; W.px = Math.cos(a) * r; W.pz = Math.sin(a) * r; W.py = BQ.cozy._GH(W.px, W.pz); W.vx = W.vz = W.vy = 0; W.yaw = Math.atan2(W.px, W.pz); W.face = W.yaw + Math.PI; W.camUnder = false; amb('mood', 'meadow', 2); if (BQ.cozy._back) BQ.cozy._back(); } };
+  if (quick) done(); else fade(tx(A.up || 'co.up'), done);
 }
-function cozyTrail(g, H) { /* the trailhead in Willow Creek: a signpost by the valley lookout */
-  const a = 95.5 * Math.PI / 180, r = 61.2, x = Math.cos(a) * r, z = Math.sin(a) * r, y = H(x, z);
+function cozyTrail(g, H) { return Object.keys(AREAS).map(function (id) { return trailSign(g, H, AREAS[id]); }); }
+function trailSign(g, H, A) { /* a trailhead signpost in Willow Creek */
+  const a = A.trail.a * Math.PI / 180, r = A.trail.r, x = Math.cos(a) * r, z = Math.sin(a) * r, y = H(x, z);
   const p = new T.Mesh(new T.CylinderGeometry(0.12, 0.14, 2.6, 6), new T.MeshLambertMaterial({ color: '#7a5a3a' })); p.position.set(x, y + 1.3, z); g.add(p);
   const bd = new T.Mesh(new T.BoxGeometry(1.8, 0.55, 0.1), new T.MeshLambertMaterial({ color: '#a07a4a' })); bd.position.set(x, y + 2.2, z); bd.rotation.y = -a + Math.PI / 2; g.add(bd);
-  const lb = C.label(tx('co.sign'), 3.2, { bd: '#ffd166' }); lb.position.set(x, y + 3.1, z); g.add(lb); return { x: x, z: z };
+  const lb = C.label(tx(A.sign), 3.2, { bd: '#ffd166' }); lb.position.set(x, y + 3.1, z); g.add(lb); return { x: x, z: z };
 }
 
+/* ---------- THE AREAS you can hike to from Willow Creek (more are added by other files with BQ.coast.addArea) ---------- */
+const AREAS = { cove: { H: Hc, water: waterHere, start: START, fire: FIRE, bounds: BOUNDS, build: build, look: [2, 20], trail: { a: 95.5, r: 61.2 }, sign: 'co.sign', title: 'co.title', icon: '🌅',
+  down: 'co.down', welcome: 'co.welcome', flag: 'coast', mood: 'water', under: ['#1f8aa0', 0.05] } };
 /* ---------- THE LOOP ---------- */
 function waterHere(x, z) { const h = Hc(x, z); return (h < -0.05 && z - shoreZ(x) > -1) ? 0 : null; }
 function step(dt) {
-  if (!K) return; dt = Math.min(dt, 0.05); K.t += dt; UT.value = K.t; const cam = C.cam, k = K.k, busy = K.pause;
-  K.waterM.uniforms.uT.value = K.t; K.farM.uniforms.uT.value = K.t; K.streamTex.offset.y -= dt * 0.5;
+  if (!K) return; dt = Math.min(dt, 0.05); K.t += dt; UT.value = K.t; const cam = C.cam, k = K.k, busy = K.pause, A = K.A, Hc = A.H, waterHere = A.water, START = A.start, FIRE = A.fire, BOUNDS = A.bounds;
+  if (K.waterM) K.waterM.uniforms.uT.value = K.t; if (K.farM) K.farM.uniforms.uT.value = K.t; if (K.streamTex) K.streamTex.offset.y -= dt * 0.5; if (A.step) A.step(dt, K);
   /* moving */
   let mx = 0, mz = 0; if (!busy) { if (k.f) mz -= 1; if (k.b) mz += 1; if (k.l) mx -= 1; if (k.r) mx += 1; if (k.ql) K.yaw += dt * 1.8; if (k.qr) K.yaw -= dt * 1.8; if (k.tu) K.pitch = Math.max(-0.35, K.pitch - dt); if (k.td) K.pitch = Math.min(1.25, K.pitch + dt); }
   if (K.sitting && (mx || mz || k.jump)) { K.sitting = false; }
@@ -424,39 +430,39 @@ function step(dt) {
     if (waterHere(want.x, want.z) != null && want.y < 0.45) want.y = 0.45; }
   cam.position.lerp(want, Math.min(1, dt * 6)); cam.lookAt(tgt); if (Math.abs(cam.fov - 42) > 0.05) { cam.fov = 42; cam.updateProjectionMatrix(); }
   K.sky.position.copy(cam.position);
-  { const ax = tgt.x, az = tgt.z, bx = cam.position.x - ax, bz = cam.position.z - az, L2 = bx * bx + bz * bz, hy = Math.max(cam.position.y, tgt.y) + 0.4, arr = K.pineIM.instanceMatrix.array; let dirty = false;
+  if (K.pineIM) { const ax = tgt.x, az = tgt.z, bx = cam.position.x - ax, bz = cam.position.z - az, L2 = bx * bx + bz * bz, hy = Math.max(cam.position.y, tgt.y) + 0.4, arr = K.pineIM.instanceMatrix.array; let dirty = false;
     if (!K.pineM) { K.pineM = arr.slice(); K.trunkM = K.trunkIM.instanceMatrix.array.slice(); } const ta = K.trunkIM.instanceMatrix.array;
     K.pineT.forEach(function (p) { let hide = false; if (L2 > 0.01 && p.bot < hy) { const u = Math.max(0, Math.min(1, ((p.x - ax) * bx + (p.z - az) * bz) / L2)), qx = ax + bx * u - p.x, qz = az + bz * u - p.z; hide = u > 0.05 && qx * qx + qz * qz < (p.cr + 0.4) * (p.cr + 0.4); }
       if (hide === !!p.hidden) return; p.hidden = hide; dirty = true; for (let k = 0; k < 3; k++) { const o = (p.i0 + k) * 16; for (let j = 0; j < 16; j++) arr[o + j] = hide ? 0 : K.pineM[o + j]; } const to = p.ti * 16; for (let j = 0; j < 16; j++) ta[to + j] = hide ? 0 : K.trunkM[to + j]; });
     if (dirty) { K.pineIM.instanceMatrix.needsUpdate = true; K.trunkIM.instanceMatrix.needsUpdate = true; }
-    K.fernT = (K.fernT || 0) - dt; if (K.fernT <= 0 && K.ferns.length) { K.fernT = 0.2; const fa = K.fernIM.instanceMatrix.array; if (!K.fernM) K.fernM = fa.slice(); let fd = false;
+    K.fernT = (K.fernT || 0) - dt; if (K.fernT <= 0 && K.ferns && K.ferns.length) { K.fernT = 0.2; const fa = K.fernIM.instanceMatrix.array; if (!K.fernM) K.fernM = fa.slice(); let fd = false;
       K.ferns.forEach(function (fr, i) { const near = Math.hypot(fr[0] - cam.position.x, fr[2] - cam.position.z) < 2.6 && fr[1] + 1.5 > cam.position.y - 1; if (near === !!fr.hid) return; fr.hid = near; fd = true; for (let j = 0; j < 16; j++) fa[i * 16 + j] = near ? 0 : K.fernM[i * 16 + j]; });
       if (fd) K.fernIM.instanceMatrix.needsUpdate = true; } }
   /* above or below the water */
   const under = cam.position.y < -0.05 && waterHere(cam.position.x, cam.position.z) != null;
-  if (under !== !!K.camUnder) { K.camUnder = under; if (under) { K.airFog = C.scene.fog; K.airBg = C.scene.background; C.scene.fog = new T.FogExp2('#1f8aa0', 0.05); C.scene.background = new T.Color('#1f8aa0'); } else { C.scene.fog = K.airFog; C.scene.background = K.airBg; }
-    K.sky.visible = !under; K.rays.forEach(function (r) { r.m.visible = under; }); amb('underwater', under); amb('mood', under ? 'under' : 'water', 2);
+  if (under !== !!K.camUnder) { K.camUnder = under; if (under) { K.airFog = C.scene.fog; K.airBg = C.scene.background; C.scene.fog = new T.FogExp2(A.under[0], A.under[1]); C.scene.background = new T.Color(A.under[0]); } else { C.scene.fog = K.airFog; C.scene.background = K.airBg; }
+    K.sky.visible = !under; K.rays.forEach(function (r) { r.m.visible = under; }); amb('underwater', under); amb('mood', under ? 'under' : A.mood, 2);
     if (under && !K.lamp) { K.lamp = new T.PointLight(0xd8f8ff, 1.1, 10, 1.2); K.lamp.position.set(0, 1.6, 0.6); K.me.add(K.lamp); } else if (!under && K.lamp) { K.me.remove(K.lamp); K.lamp = null; } }
   if (under) K.rays.forEach(function (r) { r.m.position.set(cam.position.x + r.ox + Math.sin(K.t * 0.3 + r.ph) * 0.6, -5, cam.position.z + r.oz - 6); r.m.rotation.set(0, Math.atan2(cam.position.x - r.m.position.x, cam.position.z - r.m.position.z), 0.25); r.m.material.opacity = 0.16 * (0.6 + 0.4 * Math.sin(K.t * 0.8 + r.ph)); });
   K.motes.position.copy(cam.position); K.motes.material.color.set(under ? '#d8ffff' : '#fff0c0'); K.motes.material.size = under ? 0.09 : 0.13;
   /* life: fish, turtle, fireflies, the fire, gulls */
-  { const o = K._o || (K._o = new T.Object3D()); K.schools.forEach(function (sc) { const a0 = K.t * sc.sp + sc.ph; for (let i = 0; i < sc.n; i++) { const of = sc.off[i], a = a0 + of[0] * 0.25, rr = sc.r + of[2] * 1.2, x = sc.cx + Math.cos(a) * rr, z = sc.cz + Math.sin(a) * rr * 0.75, y = sc.y + of[1] + Math.sin(K.t * 0.9 + of[3]) * 0.25;
+  if (K.schools) { const o = K._o || (K._o = new T.Object3D()); K.schools.forEach(function (sc) { const a0 = K.t * sc.sp + sc.ph; for (let i = 0; i < sc.n; i++) { const of = sc.off[i], a = a0 + of[0] * 0.25, rr = sc.r + of[2] * 1.2, x = sc.cx + Math.cos(a) * rr, z = sc.cz + Math.sin(a) * rr * 0.75, y = sc.y + of[1] + Math.sin(K.t * 0.9 + of[3]) * 0.25;
       o.position.set(x, Math.min(y, -0.5), z); o.rotation.set(0, Math.atan2(-Math.sin(a) * rr, Math.cos(a) * rr * 0.75) + Math.sin(K.t * 9 + of[3]) * 0.12, 0); o.scale.setScalar(0.16 + (i % 3) * 0.02); o.updateMatrix(); sc.im.setMatrixAt(i, o.matrix); } sc.im.instanceMatrix.needsUpdate = true; }); }
-  { const a = K.t * 0.05, x = 4 + Math.cos(a) * 30, z = shoreZ(0) + 24 + Math.sin(a * 2) * 9, y = -2.2 + Math.sin(K.t * 0.4) * 0.5; K.turtle.position.set(x, y, z); K.turtle.rotation.set(0, Math.atan2(-Math.sin(a) * 30, Math.cos(a * 2) * 18), Math.sin(K.t * 0.6) * 0.08);
+  if (K.turtle) { const a = K.t * 0.05, x = 4 + Math.cos(a) * 30, z = shoreZ(0) + 24 + Math.sin(a * 2) * 9, y = -2.2 + Math.sin(K.t * 0.4) * 0.5; K.turtle.position.set(x, y, z); K.turtle.rotation.set(0, Math.atan2(-Math.sin(a) * 30, Math.cos(a * 2) * 18), Math.sin(K.t * 0.6) * 0.08);
     K.flip.forEach(function (f) { f.m.rotation.z = f.s * Math.sin(K.t * (f.front ? 1.6 : 1.6)) * (f.front ? 0.6 : 0.3); }); }
   { const fp = K.flies.geometry.attributes.position; K.flyD.forEach(function (f, i) { const a = K.t * 0.35 + f.ph; fp.setXYZ(i, f.x + Math.sin(a) * f.r, Hc(f.x, f.z) + 0.8 + Math.sin(K.t * 0.9 + f.ph) * 0.5, f.z + Math.cos(a * 0.8) * f.r); }); fp.needsUpdate = true; K.flies.material.opacity = 0.55 + 0.35 * Math.sin(K.t * 2.2); }
-  K.flames.forEach(function (f, i) { f.scale.y = 1 + Math.sin(K.t * (9 + i * 3)) * 0.18; f.scale.x = f.scale.z = 1 + Math.sin(K.t * (7 + i * 2)) * 0.08; f.rotation.y += dt * (1 + i); }); if (K.fireL) K.fireL.intensity = 1.3 + Math.sin(K.t * 13) * 0.15 + Math.sin(K.t * 7.3) * 0.1;
-  K.sparks.forEach(function (s0, i) { s0.t += dt; if (s0.t > 1.6) s0.t -= 1.6; const u = s0.t / 1.6; s0.m.position.set(K.fire.x + Math.sin(i * 2.1 + K.t) * 0.3 * u, K.fire.y + 0.6 + u * 3.2, K.fire.z + Math.cos(i * 1.7) * 0.3 * u); s0.m.material.opacity = (1 - u) * 0.9; });
-  K.gulls.forEach(function (gl, i) { const a = K.t * 0.15 + gl.ph; gl.m.position.set(Math.cos(a) * gl.r, gl.y + Math.sin(K.t + i) * 1.2, 40 + Math.sin(a) * gl.r * 0.6); gl.m.rotation.y = -a; gl.m.children[0].rotation.z = 0.25 + Math.sin(K.t * 4 + i) * 0.3; gl.m.children[1].rotation.z = -(0.25 + Math.sin(K.t * 4 + i) * 0.3); });
+  if (K.flames) K.flames.forEach(function (f, i) { f.scale.y = 1 + Math.sin(K.t * (9 + i * 3)) * 0.18; f.scale.x = f.scale.z = 1 + Math.sin(K.t * (7 + i * 2)) * 0.08; f.rotation.y += dt * (1 + i); }); if (K.fireL) K.fireL.intensity = 1.3 + Math.sin(K.t * 13) * 0.15 + Math.sin(K.t * 7.3) * 0.1;
+  if (K.sparks) K.sparks.forEach(function (s0, i) { s0.t += dt; if (s0.t > 1.6) s0.t -= 1.6; const u = s0.t / 1.6; s0.m.position.set(K.fire.x + Math.sin(i * 2.1 + K.t) * 0.3 * u, K.fire.y + 0.6 + u * 3.2, K.fire.z + Math.cos(i * 1.7) * 0.3 * u); s0.m.material.opacity = (1 - u) * 0.9; });
+  if (K.gulls) K.gulls.forEach(function (gl, i) { const a = K.t * 0.15 + gl.ph; gl.m.position.set(Math.cos(a) * gl.r, gl.y + Math.sin(K.t + i) * 1.2, 40 + Math.sin(a) * gl.r * 0.6); gl.m.rotation.y = -a; gl.m.children[0].rotation.z = 0.25 + Math.sin(K.t * 4 + i) * 0.3; gl.m.children[1].rotation.z = -(0.25 + Math.sin(K.t * 4 + i) * 0.3); });
   /* things to use */
   const nearBack = Math.hypot(K.px - START.x, K.pz - START.z) < 5, nearFire = Math.hypot(K.px - FIRE.x, K.pz - FIRE.z) < 3.4 && !K.sitting; K.near = nearBack ? 'back' : nearFire ? 'fire' : null;
-  const pr = K.near === 'back' ? 'E: ' + tx('co.back') + ' ' + tx('co.backT') : K.near === 'fire' ? 'E: ' + tx('co.sit') + ' ' + tx('co.fire') : K.sitting ? tx('co.stand') : ''; if (pr !== K.lastPr) { K.lastPr = pr; $('coPrompt').textContent = pr; $('coPrompt').hidden = !pr; }
+  const pr = K.near === 'back' ? 'E: ' + tx(A.back || 'co.back') + ' ' + tx('co.backT') : K.near === 'fire' ? 'E: ' + tx('co.sit') + ' ' + tx('co.fire') : K.sitting ? tx('co.stand') : ''; if (pr !== K.lastPr) { K.lastPr = pr; $('coPrompt').textContent = pr; $('coPrompt').hidden = !pr; }
   if (K.sitting) K.yaw += dt * 0.06;
   if (K.cardT > 0) { K.cardT -= dt; if (K.cardT <= 0) $('coCard').hidden = true; }
   /* frames per second (shown in admin mode, to check speed on Chromebooks) */
   { const now = performance.now(); K.fpsT += (now - (K.fpsLast || now)) / 1000; K.fpsLast = now; } K.fpsN++; if (K.fpsT > 1) { /* real frames per second, measured with the clock */ const f = $('coFps'); f.hidden = !C.S.set.admin; f.textContent = Math.round(K.fpsN / K.fpsT) + ' fps'; K.fps = K.fpsN / K.fpsT; K.fpsN = 0; K.fpsT = 0; }
 }
-function act() { if (!K || K.pause) return; if (K.near === 'back') leave(); else if (K.near === 'fire') { K.sitting = true; K.vx = K.vz = 0; K.face = Math.atan2(FIRE.x - K.px, FIRE.z - K.pz); } }
+function act() { if (!K || K.pause) return; const FIRE = K.A.fire; if (K.near === 'back') leave(); else if (K.near === 'fire') { K.sitting = true; K.vx = K.vz = 0; K.face = Math.atan2(FIRE.x - K.px, FIRE.z - K.pz); } }
 function key(e, down) {
   if (!K) return; const kk = e.key.length === 1 ? e.key.toLowerCase() : e.key; if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
   if (down && kk === 'Escape') { e.preventDefault(); setPause(!K.pause); return; } if (K.pause) return;
@@ -473,7 +479,7 @@ function pointer(e, type) {
   else if (type === 'pointerup') K.drag = null;
 }
 function blur() { if (K) K.k = {}; }
-BQ.coast = { enter: enter, leave: leave, step: step, key: key, pointer: pointer, blur: blur, cozyTrail: cozyTrail, active: function () { return !!K; }, _k: function () { return K; }, _H: Hc, _shore: shoreZ, START: START, FIRE: FIRE, PATH: PATH };
+BQ.coast = { addArea: function (id, A) { AREAS[id] = A; }, areas: AREAS, lib: { addPlayer: addPlayer, windy: windy, colorize: colorize, merge: merge, place: place, inst: inst, frondGeo: frondGeo, canvasTex: canvasTex, softDot: softDot, rng: rng, UT: UT, low: low, smooth: smooth, lineD: lineD }, enter: enter, leave: leave, step: step, key: key, pointer: pointer, blur: blur, cozyTrail: cozyTrail, active: function () { return !!K; }, _k: function () { return K; }, _H: Hc, _shore: shoreZ, START: START, FIRE: FIRE, PATH: PATH };
 }
 if (BQ.core) init(); else (BQ.onCoreList = BQ.onCoreList || []).push(init);
 })();
