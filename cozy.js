@@ -713,6 +713,10 @@ function edgeColor(x, z, y, cc) {
     const k = Math.abs(Math.floor(x / 15) * 7 + Math.floor(z / 11) * 13) % FIELDS.length; cc.set(FIELDS[k]); if ((Math.floor(z / 1.6)) % 2 && k % 2) cc.offsetHSL(0, 0, -0.04); return; }
   if (e.id === 'canyon') { if (y > CANYON_Y + 1.5 && rise > 3.4) cc.set(CANYONBANDS[Math.floor((y + 40) / 2.1) % 5]); else cc.set(farRiverDist(x, z) < 12 ? '#7a9a4a' : '#c8a878'); if (y > 24) cc.set('#8aa04a'); }
 }
+/* waterfall look: the shared moving-water shader from coast.js. The sheet's texture coordinate runs negative downward, so flip it to 0 at the top and 1 at the bottom first */
+function fallLook(geo) { if (!(BQ.coast && BQ.coast.lib)) return new T.MeshBasicMaterial({ map: fallTex(), transparent: true, opacity: 0.9, side: T.DoubleSide, depthWrite: false });
+  const uv = geo.attributes.uv; let mn = 0; for (let i = 0; i < uv.count; i++) mn = Math.min(mn, uv.getY(i)); const len = -mn * 3 || 1; for (let i = 0; i < uv.count; i++) uv.setY(i, uv.getY(i) / (mn || -1)); uv.needsUpdate = true;
+  const m = BQ.coast.lib.fallMat(len / 8); m.uniforms.uT = { value: 0 }; (W.fallMats = W.fallMats || []).push(m); return m; }
 function fallTex() { if (W.fall2) return W.fall2; const cv = document.createElement('canvas'); cv.width = 64; cv.height = 256; const cx = cv.getContext('2d');
   const bg = cx.createLinearGradient(0, 0, 64, 0); bg.addColorStop(0, '#8fd0f0'); bg.addColorStop(0.5, '#b8e6fa'); bg.addColorStop(1, '#8fd0f0'); cx.fillStyle = bg; cx.fillRect(0, 0, 64, 256);
   /* soft vertical ribbons of white water with rounded ends (no blocks) */
@@ -1010,7 +1014,7 @@ function build() {
   /* the pond's outlet creek tumbles over the valley cliff as a waterfall */
   { const top = OUTLET[OUTLET.length - 1], prev = OUTLET[OUTLET.length - 2], cr = CREEKS.find(function (c) { return c.id === 'outlet'; }), P2 = cr.pts, pe = P2[P2.length - 1], pp = P2[P2.length - 4];
     const by = VALLEY_Y + 0.2, sh = waterfallSheet([pe[0], H(pe[0], pe[1]) + 0.2, pe[1]], [pe[0] - pp[0], pe[1] - pp[1]], cr.w1 * 1.2, cr.w1 * 1.7, by);
-    const wf2 = new T.Mesh(sh.geo, new T.MeshBasicMaterial({ map: fallTex(), color: '#ffffff', transparent: true, opacity: 0.9, side: T.DoubleSide, depthWrite: false })); g.add(wf2); W.wf2 = wf2;
+    const wf2 = new T.Mesh(sh.geo, fallLook(sh.geo)); g.add(wf2); W.wf2 = wf2;
     const bx = sh.bottom[0], bz = sh.bottom[2];
     /* a round splash pool at the foot of the falls, joined to the river */
     const sp = new T.Mesh(new T.CircleGeometry(3.2, 28), new T.MeshLambertMaterial({ color: '#4a9ad0', emissive: '#0a2a40', transparent: true, opacity: 0.88 })); sp.rotation.x = -Math.PI / 2; sp.position.set(bx, Math.max(H(bx, bz), by) + 0.12, bz); g.add(sp);
@@ -1172,7 +1176,7 @@ function build() {
   W.wfTex = new T.CanvasTexture(cv); W.wfTex.wrapS = W.wfTex.wrapT = T.RepeatWrapping; W.wfTex.repeat.set(1, 2); /* (kept for the scroll line; both falls now share fallTex) */
   { let zt = -70, best = -1e9; for (let z = -74; z < -62; z += 0.25) { const h = H(SPRING.x, z); if (h > best) { best = h; zt = z; } } /* the top of the little cliff */
     const sh = waterfallSheet([SPRING.x, best + 0.15, zt], [0, 1], 2.0, 3.0, H(SPRING.x, SPRING.z) + 0.4);
-    const wf = new T.Mesh(sh.geo, new T.MeshBasicMaterial({ map: fallTex(), transparent: true, opacity: 0.9, side: T.DoubleSide, depthWrite: false })); g.add(wf);
+    const wf = new T.Mesh(sh.geo, fallLook(sh.geo)); g.add(wf);
     const src = new T.Mesh(new T.CircleGeometry(1.3, 20), new T.MeshLambertMaterial({ color: '#4a9ad0', emissive: '#0a2a40', transparent: true, opacity: 0.85 })); src.rotation.x = -Math.PI / 2; src.position.set(SPRING.x, best + 0.17, zt - 0.9); g.add(src); /* the spring bubbles up in a little basin at the top */ }
   const pool = new T.Mesh(new T.CircleGeometry(3.4, 32), new T.MeshLambertMaterial({ color: '#4a9ad0', transparent: true, opacity: 0.55, emissive: '#0a2a40', depthWrite: false })); pool.rotation.x = -Math.PI / 2; pool.position.set(SPRING.x, H(SPRING.x, SPRING.z) + 0.45, SPRING.z); g.add(pool);
   W.mist = []; for (let i = 0; i < 6; i++) { const m = C.glow('#ffffff', 2.5, 0.35); m.position.set(SPRING.x + (i - 2.5) * 0.6, wfBot + 0.6, -61.2); g.add(m); W.mist.push({ m: m, y: m.position.y, ph: i }); }
@@ -1463,6 +1467,7 @@ function spots() {
     { id: 'seaview', x: Math.cos(-3 * Math.PI / 180) * (EDGE + 0.2), z: Math.sin(-3 * Math.PI / 180) * (EDGE + 0.2), r: 3.4, verb: 'cz.lookout', t: 'cz.t.seaview', my: 2.6, use: function () { viewer('sea'); find('seaview'); } },
     { id: 'valleyview', x: Math.cos(88.5 * Math.PI / 180) * (EDGE + 0.2), z: Math.sin(88.5 * Math.PI / 180) * (EDGE + 0.2), r: 3.4, verb: 'cz.lookout', t: 'cz.t.valleyview', my: 2.6, use: function () { viewer('valley'); find('valleyview'); } },
     { id: 'coast', x: Math.cos(95.5 * Math.PI / 180) * 61.2, z: Math.sin(95.5 * Math.PI / 180) * 61.2, r: 3, verb: 'cz.hike', t: 'cz.t.coast', noMark: true, use: function () { if (BQ.coast) BQ.coast.enter(); } },
+    { id: 'falls', x: Math.cos(30 * Math.PI / 180) * 61.2, z: Math.sin(30 * Math.PI / 180) * 61.2, r: 3, verb: 'cz.hikeIn', t: 'cz.t.falls', noMark: true, use: function () { if (BQ.coast) BQ.coast.enter('falls'); } },
     { id: 'lake', x: Math.cos(255 * Math.PI / 180) * 61.2, z: Math.sin(255 * Math.PI / 180) * 61.2, r: 3, verb: 'cz.hikeUp', t: 'cz.t.lake', noMark: true, use: function () { if (BQ.coast) BQ.coast.enter('lake'); } },
     { id: 'canyonview', x: Math.cos(177.5 * Math.PI / 180) * (EDGE + 0.2), z: Math.sin(177.5 * Math.PI / 180) * (EDGE + 0.2), r: 3.4, verb: 'cz.lookout', t: 'cz.t.canyonview', my: 2.6, use: function () { viewer('canyon'); find('canyonview'); } },
     { id: 'fire', x: 16.5, z: 53.5, r: 4.4, verb: function () { return W.fire && W.fire.lit ? 'cz.sit' : 'cz.light'; }, t: 'cz.t.fire', noMark: true, use: fireUse },
@@ -2020,7 +2025,7 @@ function step(dt) {
   if (W.frogJump) { W.frogJump -= dt; const u = Math.max(0, W.frogJump); W.frog.position.set(-8 - (1 - u) * 4, H(-8, 30) + Math.sin((1 - u) * Math.PI) * 1.5, 30 - (1 - u) * 2); if (W.frogJump <= 0) { W.frogJump = 0; setTimeout(function () { if (W) W.frog.position.set(-8, H(-8, 30), 30); }, 6000); } }
   { const o = W._co || (W._co = new T.Object3D()); W.clouds.forEach(function (c, i) { c.x += dt * c.sp; if (c.x > 200) c.x = -200;
       for (let k = 0; k < 5; k++) { o.position.set(c.x + (k - 2) * 6, c.y + (k % 2) * 1.5, c.z + (k % 3) * 2); o.scale.set(7 + (k % 3) * 2, 3.5 + (k % 2), 5); o.updateMatrix(); W.cloudIM.setMatrixAt(i * 5 + k, o.matrix); } }); W.cloudIM.instanceMatrix.needsUpdate = true; }
-  W.wfTex.offset.y += dt * 1.6; if (W.fall2) W.fall2.offset.y += dt * 1.6; /* water falls DOWN: the pattern moves toward the bottom of each waterfall */ if (W.seaTex) { W.seaTex.offset.x += dt * 0.004; W.seaTex.offset.y += dt * 0.002; }
+  W.wfTex.offset.y += dt * 1.6; if (W.fallMats) W.fallMats.forEach(function (m) { m.uniforms.uT.value = W.t; }); if (W.fall2) W.fall2.offset.y += dt * 1.6; /* water falls DOWN: the pattern moves toward the bottom of each waterfall */ if (W.seaTex) { W.seaTex.offset.x += dt * 0.004; W.seaTex.offset.y += dt * 0.002; }
   if (W.gulls) W.gulls.forEach(function (gl, k) { const a = W.t * 0.18 + gl.ph; gl.m.position.set(110 + Math.cos(a) * gl.r, 6 + k * 3 + Math.sin(W.t + k) * 1.5, -10 + Math.sin(a) * gl.r * 0.7); gl.m.rotation.y = -a; gl.m.children.forEach(function (w, j) { w.rotation.z = (j ? -1 : 1) * (0.25 + Math.sin(W.t * 4 + k) * 0.3); }); });
   if (W.mist2) W.mist2.forEach(function (m) { m.m.position.y = m.y + Math.sin(W.t * 2 + m.ph) * 0.4; }); if (W.creekTex) W.creekTex.offset.y -= dt * 0.35; W.mist.forEach(function (m) { m.m.position.y = m.y + Math.sin(W.t * 2 + m.ph) * 0.3; m.m.material.opacity = 0.25 + Math.sin(W.t * 3 + m.ph) * 0.1; });
   W.flies.forEach(function (f, i) { const a = W.t * 0.7 + f.ph, x = f.cx + Math.cos(a) * f.r, z = f.cz + Math.sin(a * 1.3) * f.r; f.m.position.set(x, H(x, z) + 1.4 + Math.sin(W.t * 2 + i) * 0.4, z); f.m.rotation.y = -a; f.m.children[0].rotation.z = Math.sin(W.t * 14 + i) * 0.8; f.m.children[1].rotation.z = -Math.sin(W.t * 14 + i) * 0.8; });
@@ -2217,7 +2222,7 @@ function key(e, down) {
   if (down && kk === 'v' && !e.repeat) { lookCloser(); return; }
   if (down && (kk === '-' || kk === '_')) { W.distT = Math.min(30, W.distT * 1.2); return; }
   if (down && (kk === '=' || kk === '+')) { W.distT = Math.max(2.2, W.distT / 1.2); return; }
-  const map = { w: 'f', ArrowUp: 'f', s: 'b', ArrowDown: 'b', a: 'l', ArrowLeft: 'l', d: 'r', ArrowRight: 'r', ' ': 'jump', Shift: 'run', q: 'ql', r: 'qr', c: 'dive', Control: 'dive', t: 'tu', g: 'td' };
+  const map = { w: 'f', ArrowUp: 'f', s: 'b', ArrowDown: 'b', a: 'l', ArrowLeft: 'l', d: 'r', ArrowRight: 'r', ' ': 'jump', Shift: 'run', q: 'ql', r: 'qr', c: 'dive', x: 'dive', Control: 'dive', t: 'tu', g: 'td' };
   if (map[kk]) { W.k[map[kk]] = down; e.preventDefault(); }
 }
 function pointer(e, type) {
@@ -2244,7 +2249,7 @@ function journalHTML() {
   const svSec = '<section class="jl"><h3>📋 ' + C.esc(tx('cz.j.surveys')) + '</h3><p class="dim">' + C.esc(tx('cz.j.svTip')) + '</p><ul>' + (svk.length ? svk.map(function (k) { const r = svs[k]; return '<li><b>' + C.esc(tx('cz.sv.' + k)) + '</b>: ' + (r.sens != null ? C.esc(tx('cz.sv.kickRes', { s: r.sens, t: r.n, q: tx('cz.sv.q.' + r.q) })) : C.esc(tx('cz.j.sv.counted')) + ' ' + r.n) + ' <span class="dim">(' + C.esc(tx('cz.tod.' + todName(r.tod))) + ')</span></li>'; }).join('') : '<li class="dim">…</li>') + '</ul></section>';
   const logs = ['log1', 'log2', 'log3'].filter(function (k) { return s.log && s.log[k]; });
   const logSec = logs.length ? '<section class="jl"><h3>' + C.esc(tx('cz.logT')) + '</h3>' + logs.map(function (k) { return '<p><i>' + C.esc(tx('cz.' + k)) + '</i></p>'; }).join('') + '</section>' : '';
-  return '<p class="dim">' + C.esc(tx('cz.j.tip')) + '</p><p><b>' + C.esc(tx('cz.j.found', { n: n, m: FINDS.length })) + '</b></p>' + logSec + myst + voiceSec + svSec + '<section class="jl"><h3>🌿 ' + C.esc(tx('cz.reserve')) + '</h3><div class="jcs">' + cards + '</div></section>';
+  return '<p class="dim">' + C.esc(tx('cz.j.tip')) + '</p><p><b>' + C.esc(tx('cz.j.found', { n: n, m: FINDS.length })) + '</b></p>' + logSec + myst + voiceSec + svSec + (BQ.coast && BQ.coast.journalHTML ? BQ.coast.journalHTML() : '') + '<section class="jl"><h3>🌿 ' + C.esc(tx('cz.reserve')) + '</h3><div class="jcs">' + cards + '</div></section>';
 }
 function blur() { if (W) W.k = {}; if (BQ.coast) BQ.coast.blur(); }
 const cb = document.getElementById('btnCozy'); if (cb) cb.hidden = false;

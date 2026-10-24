@@ -24,3 +24,11 @@ Things in the current game to check against this rule:
 - "Dome cover On/Off" is really a sun shade. Rename it (for example "Sun shade: more sun / less sun") and maybe make it a 3-step light control.
 - Adding spare crates during the seasons brings in new matter from the ship's storage. Decide: allowed (through an airlock, only what was packed) or build-phase only?
 - "Collect water from the glass" and "Turn the compost" already keep everything inside (recycling), so they fit the rule.
+
+## On hold (Oct 24, 2026): waterfalls + coral reef plan (teacher said "not now")
+Teacher's prompt: notes/waterfalls_and_reef_prompt.md (reference code: notes/cove_reference.js). Proposed plan, waiting for OK:
+- Waterfall: new hiking area "Hemlock Falls" (old-growth hemlock gorge, Ricketts Glen style) from a trailhead on Willow Creek's north-east side; stepped ledges, swimmable plunge pool, downhill creek, spring pond on top, mist, mossy boulders, hemlock, rhododendron; brook trout, crayfish, mayfly nymphs, hellbender. Also restyle Willow Creek's existing spring-cliff waterfall with the new water shader.
+- Reef: upgrade the existing Sunset Cove reef (not Willow Creek): recipe water + caustics, better corals, starfish; turtle per recipe; parrotfish, blue tang, clownfish + anemone, cleaner shrimp, crab, octopus, seahorse; shy fish.
+- Learning layer: automatic scan on approach -> bilingual Field Guide card saved in the Journal, points, per-area counter. Standards tags only after matching the game's verified official wording and teacher approval.
+- Keep C to dive (add X), keep current swim speeds, no air meter.
+- Open questions: coral bleaching event (what can the player really do?), dolphins / manta ray.

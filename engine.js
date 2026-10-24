@@ -197,7 +197,8 @@ function totalScore() { return Object.keys(S.levels).reduce(function (n, k) { re
 /* Testing: add #teacher (or #level-1-4 to jump straight to a level) to the end of the game's address. */
 const TEACH = /teacher|level-/i.test(location.hash || '');
 function played(id) { return TEACH || S.set.unlock || !!(S.levels[id] && S.levels[id].stars); }
-function unlocked(i, list) { return i === 0 || S.set.unlock || TEACH || !!(S.levels[list[i - 1].lv.id] && S.levels[list[i - 1].lv.id].stars); }
+/* the first level of EVERY world is always open, so students can start any world in any order; inside a world, levels open one after another */
+function unlocked(i, list) { return i === 0 || (list[i - 1] && list[i - 1].w !== list[i].w) || S.set.unlock || TEACH || !!(S.levels[list[i - 1].lv.id] && S.levels[list[i - 1].lv.id].stars); }
 
 /* ---------- sound with captions ---------- */
 let AC = null, capTimer = 0;
@@ -295,7 +296,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 54 · October 24, 2026';
+const VERSION = 'Version 55 · October 24, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
