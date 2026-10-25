@@ -296,7 +296,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 56 · October 24, 2026';
+const VERSION = 'Version 57 · October 24, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -3612,7 +3612,7 @@ function boot() {
   wire(); applySettings(); menuScene(); requestAnimationFrame(tick);
   const jump = (location.hash || '').match(/level-(\d+-\d+)/i);
   if (jump) { const e = allLevels().find(function (x) { return x.lv.id === jump[1]; }); if (e) startLevel(e.w, e.lv); }
-  BQ.core = { T: T, get scene() { return scene; }, get cam() { return cam; }, get renderer() { return renderer; }, get G() { return G; }, get S() { return S; }, get HEMI() { return HEMI; }, get KEYL() { return KEYL; },
+  BQ.core = { KEYSTONE: KEYSTONE, T: T, get scene() { return scene; }, get cam() { return cam; }, get renderer() { return renderer; }, get G() { return G; }, get S() { return S; }, get HEMI() { return HEMI; }, get KEYL() { return KEYL; },
     glow: glow, label: label, labelTex: labelTex, emat: emat, basic: basic, mesh: mesh, buildAlien: buildAlien, specimen: specimen, beep: beep, save: save, $: $, esc: esc, tx: tx, I18N: I18N, ACH: ACH, award: award,
     show: show, teardown: teardown, menuScene: menuScene, caption: caption, audio: function () { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); } catch (e) { return null; } return AC; }, openJournal: openJournal, journalTab: function (x) { journalTab(x); }, thumb: thumb, Music: Music, setMode: function (m) { mode = m; }, getMode: function () { return mode; }, disposeGroup: disposeGroup, teach: TEACH };
   if (BQ.onCore) BQ.onCore(); (BQ.onCoreList || []).forEach(function (f) { f(); });

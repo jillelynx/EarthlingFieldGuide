@@ -341,14 +341,18 @@ function fstore() { const s = BQ.cozy._s(); if (!s.fg) s.fg = {}; if (!s.fgPts) 
 function counter() { const A = K.A, s = fstore(), list = A.finds || [], n = list.filter(function (f) { return s.fg[f.id]; }).length; $('coCount').textContent = list.length ? ' · 📖 ' + n + '/' + list.length + ' · ⭐ ' + s.fgPts : ''; }
 function discover(f) { const s = fstore(); if (s.fg[f.id]) return; s.fg[f.id] = Date.now(); s.fgPts += 50; C.save(); amb('sfx', 'discover'); if (C.S.set.cap && C.caption) C.caption('sound: chime, new Field Guide entry');
   K.cardQ = K.cardQ || []; K.cardQ.push(f); counter(); }
-function showEntry(f) { card('', 11, '<b>📖 ' + C.esc(tx('co.newEntry')) + ': ' + C.esc(tx('fd.n.' + f.id)) + '</b> <span style="color:#ffd166">+50 ⭐</span><br>' + C.esc(tx('fd.d.' + f.id))); }
+/* Keystone tags for Field Guide entries (approved by the teacher, v57). Wording comes from the verified KEYSTONE table in engine.js. Entries with no clear fit stay untagged. */
+const TAGS = { rf_brain: ['BIO.B.4.2.2'], rf_clown: ['BIO.B.4.2.2'], rf_shrimp: ['BIO.B.4.2.2'], rf_tang: ['BIO.B.4.2.1'], rf_seagrass: ['BIO.B.4.2.1'], rf_parrot: ['BIO.B.4.2.1'], rf_turtle: ['BIO.B.4.2.1'],
+  hf_crayfish: ['BIO.B.4.2.1'], hf_trout: ['BIO.B.4.1.2'], hf_hellbender: ['BIO.B.4.1.2'], hf_hemlock: ['BIO.B.4.1.2', 'BIO.B.4.2.4'], hf_mayfly: ['BIO.B.4.2.4'], hf_spring: ['BIO.B.4.2.3'] };
+function tagHTML(id) { const t = TAGS[id], KS = C.KEYSTONE || {}; if (!t) return ''; return ' <span class="fgTag" style="font-size:.8em;opacity:.8">· Keystone ' + t.map(function (c) { return '<abbr title="' + C.esc(KS[c] || '') + '">' + C.esc(c) + '</abbr>'; }).join(', ') + '</span>'; }
+function showEntry(f) { card('', 11, '<b>📖 ' + C.esc(tx('co.newEntry')) + ': ' + C.esc(tx('fd.n.' + f.id)) + '</b> <span style="color:#ffd166">+50 ⭐</span><br>' + C.esc(tx('fd.d.' + f.id)) + tagHTML(f.id)); }
 function scanStep(dt) { const list = K.A.finds; if (!list) return; K.scanT = (K.scanT || 0) - dt; if (K.scanT <= 0) { K.scanT = 0.25; const s = fstore();
     for (let i = 0; i < list.length; i++) { const f = list[i]; if (s.fg[f.id]) continue; const p = f.at ? f.at(K) : [f.x, f.y != null ? f.y : K.A.H(f.x, f.z) + 0.6, f.z]; if (!p) continue;
       if (Math.hypot(p[0] - K.px, p[2] - K.pz) < (f.r || 3) && Math.abs(p[1] - (K.py + 0.6)) < (f.ry || 3.5)) discover(f); } }
   if (K.cardQ && K.cardQ.length && K.cardT <= 0.3) showEntry(K.cardQ.shift()); }
 function journalHTML() { const s = BQ.cozy._s(), fg = s.fg || {}; let h = '<section class="jl"><h3>🧭 ' + C.esc(tx('co.jTitle')) + (s.fgPts ? ' · ⭐ ' + s.fgPts : '') + '</h3>';
   Object.keys(AREAS).forEach(function (id) { const A = AREAS[id], list = A.finds || []; if (!list.length) return; const got = list.filter(function (f) { return fg[f.id]; });
-    h += '<h4>' + A.icon + ' ' + C.esc(tx(A.title)) + ' (' + got.length + '/' + list.length + ')</h4>' + (got.length ? '<ul>' + got.map(function (f) { return '<li><b>' + C.esc(tx('fd.n.' + f.id)) + '</b>: ' + C.esc(tx('fd.d.' + f.id)) + '</li>'; }).join('') + '</ul>' : '<p class="dim">' + C.esc(tx('co.jNone')) + '</p>'); });
+    h += '<h4>' + A.icon + ' ' + C.esc(tx(A.title)) + ' (' + got.length + '/' + list.length + ')</h4>' + (got.length ? '<ul>' + got.map(function (f) { return '<li><b>' + C.esc(tx('fd.n.' + f.id)) + '</b>: ' + C.esc(tx('fd.d.' + f.id)) + tagHTML(f.id) + '</li>'; }).join('') + '</ul>' : '<p class="dim">' + C.esc(tx('co.jNone')) + '</p>'); });
   return h + '</section>'; }
 function setPause(on) { if (!K) return; K.pause = on; K.k = {}; $('coPause').hidden = !on; if (on) $('coRes').focus(); }
 function fade(text, then) { const f = $('coFade'); f.textContent = text; f.style.opacity = 1; setTimeout(function () { then(); setTimeout(function () { f.style.opacity = 0; }, 350); }, 650); }
@@ -487,7 +491,7 @@ function pointer(e, type) {
   else if (type === 'pointerup') K.drag = null;
 }
 function blur() { if (K) K.k = {}; }
-BQ.coast = { addArea: function (id, A) { AREAS[id] = A; }, areas: AREAS, journalHTML: journalHTML, cove: { H: Hc, shoreZ: shoreZ, REEF: REEF, riverX: riverX }, lib: { windyOf: function (m, a, s, mode, k) { return windy(m, a, s, mode, k); }, causticify: causticify, fallRibbon: fallRibbon, fallMat: fallMat, mist: mist, waterMat: waterMat, addPlayer: addPlayer, windy: windy, colorize: colorize, merge: merge, place: place, inst: inst, frondGeo: frondGeo, canvasTex: canvasTex, softDot: softDot, rng: rng, UT: UT, low: low, smooth: smooth, lineD: lineD }, enter: enter, leave: leave, step: step, key: key, pointer: pointer, blur: blur, cozyTrail: cozyTrail, active: function () { return !!K; }, _k: function () { return K; }, _H: Hc, _shore: shoreZ, START: START, FIRE: FIRE, PATH: PATH };
+BQ.coast = { addArea: function (id, A) { AREAS[id] = A; }, areas: AREAS, tags: TAGS, journalHTML: journalHTML, cove: { H: Hc, shoreZ: shoreZ, REEF: REEF, riverX: riverX }, lib: { windyOf: function (m, a, s, mode, k) { return windy(m, a, s, mode, k); }, causticify: causticify, fallRibbon: fallRibbon, fallMat: fallMat, mist: mist, waterMat: waterMat, addPlayer: addPlayer, windy: windy, colorize: colorize, merge: merge, place: place, inst: inst, frondGeo: frondGeo, canvasTex: canvasTex, softDot: softDot, rng: rng, UT: UT, low: low, smooth: smooth, lineD: lineD }, enter: enter, leave: leave, step: step, key: key, pointer: pointer, blur: blur, cozyTrail: cozyTrail, active: function () { return !!K; }, _k: function () { return K; }, _H: Hc, _shore: shoreZ, START: START, FIRE: FIRE, PATH: PATH };
 }
 if (BQ.core) init(); else (BQ.onCoreList = BQ.onCoreList || []).push(init);
 })();
