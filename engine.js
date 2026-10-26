@@ -129,7 +129,7 @@ const I18N = {
     'a.collection': 'Collector', 'a.collection.d': 'Complete every specimen in one level.',
     'a.no-help': 'On My Own', 'a.no-help.d': 'Finish a level without a gold hint.',
     'a.speedy': 'Speedy Scientist', 'a.speedy.d': 'Finish a level in under 3 minutes.',
-    'a.immune': 'Immune Hero', 'a.immune.d': 'Tag 15 germs in Immune Defense.',
+    'p.slideTip': '🛝 Duck slide! Run (Shift), then duck (down arrow or S) to slide under low spots.', 'a.immune': 'Immune Hero', 'a.immune.d': 'Tag 15 germs in Immune Defense.',
     'a.golf': 'Perfect Fit', 'a.golf.d': 'Sink an enzyme golf hole in one putt.',
     'a.dna-lab': 'Gene Machine', 'a.dna-lab.d': 'Decode the secret message in the Code Lab.',
     'a.practice': 'Practice Pays', 'a.practice.d': 'Get 5 Practice Bay questions right on the first try.',
@@ -160,7 +160,7 @@ const I18N = {
     'a.collection': 'Coleccionista', 'a.collection.d': 'Completa todos los especímenes de un nivel.',
     'a.no-help': 'Por mi cuenta', 'a.no-help.d': 'Termina un nivel sin una pista dorada.',
     'a.speedy': 'Científico veloz', 'a.speedy.d': 'Termina un nivel en menos de 3 minutos.',
-    'a.immune': 'Héroe inmunitario', 'a.immune.d': 'Marca 15 microbios en Defensa Inmunitaria.',
+    'p.slideTip': '🛝 ¡Deslizamiento! Corre (Shift) y luego agáchate (flecha abajo o S) para deslizarte por debajo de lugares bajos.', 'a.immune': 'Héroe inmunitario', 'a.immune.d': 'Marca 15 microbios en Defensa Inmunitaria.',
     'a.golf': 'Encaje perfecto', 'a.golf.d': 'Mete un hoyo del minigolf de enzimas en un solo golpe.',
     'a.dna-lab': 'Máquina de genes', 'a.dna-lab.d': 'Descifra el mensaje secreto en el Laboratorio del Código.',
     'a.practice': 'La práctica vale', 'a.practice.d': 'Acierta 5 preguntas de la Sala de Práctica al primer intento.',
@@ -296,7 +296,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 60 · October 26, 2026';
+const VERSION = 'Version 61 · October 26, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -2228,7 +2228,7 @@ function burst(x, y, col) {
   if (S.set.low) return;
   for (let i = 0; i < 8; i++) { const g = glow(col, 0.9, 0.9); g.position.set(x, y, 0.5); L.group.add(g); const a = i / 8 * Math.PI * 2; L.fx.push({ o: g, t: 0, vx: Math.cos(a) * 4, vy: Math.sin(a) * 4, life: 0.5 }); }
 }
-function respawn() { const c = L.cps[L.cp]; P.duck = false; P.fly = 0; if (P.flyM) { P.m.remove(P.flyM); P.flyM = null; } PH = STAND; P.x = c.x; P.y = c.y + 0.1; P.vx = P.vy = 0; P.inv = 1.5; }
+function respawn() { const c = L.cps[L.cp]; P.duck = false; P.slideT = 0; P.fly = 0; if (P.flyM) { P.m.remove(P.flyM); P.flyM = null; } PH = STAND; P.x = c.x; P.y = c.y + 0.1; P.vx = P.vy = 0; P.inv = 1.5; }
 
 /* ---------- question stations ---------- */
 function figHTML(f) {
@@ -2402,10 +2402,14 @@ function step(dt) {
   crumbStep(dt);
   /* duck: crouch low while on the ground; stay crouched under a low ceiling */
   const wantDuck = keys.duck && !L.active && P.ground && !(jumpBuf > 0);
+  /* duck slide: duck while running fast and the alien slides low on its belly, keeping its speed for a moment (great for sliding under low ceilings and swinging hazards) */
+  if (wantDuck && !P.duck && Math.abs(P.vx) > SPEED * 1.05 && !(P.slideCool > 0)) { P.slideT = 0.75; P.slideDir = Math.sign(P.vx); P.slideCool = 1.0; beep(300, 0.18, 'sawtooth', 'whoosh, duck slide');
+    if (!S.stat || !S.stat.slidOnce) { S.stat = S.stat || {}; S.stat.slidOnce = 1; save(); toast(tx('p.slideTip'), 5); } }
+  P.slideCool = (P.slideCool || 0) - dt; if (P.slideT > 0) { P.slideT -= dt; if (!keys.duck || !P.ground || P.swim) P.slideT = 0; }
   if (wantDuck) P.duck = true;
   else if (P.duck) { PH = STAND; const blocked = L.solids.some(function (s) { return !s.off && !s.oneWay && hit(s); }); if (blocked) { PH = CROUCH; jumpBuf = 0; } else P.duck = false; }
   PH = P.duck ? CROUCH : STAND;
-  const running = keys.run && !P.duck; P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
+  const running = keys.run && !P.duck; if (P.slideT > 0) P.vx = P.slideDir * Math.max(SPEED * 0.5, Math.abs(P.vx) - 9 * dt); else P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
   jumpBuf -= dt; coyote = P.ground ? 0.1 : coyote - dt;
   if (P.ground) P.dbl = true;
   if (inW) jumpBuf = 0; /* in water, jump means swim up (handled in swimStep) */
@@ -2580,7 +2584,7 @@ function step(dt) {
     if (u.tents) u.tents.forEach(function (t, i) { t.rotation.x = Math.sin(P.stride + i * 1.6) * (amp * 0.6 + 0.08); });
     if (P.ground && sp > SPEED * 1.2 && (P.dustT = (P.dustT || 0) - dt) < 0 && !S.set.low) { P.dustT = 0.1; const d = glow('#e8dcc8', 0.7, 0.6); d.position.set(P.x - P.face * 0.45, P.y + 0.15, 0.4); L.group.add(d); L.fx.push({ o: d, t: 0, vx: -P.face * 1.5, vy: 0.8, life: 0.35 }); } }
   P.m.visible = !(P.inv > 0 && Math.floor(P.t * 12) % 2);
-  const sq = P.duck ? 0.58 : P.ground ? 1 : 1 + Math.min(0.18, Math.abs(P.vy) * 0.012); P.m.scale.set(P.duck ? 1.2 : 1 / sq, sq, P.duck ? 1.2 : 1 / sq);
+  const sq = P.duck ? 0.58 : P.ground ? 1 : 1 + Math.min(0.18, Math.abs(P.vy) * 0.012); P.m.scale.set(P.duck ? 1.2 : 1 / sq, sq, P.duck ? 1.2 : 1 / sq); P.m.rotation.z += ((P.slideT > 0 ? -P.slideDir * 0.3 : 0) - P.m.rotation.z) * Math.min(1, dt * 12); /* leans into the slide */
   P.shadow.position.set(P.x, (P.ground ? P.y : P.y - 0.5) + 0.04, 0); P.shadow.visible = !!P.ground;
   cam.position.x += (P.x + P.face * 2.5 - cam.position.x) * Math.min(1, dt * 4);
   const lift = L.active && L.active.chart ? 2.4 : L.inCave ? -1.8 : 0;
