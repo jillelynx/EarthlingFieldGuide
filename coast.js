@@ -360,22 +360,31 @@ function fade(text, then) { const f = $('coFade'); f.textContent = text; f.style
 /* ---------- ENTER / LEAVE (from Willow Creek's valley trailhead) ---------- */
 function enter(id) {
   const W = BQ.cozy && BQ.cozy._w(), A = AREAS[id || 'cove']; if (!W || K || !A) return; ensureUI(); W.k = {};
-  const START = A.start, Hc = A.H, build = A.build;
-  fade(tx(A.down), function () {
+  fade(tx(A.down), function () { setup(W, A); });
+}
+/* hike straight from one area to another (Sunset Cove <-> Kelp Cove) without going back to Willow Creek */
+function hop(to, at, msg) { const A = AREAS[to]; if (!K || !A || K.hopping) return; K.hopping = true; fade(tx(msg || A.down), function () { const W = K.W; teardown(); setup(W, A, at); }); }
+function setup(W, A, at) {
+  const START = at || A.start, Hc = A.H, build = A.build;
+  {
     K = { W: W, t: 0, k: {}, yaw: Math.PI, pitch: 0.32, dist: 11, distT: 11, vx: 0, vy: 0, vz: 0, px: START.x, pz: START.z, py: 0, face: Math.PI * 0, ground: true, pause: false, cardT: 0, fpsT: 0, fpsN: 0,
       save: { bg: C.scene.background, fog: C.scene.fog, light: [C.HEMI.intensity, C.HEMI.color.clone(), C.HEMI.groundColor.clone(), C.KEYL.intensity, C.KEYL.color.clone(), C.KEYL.position.clone()], fov: C.cam.fov } };
     K.A = A; K.yaw = Math.atan2(START.x - A.look[0], START.z - A.look[1]); K.face = K.yaw + Math.PI; K.pitch = 0.3; W.coast = true; /* arrive looking toward the best view */ W.g.visible = false; $('cozyUI').hidden = true; build(K); K.py = Hc(K.px, K.pz);
     $('coUI').hidden = false; refreshText(); counter(); amb('mood', A.mood, 2); amb('underwater', false);
-    const s = BQ.cozy._s(); if (!s.f[A.flag]) { s.f[A.flag] = 1; C.save(); setTimeout(function () { if (K) card(tx(A.welcome), 14); }, 900); } });
+    (A.links || []).forEach(function (l) { linkSign(K.g, Hc, l); });
+    const s = BQ.cozy._s(); if (!s.f[A.flag]) { s.f[A.flag] = 1; C.save(); setTimeout(function () { if (K) card(tx(A.welcome), 14); }, 900); } }
 }
+function linkSign(g, Hc, l) { const y = Hc(l.x, l.z), p = new T.Mesh(new T.CylinderGeometry(0.12, 0.14, 2.6, 6), new T.MeshLambertMaterial({ color: '#7a5a3a' })); p.position.set(l.x, y + 1.3, l.z); g.add(p);
+  const lb = C.label(tx(l.sign), 3.0, { bd: '#ffd166' }); lb.position.set(l.x, y + 3.1, l.z); g.add(lb); K.colliders.push({ x: l.x, z: l.z, r: 0.25, top: y + 2.6 }); }
+function teardown() { C.scene.remove(K.g); C.disposeGroup(K.g); const s0 = K.save; C.scene.background = s0.bg; C.scene.fog = s0.fog; C.HEMI.intensity = s0.light[0]; C.HEMI.color.copy(s0.light[1]); C.HEMI.groundColor.copy(s0.light[2]); C.KEYL.intensity = s0.light[3]; C.KEYL.color.copy(s0.light[4]); C.KEYL.position.copy(s0.light[5]);
+  C.cam.fov = s0.fov; C.cam.updateProjectionMatrix(); amb('underwater', false); K = null; }
 function leave(quick) {
-  if (!K) return; const W = K.W, A = K.A, done = function () { if (!K) return;
-    C.scene.remove(K.g); C.disposeGroup(K.g); const s0 = K.save; C.scene.background = s0.bg; C.scene.fog = s0.fog; C.HEMI.intensity = s0.light[0]; C.HEMI.color.copy(s0.light[1]); C.HEMI.groundColor.copy(s0.light[2]); C.KEYL.intensity = s0.light[3]; C.KEYL.color.copy(s0.light[4]); C.KEYL.position.copy(s0.light[5]);
-    C.cam.fov = s0.fov; C.cam.updateProjectionMatrix(); amb('underwater', false); K = null; $('coUI').hidden = true;
-    if (W) { W.coast = false; W.g.visible = true; $('cozyUI').hidden = false; W.k = {}; const a = A.trail.a * Math.PI / 180, r = A.trail.r - 2.7; W.px = Math.cos(a) * r; W.pz = Math.sin(a) * r; W.py = BQ.cozy._GH(W.px, W.pz); W.vx = W.vz = W.vy = 0; W.yaw = Math.atan2(W.px, W.pz); W.face = W.yaw + Math.PI; W.camUnder = false; amb('mood', 'meadow', 2); if (BQ.cozy._back) BQ.cozy._back(); } };
+  if (!K) return; const W = K.W, A = K.A, TR = (A.from ? AREAS[A.from] : A).trail, done = function () { if (!K) return;
+    teardown(); $('coUI').hidden = true;
+    if (W) { W.coast = false; W.g.visible = true; $('cozyUI').hidden = false; W.k = {}; const a = TR.a * Math.PI / 180, r = TR.r - 2.7; W.px = Math.cos(a) * r; W.pz = Math.sin(a) * r; W.py = BQ.cozy._GH(W.px, W.pz); W.vx = W.vz = W.vy = 0; W.yaw = Math.atan2(W.px, W.pz); W.face = W.yaw + Math.PI; W.camUnder = false; amb('mood', 'meadow', 2); if (BQ.cozy._back) BQ.cozy._back(); } };
   if (quick) done(); else fade(tx(A.up || 'co.up'), done);
 }
-function cozyTrail(g, H) { return Object.keys(AREAS).map(function (id) { return trailSign(g, H, AREAS[id]); }); }
+function cozyTrail(g, H) { return Object.keys(AREAS).filter(function (id) { return !AREAS[id].from; }).map(function (id) { return trailSign(g, H, AREAS[id]); }); } /* areas reached from another area have no Willow Creek trailhead */
 function trailSign(g, H, A) { /* a trailhead signpost in Willow Creek */
   const a = A.trail.a * Math.PI / 180, r = A.trail.r, x = Math.cos(a) * r, z = Math.sin(a) * r, y = H(x, z);
   const p = new T.Mesh(new T.CylinderGeometry(0.12, 0.14, 2.6, 6), new T.MeshLambertMaterial({ color: '#7a5a3a' })); p.position.set(x, y + 1.3, z); g.add(p);
@@ -467,14 +476,15 @@ function step(dt) {
   if (K.sparks) K.sparks.forEach(function (s0, i) { s0.t += dt; if (s0.t > 1.6) s0.t -= 1.6; const u = s0.t / 1.6; s0.m.position.set(K.fire.x + Math.sin(i * 2.1 + K.t) * 0.3 * u, K.fire.y + 0.6 + u * 3.2, K.fire.z + Math.cos(i * 1.7) * 0.3 * u); s0.m.material.opacity = (1 - u) * 0.9; });
   if (K.gulls) K.gulls.forEach(function (gl, i) { const a = K.t * 0.15 + gl.ph; gl.m.position.set(Math.cos(a) * gl.r, gl.y + Math.sin(K.t + i) * 1.2, 40 + Math.sin(a) * gl.r * 0.6); gl.m.rotation.y = -a; gl.m.children[0].rotation.z = 0.25 + Math.sin(K.t * 4 + i) * 0.3; gl.m.children[1].rotation.z = -(0.25 + Math.sin(K.t * 4 + i) * 0.3); });
   /* things to use */
-  const nearBack = Math.hypot(K.px - START.x, K.pz - START.z) < 5, nearFire = Math.hypot(K.px - FIRE.x, K.pz - FIRE.z) < 3.4 && !K.sitting; K.near = nearBack ? 'back' : nearFire ? 'fire' : null;
-  const pr = K.near === 'back' ? 'E: ' + tx(A.back || 'co.back') + ' ' + tx('co.backT') : K.near === 'fire' ? 'E: ' + tx('co.sit') + ' ' + tx('co.fire') : K.sitting ? tx('co.stand') : ''; if (pr !== K.lastPr) { K.lastPr = pr; $('coPrompt').textContent = pr; $('coPrompt').hidden = !pr; }
+  const nearBack = Math.hypot(K.px - START.x, K.pz - START.z) < 5, nearFire = Math.hypot(K.px - FIRE.x, K.pz - FIRE.z) < 3.4 && !K.sitting;
+  K.link = (A.links || []).find(function (l) { return Math.hypot(K.px - l.x, K.pz - l.z) < 3.4; }) || null; K.near = nearBack ? 'back' : K.link ? 'link' : nearFire ? 'fire' : null;
+  const pr = K.near === 'back' ? 'E: ' + tx(A.back || 'co.back') + ' ' + tx(A.backT || 'co.backT') : K.near === 'link' ? 'E: ' + tx('cz.hikeIn') + ' ' + tx(K.link.label) : K.near === 'fire' ? 'E: ' + tx('co.sit') + ' ' + tx('co.fire') : K.sitting ? tx('co.stand') : ''; if (pr !== K.lastPr) { K.lastPr = pr; $('coPrompt').textContent = pr; $('coPrompt').hidden = !pr; }
   if (K.sitting) K.yaw += dt * 0.06;
   if (K.cardT > 0) { K.cardT -= dt; if (K.cardT <= 0) $('coCard').hidden = true; }
   /* frames per second (shown in admin mode, to check speed on Chromebooks) */
   { const now = performance.now(); K.fpsT += (now - (K.fpsLast || now)) / 1000; K.fpsLast = now; } K.fpsN++; if (K.fpsT > 1) { /* real frames per second, measured with the clock */ const f = $('coFps'); f.hidden = !C.S.set.admin; f.textContent = Math.round(K.fpsN / K.fpsT) + ' fps'; K.fps = K.fpsN / K.fpsT; K.fpsN = 0; K.fpsT = 0; }
 }
-function act() { if (!K || K.pause) return; const FIRE = K.A.fire; if (K.near === 'back') leave(); else if (K.near === 'fire') { K.sitting = true; K.vx = K.vz = 0; K.face = Math.atan2(FIRE.x - K.px, FIRE.z - K.pz); } }
+function act() { if (!K || K.pause) return; const A0 = K.A, FIRE = K.A.fire; if (K.near === 'back') { if (A0.from) hop(A0.from, A0.fromAt, A0.hopBack); else leave(); } else if (K.near === 'link') hop(K.link.to, K.link.at); else if (K.near === 'fire') { K.sitting = true; K.vx = K.vz = 0; K.face = Math.atan2(FIRE.x - K.px, FIRE.z - K.pz); } }
 function key(e, down) {
   if (!K) return; const kk = e.key.length === 1 ? e.key.toLowerCase() : e.key; if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
   if (down && kk === 'Escape') { e.preventDefault(); setPause(!K.pause); return; } if (K.pause) return;
