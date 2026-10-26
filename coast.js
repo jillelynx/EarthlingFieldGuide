@@ -343,7 +343,8 @@ function discover(f) { const s = fstore(); if (s.fg[f.id]) return; s.fg[f.id] = 
   K.cardQ = K.cardQ || []; K.cardQ.push(f); counter(); }
 /* Keystone tags for Field Guide entries (approved by the teacher, v57). Wording comes from the verified KEYSTONE table in engine.js. Entries with no clear fit stay untagged. */
 const TAGS = { rf_brain: ['BIO.B.4.2.2'], rf_clown: ['BIO.B.4.2.2'], rf_shrimp: ['BIO.B.4.2.2'], rf_tang: ['BIO.B.4.2.1'], rf_seagrass: ['BIO.B.4.2.1'], rf_parrot: ['BIO.B.4.2.1'], rf_turtle: ['BIO.B.4.2.1'],
-  hf_crayfish: ['BIO.B.4.2.1'], hf_trout: ['BIO.B.4.1.2'], hf_hellbender: ['BIO.B.4.1.2'], hf_hemlock: ['BIO.B.4.1.2', 'BIO.B.4.2.4'], hf_mayfly: ['BIO.B.4.2.4'], hf_spring: ['BIO.B.4.2.3'] };
+  hf_crayfish: ['BIO.B.4.2.1'], hf_trout: ['BIO.B.4.1.2'], hf_hellbender: ['BIO.B.4.1.2'], hf_hemlock: ['BIO.B.4.1.2', 'BIO.B.4.2.4'], hf_mayfly: ['BIO.B.4.2.4'], hf_spring: ['BIO.B.4.2.3'],
+  ko_kelp: ['BIO.B.4.2.1'], ko_urchin: ['BIO.B.4.2.1'], ko_rockfish: ['BIO.B.4.2.1'], ko_otter: ['BIO.B.4.2.2'], ko_anemone: ['BIO.B.4.2.2'], ko_barren: ['BIO.B.4.2.4'], ko_canopy: ['BIO.B.4.1.2'], ko_holdfast: ['BIO.B.4.1.2'] };
 function tagHTML(id) { const t = TAGS[id], KS = C.KEYSTONE || {}; if (!t) return ''; return ' <span class="fgTag" style="font-size:.8em;opacity:.8">· Keystone ' + t.map(function (c) { return '<abbr title="' + C.esc(KS[c] || '') + '">' + C.esc(c) + '</abbr>'; }).join(', ') + '</span>'; }
 function showEntry(f) { card('', 11, '<b>📖 ' + C.esc(tx('co.newEntry')) + ': ' + C.esc(tx('fd.n.' + f.id)) + '</b> <span style="color:#ffd166">+50 ⭐</span><br>' + C.esc(tx('fd.d.' + f.id)) + tagHTML(f.id)); }
 function scanStep(dt) { const list = K.A.finds; if (!list) return; K.scanT = (K.scanT || 0) - dt; if (K.scanT <= 0) { K.scanT = 0.25; const s = fstore();

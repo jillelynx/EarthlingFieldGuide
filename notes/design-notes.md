@@ -591,3 +591,7 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 - 10 Field Guide entries (en and es): giant kelp, kelp canopy, holdfast, sea otter, purple sea urchin, urchin barren, rockfish, harbor seal, bat star, giant green anemone. Barren card: urchins ate the kelp to bare rock; starving urchins survive for years and keep kelp from returning; Northern California after 2014 (warm water + disease that killed urchin-eating sea stars).
 - Standards tags for these entries NOT added: a proposal was sent to the teacher.
 - Tests: all 10 entries unlock; walk in, swim, dive to the floor (stops 0.25 above), rise, swim through the forest, climb onto the seal rock, east edge holds; Sunset Cove -> Kelp Cove -> Sunset Cove -> Kelp Cove -> leave to Willow Creek all work; Spanish prompt, title and welcome; Low graphics; no console errors. Speed (slow software test machine today): Willow Creek 1.3 fps / 424 calls, Kelp Cove 1.7 fps / 72 calls; Low: 2.2 vs 2.3.
+
+## v59 (Oct 25, 2026): Kelp Cove standards tags
+- Teacher approved the proposed Keystone tags (wording from the verified KEYSTONE table). coast.js TAGS: ko_kelp, ko_urchin, ko_rockfish = BIO.B.4.2.1; ko_otter, ko_anemone = BIO.B.4.2.2; ko_barren = BIO.B.4.2.4; ko_canopy, ko_holdfast = BIO.B.4.1.2. Untagged: ko_seal, ko_batstar.
+- Tests: all 21 tagged ids exist, every code is in the KEYSTONE table, tags show in the Journal (untagged seal shows none); no console errors.
