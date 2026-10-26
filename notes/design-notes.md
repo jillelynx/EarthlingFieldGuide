@@ -595,3 +595,10 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 ## v59 (Oct 25, 2026): Kelp Cove standards tags
 - Teacher approved the proposed Keystone tags (wording from the verified KEYSTONE table). coast.js TAGS: ko_kelp, ko_urchin, ko_rockfish = BIO.B.4.2.1; ko_otter, ko_anemone = BIO.B.4.2.2; ko_barren = BIO.B.4.2.4; ko_canopy, ko_holdfast = BIO.B.4.1.2. Untagged: ko_seal, ko_batstar.
 - Tests: all 21 tagged ids exist, every code is in the KEYSTONE table, tags show in the Journal (untagged seal shows none); no console errors.
+
+## v60 (Oct 26, 2026): Immune Defense portal game made winnable
+- Teacher: students say the blood-vessel shooting game is impossible: germs too big, too fast, aiming has no nuance.
+- Measured first with a robot player (picks the nearest germ, waits a reaction time, picks the antibody, sometimes the wrong one, aims with the arrow keys). Old version: quick, average and slow robots ALL lost every run (average lasted about 31 s of 50).
+- Changes (engine.js, Immune Defense only): germs about 35% smaller (body 0.8, antigens closer, smaller glow and label); slower (about 13 s to reach you at first, about 8 s at the end, was 11 s to 5 s); new germ every 2.3 s at first down to 1.1 s (was 1.5 to 0.65 s), and at most 3 on screen at first, rising to 6; 5 hearts instead of 3. Aiming: arrow keys now accelerate smoothly (a tap nudges, holding sweeps faster), Shift = slow fine aim, gentle pull onto a germ when the ring is over it (keyboard only, not mouse), more forgiving hit area; the aim ring turns green and grows when the selected antibody fits the germ under it, red when it doesn't; Q/E and the mouse wheel switch antibodies (1-4 still work). Instructions updated.
+- New version with the same robots: quick and average win every run with all 5 hearts (25-28 germs tagged); slow wins every run with 2-4 hearts left (17-20 tagged). The 15-germ achievement is reachable for all.
+- Test hooks added to BQ._debug (enterMini, miniStart, miniSel, miniFire, miniStepX).
