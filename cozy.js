@@ -1560,8 +1560,10 @@ function kitUse() { const s = st(); if (!s.inv.kit) { say('cz.s.needKit'); retur
 function scopeUse() {
   const s = st(), todo = [];
   if (s.samples.leaf && !s.found.leafcell) todo.push('leafcell'); if (s.samples.pond && !s.found.algae) todo.push('algae');
-  if (!todo.length) { say(!s.found.leafcell && !s.samples.leaf ? (s.samples.pond ? 'cz.s.scopeLeaf' : 'cz.s.scopeEmpty') : !s.found.algae && !s.samples.pond ? 'cz.s.scopePond' : 'cz.s.scopeDone'); return; }
+  const seen = ['leafcell', 'algae'].filter(function (k) { return s.found[k]; }), look = function (list, first) { if (!BQ.micro || !list.length) return; W.k = {}; W.vx = W.vz = 0; W.ui = 'micro'; BQ.micro.open(list, first, function () { if (W && W.ui === 'micro') W.ui = null; }); };
+  if (!todo.length) { say(!s.found.leafcell && !s.samples.leaf ? (s.samples.pond ? 'cz.s.scopeLeaf' : 'cz.s.scopeEmpty') : !s.found.algae && !s.samples.pond ? 'cz.s.scopePond' : 'cz.s.scopeDone'); look(seen, seen[seen.length - 1]); return; }
   const id = todo[0]; find(id); if (id === 'algae') { st().ev.micro = 1; saveSoon(); objective(); }
+  look(['leafcell', 'algae'].filter(function (k) { return s.found[k]; }), id); /* look through the eyepiece */
 }
 function plant(p) {
   const s = st(); s.f['p' + p.i] = 1; s.planted = (s.planted || 0) + 1; saveSoon(); p.pl.visible = true; p.pl.scale.setScalar(0.1); W.grow = W.grow || []; W.grow.push(p.pl);
@@ -2233,6 +2235,7 @@ function key(e, down) {
   if (down && W.ui === 'map' && (kk === 'Escape' || kk === 'm')) { e.preventDefault(); closeMap(); return; }
   if (W.ui === 'survey' && down) { if (kk === ' ' || kk === 'Enter') { e.preventDefault(); if (W.sv && !W.sv.on && W.sv.t >= 30) { W.sv.on = true; svPanel(); } else svTally(); return; } if (kk === 'Escape') { e.preventDefault(); svStop(); return; } }
   if (W.ui === 'survey') return;
+  if (W.ui === 'micro') { if (down && BQ.micro && BQ.micro.isOpen()) BQ.micro.key(e); else if (!BQ.micro || !BQ.micro.isOpen()) W.ui = null; return; }
   if (W.ui === 'scope') { if (down && (kk === 'Escape' || kk === 'e' || kk === 'Enter')) { if (e.target && e.target.tagName === 'BUTTON' && kk === 'Enter') return; e.preventDefault(); closeScope(); return; }
     if (down && (kk === '+' || kk === '=')) { scopeZoom(1.35); return; } if (down && (kk === '-' || kk === '_')) { scopeZoom(1 / 1.35); return; }
     const sm = { w: 'f', ArrowUp: 'f', s: 'b', ArrowDown: 'b', a: 'l', ArrowLeft: 'l', d: 'r', ArrowRight: 'r' }; if (sm[kk] && W.scope) { W.scope.k[sm[kk]] = down; e.preventDefault(); } return; }

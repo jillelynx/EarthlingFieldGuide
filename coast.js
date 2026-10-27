@@ -14,7 +14,7 @@ Object.assign(C.I18N.en, {
   'co.back': 'Hike back up to', 'co.backT': 'Willow Creek', 'co.welcome': 'You followed the stream down the valley to the sea. Walk down to the beach and swim out over the reef: Space swims up, C dives.',
   'co.keys': 'WASD / arrows: move · Shift: run · Space: jump, swim up · C or X: dive · drag or Q/R: look · E: use · Esc: pause',
   'co.pause': 'Paused', 'co.resume': 'Resume', 'co.menu': 'Main menu', 'co.leave': 'Back to Willow Creek', 'co.sit': 'Sit by', 'co.fire': 'the campfire', 'co.stand': 'Move to stand up.',
-  'cz.hike': 'Hike down', 'cz.t.coast': 'the valley trail to the coast', 'co.sign': '🌊 To the coast', 'co.signBack': '⛰️ Willow Creek',
+  'cz.hike': 'Hike down', 'cz.t.coast': 'the valley trail to the coast', 'co.sign': '🌊 To the coast', 'co.signBack': '⛰️ Back to Willow Creek',
   'co.diveTip': 'Under water! Space swims up, C or X dives. The alien does not need air, so take your time.', 'co.newEntry': 'New Field Guide entry', 'co.found': 'Field Guide', 'co.pts': 'points', 'co.jTitle': 'Field Guide: places beyond Willow Creek', 'co.jNone': 'Nothing found here yet. Explore and get close to animals and plants.'
 });
 Object.assign(C.I18N.es, {
@@ -22,7 +22,7 @@ Object.assign(C.I18N.es, {
   'co.back': 'Subir de nuevo a', 'co.backT': 'Willow Creek', 'co.welcome': 'Seguiste el arroyo valle abajo hasta el mar. Baja a la playa y nada sobre el arrecife: Espacio sube, C bucea.',
   'co.keys': 'WASD / flechas: moverse · Shift: correr · Espacio: saltar, subir nadando · C o X: bucear · arrastrar o Q/R: mirar · E: usar · Esc: pausa',
   'co.pause': 'En pausa', 'co.resume': 'Seguir', 'co.menu': 'Menú principal', 'co.leave': 'Volver a Willow Creek', 'co.sit': 'Sentarse junto a', 'co.fire': 'la fogata', 'co.stand': 'Muévete para levantarte.',
-  'cz.hike': 'Bajar por', 'cz.t.coast': 'el sendero del valle hasta la costa', 'co.sign': '🌊 A la costa', 'co.signBack': '⛰️ Willow Creek',
+  'cz.hike': 'Bajar por', 'cz.t.coast': 'el sendero del valle hasta la costa', 'co.sign': '🌊 A la costa', 'co.signBack': '⛰️ Volver a Willow Creek',
   'co.diveTip': '¡Bajo el agua! Espacio sube nadando, C o X bucea. El extraterrestre no necesita aire, así que tómate tu tiempo.', 'co.newEntry': 'Nueva entrada en la Guía de Campo', 'co.found': 'Guía de Campo', 'co.pts': 'puntos', 'co.jTitle': 'Guía de Campo: lugares más allá de Willow Creek', 'co.jNone': 'Todavía no has encontrado nada aquí. Explora y acércate a los animales y las plantas.'
 });
 
@@ -62,7 +62,7 @@ function segD(x, z, a, b) { const vx = b[0] - a[0], vz = b[1] - a[1], u = Math.m
 function lineD(P, x, z) { let d = 1e9; for (let i = 0; i < P.length - 1; i++) { if (Math.abs(P[i][0] - x) > 9 && Math.abs(P[i][1] - z) > 9) continue; d = Math.min(d, segD(x, z, P[i], P[i + 1])); } return d; }
 function sandEdge(x, z) { const n = Math.sin(x * 0.21 + Math.cos(z * 0.17) * 2) * Math.cos(z * 0.13 - x * 0.05); return -11 + n * 2.5; }
 function pathD(x, z) { return Math.min(lineD(PATH, x, z), lineD(PATH2, x, z)); }
-const START = { x: riverX(-76) + 6.6, z: -76 }, FIRE = { x: 7.5, z: -22 }, BOUNDS = { x0: -84, x1: 84, z0: -96, z1: 96 };
+const START = { x: riverX(-30) + 6.6, z: -30 }, FIRE = { x: 7.5, z: -22 }, BOUNDS = { x0: -84, x1: 84, z0: -96, z1: 96 };
 
 /* ---------- small helpers ---------- */
 let K = null; /* the running cove */
@@ -307,7 +307,7 @@ function build() {
   { const post = function (x, z, text, w) { const y = Hc(x, z), p = new T.Mesh(new T.CylinderGeometry(0.12, 0.14, 2.6, 6), new T.MeshLambertMaterial({ color: '#7a5a3a' })); p.position.set(x, y + 1.3, z); g.add(p);
       const bd = new T.Mesh(new T.BoxGeometry(w * 0.55, 0.6, 0.1), new T.MeshLambertMaterial({ color: '#a07a4a' })); bd.position.set(x, y + 2.3, z); bd.lookAt(x, y + 2.3, z + 10); g.add(bd);
       const lb = C.label(text, w, { bd: '#ffd166' }); lb.position.set(x, y + 3.2, z); g.add(lb); K.colliders.push({ x: x, z: z, r: 0.25, top: y + 2.6 }); };
-    post(START.x - 3.2, START.z - 0.5, tx('co.signBack'), 2.4); post(6.5, 3, '🌅 ' + tx('co.title'), 2.6); }
+    post(START.x + 2.6, START.z - 3.2, tx('co.signBack'), 2.6); post(6.5, 3, '🌅 ' + tx('co.title'), 2.6); }
   addPlayer(g);
 }
 
@@ -370,7 +370,7 @@ function setup(W, A, at) {
   {
     K = { W: W, t: 0, k: {}, yaw: Math.PI, pitch: 0.32, dist: 11, distT: 11, vx: 0, vy: 0, vz: 0, px: START.x, pz: START.z, py: 0, face: Math.PI * 0, ground: true, pause: false, cardT: 0, fpsT: 0, fpsN: 0,
       save: { bg: C.scene.background, fog: C.scene.fog, light: [C.HEMI.intensity, C.HEMI.color.clone(), C.HEMI.groundColor.clone(), C.KEYL.intensity, C.KEYL.color.clone(), C.KEYL.position.clone()], fov: C.cam.fov } };
-    K.A = A; K.yaw = Math.atan2(START.x - A.look[0], START.z - A.look[1]); K.face = K.yaw + Math.PI; K.pitch = 0.3; W.coast = true; /* arrive looking toward the best view */ W.g.visible = false; $('cozyUI').hidden = true; build(K); K.py = Hc(K.px, K.pz);
+    K.A = A; K.yaw = Math.atan2(START.x - A.look[0], START.z - A.look[1]); K.face = K.yaw + Math.PI; K.pitch = 0.3; K.snap = true; W.coast = true; /* arrive looking toward the best view */ W.g.visible = false; $('cozyUI').hidden = true; build(K); K.py = Hc(K.px, K.pz);
     $('coUI').hidden = false; refreshText(); counter(); amb('mood', A.mood, 2); amb('underwater', false);
     (A.links || []).forEach(function (l) { linkSign(K.g, Hc, l); });
     const s = BQ.cozy._s(); if (!s.f[A.flag]) { s.f[A.flag] = 1; C.save(); setTimeout(function () { if (K) card(tx(A.welcome), 14); }, 900); } }
@@ -450,7 +450,7 @@ function step(dt) {
     want.set(tgt.x + (want.x - tgt.x) * s0, tgt.y + (want.y - tgt.y) * s0, tgt.z + (want.z - tgt.z) * s0); want.y = Math.max(Hc(want.x, want.z) + 0.45, Math.min(want.y, -0.4)); }
   else { const gc = Hc(want.x, want.z) + 1.6; if (want.y < gc) want.y = gc; for (let q = 1; q <= 2; q++) { const u = q / 3, mx0 = tgt.x + (want.x - tgt.x) * u, mz0 = tgt.z + (want.z - tgt.z) * u, my = tgt.y + (want.y - tgt.y) * u, gm = Hc(mx0, mz0) + 0.6; if (my < gm) want.y += (gm - my) / u; }
     if (waterHere(want.x, want.z) != null && want.y < 0.45) want.y = 0.45; }
-  cam.position.lerp(want, Math.min(1, dt * 6)); cam.lookAt(tgt); if (Math.abs(cam.fov - 42) > 0.05) { cam.fov = 42; cam.updateProjectionMatrix(); }
+  if (K.snap) { cam.position.copy(want); K.snap = false; } else cam.position.lerp(want, Math.min(1, dt * 6)); cam.lookAt(tgt); /* on arrival the camera starts in place, already looking at the view */ if (Math.abs(cam.fov - 42) > 0.05) { cam.fov = 42; cam.updateProjectionMatrix(); }
   K.sky.position.copy(cam.position);
   if (K.pineIM) { const ax = tgt.x, az = tgt.z, bx = cam.position.x - ax, bz = cam.position.z - az, L2 = bx * bx + bz * bz, hy = Math.max(cam.position.y, tgt.y) + 0.4, arr = K.pineIM.instanceMatrix.array; let dirty = false;
     if (!K.pineM) { K.pineM = arr.slice(); K.trunkM = K.trunkIM.instanceMatrix.array.slice(); } const ta = K.trunkIM.instanceMatrix.array;
