@@ -436,9 +436,9 @@ function step(dt) {
   scanStep(dt);
   /* the alien */
   const me = K.me, spd = Math.hypot(K.vx, K.vz); me.position.set(K.px, K.py, K.pz); me.rotation.y += (((K.face - me.rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI) * Math.min(1, dt * 10);
-  const legs = me.userData.legs; if (legs) { const b0 = K.stride || 0; K.stride = b0 + dt * spd * (k.run ? 1.1 : 1.5); legs.forEach(function (h, i) { h.rotation.x = K.sitting ? -1.3 : K.swim ? Math.sin(K.t * 7 + i * Math.PI) * 0.6 : K.ground ? Math.sin(K.stride + i * Math.PI) * 0.7 * Math.min(1, spd / 4) : (K.gliding ? 0.6 : -0.5); });
-    if (K.ground && spd > 1 && Math.floor(b0 / Math.PI) !== Math.floor(K.stride / Math.PI)) amb('sfx', 'step', k.run ? 1 : 0.6); }
-  me.rotation.x = K.swim ? (K.under || k.dive ? 0.9 : 0.55) : (k.run && len > 0 && K.ground ? 0.18 : 0); me.rotation.z = K.gliding ? Math.sin(K.t * 6) * 0.08 : 0;
+  const b0 = K.stride || 0; K.stride = b0 + dt * spd * (k.run ? 1.1 : 1.5); if (me.userData.legs && K.ground && spd > 1 && Math.floor(b0 / Math.PI) !== Math.floor(K.stride / Math.PI)) amb('sfx', 'step', k.run ? 1 : 0.6);
+  if (K.ground && !K.wasGround && K.lastVy < -4) K.landT = 0.16; K.wasGround = K.ground; K.lastVy = K.vy; K.landT = Math.max(0, (K.landT || 0) - dt);
+  if (BQ.cozy && BQ.cozy._pose) BQ.cozy._pose(me, { t: K.t, dt: dt, spd: spd, stride: K.stride, ground: K.ground, swim: K.swim, under: K.under || k.dive, flying: false, gliding: K.gliding, vy: K.vy, moving: len > 0, landT: K.landT, sit: K.sitting });
   K.shadow.visible = !K.swim; K.shadow.position.set(K.px, Hc(K.px, K.pz) + 0.06, K.pz); { const up = Math.max(0, K.py - Hc(K.px, K.pz)); K.shadow.scale.setScalar(Math.max(0.3, 1 - up / 6)); }
   /* the camera follows behind, stays out of trees and rocks, and slips under the water with you */
   K.dist += (K.distT - K.dist) * Math.min(1, dt * 5); const eD = K.under ? Math.min(K.dist, 6) : K.dist, eP = K.under ? Math.min(K.pitch, 0.18) : K.pitch;
