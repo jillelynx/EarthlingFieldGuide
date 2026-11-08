@@ -1,6 +1,7 @@
-/* WORLD 1 QUESTION FILE: Structure and Function
+/* WORLD 1 QUESTION FILE: Structure and Function (PA STEELS 3.1.9-12.A, B, C)
    Teachers: you can edit the words inside the quotation marks below.
-   - "code" is the Keystone Eligible Content code. "steels" is the PA STEELS standard.
+   - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.
+   - "topic" groups questions that can rotate with each other on replays (same world, same topic).
    - In "questions", "answer" is the position of the correct option, counting from 0.
      (0 = first option, 1 = second, 2 = third, 3 = fourth.) The game shuffles the options.
    - "hint" shows after a wrong try. "explain" shows after the right answer.
@@ -9,662 +10,2386 @@ FieldGuide.registerQuestions(1, {
 
   /* COLLECT sets: players grab the "good" items and avoid the "bad" ones. */
   "tokens": [
-    { "id": "life", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B",
-      "prompt": "Collect only the signs of life that ALL living things share",
+    {
+      "id": "org-organs",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "Collect only ORGANS: structures made of different tissues working together",
       "good": [
-        "Made of one or more cells",
-        "Uses energy",
-        "Grows and develops",
-        "Reproduces",
-        "Responds to its surroundings",
-        "Keeps a stable inside (homeostasis)",
-        "Has DNA as genetic material"
+        "Heart",
+        "Lung",
+        "Stomach",
+        "Brain",
+        "Skin",
+        "Leaf",
+        "Root"
       ],
       "bad": [
-        { "text": "Has a nucleus", "explain": "Not all living things have a nucleus. Prokaryotes, such as bacteria, have none." },
-        { "text": "Moves from place to place", "explain": "Many living things, such as trees, stay in one place." },
-        { "text": "Makes its own food", "explain": "Only some organisms, such as plants, make their own food." },
-        { "text": "Is made of many cells", "explain": "Many living things, such as bacteria, are a single cell." }
-      ] },
-    { "id": "build-prok", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "model": "prokaryote",
-      "prompt": "Build a prokaryotic cell: bring it only the parts a prokaryote has",
-      "good": ["DNA", "Ribosomes", "Cytoplasm", "Plasma membrane"],
-      "bad": [
-        { "text": "Nucleus", "explain": "Prokaryotes have no nucleus. Their DNA sits in the cytoplasm." },
-        { "text": "Mitochondria", "explain": "Mitochondria are membrane-bound organelles. Prokaryotes have none." },
-        { "text": "Golgi apparatus", "explain": "The Golgi apparatus is a membrane-bound organelle. Prokaryotes have none." } ] },
-    { "id": "build-euk", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "model": "animal", "clearTrail": true,
-      "prompt": "Build an animal cell (a eukaryote): bring it every part it has",
-      "good": ["Nucleus", "DNA", "Ribosomes", "Mitochondria", "Endoplasmic reticulum", "Golgi apparatus", "Plasma membrane"],
-      "bad": [
-        { "text": "Chloroplast", "explain": "Chloroplasts are found in plant cells, not animal cells." },
-        { "text": "Cell wall", "explain": "Animal cells have no cell wall. Plant cells do." },
-        { "text": "DNA loose in the cytoplasm", "explain": "In eukaryotes the DNA is kept inside the nucleus." } ] },
-    { "id": "organelles", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B",
-      "prompt": "Collect only the organelles wrapped in their own membrane",
+        {
+          "text": "One muscle cell",
+          "explain": "A single cell is the smallest level. An organ is made of many cells in several tissues."
+        },
+        {
+          "text": "Muscle tissue",
+          "explain": "Muscle tissue is one kind of tissue. An organ has several different tissues working together."
+        },
+        {
+          "text": "Circulatory system",
+          "explain": "That is an organ system: several organs (heart, blood vessels) working together."
+        },
+        {
+          "text": "A whole frog",
+          "explain": "A whole living thing is an organism, the top level of organization."
+        }
+      ]
+    },
+    {
+      "id": "sys-oxygen",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "A lanternfish swims hard to escape a predator. Collect the parts that work together to get oxygen to its swimming muscles",
       "good": [
-        "Nucleus",
-        "Mitochondrion",
-        "Endoplasmic reticulum",
-        "Golgi apparatus",
-        "Vacuole",
-        "Chloroplast"
+        "Gills take in oxygen from the water",
+        "The heart pumps blood",
+        "Blood vessels carry blood to the muscles",
+        "Blood carries the oxygen"
       ],
       "bad": [
-        { "text": "Ribosome", "explain": "Ribosomes have no membrane around them. Prokaryotes and eukaryotes both have them." },
-        { "text": "Cytoplasm", "explain": "Cytoplasm is the fluid that fills the cell. It is not an organelle." },
-        { "text": "DNA", "explain": "DNA is a molecule that stores genetic information. It is not an organelle." }
-      ] }
+        {
+          "text": "The stomach breaks down food",
+          "explain": "The digestive system supplies nutrients, not oxygen."
+        },
+        {
+          "text": "The eyes sense light",
+          "explain": "The eyes help the fish spot danger, but they do not deliver oxygen."
+        },
+        {
+          "text": "Scales protect the skin",
+          "explain": "Scales protect the body. They do not move oxygen."
+        }
+      ]
+    },
+    {
+      "id": "sys-respond",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "An anglerfish senses prey near its glowing lure. Collect the parts that work together to make it snap its jaws",
+      "good": [
+        "Eyes sense the prey",
+        "Nerves carry signals to the brain",
+        "The brain sends a signal to the jaw muscles",
+        "Jaw muscles contract",
+        "The jaw bones move"
+      ],
+      "bad": [
+        {
+          "text": "Gills take in oxygen",
+          "explain": "Gills supply oxygen to the body, but they do not carry the signal that triggers the snap."
+        },
+        {
+          "text": "The stomach digests the meal",
+          "explain": "Digestion happens after the catch. It does not make the jaws move."
+        },
+        {
+          "text": "Fins steer slowly",
+          "explain": "Fins help the fish swim, but the snap comes from nerves signaling the jaw muscles."
+        }
+      ]
+    }
   ],
 
   /* SORT sets: every item uses the same answer choices. "answer" counts from 0. */
   "sorts": [
-    { "id": "alive", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B",
-      "prompt": "Is it alive? Use the signs of life.",
-      "options": ["Living", "Not living"],
-      "hint": "Check for cells, DNA, energy use, growth, and reproduction. A living thing has all of them.",
+    {
+      "id": "levels",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "Which level of organization is it?",
+      "options": [
+        "Cell",
+        "Tissue",
+        "Organ",
+        "Organ system",
+        "Organism"
+      ],
+      "hint": "Cells form tissues, tissues form organs, organs form organ systems, and the systems make one organism.",
       "items": [
-        { "text": "A bacterium: one cell that takes in food and divides", "answer": 0, "explain": "A bacterium is a cell that uses energy, has DNA, and reproduces." },
-        { "text": "A crystal that gets bigger in a cave", "answer": 1, "explain": "A crystal grows, but it has no cells, no DNA, and does not use energy." },
-        { "text": "A mushroom on a log", "answer": 0, "explain": "A mushroom is made of cells, uses energy, grows, and reproduces." },
-        { "text": "A campfire that spreads and uses fuel", "answer": 1, "explain": "Fire uses fuel and spreads, but it has no cells and no DNA." },
-        { "text": "Yeast that makes bread dough rise", "answer": 0, "explain": "Yeast are single cells that use energy and reproduce." },
-        { "text": "A rover robot that moves and senses light", "answer": 1, "explain": "A robot can move and sense, but it has no cells and cannot grow or reproduce." }
-      ] },
-    { "id": "cells", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B",
-      "prompt": "Which cells have this?",
-      "options": ["Prokaryotes only", "Eukaryotes only", "Both"],
-      "hint": "Prokaryotes have no nucleus and no membrane-bound organelles. Every cell has DNA, ribosomes, cytoplasm, and a plasma membrane.",
+        {
+          "text": "One muscle cell from a frog's leg",
+          "answer": 0,
+          "explain": "A single cell is the basic unit, the smallest level."
+        },
+        {
+          "text": "Many similar muscle cells working together in a frog's leg",
+          "answer": 1,
+          "explain": "Similar cells working together form a tissue."
+        },
+        {
+          "text": "A frog's heart: muscle, nerve, and other tissues working together",
+          "answer": 2,
+          "explain": "Different tissues working together form an organ."
+        },
+        {
+          "text": "A turtle's heart, blood vessels, and blood moving materials around its body",
+          "answer": 3,
+          "explain": "Several organs working together on one big job form an organ system."
+        },
+        {
+          "text": "A whole turtle",
+          "answer": 4,
+          "explain": "One whole living thing, made of all its systems, is an organism."
+        },
+        {
+          "text": "A lily pad leaf: several tissues that capture light and make food",
+          "answer": 2,
+          "explain": "A leaf is a plant organ made of several tissues."
+        },
+        {
+          "text": "A cattail's stem and leaves working together as its shoot system to carry water up and make food",
+          "answer": 3,
+          "explain": "Several plant organs working together on one job form an organ system."
+        },
+        {
+          "text": "A sheet of similar cells lining a fish's stomach",
+          "answer": 1,
+          "explain": "A group of similar cells doing the same job is a tissue."
+        }
+      ]
+    },
+    {
+      "id": "jobs",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "Which body job is this?",
+      "options": [
+        "Getting oxygen",
+        "Getting nutrients",
+        "Moving in response to a signal",
+        "Delivering materials"
+      ],
+      "hint": "Ask what the body gains: a gas, food, movement, or transport to every part.",
       "items": [
-        { "text": "A nucleus that holds the DNA", "answer": 1, "explain": "Only eukaryotic cells keep their DNA inside a nucleus." },
-        { "text": "Ribosomes that build proteins", "answer": 2, "explain": "All cells need proteins, so all cells have ribosomes." },
-        { "text": "A plasma membrane around the cell", "answer": 2, "explain": "Every cell has a plasma membrane that controls what enters and leaves." },
-        { "text": "Mitochondria", "answer": 1, "explain": "Mitochondria are membrane-bound organelles, found only in eukaryotes." },
-        { "text": "DNA as genetic material", "answer": 2, "explain": "All cells store their genetic information in DNA." },
-        { "text": "Cytoplasm", "answer": 2, "explain": "Every cell is filled with cytoplasm." },
-        { "text": "Endoplasmic reticulum and Golgi apparatus", "answer": 1, "explain": "These membrane-bound organelles are found only in eukaryotes." },
-        { "text": "DNA loose in the cytoplasm, with no nucleus", "answer": 0, "explain": "Prokaryotes have no nucleus, so their DNA sits in the cytoplasm." },
-        { "text": "Membrane-bound organelles", "answer": 1, "explain": "Only eukaryotic cells have organelles wrapped in membranes." },
-        { "text": "Always a single cell with no nucleus", "answer": 0, "explain": "Prokaryotes, such as bacteria, are single cells with no nucleus." }
-      ] },
-    { "id": "transport", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C",
-      "prompt": "Which type of transport is this?",
-      "options": ["Diffusion", "Osmosis", "Facilitated diffusion", "Active transport"],
-      "hint": "Ask three things: Is it water? Does it need a protein? Does it use energy to go from low to high?",
-      "items": [
-        { "text": "Oxygen slips straight through the membrane from high to low concentration. No energy is used.", "answer": 0, "explain": "Small molecules such as oxygen diffuse straight through the membrane, from high to low." },
-        { "text": "Water moves across the membrane toward the side with more dissolved salt.", "answer": 1, "explain": "Osmosis is the diffusion of water across a membrane." },
-        { "text": "Glucose moves from high to low concentration through a protein channel. No energy is used.", "answer": 2, "explain": "Facilitated diffusion uses a transport protein but no energy." },
-        { "text": "A pump uses ATP to push sodium ions from low to high concentration.", "answer": 3, "explain": "Moving a substance from low to high concentration takes energy, so it is active transport." },
-        { "text": "Carbon dioxide leaves the cell through the lipid layer, moving from high to low concentration.", "answer": 0, "explain": "Carbon dioxide is small enough to diffuse straight through the membrane." },
-        { "text": "A root cell uses energy to pull in minerals that are already more concentrated inside it.", "answer": 3, "explain": "Moving minerals toward the higher concentration takes energy." },
-        { "text": "A cell placed in salty water loses water and shrinks.", "answer": 1, "explain": "Water leaves the cell by osmosis, toward the saltier side." },
-        { "text": "Ions flow from high to low concentration through a channel protein.", "answer": 2, "explain": "Ions need a protein channel but no energy, so this is facilitated diffusion." }
-      ] }
+        {
+          "text": "A fish's gills take oxygen out of the water.",
+          "answer": 0,
+          "explain": "Gills are where a fish takes in oxygen and gives off carbon dioxide."
+        },
+        {
+          "text": "A sea turtle's stomach and intestines break down a jellyfish into small molecules.",
+          "answer": 1,
+          "explain": "The digestive system breaks food down so the body can take in nutrients."
+        },
+        {
+          "text": "A squid feels a touch, and nerve signals make its body muscles squeeze water out so it jets away.",
+          "answer": 2,
+          "explain": "Nerves carry the signal and muscles respond with movement."
+        },
+        {
+          "text": "A heart pumps blood through vessels to every part of a shark's body.",
+          "answer": 3,
+          "explain": "The circulatory system delivers oxygen and nutrients and carries wastes away."
+        },
+        {
+          "text": "Nutrients from a whale's intestine pass into its blood.",
+          "answer": 1,
+          "explain": "Taking nutrients from digested food into the blood is nutrient uptake."
+        },
+        {
+          "text": "An eel's eyes spot prey, and its brain signals its muscles to strike.",
+          "answer": 2,
+          "explain": "Senses, nerves, and muscles work together so the eel can respond."
+        }
+      ]
+    }
   ],
 
   /* QUESTIONS: Keystone-style multiple choice. "tags": ["boss"] marks boss-battle questions. */
   "questions": [
-    { "id": "w1q01", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B",
-      "prompt": "A scientist finds a single-celled organism in a hot spring and an organism made of trillions of cells in a forest. Which statement must be true of both?",
-      "options": ["Both contain genetic material that is passed to offspring.", "Both have a nucleus that holds their DNA.", "Both are made of many specialized cells.", "Both make their own food from sunlight."],
-      "answer": 0,
-      "hint": "Look for the one feature every living thing has, even a bacterium.",
-      "explain": "All living things store genetic information and pass it on." },
-    { "id": "w1q02", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B",
-      "prompt": "A student claims a candle flame is alive because it uses fuel, grows, and gives off heat. Which evidence best shows the flame is NOT alive?",
-      "options": ["It is not made of cells and has no genetic material.", "It cannot move on its own.", "It needs oxygen to keep burning.", "It gives off carbon dioxide."],
-      "answer": 0,
-      "hint": "Many living things need oxygen and give off carbon dioxide. What does a flame lack that every organism has?",
-      "explain": "Every living thing is made of cells and has genetic material. A flame has neither." },
-
-    { "id": "w1q03", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B",
-      "prompt": "Which structure controls what enters and leaves every cell?",
-      "options": ["plasma membrane", "nucleus", "ribosome", "mitochondrion"],
-      "answer": 0,
-      "hint": "Think of the outer boundary found in all cells.",
-      "explain": "The plasma membrane surrounds every cell and controls what passes through." },
-    { "id": "w1q04", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B",
-      "prompt": "A muscle cell releases a large amount of energy. Which structure would you expect to find in large numbers in this cell?",
-      "options": ["mitochondria", "nuclei", "vacuoles", "cell walls"],
-      "answer": 0,
-      "hint": "Which organelle releases energy from food?",
-      "explain": "Mitochondria release energy from food, so active cells have many of them." },
-    { "id": "w1q05", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B",
-      "prompt": "Which statement correctly compares prokaryotic and eukaryotic cells?",
-      "options": ["Both have ribosomes, but only eukaryotic cells have membrane-bound organelles.", "Both have a nucleus, but only prokaryotic cells have ribosomes.", "Only eukaryotic cells contain DNA.", "Only prokaryotic cells have a plasma membrane."],
-      "answer": 0,
-      "hint": "All cells have DNA, ribosomes, and a plasma membrane. What do only eukaryotes have?",
-      "explain": "All cells have ribosomes. Only eukaryotes have organelles wrapped in membranes." },
-    { "id": "w1q06", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B",
-      "prompt": "A student records what she sees in two cells. Which conclusion do her data support?",
-      "figure": { "type": "table", "head": ["Feature", "Cell X", "Cell Y"],
-        "rows": [["Nucleus", "absent", "present"], ["Ribosomes", "present", "present"], ["Mitochondria", "absent", "present"], ["Plasma membrane", "present", "present"]] },
-      "options": ["Cell X is prokaryotic and Cell Y is eukaryotic.", "Cell X is eukaryotic and Cell Y is prokaryotic.", "Both cells are prokaryotic.", "Cell X is not alive."],
-      "answer": 0,
-      "hint": "Read the Nucleus row. Which cell has no nucleus?",
-      "explain": "Cell X has no nucleus or mitochondria, so it is prokaryotic. Cell Y has both, so it is eukaryotic." },
-
-    { "id": "w1q07", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A",
-      "prompt": "Stop 1, the nucleus. During transcription, the cell copies the code in a gene into which molecule?",
-      "options": ["messenger RNA (mRNA)", "a protein", "an amino acid", "a ribosome"],
-      "answer": 0,
-      "hint": "Transcription makes a copy that can leave the nucleus.",
-      "explain": "Transcription copies the DNA code into messenger RNA." },
-    { "id": "w1q08", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A",
-      "prompt": "A DNA strand reads T A C. Which mRNA codon is made from it during transcription?",
-      "options": ["A U G", "A T G", "T A C", "U A C"],
-      "answer": 0,
-      "hint": "Pair each base with its partner. RNA uses U (uracil) in place of T.",
-      "explain": "T pairs with A, A pairs with U in RNA, and C pairs with G, giving A U G." },
-    { "id": "w1q09", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A",
-      "prompt": "Stop 2. The mRNA leaves the nucleus. Which structure reads it and joins amino acids into a chain?",
-      "options": ["ribosome", "Golgi apparatus", "mitochondrion", "plasma membrane"],
-      "answer": 0,
-      "hint": "This structure is the site of translation.",
-      "explain": "Ribosomes read mRNA and link amino acids together. This is translation." },
-    { "id": "w1q10", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A",
-      "prompt": "The mRNA reads AUG GCU UUU. Use the codon table. Which amino acid chain does the ribosome build?",
-      "figure": { "type": "table", "head": ["Codon", "Amino acid"],
-        "rows": [["AUG", "Met (start)"], ["GCU", "Ala"], ["UUU", "Phe"], ["GGA", "Gly"], ["UAA", "stop"]] },
-      "options": ["Met, Ala, Phe", "Met, Phe, Ala", "Ala, Met, Phe", "Met, Gly, Phe"],
-      "answer": 0,
-      "hint": "Read the mRNA three letters at a time, left to right, and look up each codon.",
-      "explain": "AUG codes for Met, GCU for Ala, and UUU for Phe, in that order." },
-    { "id": "w1q11", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A",
-      "prompt": "Bacteria, mushrooms, and humans all use the same codons for the same amino acids. What does this show?",
-      "options": ["Transcription and translation work in a similar way in all organisms.", "All organisms have the same genes.", "Only eukaryotes can make proteins.", "Proteins are made inside the nucleus of every cell."],
-      "answer": 0,
-      "hint": "A shared code means a shared process.",
-      "explain": "All organisms read the genetic code the same way, so protein synthesis is similar in all of them." },
-    { "id": "w1q12", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A",
-      "prompt": "Stop 3. Proteins that will leave the cell are made by ribosomes on the surface of which organelle?",
-      "options": ["rough endoplasmic reticulum", "nucleus", "mitochondrion", "vacuole"],
-      "answer": 0,
-      "hint": "Its surface looks rough because it is covered with ribosomes.",
-      "explain": "The rough endoplasmic reticulum has ribosomes on its surface and helps make proteins that will mostly leave the cell." },
-    { "id": "w1q13", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A",
-      "prompt": "Stop 4. Which organelle modifies, sorts, and packages proteins into vesicles for shipping?",
-      "options": ["Golgi apparatus", "ribosome", "nucleus", "mitochondrion"],
-      "answer": 0,
-      "hint": "Think of the cell's packing and shipping center.",
-      "explain": "The Golgi apparatus finishes proteins and packages them into vesicles." },
-    { "id": "w1q14", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A",
-      "prompt": "Complete the model. Which path does a protein follow on its way out of the cell?",
-      "options": ["ribosome, endoplasmic reticulum, Golgi apparatus, plasma membrane", "Golgi apparatus, ribosome, endoplasmic reticulum, plasma membrane", "ribosome, Golgi apparatus, endoplasmic reticulum, plasma membrane", "endoplasmic reticulum, ribosome, plasma membrane, Golgi apparatus"],
-      "answer": 0,
-      "hint": "Built first, transported second, packaged third, released last.",
-      "explain": "Proteins are built on ribosomes, moved through the ER, packaged by the Golgi, and released at the membrane." },
-
-    { "id": "w1q15", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C",
-      "prompt": "The plasma membrane is made mostly of a double layer of which molecules?",
-      "options": ["phospholipids", "carbohydrates", "nucleic acids", "amino acids"],
-      "answer": 0,
-      "hint": "These lipids have a water-loving head and two water-fearing tails.",
-      "explain": "The membrane is a phospholipid bilayer with proteins set into it." },
-    { "id": "w1q16", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C",
-      "prompt": "The membrane lets some substances pass and blocks others. How does this help the cell?",
-      "options": ["It lets the cell control its internal conditions.", "It stops all substances from entering the cell.", "It lets the cell make its own energy.", "It holds the cell's genetic information."],
-      "answer": 0,
-      "hint": "A barrier that chooses what crosses helps keep the inside steady.",
-      "explain": "A selectively permeable membrane lets the cell regulate what enters and leaves." },
-    { "id": "w1q17", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C",
-      "prompt": "The dots show a molecule on each side of a membrane. If the cell uses no energy, which way will the molecules move overall?",
-      "figure": { "type": "membrane", "outside": 14, "inside": 3 },
-      "options": ["into the cell, from high to low concentration", "out of the cell, from low to high concentration", "They will not cross at all.", "out of the cell, from high to low concentration"],
-      "answer": 0,
-      "hint": "Count the dots. Passive transport always goes from the crowded side to the less crowded side.",
-      "explain": "With no energy used, molecules move from high concentration (outside) to low (inside)." },
-    { "id": "w1q18", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C",
-      "prompt": "This cell keeps moving the molecule INTO the cell. What must be true?",
-      "figure": { "type": "membrane", "outside": 3, "inside": 14 },
-      "options": ["The cell is using energy for active transport.", "The molecule is moving by diffusion.", "Water is moving by osmosis.", "No energy is needed because the molecule is small."],
-      "answer": 0,
-      "hint": "The inside is already more crowded. Moving toward the crowded side takes something extra.",
-      "explain": "Moving from low to high concentration is active transport, which uses energy." },
-    { "id": "w1q19", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C",
-      "prompt": "A white blood cell wraps its membrane around a bacterium and pulls it inside. What is this process called?",
-      "options": ["endocytosis", "exocytosis", "osmosis", "facilitated diffusion"],
-      "answer": 0,
-      "hint": "The prefix endo- means into.",
-      "explain": "Endocytosis brings large materials into the cell by folding the membrane around them." },
-    { "id": "w1q20", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C",
-      "prompt": "A vesicle from the Golgi apparatus joins with the plasma membrane and releases proteins outside the cell. What is this process called?",
-      "options": ["exocytosis", "endocytosis", "diffusion", "osmosis"],
-      "answer": 0,
-      "hint": "The prefix exo- means out of.",
-      "explain": "Exocytosis releases materials when a vesicle fuses with the plasma membrane." },
-    { "id": "w1q21", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C",
-      "prompt": "Which statement correctly compares passive and active transport?",
-      "options": ["Passive transport uses no energy; active transport uses energy to move substances from low to high concentration.", "Passive transport uses energy; active transport does not.", "Both move substances only from low to high concentration.", "Only passive transport can move substances across the membrane."],
-      "answer": 0,
-      "hint": "Rolling downhill is free. Going uphill costs energy.",
-      "explain": "Passive transport follows the concentration gradient for free. Active transport spends energy to go against it." },
-
-    { "id": "w1q22", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B",
-      "prompt": "Complete the model: organelle, cell, ___, organ, organ system, organism.",
-      "options": ["tissue", "molecule", "population", "nucleus"],
+    {
+      "id": "w1q22",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "Complete the model: cell, ___, organ, organ system, organism.",
+      "options": [
+        "tissue",
+        "molecule",
+        "population",
+        "community"
+      ],
       "answer": 0,
       "hint": "What do you call a group of similar cells working together?",
-      "explain": "Similar cells working together form a tissue." },
-    { "id": "w1q23", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B",
+      "explain": "Similar cells working together form a tissue."
+    },
+    {
+      "id": "w1q23",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
       "prompt": "The stomach contains muscle tissue, lining tissue, and nerve tissue working together to digest food. The stomach is an example of which level?",
-      "options": ["organ", "tissue", "organ system", "cell"],
+      "options": [
+        "organ",
+        "tissue",
+        "organ system",
+        "cell"
+      ],
       "answer": 0,
       "hint": "Several different tissues working together make up the next level above tissue.",
-      "explain": "Different tissues working together form an organ." },
-    { "id": "w1q24", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B",
-      "prompt": "Red blood cells are small, flexible discs with no nucleus. How does this structure fit their function?",
-      "options": ["They can squeeze through tiny blood vessels and have more room to carry oxygen.", "They can divide quickly to make new cells.", "They can make proteins faster than other cells.", "They can send signals over long distances."],
+      "explain": "Different tissues working together form an organ."
+    },
+    {
+      "id": "w1q42",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "Which list goes from the SMALLEST level of organization to the LARGEST?",
+      "options": [
+        "cell, tissue, organ, organ system",
+        "organ, tissue, cell, organ system",
+        "tissue, cell, organ system, organ",
+        "organ system, organ, tissue, cell"
+      ],
       "answer": 0,
-      "hint": "Their job is to carry oxygen through very narrow vessels.",
-      "explain": "A flexible shape and no nucleus help red blood cells carry oxygen through narrow vessels." },
-    { "id": "w1q25", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B",
-      "prompt": "Nerve cells have long, thin extensions. How does this structure fit their function?",
-      "options": ["It lets them carry signals over long distances in the body.", "It lets them store large amounts of fat.", "It lets them contract to move bones.", "It lets them absorb more sunlight."],
+      "hint": "Start with the building block that every tissue is made of.",
+      "explain": "Cells form tissues, tissues form organs, and organs work together in organ systems."
+    },
+    {
+      "id": "w1q44",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "The heart, blood, and blood vessels work together to move materials around the body. What level of organization is this?",
+      "options": [
+        "an organ system",
+        "a tissue",
+        "a single organ",
+        "a cell"
+      ],
       "answer": 0,
-      "hint": "Nerve cells connect distant parts of the body.",
-      "explain": "Long extensions let nerve cells pass signals between distant parts of the body." },
-
-    { "id": "w1q26", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
+      "hint": "Several parts that each do part of a bigger job form which level?",
+      "explain": "Several organs and tissues working together to do one big job make an organ system: the circulatory system."
+    },
+    {
+      "id": "w1q76",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "The heart is made of muscle tissue, nerve tissue, and connective tissue working together. At which level of organization is the heart?",
+      "options": [
+        "organ",
+        "cell",
+        "tissue",
+        "organ system"
+      ],
+      "answer": 0,
+      "hint": "Different tissues working together form a...",
+      "explain": "An organ is made of different tissues working together. The heart is part of the circulatory system, an organ system."
+    },
+    {
+      "id": "w1q90",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "The muscle tissue in a frog's leg is made of many muscle cells working together. A frog's leg also contains bone, nerves, and blood vessels. Which statement best describes the muscle tissue?",
+      "options": [
+        "It is a tissue that works with other tissues in the leg.",
+        "It is an organ system that works alone.",
+        "It is a single cell that controls the leg.",
+        "It is an organism inside the frog."
+      ],
+      "answer": 0,
+      "hint": "Many similar cells working together form which level?",
+      "explain": "A group of similar cells working together is a tissue. In the leg, muscle tissue works with bone, nerve, and blood tissues."
+    },
+    {
+      "id": "w1q91",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "Which model best shows how a frog is organized, from smallest to largest?",
+      "options": [
+        "cells → tissues → organs → organ systems → frog",
+        "frog → organ systems → organs → tissues → cells",
+        "tissues → cells → organs → frog → organ systems",
+        "organs → cells → organ systems → tissues → frog"
+      ],
+      "answer": 0,
+      "hint": "Start with the smallest unit of life.",
+      "explain": "Cells form tissues, tissues form organs, organs form organ systems, and all the systems together make the frog."
+    },
+    {
+      "id": "w1q92",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "A pond plant's roots take in water, its stem carries the water up, and its leaves use it to make food. What does this show?",
+      "options": [
+        "Different organs work together as a system to do a job for the whole plant.",
+        "Each organ works alone and does not depend on the others.",
+        "Roots, stems, and leaves are all the same tissue.",
+        "Only animals have organs that work together."
+      ],
+      "answer": 0,
+      "hint": "Follow the water from the soil to the leaves.",
+      "explain": "Roots, stem, and leaves are organs. They depend on each other to deliver water to where the plant needs it."
+    },
+    {
+      "id": "w1q93",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "A turtle's heart stops pumping well. Which other part of its body would be affected FIRST?",
+      "options": [
+        "Its blood vessels would carry less blood, so its organs would get less oxygen.",
+        "Only its heart would be affected.",
+        "Its shell would stop growing right away.",
+        "Nothing, because each organ works on its own."
+      ],
+      "answer": 0,
+      "hint": "The heart is part of a system. What does it push blood through?",
+      "explain": "The heart, blood vessels, and blood form the circulatory system. If the heart fails, less blood and oxygen reach every organ."
+    },
+    {
+      "id": "w1q94",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "A shark swims faster to chase prey. Which TWO systems must work together to get more oxygen to its muscles?",
+      "options": [
+        "the respiratory system (gills) and the circulatory system (heart and blood)",
+        "the digestive system and the skeletal system",
+        "the nervous system and the digestive system",
+        "the skin and the skeletal system"
+      ],
+      "answer": 0,
+      "hint": "One system takes in oxygen. Another carries it to the muscles.",
+      "explain": "The gills take in oxygen from the water, and the heart and blood vessels carry it to the working muscles."
+    },
+    {
+      "id": "w1q95",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "A sea turtle eats a jellyfish. How do its digestive and circulatory systems work together?",
+      "options": [
+        "The digestive system breaks food into nutrients, and the blood carries the nutrients to the rest of the body.",
+        "The circulatory system digests the food, and the digestive system pumps the blood.",
+        "The digestive system sends nerve signals to the heart.",
+        "They do not work together; each system has its own food."
+      ],
+      "answer": 0,
+      "hint": "Breaking down food is one job. Delivering it everywhere is another.",
+      "explain": "The digestive system breaks food down so nutrients can enter the blood, and the circulatory system delivers them to every organ."
+    },
+    {
+      "id": "w1q96",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "A squid touches a hot vent and quickly jets away. Which order of events best explains this?",
+      "options": [
+        "Sense the heat → nerves carry a signal → muscles contract → the squid moves away",
+        "Muscles contract → the squid moves → nerves sense heat → the brain decides",
+        "The stomach senses heat → blood carries a message → the squid moves",
+        "The squid moves first, and the nerves sense the heat later"
+      ],
+      "answer": 0,
+      "hint": "A response starts with sensing a change.",
+      "explain": "Senses detect the change, nerves carry signals, and muscles respond. This is how the nervous and muscular systems interact."
+    },
+    {
+      "id": "w1q97",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "A gulper eel's gills are damaged and take in less oxygen. Which effect is most likely?",
+      "options": [
+        "Its muscles get less oxygen, so it cannot swim as hard.",
+        "Its stomach digests food faster.",
+        "Its eyes see better in the dark.",
+        "Nothing changes, because each system works alone."
+      ],
+      "answer": 0,
+      "hint": "Which body parts depend on oxygen from the gills?",
+      "explain": "Body systems depend on each other. Less oxygen from the gills means less oxygen delivered by the blood to the muscles."
+    },
+    {
+      "id": "w1q98",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "Why does a large animal need a circulatory system, while a tiny one-celled organism does not?",
+      "options": [
+        "In a large body, most cells are far from the outside, so blood must deliver materials to them.",
+        "Large animals do not need oxygen.",
+        "One-celled organisms have a heart inside them.",
+        "Large animals make all their food inside each cell."
+      ],
+      "answer": 0,
+      "hint": "Think about how far materials must travel in a big body.",
+      "explain": "A single cell can exchange materials directly with its surroundings. In a big body, a system is needed to carry oxygen and nutrients to cells deep inside."
+    },
+    {
+      "id": "w1q99",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "A student models how an anglerfish catches prey. Which model shows the systems interacting correctly?",
+      "options": [
+        "Eyes (nervous) → brain (nervous) → jaw muscles (muscular) → jaw bones (skeletal)",
+        "Jaw bones → stomach → eyes → heart",
+        "Gills → stomach → scales → fins",
+        "Heart → eyes → bones → brain"
+      ],
+      "answer": 0,
+      "hint": "Follow the signal from the sense organ to the moving part.",
+      "explain": "The nervous system senses and signals, the muscles contract, and they pull on bones. Three systems interact to make one fast movement."
+    },
+    {
+      "id": "w1q100",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "A deep-sea fish has large, feathery gills with many thin folds. How does this structure help the whole fish?",
+      "options": [
+        "The folds give more surface for oxygen to pass into the blood, so more oxygen reaches the body.",
+        "The folds help the fish digest food.",
+        "The folds make the fish glow in the dark.",
+        "The folds store fat for long trips."
+      ],
+      "answer": 0,
+      "hint": "More surface touching the water means more of what can get in?",
+      "explain": "More surface area lets more oxygen pass from the water into the blood, which delivers it to the rest of the body."
+    },
+    {
+      "id": "w1q101",
+      "code": "3.1.9-12.B",
+      "topic": "systems",
+      "prompt": "In a giant tube worm, a red plume takes in oxygen from the water, and blood vessels carry it to the rest of its body. What does this show?",
+      "options": [
+        "Structures that take in materials and a system that delivers them work together.",
+        "The plume and blood vessels work on their own and do not depend on each other.",
+        "The tube worm has no body systems.",
+        "Only fish have systems that deliver oxygen."
+      ],
+      "answer": 0,
+      "hint": "One part collects oxygen; another delivers it.",
+      "explain": "Taking in oxygen and delivering it are separate jobs done by structures that work together, as in all animals with circulatory systems."
+    },
+    {
+      "id": "w1q07",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "Stop 1, the nucleus. During transcription, the cell copies the code in a gene into which molecule?",
+      "options": [
+        "messenger RNA (mRNA)",
+        "a protein",
+        "an amino acid",
+        "a ribosome"
+      ],
+      "answer": 0,
+      "hint": "Transcription makes a copy that can leave the nucleus.",
+      "explain": "Transcription copies the DNA code into messenger RNA."
+    },
+    {
+      "id": "w1q08",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "A DNA strand reads T A C. Which mRNA codon is made from it during transcription?",
+      "options": [
+        "A U G",
+        "A T G",
+        "T A C",
+        "U A C"
+      ],
+      "answer": 0,
+      "hint": "Pair each base with its partner. RNA uses U (uracil) in place of T.",
+      "explain": "T pairs with A, A pairs with U in RNA, and C pairs with G, giving A U G."
+    },
+    {
+      "id": "w1q09",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "Stop 2. The mRNA leaves the nucleus. Which structure reads it and joins amino acids into a chain?",
+      "options": [
+        "ribosome",
+        "the gene in the DNA",
+        "the cell wall",
+        "a single amino acid"
+      ],
+      "answer": 0,
+      "hint": "This structure is the site of translation.",
+      "explain": "Ribosomes read mRNA and link amino acids together. This is translation."
+    },
+    {
+      "id": "w1q11",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "Bacteria, mushrooms, and humans all use the same codons for the same amino acids. What does this show?",
+      "options": [
+        "Transcription and translation work in a similar way in all organisms.",
+        "All organisms have the same genes.",
+        "Only animals can make proteins.",
+        "Proteins are made inside the nucleus of every cell."
+      ],
+      "answer": 0,
+      "hint": "A shared code means a shared process.",
+      "explain": "All organisms read the genetic code the same way, so protein synthesis is similar in all of them."
+    },
+    {
+      "id": "w1q46",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "A DNA template strand reads TAC GGA. What mRNA is made during transcription?",
+      "options": [
+        "AUG CCU",
+        "ATG CCT",
+        "TAC GGA",
+        "UAC GGA"
+      ],
+      "answer": 0,
+      "hint": "Pair each base: A with U, T with A, C with G, G with C. RNA has no T.",
+      "explain": "Transcription pairs T to A, A to U, C to G, and G to C, so TAC GGA becomes AUG CCU."
+    },
+    {
+      "id": "w1q47",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "Where does translation take place in every cell, from bacteria to humans?",
+      "options": [
+        "at ribosomes",
+        "inside the DNA molecule",
+        "in the cell wall",
+        "inside the chromosomes"
+      ],
+      "answer": 0,
+      "hint": "Find the protein-building structure found in all cells.",
+      "explain": "All cells translate mRNA into protein at ribosomes. That is why every kind of cell, from bacteria to human cells, has ribosomes."
+    },
+    {
+      "id": "w1q48",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "A gene's DNA is copied into mRNA. What does the order of the bases in that mRNA decide?",
+      "options": [
+        "the order of the amino acids in the protein",
+        "how many chromosomes the cell has",
+        "the size of the cell",
+        "which organ the cell belongs to"
+      ],
+      "answer": 0,
+      "hint": "Every three bases stand for one amino acid.",
+      "explain": "The mRNA carries the gene's base order out to the ribosome. Each group of three bases stands for one amino acid, so the base order sets the amino acid order."
+    },
+    {
+      "id": "w1q77",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "Two people have the same gene, except one base in it is different. Which molecule would be made differently FIRST?",
+      "options": [
+        "the mRNA copied from that gene",
+        "the person's blood sugar",
+        "the cell's water",
+        "every protein in the body"
+      ],
+      "answer": 0,
+      "hint": "What is copied straight from the gene's DNA?",
+      "explain": "The gene is copied into mRNA first, so the mRNA carries the changed base. That change can then change one amino acid in the protein built from it."
+    },
+    {
+      "id": "w1q78",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "prompt": "During translation, what determines the order of amino acids in a protein?",
+      "options": [
+        "the order of codons in the mRNA",
+        "the order of sugars in the cell's food",
+        "the size of the ribosome",
+        "the amount of water in the cell"
+      ],
+      "answer": 0,
+      "hint": "Each set of three mRNA bases codes for one amino acid.",
+      "explain": "Each three-base codon in the mRNA codes for one amino acid, so the order of codons sets the order of amino acids."
+    },
+    {
+      "id": "w1q102",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "prompt": "Why does the order of amino acids in a protein matter?",
+      "options": [
+        "The order decides how the chain folds, and the folded shape decides the protein's job.",
+        "The order decides the color of the cell.",
+        "The order has no effect on what the protein does.",
+        "The order decides how many chromosomes the cell has."
+      ],
+      "answer": 0,
+      "hint": "Think: order → shape → job.",
+      "explain": "The amino acid order controls how the chain folds. A protein's shape lets it do its specific job."
+    },
+    {
+      "id": "w1q103",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "prompt": "A change in a gene's DNA causes ONE different amino acid in a protein. What is the most likely result?",
+      "options": [
+        "The protein may fold into a different shape and not do its job as well.",
+        "The protein will always work better.",
+        "Nothing can change, because one amino acid never matters.",
+        "The protein turns back into DNA."
+      ],
+      "answer": 0,
+      "hint": "DNA sets the amino acid order, and the order sets the shape.",
+      "explain": "Changing the DNA can change the amino acid order, which can change the shape and the function. Sickle cell disease is caused by one such change."
+    },
+    {
+      "id": "w1q104",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "prompt": "Why does a cell need many different kinds of proteins?",
+      "options": [
+        "Proteins do many different jobs, such as speeding up reactions, carrying materials, building structures, and sending signals.",
+        "All proteins do the same job, so the cell needs extra copies.",
+        "Proteins store the cell's genetic instructions.",
+        "Proteins are only used as food."
+      ],
+      "answer": 0,
+      "hint": "Each protein has a shape that fits one job.",
+      "explain": "Different proteins have different shapes and jobs, and a living thing needs all of those jobs done."
+    },
+    {
+      "id": "w1q105",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "prompt": "Which sequence correctly shows how the structure of DNA determines the structure of a protein?",
+      "options": [
+        "DNA base order → mRNA base order → amino acid order → folded protein shape",
+        "Protein shape → amino acid order → DNA → mRNA",
+        "mRNA → DNA → folded protein → amino acids",
+        "Amino acids → DNA → protein → mRNA"
+      ],
+      "answer": 0,
+      "hint": "Start with the instructions stored in the gene.",
+      "explain": "The DNA base order is copied into mRNA, the mRNA sets the amino acid order, and the chain folds into the protein's shape."
+    },
+    {
+      "id": "w1q106",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "prompt": "Muscle cells and skin cells in the same person have the same DNA, but they make some different proteins. What best explains this?",
+      "options": [
+        "Different cells use different genes from the same DNA.",
+        "Muscle cells have different DNA from skin cells.",
+        "Skin cells have no genes.",
+        "Proteins are made without DNA in muscle cells."
+      ],
+      "answer": 0,
+      "hint": "Same instruction book, different pages being read.",
+      "explain": "All body cells carry the same DNA, but each kind of cell uses the genes it needs, so it makes the proteins for its job."
+    },
+    {
+      "id": "w1q107",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "prompt": "A student wants to test how exercise affects heart rate. Which plan is a fair test?",
+      "options": [
+        "Measure resting heart rate, do 2 minutes of jumping jacks, then measure again, keeping everything else the same.",
+        "Measure heart rate once while running and once while eating lunch.",
+        "Ask friends whether their hearts beat faster.",
+        "Measure a different person before and after exercise."
+      ],
+      "answer": 0,
+      "hint": "A fair test changes only one thing and compares to a starting value.",
+      "explain": "A fair test measures a baseline, changes one variable (exercise), and keeps other conditions the same."
+    },
+    {
+      "id": "w1q108",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "prompt": "In an investigation of how light affects pupil size, what is the INDEPENDENT variable?",
+      "options": [
+        "the brightness of the light",
+        "the size of the pupil",
+        "the person's age",
+        "the time of day"
+      ],
+      "answer": 0,
+      "hint": "The independent variable is the one you change on purpose.",
+      "explain": "The student changes the light brightness on purpose, so it is the independent variable. Pupil size is what is measured."
+    },
+    {
+      "id": "w1q109",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "prompt": "A student measures heart rate every minute after running. Which result is evidence of negative feedback?",
+      "options": [
+        "Heart rate falls back toward the resting rate after the run.",
+        "Heart rate keeps rising after the run ends.",
+        "Heart rate stays exactly the same the whole time.",
+        "Heart rate is only measured once."
+      ],
+      "answer": 0,
+      "hint": "Negative feedback brings a condition back toward its set point.",
+      "explain": "When heart rate returns toward the resting value, the body is reversing the change caused by exercise: negative feedback."
+    },
+    {
+      "id": "w1q110",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "prompt": "Why should a student measure a resting heart rate BEFORE exercise?",
+      "options": [
+        "It gives a baseline to compare the later measurements to.",
+        "It makes the heart beat faster.",
+        "It is the independent variable.",
+        "It is not needed in a fair test."
+      ],
+      "answer": 0,
+      "hint": "You can only tell something changed if you know where it started.",
+      "explain": "The resting measurement is the baseline. Comparing to it shows how much exercise changed heart rate and whether it returned."
+    },
+    {
+      "id": "w1q111",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "prompt": "A student puts one plant in moist air and one in very dry air, then counts open stomata (leaf pores). Which variable must she keep the SAME for both plants?",
+      "options": [
+        "the kind of plant and the amount of light",
+        "the humidity of the air",
+        "the number of open stomata",
+        "whether the air is dry or moist"
+      ],
+      "answer": 0,
+      "hint": "Controlled variables stay the same so only one thing changes.",
+      "explain": "Only the humidity should change. Keeping the plant type and light the same makes it a fair test."
+    },
+    {
+      "id": "w1q112",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "prompt": "The table shows a student's breathing rate. Which conclusion do the data support?",
+      "options": [
+        "Breathing rate rose during exercise and returned toward normal afterward.",
+        "Exercise had no effect on breathing.",
+        "Breathing rate kept rising after exercise.",
+        "Breathing stopped after exercise."
+      ],
+      "answer": 0,
+      "hint": "Compare the first and last rows to the exercise rows.",
+      "explain": "Breathing sped up to bring in more oxygen during exercise, then slowed back toward the resting rate: feedback keeping the body balanced.",
+      "figure": {
+        "type": "table",
+        "head": [
+          "Time (min)",
+          "Activity",
+          "Breaths per minute"
+        ],
+        "rows": [
+          [
+            "0",
+            "resting",
+            "14"
+          ],
+          [
+            "2",
+            "jogging",
+            "26"
+          ],
+          [
+            "4",
+            "jogging",
+            "30"
+          ],
+          [
+            "6",
+            "resting",
+            "20"
+          ],
+          [
+            "8",
+            "resting",
+            "15"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "w1q26",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
       "prompt": "After a run, your body temperature rises. Which response helps bring it back to normal?",
-      "options": ["Sweat is released and blood vessels near the skin widen.", "Muscles begin to shiver.", "Blood vessels near the skin narrow.", "The body stops releasing heat."],
+      "options": [
+        "Sweat is released and blood vessels near the skin widen.",
+        "Muscles begin to shiver.",
+        "Blood vessels near the skin narrow.",
+        "The body stops releasing heat."
+      ],
       "answer": 0,
       "hint": "The body needs to lose heat, not make more.",
-      "explain": "Sweating and wider blood vessels release heat and cool the body." },
-    { "id": "w1q27", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
+      "explain": "Sweating and wider blood vessels release heat and cool the body."
+    },
+    {
+      "id": "w1q27",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
       "prompt": "On a cold day you start to shiver. How does shivering help maintain homeostasis?",
-      "options": ["Muscle activity releases heat that warms the body.", "It releases heat from the body into the air.", "It lowers the amount of oxygen the body needs.", "It moves water out of the cells."],
+      "options": [
+        "Muscle activity releases heat that warms the body.",
+        "It releases heat from the body into the air.",
+        "It lowers the amount of oxygen the body needs.",
+        "It moves water out of the cells."
+      ],
       "answer": 0,
       "hint": "Working muscles warm you up.",
-      "explain": "Shivering muscles release heat, which raises body temperature toward normal." },
-    { "id": "w1q28", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
+      "explain": "Shivering muscles release heat, which raises body temperature toward normal."
+    },
+    {
+      "id": "w1q28",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
       "prompt": "The graph shows a person's blood glucose after a meal. What best explains the change after 30 minutes?",
-      "figure": { "type": "line", "xlabel": "Minutes after meal", "ylabel": "Blood glucose (mg/dL)",
-        "xmax": 120, "ymin": 60, "ymax": 160, "xticks": [0, 30, 60, 90, 120], "yticks": [60, 90, 120, 150],
-        "points": [[0, 90], [15, 120], [30, 140], [60, 115], [90, 95], [120, 90]] },
-      "options": ["The body signals cells to take in glucose, returning the level toward normal.", "The person ate a second meal.", "The body stopped using glucose for energy.", "Glucose can no longer leave the blood."],
+      "figure": {
+        "type": "line",
+        "xlabel": "Minutes after meal",
+        "ylabel": "Blood glucose (mg/dL)",
+        "xmax": 120,
+        "ymin": 60,
+        "ymax": 160,
+        "xticks": [
+          0,
+          30,
+          60,
+          90,
+          120
+        ],
+        "yticks": [
+          60,
+          90,
+          120,
+          150
+        ],
+        "points": [
+          [
+            0,
+            90
+          ],
+          [
+            15,
+            120
+          ],
+          [
+            30,
+            140
+          ],
+          [
+            60,
+            115
+          ],
+          [
+            90,
+            95
+          ],
+          [
+            120,
+            90
+          ]
+        ]
+      },
+      "options": [
+        "The body signals cells to take in glucose, returning the level toward normal.",
+        "The person ate a second meal.",
+        "The body stopped using glucose for energy.",
+        "Glucose can no longer leave the blood."
+      ],
       "answer": 0,
       "hint": "The line falls back to where it started. Something is correcting the change.",
-      "explain": "The body responds to high glucose by moving it into cells, which returns the level to normal." },
-    { "id": "w1q29", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
+      "explain": "The body responds to high glucose by moving it into cells, which returns the level to normal."
+    },
+    {
+      "id": "w1q29",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
       "prompt": "The body senses a change, responds, and returns to its normal level. What is this kind of control called?",
-      "options": ["a feedback mechanism that maintains homeostasis", "active transport", "protein synthesis", "diffusion"],
+      "options": [
+        "a feedback mechanism that maintains homeostasis",
+        "natural selection",
+        "photosynthesis",
+        "cell division"
+      ],
       "answer": 0,
       "hint": "The response feeds back to correct the change.",
-      "explain": "Feedback mechanisms sense a change and reverse it, which keeps the body stable." },
-    { "id": "w1q30", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
+      "explain": "Feedback mechanisms sense a change and reverse it, which keeps the body stable."
+    },
+    {
+      "id": "w1q30",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
       "prompt": "You drink very little water on a hot day. How do your kidneys help keep your water balance?",
-      "options": ["They return more water to the blood and make less urine.", "They release more water as urine.", "They stop filtering the blood.", "They add salt to the blood."],
+      "options": [
+        "They return more water to the blood and make less urine.",
+        "They release more water as urine.",
+        "They stop filtering the blood.",
+        "They add salt to the blood."
+      ],
       "answer": 0,
       "hint": "The body needs to save water.",
-      "explain": "The kidneys save water by returning more of it to the blood." },
-    { "id": "w1q31", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
+      "explain": "The kidneys save water by returning more of it to the blood."
+    },
+    {
+      "id": "w1q31",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
       "prompt": "During hard exercise your breathing rate goes up. How does this help maintain homeostasis?",
-      "options": ["It brings in more oxygen and removes more carbon dioxide.", "It lowers the amount of oxygen in the blood.", "It stops cells from using energy.", "It raises body temperature."],
+      "options": [
+        "It brings in more oxygen and removes more carbon dioxide.",
+        "It lowers the amount of oxygen in the blood.",
+        "It stops cells from using energy.",
+        "It raises body temperature."
+      ],
       "answer": 0,
       "hint": "Working muscles use more oxygen and make more carbon dioxide.",
-      "explain": "Faster breathing keeps oxygen and carbon dioxide levels in the blood steady." },
-    { "id": "w1q32", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
-      "prompt": "A single-celled pond organism keeps gaining water by osmosis. A special vacuole pumps the extra water out. What is this an example of?",
-      "options": ["homeostasis: keeping internal conditions stable", "reproduction", "protein synthesis", "endocytosis"],
-      "answer": 0,
-      "hint": "The cell is keeping its water level steady.",
-      "explain": "Pumping out extra water keeps the cell's internal conditions stable." },
-    { "id": "w1q33", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"],
+      "explain": "Faster breathing keeps oxygen and carbon dioxide levels in the blood steady."
+    },
+    {
+      "id": "w1q33",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
       "prompt": "A student measures her body temperature during and after exercise. Which conclusion do the data support?",
-      "figure": { "type": "table", "head": ["Time (min)", "Activity", "Temperature (°C)"],
-        "rows": [["0", "resting", "37.0"], ["10", "running", "37.6"], ["20", "running", "38.1"], ["30", "resting", "37.5"], ["40", "resting", "37.0"]] },
-      "options": ["Her body responded to bring the temperature back toward normal.", "Her temperature kept rising after she stopped.", "Her body has no way to control temperature.", "Exercise lowered her body temperature."],
+      "figure": {
+        "type": "table",
+        "head": [
+          "Time (min)",
+          "Activity",
+          "Temperature (°C)"
+        ],
+        "rows": [
+          [
+            "0",
+            "resting",
+            "37.0"
+          ],
+          [
+            "10",
+            "running",
+            "37.6"
+          ],
+          [
+            "20",
+            "running",
+            "38.1"
+          ],
+          [
+            "30",
+            "resting",
+            "37.5"
+          ],
+          [
+            "40",
+            "resting",
+            "37.0"
+          ]
+        ]
+      },
+      "options": [
+        "Her body responded to bring the temperature back toward normal.",
+        "Her temperature kept rising after she stopped.",
+        "Her body has no way to control temperature.",
+        "Exercise lowered her body temperature."
+      ],
       "answer": 0,
       "hint": "Compare the first and last rows.",
-      "explain": "Her temperature rose during exercise and returned to 37.0, which shows the body correcting the change." },
-    /* added question bank: 4 more per eligible content code so questions rotate on replays */
-    {"id": "w1q34", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B", "prompt": "A student says fire is alive because it grows, uses oxygen, and spreads. Which characteristic of life does fire NOT have?", "options": ["It is not made of cells and has no genetic material.", "It does not use energy.", "It does not change over time.", "It does not respond to wind."], "answer": 0, "hint": "Think about what every living thing is built from and what it passes on.", "explain": "Fire grows and uses oxygen, but it has no cells and no DNA, so it is not alive."},
-    {"id": "w1q35", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B", "prompt": "A plant on a windowsill bends toward the light. Which characteristic of life does this show?", "options": ["responding to a stimulus", "reproducing", "being made of cells", "passing on genetic material"], "answer": 0, "hint": "Light is a change in the plant's surroundings. What does the plant do about it?", "explain": "Bending toward light is a response to a stimulus, one of the characteristics of life."},
-    {"id": "w1q36", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B", "prompt": "A bacterium and an oak tree are both alive. Which process do BOTH use to get the energy they need?", "options": ["They break down food molecules to release energy.", "They both make food by photosynthesis.", "They both eat other organisms.", "They both get energy from soil."], "answer": 0, "hint": "Some organisms make food and some eat it, but all of them must do one thing with food.", "explain": "Every living thing breaks down food molecules (cellular respiration or similar) to release the energy its cells use."},
-    {"id": "w1q37", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B", "prompt": "A virus can make copies of itself only inside a host cell. Why do many scientists say a virus is NOT alive?", "options": ["It is not made of cells and cannot carry out life processes on its own.", "It contains no genetic material.", "It is too small to see with a microscope.", "It can only infect animals."], "answer": 0, "hint": "Compare a virus to the smallest living thing, a single cell.", "explain": "Viruses have genetic material, but they are not cells and cannot use energy or reproduce without a host cell."},
-    {"id": "w1q38", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "prompt": "Which structure would you find in BOTH a bacterium and a human skin cell?", "options": ["ribosomes", "a nucleus", "mitochondria", "a Golgi apparatus"], "answer": 0, "hint": "Only one choice is not wrapped in a membrane.", "explain": "All cells, prokaryotic and eukaryotic, have ribosomes to build proteins. The other choices are membrane-bound organelles found only in eukaryotes."},
-    {"id": "w1q39", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "prompt": "Under a microscope, a cell has a cell wall and DNA loose in the cytoplasm, but no nucleus. What kind of cell is it?", "options": ["a prokaryotic cell, such as a bacterium", "a plant cell", "an animal cell", "a fungus cell"], "answer": 0, "hint": "Plant and fungus cells have cell walls too. What is missing?", "explain": "No nucleus means prokaryote. Plant and fungus cells have cell walls but also have a nucleus."},
-    {"id": "w1q40", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "prompt": "Where is the DNA kept in a eukaryotic cell?", "options": ["inside the nucleus", "loose in the cytoplasm", "in the cell wall", "on the plasma membrane"], "answer": 0, "hint": "Eukaryotes keep their DNA in a special membrane-bound compartment.", "explain": "In eukaryotic cells most DNA is inside the nucleus. In prokaryotes it sits in the cytoplasm."},
-    {"id": "w1q41", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "prompt": "Why can a eukaryotic cell carry out many different jobs at the same time?", "options": ["Membrane-bound organelles divide the cell into separate compartments.", "It has no plasma membrane, so materials move freely.", "It is always smaller than a prokaryotic cell.", "Its DNA floats freely in the cytoplasm."], "answer": 0, "hint": "Think of rooms in a house, each with its own job.", "explain": "Membrane-bound organelles act like separate rooms, so different processes can happen in different places at once."},
-    {"id": "w1q42", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "prompt": "Which list goes from the SMALLEST level of organization to the LARGEST?", "options": ["cell, tissue, organ, organ system", "organ, tissue, cell, organ system", "tissue, cell, organ system, organ", "organ system, organ, tissue, cell"], "answer": 0, "hint": "Start with the building block that every tissue is made of.", "explain": "Cells form tissues, tissues form organs, and organs work together in organ systems."},
-    {"id": "w1q43", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "prompt": "Root hair cells have long, thin extensions that reach into the soil. How does this structure help the cell's function?", "options": ["The large surface area helps the root absorb water and minerals.", "The extensions help the plant make food from sunlight.", "The extensions store sugar for winter.", "The extensions protect the root from insects."], "answer": 0, "hint": "More surface touching the soil means more of what can get in?", "explain": "Long extensions increase surface area, so the root can absorb more water and minerals."},
-    {"id": "w1q44", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "prompt": "The heart, blood, and blood vessels work together to move materials around the body. What level of organization is this?", "options": ["an organ system", "a tissue", "a single organ", "a cell"], "answer": 0, "hint": "Several parts that each do part of a bigger job form which level?", "explain": "Several organs and tissues working together to do one big job make an organ system: the circulatory system."},
-    {"id": "w1q45", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "prompt": "Cells lining the small intestine have tiny folds called microvilli. What is the most likely job of these folds?", "options": ["to increase the surface area for absorbing nutrients", "to push food down the intestine", "to store fat for energy", "to make red blood cells"], "answer": 0, "hint": "Folds add more surface without making the intestine longer.", "explain": "Microvilli greatly increase surface area, so more nutrients can be absorbed into the blood."},
-    {"id": "w1q46", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "prompt": "A DNA template strand reads TAC GGA. What mRNA is made during transcription?", "options": ["AUG CCU", "ATG CCT", "TAC GGA", "UAC GGA"], "answer": 0, "hint": "Pair each base: A with U, T with A, C with G, G with C. RNA has no T.", "explain": "Transcription pairs T to A, A to U, C to G, and G to C, so TAC GGA becomes AUG CCU."},
-    {"id": "w1q47", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "prompt": "Where does translation take place in every cell, from bacteria to humans?", "options": ["at ribosomes", "inside the nucleus", "in the cell wall", "in the Golgi apparatus"], "answer": 0, "hint": "Find the protein-building structure found in all cells.", "explain": "All cells translate mRNA into protein at ribosomes. That is why ribosomes are found in prokaryotes and eukaryotes."},
-    {"id": "w1q48", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "prompt": "A gene from a jellyfish is put into bacteria, and the bacteria make the jellyfish protein. What does this show?", "options": ["All organisms use the same genetic code to make proteins.", "Bacteria and jellyfish have the same DNA.", "Bacteria do not need ribosomes.", "Proteins can be made without mRNA."], "answer": 0, "hint": "How can bacteria read a jellyfish gene correctly?", "explain": "The genetic code is nearly universal, so the same codons code for the same amino acids in bacteria and jellyfish."},
-    {"id": "w1q49", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "prompt": "Which molecule carries amino acids to the ribosome during translation?", "options": ["transfer RNA (tRNA)", "messenger RNA (mRNA)", "DNA", "ATP"], "answer": 0, "hint": "Its name tells you it moves (transfers) something.", "explain": "Each tRNA carries one amino acid, and its anticodon pairs with a codon on the mRNA."},
-    {"id": "w1q50", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A", "prompt": "A cell makes a hormone protein that will be released from the cell. Which path does the protein follow?", "options": ["ribosome on rough ER, then Golgi apparatus, then vesicle to the plasma membrane", "nucleus, then mitochondrion, then cell wall", "Golgi apparatus, then nucleus, then ribosome", "plasma membrane, then rough ER, then nucleus"], "answer": 0, "hint": "It is built first, then modified and packaged, then shipped out.", "explain": "Proteins for export are built by ribosomes on the rough ER, finished and packaged by the Golgi, and carried out in vesicles."},
-    {"id": "w1q51", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A", "prompt": "What is the role of the nucleus in making a protein?", "options": ["It holds the DNA and is where the gene is copied into mRNA.", "It builds the protein from amino acids.", "It packages the protein to leave the cell.", "It releases energy to power the cell."], "answer": 0, "hint": "The instructions start here.", "explain": "The nucleus holds the DNA. The gene is transcribed into mRNA there before the mRNA moves to the ribosomes."},
-    {"id": "w1q52", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A", "prompt": "Cells in the pancreas release large amounts of digestive enzymes. Which organelles would you expect to find in large numbers in these cells?", "options": ["rough endoplasmic reticulum and Golgi apparatus", "chloroplasts and cell walls", "lysosomes and vacuoles only", "centrioles and flagella"], "answer": 0, "hint": "These cells make and ship out a lot of protein.", "explain": "Cells that export a lot of protein need lots of rough ER to make it and lots of Golgi to package and ship it."},
-    {"id": "w1q53", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A", "prompt": "What would most likely happen if a cell's Golgi apparatus stopped working?", "options": ["Proteins would not be properly packaged and sent to where they are needed.", "The cell would stop copying its DNA.", "Ribosomes could no longer read mRNA.", "The cell would have no plasma membrane."], "answer": 0, "hint": "Think of the Golgi as the cell's post office.", "explain": "The Golgi modifies, sorts, and packages proteins. Without it, proteins would not get to the right place."},
-    {"id": "w1q54", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A", "prompt": "Which organelle forms a network of membranes that moves materials through the cell?", "options": ["endoplasmic reticulum", "mitochondrion", "ribosome", "nucleolus"], "answer": 0, "hint": "Its name means a network inside the cell.", "explain": "The endoplasmic reticulum is a network of membranes that makes and carries materials through the cell."},
-    {"id": "w1q55", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A", "prompt": "How does a protein made on the rough ER usually get to the Golgi apparatus?", "options": ["inside a small membrane bubble called a vesicle", "it floats freely through the nucleus", "it is carried by DNA", "it passes through the cell wall"], "answer": 0, "hint": "Materials travel between these organelles in tiny bubbles.", "explain": "The ER pinches off vesicles that carry the protein to the Golgi."},
-    {"id": "w1q56", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A", "prompt": "What is the main difference between rough ER and smooth ER?", "options": ["Rough ER has ribosomes on its surface; smooth ER does not.", "Rough ER is found only in bacteria.", "Smooth ER holds the cell's DNA.", "Rough ER makes energy from sugar."], "answer": 0, "hint": "The word 'rough' comes from what you see dotting its surface.", "explain": "Ribosomes on its surface make rough ER look rough. Rough ER helps make proteins; smooth ER makes lipids."},
-    {"id": "w1q57", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A", "prompt": "A cell is releasing a large protein to the outside. What happens at the end of the trip?", "options": ["A vesicle from the Golgi joins the plasma membrane and releases the protein (exocytosis).", "The protein diffuses through a channel in the nucleus.", "The ribosome pushes the protein through the cell wall.", "The protein is broken down by the mitochondria."], "answer": 0, "hint": "The last step happens at the cell's outer boundary.", "explain": "A vesicle from the Golgi fuses with the plasma membrane and releases its contents outside: exocytosis."},
-    {"id": "w1q58", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C", "prompt": "The plasma membrane is mostly made of a double layer of which molecules?", "options": ["phospholipids", "proteins only", "carbohydrates", "DNA"], "answer": 0, "hint": "Each molecule has a water-loving head and two water-fearing tails.", "explain": "The membrane is a phospholipid bilayer, with proteins set into it."},
-    {"id": "w1q59", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C", "prompt": "Why can small, nonpolar molecules like oxygen pass directly through the plasma membrane, but ions like sodium cannot?", "options": ["The middle of the membrane is made of fatty tails that block charged particles.", "Oxygen is larger than sodium.", "The membrane has holes that only fit oxygen.", "Sodium is not found in cells."], "answer": 0, "hint": "Think about what the inside of the bilayer is made of.", "explain": "The fatty, nonpolar middle of the bilayer lets small nonpolar molecules through but blocks ions, which need transport proteins."},
-    {"id": "w1q60", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C", "prompt": "What is the job of the proteins set into the plasma membrane?", "options": ["They help specific substances cross the membrane and send signals.", "They store the cell's genetic information.", "They release energy from glucose.", "They make the membrane rigid like a wall."], "answer": 0, "hint": "Some act like doors and some act like doorbells.", "explain": "Membrane proteins form channels, carriers, and pumps for specific substances, and receptors that receive signals."},
-    {"id": "w1q61", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C", "prompt": "The plasma membrane is called selectively permeable. What does this mean?", "options": ["It lets some substances cross but keeps others out.", "It lets everything cross freely.", "It lets nothing cross at all.", "It only lets water leave the cell."], "answer": 0, "hint": "Selective means it chooses.", "explain": "A selectively permeable membrane allows some substances to pass while blocking others, which helps keep the cell stable."},
-    {"id": "w1q62", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "prompt": "A red blood cell is placed in pure water. What will happen?", "options": ["Water moves into the cell by osmosis, and the cell swells.", "Water moves out of the cell, and the cell shrinks.", "Nothing happens because water cannot cross membranes.", "Salt moves into the cell by active transport."], "answer": 0, "hint": "Water moves toward the side that has more dissolved particles.", "explain": "The inside of the cell has more dissolved particles than pure water, so water moves in by osmosis and the cell swells."},
-    {"id": "w1q63", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "prompt": "Glucose moves into a cell from high to low concentration through a carrier protein, with no energy used. What is this called?", "options": ["facilitated diffusion", "active transport", "endocytosis", "exocytosis"], "answer": 0, "hint": "High to low with no energy is passive. A protein helps it.", "explain": "Passive movement through a transport protein is facilitated diffusion."},
-    {"id": "w1q64", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "prompt": "Which process REQUIRES energy from ATP?", "options": ["pumping sodium ions from low concentration to high concentration", "oxygen diffusing into a cell", "water moving by osmosis", "glucose moving through a channel from high to low"], "answer": 0, "hint": "Moving against the concentration gradient is like pushing uphill.", "explain": "Moving particles from low to high concentration is active transport, which needs energy from ATP."},
-    {"id": "w1q65", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "prompt": "A white blood cell surrounds a bacterium with its membrane and pulls it inside. What is this process?", "options": ["endocytosis", "exocytosis", "osmosis", "diffusion"], "answer": 0, "hint": "Endo means into.", "explain": "Wrapping the membrane around a large particle and bringing it inside is endocytosis (this kind is called phagocytosis)."},
-    {"id": "w1q66", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"], "prompt": "After eating a salty meal, a person feels thirsty and drinks water. How does this help maintain homeostasis?", "options": ["It brings the body's water and salt balance back to normal.", "It raises the body's temperature.", "It increases blood sugar.", "It stops the kidneys from working."], "answer": 0, "hint": "Thirst is a response to a change. What does drinking fix?", "explain": "Extra salt upsets water balance. Thirst makes you drink, which dilutes the salt and restores balance: negative feedback."},
-    {"id": "w1q67", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"], "prompt": "In a negative feedback loop, what does the response do to the original change?", "options": ["It reverses the change and brings the condition back toward the set point.", "It makes the change even bigger.", "It has no effect on the change.", "It stops the receptors from working."], "answer": 0, "hint": "Negative means it works against the change.", "explain": "Negative feedback reverses a change, keeping conditions like temperature and blood sugar near a set point."},
-    {"id": "w1q68", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"], "prompt": "When blood glucose drops too low, the liver releases stored glucose into the blood. Which part of the feedback loop is the liver?", "options": ["the effector", "the stimulus", "the receptor", "the set point"], "answer": 0, "hint": "Which part carries out the response?", "explain": "The liver carries out the response that raises blood glucose, so it is the effector."},
-    {"id": "w1q69", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "tags": ["boss"], "prompt": "During a hard workout you breathe faster and deeper. How does this help maintain balance?", "options": ["It brings in more oxygen and removes extra carbon dioxide made by working muscles.", "It cools the body by releasing sweat.", "It lowers the heart rate.", "It stores extra glucose in the liver."], "answer": 0, "hint": "Working muscles use more of one gas and make more of another.", "explain": "Faster breathing supplies more oxygen and gets rid of the extra carbon dioxide, keeping blood gases balanced."},
-    /* Phase 1 additions (v35): 20 more questions so the rotation repeats less. Add your own the same way. */
-    {"id": "w1q70", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B", "prompt": "Yeast cells placed in sugar water release gas bubbles and increase in number. Which two characteristics of life does this show?", "options": ["using energy and reproducing", "having a nucleus and moving", "making food from sunlight and growing", "responding to light and having cell walls"], "answer": 0, "hint": "The bubbles come from breaking down sugar. More cells means...", "explain": "Yeast break down sugar for energy (releasing carbon dioxide gas) and reproduce. Both are characteristics of all living things."},
-    {"id": "w1q71", "code": "BIO.A.1.1.1", "steels": "3.1.9-12.B", "prompt": "Which characteristic is shared by ALL living things, from bacteria to oak trees?", "options": ["They keep a stable internal environment (homeostasis).", "They are made of many cells.", "They contain chloroplasts.", "They move from place to place."], "answer": 0, "hint": "Many living things are single-celled, and only some move or have chloroplasts.", "explain": "Every organism maintains homeostasis. Many are single-celled, and only some have chloroplasts or can move."},
-    {"id": "w1q72", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "prompt": "A cell has a cell wall, ribosomes, and DNA in a nucleoid region, but no nucleus. What kind of cell is it?", "options": ["a prokaryotic cell, such as a bacterium", "a plant cell", "an animal cell", "a fungal cell"], "answer": 0, "hint": "Which kind of cell has no nucleus at all?", "explain": "Prokaryotes have no nucleus; their DNA sits in a nucleoid region. Plant, animal, and fungal cells are eukaryotic."},
-    {"id": "w1q73", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "prompt": "Which structure is found in BOTH prokaryotic and eukaryotic cells?", "options": ["ribosomes", "mitochondria", "a nucleus", "endoplasmic reticulum"], "answer": 0, "hint": "Prokaryotes have no membrane-bound organelles.", "explain": "All cells have ribosomes, cytoplasm, a plasma membrane, and DNA. Membrane-bound organelles are found only in eukaryotes."},
-    {"id": "w1q74", "code": "BIO.A.1.2.1", "steels": "3.1.9-12.B", "prompt": "Which structure would you find in a plant cell but NOT in an animal cell?", "options": ["chloroplast", "mitochondrion", "ribosome", "plasma membrane"], "answer": 0, "hint": "Which structure captures light energy?", "explain": "Plant cells have chloroplasts, a cell wall, and a large central vacuole. Both plant and animal cells have mitochondria, ribosomes, and a plasma membrane."},
-    {"id": "w1q75", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "prompt": "Mature red blood cells have no nucleus and a flexible disk shape. How does this structure help their function?", "options": ["It leaves more room for oxygen-carrying hemoglobin and lets them squeeze through tiny capillaries.", "It lets them make proteins faster.", "It helps them divide quickly.", "It lets them send nerve signals."], "answer": 0, "hint": "A red blood cell's job is to carry oxygen through narrow blood vessels.", "explain": "With no nucleus, a red blood cell holds more hemoglobin, and its flexible shape fits through narrow capillaries."},
-    {"id": "w1q76", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "prompt": "The heart is made of muscle tissue, nerve tissue, and connective tissue working together. At which level of organization is the heart?", "options": ["organ", "cell", "tissue", "organ system"], "answer": 0, "hint": "Different tissues working together form a...", "explain": "An organ is made of different tissues working together. The heart is part of the circulatory system, an organ system."},
-    {"id": "w1q77", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "prompt": "Why can bacteria with an inserted human gene make a human protein, such as insulin?", "options": ["All organisms use the same genetic code to transcribe and translate genes.", "Bacteria have a nucleus like human cells.", "Bacteria make proteins without ribosomes.", "Human genes are made of RNA instead of DNA."], "answer": 0, "hint": "Think about how codons are read in every living thing.", "explain": "The genetic code is nearly universal, so bacterial ribosomes read the human mRNA codons the same way and build the same protein."},
-    {"id": "w1q78", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "prompt": "During translation, what determines the order of amino acids in a protein?", "options": ["the order of codons in the mRNA", "the order of sugars in the cell membrane", "the size of the ribosome", "the number of tRNA molecules in the cell"], "answer": 0, "hint": "Each set of three mRNA bases codes for one amino acid.", "explain": "Each three-base codon in the mRNA codes for one amino acid, so the order of codons sets the order of amino acids."},
-    {"id": "w1q79", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A", "prompt": "A cell makes a protein that will be released outside the cell. Which path does the protein follow?", "options": ["rough ER → Golgi apparatus → vesicle → plasma membrane", "Golgi apparatus → nucleus → ribosome → plasma membrane", "nucleus → mitochondrion → vesicle → plasma membrane", "plasma membrane → rough ER → nucleus → Golgi apparatus"], "answer": 0, "hint": "Start where the protein is built, then where it is packaged.", "explain": "Ribosomes on the rough ER build the protein, the Golgi apparatus modifies and packages it, and a vesicle carries it to the plasma membrane to be released."},
-    {"id": "w1q80", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A", "prompt": "Pancreas cells release large amounts of digestive enzymes, which are proteins. Which organelle would you expect these cells to have a lot of?", "options": ["rough endoplasmic reticulum", "chloroplasts", "cell walls", "central vacuoles"], "answer": 0, "hint": "Which organelle is covered with ribosomes that build proteins for export?", "explain": "Cells that export lots of protein have lots of rough ER, whose ribosomes build proteins that will leave the cell."},
-    {"id": "w1q81", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C", "prompt": "Why can oxygen pass straight through the plasma membrane, while glucose needs a transport protein?", "options": ["Small, nonpolar molecules slip between the phospholipids, but large polar molecules cannot.", "Oxygen is larger than glucose.", "Glucose is a gas.", "The membrane has no proteins."], "answer": 0, "hint": "Think about size and whether the molecule is attracted to water.", "explain": "The lipid bilayer lets small nonpolar molecules through but blocks large or polar ones, which need transport proteins."},
-    {"id": "w1q82", "code": "BIO.A.4.1.1", "steels": "3.1.9-12.C", "prompt": "Phospholipids have water-loving heads and water-fearing tails. How are they arranged in the plasma membrane?", "options": ["Heads face the water inside and outside the cell; tails point toward each other in the middle.", "Tails face the water on both sides; heads are in the middle.", "All heads face outside the cell; all tails face inside the cell.", "They form a single layer with the tails sticking out."], "answer": 0, "hint": "Water is found both inside and outside the cell.", "explain": "In the bilayer, water-loving heads face the watery inside and outside, and water-fearing tails are tucked in the middle."},
-    {"id": "w1q83", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "prompt": "A red blood cell is placed in very salty water. What happens, and why?", "options": ["It shrinks, because water moves out of the cell by osmosis toward the saltier side.", "It swells, because salt moves into the cell.", "It stays the same, because membranes block water.", "It bursts, because water rushes in."], "answer": 0, "hint": "In osmosis, water moves toward the side with more dissolved particles.", "explain": "In a saltier (hypertonic) solution, water leaves the cell by osmosis, so the cell shrinks."},
-    {"id": "w1q84", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "prompt": "Which process moves molecules from LOW concentration to HIGH concentration?", "options": ["active transport using a protein pump and ATP", "diffusion", "osmosis", "facilitated diffusion"], "answer": 0, "hint": "Moving against the gradient is like pushing uphill. It needs energy.", "explain": "Moving molecules against their concentration gradient needs energy (ATP) and a protein pump. The other processes are passive."},
-    {"id": "w1q85", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "prompt": "A white blood cell wraps its membrane around a bacterium and pulls it inside. What is this process called?", "options": ["endocytosis", "exocytosis", "osmosis", "diffusion"], "answer": 0, "hint": "'Endo' means into.", "explain": "Endocytosis brings large particles into the cell by folding the membrane around them. It uses energy."},
-    {"id": "w1q86", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A", "prompt": "What do vesicles do inside a eukaryotic cell?", "options": ["carry materials between organelles, such as from the ER to the Golgi apparatus", "make ATP from glucose", "store the cell's DNA", "capture light energy"], "answer": 0, "hint": "Vesicles are tiny membrane bubbles that move around the cell.", "explain": "Vesicles are small membrane sacs that move materials between the ER, the Golgi apparatus, and the plasma membrane."},
-    {"id": "w1q87", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A", "prompt": "A drug stops the Golgi apparatus from working. What would most likely happen to proteins the cell makes for export?", "options": ["They would not be modified and packaged for shipping out of the cell.", "They would not be translated at all.", "They would be shipped out faster.", "They would turn into lipids."], "answer": 0, "hint": "What is the Golgi apparatus's job?", "explain": "The Golgi apparatus modifies, sorts, and packages proteins. Without it, proteins made for export would not be shipped."},
-    {"id": "w1q88", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "prompt": "Why does keeping a stable internal environment matter for the enzymes in your body?", "options": ["Enzymes work best in a narrow range of temperature and pH, so stable conditions keep them working.", "Enzymes only work when the body is cold.", "Homeostasis creates new enzymes.", "Temperature and pH do not affect enzymes."], "answer": 0, "hint": "What happens to an enzyme's shape when it gets too hot or too acidic?", "explain": "Enzymes work best within a narrow range of temperature and pH. Homeostasis keeps those conditions steady so enzymes keep their shape and work."},
-    {"id": "w1q89", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "prompt": "On hot, dry days, many plants close the stomata (tiny pores) on their leaves. What does this help the plant do?", "options": ["conserve water by reducing water loss", "take in more carbon dioxide", "make more glucose", "release more oxygen"], "answer": 0, "hint": "Water vapor escapes through open stomata.", "explain": "Closing stomata reduces water loss through transpiration, which helps the plant keep its water balance."}
+      "explain": "Her temperature rose during exercise and returned to 37.0, which shows the body correcting the change."
+    },
+    {
+      "id": "w1q66",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
+      "prompt": "After eating a salty meal, a person feels thirsty and drinks water. How does this help maintain homeostasis?",
+      "options": [
+        "It brings the body's water and salt balance back to normal.",
+        "It raises the body's temperature.",
+        "It increases blood sugar.",
+        "It stops the kidneys from working."
+      ],
+      "answer": 0,
+      "hint": "Thirst is a response to a change. What does drinking fix?",
+      "explain": "Extra salt upsets water balance. Thirst makes you drink, which dilutes the salt and restores balance: negative feedback."
+    },
+    {
+      "id": "w1q67",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
+      "prompt": "In a negative feedback loop, what does the response do to the original change?",
+      "options": [
+        "It reverses the change and brings the condition back toward the set point.",
+        "It makes the change even bigger.",
+        "It has no effect on the change.",
+        "It stops the receptors from working."
+      ],
+      "answer": 0,
+      "hint": "Negative means it works against the change.",
+      "explain": "Negative feedback reverses a change, keeping conditions like temperature and blood sugar near a set point."
+    },
+    {
+      "id": "w1q68",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "tags": [
+        "boss"
+      ],
+      "prompt": "When blood glucose drops too low, the liver releases stored glucose into the blood. Which part of the feedback loop is the liver?",
+      "options": [
+        "the effector",
+        "the stimulus",
+        "the receptor",
+        "the set point"
+      ],
+      "answer": 0,
+      "hint": "Which part carries out the response?",
+      "explain": "The liver carries out the response that raises blood glucose, so it is the effector."
+    },
+    {
+      "id": "w1q89",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "prompt": "On hot, dry days, many plants close the stomata (tiny pores) on their leaves. What does this help the plant do?",
+      "options": [
+        "conserve water by reducing water loss",
+        "take in more carbon dioxide",
+        "make more glucose",
+        "release more oxygen"
+      ],
+      "answer": 0,
+      "hint": "Water vapor escapes through open stomata.",
+      "explain": "Closing stomata reduces water loss through transpiration, which helps the plant keep its water balance."
+    },
+    {
+      "id": "w1q113",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "A person's lungs take in oxygen, but the oxygen must reach the leg muscles. Which statement best explains how this happens?",
+      "options": [
+        "The respiratory system and the circulatory system work together: blood picks up oxygen in the lungs and carries it to the muscles.",
+        "The lungs send oxygen through the bones to the legs.",
+        "The leg muscles make their own oxygen.",
+        "The digestive system carries oxygen to the legs."
+      ],
+      "answer": 0,
+      "hint": "One system takes oxygen in; another delivers it.",
+      "explain": "Body systems interact. The respiratory system takes in oxygen and the circulatory system carries it to every organ."
+    },
+    {
+      "id": "w1q114",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "prompt": "An artery depends on muscle tissue and stretchy tissue to deliver the right amount of blood. What does this show?",
+      "options": [
+        "Tissues work together inside an organ, which works within an organ system.",
+        "Each tissue works alone.",
+        "Arteries are made of only one kind of cell.",
+        "Blood moves without any help from tissues."
+      ],
+      "answer": 0,
+      "hint": "Think about levels: tissues → organ → system.",
+      "explain": "Different tissues work together in a blood vessel, and the vessels work with the heart as part of the circulatory system."
+    }
   ],
 
-  /* LOOK-ALIKE PAIRS: ideas students often confuse. Review gates show one question from
-     each half back to back. "level" is the level that teaches that half; a pair only
-     appears after the student has finished the levels for BOTH halves.
-     A group of three rotates: each review shows two of the three. */
+  /* LOOK-ALIKE PAIRS: mixed-review gates put these back to back so students compare them. */
   "pairs": [
-    { "name": "Diffusion or osmosis?", "explain": "Osmosis is the diffusion of water across a membrane. Diffusion is any particle moving from high to low concentration.",
-      "members": [ { "label": "Diffusion", "level": "1-4", "ids": ["transport.0", "transport.4", "w1q17"] },
-                   { "label": "Osmosis", "level": "1-4", "ids": ["transport.1", "transport.6"] } ] },
-    { "name": "Diffusion or facilitated diffusion?", "explain": "Both move from high to low concentration with no energy. Facilitated diffusion needs a transport protein.",
-      "members": [ { "label": "Diffusion", "level": "1-4", "ids": ["transport.0", "transport.4"] },
-                   { "label": "Facilitated diffusion", "level": "1-4", "ids": ["transport.2", "transport.7"] } ] },
-    { "name": "Facilitated diffusion or active transport?", "explain": "Both use membrane proteins. Active transport uses energy (ATP) to move particles from low to high concentration.",
-      "members": [ { "label": "Facilitated diffusion", "level": "1-4", "ids": ["transport.2", "transport.7"] },
-                   { "label": "Active transport", "level": "1-4", "ids": ["transport.3", "transport.5", "w1q18"] } ] },
-    { "name": "Endocytosis or exocytosis?", "explain": "Endocytosis brings material into the cell. Exocytosis releases material out of the cell.",
-      "members": [ { "label": "Endocytosis", "level": "1-4", "ids": ["w1q19"] },
-                   { "label": "Exocytosis", "level": "1-4", "ids": ["w1q20"] } ] },
-    { "name": "Transcription or translation?", "explain": "Transcription copies DNA into mRNA in the nucleus. Translation builds a protein at a ribosome.",
-      "members": [ { "label": "Transcription", "level": "1-3", "ids": ["w1q07", "w1q08"] },
-                   { "label": "Translation", "level": "1-3", "ids": ["w1q09", "w1q10"] } ] },
-    { "name": "Ribosome, rough ER, or Golgi apparatus?", "explain": "Ribosomes are where proteins are made. The rough ER has ribosomes on its surface and helps make proteins that will mostly leave the cell. The Golgi apparatus does the final processing of proteins before the cell releases them.",
-      "members": [ { "label": "Ribosome", "level": "1-3", "ids": ["w1q09"] },
-                   { "label": "Rough ER", "level": "1-3", "ids": ["w1q12"] },
-                   { "label": "Golgi apparatus", "level": "1-3", "ids": ["w1q13"] } ] },
-    { "name": "Prokaryote or eukaryote?", "explain": "Only eukaryotes have a nucleus and membrane-bound organelles. Both have DNA, ribosomes, cytoplasm, and a plasma membrane.",
-      "members": [ { "label": "Prokaryote", "level": "1-2", "ids": ["cells.7", "cells.9"] },
-                   { "label": "Eukaryote", "level": "1-2", "ids": ["cells.0", "cells.3", "cells.6", "cells.8"] } ] },
-    { "name": "Tissue or organ?", "explain": "A tissue is similar cells working together. An organ is different tissues working together.",
-      "members": [ { "label": "Tissue", "level": "1-5", "ids": ["w1q22"] },
-                   { "label": "Organ", "level": "1-5", "ids": ["w1q23"] } ] },
-    { "name": "Cooling or warming response?", "explain": "Too hot: sweating and wider blood vessels near the skin. Too cold: shivering and narrower blood vessels.",
-      "members": [ { "label": "Cooling", "level": "1-5", "ids": ["w1q26"] },
-                   { "label": "Warming", "level": "1-5", "ids": ["w1q27"] } ] },
-    { "name": "Alive, or only looks alive?", "explain": "Growing, moving, or using fuel is not enough. Living things are made of cells, have DNA, and reproduce.",
-      "members": [ { "label": "Living", "level": "1-1", "ids": ["alive.0", "alive.2", "alive.4"] },
-                   { "label": "Not living", "level": "1-1", "ids": ["alive.1", "alive.3", "alive.5"] } ] }
+    {
+      "name": "Transcription or translation?",
+      "explain": "Transcription copies the DNA code into mRNA. Translation uses the mRNA to build a chain of amino acids at a ribosome.",
+      "members": [
+        {
+          "label": "Transcription",
+          "level": "1-3",
+          "ids": [
+            "w1q07",
+            "w1q08"
+          ]
+        },
+        {
+          "label": "Translation",
+          "level": "1-3",
+          "ids": [
+            "w1q09",
+            "w1q47"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Organ or organ system?",
+      "explain": "An organ is different tissues working together. An organ system is several organs working together on one big job.",
+      "members": [
+        {
+          "label": "Organ",
+          "level": "1-1",
+          "ids": [
+            "levels.2",
+            "levels.5"
+          ]
+        },
+        {
+          "label": "Organ system",
+          "level": "1-1",
+          "ids": [
+            "levels.3",
+            "levels.6"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tissue or organ?",
+      "explain": "A tissue is similar cells working together. An organ is different tissues working together.",
+      "members": [
+        {
+          "label": "Tissue",
+          "level": "1-5",
+          "ids": [
+            "w1q22"
+          ]
+        },
+        {
+          "label": "Organ",
+          "level": "1-5",
+          "ids": [
+            "w1q23"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Independent or dependent variable?",
+      "explain": "The independent variable is what you change on purpose. The dependent variable is what you measure.",
+      "members": [
+        {
+          "label": "Independent",
+          "level": "1-4",
+          "ids": [
+            "w1q108"
+          ]
+        },
+        {
+          "label": "Baseline and fair test",
+          "level": "1-4",
+          "ids": [
+            "w1q110",
+            "w1q107"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cooling or warming response?",
+      "explain": "Too hot: sweating and wider blood vessels near the skin. Too cold: shivering and narrower blood vessels.",
+      "members": [
+        {
+          "label": "Cooling",
+          "level": "1-5",
+          "ids": [
+            "w1q26"
+          ]
+        },
+        {
+          "label": "Warming",
+          "level": "1-5",
+          "ids": [
+            "w1q27"
+          ]
+        }
+      ]
+    }
   ],
 
-  /* BECOME IT: the player becomes a molecule and must cross the membrane the way it really does.
-     "hereCrowd" and "thereCrowd" set how crowded each side looks (more dots = more crowded).
-     Door "kind" sets its look: lipid, protein, pump, or flow. A pump door also needs ATP. */
+  /* BECOME IT: the player becomes something and must pick the doorway that shows what really happens. */
   "become": [
-    { "id": "b-oxygen", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "you": "an oxygen molecule (O₂)", "short": "O₂", "color": "#9fe0ff",
-      "goal": "Get into the cell.", "here": "Outside the cell", "there": "Inside the cell", "what": "oxygen", "hereCrowd": 16, "thereCrowd": 4,
-      "doors": [ { "kind": "lipid", "label": "Slip between the phospholipids", "ok": true },
-                 { "kind": "protein", "label": "Transport protein", "ok": false, "why": "Oxygen is small enough to slip straight through the lipid layer. It does not need a transport protein." },
-                 { "kind": "pump", "label": "Pump (needs ATP)", "ok": false, "why": "You are moving from the crowded side to the less crowded side, so no energy is needed." } ],
-      "explain": "Diffusion: small molecules like oxygen move from the crowded side to the less crowded side, straight through the membrane." },
-    { "id": "b-glucose", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "you": "a glucose molecule", "short": "Glucose", "color": "#ffd98a",
-      "goal": "Get into the cell.", "here": "Outside the cell", "there": "Inside the cell", "what": "glucose", "hereCrowd": 16, "thereCrowd": 4, "atp": true,
-      "doors": [ { "kind": "lipid", "label": "Slip between the phospholipids", "ok": false, "why": "Glucose is too large to slip between the phospholipids. It needs a transport protein." },
-                 { "kind": "protein", "label": "Transport protein", "ok": true },
-                 { "kind": "pump", "label": "Pump (needs ATP)", "ok": false, "why": "You are moving from the crowded side to the less crowded side, so no energy is needed." } ],
-      "explain": "Facilitated diffusion: glucose moves from the crowded side to the less crowded side through a transport protein, with no energy." },
-    { "id": "b-water-in", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "you": "a water molecule (H₂O)", "short": "H₂O", "color": "#7fb7e6",
-      "goal": "Which way will water flow?", "here": "Outside the cell", "there": "Inside the cell", "what": "dissolved salt", "dotColor": "#f2f7f5", "hereCrowd": 4, "thereCrowd": 16,
-      "doors": [ { "kind": "flow", "label": "Water flows INTO the cell", "ok": true },
-                 { "kind": "flow", "label": "Water flows OUT of the cell", "ok": false, "why": "Water moves toward the side with MORE dissolved salt. Look at which side has more salt." },
-                 { "kind": "pump", "label": "Wait for a pump (ATP)", "ok": false, "why": "Osmosis never needs energy. Water moves on its own toward the saltier side." } ],
-      "explain": "Osmosis: water moves across the membrane toward the side with more dissolved salt." },
-    { "id": "b-water-out", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "you": "a water molecule (H₂O)", "short": "H₂O", "color": "#7fb7e6",
-      "goal": "Which way will water flow?", "here": "Inside the cell", "there": "Outside the cell", "what": "dissolved salt", "dotColor": "#f2f7f5", "hereCrowd": 4, "thereCrowd": 16,
-      "doors": [ { "kind": "flow", "label": "Water flows OUT of the cell", "ok": true },
-                 { "kind": "flow", "label": "Water flows INTO the cell", "ok": false, "why": "Water moves toward the side with MORE dissolved salt. Look at which side has more salt." },
-                 { "kind": "pump", "label": "Wait for a pump (ATP)", "ok": false, "why": "Osmosis never needs energy. Water moves on its own toward the saltier side." } ],
-      "explain": "Osmosis: the salty water outside pulls water out, so a cell in salty water loses water and shrinks." },
-    { "id": "b-sodium-in", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "you": "a sodium ion (Na⁺)", "short": "Na⁺", "color": "#c59cff",
-      "goal": "Get into the nerve cell.", "here": "Outside the nerve cell", "there": "Inside the nerve cell", "what": "sodium", "hereCrowd": 16, "thereCrowd": 4, "atp": true,
-      "doors": [ { "kind": "protein", "label": "Transport protein", "ok": true },
-                 { "kind": "pump", "label": "Pump (needs ATP)", "ok": false, "why": "No energy is needed here. You are moving from the crowded side to the less crowded side, so you can flow through a transport protein." },
-                 { "kind": "lipid", "label": "Slip between the phospholipids", "ok": false, "why": "Ions carry an electric charge, so they cannot slip through the lipid layer." } ],
-      "explain": "Sodium moved from the crowded side to the less crowded side through a transport protein. That is facilitated diffusion, with no ATP." },
-    { "id": "b-protein-er", "code": "BIO.B.2.2.2", "steels": "3.1.9-12.A", "you": "a new protein that will leave the cell", "short": "Protein", "color": "#ffd166",
-      "goal": "Which organelle has ribosomes on its surface and helps make proteins like you?",
-      "doors": [ { "kind": "organelle", "label": "Rough endoplasmic reticulum", "ok": true },
-                 { "kind": "organelle", "label": "Mitochondrion", "ok": false, "why": "Mitochondria release energy from food. They do not make proteins for export." },
-                 { "kind": "organelle", "label": "Nucleus", "ok": false, "why": "The nucleus holds the DNA. Proteins that will leave the cell are made on the rough ER." } ],
-      "explain": "The rough ER has ribosomes on its surface and helps make proteins that will mostly leave the cell. Vesicles then carry them to the Golgi apparatus." },
-    { "id": "b-protein-golgi", "code": "BIO.A.4.1.3", "steels": "3.1.9-12.A", "you": "a protein inside a vesicle", "short": "Protein", "color": "#ffd166",
-      "goal": "Which organelle does the final processing before you leave the cell?",
-      "doors": [ { "kind": "organelle", "label": "Golgi apparatus", "ok": true },
-                 { "kind": "organelle", "label": "Ribosome", "ok": false, "why": "Ribosomes build the amino acid chain. The final processing happens somewhere else." },
-                 { "kind": "organelle", "label": "Nucleus", "ok": false, "why": "The nucleus holds the DNA. It does not process proteins for release." } ],
-      "explain": "The Golgi apparatus does the final processing, then packs the protein into a vesicle that carries it to the plasma membrane." },
-    { "id": "b-sodium-out", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "you": "a sodium ion (Na⁺)", "short": "Na⁺", "color": "#c59cff",
-      "goal": "Get out of the nerve cell.", "here": "Inside the nerve cell", "there": "Outside the nerve cell", "what": "sodium", "hereCrowd": 4, "thereCrowd": 16, "atp": true,
-      "doors": [ { "kind": "pump", "label": "Pump (needs ATP)", "ok": true },
-                 { "kind": "protein", "label": "Transport protein", "ok": false, "why": "A transport protein only lets sodium flow from the crowded side to the less crowded side. You need to go the other way." },
-                 { "kind": "lipid", "label": "Slip between the phospholipids", "ok": false, "why": "Ions carry an electric charge, so they cannot slip through the lipid layer." } ],
-      "explain": "Active transport: the pump used energy from ATP to push sodium from the less crowded side to the more crowded side." }
+    {
+      "id": "b-fold",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "you": "a brand-new chain of amino acids",
+      "short": "Chain",
+      "color": "#c59cff",
+      "goal": "What decides the shape you will fold into?",
+      "doors": [
+        {
+          "kind": "protein",
+          "label": "The order of my amino acids",
+          "ok": true
+        },
+        {
+          "kind": "flow",
+          "label": "The size of the cell",
+          "ok": false,
+          "why": "Cell size does not set a protein's shape. The amino acid order does."
+        },
+        {
+          "kind": "organelle",
+          "label": "How many ribosomes are nearby",
+          "ok": false,
+          "why": "Ribosomes link amino acids, but the ORDER of the amino acids decides how the chain folds."
+        }
+      ],
+      "explain": "The amino acid order, set by the DNA through mRNA, decides how the chain folds. The shape decides the job."
+    },
+    {
+      "id": "b-job",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "you": "a protein whose gene changed, so one of your amino acids is different",
+      "short": "Protein",
+      "color": "#ffd166",
+      "goal": "What happens to your job?",
+      "doors": [
+        {
+          "kind": "protein",
+          "label": "My shape may change, so I may not work right",
+          "ok": true
+        },
+        {
+          "kind": "flow",
+          "label": "Nothing: one amino acid never matters",
+          "ok": false,
+          "why": "One amino acid can change how the protein behaves. In sickle cell disease, one change makes hemoglobin molecules stick together into long fibers."
+        },
+        {
+          "kind": "organelle",
+          "label": "I turn back into DNA",
+          "ok": false,
+          "why": "Proteins are not turned back into DNA. The change in the DNA is what changed the protein."
+        }
+      ],
+      "explain": "DNA sets the amino acid order, the order sets the shape, and the shape sets the job. A DNA change can change all three."
+    },
+    {
+      "id": "b-heart",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "you": "a runner's heart",
+      "short": "Heart",
+      "color": "#ff6b6b",
+      "goal": "The runner's muscles need more oxygen during the race. What do you do?",
+      "doors": [
+        {
+          "kind": "flow",
+          "label": "Beat faster",
+          "ok": true
+        },
+        {
+          "kind": "pump",
+          "label": "Beat slower",
+          "ok": false,
+          "why": "A slower heart would deliver LESS oxygen just when the muscles need more."
+        },
+        {
+          "kind": "protein",
+          "label": "Stop until the race ends",
+          "ok": false,
+          "why": "The heart must keep pumping. It speeds up to deliver more oxygen."
+        }
+      ],
+      "explain": "Heart rate rises during exercise to deliver more oxygen. Afterward, feedback brings it back toward the resting rate."
+    },
+    {
+      "id": "b-pupil",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "you": "the iris of an eye",
+      "short": "Iris",
+      "color": "#7fd4ff",
+      "goal": "The room suddenly gets very bright. What do you do to the pupil?",
+      "doors": [
+        {
+          "kind": "flow",
+          "label": "Make the pupil smaller",
+          "ok": true
+        },
+        {
+          "kind": "pump",
+          "label": "Make the pupil bigger",
+          "ok": false,
+          "why": "A bigger pupil lets in MORE light. In bright light the eye needs less."
+        },
+        {
+          "kind": "protein",
+          "label": "Do nothing",
+          "ok": false,
+          "why": "The eye responds to the change. The iris shrinks the pupil to let in less light."
+        }
+      ],
+      "explain": "Negative feedback: bright light makes the pupil smaller, and dim light makes it bigger, keeping the light entering the eye in a good range."
+    },
+    {
+      "id": "b-stomata-dry",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "you": "the tiny pores (stomata) on a leaf",
+      "short": "Stomata",
+      "color": "#7be06a",
+      "goal": "The soil is very dry and the air is hot. What do you do?",
+      "doors": [
+        {
+          "kind": "flow",
+          "label": "Close to save water",
+          "ok": true
+        },
+        {
+          "kind": "pump",
+          "label": "Open wide",
+          "ok": false,
+          "why": "Open stomata let water vapor escape. In dry conditions the plant would lose too much water."
+        },
+        {
+          "kind": "protein",
+          "label": "Do nothing",
+          "ok": false,
+          "why": "Plants respond to dry conditions. Closing the stomata slows water loss."
+        }
+      ],
+      "explain": "Stomata close when water is scarce, which slows water loss and helps the plant keep its water balance."
+    },
+    {
+      "id": "b-stomata-wet",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "you": "the tiny pores (stomata) on a leaf",
+      "short": "Stomata",
+      "color": "#7be06a",
+      "goal": "Water is plentiful and the sun is shining. What do you do?",
+      "doors": [
+        {
+          "kind": "flow",
+          "label": "Open to let carbon dioxide in",
+          "ok": true
+        },
+        {
+          "kind": "pump",
+          "label": "Close tightly all day",
+          "ok": false,
+          "why": "Closed stomata keep carbon dioxide out, so the plant could not make much food."
+        },
+        {
+          "kind": "protein",
+          "label": "Fall off the leaf",
+          "ok": false,
+          "why": "Stomata open and close. With plenty of water they open to take in carbon dioxide."
+        }
+      ],
+      "explain": "With enough water, stomata open so carbon dioxide can enter for photosynthesis. When water runs low, they close."
+    },
+    {
+      "id": "b-sweat",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "you": "the sweat glands in a player's skin",
+      "short": "Sweat glands",
+      "color": "#9fe0ff",
+      "goal": "Body temperature rises above the set point during a game. What do you do?",
+      "doors": [
+        {
+          "kind": "flow",
+          "label": "Release sweat",
+          "ok": true
+        },
+        {
+          "kind": "pump",
+          "label": "Stop releasing sweat",
+          "ok": false,
+          "why": "Without sweat, the body would keep heating up."
+        },
+        {
+          "kind": "protein",
+          "label": "Make the muscles shiver",
+          "ok": false,
+          "why": "Shivering makes heat. The body is already too warm."
+        }
+      ],
+      "explain": "Sweat evaporates and cools the skin, bringing body temperature back toward the set point: negative feedback."
+    },
+    {
+      "id": "b-variable",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "you": "a student planning a heart-rate investigation",
+      "short": "You",
+      "color": "#ffd166",
+      "goal": "Which variable will you change on purpose?",
+      "doors": [
+        {
+          "kind": "flow",
+          "label": "Minutes of jumping jacks",
+          "ok": true
+        },
+        {
+          "kind": "pump",
+          "label": "Heart rate",
+          "ok": false,
+          "why": "Heart rate is what you MEASURE, the dependent variable."
+        },
+        {
+          "kind": "protein",
+          "label": "Room temperature",
+          "ok": false,
+          "why": "Room temperature should stay the same. It is a controlled variable."
+        }
+      ],
+      "explain": "The independent variable is the one you change (minutes of exercise). You measure heart rate and keep everything else the same."
+    }
   ],
 
-  /* CATCH GAMES (Build It): answers float around an arena. Students jump into the answer that matches
-     the highlighted cue and dodge the rest. "steps" lists each cue and the answer it needs.
-     "wrong" gives a hint for a specific wrong catch. */
+  /* CATCH GAMES (Build It): students jump into the answer that matches the highlighted cue. */
   "catches": [
-    { "id": "c-transcribe", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "short": "Transcription",
-      "title": "In the nucleus: copy the gene's DNA into mRNA.", "cueLabel": "DNA template", "builtLabel": "mRNA", "cueWord": "DNA letter", "tokenWord": "RNA base",
+    {
+      "id": "c-transcribe",
+      "code": "3.1.9-12.A",
+      "topic": "dna-to-protein",
+      "short": "Transcription",
+      "title": "Copy the gene's DNA into mRNA.",
+      "cueLabel": "DNA template",
+      "builtLabel": "mRNA",
+      "cueWord": "DNA letter",
+      "tokenWord": "RNA base",
       "rule": "Pairing rule, DNA to RNA: A pairs with U, T pairs with A, G pairs with C, C pairs with G.",
-      "choices": ["A", "U", "G", "C", "T"],
-      "steps": [ { "cue": "T", "need": "A" }, { "cue": "A", "need": "U" }, { "cue": "C", "need": "G" },
-                 { "cue": "C", "need": "G" }, { "cue": "G", "need": "C" }, { "cue": "A", "need": "U" },
-                 { "cue": "A", "need": "U" }, { "cue": "A", "need": "U" }, { "cue": "A", "need": "U" } ],
+      "choices": [
+        "A",
+        "U",
+        "G",
+        "C",
+        "T"
+      ],
+      "steps": [
+        {
+          "cue": "T",
+          "need": "A"
+        },
+        {
+          "cue": "A",
+          "need": "U"
+        },
+        {
+          "cue": "C",
+          "need": "G"
+        },
+        {
+          "cue": "C",
+          "need": "G"
+        },
+        {
+          "cue": "G",
+          "need": "C"
+        },
+        {
+          "cue": "A",
+          "need": "U"
+        },
+        {
+          "cue": "A",
+          "need": "U"
+        },
+        {
+          "cue": "A",
+          "need": "U"
+        },
+        {
+          "cue": "A",
+          "need": "U"
+        }
+      ],
       "hint": "Check the pairing rule for the highlighted DNA letter.",
-      "wrong": { "T": "RNA has no T. It uses U (uracil) instead." },
-      "explain": "Transcription: you copied the DNA code TAC CGA AAA into the mRNA AUG GCU UUU." },
-    { "id": "c-translate", "code": "BIO.B.2.2.1", "steels": "3.1.9-12.A", "short": "Translation",
-      "title": "At the ribosome: grab the tRNA whose anticodon pairs with each codon. Each tRNA brings its amino acid.", "cueLabel": "mRNA codons", "builtLabel": "Protein", "cueWord": "codon", "tokenWord": "tRNA", "sep": " – ",
-      "rule": "Anticodon pairing rule: A pairs with U, and G pairs with C. Example: codon AUG pairs with anticodon UAC. The stop codon UAA has no tRNA: choose Stop (UAA).",
-      "choices": ["UAC Met", "CGA Ala", "AAA Phe", "CCU Gly", "AGA Ser", "AUG Tyr", "UUU Lys", "Stop (UAA)"],
-      "steps": [ { "cue": "AUG", "need": "UAC Met", "bead": "Met" }, { "cue": "GCU", "need": "CGA Ala", "bead": "Ala" },
-                 { "cue": "UUU", "need": "AAA Phe", "bead": "Phe" }, { "cue": "UAA", "need": "Stop (UAA)", "bead": "" } ],
-      "clearTrail": true, "startMsg": "You delivered the mRNA to a ribosome. Now bring in the tRNAs to build the protein.",
-      "hint": "Pair each letter of the highlighted codon: A with U, G with C.",
-      "wrong": { "AUG Tyr": "That anticodon is a copy of the codon, not its partner. Pair each letter: A with U, G with C.",
-                 "UUU Lys": "That anticodon is a copy of the codon, not its partner. Pair each letter: A with U, G with C.",
-                 "Stop (UAA)": "Not yet. Stop (UAA) is only for the stop codon UAA. No tRNA pairs with a stop codon; a release factor ends the protein there." },
-      "explain": "Translation: tRNAs with anticodons UAC, CGA, and AAA brought Met, Ala, and Phe. The stop codon UAA released the finished chain." }
+      "wrong": {
+        "T": "RNA has no T. It uses U (uracil) instead."
+      },
+      "explain": "Transcription: you copied the DNA code TAC CGA AAA into the mRNA AUG GCU UUU. The mRNA now carries the gene's instructions for the amino acid order."
+    },
+    {
+      "id": "c-jobs",
+      "code": "3.1.9-12.A",
+      "topic": "protein-shape",
+      "short": "Protein jobs",
+      "title": "Each protein's shape fits a job. Grab the job that matches each protein.",
+      "cueLabel": "Protein",
+      "builtLabel": "Jobs matched",
+      "cueWord": "protein",
+      "tokenWord": "job",
+      "rule": "Proteins speed up reactions, carry materials, build structures, and send signals.",
+      "choices": [
+        "Speeds up a reaction",
+        "Carries materials",
+        "Builds structure",
+        "Sends a signal",
+        "Stores genes"
+      ],
+      "steps": [
+        {
+          "cue": "A digestive protein that breaks food apart quickly",
+          "need": "Speeds up a reaction"
+        },
+        {
+          "cue": "A blood protein that carries oxygen",
+          "need": "Carries materials"
+        },
+        {
+          "cue": "A tough protein that makes tendons and skin strong",
+          "need": "Builds structure"
+        },
+        {
+          "cue": "A protein released by one organ that tells other organs what to do",
+          "need": "Sends a signal"
+        }
+      ],
+      "hint": "Ask what the protein does for the body.",
+      "wrong": {
+        "Stores genes": "Genes are stored in DNA, not in proteins."
+      },
+      "explain": "Different shapes, different jobs: proteins speed up reactions, carry materials, build structures, and send signals. That is why a cell needs many kinds."
+    }
   ],
 
-  /* READ THE DATA: a bar graph shown in the level. Students stand under the bar that answers. */
+  /* READ THE DATA: a bar graph shown in the level (illustrative classroom-style numbers). Students stand under the bar that answers. */
   "data": [
-    { "id": "d-potato", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C",
-      "title": "Potato cores in sugar solutions", "xlabel": "Sugar solution (M)", "ylabel": "Change in mass after 24 hours (%)",
-      "categories": ["0.0 M", "0.2 M", "0.4 M", "0.6 M", "0.8 M"], "values": [18, 9, -1, -8, -14],
+    {
+      "id": "d-heartrate",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "title": "Heart rate before, during, and after exercise",
+      "xlabel": "Time",
+      "ylabel": "Heart rate (beats per minute)",
+      "categories": [
+        "Resting",
+        "1 min exercise",
+        "3 min exercise",
+        "2 min after",
+        "5 min after"
+      ],
+      "values": [
+        72,
+        110,
+        140,
+        100,
+        76
+      ],
       "questions": [
-        { "prompt": "A student soaked potato cores in sugar solutions for 24 hours. In which solution did water move INTO the potato cells the most?", "answer": 0,
-          "hint": "Water moving in makes the cells gain mass. Find the biggest gain.", "explain": "In plain water (0.0 M) the cores gained the most mass, because water moved in by osmosis." },
-        { "prompt": "In which solution did the potato cells lose the most water?", "answer": 4,
-          "hint": "Losing water makes the cells lose mass. Find the biggest loss.", "explain": "The 0.8 M solution had the most sugar, so water left the cells by osmosis." },
-        { "prompt": "Which solution is closest to the concentration inside the potato cells?", "answer": 2,
-          "hint": "When inside and outside match, water moves in and out equally, so the mass hardly changes.", "explain": "At 0.4 M the mass barely changed (-1%), so the inside of the cells is close to 0.4 M." } ] }
+        {
+          "prompt": "Which bar is the baseline the student should compare the other measurements to?",
+          "answer": 0,
+          "hint": "The baseline is measured before anything is changed.",
+          "explain": "The resting heart rate (72) is the baseline."
+        },
+        {
+          "prompt": "When was the body's response to exercise the strongest?",
+          "answer": 2,
+          "hint": "Find the tallest bar.",
+          "explain": "After 3 minutes of exercise the heart rate was highest (140), delivering the most oxygen to the muscles."
+        },
+        {
+          "prompt": "Which bar is the best evidence that negative feedback brought the heart rate back toward normal?",
+          "answer": 4,
+          "hint": "Look for the measurement closest to the resting rate after exercise ended.",
+          "explain": "Five minutes after exercise the heart rate (76) was almost back to the resting rate (72)."
+        }
+      ]
+    }
   ],
 
   /* MAZE: walls of three doorways; only the doorway for the next step opens. */
   "mazes": [
-    { "id": "maze-levels", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "title": "Zoom out through the body: go through the doorway for the next level up",
-      "start": "Organelle",
+    {
+      "id": "maze-levels",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "title": "Zoom out through the body: go through the doorway for the next level up",
+      "start": "Cell",
       "steps": [
-        { "label": "Cell", "hint": "What are organelles found inside?", "why": "Organelles, like mitochondria, work together inside a cell." },
-        { "label": "Tissue", "hint": "What do many similar cells form when they work together?", "why": "Similar cells working together form a tissue, like heart muscle." },
-        { "label": "Organ", "hint": "What is made of several kinds of tissue?", "why": "Different tissues together form an organ, like the heart." },
-        { "label": "Organ system", "hint": "What do organs form when they work together?", "why": "Organs working together form an organ system, like the circulatory system." },
-        { "label": "Organism", "hint": "What is the whole living thing made of all its systems?", "why": "All the organ systems together make one organism, a whole person." }
+        {
+          "label": "Tissue",
+          "hint": "What do many similar cells form when they work together?",
+          "why": "Similar cells working together form a tissue, like heart muscle."
+        },
+        {
+          "label": "Organ",
+          "hint": "What is made of several kinds of tissue?",
+          "why": "Different tissues together form an organ, like the heart."
+        },
+        {
+          "label": "Organ system",
+          "hint": "What do organs form when they work together?",
+          "why": "Organs working together form an organ system, like the circulatory system."
+        },
+        {
+          "label": "Organism",
+          "hint": "What is the whole living thing made of all its systems?",
+          "why": "All the organ systems together make one organism, a whole person."
+        }
       ],
-      "extra": ["Organelle", "Molecule"],
-      "explain": "Organelles make up cells, cells form tissues, tissues form organs, organs form organ systems, and organ systems make an organism." }
-  ],
-  /* SEQUENCE: touch the steps in the correct order. */
-  "sequences": [
-    { "id": "s-exo", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "title": "Exocytosis: ship a protein out of the cell",
-      "steps": ["The Golgi apparatus packs the protein into a vesicle", "The vesicle travels to the plasma membrane", "The vesicle fuses with the plasma membrane", "The protein is released outside the cell"],
-      "hint": "Follow the protein from inside the cell to the outside.", "explain": "Exocytosis: a vesicle fuses with the plasma membrane and releases its contents outside the cell." },
-    { "id": "seq-levels", "code": "BIO.A.1.2.2", "steels": "3.1.9-12.B", "title": "Zoom out: put the levels of organization in order, smallest first",
-      "steps": ["Organelle (a mitochondrion)", "Cell (a muscle cell)", "Tissue (heart muscle)", "Organ (the heart)", "Organ system (the circulatory system)", "Organism (a whole person)"],
-      "hint": "Start with the smallest part and build up: each level is made of the one before it.", "explain": "Organelles make up cells, cells form tissues, tissues form organs, organs form organ systems, and organ systems make an organism." },
-    { "id": "seq-loop", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C", "loop": true, "title": "Fix the feedback loop: connect the parts in order",
-      "steps": ["Stimulus: body temperature rises above normal", "Receptors in the skin sense the change", "Control center: the brain compares it to the set point", "Effectors: sweat glands release sweat", "Response: body temperature drops back to normal"],
-      "hint": "Follow the signal: something changes, it is sensed, a decision is made, and the body acts.", "explain": "Negative feedback: the response reverses the change and brings the body back to its set point. The loop is ready to run again." },
-    { "id": "s-endo", "code": "BIO.A.4.1.2", "steels": "3.1.9-12.C", "title": "Endocytosis: bring a large particle into the cell",
-      "steps": ["The plasma membrane folds inward around the particle", "The membrane pinches off, forming a vesicle", "The vesicle carries the particle into the cell"],
-      "hint": "Follow the particle from outside the cell to the inside.", "explain": "Endocytosis: the membrane folds inward, wraps the particle, and pinches off into a vesicle." }
+      "extra": [
+        "Molecule",
+        "Population"
+      ],
+      "explain": "Cells form tissues, tissues form organs, organs form organ systems, and organ systems make an organism."
+    }
   ],
 
-  /* BALANCE: keep a body measurement inside its normal range by using the body's responses.
-     "elevator": the platform height IS the measurement. "boss": the boss keeps pushing it away.
-     "controls" are switches the player presses (E). A positive "delta" raises the value. */
+  /* SEQUENCE: touch the steps in the correct order. */
+  "sequences": [
+    {
+      "id": "seq-levels",
+      "code": "3.1.9-12.B",
+      "topic": "organization",
+      "title": "Zoom out: put the levels of organization in order, smallest first",
+      "steps": [
+        "Cell (a muscle cell)",
+        "Tissue (heart muscle)",
+        "Organ (the heart)",
+        "Organ system (the circulatory system)",
+        "Organism (a whole person)"
+      ],
+      "hint": "Start with the smallest unit of life and build up: each level is made of the one before it.",
+      "explain": "Cells form tissues, tissues form organs, organs form organ systems, and organ systems make an organism."
+    },
+    {
+      "id": "seq-loop",
+      "code": "3.1.9-12.C",
+      "topic": "feedback",
+      "loop": true,
+      "title": "Fix the feedback loop: connect the parts in order",
+      "steps": [
+        "Stimulus: body temperature rises above normal",
+        "Receptors in the skin sense the change",
+        "Control center: the brain compares it to the set point",
+        "Effectors: sweat glands release sweat",
+        "Response: body temperature drops back to normal"
+      ],
+      "hint": "Follow the signal: something changes, it is sensed, a decision is made, and the body acts.",
+      "explain": "Negative feedback: the response reverses the change and brings the body back to its set point. The loop is ready to run again."
+    },
+    {
+      "id": "s-plan",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "title": "Plan a fair test: how does exercise affect heart rate?",
+      "steps": [
+        "Ask a question: how does exercise change heart rate?",
+        "Measure the resting heart rate (the baseline)",
+        "Change one variable: do 2 minutes of jumping jacks",
+        "Measure heart rate again, keeping everything else the same",
+        "Keep measuring while resting to see if it returns to baseline",
+        "Compare the data to the baseline and draw a conclusion"
+      ],
+      "hint": "Start with a question and a baseline. Change only one thing.",
+      "explain": "A fair investigation has a baseline, one changed variable, the same conditions otherwise, and data that are compared at the end."
+    },
+    {
+      "id": "s-pupil",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "loop": true,
+      "title": "Bright light: put the feedback loop in order",
+      "steps": [
+        "Stimulus: bright light shines into the eye",
+        "Receptors in the eye sense the extra light",
+        "Control center: the brain compares it to what the eye needs",
+        "Effector: muscles in the iris make the pupil smaller",
+        "Response: less light enters the eye"
+      ],
+      "hint": "Change, sense, decide, act, result.",
+      "explain": "Negative feedback: the pupil shrinks in bright light and widens in dim light, keeping the light reaching the eye in a safe range."
+    }
+  ],
+
+  /* BALANCE: keep a body measurement inside its normal range by using the body's responses. */
   "balances": [
-    { "id": "bal-glucose", "kind": "elevator", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C",
-      "title": "Keep blood glucose in the normal range. The platform rises and falls with it.", "what": "Blood glucose", "unit": "mg/dL",
-      "start": 95, "min": 40, "max": 180, "band": [70, 110], "danger": [52, 150], "hold": 10, "drift": -2.5,
-      "event": { "every": 6, "delta": 35, "msg": "You ate a snack: blood glucose is rising!" },
-      "controls": [ { "label": "Pancreas: tell cells to take in glucose", "delta": -28 },
-                    { "label": "Liver: release stored glucose", "delta": 28 } ],
-      "tooHigh": "Too much glucose in the blood! Tell the cells to take some in.", "tooLow": "Blood glucose is too low! Release stored glucose.",
-      "explain": "Negative feedback: when glucose rose, the body lowered it, and when it fell, the body raised it, keeping it near the set point." },
-    { "id": "bal-temp", "kind": "boss", "name": "The Imbalance", "code": "BIO.A.4.2.1", "steels": "3.1.9-12.C",
-      "title": "The Imbalance keeps heating and chilling the body. Bring the temperature back to normal and hold it there.", "what": "Body temperature", "unit": "°C",
-      "start": 37, "min": 34, "max": 40, "band": [36.5, 37.5], "danger": [35.4, 38.6], "hold": 4, "push": 0.22, "hp": 4, "set": 37,
-      "controls": [ { "label": "Sweat", "delta": -0.7 }, { "label": "Widen blood vessels near the skin", "delta": -0.5 },
-                    { "label": "Shiver", "delta": 0.7 }, { "label": "Narrow blood vessels near the skin", "delta": 0.5 } ],
+    {
+      "id": "bal-glucose",
+      "kind": "elevator",
+      "code": "3.1.9-12.C",
+      "title": "Keep blood glucose in the normal range. The platform rises and falls with it.",
+      "what": "Blood glucose",
+      "unit": "mg/dL",
+      "start": 95,
+      "min": 40,
+      "max": 180,
+      "band": [
+        70,
+        110
+      ],
+      "danger": [
+        52,
+        150
+      ],
+      "hold": 10,
+      "drift": -2.5,
+      "event": {
+        "every": 6,
+        "delta": 35,
+        "msg": "You ate a snack: blood glucose is rising!"
+      },
+      "controls": [
+        {
+          "label": "Pancreas: tell cells to take in glucose",
+          "delta": -28
+        },
+        {
+          "label": "Liver: release stored glucose",
+          "delta": 28
+        }
+      ],
+      "tooHigh": "Too much glucose in the blood! Tell the cells to take some in.",
+      "tooLow": "Blood glucose is too low! Release stored glucose.",
+      "explain": "Negative feedback: when glucose rose, the body lowered it, and when it fell, the body raised it, keeping it near the set point.",
+      "topic": "feedback"
+    },
+    {
+      "id": "bal-temp",
+      "kind": "boss",
+      "name": "The Imbalance",
+      "code": "3.1.9-12.C",
+      "title": "The Imbalance keeps heating and chilling the body. Bring the temperature back to normal and hold it there.",
+      "what": "Body temperature",
+      "unit": "°C",
+      "start": 37,
+      "min": 34,
+      "max": 40,
+      "band": [
+        36.5,
+        37.5
+      ],
+      "danger": [
+        35.4,
+        38.6
+      ],
+      "hold": 4,
+      "push": 0.22,
+      "hp": 4,
+      "set": 37,
+      "controls": [
+        {
+          "label": "Sweat",
+          "delta": -0.7
+        },
+        {
+          "label": "Widen blood vessels near the skin",
+          "delta": -0.5
+        },
+        {
+          "label": "Shiver",
+          "delta": 0.7
+        },
+        {
+          "label": "Narrow blood vessels near the skin",
+          "delta": 0.5
+        }
+      ],
       "wrongHot": "You are already too hot. That response makes more heat, so the temperature runs even higher.",
       "wrongCold": "You are already too cold. That response gets rid of heat, so the temperature drops even lower.",
-      "tooHigh": "Overheating! Cool the body down.", "tooLow": "Too cold! Warm the body up.",
-      "explain": "Negative feedback: sweating and widening blood vessels cool the body; shivering and narrowing blood vessels warm it. Each response reverses the change." }
+      "tooHigh": "Overheating! Cool the body down.",
+      "tooLow": "Too cold! Warm the body up.",
+      "explain": "Negative feedback: sweating and widening blood vessels cool the body; shivering and narrowing blood vessels warm it. Each response reverses the change.",
+      "topic": "feedback"
+    }
   ],
 
   /* WORD BANK: grab the word that completes each sentence. Extra words are there on purpose. */
   "wordbanks": [
-    { "id": "wb-membrane", "steels": "3.1.9-12.C",
-      "words": ["phospholipids", "transport proteins", "selectively permeable", "ATP", "nucleus", "glucose"],
+    {
+      "id": "wb-investigate",
+      "code": "3.1.9-12.C",
+      "topic": "investigation",
+      "words": [
+        "independent variable",
+        "dependent variable",
+        "controlled variables",
+        "baseline",
+        "set point",
+        "receptor"
+      ],
       "sentences": [
-        { "text": "The plasma membrane is a double layer of ___ with proteins set into it.", "answer": "phospholipids", "code": "BIO.A.4.1.1", "explain": "The plasma membrane is a phospholipid bilayer." },
-        { "text": "Glucose and ions cross the membrane with help from ___.", "answer": "transport proteins", "code": "BIO.A.4.1.2", "explain": "Transport proteins help glucose and ions cross the membrane." },
-        { "text": "The membrane lets some substances through and keeps others out, so it is ___.", "answer": "selectively permeable", "code": "BIO.A.4.1.1", "explain": "Selectively permeable means the membrane controls what passes through." },
-        { "text": "A pump moves ions from the less crowded side to the more crowded side using energy from ___.", "answer": "ATP", "code": "BIO.A.4.1.2", "explain": "ATP provides the energy for active transport." } ] }
+        {
+          "text": "In a heart-rate test, minutes of exercise is the ___ because the student changes it on purpose.",
+          "answer": "independent variable",
+          "code": "3.1.9-12.C",
+          "explain": "The variable you change on purpose is the independent variable."
+        },
+        {
+          "text": "Heart rate is the ___ because it is what the student measures.",
+          "answer": "dependent variable",
+          "code": "3.1.9-12.C",
+          "explain": "The variable you measure is the dependent variable."
+        },
+        {
+          "text": "The room temperature and type of exercise stay the same, so they are ___.",
+          "answer": "controlled variables",
+          "code": "3.1.9-12.C",
+          "explain": "Controlled variables are kept the same so the test is fair."
+        },
+        {
+          "text": "The heart rate measured before exercise is the ___ that later results are compared to.",
+          "answer": "baseline",
+          "code": "3.1.9-12.C",
+          "explain": "The baseline is the starting measurement used for comparison."
+        }
+      ]
+    }
   ],
 
   /* LAB LOCK: an escape-room code. Each clue gives one digit (1 to 5). No timer. */
   "lablocks": [
-    { "id": "lock-1-4", "title": "Lab Lock",
+    {
+      "id": "lock-1-4",
+      "title": "Lab Lock",
       "clues": [
-        { "prompt": "Clue 1: How many layers of phospholipids make up the plasma membrane?", "answer": 2, "code": "BIO.A.4.1.1",
-          "hint": "Think about the word bilayer.", "explain": "Bi- means two: the membrane is a phospholipid bilayer." },
-        { "prompt": "Clue 2: How many of these use energy from the cell? Diffusion, osmosis, facilitated diffusion, sodium pump, endocytosis, exocytosis.", "answer": 3, "code": "BIO.A.4.1.2",
-          "hint": "Passive transport uses no energy. Which ones are not passive?", "explain": "The sodium pump, endocytosis, and exocytosis use energy. The other three are passive transport." },
-        { "prompt": "Clue 3: Look back at the potato data. In how many solutions did the potato cores GAIN mass?", "answer": 2, "code": "BIO.A.4.1.2",
-          "figure": { "type": "bars", "categories": ["0.0 M", "0.2 M", "0.4 M", "0.6 M", "0.8 M"], "values": [18, 9, -1, -8, -14], "ylabel": "Change in mass (%)" },
-          "hint": "Count only the bars above zero.", "explain": "The cores gained mass in 0.0 M and 0.2 M, where the solution had less sugar than the inside of the cells." } ],
+        {
+          "prompt": "Clue 1: In a fair test, how many variables should a student change on purpose?",
+          "answer": 1,
+          "code": "3.1.9-12.C",
+          "hint": "Change more than one and you cannot tell which one caused the result.",
+          "explain": "Only one: the independent variable. Everything else stays the same."
+        },
+        {
+          "prompt": "Clue 2: Resting heart rate was 72. After exercise, at which minute (1 to 5) was heart rate FIRST within 5 beats of the resting rate?",
+          "answer": 5,
+          "code": "3.1.9-12.C",
+          "figure": {
+            "type": "bars",
+            "categories": [
+              "1 min",
+              "2 min",
+              "3 min",
+              "4 min",
+              "5 min"
+            ],
+            "values": [
+              120,
+              104,
+              90,
+              80,
+              74
+            ],
+            "ylabel": "Heart rate after exercise"
+          },
+          "hint": "Find the first bar between 67 and 77.",
+          "explain": "At minute 5 the heart rate was 74, only 2 beats above the resting rate. Feedback brought it back."
+        },
+        {
+          "prompt": "Clue 3: How many of these are negative feedback responses? Sweating when hot, shivering when cold, pupils shrinking in bright light, thirst when the body is low on water, heart rate staying high forever after exercise.",
+          "answer": 4,
+          "code": "3.1.9-12.C",
+          "hint": "Negative feedback reverses a change. Which one never reverses?",
+          "explain": "Four of them reverse a change. A heart rate that never comes back down is not keeping balance."
+        }
+      ],
       "debrief": [
-        "Clue 1 linked to the membrane's structure: a phospholipid bilayer.",
-        "Clue 2 linked the transport types: pumps, endocytosis, and exocytosis use energy; diffusion, osmosis, and facilitated diffusion do not.",
-        "Clue 3 linked osmosis to data: the potato cores gained mass only in solutions with less sugar than the inside of their cells." ] }
+        "Clue 1 linked to fair tests: change only one variable.",
+        "Clue 2 linked data to feedback: heart rate returned toward its resting baseline.",
+        "Clue 3 linked responses to negative feedback: each one reverses a change."
+      ]
+    }
+  ],
+
+  /* SCAN: specimens to look at in the world (press E). Each teaches one word, saved to the Field Guide. */
+  "scans": [
+    {
+      "id": "s-frog",
+      "name": "Frog",
+      "look": "frog",
+      "color": "#5fbf5a",
+      "word": "Organism",
+      "def": "One whole living thing, made of all its organ systems working together.",
+      "note": "This frog is an ORGANISM: one whole living thing. Inside it, organ systems work together so it can hop, eat, breathe, and grow."
+    },
+    {
+      "id": "s1-cells",
+      "name": "Frog skin cells",
+      "look": "cell",
+      "color": "#9be36b",
+      "word": "Cell",
+      "def": "The basic unit of structure and function in a living thing.",
+      "note": "Zoom in on frog skin and you see CELLS, the smallest units of life. Every tissue, organ, and system is built from cells."
+    },
+    {
+      "id": "s1-muscle",
+      "name": "Frog leg muscle tissue",
+      "look": "chain",
+      "color": "#ff8fa0",
+      "word": "Tissue",
+      "def": "A group of similar cells working together.",
+      "note": "Thousands of similar muscle cells work together as muscle TISSUE. That is what powers the frog's jump."
+    },
+    {
+      "id": "s1-heart",
+      "name": "Frog heart",
+      "look": "blob",
+      "color": "#ff6b6b",
+      "word": "Organ",
+      "def": "Different tissues working together to do a job.",
+      "note": "The frog's heart is an ORGAN: muscle, nerve, and other tissues working together to pump blood."
+    },
+    {
+      "id": "s-turtle",
+      "name": "Turtle",
+      "look": "turtle",
+      "color": "#6a8a3a",
+      "word": "Organ system",
+      "def": "Organs working together to do a big job for the body.",
+      "note": "The turtle's heart, blood vessels, and blood make its circulatory ORGAN SYSTEM, which carries oxygen and food to every part of its body."
+    },
+    {
+      "id": "s-lily",
+      "name": "Lily pad",
+      "look": "lily",
+      "color": "#3f9a4a",
+      "word": "Plant organ",
+      "def": "A leaf, stem, or root: a plant structure made of several tissues.",
+      "note": "A lily pad is a leaf, a plant ORGAN. Its tissues capture sunlight and make food for the whole plant."
+    },
+    {
+      "id": "s1-stem",
+      "name": "Cattail",
+      "look": "grass",
+      "color": "#7be06a",
+      "word": "Water delivery",
+      "def": "Roots, stems, and leaves working together to move water through a plant.",
+      "note": "The cattail's roots take in water, its stem carries it up, and its leaves use it. Three organs work together to DELIVER WATER."
+    },
+    {
+      "id": "s1-heron",
+      "name": "Heron",
+      "look": "critter",
+      "color": "#c8d0d8",
+      "word": "Interacting systems",
+      "def": "Body systems that depend on each other to do a job.",
+      "note": "The heron's eyes spot a fish, nerves signal its neck muscles, and it strikes. Systems INTERACT: senses, nerves, and muscles work as a team."
+    },
+    {
+      "id": "s1d-shark",
+      "name": "Blue shark",
+      "look": "shark",
+      "color": "#6a8ac8",
+      "word": "Gas exchange",
+      "def": "Taking in oxygen and giving off carbon dioxide.",
+      "note": "A shark's gills take OXYGEN from the water and give off carbon dioxide. Its heart and blood vessels then carry the oxygen to its muscles."
+    },
+    {
+      "id": "s1d-seaturtle",
+      "name": "Sea turtle",
+      "look": "turtle",
+      "color": "#5a8a5a",
+      "word": "Nutrient uptake",
+      "def": "Taking nutrients from digested food into the body.",
+      "note": "A sea turtle's digestive system breaks down the jellyfish it eats. The nutrients pass into its blood, which carries them to every cell."
+    },
+    {
+      "id": "s1d-jelly",
+      "name": "Comb jelly",
+      "look": "jelly",
+      "color": "#9fe0ff",
+      "word": "Respond to a signal",
+      "def": "To react when the body senses a change.",
+      "note": "When something touches this jelly, signals spread through its body and it changes how it swims. Living things SENSE and RESPOND."
+    },
+    {
+      "id": "s1d-lantern",
+      "name": "Lanternfish",
+      "look": "critter",
+      "color": "#7fd4ff",
+      "word": "Organ system",
+      "def": "Organs working together to do a big job for the body.",
+      "note": "Every night lanternfish swim hundreds of meters up to feed. Their muscles, gills, heart, and nerves are ORGAN SYSTEMS all working at once."
+    },
+    {
+      "id": "s1d-squid",
+      "name": "Deep-sea squid",
+      "look": "critter",
+      "color": "#ff9a8a",
+      "word": "Nervous system",
+      "def": "The brain and nerves that carry signals so the body can respond.",
+      "note": "A squid's NERVOUS SYSTEM sends fast signals to the muscles of its body, which squeeze out water so it can jet away from danger."
+    },
+    {
+      "id": "s1d-eel",
+      "name": "Gulper eel",
+      "look": "eel",
+      "color": "#3a3a5a",
+      "word": "Movement",
+      "def": "Muscles pulling on the body after a nerve signal tells them to.",
+      "note": "The gulper eel waits with its huge mouth open. When nerves signal its muscles, it MOVES fast to swallow its prey."
+    },
+    {
+      "id": "s1d-angler",
+      "name": "Anglerfish",
+      "look": "angler",
+      "color": "#5a4a6a",
+      "word": "Interacting systems",
+      "def": "Body systems that depend on each other to do a job.",
+      "note": "The anglerfish senses prey near its glowing lure. Nerves signal its jaw muscles, and the jaws snap shut. Several systems work as a team."
+    },
+    {
+      "id": "s1d-heart",
+      "name": "Fish heart",
+      "look": "blob",
+      "color": "#ff6b6b",
+      "word": "Circulatory system",
+      "def": "The heart, blood vessels, and blood that carry materials around the body.",
+      "note": "A fish heart pumps blood to the gills to pick up oxygen and then out to the body. The CIRCULATORY SYSTEM delivers oxygen and nutrients everywhere."
+    },
+    {
+      "id": "s1d-gill",
+      "name": "Gill filaments",
+      "look": "stack",
+      "color": "#ff8fa0",
+      "word": "Gills",
+      "def": "Thin, folded organs that take oxygen from water into the blood.",
+      "note": "GILLS are folded into thin sheets, which gives them a huge surface. More surface means more oxygen can pass into the blood."
+    },
+    {
+      "id": "s1d-stomach",
+      "name": "Fish stomach",
+      "look": "blob",
+      "color": "#ffb07a",
+      "word": "Digestive system",
+      "def": "The organs that break food down so the body can take in nutrients.",
+      "note": "The DIGESTIVE SYSTEM breaks food into small pieces the blood can carry. Without it, the circulatory system would have nothing to deliver."
+    },
+    {
+      "id": "s1d-snow",
+      "name": "Marine snow",
+      "look": "drop",
+      "color": "#f2f7f5",
+      "word": "Specialized cells",
+      "def": "Cells with different shapes and jobs in one body.",
+      "note": "Animals eating this falling food are built from many kinds of SPECIALIZED CELLS: some carry signals, some contract, and some take in nutrients."
+    },
+    {
+      "id": "s1d-tubeworm",
+      "name": "Giant tube worm",
+      "look": "tubeworm",
+      "color": "#e8283a",
+      "word": "Delivery system",
+      "def": "Structures that collect materials plus a system that carries them through the body.",
+      "note": "The tube worm's red plume collects oxygen and other materials from the water. Its blood carries them through its long body."
+    },
+    {
+      "id": "s1d-shrimp",
+      "name": "Vent shrimp",
+      "look": "critter",
+      "color": "#ffc89a",
+      "word": "Sense and respond",
+      "def": "Detecting a change and reacting to it.",
+      "note": "Vent shrimp have light-sensing patches on their backs that may help them find the faint glow of hot vents. Nerves and muscles help them steer."
+    },
+    {
+      "id": "s1d-eelpout",
+      "name": "Vent eelpout",
+      "look": "eel",
+      "color": "#d8c8b0",
+      "word": "Whole-body teamwork",
+      "def": "All the organ systems working together to keep an organism alive.",
+      "note": "This fish hunts among the tube worms. Its gills, heart, stomach, nerves, and muscles all depend on each other. That is WHOLE-BODY TEAMWORK."
+    },
+    {
+      "id": "s-dna2",
+      "name": "DNA",
+      "look": "helix",
+      "color": "#7fd4ff",
+      "word": "Base pairs",
+      "def": "Matching letters: in DNA, A pairs with T and C pairs with G.",
+      "note": "DNA is written in four letters: A, T, C, and G. They pair up: A with T, and C with G. The ORDER of the letters is the gene's instructions."
+    },
+    {
+      "id": "s-mrna",
+      "name": "mRNA",
+      "look": "rod",
+      "color": "#ffd166",
+      "word": "Transcription",
+      "def": "Copying DNA's code into messenger RNA (mRNA).",
+      "note": "TRANSCRIPTION copies DNA into messenger RNA (mRNA). RNA uses U instead of T, so where DNA has A, mRNA gets U. T gets A, C gets G, and G gets C."
+    },
+    {
+      "id": "s-ribo2",
+      "name": "Ribosome",
+      "look": "blob",
+      "color": "#ffd166",
+      "word": "Translation",
+      "def": "Using the mRNA to link amino acids in the right order.",
+      "note": "At a ribosome, TRANSLATION uses the mRNA instructions to link amino acids in the exact order the gene spells out."
+    },
+    {
+      "id": "s1-amino",
+      "name": "Amino acids",
+      "look": "chain",
+      "color": "#7be0ad",
+      "word": "Amino acid",
+      "def": "A small building block. Proteins are chains of amino acids in a specific order.",
+      "note": "There are about 20 kinds of AMINO ACIDS. The order they are linked in comes from the DNA, and it is different for every protein."
+    },
+    {
+      "id": "s-protein",
+      "name": "Amino acid chain",
+      "look": "rod",
+      "color": "#c59cff",
+      "word": "Protein",
+      "def": "A chain of amino acids folded into a shape that does a job.",
+      "note": "Amino acids link into a chain that folds up into a PROTEIN. Change the order of the amino acids and you can change the shape."
+    },
+    {
+      "id": "s1-fold",
+      "name": "Folded protein",
+      "look": "blob",
+      "color": "#c59cff",
+      "word": "Protein shape",
+      "def": "The folded form of a protein, which lets it do its job.",
+      "note": "The order of amino acids decides how the chain FOLDS. The shape is what lets a protein do its job."
+    },
+    {
+      "id": "s1-jobs",
+      "name": "Busy proteins",
+      "look": "blob",
+      "color": "#ff9f6e",
+      "word": "Protein jobs",
+      "def": "Proteins speed up reactions, carry materials, build structures, and send signals.",
+      "note": "Cells need many kinds of proteins because there are many JOBS: speeding up reactions, carrying materials, building structures, and sending signals."
+    },
+    {
+      "id": "s1-indep",
+      "name": "Stopwatch",
+      "look": "blob",
+      "color": "#ffd166",
+      "word": "Independent variable",
+      "def": "The one thing a scientist changes on purpose.",
+      "note": "In a heart-rate test, the minutes of exercise is the INDEPENDENT VARIABLE: you change it on purpose."
+    },
+    {
+      "id": "s1-dep",
+      "name": "Pulse monitor",
+      "look": "blob",
+      "color": "#ff6b6b",
+      "word": "Dependent variable",
+      "def": "What a scientist measures to see the effect.",
+      "note": "Heart rate is the DEPENDENT VARIABLE: it is what you measure to see what the exercise did."
+    },
+    {
+      "id": "s1-control",
+      "name": "Same conditions",
+      "look": "stack",
+      "color": "#9fe0ff",
+      "word": "Controlled variables",
+      "def": "Conditions kept the same so the test is fair.",
+      "note": "Same room, same time of day, same kind of exercise: CONTROLLED VARIABLES stay the same so only one thing changes."
+    },
+    {
+      "id": "s1-baseline",
+      "name": "Resting reading",
+      "look": "rod",
+      "color": "#7be0ad",
+      "word": "Baseline",
+      "def": "The starting measurement used for comparison.",
+      "note": "Measure heart rate at rest first. That BASELINE shows how much exercise changed it and whether it came back."
+    },
+    {
+      "id": "s1-setpoint",
+      "name": "Thermostat dial",
+      "look": "blob",
+      "color": "#ffd166",
+      "word": "Set point",
+      "def": "The normal value the body keeps a condition near.",
+      "note": "Body temperature stays near a SET POINT of about 37 °C. Feedback pushes it back whenever it drifts."
+    },
+    {
+      "id": "s1-stomata",
+      "name": "Leaf pores",
+      "look": "sprout",
+      "color": "#7be06a",
+      "word": "Stomata",
+      "def": "Tiny pores on leaves that open and close.",
+      "note": "STOMATA close when the air is dry to save water and open when water is plentiful to let in carbon dioxide. Plants use feedback too."
+    },
+    {
+      "id": "s1-pupil",
+      "name": "Eye",
+      "look": "blob",
+      "color": "#7fd4ff",
+      "word": "Pupil response",
+      "def": "The pupil shrinking in bright light and widening in dim light.",
+      "note": "Shine a light and the PUPIL gets smaller. Dim the room and it gets bigger. That is feedback you can measure."
+    },
+    {
+      "id": "s1-hr",
+      "name": "Heart rate graph",
+      "look": "rod",
+      "color": "#ff8fa0",
+      "word": "Heart rate",
+      "def": "The number of heartbeats per minute.",
+      "note": "HEART RATE rises during exercise to deliver more oxygen and falls back afterward. Measuring it is a classic feedback investigation."
+    },
+    {
+      "id": "s-tissue",
+      "name": "Heart muscle",
+      "look": "blob",
+      "color": "#ff8fa0",
+      "word": "Tissue",
+      "def": "A group of similar cells working together.",
+      "note": "Many muscle cells working together form muscle TISSUE."
+    },
+    {
+      "id": "s-organ",
+      "name": "Heart",
+      "look": "blob",
+      "color": "#ff6b6b",
+      "word": "Organ",
+      "def": "Different tissues working together to do a job.",
+      "note": "The heart is an ORGAN: muscle, nerve, and other tissues working together to pump blood."
+    },
+    {
+      "id": "s-system",
+      "name": "Blood vessels",
+      "look": "rod",
+      "color": "#ff6b6b",
+      "word": "Organ system",
+      "def": "Organs working together to do a big job for the body.",
+      "note": "The heart and blood vessels make the circulatory ORGAN SYSTEM, which moves blood around the body."
+    },
+    {
+      "id": "s-organism",
+      "name": "Whole person",
+      "look": "blob",
+      "color": "#ffd8b0",
+      "word": "Organism",
+      "def": "One whole living thing.",
+      "note": "All the organ systems together make an ORGANISM, one whole living thing, like a person."
+    },
+    {
+      "id": "s-receptor",
+      "name": "Skin sensor",
+      "look": "blob",
+      "color": "#ffd166",
+      "word": "Receptor",
+      "def": "A part that senses a change.",
+      "note": "RECEPTORS sense changes. Nerve endings in your skin feel when you get too hot or too cold."
+    },
+    {
+      "id": "s-feedback",
+      "name": "Thermostat",
+      "look": "blob",
+      "color": "#7be0ad",
+      "word": "Negative feedback",
+      "def": "A response that undoes a change to bring the body back to normal.",
+      "note": "NEGATIVE FEEDBACK undoes a change. Too hot? Sweat to cool down. Too cold? Shiver to warm up. Then the body is back to normal."
+    },
+    {
+      "id": "s-glucose",
+      "name": "Blood sugar",
+      "look": "blob",
+      "color": "#ffd166",
+      "word": "Blood glucose",
+      "def": "Sugar in the blood that cells use for energy.",
+      "note": "After a snack, sugar (GLUCOSE) in the blood goes up. The pancreas tells cells to take it in. When it drops too low, the liver releases stored glucose."
+    }
   ],
 
   /* FIELD GUIDE: vocabulary shown on the pause screen. */
-  /* SCAN: specimens to look at in the world (press E). Each teaches one word, saved to the Field Guide. */
-  "scans": [
-    {"id": "s-frog", "name": "Frog", "look": "frog", "color": "#5fbf5a", "word": "Respond", "def": "To react to a change around you.", "note": "Get close and the frog hops away. Living things RESPOND to what is around them. That is a sign of life."},
-    {"id": "s-rock", "name": "Rock", "look": "rock", "color": "#8a8f96", "word": "Nonliving", "def": "Not alive: no cells, no energy use, no growing, no reproducing.", "note": "A rock has no cells. It does not use energy, grow, or make more rocks. It is NONLIVING."},
-    {"id": "s-sprout", "name": "Seedling", "look": "sprout", "color": "#7be06a", "word": "Grow and develop", "def": "To get bigger and change over a lifetime.", "note": "This seedling GROWS bigger and DEVELOPS new leaves. All living things grow and develop."},
-    {"id": "s-lily", "name": "Lily pad", "look": "lily", "color": "#3f9a4a", "word": "Energy", "def": "What living things use to stay alive and do work. Food is a source of energy.", "note": "A lily pad uses sunlight to make its own food. Every living thing uses ENERGY, but only some, like plants, make their own food. Lily pads don't walk around, but they are still alive."},
-    {"id": "s-eggs", "name": "Frog eggs", "look": "eggs", "color": "#e8f0d0", "word": "Reproduce", "def": "To make more living things of the same kind.", "note": "These eggs will hatch into new frogs. Living things REPRODUCE: they make more of their own kind."},
-    {"id": "s-bact", "name": "Pond bacterium", "look": "rod", "color": "#9be36b", "word": "Cell", "def": "The smallest unit of life. Every living thing is made of one or more cells.", "note": "This bacterium is just ONE cell, with no nucleus, and it is still alive. Every living thing is made of at least one CELL."},
-    {"id": "s-turtle", "name": "Turtle", "look": "turtle", "color": "#6a8a3a", "word": "Homeostasis", "def": "Keeping conditions inside the body steady.", "note": "The turtle warms up in the sun when it is cold and slides into the water when it is hot. Keeping its inside steady is called HOMEOSTASIS."},
-    {"id": "s-dna", "name": "DNA strand", "look": "helix", "color": "#7fd4ff", "word": "DNA", "def": "The molecule that carries the instructions for building and running a living thing.", "note": "Every living thing has DNA in its cells. DNA is the instruction book for life, and it is passed on when living things reproduce."},
-    {"id": "s1d-diatom", "name": "Diatom", "look": "cell", "color": "#c8e86a", "word": "Producer cell", "def": "A one-celled alga that makes food from sunlight.", "note": "Diatoms drift in the sunlit zone and make much of Earth's oxygen. Each one is a EUKARYOTE: it has a nucleus and chloroplasts, inside a glassy shell made of silica."},
-    {"id": "s1d-ventmat", "name": "Vent bacteria mat", "look": "rod", "color": "#f4f0e0", "word": "Chemosynthesis", "def": "Making food from chemicals instead of sunlight.", "note": "No sunlight reaches the vents. These PROKARYOTES make food from hydrogen sulfide in the vent water, and they feed the whole vent community."},
-    {"id": "s1d-archaea", "name": "Heat-loving archaea", "look": "blob", "color": "#ff9a4a", "word": "Archaea", "def": "Single-celled prokaryotes that form their own domain of life, separate from bacteria.", "note": "Some vent archaea grow in water above 110 °C (230 °F)! Like bacteria, they are PROKARYOTES: no nucleus."},
-    {"id": "s1d-tubeworm", "name": "Giant tube worm", "look": "tubeworm", "color": "#e8283a", "word": "Two kinds of cells together", "def": "A eukaryote that depends on prokaryotes living inside it.", "note": "Giant tube worms have no mouth and no gut. Their own cells are EUKARYOTES (with a nucleus). Billions of PROKARYOTE bacteria live inside them and make their food."},
-    {"id": "s-bact2", "name": "Bacterium", "look": "rod", "color": "#9be36b", "word": "Prokaryote", "def": "A cell with no nucleus. Its DNA floats in the cytoplasm.", "note": "Bacteria are PROKARYOTES: tiny cells with NO nucleus. Their DNA floats loose. They still have ribosomes, cytoplasm, and a plasma membrane."},
-    {"id": "s-membrane", "name": "Cell edge", "look": "blob", "color": "#7fd4ff", "word": "Plasma membrane", "def": "The thin barrier around every cell that controls what goes in and out.", "note": "Every cell has a PLASMA MEMBRANE around it, like a skin. It decides what goes in and what comes out."},
-    {"id": "s-cyto", "name": "Cell jelly", "look": "blob", "color": "#c8ff7a", "word": "Cytoplasm", "def": "The jelly-like fluid that fills a cell.", "note": "CYTOPLASM is the jelly that fills every cell. The cell's parts float in it."},
-    {"id": "s-ribo", "name": "Ribosome", "look": "blob", "color": "#ffd166", "word": "Ribosome", "def": "A tiny structure that builds proteins. Every cell has them.", "note": "RIBOSOMES are tiny protein builders. Every cell has them, prokaryote or eukaryote."},
-    {"id": "s-animal", "name": "Animal cell", "look": "cell", "color": "#ffb0d0", "word": "Eukaryote", "def": "A cell that keeps its DNA in a nucleus and has organelles wrapped in membranes.", "note": "Animal and plant cells are EUKARYOTES. Their DNA is kept inside a nucleus, and they have ORGANELLES (cell parts) wrapped in membranes."},
-    {"id": "s-nucleus", "name": "Nucleus", "look": "blob", "color": "#8a5ac8", "word": "Nucleus", "def": "The organelle that holds a eukaryotic cell's DNA.", "note": "The NUCLEUS is the control center. It holds the cell's DNA. Prokaryotes don't have one."},
-    {"id": "s-mito", "name": "Mitochondrion", "look": "rod", "color": "#ff9f6e", "word": "Mitochondria", "def": "Organelles that release energy from food.", "note": "MITOCHONDRIA (one is a mitochondrion) release energy from food. They are wrapped in membranes, so only eukaryotes have them."},
-    {"id": "s-er", "name": "Rough ER", "look": "stack", "color": "#7fd4ff", "word": "Endoplasmic reticulum", "def": "Folded membranes that make and move materials. Rough ER has ribosomes and helps make proteins.", "note": "The ENDOPLASMIC RETICULUM (ER) is a folded maze of membranes. ROUGH ER is dotted with ribosomes and helps make proteins that will leave the cell."},
-    {"id": "s-golgi", "name": "Golgi apparatus", "look": "stack", "color": "#ffd166", "word": "Golgi apparatus", "def": "The organelle that finishes and packages proteins before they leave the cell.", "note": "The GOLGI APPARATUS finishes proteins and packs them into bubbles to ship out, like a post office."},
-    {"id": "s-plant", "name": "Plant cell", "look": "cell", "color": "#7be06a", "word": "Cell wall", "def": "A stiff wall outside the membrane of plant cells (and bacteria), but not animal cells.", "note": "Plant cells have a stiff CELL WALL and green CHLOROPLASTS that make food from sunlight. Animal cells have neither one."},
-    {"id": "s-dna2", "name": "DNA", "look": "helix", "color": "#7fd4ff", "word": "Base pairs", "def": "Matching letters: in DNA, A pairs with T and C pairs with G.", "note": "DNA is written in four letters: A, T, C, and G. They pair up: A with T, and C with G."},
-    {"id": "s-mrna", "name": "mRNA", "look": "rod", "color": "#ffd166", "word": "Transcription", "def": "Copying DNA's code into messenger RNA (mRNA).", "note": "TRANSCRIPTION copies DNA into messenger RNA (mRNA). RNA uses U instead of T, so where DNA has A, mRNA gets U. T gets A, C gets G, and G gets C."},
-    {"id": "s-ribo2", "name": "Ribosome", "look": "blob", "color": "#ffd166", "word": "Translation", "def": "Reading mRNA at a ribosome to build a protein.", "note": "At a RIBOSOME, TRANSLATION reads the mRNA three letters at a time. Each three-letter word is a CODON, like AUG."},
-    {"id": "s-trna", "name": "tRNA", "look": "blob", "color": "#7be0ad", "word": "Anticodon", "def": "Three letters on a tRNA that pair with an mRNA codon.", "note": "Each tRNA carries one amino acid. Its ANTICODON pairs with the codon: A with U, and G with C. Codon AUG matches anticodon UAC."},
-    {"id": "s-protein", "name": "Amino acid chain", "look": "rod", "color": "#c59cff", "word": "Protein", "def": "A chain of amino acids folded into a shape that does a job.", "note": "Amino acids link into a chain that folds up into a PROTEIN. A stop codon tells the ribosome the protein is done."},
-    {"id": "s-diffuse", "name": "Crowded particles", "look": "blob", "color": "#7fd4ff", "word": "Diffusion", "def": "Particles spreading from crowded places to less crowded places, with no energy.", "note": "Particles spread out from where they are CROWDED to where they are LESS crowded. That is DIFFUSION, and it needs no energy."},
-    {"id": "s-gradient", "name": "Crowding hill", "look": "blob", "color": "#9fe0ff", "word": "Concentration gradient", "def": "A difference in how crowded a substance is from one place to another.", "note": "A difference in crowding from one side to the other is a CONCENTRATION GRADIENT. Moving from crowded to less crowded is like sliding downhill."},
-    {"id": "s-channel", "name": "Transport protein", "look": "blob", "color": "#c59cff", "word": "Facilitated diffusion", "def": "Diffusion through a transport protein, with no energy used.", "note": "Some molecules, like glucose, are too big to slip through the membrane. A TRANSPORT PROTEIN lets them through, still downhill and with no energy. That is FACILITATED DIFFUSION."},
-    {"id": "s-water", "name": "Water drop", "look": "blob", "color": "#7fd4ff", "word": "Osmosis", "def": "Water moving across a membrane.", "note": "When WATER moves across a membrane from where there is more water to less water, it is called OSMOSIS."},
-    {"id": "s-exo", "name": "Vesicle leaving", "look": "blob", "color": "#7be0ad", "word": "Exocytosis", "def": "Releasing material when a vesicle joins the plasma membrane.", "note": "A bubble (VESICLE) joins the membrane and spills its cargo outside. EXOcytosis means EXIT the cell."},
-    {"id": "s-endo", "name": "Vesicle forming", "look": "blob", "color": "#7be0ad", "word": "Endocytosis", "def": "Taking material in by wrapping the membrane around it.", "note": "The membrane folds IN around something big and pinches off into a vesicle. ENDOcytosis means INTO the cell. White blood cells eat germs this way."},
-    {"id": "s-pump", "name": "Pump", "look": "blob", "color": "#ff9f6e", "word": "Active transport", "def": "Moving particles from less crowded to more crowded, using energy (ATP).", "note": "A PUMP uses ATP energy to push particles from LESS crowded to MORE crowded, like pushing uphill. That is ACTIVE TRANSPORT."},
-    {"id": "s-atp", "name": "ATP", "look": "blob", "color": "#c8ff7a", "word": "ATP", "def": "The molecule that gives cells energy for jobs like pumping.", "note": "ATP is the cell's energy molecule, like a charged battery. Pumps need it to work."},
-    {"id": "s-tissue", "name": "Heart muscle", "look": "blob", "color": "#ff8fa0", "word": "Tissue", "def": "A group of similar cells working together.", "note": "Many muscle cells working together form muscle TISSUE."},
-    {"id": "s-organ", "name": "Heart", "look": "blob", "color": "#ff6b6b", "word": "Organ", "def": "Different tissues working together to do a job.", "note": "The heart is an ORGAN: muscle, nerve, and other tissues working together to pump blood."},
-    {"id": "s-system", "name": "Blood vessels", "look": "rod", "color": "#ff6b6b", "word": "Organ system", "def": "Organs working together to do a big job for the body.", "note": "The heart and blood vessels make the circulatory ORGAN SYSTEM, which moves blood around the body."},
-    {"id": "s-organism", "name": "Whole person", "look": "blob", "color": "#ffd8b0", "word": "Organism", "def": "One whole living thing.", "note": "All the organ systems together make an ORGANISM, one whole living thing, like a person."},
-    {"id": "s-receptor", "name": "Skin sensor", "look": "blob", "color": "#ffd166", "word": "Receptor", "def": "A part that senses a change.", "note": "RECEPTORS sense changes. Nerve endings in your skin feel when you get too hot or too cold."},
-    {"id": "s-feedback", "name": "Thermostat", "look": "blob", "color": "#7be0ad", "word": "Negative feedback", "def": "A response that undoes a change to bring the body back to normal.", "note": "NEGATIVE FEEDBACK undoes a change. Too hot? Sweat to cool down. Too cold? Shiver to warm up. Then the body is back to normal."},
-    {"id": "s-glucose", "name": "Blood sugar", "look": "blob", "color": "#ffd166", "word": "Blood glucose", "def": "Sugar in the blood that cells use for energy.", "note": "After a snack, sugar (GLUCOSE) in the blood goes up. The pancreas tells cells to take it in. When it drops too low, the liver releases stored glucose."}
-  ],
   "vocab": [
-    { "term": "Chemosynthesis", "def": "Making food from chemicals (like hydrogen sulfide) instead of sunlight." },
-    { "term": "Archaea", "def": "Single-celled prokaryotes that form their own domain of life, separate from bacteria." },
-    { "term": "Prokaryote", "def": "A single-celled organism with no nucleus and no membrane-bound organelles." },
-    { "term": "Eukaryote", "def": "An organism whose cells have a nucleus and membrane-bound organelles." },
-    { "term": "Organelle", "def": "A part inside a cell that does a specific job." },
-    { "term": "Nucleus", "def": "The organelle that holds a eukaryotic cell's DNA." },
-    { "term": "Ribosome", "def": "The structure that builds proteins." },
-    { "term": "Mitochondrion", "def": "The organelle that releases energy from food." },
-    { "term": "Endoplasmic reticulum", "def": "An organelle of folded membranes that makes, processes, and transports materials. Rough ER has ribosomes on its surface and helps make proteins that will mostly leave the cell." },
-    { "term": "Golgi apparatus", "def": "The organelle that does the final processing of proteins before the cell releases them." },
-    { "term": "Transport protein", "def": "A protein in the plasma membrane that helps ions and molecules move into and out of the cell." },
-    { "term": "Concentration gradient", "def": "A difference in how crowded a substance is from one place to another." },
-    { "term": "ATP", "def": "A molecule that provides energy for cell processes, such as pumps." },
-    { "term": "Plasma membrane", "def": "The thin, flexible barrier around a cell that controls what enters and leaves." },
-    { "term": "Transcription", "def": "Copying the code in DNA into messenger RNA." },
-    { "term": "Translation", "def": "Using the messenger RNA code to build a protein at a ribosome." },
-    { "term": "Diffusion", "def": "Movement of particles from high to low concentration." },
-    { "term": "Osmosis", "def": "Movement of water across a membrane." },
-    { "term": "Facilitated diffusion", "def": "Diffusion through a transport protein, with no energy used." },
-    { "term": "Active transport", "def": "Movement from low to high concentration, using energy." },
-    { "term": "Endocytosis", "def": "Taking material into a cell by wrapping the membrane around it." },
-    { "term": "Exocytosis", "def": "Releasing material when a vesicle joins the plasma membrane." },
-    { "term": "Homeostasis", "def": "Keeping conditions inside an organism stable." },
-    { "term": "Tissue", "def": "A group of similar cells that work together." },
-    { "term": "Organ", "def": "Different tissues working together to do a job." }
+    {
+      "term": "Cell",
+      "def": "The basic unit of structure and function in living things."
+    },
+    {
+      "term": "Tissue",
+      "def": "A group of similar cells that work together."
+    },
+    {
+      "term": "Organ",
+      "def": "Different tissues working together to do a job."
+    },
+    {
+      "term": "Organ system",
+      "def": "Organs working together to do a big job for the body."
+    },
+    {
+      "term": "Organism",
+      "def": "One whole living thing."
+    },
+    {
+      "term": "Gas exchange",
+      "def": "Taking in oxygen and giving off carbon dioxide."
+    },
+    {
+      "term": "Circulatory system",
+      "def": "The heart, blood vessels, and blood that carry materials around the body."
+    },
+    {
+      "term": "Nervous system",
+      "def": "The brain and nerves that carry signals so the body can respond."
+    },
+    {
+      "term": "Gene",
+      "def": "A section of DNA with the instructions for making a protein."
+    },
+    {
+      "term": "mRNA",
+      "def": "Messenger RNA: a copy of a gene's code that carries the instructions for building a protein."
+    },
+    {
+      "term": "Transcription",
+      "def": "Copying the code in DNA into messenger RNA."
+    },
+    {
+      "term": "Translation",
+      "def": "Using the messenger RNA code to link amino acids into a protein at a ribosome."
+    },
+    {
+      "term": "Amino acid",
+      "def": "A building block of proteins."
+    },
+    {
+      "term": "Protein",
+      "def": "A chain of amino acids folded into a shape that does a specific job."
+    },
+    {
+      "term": "Homeostasis",
+      "def": "Keeping conditions inside an organism stable."
+    },
+    {
+      "term": "Negative feedback",
+      "def": "A response that reverses a change and brings a condition back toward its set point."
+    },
+    {
+      "term": "Set point",
+      "def": "The normal value the body keeps a condition near."
+    },
+    {
+      "term": "Receptor",
+      "def": "A part that senses a change."
+    },
+    {
+      "term": "Effector",
+      "def": "A part, such as a muscle or gland, that carries out the response."
+    },
+    {
+      "term": "Independent variable",
+      "def": "The variable a scientist changes on purpose."
+    },
+    {
+      "term": "Dependent variable",
+      "def": "The variable a scientist measures."
+    },
+    {
+      "term": "Controlled variable",
+      "def": "A condition kept the same so a test is fair."
+    },
+    {
+      "term": "Baseline",
+      "def": "A starting measurement used for comparison."
+    }
   ]
 });

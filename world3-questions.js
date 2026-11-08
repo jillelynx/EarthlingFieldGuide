@@ -1,6 +1,8 @@
 /* WORLD 3 QUESTION FILE: Ecosystems: Interdependence and Disruptions
    Teachers: you can edit the words inside the quotation marks below.
-   - "code" is the Keystone Eligible Content code. "steels" is the PA STEELS standard.
+   - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.
+     World 3 uses I, L, M, N, O, and V.
+   - "topic" groups questions that can rotate with each other at stations and clues.
    - In "questions", "answer" is the position of the correct option, counting from 0
      (0 = first option). The game shuffles the options, so the right answer can always go first.
    - "hint" shows after a wrong try. "explain" shows after the right answer.
@@ -9,41 +11,9 @@
 FieldGuide.registerQuestions(3, {
  "tokens": [
   {
-   "id": "biotic-factors",
-   "code": "BIO.B.4.1.2",
-   "steels": "3.1.9-12.L",
-   "prompt": "Collect only BIOTIC factors: things that are living or were once living",
-   "good": [
-    "Oak tree",
-    "Earthworms",
-    "Mushrooms on a log",
-    "Bacteria in the soil",
-    "A fallen leaf",
-    "White-tailed deer"
-   ],
-   "bad": [
-    {
-     "text": "Sunlight",
-     "explain": "Sunlight is abiotic: a nonliving part of the ecosystem."
-    },
-    {
-     "text": "Rainfall",
-     "explain": "Rain is abiotic: water is not alive."
-    },
-    {
-     "text": "Minerals in the soil",
-     "explain": "Minerals are abiotic. Soil holds living things, but minerals themselves are not alive."
-    },
-    {
-     "text": "Air temperature",
-     "explain": "Temperature is an abiotic factor."
-    }
-   ]
-  },
-  {
    "id": "limiting",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "prompt": "Collect only LIMITING FACTORS that can keep a deer population from growing",
    "good": [
     "Shortage of food",
@@ -74,8 +44,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "invasive-traits",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "impacts",
    "prompt": "Collect the traits that help an INVASIVE species take over a new ecosystem",
    "good": [
     "Reproduces quickly",
@@ -102,69 +72,44 @@ FieldGuide.registerQuestions(3, {
      "explain": "That describes a native species, not an invasive one."
     }
    ]
+  },
+  {
+   "id": "biodiversity-up",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
+   "prompt": "Collect only changes that would likely INCREASE the number of species living in this forest",
+   "good": [
+    "Connecting forest patches with wooded corridors",
+    "Leaving dead trees standing for nesting birds",
+    "Planting many kinds of native plants",
+    "Protecting the stream that runs through the forest",
+    "Keeping the forest large and unbroken"
+   ],
+   "bad": [
+    {
+     "text": "Splitting the forest into small patches with roads",
+     "explain": "Small, separated patches support fewer species. Many animals need large connected areas."
+    },
+    {
+     "text": "Replacing the forest with one kind of tree",
+     "explain": "A forest of one tree species offers fewer kinds of food and shelter, so fewer species can live there."
+    },
+    {
+     "text": "Letting an invasive vine cover the trees",
+     "explain": "An invasive vine crowds out native plants and the animals that depend on them."
+    },
+    {
+     "text": "Draining the wetland in the forest",
+     "explain": "Draining the wetland removes habitat for frogs, insects, and birds, so species are lost."
+    }
+   ]
   }
  ],
  "sorts": [
   {
-   "id": "interaction",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "prompt": "Which kind of relationship is it?",
-   "options": [
-    "Predation",
-    "Competition",
-    "Mutualism",
-    "Commensalism",
-    "Parasitism"
-   ],
-   "hint": "Predation: one eats the other. Competition: both want the same resource. Mutualism: both benefit. Commensalism: one benefits, the other is unaffected. Parasitism: one benefits, the host is harmed.",
-   "items": [
-    {
-     "text": "An owl catches and eats a mouse",
-     "answer": 0,
-     "explain": "The owl (predator) kills and eats the mouse (prey): predation."
-    },
-    {
-     "text": "Two lions fight over the same zebra",
-     "answer": 1,
-     "explain": "Both want the same limited resource: competition."
-    },
-    {
-     "text": "Bees drink nectar and pollinate the flowers",
-     "answer": 2,
-     "explain": "Both benefit: mutualism."
-    },
-    {
-     "text": "Barnacles ride on a whale's skin",
-     "answer": 3,
-     "explain": "The barnacles get a ride to food; the whale is not helped or harmed: commensalism."
-    },
-    {
-     "text": "A tick feeds on a dog's blood",
-     "answer": 4,
-     "explain": "The tick benefits and the dog (host) is harmed: parasitism."
-    },
-    {
-     "text": "A clownfish hides in a sea anemone and chases off its predators",
-     "answer": 2,
-     "explain": "The clownfish gets protection and the anemone is defended: mutualism."
-    },
-    {
-     "text": "Oak and maple seedlings grow toward the same patch of sunlight",
-     "answer": 1,
-     "explain": "Both need the same limited light: competition."
-    },
-    {
-     "text": "A tapeworm lives in a dog's intestine",
-     "answer": 4,
-     "explain": "The tapeworm takes nutrients from its host: parasitism."
-    }
-   ]
-  },
-  {
    "id": "succession",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "succession",
    "prompt": "Primary or secondary succession?",
    "options": [
     "Primary succession",
@@ -203,19 +148,72 @@ FieldGuide.registerQuestions(3, {
      "explain": "The soil is still there after the storm: secondary succession."
     }
    ]
+  },
+  {
+   "id": "behavior",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "prompt": "Group behavior or individual behavior?",
+   "options": [
+    "Group behavior",
+    "Individual behavior"
+   ],
+   "hint": "Group behavior: animals of the same species act TOGETHER. Individual behavior: one animal acts on its own.",
+   "items": [
+    {
+     "text": "A school of sardines swirls into a tight ball when a dolphin appears",
+     "answer": 0,
+     "explain": "The sardines move together as a group, which makes it hard for the dolphin to catch any one fish."
+    },
+    {
+     "text": "A lone octopus hunts crabs at night by itself",
+     "answer": 1,
+     "explain": "The octopus hunts alone: individual behavior."
+    },
+    {
+     "text": "Wolves take turns chasing an elk until it tires",
+     "answer": 0,
+     "explain": "The pack works together to catch prey larger than one wolf could take down: group behavior."
+    },
+    {
+     "text": "A hawk circles a field alone, looking for mice",
+     "answer": 1,
+     "explain": "The hawk hunts on its own: individual behavior."
+    },
+    {
+     "text": "Meerkats take turns standing guard while the others dig for food",
+     "answer": 0,
+     "explain": "Guards warn the whole group of danger: group behavior."
+    },
+    {
+     "text": "A box turtle digs a nest, lays her eggs, and leaves alone",
+     "answer": 1,
+     "explain": "The turtle nests by herself and does not stay with a group: individual behavior."
+    },
+    {
+     "text": "Emperor penguins huddle together to stay warm in winter storms",
+     "answer": 0,
+     "explain": "Huddling together saves body heat for every penguin in the group: group behavior."
+    },
+    {
+     "text": "A spider builds a web and waits by itself for insects",
+     "answer": 1,
+     "explain": "The spider hunts alone: individual behavior."
+    }
+   ]
   }
  ],
  "questions": [
   {
    "id": "w3q01",
-   "code": "BIO.B.4.1.1",
-   "steels": "3.1.9-12.L",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
    "prompt": "All the largemouth bass living in one lake make up a...",
    "options": [
     "population",
     "community",
     "ecosystem",
-    "biome"
+    "organism"
    ],
    "answer": 0,
    "hint": "One species, one place.",
@@ -223,8 +221,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q02",
-   "code": "BIO.B.4.1.1",
-   "steels": "3.1.9-12.L",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
    "prompt": "Which level of ecological organization includes BOTH living things and nonliving things like water and soil?",
    "options": [
     "ecosystem",
@@ -234,103 +232,28 @@ FieldGuide.registerQuestions(3, {
    ],
    "answer": 0,
    "hint": "Which level adds the nonliving surroundings?",
-   "explain": "An ecosystem is a community of living things plus the abiotic factors around them."
+   "explain": "An ecosystem is a community of living things plus the nonliving factors around them, such as water, soil, and sunlight."
   },
   {
    "id": "w3q03",
-   "code": "BIO.B.4.1.1",
-   "steels": "3.1.9-12.L",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
    "prompt": "A biologist lists every species of plant, insect, bird, and fungus in a meadow. Which level is she studying?",
    "options": [
     "community",
     "population",
     "organism",
-    "biosphere"
+    "ecosystem"
    ],
    "answer": 0,
    "hint": "Many different species living together...",
    "explain": "A community is all the populations of different species living in one area."
   },
   {
-   "id": "w3q04",
-   "code": "BIO.B.4.1.1",
-   "steels": "3.1.9-12.L",
-   "prompt": "Which list goes from SMALLEST to LARGEST?",
-   "options": [
-    "organism, population, community, ecosystem, biome, biosphere",
-    "population, organism, ecosystem, community, biome, biosphere",
-    "biosphere, biome, ecosystem, community, population, organism",
-    "organism, community, population, biome, ecosystem, biosphere"
-   ],
-   "answer": 0,
-   "hint": "Start with one living thing.",
-   "explain": "One organism, many of its kind (population), many species (community), plus nonliving factors (ecosystem), similar ecosystems (biome), all of Earth (biosphere)."
-  },
-  {
-   "id": "w3q05",
-   "code": "BIO.B.4.1.1",
-   "steels": "3.1.9-12.L",
-   "prompt": "Which level includes every ecosystem on Earth?",
-   "options": [
-    "biosphere",
-    "biome",
-    "community",
-    "population"
-   ],
-   "answer": 0,
-   "hint": "It is the biggest level of all.",
-   "explain": "The biosphere is all the parts of Earth where life exists."
-  },
-  {
-   "id": "w3q06",
-   "code": "BIO.B.4.1.2",
-   "steels": "3.1.9-12.L",
-   "prompt": "Which is an ABIOTIC factor in a pond ecosystem?",
-   "options": [
-    "water temperature",
-    "algae",
-    "frogs",
-    "bacteria"
-   ],
-   "answer": 0,
-   "hint": "Abiotic means not living.",
-   "explain": "Water temperature is nonliving. Algae, frogs, and bacteria are all biotic."
-  },
-  {
-   "id": "w3q07",
-   "code": "BIO.B.4.1.2",
-   "steels": "3.1.9-12.L",
-   "prompt": "Which is a BIOTIC factor in a desert?",
-   "options": [
-    "a cactus",
-    "sand",
-    "sunlight",
-    "low rainfall"
-   ],
-   "answer": 0,
-   "hint": "Biotic means living or once living.",
-   "explain": "A cactus is a living thing. Sand, sunlight, and rainfall are abiotic."
-  },
-  {
-   "id": "w3q08",
-   "code": "BIO.B.4.1.2",
-   "steels": "3.1.9-12.L",
-   "prompt": "Why is a dead, rotting log counted as a biotic factor?",
-   "options": [
-    "It was once living, and decomposers living in it break it down.",
-    "It is made only of minerals.",
-    "It is part of the weather.",
-    "It can never change."
-   ],
-   "answer": 0,
-   "hint": "Biotic includes things that WERE alive.",
-   "explain": "Biotic factors are living or once-living things. A log came from a tree, and fungi and bacteria live in it."
-  },
-  {
    "id": "w3q09",
-   "code": "BIO.B.4.1.2",
-   "steels": "3.1.9-12.L",
-   "prompt": "Which abiotic factor most limits which plants can grow on a dark forest floor?",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
+   "prompt": "Which nonliving factor most limits how many plants can grow on a dark forest floor?",
    "options": [
     "the amount of sunlight",
     "the number of deer",
@@ -339,91 +262,31 @@ FieldGuide.registerQuestions(3, {
    ],
    "answer": 0,
    "hint": "Plants need light for photosynthesis.",
-   "explain": "Tall trees block most light, so only shade-tolerant plants grow on the forest floor. Light is abiotic."
-  },
-  {
-   "id": "w3q10",
-   "code": "BIO.B.4.1.2",
-   "steels": "3.1.9-12.L",
-   "prompt": "A trout's habitat is a cold mountain stream. What is the trout's NICHE?",
-   "options": [
-    "its role: what it eats, when it feeds, and how it interacts with other species",
-    "the stream itself",
-    "the water temperature",
-    "the rocks on the stream bottom"
-   ],
-   "answer": 0,
-   "hint": "Habitat is the address; niche is the job.",
-   "explain": "A habitat is where an organism lives. Its niche is its role in the ecosystem: its food, activity, and relationships."
-  },
-  {
-   "id": "w3q11",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "prompt": "Ticks feed on a deer's blood. What type of relationship is this?",
-   "options": [
-    "parasitism",
-    "mutualism",
-    "commensalism",
-    "competition"
-   ],
-   "answer": 0,
-   "hint": "One benefits and one is harmed.",
-   "explain": "The tick (parasite) benefits and the deer (host) is harmed: parasitism."
-  },
-  {
-   "id": "w3q12",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "prompt": "Bees get nectar from flowers, and the flowers get pollinated. What type of relationship is this?",
-   "options": [
-    "mutualism",
-    "parasitism",
-    "commensalism",
-    "predation"
-   ],
-   "answer": 0,
-   "hint": "Who benefits?",
-   "explain": "Both partners benefit, so it is mutualism."
+   "explain": "Tall trees block most light, so only a few shade-tolerant plants grow on the forest floor. Light is a nonliving factor that limits plant populations."
   },
   {
    "id": "w3q13",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "prompt": "Two species of birds eat the same kind of seeds in a small area. What type of relationship is this?",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "prompt": "Two species of birds eat the same kind of seeds in a small area where seeds are limited. What is happening between them?",
    "options": [
-    "competition",
-    "mutualism",
-    "commensalism",
-    "parasitism"
+    "competition for a limited resource",
+    "predation",
+    "group hunting",
+    "succession"
    ],
    "answer": 0,
    "hint": "They both need the same limited resource.",
-   "explain": "When organisms need the same limited resource, they compete."
-  },
-  {
-   "id": "w3q14",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "prompt": "Orchids grow on high tree branches to reach sunlight, without harming the tree. What type of relationship is this?",
-   "options": [
-    "commensalism",
-    "mutualism",
-    "parasitism",
-    "predation"
-   ],
-   "answer": 0,
-   "hint": "One benefits; the other is not helped or harmed.",
-   "explain": "The orchid benefits and the tree is unaffected: commensalism."
+   "explain": "When organisms need the same limited resource, they compete. Competition can keep both populations smaller than they would be alone."
   },
   {
    "id": "w3q15",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
    "prompt": "Wolves are removed from a forest. Soon the deer population grows quickly and young trees are eaten. What does this show?",
    "options": [
     "Predators help control prey populations, which affects the plants too.",
-    "Wolves and deer are in a mutualism.",
+    "Wolves and deer help each other survive.",
     "Deer are a limiting factor for wolves only.",
     "Removing a species never changes an ecosystem."
    ],
@@ -433,8 +296,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q16",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "succession",
    "prompt": "After a forest fire, grasses appear first, then shrubs, then trees. What is this process called?",
    "options": [
     "secondary succession",
@@ -448,8 +311,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q17",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "succession",
    "prompt": "Which organisms are usually the pioneer species on bare rock?",
    "options": [
     "lichens and mosses",
@@ -463,8 +326,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q18",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "impacts",
    "prompt": "Zebra mussels, carried to the Great Lakes in ships' ballast water, now crowd out native mussels. What are zebra mussels there?",
    "options": [
     "an invasive species",
@@ -478,8 +341,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q19",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "impacts",
    "prompt": "Fertilizer runoff causes an algal bloom in a lake. Why do many fish die afterward?",
    "options": [
     "Decomposers breaking down the dead algae use up the dissolved oxygen.",
@@ -493,8 +356,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q20",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.N",
+   "code": "3.1.9-12.N",
+   "topic": "solutions",
    "prompt": "Which action would most help a stream recover from erosion and fertilizer runoff?",
    "options": [
     "planting native trees and shrubs along the banks",
@@ -508,8 +371,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q21",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "impacts",
    "prompt": "Why are ecosystems with high biodiversity usually more stable?",
    "options": [
     "If one species declines, other species can fill its role.",
@@ -523,8 +386,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q22",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "prompt": "What is carrying capacity?",
    "options": [
     "the largest population an environment can support over time",
@@ -538,8 +401,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q23",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "prompt": "Which is a density-INDEPENDENT limiting factor?",
    "options": [
     "a hurricane",
@@ -553,8 +416,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "w3q24",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "prompt": "Bacteria with unlimited food and space double every 20 minutes. What kind of growth is this?",
    "options": [
     "exponential growth",
@@ -567,24 +430,9 @@ FieldGuide.registerQuestions(3, {
    "explain": "With no limits, a population grows exponentially (a J-shaped curve)."
   },
   {
-   "id": "w3q25",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
-   "prompt": "A species of frog lives only in one small wetland. Why is it at high risk of extinction?",
-   "options": [
-    "One disturbance, such as draining the wetland, could wipe out the whole species.",
-    "Frogs cannot reproduce in wetlands.",
-    "Small habitats have no limiting factors.",
-    "It has too much genetic variety."
-   ],
-   "answer": 0,
-   "hint": "All its eggs are in one basket.",
-   "explain": "A species with a small range and population can be lost to a single disaster or habitat change."
-  },
-  {
    "id": "w3q26",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "prompt": "Which change would most likely make a rabbit population INCREASE?",
    "options": [
     "more food becomes available",
@@ -597,9 +445,24 @@ FieldGuide.registerQuestions(3, {
    "explain": "More food raises the carrying capacity, so the rabbit population can grow."
   },
   {
+   "id": "w3q25",
+   "code": "3.1.9-12.L",
+   "topic": "pop-risk",
+   "prompt": "A species of frog lives only in one small wetland. Why is it at high risk of extinction?",
+   "options": [
+    "One disturbance, such as draining the wetland, could wipe out the whole species.",
+    "Frogs cannot reproduce in wetlands.",
+    "Small habitats have no limiting factors.",
+    "It has too much genetic variety."
+   ],
+   "answer": 0,
+   "hint": "All its eggs are in one basket.",
+   "explain": "A species with a small range and population can be lost to a single disaster or habitat change."
+  },
+  {
    "id": "w3q27",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.N",
+   "code": "3.1.9-12.L",
+   "topic": "pop-risk",
    "prompt": "Fishing boats remove cod faster than the cod can reproduce. What is the most likely long-term result?",
    "options": [
     "The cod population declines and may collapse.",
@@ -610,28 +473,225 @@ FieldGuide.registerQuestions(3, {
    "answer": 0,
    "hint": "Deaths are outpacing births.",
    "explain": "Overharvesting removes individuals faster than they are replaced, so the population shrinks and can collapse."
+  },
+  {
+   "id": "w3q28",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
+   "prompt": "Students count wildflowers in four 1-meter squares in a meadow: 8, 12, 10, and 10. What is the average number of wildflowers per square?",
+   "options": [
+    "10",
+    "8",
+    "12",
+    "40"
+   ],
+   "answer": 0,
+   "hint": "Add the counts, then divide by the number of squares.",
+   "explain": "8 + 12 + 10 + 10 = 40, and 40 ÷ 4 = 10 wildflowers per square. Averages make samples easy to compare."
+  },
+  {
+   "id": "w3q29",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
+   "prompt": "Bird surveys in a forest found 30 species in 2005, 26 in 2010, 22 in 2015, and 18 in 2020. Which conclusion do the data support?",
+   "options": [
+    "The number of bird species has been going down.",
+    "The bird community has stayed the same.",
+    "The number of bird species doubles every 5 years.",
+    "The forest has more bird species every year."
+   ],
+   "answer": 0,
+   "hint": "Look at the direction the numbers change.",
+   "explain": "Each survey found fewer species than the one before: a downward trend in biodiversity."
+  },
+  {
+   "id": "w3q30",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
+   "prompt": "A large forest is cut into many small, separated patches by new roads. What is the most likely effect on the forest's biodiversity?",
+   "options": [
+    "It goes down, because many species need large, connected areas.",
+    "It goes up, because roads bring in new food.",
+    "It stays the same, because the trees are still there.",
+    "Only the plants are affected, not the animals."
+   ],
+   "answer": 0,
+   "hint": "Think about animals that need a lot of space.",
+   "explain": "Breaking a habitat into small pieces (fragmentation) leaves too little space for many species, so biodiversity usually drops."
+  },
+  {
+   "id": "w3q31",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
+   "prompt": "Pond A has 15 frogs, all of one species. Pond B has 15 frogs from 5 different species. Which statement is correct?",
+   "options": [
+    "Pond B has higher biodiversity.",
+    "Pond A has higher biodiversity.",
+    "Both ponds have the same biodiversity.",
+    "Neither pond has a frog population."
+   ],
+   "answer": 0,
+   "hint": "Biodiversity counts the variety of species, not just the number of individuals.",
+   "explain": "Both ponds have 15 frogs, but Pond B has more kinds of frogs, so its biodiversity is higher."
+  },
+  {
+   "id": "w3q32",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "prompt": "Which is an example of GROUP behavior?",
+   "options": [
+    "Wolves surround an elk together during a hunt",
+    "A lone spider waits in its web",
+    "A frog flicks out its tongue to catch a fly",
+    "A bear eats berries by itself"
+   ],
+   "answer": 0,
+   "hint": "Look for animals of the same species acting together.",
+   "explain": "The wolves cooperate as a pack. The other animals act on their own."
+  },
+  {
+   "id": "w3q33",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "prompt": "Sardines swim in huge, tightly packed schools. How does this behavior most help an individual sardine survive?",
+   "options": [
+    "A predator has a harder time singling out any one fish.",
+    "Each sardine gets more food than it would alone.",
+    "Swimming in a school makes each sardine grow bigger.",
+    "The school keeps the water warmer."
+   ],
+   "answer": 0,
+   "hint": "Think about a predator trying to catch one fish in a swirling crowd.",
+   "explain": "In a large moving school, predators get confused and have trouble picking out one fish, so each fish is safer."
+  },
+  {
+   "id": "w3q34",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "prompt": "Emperor penguins huddle together through the Antarctic winter. Which evidence BEST shows that huddling helps them survive?",
+   "options": [
+    "Penguins in a huddle lose less body heat than penguins standing alone.",
+    "All the penguins in a huddle look alike.",
+    "Penguins form huddles only in summer.",
+    "Each penguin lays only one egg."
+   ],
+   "answer": 0,
+   "hint": "Evidence should connect the behavior to survival.",
+   "explain": "Measurements show huddling penguins lose much less heat, which helps them survive the cold and save energy."
+  },
+  {
+   "id": "w3q35",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "prompt": "Living in a large group has benefits, but also costs. Which is a COST of group living?",
+   "options": [
+    "Disease spreads more easily between crowded group members.",
+    "Members can warn each other about predators.",
+    "Members can share the work of finding food.",
+    "Predators have trouble picking out one member."
+   ],
+   "answer": 0,
+   "hint": "A cost is a disadvantage.",
+   "explain": "Crowding helps disease spread and increases competition for food inside the group. The other choices are benefits."
+  },
+  {
+   "id": "w3q36",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "prompt": "Honeybee workers do not lay eggs, but they defend the hive and feed the queen's young. How does this group behavior help the species survive?",
+   "options": [
+    "The colony survives and reproduces better, and the young share the workers' genes.",
+    "Each worker lives longer because it never works.",
+    "The workers become queens later.",
+    "It keeps the hive from ever needing food."
+   ],
+   "answer": 0,
+   "hint": "Think about the colony as a team that shares genes.",
+   "explain": "By working together, workers help their close relatives (the queen's young) survive and reproduce, so the colony's genes are passed on."
+  },
+  {
+   "id": "w3q37",
+   "code": "3.1.9-12.V",
+   "topic": "simulation",
+   "prompt": "A team uses a computer simulation to test two plans for helping a threatened salamander cross a busy road. In the simulation, 20% of salamanders survive with Plan A (warning signs) and 80% survive with Plan B (a tunnel under the road). What should the team conclude?",
+   "options": [
+    "Plan B is the better solution to try in the real world.",
+    "Plan A is the better solution to try.",
+    "Both plans work equally well.",
+    "Simulations cannot be used to compare plans."
+   ],
+   "answer": 0,
+   "hint": "Compare the survival percentages.",
+   "explain": "Plan B kept four times as many salamanders alive in the simulation, so it is the stronger plan to test in the real ecosystem."
+  },
+  {
+   "id": "w3q38",
+   "code": "3.1.9-12.V",
+   "topic": "simulation",
+   "prompt": "Why do scientists often test a plan to protect a species in a simulation before trying it in a real ecosystem?",
+   "options": [
+    "They can compare many solutions quickly without harming the real ecosystem.",
+    "Simulations always give the exact same results as nature.",
+    "Real ecosystems are never affected by human plans.",
+    "It means the plan never needs to be changed."
+   ],
+   "answer": 0,
+   "hint": "Think about risk, time, and cost.",
+   "explain": "A simulation lets scientists test and revise solutions safely and cheaply before using them on real populations."
+  },
+  {
+   "id": "w3q39",
+   "code": "3.1.9-12.V",
+   "topic": "simulation",
+   "prompt": "A simulation of a lake shows that removing invasive carp raises the number of native fish, but only if the carp are removed every year. How should the team revise its plan?",
+   "options": [
+    "Remove carp every year instead of just once.",
+    "Remove carp once and stop.",
+    "Add more carp to the lake.",
+    "Stop removing carp because the plan failed."
+   ],
+   "answer": 0,
+   "hint": "Use what the simulation showed about timing.",
+   "explain": "The simulation showed the solution only works with yearly removal, so the plan should be revised to include it."
+  },
+  {
+   "id": "w3q40",
+   "code": "3.1.9-12.N",
+   "topic": "solutions",
+   "prompt": "A new highway will cut through the only forest where a rare turtle lives. Which design change would BEST reduce the impact on the turtles?",
+   "options": [
+    "Build tunnels under the highway with fences that guide turtles to them.",
+    "Make the highway wider.",
+    "Remove all the trees along the highway.",
+    "Raise the speed limit so cars pass quickly."
+   ],
+   "answer": 0,
+   "hint": "Which choice lets turtles reach both sides safely?",
+   "explain": "Wildlife tunnels with guide fences reconnect the habitat and keep turtles off the road, reducing deaths."
   }
  ],
  "pairs": [
   {
-   "name": "Mutualism or commensalism?",
-   "explain": "In mutualism BOTH partners benefit. In commensalism one benefits and the other is not helped or harmed.",
+   "name": "Group or individual behavior?",
+   "explain": "Group behavior is animals of the same species acting together (schools, packs, huddles). Individual behavior is one animal acting on its own.",
    "members": [
     {
-     "label": "Mutualism",
+     "label": "Group behavior",
      "level": "3-2",
      "ids": [
-      "interaction.2",
-      "interaction.5",
-      "w3q12"
+      "behavior.0",
+      "behavior.2",
+      "behavior.4",
+      "w3q32"
      ]
     },
     {
-     "label": "Commensalism",
+     "label": "Individual behavior",
      "level": "3-2",
      "ids": [
-      "interaction.3",
-      "w3q14"
+      "behavior.1",
+      "behavior.3",
+      "behavior.5"
      ]
     }
    ]
@@ -665,38 +725,9 @@ FieldGuide.registerQuestions(3, {
  ],
  "become": [
   {
-   "id": "b-mutual",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "you": "a honeybee",
-   "short": "Bee",
-   "color": "#ffd166",
-   "goal": "Go through the door where you AND your partner both benefit.",
-   "doors": [
-    {
-     "kind": "flow",
-     "label": "Flower: you get nectar, it gets pollinated",
-     "ok": true
-    },
-    {
-     "kind": "pump",
-     "label": "Spider web: the spider eats you",
-     "ok": false,
-     "why": "That is predation: the spider benefits and you are eaten."
-    },
-    {
-     "kind": "organelle",
-     "label": "Another hive's honey: you both want it",
-     "ok": false,
-     "why": "That is competition: both of you want the same resource."
-    }
-   ],
-   "explain": "Bees and flowers are a mutualism: the bee gets food and the flower gets pollinated, so both benefit."
-  },
-  {
    "id": "b-capacity",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "you": "a deer in a herd that has grown past what the forest can feed",
    "short": "Deer",
    "color": "#c8a070",
@@ -724,8 +755,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "b-pioneer",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "succession",
    "you": "a lichen spore drifting after a volcano erupted",
    "short": "Lichen",
    "color": "#c8e07a",
@@ -753,8 +784,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "b-solution",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.N",
+   "code": "3.1.9-12.N",
+   "topic": "solutions",
    "you": "a conservation biologist",
    "short": "You",
    "color": "#7be0ad",
@@ -781,40 +812,40 @@ FieldGuide.registerQuestions(3, {
    "explain": "Plant buffers and wetlands soak up nutrients before they reach the water, which helps prevent algal blooms."
   },
   {
-   "id": "b-clownfish",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "you": "a young clownfish looking for a home on the reef",
-   "short": "Clownfish",
-   "color": "#ff8a3a",
-   "goal": "Swim through the door where you AND your partner both benefit.",
+   "id": "b-school",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "you": "a young sardine on the reef",
+   "short": "Sardine",
+   "color": "#9fd8ff",
+   "goal": "A reef shark is coming! Swim through the door that gives you the best chance to survive.",
    "doors": [
     {
      "kind": "flow",
-     "label": "Sea anemone: you get shelter, it gets protected",
+     "label": "Join the big, tight school of sardines",
      "ok": true
     },
     {
      "kind": "pump",
-     "label": "Moray eel's hole",
+     "label": "Swim off alone into open water",
      "ok": false,
-     "why": "The eel would eat you. That is predation, not a partnership."
+     "why": "A fish alone is easy for the shark to single out and catch."
     },
     {
      "kind": "organelle",
-     "label": "An anemone another clownfish already guards",
+     "label": "Stay alone and keep eating algae",
      "ok": false,
-     "why": "Two clownfish fighting over one anemone is competition."
+     "why": "Alone and not watching, you are the easiest target on the reef."
     }
    ],
-   "explain": "Clownfish and sea anemones are a classic mutualism: shelter for the fish, protection and cleaning for the anemone."
+   "explain": "Schooling is group behavior: many eyes spot danger sooner, and a predator has trouble picking out one fish in a swirling crowd."
   }
  ],
  "catches": [
   {
    "id": "c-levels",
-   "code": "BIO.B.4.1.1",
-   "steels": "3.1.9-12.L",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
    "short": "Levels of ecology",
    "title": "Name the level: grab the level of ecological organization that matches each picture.",
    "cueLabel": "Picture",
@@ -853,56 +884,12 @@ FieldGuide.registerQuestions(3, {
     "Cell": "A cell is inside an organism. Ecology starts at the organism level.",
     "Organ": "An organ is part of one organism. Ecology starts at the organism level."
    },
-   "explain": "Organism, population (one species), community (many species), ecosystem (community plus abiotic factors)."
-  },
-  {
-   "id": "c-symbiosis",
-   "code": "BIO.B.4.2.2",
-   "steels": "3.1.9-12.M",
-   "short": "Relationships",
-   "title": "Match each relationship to its name.",
-   "cueLabel": "Relationship",
-   "builtLabel": "Matched",
-   "cueWord": "description",
-   "tokenWord": "name",
-   "rule": "Look at who benefits and who is harmed.",
-   "choices": [
-    "Mutualism",
-    "Commensalism",
-    "Parasitism",
-    "Predation",
-    "Competition",
-    "Succession"
-   ],
-   "steps": [
-    {
-     "cue": "Both partners benefit",
-     "need": "Mutualism"
-    },
-    {
-     "cue": "One benefits, the other is not affected",
-     "need": "Commensalism"
-    },
-    {
-     "cue": "One lives on or in a host and harms it",
-     "need": "Parasitism"
-    },
-    {
-     "cue": "One hunts, kills, and eats the other",
-     "need": "Predation"
-    }
-   ],
-   "hint": "Who wins, and who loses or stays the same?",
-   "wrong": {
-    "Competition": "Competition is when both want the same limited resource.",
-    "Succession": "Succession is how a community changes over time, not a relationship between two species."
-   },
-   "explain": "Mutualism (+/+), commensalism (+/0), parasitism (+/−), predation (one eats the other)."
+   "explain": "Organism, population (one species), community (many species), ecosystem (community plus nonliving factors like water, soil, and sunlight)."
   },
   {
    "id": "c-impact",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.N",
+   "code": "3.1.9-12.N",
+   "topic": "impacts",
    "short": "Human impacts",
    "title": "Name the human impact: grab the term that matches each event.",
    "cueLabel": "Event",
@@ -916,7 +903,7 @@ FieldGuide.registerQuestions(3, {
     "Habitat loss",
     "Overharvesting",
     "Succession",
-    "Mutualism"
+    "Carrying capacity"
    ],
    "steps": [
     {
@@ -939,16 +926,60 @@ FieldGuide.registerQuestions(3, {
    "hint": "What is causing the harm in the highlighted event?",
    "wrong": {
     "Succession": "Succession is the natural change of a community over time.",
-    "Mutualism": "Mutualism is a relationship where both partners benefit."
+    "Carrying capacity": "Carrying capacity is the largest population an environment can support, not a human impact."
    },
    "explain": "Invasive species, nutrient pollution, habitat loss, and overharvesting are major ways humans disrupt ecosystems."
+  },
+  {
+   "id": "c-behavior",
+   "code": "3.1.9-12.O",
+   "topic": "group",
+   "short": "Group benefits",
+   "title": "Why live in a group? Grab the benefit each group behavior gives its members.",
+   "cueLabel": "Behavior",
+   "builtLabel": "Benefits found",
+   "cueWord": "behavior",
+   "tokenWord": "benefit",
+   "rule": "Each group behavior helps members survive or reproduce in a different way.",
+   "choices": [
+    "Hard to catch one fish",
+    "Catch bigger prey",
+    "Early warning of danger",
+    "Saves body heat",
+    "Makes its own food",
+    "Breaks rock into soil"
+   ],
+   "steps": [
+    {
+     "cue": "Fish swim in a tight, swirling school",
+     "need": "Hard to catch one fish"
+    },
+    {
+     "cue": "Wolves hunt an elk as a pack",
+     "need": "Catch bigger prey"
+    },
+    {
+     "cue": "One meerkat stands guard while the others feed",
+     "need": "Early warning of danger"
+    },
+    {
+     "cue": "Emperor penguins huddle in a winter storm",
+     "need": "Saves body heat"
+    }
+   ],
+   "hint": "Ask: how does acting together help each animal survive?",
+   "wrong": {
+    "Makes its own food": "Making food from sunlight is what producers do, not a benefit of group behavior.",
+    "Breaks rock into soil": "Breaking rock into soil is what pioneer species like lichens do."
+   },
+   "explain": "Group behaviors such as schooling, pack hunting, keeping watch, and huddling raise each member's chances to survive and reproduce."
   }
  ],
  "data": [
   {
    "id": "d-deer",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "title": "Deer on an island (carrying capacity is about 100 deer)",
    "xlabel": "Year",
    "ylabel": "Number of deer",
@@ -989,8 +1020,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "d-oxygen",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "impacts",
    "title": "Dissolved oxygen along a stream that flows past a farm",
    "xlabel": "Sampling site",
    "ylabel": "Dissolved oxygen (mg/L)",
@@ -1022,10 +1053,50 @@ FieldGuide.registerQuestions(3, {
      "explain": "Far downstream the oxygen recovered to 8 mg/L, enough for trout."
     },
     {
-     "prompt": "Where would you expect the biggest algal bloom?",
+     "prompt": "Based on the data, where does fertilizer runoff seem to enter the stream?",
      "answer": 2,
-     "hint": "Algae blooms where nutrients enter, and then oxygen crashes as they decay.",
-     "explain": "Fertilizer enters beside the farm. Algae bloom, die, and decomposers use up the oxygen there."
+     "hint": "Look for the site where the oxygen first drops sharply.",
+     "explain": "The oxygen drops sharply beside the farm, a sign that fertilizer enters there. Algae grow fast, die, and decomposers use up the oxygen."
+    }
+   ]
+  },
+  {
+   "id": "d-patch",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
+   "title": "Bird species counted in forest patches of different sizes (illustrative data)",
+   "xlabel": "Size of forest patch",
+   "ylabel": "Bird species found",
+   "categories": [
+    "1 hectare",
+    "5 hectares",
+    "20 hectares",
+    "100 hectares"
+   ],
+   "values": [
+    6,
+    11,
+    22,
+    30
+   ],
+   "questions": [
+    {
+     "prompt": "Which forest patch had the MOST bird species?",
+     "answer": 3,
+     "hint": "Find the tallest bar.",
+     "explain": "The 100-hectare patch had 30 species. Larger habitats usually hold more species."
+    },
+    {
+     "prompt": "Which patch had about TWICE as many bird species as the 5-hectare patch?",
+     "answer": 2,
+     "hint": "The 5-hectare patch had 11 species. What is 11 × 2?",
+     "explain": "11 × 2 = 22, which matches the 20-hectare patch."
+    },
+    {
+     "prompt": "A road will cut the 100-hectare forest into small 1-hectare pieces. Based on the data, which patch's bird count will each small piece most likely match?",
+     "answer": 0,
+     "hint": "Match the new piece size to the data.",
+     "explain": "Each piece will be about 1 hectare, and 1-hectare patches had only about 6 species. Fragmentation lowers biodiversity."
     }
    ]
   }
@@ -1033,8 +1104,8 @@ FieldGuide.registerQuestions(3, {
  "mazes": [
   {
    "id": "maze-succession",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "succession",
    "title": "Primary succession: go through the doorway for the next stage",
    "start": "Bare rock",
    "steps": [
@@ -1069,22 +1140,22 @@ FieldGuide.registerQuestions(3, {
  "sequences": [
   {
    "id": "s-levels",
-   "code": "BIO.B.4.1.1",
-   "steels": "3.1.9-12.L",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
    "title": "Zoom out: put the levels of ecology in order from smallest to largest",
    "steps": [
+    "Organism: one white-tailed deer",
     "Population: all the deer in one forest",
     "Community: all the species living there together",
-    "Ecosystem: the community plus water, soil, and sunlight",
-    "Biome: many similar ecosystems across a region"
+    "Ecosystem: the community plus water, soil, and sunlight"
    ],
    "hint": "Each level includes the one before it.",
-   "explain": "Population, community, ecosystem, biome: each level includes everything in the level before it. All biomes together make the biosphere."
+   "explain": "Organism, population, community, ecosystem: each level includes everything in the level before it. Ecologists count organisms at each level to study biodiversity."
   },
   {
    "id": "s-secondary",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "succession",
    "title": "Secondary succession after a forest fire",
    "steps": [
     "Fire clears the forest, but the soil remains",
@@ -1097,8 +1168,8 @@ FieldGuide.registerQuestions(3, {
   },
   {
    "id": "s-bloom",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.M",
+   "code": "3.1.9-12.M",
+   "topic": "impacts",
    "title": "How fertilizer runoff kills fish",
    "steps": [
     "Fertilizer runoff adds extra nutrients to a lake",
@@ -1108,14 +1179,28 @@ FieldGuide.registerQuestions(3, {
    ],
    "hint": "It starts with extra nutrients.",
    "explain": "This chain of events is called eutrophication. Reducing nutrient runoff prevents it."
+  },
+  {
+   "id": "s-sim",
+   "code": "3.1.9-12.V",
+   "topic": "simulation",
+   "title": "Test a solution with a simulation: help sea turtle hatchlings reach the ocean",
+   "steps": [
+    "Name the problem: bright beach lights lead hatchlings away from the sea",
+    "Build a simulation of the beach, the lights, and the hatchlings",
+    "Run it with the old lights, then with turtle-safe lights",
+    "Compare how many hatchlings reach the sea, then revise the plan"
+   ],
+   "hint": "Start with the problem, end by improving the solution.",
+   "explain": "Scientists use simulations to test and revise solutions that reduce human impacts on biodiversity before changing the real beach."
   }
  ],
  "balances": [
   {
    "id": "bal-deer",
    "kind": "elevator",
-   "code": "BIO.B.4.2.5",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "title": "Manage the deer herd: keep it near the forest's carrying capacity. The platform rises and falls with the herd.",
    "what": "Deer in the forest",
    "unit": "deer",
@@ -1159,8 +1244,8 @@ FieldGuide.registerQuestions(3, {
    "id": "bal-bloom",
    "kind": "boss",
    "name": "The Algal Bloom",
-   "code": "BIO.B.4.2.4",
-   "steels": "3.1.9-12.N",
+   "code": "3.1.9-12.N",
+   "topic": "solutions",
    "title": "The Algal Bloom keeps changing the nutrients in the lake. Too few starve the producers; too many feed a bloom that uses up the oxygen. Hold the lake in balance.",
    "what": "Nutrients in the lake",
    "unit": "units",
@@ -1193,7 +1278,7 @@ FieldGuide.registerQuestions(3, {
      "delta": 8
     },
     {
-     "label": "Allow some farm runoff",
+     "label": "Let a natural stream bring in nutrients",
      "delta": 11
     }
    ],
@@ -1207,95 +1292,98 @@ FieldGuide.registerQuestions(3, {
  "wordbanks": [
   {
    "id": "wb-habitat",
-   "steels": "3.1.9-12.L",
+   "code": "3.1.9-12.L",
+   "topic": "counting",
    "words": [
-    "habitat",
-    "niche",
-    "biotic",
-    "abiotic",
     "population",
-    "mutualism"
+    "community",
+    "ecosystem",
+    "biodiversity",
+    "average",
+    "predator"
    ],
    "sentences": [
     {
-     "text": "The place where an organism lives is its ___.",
-     "answer": "habitat",
-     "code": "BIO.B.4.1.2",
-     "explain": "A habitat is an organism's 'address'."
-    },
-    {
-     "text": "An organism's role, such as what it eats and when it is active, is its ___.",
-     "answer": "niche",
-     "code": "BIO.B.4.1.2",
-     "explain": "A niche is an organism's 'job' in the ecosystem."
-    },
-    {
-     "text": "Living or once-living parts of an ecosystem are ___ factors.",
-     "answer": "biotic",
-     "code": "BIO.B.4.1.2",
-     "explain": "Bio- means life."
-    },
-    {
-     "text": "Sunlight, water, and temperature are ___ factors.",
-     "answer": "abiotic",
-     "code": "BIO.B.4.1.2",
-     "explain": "A- means not: abiotic means not living."
-    },
-    {
      "text": "All the members of one species in one area form a ___.",
      "answer": "population",
-     "code": "BIO.B.4.1.1",
+     "code": "3.1.9-12.L",
      "explain": "A population is one species in one place."
+    },
+    {
+     "text": "All the populations of different species living in one area form a ___.",
+     "answer": "community",
+     "code": "3.1.9-12.L",
+     "explain": "A community is many species living together."
+    },
+    {
+     "text": "A community plus the water, soil, and sunlight around it is an ___.",
+     "answer": "ecosystem",
+     "code": "3.1.9-12.L",
+     "explain": "An ecosystem adds the nonliving surroundings."
+    },
+    {
+     "text": "The variety of different species living in an area is its ___.",
+     "answer": "biodiversity",
+     "code": "3.1.9-12.L",
+     "explain": "Bio- means life; diversity means variety."
+    },
+    {
+     "text": "To compare bird counts from 5 sample plots, add them and divide by 5 to find the ___.",
+     "answer": "average",
+     "code": "3.1.9-12.L",
+     "explain": "The average (mean) is the total divided by how many numbers there are."
     }
    ]
   },
   {
    "id": "wb-relations",
-   "steels": "3.1.9-12.L",
+   "code": "3.1.9-12.O",
+   "topic": "group",
    "words": [
+    "school",
+    "pack",
+    "sentinel",
     "predator",
-    "prey",
     "competition",
-    "mutualism",
-    "parasite",
     "pioneer"
    ],
    "sentences": [
     {
-     "text": "A hawk that hunts mice is a ___.",
+     "text": "Fish swimming together in a tight group form a ___.",
+     "answer": "school",
+     "code": "3.1.9-12.O",
+     "explain": "A school of fish moves as one group."
+    },
+    {
+     "text": "Wolves that live and hunt together as a group are a ___.",
+     "answer": "pack",
+     "code": "3.1.9-12.O",
+     "explain": "A pack can catch prey bigger than one wolf could."
+    },
+    {
+     "text": "A meerkat that keeps watch for danger while the others feed is a ___.",
+     "answer": "sentinel",
+     "code": "3.1.9-12.O",
+     "explain": "A sentinel warns the group, so everyone is safer."
+    },
+    {
+     "text": "A shark that hunts reef fish is a ___.",
      "answer": "predator",
-     "code": "BIO.B.4.2.2",
-     "explain": "Predators hunt and eat other animals."
+     "code": "3.1.9-12.I",
+     "explain": "Predators help keep prey populations from growing too large."
     },
     {
-     "text": "The mice the hawk eats are its ___.",
-     "answer": "prey",
-     "code": "BIO.B.4.2.2",
-     "explain": "Prey are the animals that predators eat."
-    },
-    {
-     "text": "Two plants growing toward the same sunlight are in ___.",
+     "text": "Two corals growing toward the same patch of sunlight are in ___.",
      "answer": "competition",
-     "code": "BIO.B.4.2.2",
-     "explain": "Competition is a struggle over the same limited resource."
-    },
-    {
-     "text": "When both partners benefit, the relationship is ___.",
-     "answer": "mutualism",
-     "code": "BIO.B.4.2.2",
-     "explain": "Mutualism: a win for both."
-    },
-    {
-     "text": "A tick that feeds on a dog's blood is a ___.",
-     "answer": "parasite",
-     "code": "BIO.B.4.2.2",
-     "explain": "A parasite benefits by harming its host."
+     "code": "3.1.9-12.I",
+     "explain": "Competition for limited resources limits population size."
     }
    ]
   },
   {
    "id": "wb-growth",
-   "steels": "3.1.9-12.I",
+   "code": "3.1.9-12.I",
+   "topic": "limits",
    "words": [
     "carrying capacity",
     "limiting factor",
@@ -1308,31 +1396,31 @@ FieldGuide.registerQuestions(3, {
     {
      "text": "The largest population an environment can support is its ___.",
      "answer": "carrying capacity",
-     "code": "BIO.B.4.2.5",
+     "code": "3.1.9-12.I",
      "explain": "Carrying capacity is set by food, water, space, and other resources."
     },
     {
      "text": "Anything that keeps a population from growing, like a food shortage, is a ___.",
      "answer": "limiting factor",
-     "code": "BIO.B.4.2.5",
+     "code": "3.1.9-12.I",
      "explain": "Limiting factors slow or stop population growth."
     },
     {
      "text": "With unlimited resources, a population shows ___ growth (a J-shaped curve).",
      "answer": "exponential",
-     "code": "BIO.B.4.2.5",
+     "code": "3.1.9-12.I",
      "explain": "Exponential growth keeps speeding up when nothing limits it."
     },
     {
      "text": "Disease spreads faster in a crowded population, so it is a ___ limiting factor.",
      "answer": "density-dependent",
-     "code": "BIO.B.4.2.5",
+     "code": "3.1.9-12.I",
      "explain": "Density-dependent factors get stronger as a population gets more crowded."
     },
     {
      "text": "A flood affects a population no matter how crowded it is, so it is ___.",
      "answer": "density-independent",
-     "code": "BIO.B.4.2.5",
+     "code": "3.1.9-12.I",
      "explain": "Weather and natural disasters are density-independent."
     }
    ]
@@ -1344,23 +1432,23 @@ FieldGuide.registerQuestions(3, {
    "title": "Lab Lock",
    "clues": [
     {
-     "prompt": "Clue 1: How many of these are ABIOTIC factors? Sunlight, temperature, fungi, rainfall, deer.",
-     "answer": 3,
-     "code": "BIO.B.4.1.2",
-     "hint": "Fungi and deer are alive.",
-     "explain": "Sunlight, temperature, and rainfall are abiotic (3). Fungi and deer are biotic."
+     "prompt": "Clue 1: A simulation tests four plans to protect a sea turtle nesting beach. Nests saved: Plan 1 = 20, Plan 2 = 35, Plan 3 = 15, Plan 4 = 28. Which plan number saved the MOST nests?",
+     "answer": 2,
+     "code": "3.1.9-12.V",
+     "hint": "Find the largest number of nests saved.",
+     "explain": "Plan 2 saved 35 nests, the most, so it is the best plan to try on the real beach."
     },
     {
-     "prompt": "Clue 2: Grass is eaten by crickets, crickets by frogs, and frogs by snakes. Counting grass as level 1, what trophic level is the snake?",
-     "answer": 4,
-     "code": "BIO.B.4.2.1",
-     "hint": "Count up the chain: grass, cricket, frog, snake.",
-     "explain": "Grass (1), cricket (2), frog (3), snake (4)."
+     "prompt": "Clue 2: How many of these actions REDUCE human impact on a river? Planting native trees on the banks, adding more lawn fertilizer, building a fish ladder at a dam, paving the floodplain, restoring a wetland.",
+     "answer": 3,
+     "code": "3.1.9-12.N",
+     "hint": "Fertilizer and paving make things worse.",
+     "explain": "Native trees, a fish ladder, and a restored wetland reduce impacts (3). Extra fertilizer and paving increase them."
     },
     {
      "prompt": "Clue 3: Trout need at least 6 mg/L of oxygen. At how many sites was the oxygen too LOW for trout?",
      "answer": 2,
-     "code": "BIO.B.4.2.4",
+     "code": "3.1.9-12.M",
      "figure": {
       "type": "bars",
       "categories": [
@@ -1384,8 +1472,8 @@ FieldGuide.registerQuestions(3, {
     }
    ],
    "debrief": [
-    "Clue 1 linked biotic and abiotic factors: living things versus the nonliving conditions around them.",
-    "Clue 2 linked trophic levels: each step up a food chain is one level higher.",
+    "Clue 1 linked simulations to solutions: compare plans in a model before changing a real ecosystem.",
+    "Clue 2 linked human actions to impacts: some actions harm a river and some help it recover.",
     "Clue 3 linked human impact to data: fertilizer runoff lowered the oxygen near the farm."
    ]
   }
@@ -1428,42 +1516,6 @@ FieldGuide.registerQuestions(3, {
    "note": "The pond's living things plus its water, mud, and sunlight make an ECOSYSTEM."
   },
   {
-   "id": "s3-biome",
-   "name": "Temperate forest",
-   "look": "grass",
-   "color": "#5a9a4a",
-   "word": "Biome",
-   "def": "A large region with a similar climate and similar kinds of ecosystems.",
-   "note": "Pennsylvania's forests belong to the temperate deciduous forest BIOME: four seasons and trees that drop their leaves."
-  },
-  {
-   "id": "s3-biosphere",
-   "name": "Planet Earth",
-   "look": "sun",
-   "color": "#7fd4ff",
-   "word": "Biosphere",
-   "def": "All the parts of Earth where life exists.",
-   "note": "Every ecosystem on land, in water, and in the air together is the BIOSPHERE."
-  },
-  {
-   "id": "s3-biotic",
-   "name": "Fern",
-   "look": "sprout",
-   "color": "#7be06a",
-   "word": "Biotic factor",
-   "def": "A living or once-living part of an ecosystem.",
-   "note": "Plants, animals, fungi, bacteria, and even fallen leaves are BIOTIC factors."
-  },
-  {
-   "id": "s3-abiotic",
-   "name": "Stream stone",
-   "look": "rock",
-   "color": "#9a9a88",
-   "word": "Abiotic factor",
-   "def": "A nonliving part of an ecosystem, such as sunlight, water, soil minerals, or temperature.",
-   "note": "Rocks, water, sunlight, and temperature are ABIOTIC factors. They decide which organisms can live here."
-  },
-  {
    "id": "s3-habitat",
    "name": "Box turtle",
    "look": "turtle",
@@ -1471,15 +1523,6 @@ FieldGuide.registerQuestions(3, {
    "word": "Habitat",
    "def": "The place where an organism lives.",
    "note": "This box turtle's HABITAT is the moist forest floor: its 'address'."
-  },
-  {
-   "id": "s3-niche",
-   "name": "Shelf fungus",
-   "look": "mushroom",
-   "color": "#e0b070",
-   "word": "Niche",
-   "def": "An organism's role in its ecosystem: what it eats, when it is active, and how it interacts with others.",
-   "note": "This fungus's NICHE is decomposer: it breaks down dead wood and returns nutrients to the soil."
   },
   {
    "id": "s3-predator",
@@ -1507,33 +1550,6 @@ FieldGuide.registerQuestions(3, {
    "word": "Competition",
    "def": "A relationship in which organisms struggle for the same limited resource.",
    "note": "These seedlings are in COMPETITION for light, water, and space. Usually only one wins."
-  },
-  {
-   "id": "s3-mutual",
-   "name": "Bee on clover",
-   "look": "sprout",
-   "color": "#ffd166",
-   "word": "Mutualism",
-   "def": "A relationship in which both species benefit.",
-   "note": "The bee gets nectar and the clover gets pollinated: MUTUALISM."
-  },
-  {
-   "id": "s3-commensal",
-   "name": "Bird nest in a tree",
-   "look": "eggs",
-   "color": "#c8b88a",
-   "word": "Commensalism",
-   "def": "A relationship in which one species benefits and the other is neither helped nor harmed.",
-   "note": "The bird gets a safe nest and the tree is not affected: COMMENSALISM."
-  },
-  {
-   "id": "s3-parasite",
-   "name": "Deer tick",
-   "look": "critter",
-   "color": "#8a3a2a",
-   "word": "Parasitism",
-   "def": "A relationship in which one organism (the parasite) benefits by harming another (the host).",
-   "note": "The tick feeds on its host's blood: PARASITISM. Ticks can also spread Lyme disease."
   },
   {
    "id": "s3-limit",
@@ -1752,49 +1768,94 @@ FieldGuide.registerQuestions(3, {
    "note": "Corals COMPETE for space and sunlight. Some even sting their neighbors to win room to grow."
   },
   {
-   "id": "s3r-clown",
-   "name": "Clownfish in an anemone",
+   "id": "s3-richness",
+   "name": "Spring wildflowers",
+   "look": "sprout",
+   "color": "#ff9fbf",
+   "word": "Species richness",
+   "def": "The number of different species living in an area.",
+   "note": "Six kinds of wildflowers grow on this slope. Counting the kinds gives the area's SPECIES RICHNESS, one way to measure biodiversity."
+  },
+  {
+   "id": "s3-sample",
+   "name": "Sampling square",
+   "look": "stack",
+   "color": "#c8e07a",
+   "word": "Sample",
+   "def": "A small part that is counted to estimate the whole.",
+   "note": "Scientists can't count every plant in a forest. They count the plants inside small squares and use those SAMPLES to estimate the whole population."
+  },
+  {
+   "id": "s3-fragment",
+   "name": "Forest cut by a road",
+   "look": "rock",
+   "color": "#a8763c",
+   "word": "Habitat fragmentation",
+   "def": "Breaking a large habitat into small, separated pieces.",
+   "note": "A road split this forest in two. Small, separated pieces support fewer species: HABITAT FRAGMENTATION."
+  },
+  {
+   "id": "s3-average",
+   "name": "Field notebook",
+   "look": "stack",
+   "color": "#ffd166",
+   "word": "Average (mean)",
+   "def": "The total of a set of numbers divided by how many numbers there are.",
+   "note": "Counts of 8, 12, and 10 salamanders under three logs average to 10. AVERAGES make samples easier to compare."
+  },
+  {
+   "id": "s3-trend",
+   "name": "Bird survey chart",
+   "look": "chain",
+   "color": "#7fd4ff",
+   "word": "Trend",
+   "def": "The general direction that data change over time, such as going up or down.",
+   "note": "Bird counts here dropped a little each year: a downward TREND. Trends show how populations change."
+  },
+  {
+   "id": "s3r-school",
+   "name": "School of bigeye scad",
    "look": "eggs",
-   "color": "#ff8a3a",
-   "word": "Mutualism",
-   "def": "A relationship in which both species benefit.",
-   "note": "The clownfish hides from predators in the anemone's stinging tentacles; the clownfish chases off fish that eat anemones. Both benefit: MUTUALISM."
+   "color": "#9fd8ff",
+   "word": "School",
+   "def": "A large group of fish swimming together.",
+   "note": "Thousands of fish move as one. Many eyes spot danger sooner, and a predator has trouble picking out one fish."
   },
   {
-   "id": "s3r-cleaner",
-   "name": "Cleaner shrimp",
+   "id": "s3r-pod",
+   "name": "Spinner dolphin pod",
    "look": "critter",
-   "color": "#ff6a6a",
-   "word": "Cleaning symbiosis",
-   "def": "A mutualism in which one animal removes parasites from another.",
-   "note": "Fish line up at this 'cleaning station'. The shrimp gets a meal of parasites and the fish gets cleaned. Both benefit."
+   "color": "#8aa8c8",
+   "word": "Pod",
+   "def": "A group of dolphins or whales that live and travel together.",
+   "note": "Spinner dolphins rest together in calm water by day, swimming slowly in a tight group so many eyes can watch for sharks. At night the pod hunts together."
   },
   {
-   "id": "s3r-coral",
-   "name": "Coral polyp",
-   "look": "cell",
-   "color": "#c8a8ff",
-   "word": "Zooxanthellae",
-   "def": "Tiny algae that live inside coral cells and share food made by photosynthesis.",
-   "note": "Coral animals and the algae inside them are partners: the algae get shelter and the coral gets food. When stressed by heat, corals expel the algae and turn white (bleaching)."
-  },
-  {
-   "id": "s3r-remora",
-   "name": "Remora on a shark",
+   "id": "s3r-spawn",
+   "name": "Grouper gathering",
    "look": "critter",
-   "color": "#9aa8a0",
-   "word": "Commensalism",
-   "def": "A relationship in which one species benefits and the other is neither helped nor harmed.",
-   "note": "The remora hitches a ride and eats scraps from the shark's meals. The shark is not helped or harmed: COMMENSALISM."
+   "color": "#c8a070",
+   "word": "Spawning aggregation",
+   "def": "A large gathering of fish that meet in one place to reproduce.",
+   "note": "Each winter, Nassau groupers gather by the thousands to spawn. Meeting in a group helps more eggs get fertilized, but it also makes the fish easy for fishing boats to catch."
   },
   {
-   "id": "s3r-parasite",
-   "name": "Fish with sea lice",
+   "id": "s3r-cost",
+   "name": "Crowded damselfish colony",
+   "look": "eggs",
+   "color": "#5fd0ff",
+   "word": "Cost of group living",
+   "def": "A downside of living in a group, such as more competition for food or faster spread of disease.",
+   "note": "These damselfish live close together and fight over the best patches of algae. In a crowd, disease also spreads easily."
+  },
+  {
+   "id": "s3r-alone",
+   "name": "Day octopus",
    "look": "critter",
-   "color": "#d8c070",
-   "word": "Parasitism",
-   "def": "A relationship in which one organism (the parasite) benefits by harming another (the host).",
-   "note": "Sea lice are tiny crustaceans that feed on a fish's skin and mucus. The parasite benefits and the host fish is harmed: PARASITISM."
+   "color": "#d8a070",
+   "word": "Individual behavior",
+   "def": "Something one animal does on its own, not as part of a group.",
+   "note": "This octopus hunts crabs alone and does not cooperate with other octopuses: INDIVIDUAL BEHAVIOR."
   }
  ],
  "vocab": [
@@ -1815,28 +1876,8 @@ FieldGuide.registerQuestions(3, {
    "def": "A community of living things plus the nonliving factors around them."
   },
   {
-   "term": "Biome",
-   "def": "A large region with a similar climate and similar kinds of ecosystems."
-  },
-  {
-   "term": "Biosphere",
-   "def": "All the parts of Earth where life exists."
-  },
-  {
-   "term": "Biotic factor",
-   "def": "A living or once-living part of an ecosystem."
-  },
-  {
-   "term": "Abiotic factor",
-   "def": "A nonliving part of an ecosystem, such as sunlight, water, soil minerals, or temperature."
-  },
-  {
    "term": "Habitat",
    "def": "The place where an organism lives."
-  },
-  {
-   "term": "Niche",
-   "def": "An organism's role in its ecosystem: what it eats, when it is active, and how it interacts with others."
   },
   {
    "term": "Predator",
@@ -1849,18 +1890,6 @@ FieldGuide.registerQuestions(3, {
   {
    "term": "Competition",
    "def": "A relationship in which organisms struggle for the same limited resource."
-  },
-  {
-   "term": "Mutualism",
-   "def": "A relationship in which both species benefit."
-  },
-  {
-   "term": "Commensalism",
-   "def": "A relationship in which one species benefits and the other is neither helped nor harmed."
-  },
-  {
-   "term": "Parasitism",
-   "def": "A relationship in which one organism (the parasite) benefits by harming another (the host)."
   },
   {
    "term": "Limiting factor",
@@ -1947,12 +1976,52 @@ FieldGuide.registerQuestions(3, {
    "def": "Protecting, restoring, and wisely using natural resources and ecosystems."
   },
   {
-   "term": "Cleaning symbiosis",
-   "def": "A mutualism in which one animal removes parasites from another."
+   "term": "Species richness",
+   "def": "The number of different species living in an area."
   },
   {
-   "term": "Zooxanthellae",
-   "def": "Tiny algae that live inside coral cells and share food made by photosynthesis."
+   "term": "Sample",
+   "def": "A small part that is counted to estimate the whole."
+  },
+  {
+   "term": "Habitat fragmentation",
+   "def": "Breaking a large habitat into small, separated pieces."
+  },
+  {
+   "term": "Average (mean)",
+   "def": "The total of a set of numbers divided by how many numbers there are."
+  },
+  {
+   "term": "Trend",
+   "def": "The general direction that data change over time, such as going up or down."
+  },
+  {
+   "term": "School",
+   "def": "A large group of fish swimming together."
+  },
+  {
+   "term": "Pod",
+   "def": "A group of dolphins or whales that live and travel together."
+  },
+  {
+   "term": "Spawning aggregation",
+   "def": "A large gathering of fish that meet in one place to reproduce."
+  },
+  {
+   "term": "Cost of group living",
+   "def": "A downside of living in a group, such as more competition for food or faster spread of disease."
+  },
+  {
+   "term": "Individual behavior",
+   "def": "Something one animal does on its own, not as part of a group."
+  },
+  {
+   "term": "Group behavior",
+   "def": "Behavior in which animals of the same species act together, such as schooling, herding, huddling, or hunting in packs."
+  },
+  {
+   "term": "Simulation",
+   "def": "A model, often on a computer, used to test what would happen under different conditions."
   }
  ]
 });

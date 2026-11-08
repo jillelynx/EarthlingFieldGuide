@@ -1,107 +1,107 @@
 /* WORLD 2 QUESTION FILE: Matter and Energy in Organisms and Ecosystems
    Teachers: you can edit the words inside the quotation marks below.
-   - "code" is the Keystone Eligible Content code. "steels" is the PA STEELS standard.
+   - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.
+     World 2 uses 3.1.9-12.E, F, G, H, J, and K.
+   - "topic" groups questions that can rotate with each other at stations and clue terminals.
    - In "questions", "answer" is the position of the correct option, counting from 0. The game shuffles the options.
    - "hint" shows after a wrong try. "explain" shows after the right answer.
    - Keep every comma, bracket, and quotation mark in place. */
 FieldGuide.registerQuestions(2, {
  "tokens": [
   {
-   "id": "water-props",
-   "code": "BIO.A.2.1.1",
-   "steels": "3.2.9-12.B",
-   "prompt": "Collect only TRUE properties of water that help life on Earth",
+   "id": "f-build",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
+   "prompt": "Collect only things a cell can BUILD from the carbon, hydrogen, and oxygen in sugar (adding a few other elements)",
    "good": [
-    "Polar: one end slightly +, one end slightly −",
-    "Cohesion: water sticks to itself",
-    "Adhesion: water sticks to other surfaces",
-    "High specific heat: resists temperature change",
-    "Ice floats: it is less dense",
-    "Dissolves many substances (a solvent)"
+    "Amino acids",
+    "Proteins",
+    "DNA",
+    "Fats",
+    "Starch"
    ],
    "bad": [
     {
-     "text": "Nonpolar, like oil",
-     "explain": "Water is polar: its oxygen end is slightly negative and its hydrogen ends are slightly positive."
+     "text": "Brand-new carbon atoms",
+     "explain": "Cells cannot make new atoms. They rearrange atoms they already have, such as the carbon from sugar."
     },
     {
-     "text": "Ice sinks to the bottom of lakes",
-     "explain": "Ice is less dense than liquid water, so it floats and insulates the water below."
+     "text": "Nitrogen atoms",
+     "explain": "Sugar has no nitrogen, and cells cannot turn carbon into nitrogen. They take nitrogen in from soil, water, or food."
     },
     {
-     "text": "Heats up and cools down very fast",
-     "explain": "Water has a high specific heat, so its temperature changes slowly."
+     "text": "Light energy",
+     "explain": "Light is energy, not matter. Cells use energy to build molecules, but they cannot build light out of atoms."
     },
     {
-     "text": "Its molecules push each other apart",
-     "explain": "Water molecules attract each other (hydrogen bonds). That is cohesion."
+     "text": "Gold atoms",
+     "explain": "Atoms never change into other elements inside living things. Sugar has no gold."
     }
    ]
   },
   {
-   "id": "monomers",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "prompt": "Collect only MONOMERS: single building blocks",
+   "id": "e-inputs",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "Collect only what photosynthesis TAKES IN (its inputs)",
    "good": [
-    "Glucose",
-    "Amino acid",
-    "Nucleotide",
-    "Fatty acid"
+    "Carbon dioxide from the air",
+    "Water from the roots",
+    "Light energy from the Sun"
    ],
    "bad": [
     {
-     "text": "Starch",
-     "explain": "Starch is a polymer: a long chain of glucose monomers."
+     "text": "Oxygen",
+     "explain": "Oxygen is an OUTPUT of photosynthesis. The plant releases it into the air."
     },
     {
-     "text": "Protein",
-     "explain": "A protein is a polymer: a chain of amino acid monomers."
+     "text": "Glucose (sugar)",
+     "explain": "Sugar is what photosynthesis MAKES. It is an output."
     },
     {
-     "text": "DNA",
-     "explain": "DNA is a polymer: a chain of nucleotide monomers."
+     "text": "Soil",
+     "explain": "Plants take in a little water and minerals from soil, but soil is not an input for making sugar."
     },
     {
-     "text": "Cellulose",
-     "explain": "Cellulose is a polymer: a chain of glucose monomers that builds plant cell walls."
+     "text": "Heat from the ground",
+     "explain": "The energy for photosynthesis comes from light, not from heat in the ground."
     }
    ]
   },
   {
-   "id": "atp-facts",
-   "code": "BIO.A.3.2.2",
-   "steels": "3.1.9-12.G",
-   "prompt": "Collect only TRUE facts about ATP",
+   "id": "j-anaerobic",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "Collect only places where cells must release energy WITHOUT oxygen",
    "good": [
-    "Stores energy in its chemical bonds",
-    "Releases energy when a phosphate breaks off (ATP → ADP)",
-    "Is made in mitochondria during cellular respiration",
-    "Powers cell work like pumps and muscles"
+    "Deep in waterlogged mud",
+    "Inside rising bread dough",
+    "The bottom of a still, stagnant pond",
+    "Inside a soggy, packed compost heap"
    ],
    "bad": [
     {
-     "text": "Is made only by animals",
-     "explain": "Plants, animals, fungi, and bacteria all make and use ATP."
+     "text": "A leaf in open air",
+     "explain": "Air has plenty of oxygen, so leaf cells use aerobic respiration."
     },
     {
-     "text": "Is the cell's genetic material",
-     "explain": "DNA holds genetic information. ATP carries energy."
+     "text": "A flying bird's wing muscles",
+     "explain": "A flying bird breathes hard and delivers lots of oxygen to its muscles."
     },
     {
-     "text": "Stores energy for months, like fat",
-     "explain": "ATP is short-term energy. Cells use it within seconds and keep making more. Fat stores energy long-term."
+     "text": "A fast, splashing mountain stream",
+     "explain": "Splashing water mixes in oxygen from the air."
     },
     {
-     "text": "Is a type of protein",
-     "explain": "ATP is a small nucleotide-like molecule, not a protein."
+     "text": "A fluffy compost pile that is turned every week",
+     "explain": "Turning the pile mixes in air, so its decomposers have oxygen."
     }
    ]
   },
   {
    "id": "producers",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "prompt": "Collect only PRODUCERS: living things that make their own food",
    "good": [
     "Grass",
@@ -131,71 +131,59 @@ FieldGuide.registerQuestions(2, {
  ],
  "sorts": [
   {
-   "id": "macro",
-   "code": "BIO.A.2.2.3",
-   "steels": "3.1.9-12.F",
-   "prompt": "Which type of macromolecule is it?",
+   "id": "e-io",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "Input or output of photosynthesis?",
    "options": [
-    "Carbohydrate",
-    "Lipid",
-    "Protein",
-    "Nucleic acid"
+    "Input (goes in)",
+    "Output (comes out)"
    ],
-   "hint": "Carbohydrates: sugars and starches. Lipids: fats, oils, membranes. Proteins: enzymes, muscle. Nucleic acids: DNA and RNA.",
+   "hint": "Photosynthesis: carbon dioxide + water + light energy → glucose + oxygen.",
    "items": [
     {
-     "text": "Starch stored in a potato",
+     "text": "Carbon dioxide",
      "answer": 0,
-     "explain": "Starch is a carbohydrate: a chain of glucose that stores energy."
+     "explain": "Leaves take in carbon dioxide from the air."
     },
     {
-     "text": "Cellulose in plant cell walls",
+     "text": "Water",
      "answer": 0,
-     "explain": "Cellulose is a carbohydrate that gives plant cell walls strength."
+     "explain": "Water comes up from the roots."
     },
     {
-     "text": "Phospholipids in the cell membrane",
+     "text": "Light energy",
+     "answer": 0,
+     "explain": "Light is the energy that drives photosynthesis."
+    },
+    {
+     "text": "Glucose (sugar)",
      "answer": 1,
-     "explain": "Phospholipids are lipids. They form the cell membrane."
+     "explain": "Sugar is made by photosynthesis."
     },
     {
-     "text": "Butter and olive oil",
+     "text": "Oxygen gas",
      "answer": 1,
-     "explain": "Fats and oils are lipids that store a lot of energy."
+     "explain": "Oxygen is released into the air."
     },
     {
-     "text": "The enzyme amylase",
-     "answer": 2,
-     "explain": "Enzymes are proteins."
-    },
-    {
-     "text": "Hemoglobin that carries oxygen in blood",
-     "answer": 2,
-     "explain": "Hemoglobin is a protein."
-    },
-    {
-     "text": "DNA in the nucleus",
-     "answer": 3,
-     "explain": "DNA is a nucleic acid that stores genetic information."
-    },
-    {
-     "text": "mRNA that carries a gene's message",
-     "answer": 3,
-     "explain": "RNA is a nucleic acid."
+     "text": "Chemical energy stored in sugar",
+     "answer": 1,
+     "explain": "Light energy ends up stored as chemical energy in the bonds of sugar."
     }
    ]
   },
   {
    "id": "photo-resp",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.E",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
    "prompt": "Photosynthesis, cellular respiration, or both?",
    "options": [
     "Photosynthesis",
     "Cellular respiration",
     "Both"
    ],
-   "hint": "Photosynthesis stores light energy in glucose. Cellular respiration releases that energy as ATP.",
+   "hint": "Photosynthesis stores light energy in sugar. Cellular respiration releases the energy in sugar.",
    "items": [
     {
      "text": "Uses light energy",
@@ -218,108 +206,87 @@ FieldGuide.registerQuestions(2, {
      "explain": "Cellular respiration uses oxygen."
     },
     {
-     "text": "Happens in chloroplasts",
+     "text": "Stores energy in the bonds of sugar",
      "answer": 0,
-     "explain": "Photosynthesis happens in chloroplasts."
+     "explain": "Photosynthesis turns light energy into chemical energy stored in sugar."
     },
     {
-     "text": "Happens in mitochondria",
+     "text": "Breaks the bonds in sugar to release energy",
      "answer": 1,
-     "explain": "Cellular respiration happens mostly in mitochondria."
+     "explain": "Cellular respiration breaks sugar's bonds and releases energy the cell uses."
     },
     {
      "text": "Happens inside plant cells",
      "answer": 2,
-     "explain": "Plant cells do both: photosynthesis in chloroplasts and respiration in mitochondria."
+     "explain": "Plant cells do both: they make sugar by photosynthesis and release its energy by cellular respiration."
     },
     {
-     "text": "Makes ATP from the energy in glucose",
+     "text": "Moves carbon atoms between the air and living things",
+     "answer": 2,
+     "explain": "Photosynthesis takes carbon dioxide out of the air; respiration puts it back."
+    }
+   ]
+  },
+  {
+   "id": "j-aer",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "With oxygen (aerobic), without oxygen (anaerobic), or both?",
+   "options": [
+    "Aerobic (with oxygen)",
+    "Anaerobic (without oxygen)",
+    "Both"
+   ],
+   "hint": "Aerobic respiration uses oxygen and releases the most energy. Anaerobic processes happen where oxygen has run out.",
+   "items": [
+    {
+     "text": "Releases the most energy from each sugar molecule",
+     "answer": 0,
+     "explain": "With oxygen, cells release much more energy from each sugar molecule."
+    },
+    {
+     "text": "Uses oxygen gas",
+     "answer": 0,
+     "explain": "Only aerobic respiration uses oxygen."
+    },
+    {
+     "text": "Yeast in sealed bread dough",
      "answer": 1,
-     "explain": "Cellular respiration releases the energy in glucose and stores it in ATP."
+     "explain": "With the oxygen used up, yeast ferment sugar."
+    },
+    {
+     "text": "Decomposers in deep, waterlogged mud",
+     "answer": 1,
+     "explain": "There is almost no oxygen in waterlogged mud."
+    },
+    {
+     "text": "A sprinter's muscles that run short of oxygen",
+     "answer": 1,
+     "explain": "For a short time, the muscle cells release some energy without oxygen."
+    },
+    {
+     "text": "Breaks down sugar to release energy",
+     "answer": 2,
+     "explain": "Both release energy from sugar; aerobic respiration releases far more."
+    },
+    {
+     "text": "Yeast can do it",
+     "answer": 2,
+     "explain": "Yeast use oxygen when it is there and ferment sugar when it is not."
+    },
+    {
+     "text": "Most of your body's cells at rest",
+     "answer": 0,
+     "explain": "At rest your blood delivers plenty of oxygen, so your cells use aerobic respiration."
     }
    ]
   }
  ],
  "questions": [
   {
-   "id": "w2q01",
-   "code": "BIO.A.2.1.1",
-   "steels": "3.2.9-12.B",
-   "prompt": "Why can some insects walk on the surface of a pond?",
-   "options": [
-    "Water molecules stick together (cohesion), making surface tension.",
-    "Water is less dense than the insect.",
-    "The insect is lighter than air.",
-    "Water repels all living things."
-   ],
-   "answer": 0,
-   "hint": "Think about how water molecules attract each other.",
-   "explain": "Cohesion between water molecules creates surface tension strong enough to hold up small insects."
-  },
-  {
-   "id": "w2q02",
-   "code": "BIO.A.2.1.1",
-   "steels": "3.2.9-12.B",
-   "prompt": "In winter, a lake freezes on top but fish survive in the water below. Which property of water explains this?",
-   "options": [
-    "Ice is less dense than liquid water, so it floats and insulates the water below.",
-    "Ice is more dense than liquid water, so it sinks.",
-    "Water cannot dissolve oxygen.",
-    "Water has a low specific heat."
-   ],
-   "answer": 0,
-   "hint": "Where does the ice end up, and what does it do there?",
-   "explain": "Ice floats because it is less dense, forming an insulating layer that keeps the water below from freezing."
-  },
-  {
-   "id": "w2q03",
-   "code": "BIO.A.2.1.1",
-   "steels": "3.2.9-12.B",
-   "prompt": "Coastal cities have milder temperatures than inland cities. Which property of water helps cause this?",
-   "options": [
-    "high specific heat",
-    "cohesion",
-    "low density",
-    "adhesion"
-   ],
-   "answer": 0,
-   "hint": "Which property lets water absorb a lot of heat without changing temperature much?",
-   "explain": "Water's high specific heat means oceans warm and cool slowly, keeping nearby land temperatures steady."
-  },
-  {
-   "id": "w2q04",
-   "code": "BIO.A.2.1.1",
-   "steels": "3.2.9-12.B",
-   "prompt": "Why is water called a polar molecule?",
-   "options": [
-    "Its oxygen end is slightly negative and its hydrogen ends are slightly positive.",
-    "It is found at the North and South Poles.",
-    "It has no charge at all.",
-    "It is made of only one kind of atom."
-   ],
-   "answer": 0,
-   "hint": "Polar means the molecule has two differently charged ends.",
-   "explain": "Oxygen pulls electrons more strongly, so water has a slightly negative end and slightly positive ends."
-  },
-  {
-   "id": "w2q05",
-   "code": "BIO.A.2.1.1",
-   "steels": "3.2.9-12.B",
-   "prompt": "Blood carries sugars, salts, and other nutrients dissolved in water. Which property of water makes this possible?",
-   "options": [
-    "Water is a good solvent.",
-    "Water has low density.",
-    "Water is nonpolar.",
-    "Water freezes at a high temperature."
-   ],
-   "answer": 0,
-   "hint": "What is the word for a liquid that dissolves many substances?",
-   "explain": "Because water is polar, it dissolves many substances, so it can carry nutrients in blood and sap."
-  },
-  {
    "id": "w2q06",
-   "code": "BIO.A.2.2.1",
-   "steels": "3.1.9-12.F",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
    "prompt": "Why can carbon form so many different large molecules?",
    "options": [
     "Each carbon atom can form four bonds, making chains, branches, and rings.",
@@ -329,13 +296,13 @@ FieldGuide.registerQuestions(2, {
    ],
    "answer": 0,
    "hint": "Count how many bonds one carbon atom can make.",
-   "explain": "Carbon forms four strong covalent bonds, so it builds long chains, branches, and rings: the backbones of life's molecules."
+   "explain": "Carbon forms four strong bonds, so it builds long chains, branches, and rings: the backbones of life's molecules."
   },
   {
    "id": "w2q07",
-   "code": "BIO.A.2.2.1",
-   "steels": "3.1.9-12.F",
-   "prompt": "Which element forms the backbone of carbohydrates, lipids, proteins, and nucleic acids?",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
+   "prompt": "Which element forms the backbone of sugars, amino acids, fats, and DNA?",
    "options": [
     "carbon",
     "nitrogen",
@@ -343,13 +310,13 @@ FieldGuide.registerQuestions(2, {
     "calcium"
    ],
    "answer": 0,
-   "hint": "These are called organic molecules for a reason.",
-   "explain": "All four types of biological macromolecules are built on carbon backbones."
+   "hint": "It is the element that can make four bonds and long chains.",
+   "explain": "All of these large molecules are built on chains of carbon atoms."
   },
   {
    "id": "w2q08",
-   "code": "BIO.A.2.2.1",
-   "steels": "3.1.9-12.F",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
    "prompt": "A student says, 'Carbon atoms can link to each other in long chains.' Why does this matter for living things?",
    "options": [
     "It lets cells build large, complex molecules like proteins and DNA.",
@@ -362,419 +329,74 @@ FieldGuide.registerQuestions(2, {
    "explain": "Carbon-to-carbon bonds let cells build the large, varied molecules needed for life."
   },
   {
-   "id": "w2q09",
-   "code": "BIO.A.2.2.1",
-   "steels": "3.1.9-12.F",
-   "prompt": "Glucose, C₆H₁₂O₆, is called an organic molecule. Why?",
+   "id": "w2q78",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
+   "prompt": "A seaweed makes glucose (C₆H₁₂O₆) by photosynthesis. Later it uses the glucose to build amino acids. Which element must it take in from the seawater, because glucose does not contain it?",
    "options": [
-    "It is built on a backbone of carbon atoms.",
-    "It was grown on a farm.",
-    "It contains no carbon.",
-    "It is made only by animals."
+    "nitrogen",
+    "carbon",
+    "hydrogen",
+    "oxygen"
    ],
    "answer": 0,
-   "hint": "In biology, organic means containing carbon backbones.",
-   "explain": "Organic molecules are carbon-based. Glucose has a chain of six carbons."
+   "hint": "Look at the letters in C₆H₁₂O₆. Which element in amino acids is missing?",
+   "explain": "Glucose has only carbon, hydrogen, and oxygen. Amino acids also contain nitrogen, so the seaweed takes nitrogen in from the water and combines it with atoms from the sugar."
   },
   {
-   "id": "w2q10",
-   "code": "BIO.A.2.2.1",
-   "steels": "3.1.9-12.F",
-   "prompt": "Which pair of atoms is found in all four types of biological macromolecules?",
+   "id": "w2q79",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
+   "prompt": "In a famous experiment, a 2 kg willow sapling planted in a tub of soil grew to about 77 kg in five years, but the soil lost only about 57 grams. Where did most of the tree's new mass come from?",
    "options": [
-    "carbon and hydrogen",
-    "iron and sodium",
-    "calcium and chlorine",
-    "gold and oxygen"
+    "carbon dioxide from the air, whose carbon was built into sugar and then into wood",
+    "minerals from the soil",
+    "sunlight that turned into matter",
+    "new atoms the tree made as it grew"
    ],
    "answer": 0,
-   "hint": "Look at the formula of glucose: C₆H₁₂O₆.",
-   "explain": "Carbohydrates, lipids, proteins, and nucleic acids all contain carbon and hydrogen (and oxygen)."
+   "hint": "The soil barely changed. What else does a plant take in to make sugar?",
+   "explain": "Most of a plant's dry mass is carbon, hydrogen, and oxygen. The carbon comes from carbon dioxide in the air, built into sugar by photosynthesis and then into wood and other molecules. Light gives energy, not atoms."
   },
   {
-   "id": "w2q11",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "prompt": "Which monomer is used to build proteins?",
+   "id": "w2q80",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
+   "prompt": "A snail eats seaweed. Carbon atoms from the seaweed's sugar later show up in the snail's muscle proteins. What does this show?",
    "options": [
-    "amino acids",
-    "glucose",
-    "nucleotides",
-    "fatty acids"
+    "The atoms were rearranged into new molecules, not created or destroyed.",
+    "The snail made new carbon atoms.",
+    "The carbon atoms turned into nitrogen atoms.",
+    "Sugar and protein are the same molecule."
    ],
    "answer": 0,
-   "hint": "Proteins are chains of one kind of building block.",
-   "explain": "Proteins are polymers of amino acids."
+   "hint": "Matter is conserved.",
+   "explain": "The snail's cells broke the sugar apart and used its carbon, hydrogen, and oxygen (plus nitrogen) to build proteins. Atoms are rearranged, never created or destroyed."
   },
   {
-   "id": "w2q12",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "prompt": "When two glucose molecules join, a water molecule is released. What is this process called?",
+   "id": "w2q82",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
+   "prompt": "Students grow bean plants in pots and weigh the dry soil before and after one month. The soil mass barely changed, but the plants gained a lot of mass. Which claim does this evidence support?",
    "options": [
-    "dehydration synthesis",
-    "hydrolysis",
-    "photosynthesis",
-    "diffusion"
+    "The plants' new mass did not come mainly from the soil.",
+    "The plants created new matter.",
+    "Plants do not need soil at all.",
+    "The plants' mass came from sunlight."
    ],
    "answer": 0,
-   "hint": "De-hydration means water is removed.",
-   "explain": "Dehydration synthesis joins monomers by removing a water molecule. Hydrolysis is the reverse."
-  },
-  {
-   "id": "w2q13",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "prompt": "During digestion, water is added to break starch into glucose. What is this process called?",
-   "options": [
-    "hydrolysis",
-    "dehydration synthesis",
-    "transcription",
-    "osmosis"
-   ],
-   "answer": 0,
-   "hint": "Hydro means water and lysis means to split.",
-   "explain": "Hydrolysis uses water to break polymers into monomers."
-  },
-  {
-   "id": "w2q14",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "prompt": "DNA is a polymer. Which monomers is it built from?",
-   "options": [
-    "nucleotides",
-    "amino acids",
-    "simple sugars only",
-    "fatty acids"
-   ],
-   "answer": 0,
-   "hint": "DNA is a nucleic acid. Its monomer has a similar name.",
-   "explain": "Nucleic acids like DNA and RNA are chains of nucleotides."
-  },
-  {
-   "id": "w2q15",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "prompt": "Which statement best describes a polymer?",
-   "options": [
-    "a large molecule made of many repeating monomers",
-    "a single sugar molecule",
-    "an atom of carbon",
-    "a molecule that cannot be broken down"
-   ],
-   "answer": 0,
-   "hint": "Poly means many.",
-   "explain": "A polymer is a long chain of repeating monomers, like beads on a necklace."
-  },
-  {
-   "id": "w2q16",
-   "code": "BIO.A.2.2.3",
-   "steels": "3.1.9-12.F",
-   "prompt": "Which type of macromolecule stores genetic information?",
-   "options": [
-    "nucleic acids",
-    "carbohydrates",
-    "lipids",
-    "proteins"
-   ],
-   "answer": 0,
-   "hint": "DNA belongs to this group.",
-   "explain": "Nucleic acids (DNA and RNA) store and carry genetic information."
-  },
-  {
-   "id": "w2q17",
-   "code": "BIO.A.2.2.3",
-   "steels": "3.1.9-12.F",
-   "prompt": "A runner eats pasta the night before a race. Which macromolecule gives quick energy?",
-   "options": [
-    "carbohydrates",
-    "nucleic acids",
-    "lipids",
-    "proteins"
-   ],
-   "answer": 0,
-   "hint": "Pasta is mostly starch.",
-   "explain": "Carbohydrates such as starch are broken down into glucose for quick energy."
-  },
-  {
-   "id": "w2q18",
-   "code": "BIO.A.2.2.3",
-   "steels": "3.1.9-12.F",
-   "prompt": "Which macromolecule makes up most of the cell membrane and stores long-term energy?",
-   "options": [
-    "lipids",
-    "nucleic acids",
-    "carbohydrates",
-    "proteins"
-   ],
-   "answer": 0,
-   "hint": "Think of phospholipids and fat.",
-   "explain": "Lipids store long-term energy (fats) and form cell membranes (phospholipids)."
-  },
-  {
-   "id": "w2q19",
-   "code": "BIO.A.2.2.3",
-   "steels": "3.1.9-12.F",
-   "prompt": "Enzymes, antibodies, and muscle fibers are all made of which macromolecule?",
-   "options": [
-    "proteins",
-    "lipids",
-    "carbohydrates",
-    "nucleic acids"
-   ],
-   "answer": 0,
-   "hint": "These all do jobs that depend on their folded shape.",
-   "explain": "Proteins do many jobs: enzymes speed reactions, antibodies tag germs, and muscle proteins contract."
-  },
-  {
-   "id": "w2q20",
-   "code": "BIO.A.2.2.3",
-   "steels": "3.1.9-12.F",
-   "prompt": "Why does a protein's shape matter?",
-   "options": [
-    "Its shape determines its function.",
-    "Shape has no effect on what a protein does.",
-    "All proteins have the same shape.",
-    "Proteins never change shape."
-   ],
-   "answer": 0,
-   "hint": "Think of an enzyme's active site.",
-   "explain": "A protein folds into a specific shape, and that shape lets it do its job. Change the shape and the job is lost."
-  },
-  {
-   "id": "w2q21",
-   "code": "BIO.A.2.3.1",
-   "steels": "3.1.9-12.A",
-   "prompt": "What does an enzyme do in a chemical reaction?",
-   "options": [
-    "It speeds up the reaction by lowering the activation energy.",
-    "It is used up and becomes part of the product.",
-    "It slows down every reaction.",
-    "It adds energy so the reaction can happen."
-   ],
-   "answer": 0,
-   "hint": "Enzymes are catalysts.",
-   "explain": "Enzymes are catalysts: they lower the activation energy so reactions happen faster, and they are not used up."
-  },
-  {
-   "id": "w2q22",
-   "code": "BIO.A.2.3.1",
-   "steels": "3.1.9-12.A",
-   "prompt": "Why does the enzyme amylase break down starch but not protein?",
-   "options": [
-    "Only starch fits amylase's active site.",
-    "Amylase breaks down every molecule.",
-    "Protein is too small to break down.",
-    "Starch is a protein."
-   ],
-   "answer": 0,
-   "hint": "Think about shape and fit.",
-   "explain": "Enzymes are specific: only a substrate with the right shape fits the active site."
-  },
-  {
-   "id": "w2q23",
-   "code": "BIO.A.2.3.1",
-   "steels": "3.1.9-12.A",
-   "prompt": "After an enzyme helps a reaction, what happens to the enzyme?",
-   "options": [
-    "It is unchanged and can be used again.",
-    "It is destroyed.",
-    "It turns into the product.",
-    "It becomes a substrate."
-   ],
-   "answer": 0,
-   "hint": "Catalysts are not used up.",
-   "explain": "Enzymes are not changed by the reaction, so one enzyme can work on many substrate molecules."
-  },
-  {
-   "id": "w2q24",
-   "code": "BIO.A.2.3.1",
-   "steels": "3.1.9-12.A",
-   "prompt": "What is the active site of an enzyme?",
-   "options": [
-    "the region where the substrate binds",
-    "the part of the cell that makes enzymes",
-    "the place where DNA is stored",
-    "the energy released by a reaction"
-   ],
-   "answer": 0,
-   "hint": "It is a pocket on the enzyme.",
-   "explain": "The active site is the pocket where the substrate fits and the reaction takes place."
-  },
-  {
-   "id": "w2q25",
-   "code": "BIO.A.2.3.1",
-   "steels": "3.1.9-12.A",
-   "prompt": "A reaction in a cell would take years without help, but with an enzyme it takes seconds. What does this show?",
-   "options": [
-    "Enzymes greatly speed up reactions in cells.",
-    "Enzymes make reactions use more energy.",
-    "Cells do not need reactions.",
-    "Enzymes stop reactions."
-   ],
-   "answer": 0,
-   "hint": "What is a catalyst's job?",
-   "explain": "Enzymes speed up reactions so much that life processes can happen fast enough at body temperature."
-  },
-  {
-   "id": "w2q26",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "prompt": "A human enzyme works best at 37 °C. What most likely happens at 60 °C?",
-   "options": [
-    "The enzyme's shape changes (it denatures), and it stops working.",
-    "The enzyme works twice as fast forever.",
-    "The enzyme turns into a carbohydrate.",
-    "Nothing happens to the enzyme."
-   ],
-   "answer": 0,
-   "hint": "High heat breaks the bonds that hold a protein's shape.",
-   "explain": "High heat denatures the enzyme: its active site changes shape, so the substrate no longer fits."
-  },
-  {
-   "id": "w2q27",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "prompt": "Pepsin works in the stomach at pH 2. What would happen to pepsin at pH 8?",
-   "options": [
-    "It would work poorly because its shape changes.",
-    "It would work better.",
-    "It would turn into starch.",
-    "pH does not affect enzymes."
-   ],
-   "answer": 0,
-   "hint": "Each enzyme has a best pH.",
-   "explain": "Enzymes work best at a specific pH. Far from it, the enzyme's shape changes and it slows or stops."
-  },
-  {
-   "id": "w2q28",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "prompt": "A student adds more substrate to a reaction, and the rate rises until it levels off. Why does it level off?",
-   "options": [
-    "All the enzyme molecules are busy (their active sites are full).",
-    "The enzyme was destroyed.",
-    "The substrate stopped existing.",
-    "The temperature dropped to zero."
-   ],
-   "answer": 0,
-   "hint": "Can a fixed number of enzymes work any faster?",
-   "explain": "When every active site is in use, adding more substrate cannot speed up the reaction further."
-  },
-  {
-   "id": "w2q29",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "prompt": "Why do enzymes work slowly at low temperatures?",
-   "options": [
-    "Molecules move slowly, so enzymes and substrates collide less often.",
-    "The enzyme is denatured by cold.",
-    "Cold adds activation energy.",
-    "Cold changes the substrate into a protein."
-   ],
-   "answer": 0,
-   "hint": "Temperature affects how fast molecules move.",
-   "explain": "At low temperatures molecules move slowly, so there are fewer collisions. The enzyme is not damaged."
-  },
-  {
-   "id": "w2q30",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "prompt": "Which factor does NOT usually affect how well an enzyme works?",
-   "options": [
-    "the color of the container",
-    "temperature",
-    "pH",
-    "the amount of substrate"
-   ],
-   "answer": 0,
-   "hint": "Three of these change the enzyme or how often it meets its substrate.",
-   "explain": "Temperature, pH, and substrate concentration all affect enzyme activity. Container color does not."
-  },
-  {
-   "id": "w2q31",
-   "code": "BIO.A.3.1.1",
-   "steels": "3.1.9-12.E",
-   "prompt": "Which organelle captures light energy and stores it in glucose?",
-   "options": [
-    "chloroplast",
-    "mitochondrion",
-    "nucleus",
-    "ribosome"
-   ],
-   "answer": 0,
-   "hint": "It contains the green pigment chlorophyll.",
-   "explain": "Chloroplasts carry out photosynthesis, turning light energy into chemical energy in glucose."
-  },
-  {
-   "id": "w2q32",
-   "code": "BIO.A.3.1.1",
-   "steels": "3.1.9-12.E",
-   "prompt": "Which organelle releases the energy stored in glucose and makes most of a cell's ATP?",
-   "options": [
-    "mitochondrion",
-    "chloroplast",
-    "Golgi apparatus",
-    "cell wall"
-   ],
-   "answer": 0,
-   "hint": "It is often called the powerhouse of the cell.",
-   "explain": "Mitochondria carry out cellular respiration, making ATP from the energy in glucose."
-  },
-  {
-   "id": "w2q33",
-   "code": "BIO.A.3.1.1",
-   "steels": "3.1.9-12.E",
-   "prompt": "A leaf cell has both chloroplasts and mitochondria. Why does it need both?",
-   "options": [
-    "Chloroplasts make glucose, and mitochondria release its energy as ATP.",
-    "Both organelles do the same job.",
-    "Mitochondria make glucose for the chloroplasts.",
-    "Plant cells use only chloroplasts."
-   ],
-   "answer": 0,
-   "hint": "One stores energy, the other releases it.",
-   "explain": "Plants make their own food in chloroplasts and then use mitochondria to release that energy as ATP."
-  },
-  {
-   "id": "w2q34",
-   "code": "BIO.A.3.1.1",
-   "steels": "3.1.9-12.E",
-   "prompt": "An animal cell has mitochondria but no chloroplasts. How does it get glucose?",
-   "options": [
-    "from the food the animal eats",
-    "by doing photosynthesis in its mitochondria",
-    "from sunlight directly",
-    "from its nucleus"
-   ],
-   "answer": 0,
-   "hint": "Animals are consumers.",
-   "explain": "Animals cannot photosynthesize, so they get glucose from food; their mitochondria release its energy."
-  },
-  {
-   "id": "w2q35",
-   "code": "BIO.A.3.1.1",
-   "steels": "3.1.9-12.E",
-   "prompt": "Muscle cells use a lot of energy. Which organelle would you expect to find in large numbers in muscle cells?",
-   "options": [
-    "mitochondria",
-    "chloroplasts",
-    "cell walls",
-    "vacuoles"
-   ],
-   "answer": 0,
-   "hint": "Which organelle makes ATP?",
-   "explain": "Muscle cells need lots of ATP, so they contain many mitochondria."
+   "hint": "If the soil did not lose much mass, could the plants' mass have come from it?",
+   "explain": "The soil lost almost no mass, so the plants must have gotten most of their matter elsewhere: carbon dioxide from the air and water, rearranged into sugar and other molecules."
   },
   {
    "id": "w2q36",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.E",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
    "prompt": "Which are the PRODUCTS of photosynthesis?",
    "options": [
     "glucose and oxygen",
     "carbon dioxide and water",
-    "ATP and carbon dioxide",
+    "glucose and carbon dioxide",
     "oxygen and carbon dioxide"
    ],
    "answer": 0,
@@ -782,24 +404,24 @@ FieldGuide.registerQuestions(2, {
    "explain": "Photosynthesis uses carbon dioxide, water, and light energy to make glucose and oxygen."
   },
   {
-   "id": "w2q37",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.E",
-   "prompt": "Which are the PRODUCTS of cellular respiration?",
+   "id": "w2q39",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "Which energy change happens during photosynthesis?",
    "options": [
-    "carbon dioxide, water, and ATP",
-    "glucose and oxygen",
-    "light energy and glucose",
-    "oxygen and water only"
+    "Light energy is changed into chemical energy stored in glucose.",
+    "Chemical energy is changed into light energy.",
+    "Heat energy is changed into sound.",
+    "Chemical energy in glucose is changed into light with no sunlight."
    ],
    "answer": 0,
-   "hint": "Respiration breaks down glucose using oxygen.",
-   "explain": "Cellular respiration: glucose + oxygen → carbon dioxide + water + ATP energy."
+   "hint": "Where does the energy come from, and where is it stored?",
+   "explain": "Photosynthesis transforms light energy into chemical energy stored in the bonds of glucose."
   },
   {
    "id": "w2q38",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.E",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
    "prompt": "How are photosynthesis and cellular respiration related?",
    "options": [
     "The products of one are the reactants of the other.",
@@ -812,24 +434,114 @@ FieldGuide.registerQuestions(2, {
    "explain": "Photosynthesis makes glucose and oxygen; respiration uses them and returns carbon dioxide and water."
   },
   {
-   "id": "w2q39",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.E",
-   "prompt": "Which energy change happens during photosynthesis?",
+   "id": "w2q83",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "Students put pondweed in water under a lamp and count the oxygen bubbles it gives off each minute. What do you predict when they move the lamp CLOSER to the plant?",
    "options": [
-    "Light energy is changed into chemical energy stored in glucose.",
-    "Chemical energy is changed into light energy.",
-    "Heat energy is changed into sound.",
-    "Chemical energy in ATP is changed into glucose with no light."
+    "More bubbles, because more light energy speeds up photosynthesis",
+    "Fewer bubbles, because light stops photosynthesis",
+    "No change, because plants do not need light",
+    "The bubbles turn into carbon dioxide"
    ],
    "answer": 0,
-   "hint": "Where does the energy come from, and where is it stored?",
-   "explain": "Photosynthesis transforms light energy into chemical energy stored in the bonds of glucose."
+   "hint": "Which input does the lamp provide?",
+   "explain": "Light energy drives photosynthesis. More light (up to a limit) means faster photosynthesis, so the plant releases more oxygen."
+  },
+  {
+   "id": "w2q84",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "During photosynthesis, where does the ENERGY stored in glucose come from?",
+   "options": [
+    "light from the Sun",
+    "the water taken in by the roots",
+    "minerals in the soil",
+    "the oxygen the plant releases"
+   ],
+   "answer": 0,
+   "hint": "The atoms come from carbon dioxide and water. What provides the energy?",
+   "explain": "The atoms in glucose come from carbon dioxide and water, but the energy stored in its bonds comes from light."
+  },
+  {
+   "id": "w2q85",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "A plant sits in bright light inside a sealed jar for a day. Which gas DEcreases inside the jar?",
+   "options": [
+    "carbon dioxide",
+    "oxygen",
+    "water vapor",
+    "nitrogen"
+   ],
+   "answer": 0,
+   "hint": "Which gas does photosynthesis use up?",
+   "explain": "In bright light the plant takes in carbon dioxide for photosynthesis faster than its cells release it, so carbon dioxide decreases and oxygen increases."
+  },
+  {
+   "id": "w2q86",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "Which model correctly shows photosynthesis?",
+   "options": [
+    "carbon dioxide + water + light energy → glucose + oxygen",
+    "glucose + oxygen → carbon dioxide + water + energy",
+    "oxygen + water → glucose + carbon dioxide",
+    "glucose + light energy → oxygen + water"
+   ],
+   "answer": 0,
+   "hint": "Inputs are on the left, outputs on the right. Producers make sugar.",
+   "explain": "Photosynthesis uses carbon dioxide, water, and light energy to make glucose and oxygen. The second choice is cellular respiration."
+  },
+  {
+   "id": "w2q87",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "prompt": "Tiny algae in the ocean carry out photosynthesis. Which statement about them is true?",
+   "options": [
+    "They take in dissolved carbon dioxide and use light energy to make sugar and oxygen.",
+    "They need soil to make sugar.",
+    "They make sugar only at night.",
+    "They take in oxygen and give off sugar into the water."
+   ],
+   "answer": 0,
+   "hint": "Photosynthesis works the same way in water as on land.",
+   "explain": "Algae use carbon dioxide dissolved in water, plus light energy, to make sugar, and they release oxygen. They make much of the oxygen on Earth."
+  },
+  {
+   "id": "w2q37",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "prompt": "Which are the PRODUCTS of cellular respiration?",
+   "options": [
+    "carbon dioxide, water, and released energy",
+    "glucose and oxygen",
+    "light energy and glucose",
+    "oxygen and water only"
+   ],
+   "answer": 0,
+   "hint": "Respiration breaks down glucose using oxygen.",
+   "explain": "Cellular respiration: glucose + oxygen → carbon dioxide + water, with a release of energy the cell uses."
+  },
+  {
+   "id": "w2q70",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "prompt": "What are the REACTANTS (starting materials) of cellular respiration?",
+   "options": [
+    "glucose and oxygen",
+    "carbon dioxide and water",
+    "light and water",
+    "carbon dioxide and light"
+   ],
+   "answer": 0,
+   "hint": "Respiration breaks down food using the gas you breathe in.",
+   "explain": "Cellular respiration uses glucose and oxygen and produces carbon dioxide and water, releasing energy."
   },
   {
    "id": "w2q40",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.E",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
    "prompt": "A plant is placed in a sealed jar in the dark. Which gas will increase in the jar?",
    "options": [
     "carbon dioxide",
@@ -842,84 +554,174 @@ FieldGuide.registerQuestions(2, {
    "explain": "In the dark, plants cannot photosynthesize, but they still respire, releasing carbon dioxide."
   },
   {
-   "id": "w2q41",
-   "code": "BIO.A.3.2.2",
-   "steels": "3.1.9-12.G",
-   "prompt": "What is the main role of ATP in cells?",
+   "id": "w2q88",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "prompt": "Which statement best describes cellular respiration?",
    "options": [
-    "It carries usable energy for cell work.",
-    "It stores genetic information.",
-    "It forms the cell membrane.",
-    "It speeds up reactions as an enzyme."
+    "The bonds in sugar and oxygen are broken, new bonds form in carbon dioxide and water, and energy is released.",
+    "Light energy is stored in the bonds of sugar.",
+    "Carbon dioxide and water are combined to make sugar.",
+    "Energy is created from nothing inside the cell."
    ],
    "answer": 0,
-   "hint": "Think of a rechargeable battery.",
-   "explain": "ATP is the cell's energy carrier: it delivers energy to reactions and cell work."
+   "hint": "Respiration RELEASES energy from food.",
+   "explain": "Cellular respiration breaks the bonds of food molecules and oxygen and forms new bonds in carbon dioxide and water. The net result is a transfer of energy the cell can use."
   },
   {
-   "id": "w2q42",
-   "code": "BIO.A.3.2.2",
-   "steels": "3.1.9-12.G",
-   "prompt": "How does ATP release energy?",
+   "id": "w2q89",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "prompt": "Do plants carry out cellular respiration?",
    "options": [
-    "A phosphate group breaks off, turning ATP into ADP.",
-    "It splits into carbon dioxide and water.",
-    "It absorbs light.",
-    "It joins with DNA."
+    "Yes. Plant cells break down sugar with oxygen to release energy, day and night.",
+    "No. Plants only do photosynthesis.",
+    "Only at night, when there is no light.",
+    "Only in their flowers."
    ],
    "answer": 0,
-   "hint": "Tri-phosphate becomes di-phosphate.",
-   "explain": "Breaking the bond to the last phosphate releases energy; ATP becomes ADP plus a phosphate."
+   "hint": "Plant cells need energy to grow, just like animal cells.",
+   "explain": "Plants make sugar by photosynthesis, and their cells release its energy by cellular respiration all the time, in the light and the dark."
   },
   {
-   "id": "w2q43",
-   "code": "BIO.A.3.2.2",
-   "steels": "3.1.9-12.G",
-   "prompt": "Which cell process uses energy directly from ATP?",
+   "id": "w2q90",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "prompt": "A student blows through a straw into a blue liquid that turns yellow when carbon dioxide is added. The liquid turns yellow. What does this show?",
    "options": [
-    "a sodium pump moving ions against the concentration gradient",
-    "oxygen diffusing into the cell",
-    "water moving by osmosis",
-    "glucose moving down its concentration gradient through a channel"
+    "Her body's cells released carbon dioxide during cellular respiration.",
+    "Her lungs made oxygen.",
+    "Her cells carried out photosynthesis.",
+    "Breath contains no gases."
    ],
    "answer": 0,
-   "hint": "Which one is active transport?",
-   "explain": "Pumps move particles from low to high concentration, which requires energy from ATP."
+   "hint": "Which gas changes the color, and which process makes it?",
+   "explain": "Cells release carbon dioxide during cellular respiration. Blood carries it to the lungs, and it leaves in your breath."
   },
   {
-   "id": "w2q44",
-   "code": "BIO.A.3.2.2",
-   "steels": "3.1.9-12.G",
-   "prompt": "ADP can be 'recharged' into ATP. Where does the energy for recharging mostly come from?",
+   "id": "w2q91",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "prompt": "Why do your muscles need more oxygen when you run?",
    "options": [
-    "breaking down glucose in cellular respiration",
-    "the nucleus",
-    "absorbing water",
-    "the cell wall"
+    "Muscle cells carry out more cellular respiration to release more energy from sugar.",
+    "Muscles store oxygen to use next week.",
+    "Running muscles do photosynthesis.",
+    "Oxygen is turned directly into muscle."
    ],
    "answer": 0,
-   "hint": "Food stores energy; respiration releases it.",
-   "explain": "Energy released from glucose during cellular respiration is used to turn ADP back into ATP."
+   "hint": "Oxygen is an input of the process that releases energy.",
+   "explain": "Running muscles use more energy, so their cells carry out more cellular respiration, which uses more oxygen and releases more carbon dioxide."
   },
   {
-   "id": "w2q45",
-   "code": "BIO.A.3.2.2",
-   "steels": "3.1.9-12.G",
-   "prompt": "Why do cells make ATP instead of using glucose directly for every job?",
+   "id": "w2q92",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "prompt": "Sprouting seeds in a sealed, insulated jar warm up slightly over a day. What best explains the warming?",
    "options": [
-    "ATP releases small, usable amounts of energy quickly.",
-    "Glucose has no energy.",
-    "ATP stores more energy than fat.",
-    "Cells cannot break down glucose."
+    "Cellular respiration in the seeds releases energy, and some of it is given off as heat.",
+    "The seeds are doing photosynthesis in the dark.",
+    "The jar creates heat from nothing.",
+    "The seeds absorb cold from the air."
    ],
    "answer": 0,
-   "hint": "Think of glucose as a big bill and ATP as small change.",
-   "explain": "Glucose holds a lot of energy; cells convert it into many ATP molecules that release small, usable amounts quickly."
+   "hint": "Living seeds release energy from their stored food.",
+   "explain": "The sprouting seeds break down their stored food by cellular respiration. Some of the released energy is given off as heat, so the jar warms."
+  },
+  {
+   "id": "w2q93",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "Yeast is sealed in a bottle of warm sugar water with no air. A balloon over the top slowly inflates. What gas fills the balloon, and why?",
+   "options": [
+    "carbon dioxide, released as the yeast break down sugar without oxygen",
+    "oxygen, released by photosynthesis",
+    "nitrogen, made from the sugar",
+    "air that leaked in from outside"
+   ],
+   "answer": 0,
+   "hint": "Yeast cannot do photosynthesis. What do they release when they break down sugar?",
+   "explain": "Without oxygen, yeast break down sugar by fermentation, which releases carbon dioxide gas. That gas fills the balloon."
+  },
+  {
+   "id": "w2q94",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "Compared with aerobic respiration, how much energy is released from each sugar molecule when cells work WITHOUT oxygen?",
+   "options": [
+    "much less energy",
+    "much more energy",
+    "exactly the same amount",
+    "no energy at all"
+   ],
+   "answer": 0,
+   "hint": "Why can't you sprint for a whole hour?",
+   "explain": "Without oxygen, cells release only a small part of the energy stored in sugar. With oxygen, they release much more."
+  },
+  {
+   "id": "w2q95",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "A sprinter's legs tire after about 30 seconds of running all-out. What best explains this?",
+   "options": [
+    "Her muscle cells used oxygen faster than her blood could deliver it, so they released some energy without oxygen, which releases much less energy.",
+    "Her muscles stopped needing energy.",
+    "Her muscles started photosynthesis.",
+    "Her blood stopped carrying sugar."
+   ],
+   "answer": 0,
+   "hint": "Think about the oxygen supply during a hard sprint.",
+   "explain": "In a hard sprint, oxygen runs short in the muscles. For a short time the cells release energy without oxygen, but this releases much less energy, so she has to slow down."
+  },
+  {
+   "id": "w2q96",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "Peat bogs hold huge amounts of carbon in partly decayed plants. Why does dead plant matter build up there?",
+   "options": [
+    "The waterlogged soil has little oxygen, so decomposers break down dead plants very slowly.",
+    "No living things can survive in bogs.",
+    "Bogs get extra sunlight.",
+    "Dead plants in bogs turn into rock right away."
+   ],
+   "answer": 0,
+   "hint": "Most decomposers work fastest with oxygen.",
+   "explain": "In waterlogged bogs there is little oxygen, so decay is very slow. Dead plants pile up as peat, storing carbon instead of returning it quickly to the air."
+  },
+  {
+   "id": "w2q97",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "A gardener turns her compost pile every week to mix in air. Why does this make the scraps break down faster?",
+   "options": [
+    "With oxygen, decomposers can use aerobic respiration and break the scraps down faster.",
+    "Air kills the decomposers.",
+    "Turning the pile adds new matter.",
+    "Oxygen turns the scraps directly into soil."
+   ],
+   "answer": 0,
+   "hint": "Which kind of respiration releases more energy for the decomposers?",
+   "explain": "Oxygen lets the decomposers use aerobic respiration, which releases much more energy, so they grow and break down the scraps faster. A soggy pile without air decays slowly."
+  },
+  {
+   "id": "w2q98",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "prompt": "Which statement about matter in low-oxygen places, like deep mud, is TRUE?",
+   "options": [
+    "Matter still cycles: decomposers that live without oxygen slowly return carbon to the water, soil, and air.",
+    "Matter is destroyed when there is no oxygen.",
+    "Nothing can live without oxygen, so matter stops moving.",
+    "Carbon turns into oxygen."
+   ],
+   "answer": 0,
+   "hint": "Atoms are never destroyed, even where oxygen is missing.",
+   "explain": "Some decomposers live without oxygen. They work slowly, but they still break down dead matter and return carbon to the environment. Matter is conserved and keeps cycling."
   },
   {
    "id": "w2q46",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "prompt": "In a food chain, which way do the arrows point?",
    "options": [
     "from the organism eaten to the organism that eats it, showing energy flow",
@@ -933,9 +735,9 @@ FieldGuide.registerQuestions(2, {
   },
   {
    "id": "w2q47",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
-   "prompt": "Only about how much of the energy at one trophic level passes to the next level?",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
+   "prompt": "About how much of the energy at one trophic level passes to the next level?",
    "options": [
     "about 10%",
     "about 90%",
@@ -948,8 +750,8 @@ FieldGuide.registerQuestions(2, {
   },
   {
    "id": "w2q48",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "prompt": "Grass → grasshopper → frog → snake. Which organism is the producer?",
    "options": [
     "grass",
@@ -963,8 +765,8 @@ FieldGuide.registerQuestions(2, {
   },
   {
    "id": "w2q49",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "prompt": "Why are there usually fewer top predators than herbivores in an ecosystem?",
    "options": [
     "Less energy is available at higher trophic levels.",
@@ -978,8 +780,8 @@ FieldGuide.registerQuestions(2, {
   },
   {
    "id": "w2q50",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "prompt": "What is the original source of energy for almost every food chain on Earth?",
    "options": [
     "the Sun",
@@ -992,24 +794,9 @@ FieldGuide.registerQuestions(2, {
    "explain": "Producers capture energy from sunlight, and it flows through the food chain from there."
   },
   {
-   "id": "w2q51",
-   "code": "BIO.B.4.2.3",
-   "steels": "3.1.9-12.K",
-   "prompt": "Which process removes carbon dioxide from the atmosphere?",
-   "options": [
-    "photosynthesis",
-    "cellular respiration",
-    "burning fossil fuels",
-    "decomposition"
-   ],
-   "answer": 0,
-   "hint": "Which process uses carbon dioxide as a reactant?",
-   "explain": "Plants and algae take in carbon dioxide during photosynthesis."
-  },
-  {
    "id": "w2q52",
-   "code": "BIO.B.4.2.3",
-   "steels": "3.1.9-12.K",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "prompt": "What is the role of decomposers in the cycling of matter?",
    "options": [
     "They break down dead organisms and return nutrients to the soil and air.",
@@ -1022,24 +809,9 @@ FieldGuide.registerQuestions(2, {
    "explain": "Decomposers break down dead matter and return carbon and nutrients to the ecosystem."
   },
   {
-   "id": "w2q53",
-   "code": "BIO.B.4.2.3",
-   "steels": "3.1.9-12.K",
-   "prompt": "Plants need nitrogen to make proteins, but they cannot use nitrogen gas from the air. How do they get usable nitrogen?",
-   "options": [
-    "Bacteria in the soil change nitrogen gas into forms plants can absorb.",
-    "Plants absorb nitrogen gas through their leaves.",
-    "Animals breathe nitrogen into the soil.",
-    "Sunlight turns into nitrogen."
-   ],
-   "answer": 0,
-   "hint": "Tiny living things in the soil and in roots help.",
-   "explain": "Nitrogen-fixing bacteria convert nitrogen gas into compounds that plants take up through their roots."
-  },
-  {
    "id": "w2q54",
-   "code": "BIO.B.4.2.3",
-   "steels": "3.1.9-12.K",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "prompt": "Which statement best compares energy and matter in an ecosystem?",
    "options": [
     "Matter cycles, but energy flows through and is lost as heat.",
@@ -1049,111 +821,237 @@ FieldGuide.registerQuestions(2, {
    ],
    "answer": 0,
    "hint": "Which one can be used again and again?",
-   "explain": "Atoms of carbon, nitrogen, and water are recycled; energy enters as sunlight and leaves as heat."
+   "explain": "Carbon and nitrogen atoms and water molecules are recycled; energy enters as sunlight and leaves as heat."
   },
   {
-   "id": "w2q55",
-   "code": "BIO.B.4.2.3",
-   "steels": "3.1.9-12.K",
-   "prompt": "Which process in the water cycle moves water from leaves into the air?",
+   "id": "w2q74",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
+   "prompt": "In an energy pyramid, about how much of the energy at one level is passed to the next level up?",
    "options": [
-    "transpiration",
-    "condensation",
-    "precipitation",
-    "runoff"
+    "about 10%",
+    "about 50%",
+    "about 90%",
+    "100%"
    ],
    "answer": 0,
-   "hint": "Plants 'sweat' water vapor through their leaves.",
-   "explain": "Transpiration is the release of water vapor from plant leaves into the air."
+   "hint": "Most energy is used for life processes or lost as heat.",
+   "explain": "Only about 10% of the energy at one level passes to the next. The rest is used for life processes or lost as heat."
   },
-  /* Phase 1 additions (v35): 22 more questions so the rotation repeats less. Add your own the same way. */
-    {"id": "w2q56", "code": "BIO.A.2.1.1", "steels": "3.2.9-12.B", "prompt": "Water molecules stick to each other because of hydrogen bonds. Which property of water is this?", "options": ["cohesion", "adhesion", "acidity", "density"], "answer": 0, "hint": "'Co-' means together: water with water.", "explain": "Cohesion is water sticking to water. It causes surface tension."},
-    {"id": "w2q57", "code": "BIO.A.2.1.1", "steels": "3.2.9-12.B", "prompt": "Why does a large lake change temperature much more slowly than the air around it?", "options": ["Water has a high specific heat, so it absorbs a lot of heat before its temperature changes.", "Water is a poor solvent.", "Water molecules are nonpolar.", "Ice sinks to the bottom of the lake."], "answer": 0, "hint": "Hydrogen bonds must be broken before water molecules can move faster.", "explain": "Water's high specific heat means it absorbs or releases a lot of heat with only a small temperature change. This keeps lakes and oceans stable."},
-    {"id": "w2q58", "code": "BIO.A.2.2.1", "steels": "3.1.9-12.F", "prompt": "Carbon can form single, double, or triple bonds, and can make chains, branches, and rings. What does this allow?", "options": ["a huge variety of molecule shapes and sizes, which living things use for different jobs", "only very small molecules", "molecules that cannot bond with hydrogen", "molecules that are always ionic"], "answer": 0, "hint": "More ways to connect means more possible shapes.", "explain": "Because carbon bonds in so many ways, it builds a huge variety of molecules, from sugars to proteins to DNA."},
-    {"id": "w2q59", "code": "BIO.A.2.2.1", "steels": "3.1.9-12.F", "prompt": "Which of these is an ORGANIC molecule?", "options": ["glucose (C₆H₁₂O₆)", "water (H₂O)", "table salt (NaCl)", "oxygen gas (O₂)"], "answer": 0, "hint": "Organic molecules are built on a carbon backbone.", "explain": "Organic molecules are built on carbon, usually bonded to hydrogen. Glucose has a carbon backbone; the others have no carbon."},
-    {"id": "w2q60", "code": "BIO.A.2.2.2", "steels": "3.1.9-12.F", "prompt": "What are the monomers (building blocks) of nucleic acids such as DNA?", "options": ["nucleotides", "amino acids", "monosaccharides", "fatty acids"], "answer": 0, "hint": "The name of the monomer sounds like the name of the polymer.", "explain": "Nucleic acids are polymers made of nucleotides. Amino acids build proteins, and monosaccharides build carbohydrates."},
-    {"id": "w2q61", "code": "BIO.A.2.2.2", "steels": "3.1.9-12.F", "prompt": "Starch is a long chain of glucose molecules. What kind of molecule is starch?", "options": ["a polysaccharide (a carbohydrate polymer)", "a protein", "a nucleic acid", "a lipid"], "answer": 0, "hint": "'Poly' means many; 'saccharide' means sugar.", "explain": "Starch is a polysaccharide: many glucose monomers joined together. Plants use it to store energy."},
-    {"id": "w2q62", "code": "BIO.A.2.2.3", "steels": "3.1.9-12.F", "prompt": "Hair, fingernails, and the hemoglobin in your blood are made mainly of which macromolecule?", "options": ["proteins", "carbohydrates", "lipids", "nucleic acids"], "answer": 0, "hint": "These are built from amino acids.", "explain": "Hair and nails (keratin) and hemoglobin are proteins. Proteins build structures and do many jobs in the body."},
-    {"id": "w2q63", "code": "BIO.A.2.2.3", "steels": "3.1.9-12.F", "prompt": "Plant cell walls are tough because they are made of cellulose. What type of macromolecule is cellulose?", "options": ["a carbohydrate", "a lipid", "a protein", "a nucleic acid"], "answer": 0, "hint": "Cellulose is made of many glucose units.", "explain": "Cellulose is a structural carbohydrate (a polysaccharide) made of glucose units. It gives plant cell walls their strength."},
-    {"id": "w2q64", "code": "BIO.A.2.3.1", "steels": "3.1.9-12.A", "prompt": "On an energy graph, how does an enzyme change a reaction?", "options": ["It lowers the activation energy needed to start the reaction.", "It raises the activation energy.", "It adds energy to the products.", "It changes which products form."], "answer": 0, "hint": "Enzymes make reactions easier to start.", "explain": "Enzymes are catalysts: they lower the activation energy, so the reaction happens faster without changing the products."},
-    {"id": "w2q65", "code": "BIO.A.2.3.1", "steels": "3.1.9-12.A", "prompt": "The enzyme lactase breaks down the sugar lactose, but not the sugar sucrose. What best explains this?", "options": ["Only lactose fits the shape of lactase's active site.", "Sucrose is not a sugar.", "Lactase is used up after one reaction.", "Enzymes break down any molecule they touch."], "answer": 0, "hint": "Enzymes and substrates fit like a lock and key.", "explain": "Enzymes are specific: only a substrate with the right shape fits the active site."},
-    {"id": "w2q66", "code": "BIO.A.2.3.2", "steels": "3.2.9-12.E", "prompt": "The enzyme pepsin works in the stomach at about pH 2. What happens to pepsin's activity at pH 8, as in the small intestine?", "options": ["Its activity drops, because the change in pH alters the shape of its active site.", "Its activity increases.", "It becomes a different enzyme.", "Nothing changes, because pH does not affect enzymes."], "answer": 0, "hint": "Each enzyme has an ideal pH.", "explain": "Each enzyme works best at a certain pH. Far from that pH, the enzyme's shape changes, so its active site no longer fits the substrate well."},
-    {"id": "w2q67", "code": "BIO.A.2.3.2", "steels": "3.2.9-12.E", "prompt": "A student keeps adding substrate to a fixed amount of enzyme. The reaction speeds up, then levels off. Why does it level off?", "options": ["All the enzymes' active sites are busy, so more substrate cannot speed it up.", "The enzyme was destroyed.", "The substrate stopped fitting the active site.", "The temperature dropped."], "answer": 0, "hint": "There is only a limited number of enzyme molecules.", "explain": "When every active site is busy, the enzymes are working as fast as they can, so adding more substrate does not raise the rate."},
-    {"id": "w2q68", "code": "BIO.A.3.1.1", "steels": "3.1.9-12.E", "prompt": "Chloroplasts and mitochondria are both energy converters. Which statement best describes what each one converts?", "options": ["Chloroplasts turn light energy into chemical energy in glucose; mitochondria turn glucose's energy into ATP.", "Chloroplasts make ATP from glucose; mitochondria capture light.", "Both capture light energy.", "Both store DNA for the nucleus."], "answer": 0, "hint": "One works in light; one works day and night to release energy.", "explain": "Chloroplasts capture light energy and store it in glucose (photosynthesis). Mitochondria release that energy and store it in ATP (cellular respiration)."},
-    {"id": "w2q69", "code": "BIO.A.3.1.1", "steels": "3.1.9-12.E", "prompt": "A plant is kept in complete darkness for several days. Which organelle can still release energy from the plant's stored sugars?", "options": ["mitochondria", "chloroplasts", "the cell wall", "the central vacuole"], "answer": 0, "hint": "Which process does not need light?", "explain": "Mitochondria carry out cellular respiration day and night. Chloroplasts need light for photosynthesis."},
-    {"id": "w2q70", "code": "BIO.A.3.2.1", "steels": "3.1.9-12.E", "prompt": "What are the REACTANTS (starting materials) of cellular respiration?", "options": ["glucose and oxygen", "carbon dioxide and water", "light and water", "ATP and carbon dioxide"], "answer": 0, "hint": "Respiration breaks down food using the gas you breathe in.", "explain": "Cellular respiration uses glucose and oxygen and produces carbon dioxide, water, and ATP."},
-    {"id": "w2q71", "code": "BIO.A.3.2.1", "steels": "3.1.9-12.E", "prompt": "How are photosynthesis and cellular respiration related?", "options": ["The products of one are the reactants of the other.", "They both happen only in animals.", "They both release oxygen.", "They both need light."], "answer": 0, "hint": "Compare what goes in and what comes out of each.", "explain": "Photosynthesis makes glucose and oxygen, which respiration uses. Respiration makes carbon dioxide and water, which photosynthesis uses."},
-    {"id": "w2q72", "code": "BIO.A.3.2.2", "steels": "3.1.9-12.G", "prompt": "When ATP releases energy for the cell to use, what does it become?", "options": ["ADP and a phosphate group", "glucose", "a protein", "DNA"], "answer": 0, "hint": "ATP has three phosphates. What happens when one breaks off?", "explain": "Breaking off the last phosphate releases energy and leaves ADP plus a phosphate, which the cell can recharge into ATP."},
-    {"id": "w2q73", "code": "BIO.A.3.2.2", "steels": "3.1.9-12.G", "prompt": "Which cell activity uses energy from ATP?", "options": ["pumping ions across the membrane in active transport", "water moving in by osmosis", "oxygen diffusing into the cell", "carbon dioxide diffusing out of the cell"], "answer": 0, "hint": "Which process moves things against their gradient?", "explain": "Active transport pumps need ATP. Osmosis and diffusion are passive and use no ATP."},
-    {"id": "w2q74", "code": "BIO.B.4.2.1", "steels": "3.1.9-12.H", "prompt": "In an energy pyramid, about how much of the energy at one level is passed to the next level up?", "options": ["about 10%", "about 50%", "about 90%", "100%"], "answer": 0, "hint": "Most energy is used for life processes or lost as heat.", "explain": "Only about 10% of the energy at one level passes to the next. The rest is used for life processes or lost as heat."},
-    {"id": "w2q75", "code": "BIO.B.4.2.1", "steels": "3.1.9-12.H", "prompt": "In the food chain grass → grasshopper → frog → hawk, which organism is a secondary consumer?", "options": ["frog", "grass", "grasshopper", "hawk"], "answer": 0, "hint": "Count the eaters: the first eater is the primary consumer.", "explain": "Grass is the producer, the grasshopper is the primary consumer, the frog is the secondary consumer, and the hawk is the tertiary consumer."},
-    {"id": "w2q76", "code": "BIO.B.4.2.3", "steels": "3.1.9-12.K", "prompt": "Which process returns carbon dioxide to the atmosphere?", "options": ["cellular respiration by plants, animals, and decomposers", "photosynthesis", "transpiration", "nitrogen fixation"], "answer": 0, "hint": "Which process breaks down glucose and releases a gas?", "explain": "Cellular respiration (and burning fuels) releases carbon dioxide. Photosynthesis removes it."},
-    {"id": "w2q77", "code": "BIO.B.4.2.3", "steels": "3.1.9-12.K", "prompt": "Water vapor in the air cools and forms clouds. Which step of the water cycle is this?", "options": ["condensation", "evaporation", "transpiration", "runoff"], "answer": 0, "hint": "Think of droplets forming on a cold glass.", "explain": "Condensation is water vapor cooling into liquid droplets, which form clouds."}
+  {
+   "id": "w2q75",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
+   "prompt": "In the food chain grass → grasshopper → frog → hawk, which organism is a secondary consumer?",
+   "options": [
+    "frog",
+    "grass",
+    "grasshopper",
+    "hawk"
+   ],
+   "answer": 0,
+   "hint": "Count the eaters: the first eater is the primary consumer.",
+   "explain": "Grass is the producer, the grasshopper is the primary consumer, the frog is the secondary consumer, and the hawk is the tertiary consumer."
+  },
+  {
+   "id": "w2q51",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
+   "prompt": "Which process removes carbon dioxide from the atmosphere?",
+   "options": [
+    "photosynthesis",
+    "cellular respiration",
+    "burning fossil fuels",
+    "decomposition"
+   ],
+   "answer": 0,
+   "hint": "Which process uses carbon dioxide as a reactant?",
+   "explain": "Plants and algae take in carbon dioxide during photosynthesis."
+  },
+  {
+   "id": "w2q76",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
+   "prompt": "Which process returns carbon dioxide to the atmosphere?",
+   "options": [
+    "cellular respiration by plants, animals, and decomposers",
+    "photosynthesis",
+    "dissolving into the ocean",
+    "freezing"
+   ],
+   "answer": 0,
+   "hint": "Which process breaks down glucose and releases a gas?",
+   "explain": "Cellular respiration (and burning fuels) releases carbon dioxide. Photosynthesis removes it."
+  },
+  {
+   "id": "w2q99",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
+   "prompt": "Producers in a meadow capture 20,000 kilocalories of energy. About how much energy is available to the SECONDARY consumers?",
+   "options": [
+    "about 200 kilocalories",
+    "about 2,000 kilocalories",
+    "about 20 kilocalories",
+    "about 18,000 kilocalories"
+   ],
+   "answer": 0,
+   "hint": "About 10% passes up each level: producers → primary consumers → secondary consumers.",
+   "explain": "About 10% of 20,000 is 2,000 for the primary consumers, and about 10% of 2,000 is 200 for the secondary consumers."
+  },
+  {
+   "id": "w2q100",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
+   "prompt": "The algae in a pond have a total biomass of 1,000 kg. About how much biomass of the small fish that eat the algae can the pond support?",
+   "options": [
+    "about 100 kg",
+    "about 1,000 kg",
+    "about 10,000 kg",
+    "about 900 kg"
+   ],
+   "answer": 0,
+   "hint": "Only about 10% of the matter and energy at one level ends up in the next level up.",
+   "explain": "Most of the algae's energy is used for living or lost as heat, so only about 10%, or roughly 100 kg, can be supported at the next level."
+  },
+  {
+   "id": "w2q101",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
+   "prompt": "Which part of the carbon cycle stores carbon for millions of years?",
+   "options": [
+    "fossil fuels and carbonate rock in the geosphere",
+    "carbon dioxide in the atmosphere",
+    "a leaf on a tree",
+    "a rabbit's muscles"
+   ],
+   "answer": 0,
+   "hint": "Think about carbon that was buried long ago.",
+   "explain": "Carbon in coal, oil, natural gas, and limestone (the geosphere) can stay stored for millions of years. Burning fossil fuels releases it quickly."
+  },
+  {
+   "id": "w2q102",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
+   "prompt": "The oceans absorb a large share of the carbon dioxide released by burning fossil fuels. In the carbon cycle, the oceans are part of the...",
+   "options": [
+    "hydrosphere",
+    "biosphere",
+    "geosphere",
+    "atmosphere"
+   ],
+   "answer": 0,
+   "hint": "Which \"sphere\" is Earth's water?",
+   "explain": "The hydrosphere is Earth's water. Carbon dioxide from the atmosphere dissolves into ocean water."
+  },
+  {
+   "id": "w2q103",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
+   "prompt": "A forest is cut down and burned. How does this change the carbon cycle?",
+   "options": [
+    "More carbon moves into the atmosphere, and less is removed by photosynthesis.",
+    "Less carbon moves into the atmosphere.",
+    "Carbon is destroyed by the fire.",
+    "Nothing changes, because trees do not store carbon."
+   ],
+   "answer": 0,
+   "hint": "Burning releases stored carbon. What else is lost when the trees are gone?",
+   "explain": "Burning releases the carbon stored in the trees as carbon dioxide, and with the trees gone, less carbon dioxide is taken back out of the air by photosynthesis."
+  },
+  {
+   "id": "w2q104",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
+   "prompt": "Tiny algae in the ocean take in carbon dioxide dissolved in the water. Which process moves this carbon from the hydrosphere into living things?",
+   "options": [
+    "photosynthesis",
+    "cellular respiration",
+    "combustion",
+    "evaporation"
+   ],
+   "answer": 0,
+   "hint": "Which process builds carbon dioxide into sugar?",
+   "explain": "Algae use dissolved carbon dioxide in photosynthesis, moving carbon from the ocean water (hydrosphere) into living things (biosphere)."
+  },
+  {
+   "id": "w2q20",
+   "code": "3.1.9-12.A",
+   "topic": "protein-shape",
+   "prompt": "Why does a protein's shape matter?",
+   "options": [
+    "Its shape determines its function.",
+    "Shape has no effect on what a protein does.",
+    "All proteins have the same shape.",
+    "Proteins never change shape."
+   ],
+   "answer": 0,
+   "hint": "A protein's job depends on how it folds.",
+   "explain": "A protein folds into a specific shape, and that shape lets it do its job. Change the shape and the job is lost."
+  }
  ],
  "pairs": [
   {
    "name": "Photosynthesis or cellular respiration?",
-   "explain": "Photosynthesis stores light energy in glucose (in chloroplasts). Cellular respiration releases that energy as ATP (in mitochondria).",
+   "explain": "Photosynthesis stores light energy in sugar and takes in carbon dioxide. Cellular respiration breaks down sugar with oxygen and releases energy and carbon dioxide.",
    "members": [
     {
      "label": "Photosynthesis",
-     "level": "2-4",
+     "level": "2-2",
      "ids": [
-      "photo-resp.0",
-      "photo-resp.2",
-      "photo-resp.4",
-      "w2q36"
+      "w2q36",
+      "w2q86"
      ]
     },
     {
      "label": "Cellular respiration",
-     "level": "2-4",
+     "level": "2-3",
      "ids": [
-      "photo-resp.1",
-      "photo-resp.3",
-      "photo-resp.5",
-      "w2q37"
+      "w2q37",
+      "w2q70"
      ]
     }
    ]
   },
   {
-   "name": "Chloroplast or mitochondrion?",
-   "explain": "Chloroplasts capture light to make glucose. Mitochondria break glucose down to make ATP.",
+   "name": "With oxygen or without oxygen?",
+   "explain": "With oxygen (aerobic), cells release much more energy from sugar. Without oxygen (anaerobic), some cells, like yeast, release only a little.",
    "members": [
     {
-     "label": "Chloroplast",
-     "level": "2-4",
+     "label": "With oxygen",
+     "level": "2-3",
      "ids": [
-      "w2q31"
+      "w2q88",
+      "w2q91"
      ]
     },
     {
-     "label": "Mitochondrion",
+     "label": "Without oxygen",
      "level": "2-4",
      "ids": [
-      "w2q32",
-      "w2q35"
+      "w2q93",
+      "w2q94"
      ]
     }
    ]
   },
   {
-   "name": "Dehydration synthesis or hydrolysis?",
-   "explain": "Dehydration synthesis removes water to join monomers. Hydrolysis adds water to split polymers.",
+   "name": "Energy flow or matter cycling?",
+   "explain": "Energy flows one way and only about 10% passes up each level. Matter, like carbon, is recycled again and again.",
    "members": [
     {
-     "label": "Dehydration synthesis",
-     "level": "2-2",
+     "label": "Energy flow",
+     "level": "2-5",
      "ids": [
-      "w2q12"
+      "w2q47",
+      "w2q74"
      ]
     },
     {
-     "label": "Hydrolysis",
-     "level": "2-2",
+     "label": "Matter cycling",
+     "level": "2-5",
      "ids": [
-      "w2q13"
+      "w2q52",
+      "w2q76"
      ]
     }
    ]
@@ -1161,177 +1059,100 @@ FieldGuide.registerQuestions(2, {
  ],
  "become": [
   {
-   "id": "b-starch",
-   "code": "BIO.A.2.3.1",
-   "steels": "3.1.9-12.A",
-   "you": "a starch molecule (the substrate)",
-   "short": "Starch",
-   "color": "#ffd166",
-   "goal": "Go through the enzyme whose active site fits you.",
-   "doors": [
-    {
-     "kind": "protein",
-     "label": "Amylase (fits starch)",
-     "ok": true
-    },
-    {
-     "kind": "protein",
-     "label": "Protease (fits proteins)",
-     "ok": false,
-     "why": "Protease's active site fits proteins, not starch. Enzymes are specific."
-    },
-    {
-     "kind": "protein",
-     "label": "Lipase (fits fats)",
-     "ok": false,
-     "why": "Lipase's active site fits fats, not starch."
-    }
-   ],
-   "explain": "Amylase's active site fits starch, so it breaks starch into sugars. Each enzyme works on its own substrate."
-  },
-  {
-   "id": "b-pepsin",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "you": "a protein in the stomach (pH 2, very acidic)",
-   "short": "Protein",
-   "color": "#ff8fb1",
-   "goal": "Which enzyme can break you down in strong acid?",
-   "doors": [
-    {
-     "kind": "protein",
-     "label": "Pepsin (best at pH 2)",
-     "ok": true
-    },
-    {
-     "kind": "protein",
-     "label": "Trypsin (best at pH 8)",
-     "ok": false,
-     "why": "Trypsin works best at pH 8. In strong stomach acid its shape changes, so it cannot work here."
-    },
-    {
-     "kind": "protein",
-     "label": "Amylase (fits starch)",
-     "ok": false,
-     "why": "Amylase fits starch, not proteins."
-    }
-   ],
-   "explain": "Pepsin works best in acid, so it digests proteins in the stomach. Each enzyme has a pH where it works best."
-  },
-  {
-   "id": "b-co2",
-   "code": "BIO.A.3.1.1",
-   "steels": "3.1.9-12.E",
-   "you": "a carbon dioxide molecule (CO₂) inside a leaf",
-   "short": "CO₂",
-   "color": "#9fe0ff",
-   "goal": "Go to the organelle that uses you to build sugar.",
-   "doors": [
-    {
-     "kind": "organelle",
-     "label": "Chloroplast",
-     "ok": true
-    },
-    {
-     "kind": "organelle",
-     "label": "Mitochondrion",
-     "ok": false,
-     "why": "Mitochondria RELEASE carbon dioxide during cellular respiration. They do not use it."
-    },
-    {
-     "kind": "organelle",
-     "label": "Nucleus",
-     "ok": false,
-     "why": "The nucleus holds DNA. Sugar is built in the chloroplast."
-    }
-   ],
-   "explain": "Chloroplasts use carbon dioxide, water, and light energy to build glucose during photosynthesis."
-  },
-  {
    "id": "b-glucose2",
-   "code": "BIO.A.3.1.1",
-   "steels": "3.1.9-12.G",
-   "you": "a glucose molecule inside a cell",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "you": "a glucose molecule inside a working muscle cell",
    "short": "Glucose",
    "color": "#ffd98a",
-   "goal": "Go to the organelle that releases your energy and stores it in ATP.",
+   "goal": "Which path releases your energy so the muscle can use it?",
    "doors": [
     {
-     "kind": "organelle",
-     "label": "Mitochondrion",
+     "kind": "flow",
+     "label": "React with oxygen: bonds break, CO₂ and water form",
      "ok": true
     },
     {
-     "kind": "organelle",
-     "label": "Chloroplast",
+     "kind": "flow",
+     "label": "Wait for sunlight to split me",
      "ok": false,
-     "why": "Chloroplasts MAKE glucose. Mitochondria break it down to make ATP."
+     "why": "Light is used to MAKE sugar in photosynthesis. Cells release energy from sugar without light, day and night."
     },
     {
-     "kind": "organelle",
-     "label": "Golgi apparatus",
+     "kind": "flow",
+     "label": "Disappear into pure energy",
      "ok": false,
-     "why": "The Golgi packages proteins. It does not release energy from glucose."
+     "why": "Matter is not destroyed. Your atoms end up in carbon dioxide and water."
     }
    ],
-   "explain": "In the mitochondrion, cellular respiration breaks down glucose with oxygen and stores the energy in ATP."
+   "explain": "In cellular respiration, the bonds in glucose and oxygen are broken and new bonds form in carbon dioxide and water. The net result is a release of energy the cell can use."
+  },
+  {
+   "id": "b-sugar-j",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "you": "a sugar molecule inside a yeast cell, deep in bread dough with almost no oxygen",
+   "short": "Sugar",
+   "color": "#ffd98a",
+   "goal": "How will the yeast release some of your energy?",
+   "doors": [
+    {
+     "kind": "flow",
+     "label": "Fermentation: no oxygen, makes CO₂ gas",
+     "ok": true
+    },
+    {
+     "kind": "flow",
+     "label": "Aerobic respiration with oxygen",
+     "ok": false,
+     "why": "Deep in the dough the oxygen has run out, so the yeast cannot use aerobic respiration."
+    },
+    {
+     "kind": "flow",
+     "label": "Photosynthesis",
+     "ok": false,
+     "why": "Photosynthesis MAKES sugar using light. Yeast is a fungus and cannot do it."
+    }
+   ],
+   "explain": "Without oxygen, yeast break down sugar by fermentation. It releases only a little energy, and the carbon dioxide gas it makes forms the bubbles that make bread rise."
+  },
+  {
+   "id": "b-carbon-j",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "you": "a carbon atom in a dead leaf that fell into a waterlogged bog",
+   "short": "Carbon",
+   "color": "#9aa0a8",
+   "goal": "What most likely happens to you?",
+   "doors": [
+    {
+     "kind": "flow",
+     "label": "Stay stored in peat for a long time",
+     "ok": true
+    },
+    {
+     "kind": "flow",
+     "label": "Escape at once as carbon dioxide",
+     "ok": false,
+     "why": "Most decomposers work fastest WITH oxygen. In a low-oxygen bog, decay is very slow, so carbon stays stored."
+    },
+    {
+     "kind": "flow",
+     "label": "Turn into a nitrogen atom",
+     "ok": false,
+     "why": "Atoms do not change into other elements in living systems. Carbon stays carbon."
+    }
+   ],
+   "explain": "Waterlogged bogs have little oxygen, so decomposers break down dead plants very slowly. Partly decayed plants pile up as peat, storing carbon for a long time. Matter still cycles, just slowly."
   }
  ],
  "catches": [
   {
-   "id": "c-polymer",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "short": "Build polymers",
-   "title": "Feed the polymer builder: grab the monomer that builds each macromolecule.",
-   "cueLabel": "Build",
-   "builtLabel": "Polymers built",
-   "cueWord": "polymer",
-   "tokenWord": "monomer",
-   "rule": "Monomers join into polymers by dehydration synthesis: a water molecule is removed at each new bond.",
-   "choices": [
-    "Glucose",
-    "Amino acid",
-    "Nucleotide",
-    "Fatty acids + glycerol",
-    "Starch",
-    "Protein"
-   ],
-   "steps": [
-    {
-     "cue": "Starch",
-     "need": "Glucose",
-     "bead": "Starch"
-    },
-    {
-     "cue": "Protein",
-     "need": "Amino acid",
-     "bead": "Protein"
-    },
-    {
-     "cue": "DNA",
-     "need": "Nucleotide",
-     "bead": "DNA"
-    },
-    {
-     "cue": "Fat",
-     "need": "Fatty acids + glycerol",
-     "bead": "Fat"
-    }
-   ],
-   "hint": "Which small building block repeats in the highlighted polymer?",
-   "wrong": {
-    "Starch": "Starch is already a polymer. Grab the monomer it is built from.",
-    "Protein": "Protein is already a polymer. Grab the monomer it is built from."
-   },
-   "explain": "Glucose builds starch, amino acids build proteins, nucleotides build DNA, and fatty acids with glycerol build fats."
-  },
-  {
    "id": "c-photo",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.E",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
    "short": "Photosynthesis",
-   "title": "Inside the chloroplast: load what photosynthesis uses, then collect what it makes.",
+   "title": "In the leaf: load what photosynthesis uses, then collect what it makes.",
    "cueLabel": "Need",
    "builtLabel": "Loaded",
    "cueWord": "slot",
@@ -1343,7 +1164,7 @@ FieldGuide.registerQuestions(2, {
     "Light energy",
     "Glucose",
     "Oxygen",
-    "ATP",
+    "Soil",
     "Nitrogen"
    ],
    "steps": [
@@ -1373,22 +1194,66 @@ FieldGuide.registerQuestions(2, {
    "clearTrail": true
   },
   {
+   "id": "c-oxy",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "short": "Oxygen or not?",
+   "title": "For each place, grab how cells there release energy: with oxygen or without it.",
+   "cueLabel": "Place",
+   "builtLabel": "Sorted",
+   "cueWord": "place",
+   "tokenWord": "answer",
+   "rule": "With oxygen (aerobic), cells release the most energy from sugar. Without oxygen (anaerobic), some cells release a little energy anyway.",
+   "choices": [
+    "With oxygen",
+    "Without oxygen",
+    "Only with light"
+   ],
+   "steps": [
+    {
+     "cue": "A leaf cell on a breezy day",
+     "need": "With oxygen"
+    },
+    {
+     "cue": "Yeast deep inside bread dough",
+     "need": "Without oxygen"
+    },
+    {
+     "cue": "Bacteria in deep, waterlogged mud",
+     "need": "Without oxygen"
+    },
+    {
+     "cue": "A resting person's heart muscle",
+     "need": "With oxygen"
+    },
+    {
+     "cue": "Sprinting leg muscles that run short of oxygen",
+     "need": "Without oxygen"
+    }
+   ],
+   "hint": "Is there oxygen in that place, or has it run out?",
+   "wrong": {
+    "Only with light": "Releasing energy from sugar does not need light. Light is used to MAKE sugar in photosynthesis."
+   },
+   "explain": "Cells with plenty of oxygen use aerobic respiration. In dough, deep mud, or a muscle that runs short of oxygen, some cells release energy without oxygen."
+  },
+  {
    "id": "c-resp",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.G",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
    "short": "Cellular respiration",
-   "title": "Inside the mitochondrion: load what respiration uses, then collect what it makes.",
+   "title": "In a body cell, with oxygen: load what respiration uses, then collect what it makes.",
    "cueLabel": "Need",
    "builtLabel": "Loaded",
    "cueWord": "slot",
    "tokenWord": "molecule",
-   "rule": "Cellular respiration: glucose + oxygen → carbon dioxide + water + ATP energy",
+   "rule": "Cellular respiration (with oxygen): glucose + oxygen → carbon dioxide + water + energy",
    "choices": [
     "Glucose",
     "Oxygen",
     "Carbon dioxide",
     "Water",
-    "ATP",
+    "Energy",
     "Light energy",
     "Nitrogen"
    ],
@@ -1410,21 +1275,21 @@ FieldGuide.registerQuestions(2, {
      "need": "Water"
     },
     {
-     "cue": "Energy made",
-     "need": "ATP"
+     "cue": "Released for the cell to use",
+     "need": "Energy"
     }
    ],
-   "hint": "Check the equation: glucose + oxygen → carbon dioxide + water + ATP.",
+   "hint": "Check the model: glucose + oxygen → carbon dioxide + water + energy.",
    "wrong": {
     "Light energy": "Cellular respiration does not need light. It runs day and night in every cell."
    },
-   "explain": "Cellular respiration: glucose + oxygen → carbon dioxide + water + ATP. It is photosynthesis in reverse.",
+   "explain": "Cellular respiration: glucose + oxygen → carbon dioxide + water, releasing energy. With oxygen, cells release the most energy from each sugar molecule.",
    "clearTrail": true
   },
   {
    "id": "c-carbon",
-   "code": "BIO.B.4.2.3",
-   "steels": "3.1.9-12.K",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
    "short": "Carbon cycle",
    "title": "Run the carbon cycle: grab the process that moves carbon each way.",
    "cueLabel": "Carbon moves",
@@ -1432,14 +1297,14 @@ FieldGuide.registerQuestions(2, {
    "cueWord": "arrow",
    "tokenWord": "process",
    "sep": " → ",
-   "rule": "Carbon moves between the air, living things, the soil, and fossil fuels.",
+   "rule": "Carbon moves among living things (biosphere), the air (atmosphere), the oceans (hydrosphere), and rocks, soil, and fossil fuels (geosphere).",
    "choices": [
     "Photosynthesis",
     "Cellular respiration",
     "Decomposition",
     "Combustion",
-    "Condensation",
-    "Evaporation"
+    "Dissolving",
+    "Melting"
    ],
    "steps": [
     {
@@ -1457,63 +1322,26 @@ FieldGuide.registerQuestions(2, {
     {
      "cue": "Fossil fuels → air",
      "need": "Combustion"
+    },
+    {
+     "cue": "Air → ocean water",
+     "need": "Dissolving"
     }
    ],
    "hint": "Which process moves carbon in the direction of the highlighted arrow?",
    "wrong": {
-    "Condensation": "Condensation is part of the water cycle: water vapor turning into liquid.",
-    "Evaporation": "Evaporation is part of the water cycle: liquid water turning into vapor."
+    "Melting": "Melting turns ice into liquid water. It does not move carbon."
    },
-   "explain": "Photosynthesis pulls carbon from the air; respiration, decomposition, and combustion return it. Matter cycles."
+   "explain": "Photosynthesis pulls carbon from the air; respiration, decomposition, and burning return it; and the oceans absorb carbon dioxide from the air. Matter cycles."
   }
  ],
  "balances": [
   {
-   "id": "bal-enzyme",
-   "kind": "elevator",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "title": "Keep the body at the best temperature for its enzymes. The platform rises and falls with the temperature.",
-   "what": "Body temperature",
-   "unit": "°C",
-   "start": 37,
-   "min": 30,
-   "max": 46,
-   "band": [
-    35.5,
-    38.5
-   ],
-   "danger": [
-    32,
-    42
-   ],
-   "hold": 10,
-   "drift": -0.3,
-   "event": {
-    "every": 6,
-    "delta": 3.5,
-    "msg": "A fever is raising the temperature! Enzymes start to lose their shape."
-   },
-   "controls": [
-    {
-     "label": "Sweat to cool down",
-     "delta": -2.6
-    },
-    {
-     "label": "Shiver to warm up",
-     "delta": 2.6
-    }
-   ],
-   "tooHigh": "Too hot! Enzymes start to denature. Cool down.",
-   "tooLow": "Too cold! Enzymes slow down. Warm up.",
-   "explain": "Enzymes work best near 37 °C. Homeostasis keeps the body near that temperature so enzymes keep their shape."
-  },
-  {
    "id": "bal-carbon",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
    "kind": "boss",
    "name": "The Carbon Imbalance",
-   "code": "BIO.B.4.2.3",
-   "steels": "3.1.9-12.K",
    "title": "The Carbon Imbalance keeps pushing carbon dioxide into the air and pulling it out. Bring the air back into balance and hold it there.",
    "what": "Carbon dioxide in the air",
    "unit": "units",
@@ -1559,51 +1387,49 @@ FieldGuide.registerQuestions(2, {
  ],
  "data": [
   {
-   "id": "d-enzyme-temp",
-   "code": "BIO.A.2.3.2",
-   "steels": "3.2.9-12.E",
-   "title": "An enzyme at different temperatures",
-   "xlabel": "Temperature",
-   "ylabel": "Reaction rate (product made per minute)",
+   "id": "d-breath",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "title": "Carbon dioxide breathed out during exercise (illustrative data)",
+   "xlabel": "Activity",
+   "ylabel": "Carbon dioxide breathed out (liters per minute)",
    "categories": [
-    "10 °C",
-    "25 °C",
-    "37 °C",
-    "45 °C",
-    "60 °C"
+    "Resting",
+    "Walking",
+    "Jogging",
+    "Sprinting"
    ],
    "values": [
-    10,
-    36,
-    68,
-    38,
-    4
+    0.3,
+    0.9,
+    1.9,
+    3.1
    ],
    "questions": [
     {
-     "prompt": "At which temperature did this enzyme work best?",
-     "answer": 2,
+     "prompt": "During which activity did the body release the MOST carbon dioxide?",
+     "answer": 3,
      "hint": "Find the tallest bar.",
-     "explain": "The rate was highest at 37 °C, body temperature. That is this enzyme's optimum temperature."
+     "explain": "Sprinting muscles use the most energy, so their cells carry out the most cellular respiration and release the most carbon dioxide."
     },
     {
-     "prompt": "At which temperature was the enzyme most likely denatured (its shape changed by heat)?",
-     "answer": 4,
-     "hint": "Look for the hottest temperature where the rate crashed.",
-     "explain": "At 60 °C the rate nearly stopped: high heat changed the active site's shape."
-    },
-    {
-     "prompt": "At which temperature was the enzyme slow but NOT damaged, because molecules were moving slowly?",
+     "prompt": "During which activity were the body's cells carrying out the LEAST cellular respiration?",
      "answer": 0,
-     "hint": "Cold slows molecules down without changing the enzyme's shape.",
-     "explain": "At 10 °C molecules move slowly and collide less often, so the rate is low, but the enzyme still works when warmed."
+     "hint": "Less carbon dioxide means less respiration.",
+     "explain": "At rest the body uses the least energy, so the least carbon dioxide is released."
+    },
+    {
+     "prompt": "Oxygen use rises along with carbon dioxide release. During which activity would this person use the most oxygen?",
+     "answer": 3,
+     "hint": "Oxygen and glucose are the inputs of cellular respiration.",
+     "explain": "More respiration uses more oxygen, so oxygen use is highest when sprinting."
     }
    ]
   },
   {
    "id": "d-pyramid",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "title": "Energy in a meadow food web",
    "xlabel": "Trophic level",
    "ylabel": "Energy available (kilocalories)",
@@ -1644,8 +1470,8 @@ FieldGuide.registerQuestions(2, {
  "mazes": [
   {
    "id": "maze-trophic",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "title": "Climb the energy pyramid: go through the doorway for the next level up",
    "start": "Sun",
    "steps": [
@@ -1679,39 +1505,54 @@ FieldGuide.registerQuestions(2, {
  ],
  "sequences": [
   {
-   "id": "s-dehydration",
-   "code": "BIO.A.2.2.2",
-   "steels": "3.1.9-12.F",
-   "title": "Dehydration synthesis: join two glucose monomers",
+   "id": "s-photo-model",
+   "code": "3.1.9-12.E",
+   "topic": "photosynthesis",
+   "title": "Model photosynthesis: put the steps in order",
    "steps": [
-    "Two glucose monomers line up side by side",
-    "An -OH from one and an -H from the other are removed",
-    "The removed atoms form a water molecule (H₂O)",
-    "A new bond links the two glucose units"
+    "Carbon dioxide enters the leaf through tiny pores, and water arrives from the roots",
+    "The leaf absorbs light energy from the Sun",
+    "The light energy is used to rearrange the atoms of carbon dioxide and water into sugar (glucose)",
+    "Oxygen gas is released into the air",
+    "The plant uses the stored sugar later for energy and to build its body"
    ],
-   "hint": "Something is removed before the new bond can form.",
-   "explain": "Dehydration synthesis removes water to join monomers. Hydrolysis adds water to split them apart again."
+   "hint": "Start with what goes in. End with what the plant does with what it made.",
+   "explain": "Photosynthesis takes in carbon dioxide, water, and light energy, and gives out sugar and oxygen. The light energy is now stored as chemical energy in the sugar."
   },
   {
-   "id": "s-energy-path",
-   "code": "BIO.A.3.2.1",
-   "steels": "3.1.9-12.H",
-   "title": "Follow the energy from the Sun to your muscles",
+   "id": "s-resp-path",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
+   "title": "Follow a sugar molecule from your lunch to your moving muscles",
    "steps": [
-    "Light energy from the Sun",
-    "Chloroplasts store it in glucose",
-    "You eat food that contains glucose",
-    "Mitochondria break down the glucose",
-    "The energy is stored in ATP",
-    "ATP powers your muscles"
+    "You eat food that contains sugar",
+    "Your blood carries the sugar and oxygen to a muscle cell",
+    "In the cell, the bonds in the sugar and oxygen are broken",
+    "New bonds form in carbon dioxide and water, and energy is released",
+    "The muscle uses the energy to move, and the carbon dioxide is carried away and breathed out"
    ],
-   "hint": "Energy starts in the Sun and ends doing work in a cell.",
-   "explain": "Photosynthesis stores light energy in glucose; cellular respiration moves it into ATP, which powers cell work."
+   "hint": "Food and oxygen must reach the cell before anything can happen.",
+   "explain": "Cellular respiration breaks the bonds of food and oxygen and forms carbon dioxide and water, releasing energy the cell uses. Atoms are rearranged, not lost."
+  },
+  {
+   "id": "s-bread",
+   "code": "3.1.9-12.J",
+   "topic": "anaerobic",
+   "title": "Make bread rise: put the steps in order",
+   "steps": [
+    "Mix yeast, sugar, flour, and water into a dough",
+    "The yeast quickly use up the little oxygen in the dough",
+    "Without oxygen, the yeast break down sugar by fermentation",
+    "Fermentation releases carbon dioxide gas, which forms bubbles",
+    "The trapped bubbles make the dough rise"
+   ],
+   "hint": "The yeast have oxygen at first. What happens when it runs out?",
+   "explain": "Once the oxygen in the dough is used up, yeast release a little energy from sugar by fermentation, giving off carbon dioxide that makes the bread rise."
   },
   {
    "id": "s-food-chain",
-   "code": "BIO.B.4.2.1",
-   "steels": "3.1.9-12.H",
+   "code": "3.1.9-12.H",
+   "topic": "energy-flow",
    "title": "Build a food chain: follow the energy",
    "steps": [
     "Sun",
@@ -1726,139 +1567,142 @@ FieldGuide.registerQuestions(2, {
  ],
  "wordbanks": [
   {
-   "id": "wb-water",
-   "steels": "3.1.9-12.F",
+   "id": "wb-carbon",
+   "code": "3.1.9-12.F",
+   "topic": "carbon-builders",
    "words": [
-    "cohesion",
-    "adhesion",
-    "specific heat",
-    "less dense",
-    "solvent",
-    "nonpolar"
+    "sugar",
+    "carbon dioxide",
+    "nitrogen",
+    "rearranged",
+    "carbon",
+    "created"
    ],
    "sentences": [
     {
-     "text": "Water molecules stick to each other. This is called ___.",
-     "answer": "cohesion",
-     "code": "BIO.A.2.1.1",
-     "explain": "Cohesion: water sticking to water."
+     "text": "Glucose is a ___ made of carbon, hydrogen, and oxygen.",
+     "answer": "sugar",
+     "code": "3.1.9-12.F",
+     "explain": "Glucose is the sugar made by photosynthesis."
     },
     {
-     "text": "Water also sticks to other surfaces, like the inside of a plant stem. This is ___.",
-     "answer": "adhesion",
-     "code": "BIO.A.2.1.1",
-     "explain": "Adhesion: water sticking to other surfaces."
+     "text": "Most of a plant's mass comes from ___ taken in from the air.",
+     "answer": "carbon dioxide",
+     "code": "3.1.9-12.F",
+     "explain": "Carbon from carbon dioxide is built into sugar, then into the rest of the plant."
     },
     {
-     "text": "Oceans and lakes change temperature slowly because water has a high ___.",
-     "answer": "specific heat",
-     "code": "BIO.A.2.1.1",
-     "explain": "High specific heat keeps habitats stable."
+     "text": "To build amino acids, cells add ___ to the carbon, hydrogen, and oxygen from sugar.",
+     "answer": "nitrogen",
+     "code": "3.1.9-12.F",
+     "explain": "Amino acids contain nitrogen, which sugar does not."
     },
     {
-     "text": "Ice floats because solid water is ___ than liquid water.",
-     "answer": "less dense",
-     "code": "BIO.A.2.1.1",
-     "explain": "Ice is less dense, so it floats and insulates the water below."
+     "text": "When a cell builds new molecules, its atoms are ___, not created or destroyed.",
+     "answer": "rearranged",
+     "code": "3.1.9-12.F",
+     "explain": "Matter is conserved: atoms are only rearranged."
     },
     {
-     "text": "Many substances dissolve in water, so water is a good ___.",
-     "answer": "solvent",
-     "code": "BIO.A.2.1.1",
-     "explain": "Water dissolves many substances, so it carries nutrients in living things."
+     "text": "___ atoms can form four bonds, so they link into long chains.",
+     "answer": "carbon",
+     "code": "3.1.9-12.F",
+     "explain": "Carbon chains are the backbones of life's large molecules."
     }
    ]
   },
   {
-   "id": "wb-enzyme",
-   "steels": "3.1.9-12.F",
+   "id": "wb-resp",
+   "code": "3.1.9-12.G",
+   "topic": "respiration",
    "words": [
-    "catalyst",
-    "substrate",
-    "active site",
-    "lowers",
-    "denatured",
-    "raises"
+    "oxygen",
+    "broken",
+    "formed",
+    "energy",
+    "carbon dioxide",
+    "light"
    ],
    "sentences": [
     {
-     "text": "An enzyme is a ___: it speeds up a reaction without being used up.",
-     "answer": "catalyst",
-     "code": "BIO.A.2.3.1",
-     "explain": "Enzymes are biological catalysts."
+     "text": "Cellular respiration uses glucose and ___.",
+     "answer": "oxygen",
+     "code": "3.1.9-12.G",
+     "explain": "Glucose and oxygen are the inputs."
     },
     {
-     "text": "The molecule an enzyme acts on is called its ___.",
-     "answer": "substrate",
-     "code": "BIO.A.2.3.1",
-     "explain": "The substrate is the molecule the enzyme works on."
+     "text": "The bonds in glucose and oxygen are ___.",
+     "answer": "broken",
+     "code": "3.1.9-12.G",
+     "explain": "Old bonds in the food and oxygen are broken."
     },
     {
-     "text": "The substrate fits into a pocket on the enzyme called the ___.",
-     "answer": "active site",
-     "code": "BIO.A.2.3.1",
-     "explain": "The active site is where the substrate binds."
+     "text": "New bonds are ___ in carbon dioxide and water.",
+     "answer": "formed",
+     "code": "3.1.9-12.G",
+     "explain": "New compounds form: carbon dioxide and water."
     },
     {
-     "text": "An enzyme speeds up a reaction because it ___ the activation energy.",
-     "answer": "lowers",
-     "code": "BIO.A.2.3.1",
-     "explain": "Enzymes lower the activation energy needed to start a reaction."
+     "text": "The process releases ___ that cells use to move, grow, and stay warm.",
+     "answer": "energy",
+     "code": "3.1.9-12.G",
+     "explain": "The net result is a release of usable energy."
     },
     {
-     "text": "Very high heat changes an enzyme's shape, so the enzyme is ___.",
-     "answer": "denatured",
-     "code": "BIO.A.2.3.2",
-     "explain": "A denatured enzyme has lost its shape and stops working."
+     "text": "Your cells release ___, which you breathe out.",
+     "answer": "carbon dioxide",
+     "code": "3.1.9-12.G",
+     "explain": "Carbon dioxide leaves the body through the lungs."
     }
    ]
   },
   {
    "id": "wb-cycles",
-   "steels": "3.1.9-12.K",
+   "code": "3.1.9-12.K",
+   "topic": "carbon-cycle",
    "words": [
     "photosynthesis",
     "respiration",
     "decomposers",
     "combustion",
-    "bacteria",
+    "oceans",
     "heat"
    ],
    "sentences": [
     {
      "text": "Plants take carbon dioxide out of the air during ___.",
      "answer": "photosynthesis",
-     "code": "BIO.B.4.2.3",
+     "code": "3.1.9-12.K",
      "explain": "Photosynthesis removes carbon dioxide from the air."
     },
     {
      "text": "Living things return carbon dioxide to the air through cellular ___.",
      "answer": "respiration",
-     "code": "BIO.B.4.2.3",
+     "code": "3.1.9-12.K",
      "explain": "Cellular respiration releases carbon dioxide."
     },
     {
-     "text": "___ break down dead organisms and return nutrients to the soil.",
+     "text": "___ break down dead organisms and return carbon and nutrients to the soil and air.",
      "answer": "decomposers",
-     "code": "BIO.B.4.2.3",
-     "explain": "Decomposers recycle nutrients."
+     "code": "3.1.9-12.H",
+     "explain": "Decomposers recycle matter."
     },
     {
      "text": "Burning fossil fuels, called ___, adds carbon dioxide to the air.",
      "answer": "combustion",
-     "code": "BIO.B.4.2.3",
-     "explain": "Combustion releases carbon stored in fossil fuels."
+     "code": "3.1.9-12.K",
+     "explain": "Combustion releases carbon that was stored in the geosphere."
     },
     {
-     "text": "Soil ___ change nitrogen gas into a form plants can use.",
-     "answer": "bacteria",
-     "code": "BIO.B.4.2.3",
-     "explain": "Nitrogen-fixing bacteria make nitrogen usable for plants."
+     "text": "A large share of the carbon dioxide in the air dissolves into the ___.",
+     "answer": "oceans",
+     "code": "3.1.9-12.K",
+     "explain": "The oceans (hydrosphere) absorb carbon dioxide from the atmosphere."
     },
     {
      "text": "Energy is not recycled. At each step of a food chain, much of it is lost as ___.",
      "answer": "heat",
-     "code": "BIO.B.4.2.1",
+     "code": "3.1.9-12.H",
      "explain": "Energy flows one way and leaves the ecosystem as heat."
     }
    ]
@@ -1866,58 +1710,58 @@ FieldGuide.registerQuestions(2, {
  ],
  "scans": [
   {
-   "id": "s2-drop",
-   "name": "Water drop",
+   "id": "s2-algae",
+   "name": "Sea lettuce",
+   "look": "lily",
+   "color": "#6ac04a",
+   "word": "Glucose",
+   "def": "A sugar (C₆H₁₂O₆) made by photosynthesis, built from carbon, hydrogen, and oxygen atoms.",
+   "note": "This seaweed makes GLUCOSE, a sugar, from carbon dioxide and water using sunlight. The sugar's carbon, hydrogen, and oxygen atoms become the raw material for everything else the seaweed builds."
+  },
+  {
+   "id": "s2-pool",
+   "name": "Tide pool water",
    "look": "drop",
    "color": "#7fd4ff",
-   "word": "Polar",
-   "def": "Having a slightly positive end and a slightly negative end.",
-   "note": "A water molecule has a slightly negative end (oxygen) and slightly positive ends (hydrogens). That makes it POLAR, like a tiny magnet, so water molecules pull on each other."
+   "word": "Element",
+   "def": "A pure substance made of only one kind of atom, such as carbon, nitrogen, or oxygen.",
+   "note": "Seawater holds dissolved NUTRIENTS that contain nitrogen, phosphorus, and sulfur. Seaweed takes them in and combines them with the carbon, hydrogen, and oxygen from its sugar."
   },
   {
-   "id": "s2-strider",
-   "name": "Water strider",
+   "id": "s2-snail",
+   "name": "Periwinkle snail",
    "look": "critter",
-   "color": "#5a4a3a",
-   "word": "Cohesion",
-   "def": "Water molecules sticking to each other.",
-   "note": "Water molecules stick together so strongly that this bug can walk on the surface. Water sticking to water is COHESION."
+   "color": "#7a6a5a",
+   "word": "Conservation of matter",
+   "def": "Atoms are never created or destroyed; they are only rearranged into new molecules.",
+   "note": "This snail grazes on seaweed. The atoms in the seaweed's sugar are not destroyed: the snail's cells rearrange them into its own body. Matter is CONSERVED."
   },
   {
-   "id": "s2-tube",
-   "name": "Plant stem",
+   "id": "s2-amino",
+   "name": "Amino acid",
+   "look": "blob",
+   "color": "#ff8fb1",
+   "word": "Amino acid",
+   "def": "A small carbon-based molecule that also contains nitrogen. Chains of amino acids fold into proteins.",
+   "note": "To build an AMINO ACID, a cell takes carbon, hydrogen, and oxygen from sugar and adds nitrogen. Long chains of amino acids fold into proteins."
+  },
+  {
+   "id": "s2-dna",
+   "name": "DNA strand",
+   "look": "helix",
+   "color": "#7fd4ff",
+   "word": "Carbon-based molecule",
+   "def": "A large molecule built on a backbone of carbon atoms, such as a protein, a fat, or DNA.",
+   "note": "DNA is a huge CARBON-BASED MOLECULE. Cells build it from atoms that came from sugar, plus nitrogen and phosphorus taken in from the environment."
+  },
+  {
+   "id": "s2-tree",
+   "name": "Tree on the bluff",
    "look": "sprout",
-   "color": "#7be06a",
-   "word": "Adhesion",
-   "def": "Water sticking to other surfaces.",
-   "note": "Water climbs the thin tubes inside a stem because it sticks to the tube walls (ADHESION) and pulls more water along behind it (cohesion)."
-  },
-  {
-   "id": "s2-lake",
-   "name": "Lake",
-   "look": "ice",
-   "color": "#2a7fb8",
-   "word": "Specific heat",
-   "def": "How much energy it takes to change a substance's temperature.",
-   "note": "The lake stays cool on hot days and warm on cold nights. Water has a high SPECIFIC HEAT: it takes a lot of energy to change its temperature, so habitats stay steady."
-  },
-  {
-   "id": "s2-ice",
-   "name": "Floating ice",
-   "look": "ice",
-   "color": "#e8f8ff",
-   "word": "Density",
-   "def": "How tightly packed the matter in something is.",
-   "note": "Ice floats because it is LESS DENSE than liquid water. The ice on top insulates the lake, so fish survive the winter in the water below."
-  },
-  {
-   "id": "s2-salt",
-   "name": "Salt crystals",
-   "look": "crystal",
-   "color": "#ffffff",
-   "word": "Solvent",
-   "def": "A liquid that dissolves other substances.",
-   "note": "Salt disappears in water because water pulls it apart. Water dissolves so many things that it is called the universal SOLVENT. That is how blood and sap carry nutrients."
+   "color": "#4f9a5a",
+   "word": "Biomass",
+   "def": "The total mass of living things.",
+   "note": "Where does a tree's BIOMASS come from? Mostly from carbon dioxide in the air! Its carbon is built into sugar, then into wood. The soil adds only small amounts of minerals."
   },
   {
    "id": "s2-carbon",
@@ -1933,135 +1777,9 @@ FieldGuide.registerQuestions(2, {
    "name": "Carbon chain",
    "look": "chain",
    "color": "#ffd166",
-   "word": "Organic molecule",
-   "def": "A carbon-based molecule, like a sugar, fat, or protein.",
-   "note": "Molecules built on carbon chains, like sugars, fats, and proteins, are ORGANIC molecules. Living things are built from them."
-  },
-  {
-   "id": "s2-monomer",
-   "name": "Glucose",
-   "look": "blob",
-   "color": "#ffd166",
-   "word": "Monomer",
-   "def": "A single building block of a larger molecule.",
-   "note": "A MONOMER is one building block, like one bead. Glucose is a monomer."
-  },
-  {
-   "id": "s2-polymer",
-   "name": "Starch",
-   "look": "chain",
-   "color": "#ffd166",
-   "word": "Polymer",
-   "def": "A large molecule made of many monomers joined together.",
-   "note": "A POLYMER is a long chain of monomers joined together, like a necklace of beads. Starch is a polymer made of glucose."
-  },
-  {
-   "id": "s2-dehyd",
-   "name": "Water drip",
-   "look": "drop",
-   "color": "#7fd4ff",
-   "word": "Dehydration synthesis",
-   "def": "Joining monomers by removing water.",
-   "note": "When two monomers join, a water molecule is removed: DEHYDRATION SYNTHESIS. Adding water to split them apart is HYDROLYSIS."
-  },
-  {
-   "id": "s2-carb",
-   "name": "Potato",
-   "look": "rock",
-   "color": "#c8a060",
-   "word": "Carbohydrate",
-   "def": "Sugars and starches, used for energy and structure.",
-   "note": "Potatoes store energy as starch, a CARBOHYDRATE. Carbohydrates give quick energy. Cellulose, another carbohydrate, builds plant cell walls."
-  },
-  {
-   "id": "s2-lipid",
-   "name": "Oil drop",
-   "look": "drop",
-   "color": "#ffd98a",
-   "word": "Lipid",
-   "def": "Fats, oils, and membrane molecules that do not mix with water.",
-   "note": "Fats, oils, and the phospholipids in cell membranes are LIPIDS. They store lots of energy and do not mix with water."
-  },
-  {
-   "id": "s2-protein",
-   "name": "Muscle fiber",
-   "look": "rod",
-   "color": "#ff8fb1",
-   "word": "Protein",
-   "def": "A folded chain of amino acids; its shape decides its job.",
-   "note": "PROTEINS are chains of amino acids folded into shapes. Their shape decides their job: enzymes, muscle, hemoglobin, and antibodies are all proteins."
-  },
-  {
-   "id": "s2-nucleic",
-   "name": "DNA",
-   "look": "helix",
-   "color": "#7fd4ff",
-   "word": "Nucleic acid",
-   "def": "DNA or RNA: chains of nucleotides that carry genetic information.",
-   "note": "DNA and RNA are NUCLEIC ACIDS, chains of nucleotides that store and carry genetic information."
-  },
-  {
-   "id": "s2-enzyme",
-   "name": "Enzyme",
-   "look": "blob",
-   "color": "#c59cff",
-   "word": "Enzyme",
-   "def": "A protein that speeds up a chemical reaction (a catalyst).",
-   "note": "An ENZYME is a protein that speeds up a reaction. It is a catalyst: it is not used up, so it works again and again."
-  },
-  {
-   "id": "s2-site",
-   "name": "Active site",
-   "look": "cell",
-   "color": "#c59cff",
-   "word": "Active site",
-   "def": "The pocket on an enzyme where the substrate fits.",
-   "note": "Every enzyme has a pocket called the ACTIVE SITE. Only a substrate with the right shape fits, like a key in a lock."
-  },
-  {
-   "id": "s2-substrate",
-   "name": "Substrate",
-   "look": "blob",
-   "color": "#ffd166",
-   "word": "Substrate",
-   "def": "The molecule an enzyme acts on.",
-   "note": "The molecule an enzyme works on is its SUBSTRATE. Amylase's substrate is starch."
-  },
-  {
-   "id": "s2-energy",
-   "name": "Energy hill",
-   "look": "stack",
-   "color": "#ff9f6e",
-   "word": "Activation energy",
-   "def": "The energy needed to start a reaction.",
-   "note": "Reactions need a push to get started: ACTIVATION ENERGY. Enzymes lower it, so reactions happen fast at body temperature."
-  },
-  {
-   "id": "s2-heat",
-   "name": "Hot spring",
-   "look": "crystal",
-   "color": "#ff6b6b",
-   "word": "Denature",
-   "def": "When heat or pH changes a protein's shape so it stops working.",
-   "note": "Too much heat or the wrong pH changes an enzyme's shape. The active site no longer fits, and the enzyme is DENATURED."
-  },
-  {
-   "id": "s2-ph",
-   "name": "Stomach acid",
-   "look": "drop",
-   "color": "#c8ff7a",
-   "word": "pH",
-   "def": "A scale of how acidic or basic something is.",
-   "note": "pH tells how acidic or basic something is. Each enzyme has a best pH: pepsin in the stomach works at pH 2; enzymes in the small intestine work near pH 8."
-  },
-  {
-   "id": "s2-chloro",
-   "name": "Chloroplast",
-   "look": "stack",
-   "color": "#5fbf5a",
-   "word": "Chloroplast",
-   "def": "The organelle where photosynthesis happens.",
-   "note": "CHLOROPLASTS are the organelles in plant cells where photosynthesis happens. Their green pigment, chlorophyll, captures light energy."
+   "word": "Carbon chain",
+   "def": "Carbon atoms linked one after another, forming the backbone of a large molecule.",
+   "note": "Each carbon atom can make four bonds, so carbon atoms link into long CARBON CHAINS, branches, and rings. These chains are the backbones of sugars, fats, proteins, and DNA."
   },
   {
    "id": "s2-photo",
@@ -2069,8 +1787,8 @@ FieldGuide.registerQuestions(2, {
    "look": "lily",
    "color": "#3f9a4a",
    "word": "Photosynthesis",
-   "def": "Using light energy to make glucose from carbon dioxide and water.",
-   "note": "PHOTOSYNTHESIS: carbon dioxide + water + light energy → glucose + oxygen. Light energy becomes chemical energy stored in glucose."
+   "def": "Using light energy to make sugar (glucose) and oxygen from carbon dioxide and water.",
+   "note": "PHOTOSYNTHESIS: carbon dioxide + water + light energy → glucose + oxygen. Light energy becomes chemical energy stored in the sugar."
   },
   {
    "id": "s2-stoma",
@@ -2082,22 +1800,40 @@ FieldGuide.registerQuestions(2, {
    "note": "Tiny pores on leaves called STOMATA let carbon dioxide in and let oxygen and water vapor out."
   },
   {
-   "id": "s2-mito",
-   "name": "Mitochondrion",
-   "look": "rod",
-   "color": "#ff9f6e",
-   "word": "Cellular respiration",
-   "def": "Releasing the energy in glucose to make ATP.",
-   "note": "CELLULAR RESPIRATION happens in mitochondria: glucose + oxygen → carbon dioxide + water + ATP energy. It runs day and night in every cell."
+   "id": "s2-lamp",
+   "name": "Grow lamp",
+   "look": "sun",
+   "color": "#ffd166",
+   "word": "Light energy",
+   "def": "Energy carried by light. Producers capture it for photosynthesis.",
+   "note": "Scientists use lamps to test plants. LIGHT ENERGY powers photosynthesis: the more light a plant gets (up to a limit), the faster it makes sugar."
   },
   {
-   "id": "s2-atp",
-   "name": "ATP",
-   "look": "blob",
-   "color": "#c8ff7a",
-   "word": "ATP",
-   "def": "The molecule that carries usable energy in cells.",
-   "note": "ATP is the cell's energy carrier, like a charged battery. When a phosphate breaks off (ATP → ADP), energy is released for cell work."
+   "id": "s2-elodea",
+   "name": "Pondweed bubbles",
+   "look": "sprout",
+   "color": "#3f9a4a",
+   "word": "Oxygen",
+   "def": "A gas that producers release during photosynthesis.",
+   "note": "Under a lamp, this pondweed gives off tiny bubbles of OXYGEN. Counting the bubbles is a way to measure how fast photosynthesis is happening."
+  },
+  {
+   "id": "s2-co2",
+   "name": "Carbon dioxide",
+   "look": "atom",
+   "color": "#30343a",
+   "word": "Carbon dioxide",
+   "def": "A gas (CO₂) that producers take in to build sugar, and that cellular respiration releases.",
+   "note": "CARBON DIOXIDE enters leaves through tiny pores. Its carbon and oxygen atoms are rearranged, with water, into sugar."
+  },
+  {
+   "id": "s2-sugar",
+   "name": "Sugar crystals",
+   "look": "crystal",
+   "color": "#fff2c0",
+   "word": "Chemical energy",
+   "def": "Energy stored in the bonds that hold the atoms of a molecule together.",
+   "note": "Sugar holds CHEMICAL ENERGY in its bonds. In photosynthesis, light energy is changed into this stored chemical energy."
   },
   {
    "id": "s2-plant",
@@ -2106,7 +1842,115 @@ FieldGuide.registerQuestions(2, {
    "color": "#7be06a",
    "word": "Producer",
    "def": "An organism that makes its own food.",
-   "note": "Plants are PRODUCERS: they make glucose by photosynthesis. They also do cellular respiration in their mitochondria to release that energy as ATP."
+   "note": "Plants are PRODUCERS: they make sugar by photosynthesis. Their cells also break down that sugar by cellular respiration to release energy for growing."
+  },
+  {
+   "id": "s2-meal",
+   "name": "Digested lunch",
+   "look": "blob",
+   "color": "#ffd98a",
+   "word": "Food molecule",
+   "def": "A molecule, such as sugar, that stores chemical energy in its bonds.",
+   "note": "In the gut, food is broken down into small FOOD MOLECULES like sugar. The blood carries them to every cell in the body."
+  },
+  {
+   "id": "s2-resp",
+   "name": "Muscle cell",
+   "look": "rod",
+   "color": "#ff9f6e",
+   "word": "Cellular respiration",
+   "def": "A chemical process that breaks the bonds of food molecules and oxygen, forms carbon dioxide and water, and releases energy.",
+   "note": "In CELLULAR RESPIRATION, the bonds in sugar and oxygen are broken and new bonds form in carbon dioxide and water. The net result is energy the cell can use. It runs day and night in every cell."
+  },
+  {
+   "id": "s2-react",
+   "name": "Oxygen from the lungs",
+   "look": "atom",
+   "color": "#9fe0ff",
+   "word": "Reactant",
+   "def": "A starting material in a chemical reaction.",
+   "note": "Glucose and oxygen are the REACTANTS of cellular respiration: the molecules that go in."
+  },
+  {
+   "id": "s2-breath",
+   "name": "Breath on a cold day",
+   "look": "drop",
+   "color": "#e8f8ff",
+   "word": "Product",
+   "def": "A substance made by a chemical reaction.",
+   "note": "Carbon dioxide and water vapor are the PRODUCTS of cellular respiration. You breathe them out, and on a cold day the water vapor condenses into a little cloud you can see."
+  },
+  {
+   "id": "s2-bond",
+   "name": "Molecule model",
+   "look": "chain",
+   "color": "#ffd166",
+   "word": "Chemical bond",
+   "def": "The link that holds atoms together in a molecule. Breaking and forming bonds moves energy.",
+   "note": "In cellular respiration, CHEMICAL BONDS in sugar and oxygen break and new ones form in carbon dioxide and water. The difference is energy released for the cell."
+  },
+  {
+   "id": "s2-runner",
+   "name": "Runner",
+   "look": "critter",
+   "color": "#c8b09a",
+   "word": "Energy transfer",
+   "def": "Energy moving from one place or molecule to another, such as from sugar to moving muscles.",
+   "note": "The energy stored in sugar is TRANSFERRED to the runner's muscles by cellular respiration. Some of it is given off as body heat."
+  },
+  {
+   "id": "s2-aerobic",
+   "name": "Leaf in the breeze",
+   "look": "lily",
+   "color": "#5fbf5a",
+   "word": "Aerobic respiration",
+   "def": "Releasing energy from food using oxygen. It releases the most energy from each sugar molecule.",
+   "note": "Up here the air is full of oxygen, so these cells use AEROBIC RESPIRATION: sugar + oxygen → carbon dioxide + water + lots of energy."
+  },
+  {
+   "id": "s2-mud",
+   "name": "Waterlogged mud",
+   "look": "rock",
+   "color": "#5a4a3a",
+   "word": "Anaerobic",
+   "def": "Without oxygen.",
+   "note": "Down in the flooded mud there is almost no oxygen. Places like this are ANAEROBIC. Some bacteria live here and release energy from food without oxygen."
+  },
+  {
+   "id": "s2-yeast",
+   "name": "Yeast",
+   "look": "blob",
+   "color": "#e8d8a0",
+   "word": "Fermentation",
+   "def": "A way some cells, like yeast, release a little energy from sugar without oxygen.",
+   "note": "Without oxygen, yeast use FERMENTATION. It releases only a little energy, and it gives off carbon dioxide bubbles. That is what makes bread rise."
+  },
+  {
+   "id": "s2-sprint",
+   "name": "Sprinter",
+   "look": "critter",
+   "color": "#e07a30",
+   "word": "Anaerobic respiration",
+   "def": "Releasing energy from food without oxygen. It releases much less energy than aerobic respiration.",
+   "note": "In a hard sprint, muscle cells use oxygen faster than the blood can bring it. For a short time they release some energy without oxygen (ANAEROBIC RESPIRATION), which releases much less energy, so the runner must slow down. Muscle cells do a kind of fermentation, like yeast."
+  },
+  {
+   "id": "s2-compost",
+   "name": "Compost pile",
+   "look": "mushroom",
+   "color": "#8a6a3a",
+   "word": "Compost",
+   "def": "Dead plant matter broken down by decomposers.",
+   "note": "Turning a COMPOST pile mixes in air. With oxygen, decomposers work fast and the pile even warms up. A soggy pile without air breaks down slowly."
+  },
+  {
+   "id": "s2-peat",
+   "name": "Bog peat",
+   "look": "grass",
+   "color": "#6a5a3a",
+   "word": "Peat",
+   "def": "Partly decayed plant matter that builds up in waterlogged, low-oxygen places like bogs.",
+   "note": "In a bog, the water keeps oxygen out, so decomposers work very slowly. Dead plants pile up as PEAT, storing carbon for thousands of years."
   },
   {
    "id": "s2-grass",
@@ -2133,7 +1977,7 @@ FieldGuide.registerQuestions(2, {
    "color": "#e07a30",
    "word": "Predator",
    "def": "An animal that hunts and eats other animals.",
-   "note": "The fox eats rabbits: a PREDATOR and a SECONDARY consumer. A hawk that ate the fox would be a tertiary consumer."
+   "note": "The fox eats rabbits: a PREDATOR and a SECONDARY consumer. An eagle that ate the fox would be a tertiary consumer."
   },
   {
    "id": "s2-mushroom",
@@ -2168,127 +2012,127 @@ FieldGuide.registerQuestions(2, {
    "look": "atom",
    "color": "#30343a",
    "word": "Carbon cycle",
-   "def": "The path carbon takes between air, living things, soil, and fossil fuels.",
-   "note": "Carbon moves in a loop: plants take in CO₂, animals eat plants, and respiration, decomposition, and burning return CO₂ to the air. MATTER cycles."
+   "def": "The path carbon takes among living things, the air, the oceans, and rocks and fossil fuels.",
+   "note": "Carbon moves in a loop: plants take in CO₂ by photosynthesis, animals eat plants, and respiration, decomposition, and burning return CO₂ to the air. Oceans absorb CO₂ too. MATTER cycles."
   },
   {
-   "id": "s2-clover",
-   "name": "Clover roots",
-   "look": "sprout",
-   "color": "#7be06a",
-   "word": "Nitrogen cycle",
-   "def": "The path nitrogen takes through air, soil, and living things.",
-   "note": "Bacteria in soil and in clover roots change nitrogen gas into a form plants can use. This is part of the NITROGEN CYCLE."
+   "id": "s2-rock",
+   "name": "Limestone and coal",
+   "look": "rock",
+   "color": "#8a8f96",
+   "word": "Geosphere",
+   "def": "Earth's rocks, soil, and sediments, including carbon stored in fossil fuels and limestone.",
+   "note": "The GEOSPHERE stores carbon for millions of years in coal, oil, and limestone. Burning fossil fuels moves that carbon back into the atmosphere."
   }
  ],
  "vocab": [
   {
-   "term": "Polar",
-   "def": "Having a slightly positive end and a slightly negative end."
+   "term": "Glucose",
+   "def": "A sugar (C₆H₁₂O₆) made by photosynthesis, built from carbon, hydrogen, and oxygen atoms."
   },
   {
-   "term": "Cohesion",
-   "def": "Water molecules sticking to each other."
+   "term": "Element",
+   "def": "A pure substance made of only one kind of atom, such as carbon, nitrogen, or oxygen."
   },
   {
-   "term": "Adhesion",
-   "def": "Water sticking to other surfaces."
+   "term": "Conservation of matter",
+   "def": "Atoms are never created or destroyed; they are only rearranged into new molecules."
   },
   {
-   "term": "Specific heat",
-   "def": "How much energy it takes to change a substance's temperature."
+   "term": "Amino acid",
+   "def": "A small carbon-based molecule that also contains nitrogen. Chains of amino acids fold into proteins."
   },
   {
-   "term": "Density",
-   "def": "How tightly packed the matter in something is."
+   "term": "Carbon-based molecule",
+   "def": "A large molecule built on a backbone of carbon atoms, such as a protein, a fat, or DNA."
   },
   {
-   "term": "Solvent",
-   "def": "A liquid that dissolves other substances."
+   "term": "Biomass",
+   "def": "The total mass of living things."
   },
   {
    "term": "Carbon",
    "def": "The element that forms the backbone of life's molecules."
   },
   {
-   "term": "Organic molecule",
-   "def": "A carbon-based molecule, like a sugar, fat, or protein."
-  },
-  {
-   "term": "Monomer",
-   "def": "A single building block of a larger molecule."
-  },
-  {
-   "term": "Polymer",
-   "def": "A large molecule made of many monomers joined together."
-  },
-  {
-   "term": "Dehydration synthesis",
-   "def": "Joining monomers by removing water."
-  },
-  {
-   "term": "Carbohydrate",
-   "def": "Sugars and starches, used for energy and structure."
-  },
-  {
-   "term": "Lipid",
-   "def": "Fats, oils, and membrane molecules that do not mix with water."
-  },
-  {
-   "term": "Protein",
-   "def": "A folded chain of amino acids; its shape decides its job."
-  },
-  {
-   "term": "Nucleic acid",
-   "def": "DNA or RNA: chains of nucleotides that carry genetic information."
-  },
-  {
-   "term": "Enzyme",
-   "def": "A protein that speeds up a chemical reaction (a catalyst)."
-  },
-  {
-   "term": "Active site",
-   "def": "The pocket on an enzyme where the substrate fits."
-  },
-  {
-   "term": "Substrate",
-   "def": "The molecule an enzyme acts on."
-  },
-  {
-   "term": "Activation energy",
-   "def": "The energy needed to start a reaction."
-  },
-  {
-   "term": "Denature",
-   "def": "When heat or pH changes a protein's shape so it stops working."
-  },
-  {
-   "term": "pH",
-   "def": "A scale of how acidic or basic something is."
-  },
-  {
-   "term": "Chloroplast",
-   "def": "The organelle where photosynthesis happens."
+   "term": "Carbon chain",
+   "def": "Carbon atoms linked one after another, forming the backbone of a large molecule."
   },
   {
    "term": "Photosynthesis",
-   "def": "Using light energy to make glucose from carbon dioxide and water."
+   "def": "Using light energy to make sugar (glucose) and oxygen from carbon dioxide and water."
   },
   {
    "term": "Stomata",
    "def": "Tiny pores in leaves that let gases in and out."
   },
   {
-   "term": "Cellular respiration",
-   "def": "Releasing the energy in glucose to make ATP."
+   "term": "Light energy",
+   "def": "Energy carried by light. Producers capture it for photosynthesis."
   },
   {
-   "term": "ATP",
-   "def": "The molecule that carries usable energy in cells."
+   "term": "Oxygen",
+   "def": "A gas that producers release during photosynthesis."
+  },
+  {
+   "term": "Carbon dioxide",
+   "def": "A gas (CO₂) that producers take in to build sugar, and that cellular respiration releases."
+  },
+  {
+   "term": "Chemical energy",
+   "def": "Energy stored in the bonds that hold the atoms of a molecule together."
   },
   {
    "term": "Producer",
    "def": "An organism that makes its own food."
+  },
+  {
+   "term": "Food molecule",
+   "def": "A molecule, such as sugar, that stores chemical energy in its bonds."
+  },
+  {
+   "term": "Cellular respiration",
+   "def": "A chemical process that breaks the bonds of food molecules and oxygen, forms carbon dioxide and water, and releases energy."
+  },
+  {
+   "term": "Reactant",
+   "def": "A starting material in a chemical reaction."
+  },
+  {
+   "term": "Product",
+   "def": "A substance made by a chemical reaction."
+  },
+  {
+   "term": "Chemical bond",
+   "def": "The link that holds atoms together in a molecule. Breaking and forming bonds moves energy."
+  },
+  {
+   "term": "Energy transfer",
+   "def": "Energy moving from one place or molecule to another, such as from sugar to moving muscles."
+  },
+  {
+   "term": "Aerobic respiration",
+   "def": "Releasing energy from food using oxygen. It releases the most energy from each sugar molecule."
+  },
+  {
+   "term": "Anaerobic",
+   "def": "Without oxygen."
+  },
+  {
+   "term": "Fermentation",
+   "def": "A way some cells, like yeast, release a little energy from sugar without oxygen."
+  },
+  {
+   "term": "Anaerobic respiration",
+   "def": "Releasing energy from food without oxygen. It releases much less energy than aerobic respiration."
+  },
+  {
+   "term": "Compost",
+   "def": "Dead plant matter broken down by decomposers."
+  },
+  {
+   "term": "Peat",
+   "def": "Partly decayed plant matter that builds up in waterlogged, low-oxygen places like bogs."
   },
   {
    "term": "Trophic level",
@@ -2316,27 +2160,23 @@ FieldGuide.registerQuestions(2, {
   },
   {
    "term": "Carbon cycle",
-   "def": "The path carbon takes between air, living things, soil, and fossil fuels."
+   "def": "The path carbon takes among living things, the air, the oceans, and rocks and fossil fuels."
   },
   {
-   "term": "Nitrogen cycle",
-   "def": "The path nitrogen takes through air, soil, and living things."
-  },
-  {
-   "term": "Hydrolysis",
-   "def": "Breaking a polymer into monomers by adding water."
-  },
-  {
-   "term": "Catalyst",
-   "def": "Something that speeds up a reaction without being used up."
+   "term": "Geosphere",
+   "def": "Earth's rocks, soil, and sediments, including carbon stored in fossil fuels and limestone."
   },
   {
    "term": "Decomposition",
    "def": "Breaking down dead matter, returning carbon and nutrients to the soil and air."
   },
   {
-   "term": "Transpiration",
-   "def": "Release of water vapor from plant leaves into the air."
+   "term": "Hydrosphere",
+   "def": "All of Earth's water, including the oceans, which absorb carbon dioxide from the air."
+  },
+  {
+   "term": "Atmosphere",
+   "def": "The layer of air around Earth, which holds carbon dioxide and oxygen."
   }
  ]
 });

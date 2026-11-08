@@ -341,11 +341,13 @@ function fstore() { const s = BQ.cozy._s(); if (!s.fg) s.fg = {}; if (!s.fgPts) 
 function counter() { const A = K.A, s = fstore(), list = A.finds || [], n = list.filter(function (f) { return s.fg[f.id]; }).length; $('coCount').textContent = list.length ? ' · 📖 ' + n + '/' + list.length + ' · ⭐ ' + s.fgPts : ''; }
 function discover(f) { const s = fstore(); if (s.fg[f.id]) return; s.fg[f.id] = Date.now(); s.fgPts += 50; C.save(); amb('sfx', 'discover'); if (C.S.set.cap && C.caption) C.caption('sound: chime, new Field Guide entry');
   K.cardQ = K.cardQ || []; K.cardQ.push(f); counter(); }
-/* Keystone tags for Field Guide entries (approved by the teacher, v57). Wording comes from the verified KEYSTONE table in engine.js. Entries with no clear fit stay untagged. */
-const TAGS = { rf_brain: ['BIO.B.4.2.2'], rf_clown: ['BIO.B.4.2.2'], rf_shrimp: ['BIO.B.4.2.2'], rf_tang: ['BIO.B.4.2.1'], rf_seagrass: ['BIO.B.4.2.1'], rf_parrot: ['BIO.B.4.2.1'], rf_turtle: ['BIO.B.4.2.1'],
-  hf_crayfish: ['BIO.B.4.2.1'], hf_trout: ['BIO.B.4.1.2'], hf_hellbender: ['BIO.B.4.1.2'], hf_hemlock: ['BIO.B.4.1.2', 'BIO.B.4.2.4'], hf_mayfly: ['BIO.B.4.2.4'], hf_spring: ['BIO.B.4.2.3'],
-  ko_kelp: ['BIO.B.4.2.1'], ko_urchin: ['BIO.B.4.2.1'], ko_rockfish: ['BIO.B.4.2.1'], ko_otter: ['BIO.B.4.2.2'], ko_anemone: ['BIO.B.4.2.2'], ko_barren: ['BIO.B.4.2.4'], ko_canopy: ['BIO.B.4.1.2'], ko_holdfast: ['BIO.B.4.1.2'] };
-function tagHTML(id) { const t = TAGS[id], KS = C.KEYSTONE || {}; if (!t) return ''; return ' <span class="fgTag" style="font-size:.8em;opacity:.8">· Keystone ' + t.map(function (c) { return '<abbr title="' + C.esc(KS[c] || '') + '">' + C.esc(c) + '</abbr>'; }).join(', ') + '</span>'; }
+/* PA STEELS tags for Field Guide entries (v64: the game uses only the PA STEELS 9-12 life science standards tested on the Keystone
+   Biology exam). Only entries that clearly match a standard are tagged; the others (symbiosis, water cycle, ...) are exploring flavor.
+   Wording comes from the STEELS table in engine.js. */
+const SC = '3.1.9-12.', TAGS = { rf_tang: [SC + 'H'], rf_parrot: [SC + 'H'], rf_seagrass: [SC + 'H'], rf_turtle: [SC + 'H'], hf_crayfish: [SC + 'H'],
+  hf_trout: [SC + 'I'], hf_hellbender: [SC + 'I'], hf_hemlock: [SC + 'M'], hf_mayfly: [SC + 'M'],
+  ko_kelp: [SC + 'E'], ko_canopy: [SC + 'E'], ko_otter: [SC + 'M'], ko_urchin: [SC + 'M'], ko_barren: [SC + 'M'], ko_rockfish: [SC + 'L'] };
+function tagHTML(id) { const t = TAGS[id], KS = C.STEELS || {}; if (!t) return ''; return ' <span class="fgTag" style="font-size:.8em;opacity:.8">· PA STEELS ' + t.map(function (c) { return '<abbr title="' + C.esc(KS[c] || '') + '">' + C.esc(c) + '</abbr>'; }).join(', ') + '</span>'; }
 function showEntry(f) { card('', 11, '<b>📖 ' + C.esc(tx('co.newEntry')) + ': ' + C.esc(tx('fd.n.' + f.id)) + '</b> <span style="color:#ffd166">+50 ⭐</span><br>' + C.esc(tx('fd.d.' + f.id)) + tagHTML(f.id)); }
 function scanStep(dt) { const list = K.A.finds; if (!list) return; K.scanT = (K.scanT || 0) - dt; if (K.scanT <= 0) { K.scanT = 0.25; const s = fstore();
     for (let i = 0; i < list.length; i++) { const f = list[i]; if (s.fg[f.id]) continue; const p = f.at ? f.at(K) : [f.x, f.y != null ? f.y : K.A.H(f.x, f.z) + 0.6, f.z]; if (!p) continue;

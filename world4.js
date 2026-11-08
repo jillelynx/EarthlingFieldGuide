@@ -1,37 +1,39 @@
 /* WORLD 4 GAME FILE: Inheritance and Variation of Traits (five levels).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world4-questions.js.
-   Level 4-5 opens with a short review of transcription and translation (World 1) before mutations,
-   and its portal leads to the Code Lab mini-game (DNA to mRNA to protein). */
+   Standards (PA STEELS, tested on the Keystone Biology exam): 4-1 D (mitosis and differentiation), 4-2 Q and P (meiosis,
+   gametes, new combinations), 4-3 P and R (genes, alleles, probability), 4-4 R (inheritance patterns and trait distribution),
+   4-5 Q (mutations). Level 4-5 opens with a short review of how a gene's DNA sets a protein's amino acid order (World 1)
+   before mutations, and its portal leads to the Code Lab mini-game (DNA to mRNA to protein). */
 FieldGuide.registerWorld({
   id: 4,
   title: 'Inheritance',
   levels: [
     { id: '4-1', title: 'Copy and Divide', theme: 'nucleus',
-      log: 'Mission log: New world! Inside a dividing cell. Before a cell splits, it must copy every bit of its DNA. Watch how it does it.',
-      outro: 'Report sent: in the cell cycle, a cell grows and copies its DNA (interphase), divides its nucleus (mitosis: prophase, metaphase, anaphase, telophase), and splits in two (cytokinesis). DNA replication pairs A with T and G with C.',
+      log: 'Mission log: New world! Inside a growing Earthling. One cell became trillions, and they keep dividing to grow and heal. Find out how, and how cells become so different.',
+      outro: 'Report sent: before a cell divides it copies its DNA (A pairs with T, G with C), so mitosis gives each new cell the same complete instructions. Mitosis makes cells for growth and repair, and stem cells differentiate into the many kinds of specialized cells in a body.',
       build: function (b) {
         b.hint(5, 4.6, 'World 4: Inheritance. Scan everything you see!').sparks(9, 1.2, 4).ground(16).review()
-          .scan(4, 's4-interphase').scan(9, 's4-dna').scan(14, 's4-replication').ground(18).hsparks(-11, 6.2, 4)
+          .scan(4, 's4-dna').scan(9, 's4-replication').scan(14, 's4-chromosome').ground(18).hsparks(-11, 6.2, 4)
           .catchGame('c-basepair')
           .gap(3.2).virus(5, 2.5, 1).qblock(10, 3.4, 'sparks').ground(14)
           .hunt('replication-facts')
-          .scan(3, 's4-chromosome').scan(8, 's4-chromatid').ground(11)
-          .sequence('s-cellcycle')
+          .scan(3, 's4-mitosis').scan(8, 's4-repair').ground(11)
+          .sequence('s-repair')
           .snapper(5, 3.6, 0).spikes(10, 1.8).ground(15)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .refuel().scan(3, 's4-mitosis').scan(8, 's4-cytokinesis').ground(11)
-          .sequence('s-mitosis')
-          .readData('d-cycle')
+          .refuel().scan(3, 's4-stemcell').scan(8, 's4-differentiation').ground(11)
+          .sequence('s-differentiate')
+          .readData('d-growth')
           .become('b-chromosomes')
           .bridge(11).hazard(4, 1.2, { ax: 1.6, sp: 1.3 }).ground(10)
-          .crumbleBridge(4, 'mix').mixed(2, ['BIO.A.1.2.1', 'BIO.B.2.2.1', 'BIO.B.1.1.1', 'BIO.B.1.2.1'])
+          .crumbleBridge(4, 'mix').mixed(2, ['3.1.9-12.A', '3.1.9-12.B', '3.1.9-12.D', '3.1.9-12.P'])
           .virus(5, 2.4, 1.2).sparks(2, 3.2, 4).ground(12)
-          .station(['w4q01', 'w4q10'])
+          .station(['w4q04', 'w4q12', 'w4q48'])
           .goal();
       } },
     { id: '4-2', title: 'Making Gametes', theme: 'lab',
       log: 'Mission log: Earthlings come from TWO parents. Each parent sends half of its chromosomes. Find out how sex cells are made.',
-      outro: 'Report sent: meiosis makes four haploid gametes. Crossing over and independent assortment make every gamete different. Errors like nondisjunction change the chromosome number.',
+      outro: 'Report sent: meiosis makes four haploid gametes. Crossing over and independent assortment make every gamete different, and fertilization joins two of them, so every offspring gets a new combination of alleles from its two parents.',
       build: function (b) {
         b.sparks(4, 1.2, 4).virus(9, 2, 1).ground(12).review()
           .scan(3, 's4-meiosis').scan(8, 's4-gamete').scan(13, 's4-diploid').scan(18, 's4-haploid').ground(21).hsparks(-10, 6.2, 4)
@@ -41,12 +43,12 @@ FieldGuide.registerWorld({
           .squeeze(3, 4).snapper(11, 3.4, 0.6).ground(15)
           .refuel().sparks(0.5, 8.5, 4).ground(6)
           .station([{ sort: 'mit-mei', n: 4 }])
-          .scan(3, 's4-nondisjunction').ground(6)
-          .catchGame('c-chromo')
+          .scan(3, 's4-fertilization').ground(6)
+          .catchGame('c-meiosis')
           .bridge(11).virus(4, 2.5, 1.2).spikes(9, 1.8).qblock(13, 3.4, 'shield').ground(16)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
           .wordbank('wb-division')
-          .crumbleBridge(4, 'mix').mixed(2, ['BIO.B.1.1.1', 'BIO.B.1.2.1', 'BIO.B.1.1.2', 'BIO.B.2.1.2'])
+          .crumbleBridge(4, 'mix').mixed(2, ['3.1.9-12.D', '3.1.9-12.P', '3.1.9-12.Q', '3.1.9-12.A'])
           .station(['w4q06', 'w4q24'])
           .goal();
       } },
@@ -67,7 +69,7 @@ FieldGuide.registerWorld({
           .snapper(5, 3.6, 0).virus(10, 2.4, 1.2).ground(15)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
           .lablock('lock-4-3')
-          .crumbleBridge(5, 'mix').mixed(2, ['BIO.B.1.1.2', 'BIO.B.1.2.2', 'BIO.B.2.1.1', 'BIO.B.1.2.1'])
+          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.Q', '3.1.9-12.P', '3.1.9-12.R', '3.1.9-12.D'])
           .station(['w4q18', 'w4q19'])
           .bridge(12, { ay: 1.4, sp: 1.1 }).ground(5)
           .goal();
@@ -87,14 +89,14 @@ FieldGuide.registerWorld({
           .station([{ sort: 'pattern', n: 4 }])
           .squeeze(3, 4).antibody(15, 8, 3.2, 0.5).ground(16)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .crumbleBridge(5, 'mix').mixed(2, ['BIO.B.1.1.2', 'BIO.B.1.2.2', 'BIO.B.2.1.1', 'BIO.B.2.1.2'])
+          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.Q', '3.1.9-12.P', '3.1.9-12.R', '3.1.9-12.D'])
           .station(['w4q22', 'w4q23'])
           .bridge(11).ground(5)
           .goal();
       } },
-    { id: '4-5', title: 'Mutations and Biotech', theme: 'nucleus',
-      log: 'Mission log: Sometimes DNA changes, and sometimes humans change it on purpose. First, remember how a gene becomes a protein.',
-      outro: 'Report sent: mutations change the DNA sequence. Some have no effect (silent), some change one amino acid (missense), and some stop the protein early (nonsense) or scramble it (frameshift). Genetic engineering moves genes to make medicines, crops, and tools for solving crimes.',
+    { id: '4-5', title: 'Mutations', theme: 'nucleus',
+      log: 'Mission log: Sometimes DNA changes. First, remember how a gene\'s DNA sets the order of amino acids in a protein. Then find out what causes mutations and what they do.',
+      outro: 'Report sent: mutations are changes in the DNA sequence. They come from uncorrected copying errors and from environmental factors like UV light, radiation, and some chemicals. A mutation may change nothing, change one amino acid, or change many, and only mutations in gametes are passed to offspring, adding new variation.',
       build: function (b) {
         b.hint(5, 4.6, 'Find the 3 green clue terminals. They open a portal!').sparks(9, 1.2, 4).ground(14).review()
           .crumbleBridge(4, 'mix')
@@ -103,15 +105,15 @@ FieldGuide.registerWorld({
           .become('b-frameshift')
           .catchGame('c-mutation')
           .clue(3, 'w4q39').snapper(9, 3.4, 0.4).ground(13)
-          .refuel().scan(3, 's4-mutagen').scan(8, 's4-gmo').scan(13, 's4-genetherapy').ground(16)
-          .sequence('s-gmo')
-          .scan(3, 's4-clone').scan(8, 's4-fingerprint').scan(13, 's4-selective').ground(16)
-          .hunt('biotech-uses')
+          .refuel().scan(3, 's4-mutagen').scan(8, 's4-copyerror').scan(13, 's4-sickle').ground(16)
+          .sequence('s-sunburn')
+          .scan(3, 's4-bodycell').scan(8, 's4-gametemut').scan(13, 's4-helpful').ground(16)
+          .hunt('mutation-causes')
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .clue(3, 'w4q40').ground(6).hint(1, 6.6, 'Portal! Its code is the letters of your 3 clue answers.').portal(6, 'dna').ground(11)
+          .clue(3, 'w4q60').ground(6).hint(1, 6.6, 'Portal! Its code is the letters of your 3 clue answers.').portal(6, 'dna').ground(11)
           .qblock(3, 3.4, 'shield').hazard(8, 1.2, { ax: 2, sp: 1.3 }).ground(14)
           .hint(-3, 4.6, 'Boss ahead: The Mutation Storm')
-          .boss('The Mutation Storm', 'boss', 5, 2, ['BIO.B.1.1.2', 'BIO.B.2.1.1', 'BIO.B.2.3.1', 'BIO.B.2.4.1'])
+          .boss('The Mutation Storm', 'boss', 5, 2, ['3.1.9-12.D', '3.1.9-12.P', '3.1.9-12.Q', '3.1.9-12.R'])
           .bridge(11).ground(5)
           .goal();
       } }

@@ -130,7 +130,7 @@ const I18N = {
     'a.no-help': 'On My Own', 'a.no-help.d': 'Finish a level without a gold hint.',
     'a.speedy': 'Speedy Scientist', 'a.speedy.d': 'Finish a level in under 3 minutes.',
     'p.slideTip': '🛝 Duck slide! Run (Shift), then duck (down arrow or S) to slide under low spots.', 'a.immune': 'Immune Hero', 'a.immune.d': 'Tag 15 germs in Immune Defense.',
-    'a.golf': 'Perfect Fit', 'a.golf.d': 'Sink an enzyme golf hole in one putt.',
+    'a.golf': 'Perfect Fit', 'a.golf.d': 'Sink an Energy Mini Golf hole in one putt.',
     'a.dna-lab': 'Gene Machine', 'a.dna-lab.d': 'Decode the secret message in the Code Lab.',
     'a.practice': 'Practice Pays', 'a.practice.d': 'Get 5 Practice Bay questions right on the first try.',
     'a.second-look': 'Second Look', 'a.second-look.d': 'Go back to a finished level and discover something you missed.',
@@ -161,7 +161,7 @@ const I18N = {
     'a.no-help': 'Por mi cuenta', 'a.no-help.d': 'Termina un nivel sin una pista dorada.',
     'a.speedy': 'Científico veloz', 'a.speedy.d': 'Termina un nivel en menos de 3 minutos.',
     'p.slideTip': '🛝 ¡Deslizamiento! Corre (Shift) y luego agáchate (flecha abajo o S) para deslizarte por debajo de lugares bajos.', 'a.immune': 'Héroe inmunitario', 'a.immune.d': 'Marca 15 microbios en Defensa Inmunitaria.',
-    'a.golf': 'Encaje perfecto', 'a.golf.d': 'Mete un hoyo del minigolf de enzimas en un solo golpe.',
+    'a.golf': 'Encaje perfecto', 'a.golf.d': 'Mete un hoyo del minigolf de la energía en un solo golpe.',
     'a.dna-lab': 'Máquina de genes', 'a.dna-lab.d': 'Descifra el mensaje secreto en el Laboratorio del Código.',
     'a.practice': 'La práctica vale', 'a.practice.d': 'Acierta 5 preguntas de la Sala de Práctica al primer intento.',
     'a.second-look': 'Segunda mirada', 'a.second-look.d': 'Vuelve a un nivel terminado y descubre algo que te perdiste.',
@@ -229,7 +229,7 @@ const SONGS = {
   deep: { name: 'deep sea theme', bpm: 58, root: 50, scale: 'minor', prog: [0, 5, 3, 4], seed: 77, drums: 0, lead: 'sine' },
   reef: { name: 'coral reef theme', bpm: 84, root: 62, scale: 'major', prog: [0, 4, 5, 3], seed: 59, drums: 1, lead: 'triangle' },
   lab: { name: 'molecule builder theme', bpm: 104, root: 60, scale: 'mixo', prog: [0, 3, 6, 4], seed: 23, drums: 1, lead: 'square' },
-  gut: { name: 'enzyme groove theme', bpm: 100, root: 57, scale: 'dorian', prog: [0, 3, 0, 4], seed: 29, drums: 2, lead: 'triangle' },
+  gut: { name: 'energy groove theme', bpm: 100, root: 57, scale: 'dorian', prog: [0, 3, 0, 4], seed: 29, drums: 2, lead: 'triangle' },
   leaf: { name: 'sunlit leaf theme', bpm: 96, root: 64, scale: 'major', prog: [0, 5, 3, 4], seed: 31, drums: 1, lead: 'triangle' },
   meadow: { name: 'wild meadow theme', bpm: 112, root: 60, scale: 'major', prog: [0, 4, 3, 4], seed: 37, drums: 1, lead: 'square' },
   forest: { name: 'forest trail theme', bpm: 100, root: 62, scale: 'dorian', prog: [0, 4, 3, 4], seed: 41, drums: 1, lead: 'square' },
@@ -296,7 +296,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 63 · October 27, 2026';
+const VERSION = 'Version 64 · November 8, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -732,11 +732,11 @@ function specimen(look, col) {
   g.add(glow(col, 2.6, 0.25)); return g;
 }
 /* QUESTION ROTATION: a level names a question, but each play may use a different question that tests the
-   same Keystone eligible content (same code). Questions never seen come first, then the ones seen longest ago. */
+   same topic (or, if a question has no topic, the same PA STEELS standard). Questions never seen come first, then the ones seen longest ago. */
 function rotQ(id) {
   const q = QMAP[id]; if (!q) return null;
   const boss = !!(q.tags && q.tags.indexOf('boss') >= 0);
-  const pool = Object.keys(QMAP).filter(function (k) { const c = QMAP[k]; return k.indexOf('.') < 0 && c.world === q.world && c.code === q.code && !L.used[k] && !!(c.tags && c.tags.indexOf('boss') >= 0) === boss && c.options && c.options.length >= 2; });
+  const pool = Object.keys(QMAP).filter(function (k) { const c = QMAP[k]; return k.indexOf('.') < 0 && c.world === q.world && (c.topic || c.code) === (q.topic || q.code) && !L.used[k] && !!(c.tags && c.tags.indexOf('boss') >= 0) === boss && c.options && c.options.length >= 2; });
   if (!pool.length) return q;
   const unseen = pool.filter(function (k) { return !S.seen[k]; });
   const pick = unseen.length ? unseen[Math.floor(Math.random() * unseen.length)] : pool.sort(function (a, c) { return (S.seen[a] || 0) - (S.seen[c] || 0); })[0];
@@ -2710,15 +2710,15 @@ function miniEnd() {
   if (M && M.tagged >= 15) award('immune');
   if (M.over) return; M.over = true; const bonus = M.hearts * 100; M.score += bonus;
   miniPanel('<h2>' + (M.hearts > 0 ? '🛡️ Infection stopped!' : '🛡️ Defense over') + '</h2><p>You tagged <b>' + M.tagged + '</b> germs' + (M.hearts ? ' and kept ' + M.hearts + ' hearts (+' + bonus + ')' : '') + '. Score: <b>' + M.score + '</b></p>' +
-    '<p><b>What really happens:</b> B cells make antibodies that fit one antigen shape. Antibodies tag germs so phagocytes (like white blood cells) can eat them. <b>Memory cells</b> remember the antigen, so the next time your body fights back faster. That is how vaccines work.</p>' +
-    '<p class="dim">Big idea: a protein\'s <b>shape</b> decides its <b>job</b>. Enzymes, antibodies, and transport proteins all work this way.</p>' +
+    '<p><b>Big idea:</b> a protein\'s <b>shape</b> decides its <b>job</b>. Each protein tag only fits a germ with the matching shape, the same way every protein in your body works only when its shape is right.</p>' +
+    '<p class="dim">The shape comes from the order of amino acids, and that order comes from the DNA.</p>' +
     '<button type="button" id="miniBack" class="primary">Return through the portal</button>');
   setTimeout(function () { const b = $('miniBack'); if (b) b.focus(); }, 50);
 }
 function exitMini() {
   scene.remove(M.grp); disposeGroup(M.grp); scene.background = M.bg; scene.fog = M.fog; scene.add(L.group);
   ['dnaRule', 'dnaWheel'].forEach(function (id) { const el = $(id); if (el) el.remove(); });
-  L.score += M.score; (M.kind === 'golf' ? ['Enzyme', 'Active site', 'Substrate', 'Denature'] : M.kind === 'dna' ? ['Replication', 'Transcription', 'Translation', 'Codon'] : ['Antibody', 'Antigen']).forEach(function (w) { S.words[w] = 1; }); save(); $('miniAim').hidden = false; $('miniPow').hidden = true;
+  L.score += M.score; (M.kind === 'golf' ? ['Photosynthesis', 'Cellular respiration', 'Fermentation'] : M.kind === 'dna' ? ['Replication', 'Transcription', 'Translation', 'Codon'] : ['Protein shape']).forEach(function (w) { S.words[w] = 1; }); save(); $('miniAim').hidden = false; $('miniPow').hidden = true;
   $('mini').hidden = true; $('hud').hidden = false; $('touch').hidden = !touchMode; mode = 'play'; P.x = M.p.x + 2.2; P.y = M.p.y; P.vx = P.vy = 0; P.inv = 1.5;
   cam.position.set(P.x + 2.5, P.y + 5.2, camZ); toast('Back from the portal with +' + M.score + ' points!', 4); hud(); M = null; Object.keys(keys).forEach(function (k) { keys[k] = false; });
 }
@@ -2734,23 +2734,23 @@ function miniKey(e, down) {
   if (map[k]) { M.k[map[k]] = down; e.preventDefault(); }
 }
 function miniStart() { M.intro = false; miniPanel(''); beep(600, 0.2, 'triangle', 'go'); if (M.kind === 'golf') golfHole(0); else if (M.kind === 'dna') dnaCard(1); else miniHud(); }
-/* ---------- PORTAL MINI-GAME: ENZYME MINI GOLF ----------
-   Putt the substrate (the ball) into the enzyme whose ACTIVE SITE has the same shape. Wrong shapes, and
-   enzymes whose shape was changed by heat or the wrong pH (denatured), will not hold the substrate. */
+/* ---------- PORTAL MINI-GAME: ENERGY MINI GOLF (v64; was Enzyme Mini Golf, enzymes are outside PA STEELS) ----------
+   Your ball is a set of starting materials. Putt it into the process that uses them: photosynthesis (3.1.9-12.E),
+   cellular respiration (G), or fermentation without oxygen (J). The wrong process rolls the ball back out. */
 const GOLFSHAPE = { square: { seg: 4, sym: '■' }, triangle: { seg: 3, sym: '▲' }, circle: { seg: 24, sym: '●' } };
 const HOLES = [
-  { sub: { name: 'Starch', shape: 'square', col: '#ffd166' }, env: 'Hole 1 · In the mouth · 37 °C · pH 7', start: [-10, 0],
-    cups: [{ x: 9, z: -4, name: 'Amylase', shape: 'square', ok: true }, { x: 9, z: 4, name: 'Protease', shape: 'triangle', why: 'Protease breaks down proteins. Its active site does not fit starch.' },
-      { x: 3, z: 0, name: 'Lipase', shape: 'circle', why: 'Lipase breaks down fats. Its active site does not fit starch.' }],
-    bumpers: [[-3, -3, 1], [-3, 3, 1], [3, -5.5, 0.8]], fact: 'Amylase (in saliva) breaks starch into sugars. Each enzyme fits only its own substrate, like a key in a lock.' },
-  { sub: { name: 'Protein', shape: 'triangle', col: '#ff8fb1' }, env: 'Hole 2 · In the stomach · 37 °C · pH 2 (very acidic)', start: [-10, 3],
-    cups: [{ x: 9, z: 3, name: 'Trypsin (works best at pH 8)', shape: 'triangle', denat: true, why: 'Trypsin works best at pH 8. In strong stomach acid its active site changes shape (it is denatured), so the protein no longer fits.' },
-      { x: 8, z: -4, name: 'Pepsin (works best at pH 2)', shape: 'triangle', ok: true }, { x: 0, z: 5, name: 'Amylase', shape: 'square', why: 'Amylase breaks down starch. Its active site does not fit a protein.' }],
-    bumpers: [[-2, 0, 1.2], [3, -2, 0.9], [4, 3.5, 0.8]], fact: 'Pepsin works in the acid of the stomach. pH changes an enzyme\'s shape, so each enzyme works best at its own pH.' },
-  { sub: { name: 'Fat', shape: 'circle', col: '#7be0ad' }, env: 'Hole 3 · In the small intestine · 37 °C · pH 8', start: [-10, -3],
-    cups: [{ x: 2, z: -5, name: 'Lipase (heated to 70 °C)', shape: 'circle', denat: true, why: 'This lipase was heated to 70 °C. High heat denatured it: its active site lost its shape.' },
-      { x: 9, z: 1, name: 'Lipase', shape: 'circle', ok: true }, { x: 4, z: 5, name: 'Pepsin', shape: 'triangle', why: 'Pepsin breaks down proteins, and it works in acid, not here. Its active site does not fit fat.' }],
-    bumpers: [[-4, -1, 1], [0, 1.5, 1], [5, -1.5, 0.9]], fact: 'Lipase breaks fats into fatty acids and glycerol. Enzymes work best near body temperature; too much heat denatures them.' }];
+  { sub: { name: 'Sugar + oxygen', shape: 'square', col: '#ffd166' }, env: 'Hole 1 · In a running leg muscle · plenty of oxygen', start: [-10, 0],
+    cups: [{ x: 9, z: -4, name: 'Cellular respiration', shape: 'square', ok: true }, { x: 9, z: 4, name: 'Photosynthesis', shape: 'triangle', why: 'Photosynthesis MAKES sugar and oxygen. It does not use them up.' },
+      { x: 3, z: 0, name: 'Fermentation', shape: 'circle', why: 'Fermentation happens when there is NO oxygen. This muscle has oxygen, so it uses respiration and releases much more energy.' }],
+    bumpers: [[-3, -3, 1], [-3, 3, 1], [3, -5.5, 0.8]], fact: 'Cellular respiration breaks the bonds in sugar and oxygen, forms carbon dioxide and water, and releases energy the muscle uses.' },
+  { sub: { name: 'CO₂ + water + light', shape: 'triangle', col: '#7be0ad' }, env: 'Hole 2 · In a leaf on a sunny day', start: [-10, 3],
+    cups: [{ x: 9, z: 3, name: 'Cellular respiration', shape: 'square', why: 'Respiration MAKES carbon dioxide and water. It does not use light.' },
+      { x: 8, z: -4, name: 'Photosynthesis', shape: 'triangle', ok: true }, { x: 0, z: 5, name: 'Fermentation', shape: 'circle', why: 'Fermentation breaks down sugar without oxygen. It does not use light or make sugar.' }],
+    bumpers: [[-2, 0, 1.2], [3, -2, 0.9], [4, 3.5, 0.8]], fact: 'Photosynthesis uses light energy to turn carbon dioxide and water into sugar, storing the energy in the sugar\'s bonds, and gives off oxygen.' },
+  { sub: { name: 'Sugar, no oxygen', shape: 'circle', col: '#ff8fb1' }, env: 'Hole 3 · Yeast inside bread dough · no oxygen', start: [-10, -3],
+    cups: [{ x: 2, z: -5, name: 'Cellular respiration (needs oxygen)', shape: 'square', why: 'There is no oxygen in the dough, so the yeast cannot use aerobic respiration.' },
+      { x: 9, z: 1, name: 'Fermentation', shape: 'circle', ok: true }, { x: 4, z: 5, name: 'Photosynthesis', shape: 'triangle', why: 'Yeast is a fungus. It cannot capture light to make sugar.' }],
+    bumpers: [[-4, -1, 1], [0, 1.5, 1], [5, -1.5, 0.9]], fact: 'Without oxygen, yeast release a little energy from sugar by fermentation and give off carbon dioxide bubbles that make bread rise.' }];
 function enterGolf(p) {
   closeQ(); mode = 'mini'; Object.keys(keys).forEach(function (k) { keys[k] = false; });
   M = { kind: 'golf', p: p, grp: new T.Group(), hi: -1, strokes: 0, score: 0, k: {}, intro: true, over: false, aim: 0, pow: 0, charging: false, ball: null, cups: [], bumpers: [], t: 0, bg: scene.background, fog: scene.fog };
@@ -2760,9 +2760,8 @@ function enterGolf(p) {
   for (let i = 0; i < 40; i++) { const st = glow('#9fd8ff', 1 + Math.random() * 2, 0.4); st.position.set((Math.random() - 0.5) * 80, 4 + Math.random() * 20, -20 - Math.random() * 30); M.grp.add(st); }
   M.aimLine = new T.Mesh(G.box, basic('#ffffff', 0.85)); M.grp.add(M.aimLine);
   $('hud').hidden = true; $('touch').hidden = true; $('toast').hidden = true; $('note').hidden = true; $('mini').hidden = false; $('miniPick').innerHTML = ''; $('miniAim').hidden = true; $('miniPow').hidden = false;
-  miniPanel('<h2>⛳ Enzyme Mini Golf</h2><p><b>Enzymes</b> are proteins that speed up reactions. Each enzyme has an <b>active site</b>: a pocket with a special shape.</p>' +
-    '<p>Your ball is the <b>substrate</b>. Putt it into the enzyme whose active site has the <b>same shape</b>. A wrong shape will not hold it.</p>' +
-    '<p>Careful: <b>heat or the wrong pH</b> can change an enzyme\'s shape. That is called being <b>denatured</b>, and a denatured enzyme stops working.</p>' +
+  miniPanel('<h2>⛳ Energy Mini Golf</h2><p>Living things move matter and energy with three processes: <b>photosynthesis</b>, <b>cellular respiration</b>, and <b>fermentation</b> (when there is no oxygen).</p>' +
+    '<p>Your ball is a set of <b>starting materials</b>. Putt it into the process that <b>uses</b> them. Read where you are: is there light? Is there oxygen?</p>' +
     '<p class="dim">Aim: move the mouse (or left and right arrows). Putt: hold the mouse button (or space) to charge, then let go. 3 holes. Fewer putts = more points.</p>' +
     '<button type="button" id="miniGo" class="primary">Start</button>');
   golfCam(); setTimeout(function () { const b = $('miniGo'); if (b) b.focus(); }, 50);
@@ -2786,7 +2785,7 @@ function golfHole(i) {
   body.position.y = 0.25; if (S2.shape === 'square') body.rotation.y = Math.PI / 4; m.add(body); m.add(glow(S2.col, 2, 0.5));
   const bl = label(S2.name + ' ' + sh.sym, 2.6, { bd: S2.col }); bl.position.y = 1.4; m.add(bl);
   M.grp.add(m); M.ball = { m: m, x: H.start[0], z: H.start[1], vx: 0, vz: 0, sink: 0 }; m.position.set(M.ball.x, 0, M.ball.z);
-  M.aim = Math.atan2(-(H.cups.find(function (c) { return c.ok; }).z - H.start[1]), 1) * 0; golfMsg(H.env + '. Your substrate: ' + S2.name + ' ' + sh.sym + '. Find the enzyme with the matching active site.', '#9fe0ff', 5); golfHud();
+  M.aim = Math.atan2(-(H.cups.find(function (c) { return c.ok; }).z - H.start[1]), 1) * 0; golfMsg(H.env + '. Your starting materials: ' + S2.name + ' ' + sh.sym + '. Find the process that uses them.', '#9fe0ff', 5); golfHud();
 }
 function golfHud() { $('miniTop').textContent = 'Hole ' + (M.hi + 1) + ' of ' + HOLES.length + '   Putts: ' + M.strokes + '   Score: ' + M.score; $('miniPowFill').style.width = Math.round(M.pow * 100) + '%'; }
 function golfMsg(t, col, secs) { miniFlash(t, col, secs); }
@@ -2820,7 +2819,7 @@ function golfStep(dt) {
     for (let ci = 0; ci < M.cups.length; ci++) {
       const c = M.cups[ci], dx = b.x - c.x, dz = b.z - c.z, d = Math.hypot(dx, dz), v = Math.hypot(b.vx, b.vz);
       if (d < 0.8 && v < 9) {
-        if (c.ok) { b.sink = 0.01; b.cup = c; b.vx = b.vz = 0; beep(880, 0.3, 'sine', 'plink, substrate fits the active site'); burst2(c); return; }
+        if (c.ok) { b.sink = 0.01; b.cup = c; b.vx = b.vz = 0; beep(880, 0.3, 'sine', 'plink, right process'); burst2(c); return; }
         if (!c.bounced || M.t - c.bounced > 0.6) { c.bounced = M.t; const nx = d > 0.01 ? dx / d : -1, nz = d > 0.01 ? dz / d : 0; b.vx = nx * 5; b.vz = nz * 5; b.x = c.x + nx * 0.9; b.z = c.z + nz * 0.9; c.flash = 0.8;
           golfMsg('✗ Rolled right out! ' + (c.denat ? c.why : (c.why || 'The shapes do not match.')), '#ffb09c', 5); beep(200, 0.25, 'sawtooth', 'boing, does not fit'); M.wrongs = (M.wrongs || 0) + 1; }
       }
@@ -2833,9 +2832,8 @@ function burst2(c) { const g = glow('#7be0ad', 5, 0.9); g.position.set(c.x, 0.6,
 function golfEnd() {
   M.over = true; M.aimLine.visible = false;
   miniPanel('<h2>⛳ Course complete!</h2><p>Score: <b>' + M.score + '</b></p>' +
-    '<p><b>What you showed:</b> an enzyme only works on the substrate that fits its <b>active site</b>. Amylase fits starch, pepsin and trypsin fit proteins, lipase fits fats.</p>' +
-    '<p>An enzyme works best at its own <b>temperature and pH</b>. Too much heat, or the wrong pH, changes the active site\'s shape. The enzyme is <b>denatured</b> and stops working.</p>' +
-    '<p class="dim">Enzymes are catalysts: they speed up reactions by lowering the energy needed to start them, and they are not used up.</p>' +
+    '<p><b>What you showed:</b> <b>photosynthesis</b> uses carbon dioxide, water and light to store energy in sugar. <b>Cellular respiration</b> uses sugar and oxygen and releases that energy. Without oxygen, cells like yeast use <b>fermentation</b>, which releases much less energy.</p>' +
+    '<p class="dim">The products of photosynthesis are the starting materials of respiration, and the products of respiration are the starting materials of photosynthesis. That is how carbon cycles between living things and the air.</p>' +
     '<button type="button" id="miniBack" class="primary">Return through the portal</button>');
   setTimeout(function () { const b = $('miniBack'); if (b) b.focus(); }, 50);
 }
@@ -2857,7 +2855,8 @@ function golfPointer(e, type) {
 /* ---------- PORTAL MINI-GAME: THE CODE LAB (DNA -> mRNA -> protein) ----------
    Step 1 replication: build the matching DNA strand (A-T, G-C).
    Step 2 transcription: build mRNA from the template strand (A-U, T-A, G-C, C-G).
-   Step 3 translation: trace each codon on the codon wheel; a tRNA brings each amino acid.
+   Step 3 translation: the ribosome reads the mRNA one codon at a time and links the matching amino acids in order
+   (v64: no codon wheel and no tRNA, to stay inside the PA STEELS boundary for 3.1.9-12.A: DNA -> mRNA -> amino acid order -> protein).
    Special bonus: the finished protein's one-letter amino acid codes spell a secret word. */
 const BASECOL = { A: '#ff6b6b', T: '#ffd166', G: '#7be0ad', C: '#5fb8ff', U: '#c59cff' };
 const DNAPAIR = { A: 'T', T: 'A', G: 'C', C: 'G' }, RNAPAIR = { A: 'U', T: 'A', G: 'C', C: 'G' };
@@ -2901,7 +2900,7 @@ function enterDNA(p) {
   M.botLb = label('New strand', 3, { bd: '#ffd166' }); M.botLb.position.set(-3, -0.6, 0); M.bot.add(M.botLb);
   M.slot = new T.Mesh(G.box, new T.MeshBasicMaterial({ color: '#ffffff', wireframe: true, transparent: true, opacity: 0.9 })); M.slot.scale.set(0.84, 0.96, 0.56); M.grp.add(M.slot);
   M.poly = new T.Group(); const blob = new T.Mesh(G.sph, new T.MeshLambertMaterial({ color: '#7fd4ff', emissive: '#103a5a', transparent: true, opacity: 0.35, depthWrite: false })); blob.scale.set(1.5, 1.9, 1); blob.position.z = -0.9; M.poly.add(blob); M.polyBlob = blob;
-  M.polyLb = label('DNA polymerase', 2.8, { bd: '#7fd4ff' }); M.polyLb.position.set(0, -2.35, 0.3); M.poly.add(M.polyLb); M.grp.add(M.poly);
+  M.polyLb = label('DNA copier', 2.8, { bd: '#7fd4ff' }); M.polyLb.position.set(0, -2.35, 0.3); M.poly.add(M.polyLb); M.grp.add(M.poly);
   $('hud').hidden = true; $('touch').hidden = true; $('toast').hidden = true; $('note').hidden = true; $('mini').hidden = false; $('miniAim').hidden = true; $('miniPow').hidden = true; $('miniPick').innerHTML = '';
   const rule = document.createElement('div'); rule.id = 'dnaRule'; rule.hidden = true; $('mini').appendChild(rule);
   const wh = document.createElement('canvas'); wh.id = 'dnaWheel'; wh.hidden = true; wh.setAttribute('aria-label', 'Codon wheel'); $('mini').appendChild(wh);
@@ -2926,11 +2925,11 @@ function dnaCard(n) {
       '<p class="big">' + bl('A') + ' pairs with ' + bl('T') + ' &nbsp;·&nbsp; ' + bl('G') + ' pairs with ' + bl('C') + '</p>' +
       '<p>Before a cell divides, it copies its DNA. This is called <b>DNA replication</b>. Build the new strand: for each base on top, press its partner.</p>',
     2: '<h2>Step 2: Make mRNA (transcription)</h2><p>DNA never leaves the nucleus. To build a protein, the cell copies one gene into a messenger: <b>mRNA</b>.</p>' +
-      '<p><b>RNA polymerase</b> unzips the DNA and reads the strand you just built (the <b>template strand</b>). RNA has no T. It uses <b>U</b> (uracil) instead:</p>' +
+      '<p>The cell unzips the DNA and reads the strand you just built (the <b>template strand</b>). RNA has no T. It uses <b>U</b> (uracil) instead:</p>' +
       '<p class="big">' + bl('A') + '→' + bl('U') + ' &nbsp; ' + bl('T') + '→' + bl('A') + ' &nbsp; ' + bl('G') + '→' + bl('C') + ' &nbsp; ' + bl('C') + '→' + bl('G') + '</p>',
     3: '<h2>Step 3: Build the protein (translation)</h2><p>Your mRNA left the nucleus and found a <b>ribosome</b>. The ribosome reads mRNA <b>3 bases at a time</b>. Each group of 3 is a <b>codon</b>, and each codon stands for one <b>amino acid</b>.</p>' +
-      '<p>Use the <b>codon wheel</b>: start in the <b>center</b> with the codon\'s 1st letter, move out to the 2nd letter, then the 3rd. The outside ring names the amino acid.</p>' +
-      '<p class="dim">Click the wheel or press U, C, A, G. A <b>tRNA</b> will carry each amino acid to the ribosome.</p>' };
+      '<p>The <b>order of the codons</b> sets the <b>order of the amino acids</b> in the protein, and that order decides how the protein folds and what job it can do.</p>' +
+      '<p class="dim">Press Space (or the button) to move the ribosome to the next codon and watch the chain grow.</p>' };
   miniPanel(cards[n] + '<button type="button" id="dnaNext" class="primary">' + (n === 1 ? 'Start copying' : n === 2 ? 'Start transcribing' : 'Start translating') + '</button>');
   setTimeout(function () { const b = $('dnaNext'); if (b) b.focus(); }, 50);
 }
@@ -2938,16 +2937,15 @@ function dnaNext() {
   if (!M || !M.card) return; const n = M.card; M.card = 0; miniPanel(''); M.busy = false; M.i = 0; M.miss = 0;
   if (n === 1) { M.phase = 1; dnaPickBtns('ATGCU'); dnaShowRule(); dnaTop('Step 1 of 3 · Copy the DNA'); }
   if (n === 2) { M.phase = 2; dnaPickBtns('AUGCT'); dnaShowRule(); dnaTop('Step 2 of 3 · Transcription'); }
-  if (n === 3) { M.phase = 3; M.ci = 0; M.step = 0; M.path = []; dnaPickBtns('UCAG'); $('dnaWheel').hidden = false; wheelSize(); dnaShowRule(); wheelDraw(); dnaTop('Step 3 of 3 · Translation · codon 1 of ' + M.gene.cod.length);
-    miniFlash('The first codon is always the START codon. Follow the gold glow on the wheel.', '#ffd166', 5); }
+  if (n === 3) { M.phase = 3; M.ci = 0; M.step = 0; M.path = []; $('miniPick').innerHTML = '<button type="button" id="dnaRead" class="primary">Read next codon ▶</button>'; dnaShowRule(); dnaTop('Step 3 of 3 · Translation · codon 1 of ' + M.gene.cod.length);
+    miniFlash('The first codon is the START codon. Press Space to let the ribosome read it.', '#ffd166', 5); setTimeout(function () { const b = $('dnaRead'); if (b) b.focus(); }, 50); }
 }
 function dnaShowRule() {
   if (M.phase === 1) dnaRule('<b>DNA pairs</b><br>' + bl('A') + ' ↔ ' + bl('T') + '<br>' + bl('G') + ' ↔ ' + bl('C'));
   else if (M.phase === 2) dnaRule('<b>DNA → RNA</b><br>' + bl('A') + ' → ' + bl('U') + '<br>' + bl('T') + ' → ' + bl('A') + '<br>' + bl('G') + ' → ' + bl('C') + '<br>' + bl('C') + ' → ' + bl('G'));
   else if (M.phase === 3) {
     const c = M.gene.cod[M.ci] || '', ring = ['center circle', 'middle ring', 'outer ring'][M.step];
-    dnaRule('<b>Codon ' + (M.ci + 1) + '</b><div class="codon">' + c.split('').map(function (b, k) { return '<span class="' + (k === M.step ? 'now' : k < M.step ? 'did' : '') + '" style="color:' + BASECOL[b] + '">' + b + '</span>'; }).join('') + '</div>' +
-      (M.step < 3 ? 'Find <b style="color:' + BASECOL[c[M.step]] + '">' + c[M.step] + '</b> in the<br>' + ring : ''));
+    dnaRule('<b>Codon ' + (M.ci + 1) + '</b><div class="codon">' + c.split('').map(function (b) { return '<span class="now" style="color:' + BASECOL[b] + '">' + b + '</span>'; }).join('') + '</div>3 bases = 1 codon<br>= 1 amino acid');
   }
 }
 function dnaNeed() {
@@ -2959,7 +2957,7 @@ function dnaNeed() {
 function dnaInput(b) {
   if (!M || M.kind !== 'dna' || M.busy || M.over || !M.phase) return;
   b = String(b).toUpperCase(); const need = dnaNeed(); if (!need) return;
-  if (M.phase === 3) return wheelPick(b);
+  if (M.phase === 3) return;
   if (b === need) {
     const g = M.gene, i = M.i, pts = M.miss ? 5 : 20; M.score += pts; dnaHintBtn(null);
     dnaPlace(i, b, true); M.miss = 0; M.i++;
@@ -2988,7 +2986,7 @@ function dnaPlace(i, b, sound) {
 function burstAt(x, y, col) { const gl = glow(col, 2.2, 0.8); gl.position.set(x, y, 0.6); M.grp.add(gl); dnaLater(0.25, function () { M.grp.remove(gl); }); }
 function dnaAuto() {
   M.busy = true; dnaHintBtn(null);
-  miniFlash(M.phase === 1 ? 'You\'ve got it! DNA polymerase speeds up and copies the rest.' : 'Nice work! RNA polymerase speeds up and finishes the mRNA.', '#7be0ad', 3);
+  miniFlash(M.phase === 1 ? 'You\'ve got it! The cell speeds up and copies the rest.' : 'Nice work! The cell speeds up and finishes the mRNA.', '#7be0ad', 3);
   const go = function () {
     if (!M || M.over) return; const g = M.gene;
     if (M.i >= g.top.length) { dnaPhaseDone(); return; }
@@ -3004,7 +3002,7 @@ function dnaPhaseDone() {
     dnaLater(2.2, function () {
       /* unzip: the original strand lifts away so RNA polymerase can read the strand the player built */
       dnaTw(M.top, 0, 2.6, 1.0); M.botLb.material.map = labelTex('Template strand', { bd: '#ffd166' }); M.botLb.material.needsUpdate = true;
-      M.polyBlob.material.color.set('#ffb070'); M.polyBlob.material.emissive.set('#5a2a08'); M.polyLb.material.map = labelTex('RNA polymerase', { bd: '#ffb070' }); M.polyLb.material.needsUpdate = true;
+      M.polyBlob.material.color.set('#ffb070'); M.polyBlob.material.emissive.set('#5a2a08'); M.polyLb.material.map = labelTex('mRNA copier', { bd: '#ffb070' }); M.polyLb.material.needsUpdate = true;
       const rl = label('mRNA', 3, { bd: '#c59cff' }); rl.position.set(-3, 0.6, 0.25); M.rna.add(rl);
       dnaLater(1.1, function () { dnaCard(2); });
     });
@@ -3095,23 +3093,20 @@ function wheelPick(b) {
   M.path.push(WB.indexOf(b)); M.step++; M.miss = 0; dnaHintBtn(null); beep({ U: 587, C: 784, A: 523, G: 659 }[b], 0.09, 'triangle');
   if (M.step >= 3) { wheelDraw(); dnaShowRule(); codonDone(); } else { wheelDraw(); dnaShowRule(); }
 }
+function readCodon() { if (!M || M.kind !== 'dna' || M.phase !== 3 || M.busy || M.over) return; beep(660, 0.09, 'triangle', 'click, ribosome reads'); codonDone(); }
 function codonDone() {
   const cod = M.gene.cod[M.ci], aa = aaOf(cod), x = trCodonX(M.ci); M.busy = true;
   if (!M.codonMiss) { M.score += 80; M.cleanCodons++; } else M.score += 30; M.codonMiss = false;
   if (aa === '*') {
-    miniFlash(cod + ' is a STOP codon. No tRNA fits it, so the ribosome lets go and the protein is finished!', '#ff9c9c', 5); beep(330, 0.4, 'sine', 'stop codon');
+    miniFlash(cod + ' is a STOP codon. It stands for no amino acid, so the ribosome lets go and the protein is finished!', '#ff9c9c', 5); beep(330, 0.4, 'sine', 'stop codon');
     dnaLater(1.2, function () { dnaTw(M.rib, M.rib.position.x + 2, -6, 1.2); M.beads.forEach(function (bd) { bd.free = true; }); });
     dnaLater(3.2, dnaFinal); return;
   }
   const first = M.ci === 0;
-  miniFlash((first ? 'AUG = Met, the START codon. Every protein begins here. ' : cod + ' = ' + AA3[aa] + '. ') + 'A tRNA brings ' + AA3[aa] + ' to the ribosome.', '#7be0ad', 4);
-  /* tRNA: body, anticodon (3 bases that pair with the codon), and the amino acid on top */
-  const t = new T.Group(), body = new T.Mesh(G.box, emat('#e8d9b0', '#3a2a10')); body.scale.set(1.6, 1.5, 0.4); body.position.y = 1.2; t.add(body);
-  const arm = new T.Mesh(G.cyl, emat('#e8d9b0', '#3a2a10')); arm.scale.set(0.12, 0.7, 0.12); arm.position.y = 2.25; t.add(arm);
-  cod.split('').forEach(function (b, k) { const ab = { A: 'U', U: 'A', G: 'C', C: 'G' }[b], nb = new T.Mesh(G.box, emat(BASECOL[ab], '#222222')); nb.scale.set(0.8, 0.6, 0.45); nb.position.set((k - 1) * 1.0, 0.25, 0); t.add(nb); });
-  const tl = label('tRNA', 2.6, { bd: '#e8d9b0' }); tl.position.set(-2.3, 1.2, 0.3); t.add(tl);
-  const bead = dnaBead(aa, M.beads.length); bead.position.set(0, 2.9, 0.2); t.add(bead);
-  t.position.set(x, 9, 0.35); M.tr.add(t); beep(700, 0.2, 'sine', 'whoosh, tRNA arriving');
+  miniFlash((first ? 'AUG = Met, the START codon. Every protein begins here. ' : cod + ' = ' + AA3[aa] + '. ') + 'The ribosome adds ' + AA3[aa] + ' to the chain.', '#7be0ad', 4);
+  /* the amino acid drops onto the ribosome and joins the growing chain */
+  const t = new T.Group(), bead = dnaBead(aa, M.beads.length); bead.position.set(0, 2.9, 0.2); t.add(bead);
+  t.position.set(x, 9, 0.35); M.tr.add(t); beep(700, 0.2, 'sine', 'whoosh, amino acid arriving');
   dnaTw(t, x, -0.6, 1.0, function () {
     beep(880, 0.15, 'triangle', 'click, amino acid joins the chain');
     t.remove(bead); bead.position.set(x, 2.3, 0.2); M.tr.add(bead); M.beads.push(bead);
@@ -3135,8 +3130,8 @@ function dnaFinal() {
     '<div class="dnaWord">' + aas.map(function (a, j) { return '<span style="--c:' + AACOL[j % AACOL.length] + '"><small>' + AA3[a] + '</small>' + a + '</span>'; }).join('') + '</div>' +
     '<p class="big">Your protein spells <b>' + g.word + '</b>! &nbsp;+500 secret bonus</p>' +
     (newColor ? '<p class="unlock">✨ Special bonus: secret alien color <b>Helix gold</b> unlocked. Try it on in the Wardrobe!</p>' : '<p class="dim">Each trip through the portal hides a different secret word. Can you find all ' + SECRETS.length + '? (' + Object.keys(S.dnaSeen).length + ' found)</p>') +
-    '<p><b>What you did:</b> <b>Replication</b> copied the DNA (A–T, G–C). <b>Transcription</b> copied the gene into <b>mRNA</b> (U instead of T). In <b>translation</b>, the <b>ribosome</b> read the mRNA one <b>codon</b> at a time, <b>tRNA</b> brought the matching amino acids, and a <b>stop codon</b> ended the protein.</p>' +
-    '<p class="dim">Every living thing uses this same genetic code. Score: <b>' + M.score + '</b> · Clean codons: ' + M.cleanCodons + ' of ' + (g.cod.length) + '</p>' +
+    '<p><b>What you did:</b> <b>Replication</b> copied the DNA (A–T, G–C). <b>Transcription</b> copied the gene into <b>mRNA</b> (U instead of T). In <b>translation</b>, the <b>ribosome</b> read the mRNA one <b>codon</b> at a time and linked the amino acids in that order, and a <b>stop codon</b> ended the protein. The order of amino acids decides how a protein folds and what job it does.</p>' +
+    '<p class="dim">Every living thing uses this same genetic code. Score: <b>' + M.score + '</b> · Codons read: ' + (g.cod.length) + '</p>' +
     '<button type="button" id="miniBack" class="primary">Return through the portal</button>');
   setTimeout(function () { const b = $('miniBack'); if (b) b.focus(); }, 50);
 }
@@ -3176,6 +3171,7 @@ function dnaKey(e, down) {
   if (down && M.intro && (k === 'Enter' || k === ' ')) { e.preventDefault(); miniStart(); return; }
   if (down && M.card && (k === 'Enter' || k === ' ')) { e.preventDefault(); dnaNext(); return; }
   if (down && M.over && (k === 'Enter' || k === ' ' || k === 'e' || k === 'E')) { e.preventDefault(); exitMini(); return; }
+  if (down && M.phase === 3 && (k === ' ' || k === 'Enter') && !e.repeat) { e.preventDefault(); readCodon(); return; }
   if (down && /^[atgcuATGCU]$/.test(k) && !e.repeat) { e.preventDefault(); dnaInput(k); }
 }
 /* ---------- MOTHERSHIP STATION: report, supply shop, practice bay, wardrobe ---------- */
@@ -3370,17 +3366,20 @@ function mapInfo(i) {
     (sv && sv.best ? ' · Best score ' + sv.best : '') + (sv && sv.time ? ' · ' + tx('r.time') + ' ' + fmtTime(sv.time) : '') + ' · Rare specimen: ' + (S.rare[e.lv.id] ? 'found 💎' : 'not found yet') +
     '<br><span class="dim">' + (stars ? 'Conquered! Play again for more stars.' : 'Open. Click it or press Enter to play.') + '</span>' : '<span class="dim">Locked. Finish the level before it to open this one.</span>');
 }
-/* ---------- STANDARDS (for teachers): each Keystone eligible content code and the PA STEELS 9-12 standard it supports ---------- */
-const KEYSTONE = {"BIO.A.1.1.1": "Describe the characteristics of life shared by all prokaryotic and eukaryotic organisms.", "BIO.A.1.2.1": "Compare cellular structures and their functions in prokaryotic and eukaryotic cells.", "BIO.A.1.2.2": "Describe and interpret relationships between structure and function at various levels of biological organization (i.e., organelles, cells, tissues, organs, organ systems, and multicellular organisms).", "BIO.A.2.1.1": "Describe the unique properties of water and how these properties support life on Earth (e.g., freezing point, high specific heat, cohesion).", "BIO.A.2.2.1": "Explain how carbon is uniquely suited to form biological macromolecules.", "BIO.A.2.2.2": "Describe how biological macromolecules form from monomers.", "BIO.A.2.2.3": "Compare the structure and function of carbohydrates, lipids, proteins, and nucleic acids in organisms.", "BIO.A.2.3.1": "Describe the role of an enzyme as a catalyst in regulating a specific biochemical reaction.", "BIO.A.2.3.2": "Explain how factors such as pH, temperature, and concentration levels can affect enzyme function.", "BIO.A.3.1.1": "Describe the fundamental roles of plastids (e.g., chloroplasts) and mitochondria in energy transformations.", "BIO.A.3.2.1": "Compare the basic transformation of energy during photosynthesis and cellular respiration.", "BIO.A.3.2.2": "Describe the role of ATP in biochemical reactions.", "BIO.A.4.1.1": "Describe how the structure of the plasma membrane allows it to function as a regulatory structure and/or protective barrier for a cell.", "BIO.A.4.1.2": "Compare the mechanisms that transport materials across the plasma membrane (i.e., passive transport—diffusion, osmosis, facilitated diffusion; and active transport—pumps, endocytosis, exocytosis).", "BIO.A.4.1.3": "Describe how membrane-bound cellular organelles (e.g., endoplasmic reticulum, Golgi apparatus) facilitate the transport of materials within a cell.", "BIO.A.4.2.1": "Explain how organisms maintain homeostasis (e.g., thermoregulation, water regulation, oxygen regulation).", "BIO.B.1.1.1": "Describe the events that occur during the cell cycle: interphase, nuclear division (i.e., mitosis or meiosis), cytokinesis.", "BIO.B.1.1.2": "Compare the processes and outcomes of mitotic and meiotic nuclear divisions.", "BIO.B.1.2.1": "Describe how the process of DNA replication results in the transmission and/or conservation of genetic information.", "BIO.B.1.2.2": "Explain the functional relationships between DNA, genes, alleles, and chromosomes and their roles in inheritance.", "BIO.B.2.1.1": "Describe and/or predict observed patterns of inheritance (i.e., dominant, recessive, co-dominance, incomplete dominance, sex-linked, polygenic, and multiple alleles).", "BIO.B.2.1.2": "Describe processes that can alter composition or number of chromosomes (i.e., crossing-over, nondisjunction, duplication, translocation, deletion, insertion, and inversion).", "BIO.B.2.2.1": "Describe how the processes of transcription and translation are similar in all organisms.", "BIO.B.2.2.2": "Describe the role of ribosomes, endoplasmic reticulum, Golgi apparatus, and the nucleus in the production of specific types of proteins.", "BIO.B.2.3.1": "Describe how genetic mutations alter the DNA sequence and may or may not affect phenotype (e.g., silent, nonsense, frameshift).", "BIO.B.2.4.1": "Explain how genetic engineering has impacted the fields of medicine, forensics, and agriculture (e.g., selective breeding, gene splicing, cloning, genetically modified organisms, gene therapy).", "BIO.B.3.1.1": "Explain how natural selection can impact allele frequencies of a population.", "BIO.B.3.1.2": "Describe the factors that can contribute to the development of new species (e.g., isolating mechanisms, genetic drift, founder effect, migration).", "BIO.B.3.1.3": "Explain how genetic mutations may result in genotypic and phenotypic variations within a population.", "BIO.B.3.2.1": "Interpret evidence supporting the theory of evolution (i.e., fossil, anatomical, physiological, embryological, biochemical, and universal genetic code).", "BIO.B.3.3.1": "Distinguish between the scientific terms: hypothesis, inference, law, theory, principle, fact, and observation.", "BIO.B.4.1.1": "Describe the levels of ecological organization (i.e., organism, population, community, ecosystem, biome, and biosphere).", "BIO.B.4.1.2": "Describe characteristic biotic and abiotic components of aquatic and terrestrial ecosystems.", "BIO.B.4.2.1": "Describe how energy flows through an ecosystem (e.g., food chains, food webs, energy pyramids).", "BIO.B.4.2.2": "Describe biotic interactions in an ecosystem (e.g., competition, predation, symbiosis).", "BIO.B.4.2.3": "Describe how matter recycles through an ecosystem (i.e., water cycle, carbon cycle, oxygen cycle, and nitrogen cycle).", "BIO.B.4.2.4": "Describe how ecosystems change in response to natural and human disturbances (e.g., climate changes, introduction of nonnative species, pollution, fires).", "BIO.B.4.2.5": "Describe the effects of limiting factors on population dynamics and potential species extinction."}; /* verbatim from PDE, Keystone Exams: Biology Assessment Anchors and Eligible Content */
-const STEELS = {"3.1.9-12.A": "Construct an explanation based on evidence for how the structure of DNA determines the structure of proteins which carry out the essential functions of life through systems of specialized cells.", "3.1.9-12.B": "Develop and use a model to illustrate the hierarchical organization of interacting systems that provide specific functions within multicellular organisms.", "3.1.9-12.C": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis.", "3.1.9-12.D": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms.", "3.1.9-12.E": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy.", "3.1.9-12.F": "Construct and revise an explanation based on evidence for how carbon, hydrogen, and oxygen from sugar molecules may combine with other elements to form amino acids and/or other large carbon-based molecules.", "3.1.9-12.G": "Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules and oxygen molecules are broken and the bonds in new compounds are formed resulting in a net transfer of energy.", "3.1.9-12.H": "Use mathematical representations to support claims for the cycling of matter and flow of energy among organisms in an ecosystem.", "3.1.9-12.I": "Use mathematical and/or computational representations to support explanations of factors that affect carrying capacity of ecosystems at different scales.", "3.1.9-12.J": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy in aerobic and anaerobic conditions.", "3.1.9-12.K": "Develop a model to illustrate the role of photosynthesis and cellular respiration in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere.", "3.1.9-12.L": "Use mathematical representations to support and revise explanations based on evidence about factors affecting biodiversity and populations in ecosystems of different scales.", "3.1.9-12.M": "Evaluate the claims, evidence, and reasoning that the complex interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem.", "3.1.9-12.N": "Design, evaluate, and refine a solution for reducing the impacts of human activities on the environment and biodiversity.", "3.1.9-12.O": "Evaluate the evidence for the role of group behavior on individual and species’ chances to survive and reproduce.", "3.1.9-12.P": "Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring.", "3.1.9-12.Q": "Make and defend a claim based on evidence that inheritable genetic variations may result from (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors.", "3.1.9-12.R": "Apply concepts of statistics and probability to explain the variation and distribution of expressed traits in a population.", "3.1.9-12.S": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence.", "3.1.9-12.T": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: (1) the potential for a species to increase in number, (2) the heritable genetic variation of individuals in a species due to mutation and sexual reproduction, (3) competition for limited resources, and (4) the proliferation of those organisms that are better able to survive and reproduce in the environment.", "3.1.9-12.U": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait.", "3.1.9-12.V": "Create or revise a simulation to test a solution to mitigate the adverse impacts of human activity on biodiversity.", "3.1.9-12.W": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations.", "3.1.9-12.X": "Evaluate the evidence supporting claims that changes in environmental conditions may result in (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species.", "3.2.9-12.B": "Plan and conduct an investigation to gather evidence to compare the structure of substances at the bulk scale to infer the strength of electrical forces between particles.", "3.2.9-12.E": "Apply scientific principles and evidence to provide an explanation about the effects of changing the temperature or concentration of the reacting particles on the rate at which a reaction occurs.", "Nature of Science (STEELS Science and Engineering Practices)": "Not a lettered content standard: STEELS addresses the nature of science within its Science and Engineering Practices (\"Connections to Nature of Science\")."}; /* verbatim from PDE, PA STEELS K-12 standards (3.1 Life Science, 3.2 Physical Science, grades 9-12) */
-function stdMap() { /* from the questions actually in the game: code -> { steels: {code: n}, worlds: {w: 1}, n } */
-  const m = {}; Object.keys(QMAP).forEach(function (k) { const q = QMAP[k]; if (!q.code || !/^BIO\./.test(q.code)) return; const e = m[q.code] = m[q.code] || { steels: {}, worlds: {}, n: 0 }; e.n++; if (q.steels) e.steels[q.steels] = (e.steels[q.steels] || 0) + 1; if (q.world) e.worlds[q.world] = 1; });
+/* ---------- STANDARDS (for teachers): the PA STEELS grades 9-12 life science standards (3.1.9-12.A to X) that the
+   STEELS-aligned Keystone Biology exam tests (PDE Keystone Biology Test Design 2025: Module 1 and Module 2). Every question's
+   "code" is one of these. Wording copied from the PDE K-12 STEELS standards (2023); boundaries from the PDE STEELS Foundation Boxes. ---------- */
+const STEELS = {"3.1.9-12.A": "Construct an explanation based on evidence for how the structure of DNA determines the structure of proteins which carry out the essential functions of life through systems of specialized cells.", "3.1.9-12.B": "Develop and use a model to illustrate the hierarchical organization of interacting systems that provide specific functions within multicellular organisms.", "3.1.9-12.C": "Plan and conduct an investigation to provide evidence that feedback mechanisms maintain homeostasis.", "3.1.9-12.D": "Use a model to illustrate the role of cellular division (mitosis) and differentiation in producing and maintaining complex organisms.", "3.1.9-12.E": "Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy.", "3.1.9-12.F": "Construct and revise an explanation based on evidence for how carbon, hydrogen, and oxygen from sugar molecules may combine with other elements to form amino acids and/or other large carbon-based molecules.", "3.1.9-12.G": "Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules and oxygen molecules are broken and the bonds in new compounds are formed resulting in a net transfer of energy.", "3.1.9-12.H": "Use mathematical representations to support claims for the cycling of matter and flow of energy among organisms in an ecosystem.", "3.1.9-12.I": "Use mathematical and/or computational representations to support explanations of factors that affect carrying capacity of ecosystems at different scales.", "3.1.9-12.J": "Construct and revise an explanation based on evidence for the cycling of matter and flow of energy in aerobic and anaerobic conditions.", "3.1.9-12.K": "Develop a model to illustrate the role of photosynthesis and cellular respiration in the cycling of carbon among the biosphere, atmosphere, hydrosphere, and geosphere.", "3.1.9-12.L": "Use mathematical representations to support and revise explanations based on evidence about factors affecting biodiversity and populations in ecosystems of different scales.", "3.1.9-12.M": "Evaluate the claims, evidence, and reasoning that the complex interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem.", "3.1.9-12.N": "Design, evaluate, and refine a solution for reducing the impacts of human activities on the environment and biodiversity.", "3.1.9-12.O": "Evaluate the evidence for the role of group behavior on individual and species’ chances to survive and reproduce.", "3.1.9-12.P": "Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits passed from parents to offspring.", "3.1.9-12.Q": "Make and defend a claim based on evidence that inheritable genetic variations may result from (1) new genetic combinations through meiosis, (2) viable errors occurring during replication, and/or (3) mutations caused by environmental factors.", "3.1.9-12.R": "Apply concepts of statistics and probability to explain the variation and distribution of expressed traits in a population.", "3.1.9-12.S": "Communicate scientific information that common ancestry and biological evolution are supported by multiple lines of empirical evidence.", "3.1.9-12.T": "Construct an explanation based on evidence that the process of evolution primarily results from four factors: (1) the potential for a species to increase in number, (2) the heritable genetic variation of individuals in a species due to mutation and sexual reproduction, (3) competition for limited resources, and (4) the proliferation of those organisms that are better able to survive and reproduce in the environment.", "3.1.9-12.U": "Apply concepts of statistics and probability to support explanations that organisms with an advantageous heritable trait tend to increase in proportion to organisms lacking this trait.", "3.1.9-12.V": "Create or revise a simulation to test a solution to mitigate the adverse impacts of human activity on biodiversity.", "3.1.9-12.W": "Construct an explanation based on evidence for how natural selection leads to adaptation of populations.", "3.1.9-12.X": "Evaluate the evidence supporting claims that changes in environmental conditions may result in (1) increases in the number of individuals of some species, (2) the emergence of new species over time, and (3) the extinction of other species."};
+const MODULES = { 1: { name: 'Module 1: Molecules to Organisms: Structures, Functions, and Natural Cycles', codes: 'ABCEFGHIJKLM' }, 2: { name: 'Module 2: Continuity and Unity of Life: Biodiversity, Genetics, and Changes over Time', codes: 'DNOPQRSTUVWX' } };
+function isStd(c) { return /^3\.1\.9-12\.[A-X]$/.test(c || ''); }
+function stdMap() { /* from the questions actually in the game: code -> { worlds: {w: 1}, n } */
+  const m = {}; Object.keys(QMAP).forEach(function (k) { const q = QMAP[k]; if (!isStd(q.code)) return; const e = m[q.code] = m[q.code] || { worlds: {}, n: 0 }; e.n++; if (q.world) e.worlds[q.world] = 1; });
   return m; }
-function stShort(c) { return /^Nature/.test(c) ? 'Nature of Science' : c; }
 function standardsTable() {
-  const m = stdMap(), codes = Object.keys(m).sort();
-  return '<table class="ftab stdtab"><tr><th>Keystone eligible content</th><th>PA STEELS (grades 9–12)</th><th>Where</th><th>Items</th></tr>' + codes.map(function (c) { const e = m[c], st = Object.keys(e.steels).sort(function (a, b) { return e.steels[b] - e.steels[a]; });
-    return '<tr><td><b>' + esc(c) + '</b><br><span class="dim">' + esc(KEYSTONE[c] || '') + '</span></td><td>' + st.map(function (x) { return '<b>' + esc(stShort(x)) + '</b>' + (st.length > 1 ? ' (' + e.steels[x] + ')' : '') + '<br><span class="dim">' + esc(STEELS[x] || '') + '</span>'; }).join('<br>') + '</td><td>World ' + Object.keys(e.worlds).sort().join(', ') + '</td><td>' + e.n + '</td></tr>'; }).join('') + '</table>';
+  const m = stdMap(); let h = '';
+  [1, 2].forEach(function (mi) { const M = MODULES[mi]; h += '<h4>' + esc(M.name) + '</h4><table class="ftab stdtab"><tr><th>PA STEELS standard</th><th>Where</th><th>Items</th></tr>' + M.codes.split('').map(function (L) { const c = '3.1.9-12.' + L, e = m[c];
+    return '<tr><td><b>' + esc(c) + '</b><br><span class="dim">' + esc(STEELS[c]) + '</span></td><td>' + (e ? 'World ' + Object.keys(e.worlds).sort().join(', ') : '—') + '</td><td>' + (e ? e.n : 0) + '</td></tr>'; }).join('') + '</table>'; });
+  return h;
 }
 function buildProgress() {
   let html = '<h3>Mastery by unit</h3><p class="dim">Share of questions answered right on the first try.</p>';
@@ -3389,9 +3388,8 @@ function buildProgress() {
     const pct = t ? Math.round(r / t * 100) : 0;
     html += '<div class="bar"><span>' + w + '. ' + BQ.UNITS[w - 1] + '</span><div class="track"><div class="fill" style="width:' + pct + '%"></div></div><span class="num">' + (BQ.worlds[w] ? (t ? pct + '%' : 'Not started') : 'Coming soon') + '</span></div>';
   }
-  const codes = Object.keys(S.codes).sort();
-  const sm = stdMap();
-  if (codes.length) html += '<h3>By standard</h3><table class="ftab"><tr><th>Keystone</th><th>PA STEELS</th><th>First-try correct</th></tr>' + codes.map(function (k) { const st = sm[k] ? Object.keys(sm[k].steels).map(stShort).join(', ') : ''; return '<tr><td title="' + esc(KEYSTONE[k] || '') + '">' + esc(k) + '</td><td>' + esc(st) + '</td><td>' + S.codes[k].right + ' of ' + S.codes[k].tries + '</td></tr>'; }).join('') + '</table>';
+  const codes = Object.keys(S.codes).filter(isStd).sort(); /* older saves may also hold 2014 codes: those are skipped */
+  if (codes.length) html += '<h3>By standard</h3><table class="ftab"><tr><th>PA STEELS</th><th>First-try correct</th></tr>' + codes.map(function (k) { return '<tr><td title="' + esc(STEELS[k] || '') + '">' + esc(k) + '</td><td>' + S.codes[k].right + ' of ' + S.codes[k].tries + '</td></tr>'; }).join('') + '</table>';
   const top = BQ.Leaderboard.top(10).filter(function (r) { return nickOK(r.nick); }).slice(0, 5); if (!nickOK(S.nick)) { S.nick = ''; save(); }
   html += '<h3>High scores on this device</h3>' + (top.length ? '<ol class="board">' + top.map(function (r) { return '<li><span>' + esc(r.nick) + '</span><span class="num">' + r.score + '</span></li>'; }).join('') + '</ol>' : '<p class="dim">Enter a nickname below, then finish a level to post a score. Your total so far: ' + totalScore() + '.</p>');
   $('progBody').innerHTML = html; $('nick').value = S.nick;
@@ -3542,7 +3540,7 @@ function wire() {
   ['pointerdown', 'pointermove', 'pointerup', 'wheel'].forEach(function (ev) { $('stage').addEventListener(ev, function (e) { if (mode === 'cozy' && BQ.cozy) BQ.cozy.pointer(e, ev); else if (mode === 'dome' && BQ.dome) BQ.dome.pointer(e, ev); }, ev === 'wheel' ? { passive: false } : undefined); });
   $('btnLevels').onclick = function () { openMap(); };
   $('btnAbout').onclick = function () { show('about'); $('aboutVer').textContent = VERSION;
-    const sb = $('aboutStd'); if (sb) sb.innerHTML = (S.set.admin || TEACH) ? '<h3>Standards map (teachers)</h3><p class="dim">Every question and activity is tagged with a Keystone Biology eligible content code and the PA STEELS grades 9–12 standard it supports. "Items" counts the questions and activities for that code.</p>' + standardsTable() : '<p class="dim">Teachers: turn on admin mode (type the admin password on the main menu) to see a table of every Keystone eligible content code and its matching PA STEELS standard.</p>'; };
+    const sb = $('aboutStd'); if (sb) sb.innerHTML = (S.set.admin || TEACH) ? '<h3>Standards map (teachers)</h3><p class="dim">Every question and activity is tagged with one of the 24 PA STEELS grades 9–12 life science standards (3.1.9-12.A to X), the standards the STEELS-aligned Keystone Biology exam tests, grouped by the exam\'s two modules. "Items" counts the questions for that standard.</p>' + standardsTable() : '<p class="dim">Teachers: turn on admin mode (type the admin password on the main menu) to see a table of every PA STEELS standard and where the game practices it.</p>'; };
   $('menuVer').textContent = VERSION + ' · by J.E. Lynch' + (S.set.admin ? ' · ADMIN' : '');
   $('btnProgress').onclick = function () { buildProgress(); show('progress'); };
   $('btnSettings').onclick = function () { backTo = 'menu'; show('settings'); };
@@ -3589,7 +3587,7 @@ function wire() {
   $('stage').addEventListener('wheel', function (e) { if (mode !== 'mini' || !M || M.kind || M.intro || M.over) return; e.preventDefault(); miniSel((M.sel + (e.deltaY > 0 ? 1 : 3)) % 4); }, { passive: false });
   $('stage').addEventListener('pointerdown', function (e) { if (mode !== 'mini' || !M || M.kind === 'dna') return; if (M.kind === 'golf') return golfPointer(e, 'down'); aimAt(e); miniFire(); });
   window.addEventListener('pointerup', function (e) { if (mode === 'mini' && M && M.kind === 'golf') golfPointer(e, 'up'); });
-  $('mini').addEventListener('click', function (e) { const b = e.target.closest('button'); if (!b || !M) return; if (b.id === 'miniGo') miniStart(); else if (b.id === 'miniBack') exitMini(); else if (b.id === 'dnaNext') dnaNext(); else if (b.dataset.base) { dnaInput(b.dataset.base); b.blur(); } else if (b.dataset.ab != null) { miniSel(+b.dataset.ab); b.blur(); } });
+  $('mini').addEventListener('click', function (e) { const b = e.target.closest('button'); if (!b || !M) return; if (b.id === 'miniGo') miniStart(); else if (b.id === 'miniBack') exitMini(); else if (b.id === 'dnaNext') dnaNext(); else if (b.id === 'dnaRead') { readCodon(); b.focus(); } else if (b.dataset.base) { dnaInput(b.dataset.base); b.blur(); } else if (b.dataset.ab != null) { miniSel(+b.dataset.ab); b.blur(); } });
   $('hudInv').addEventListener('click', function (e) { const b = e.target.closest('[data-use]'); if (!b) return; b.blur(); if (b.dataset.use === 'fly') useFly(); else useLens(); });
   $('stTabs').addEventListener('click', function (e) { const b = e.target.closest('[data-tab]'); if (!b) return; if (b.dataset.tab === 'journal') { openJournal('done'); return; } stationTab(b.dataset.tab); });
   $('stBody').addEventListener('click', stationClick);
@@ -3626,7 +3624,7 @@ function boot() {
   wire(); applySettings(); menuScene(); requestAnimationFrame(tick);
   const jump = (location.hash || '').match(/level-(\d+-\d+)/i);
   if (jump) { const e = allLevels().find(function (x) { return x.lv.id === jump[1]; }); if (e) startLevel(e.w, e.lv); }
-  BQ.core = { KEYSTONE: KEYSTONE, T: T, get scene() { return scene; }, get cam() { return cam; }, get renderer() { return renderer; }, get G() { return G; }, get S() { return S; }, get HEMI() { return HEMI; }, get KEYL() { return KEYL; },
+  BQ.core = { STEELS: STEELS, T: T, get scene() { return scene; }, get cam() { return cam; }, get renderer() { return renderer; }, get G() { return G; }, get S() { return S; }, get HEMI() { return HEMI; }, get KEYL() { return KEYL; },
     glow: glow, label: label, labelTex: labelTex, emat: emat, basic: basic, mesh: mesh, buildAlien: buildAlien, specimen: specimen, beep: beep, save: save, $: $, esc: esc, tx: tx, I18N: I18N, ACH: ACH, award: award,
     show: show, teardown: teardown, menuScene: menuScene, caption: caption, audio: function () { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); } catch (e) { return null; } return AC; }, openJournal: openJournal, journalTab: function (x) { journalTab(x); }, thumb: thumb, Music: Music, setMode: function (m) { mode = m; }, getMode: function () { return mode; }, disposeGroup: disposeGroup, teach: TEACH };
   if (BQ.onCore) BQ.onCore(); (BQ.onCoreList || []).forEach(function (f) { f(); });

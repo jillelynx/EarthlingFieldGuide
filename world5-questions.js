@@ -1,17 +1,21 @@
-/* WORLD 5 QUESTION FILE: Environmental Pressure Drives Evolution
+/* WORLD 5 QUESTION FILE: Natural Selection and Evolution
    Teachers: you can edit the words inside the quotation marks below.
-   - "code" is the Keystone Eligible Content code. "steels" is the PA STEELS standard.
+   - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.
+     World 5 uses S (evidence for common ancestry), T (the four factors of evolution), U (statistics of advantageous traits),
+     W (natural selection leads to adaptation) and X (environmental change: increases, new species, extinction).
+   - "topic" groups questions that can rotate with each other at stations and clue terminals.
    - In "questions", "answer" is the position of the correct option, counting from 0
      (0 = first option). The game shuffles the options, so the right answer can always go first.
    - "hint" shows after a wrong try. "explain" shows after the right answer.
    - "tags": ["boss"] marks boss-battle questions.
+   - "Read the Data" numbers are illustrative, modeled on classroom examples; they are not real measurements.
    - Keep every comma, bracket, and quotation mark in place. */
 FieldGuide.registerQuestions(5, {
  "tokens": [
   {
    "id": "selection-needs",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "prompt": "Collect only what natural selection NEEDS in order to work",
    "good": [
     "Variation in a trait",
@@ -42,53 +46,9 @@ FieldGuide.registerQuestions(5, {
  ],
  "sorts": [
   {
-   "id": "isolation",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
-   "prompt": "Which kind of reproductive isolation is it?",
-   "options": [
-    "Geographic isolation",
-    "Behavioral isolation",
-    "Temporal isolation"
-   ],
-   "hint": "Geographic: a physical barrier. Behavioral: different courtship (songs, dances, signals). Temporal: different breeding times.",
-   "items": [
-    {
-     "text": "Squirrels on the north and south rims of the Grand Canyon",
-     "answer": 0,
-     "explain": "The canyon is a physical barrier: geographic isolation."
-    },
-    {
-     "text": "Two frog species in one pond breed in different months",
-     "answer": 2,
-     "explain": "Different breeding times: temporal isolation."
-    },
-    {
-     "text": "Two meadowlark species sing different mating songs",
-     "answer": 1,
-     "explain": "Different courtship songs: behavioral isolation."
-    },
-    {
-     "text": "Fish in two lakes with no river between them",
-     "answer": 0,
-     "explain": "Land separates the lakes: geographic isolation."
-    },
-    {
-     "text": "Two firefly species flash different light patterns",
-     "answer": 1,
-     "explain": "Different courtship signals: behavioral isolation."
-    },
-    {
-     "text": "Two pine species release pollen in different seasons",
-     "answer": 2,
-     "explain": "Different reproduction times: temporal isolation."
-    }
-   ]
-  },
-  {
    "id": "structures",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "What kind of structure is it?",
    "options": [
     "Homologous structure",
@@ -130,53 +90,89 @@ FieldGuide.registerQuestions(5, {
    ]
   },
   {
-   "id": "science-terms",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "prompt": "Which kind of scientific statement is it?",
+   "id": "env-change",
+   "code": "3.1.9-12.X",
+   "topic": "env-change",
+   "prompt": "What is the most likely result of this change?",
    "options": [
-    "Observation",
-    "Inference",
-    "Hypothesis",
-    "Theory",
-    "Law"
+    "Some species increase",
+    "A new species forms over time",
+    "A species goes extinct"
    ],
-   "hint": "Observation: what you see or measure. Inference: a conclusion from evidence. Hypothesis: a testable prediction. Theory: a well-tested explanation of WHY. Law: a description of WHAT always happens.",
+   "hint": "More of something? Two groups split and change for a very long time? A species loses everything it needs?",
    "items": [
     {
-     "text": "The fossil is 30 centimeters long.",
+     "text": "Overfishing removes most cod, the main predator of a small shrimp",
      "answer": 0,
-     "explain": "A measurement is an observation."
+     "explain": "With fewer predators, the shrimp population can increase."
     },
     {
-     "text": "The fossil has fins, so the animal probably lived in water.",
+     "text": "A new river splits a beetle population, and each side adapts differently for thousands of years",
      "answer": 1,
-     "explain": "A conclusion drawn from evidence is an inference."
+     "explain": "Isolated populations that change separately can become new species."
     },
     {
-     "text": "If moths rest on dark bark, dark moths will survive better than light moths.",
+     "text": "A volcano destroys the only island where a flightless bird lives",
      "answer": 2,
-     "explain": "A testable if-then prediction is a hypothesis."
+     "explain": "The bird has nowhere else to live, so the species goes extinct."
     },
     {
-     "text": "All living things are made of cells (cell theory).",
-     "answer": 3,
-     "explain": "Cell theory is a well-tested explanation supported by huge amounts of evidence."
-    },
-    {
-     "text": "Alleles separate into different gametes (Mendel's law of segregation).",
-     "answer": 4,
-     "explain": "A law describes a pattern that always happens."
-    },
-    {
-     "text": "The thermometer reads 22 °C.",
+     "text": "A rainy decade gives a mosquito species many new puddles to breed in",
      "answer": 0,
-     "explain": "A reading from an instrument is an observation."
+     "explain": "More breeding sites let the mosquito population increase."
     },
     {
-     "text": "Evolution by natural selection explains how life became so diverse.",
-     "answer": 3,
-     "explain": "Evolution is a scientific theory: a broad, well-supported explanation."
+     "text": "Mountains slowly rise and split a plant population; after a long time the two groups cannot interbreed",
+     "answer": 1,
+     "explain": "Long isolation can lead to two separate species."
+    },
+    {
+     "text": "A forest is cleared for farms, removing all the habitat of a frog found nowhere else",
+     "answer": 2,
+     "explain": "Losing all of its habitat can drive a species to extinction."
+    }
+   ]
+  },
+  {
+   "id": "trait-trend",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "prompt": "Is this trait most likely an advantage in this environment?",
+   "options": [
+    "Advantage: rising in proportion",
+    "Disadvantage: falling in proportion"
+   ],
+   "hint": "Is the share of the population with the trait going up or down?",
+   "items": [
+    {
+     "text": "Dark pocket mice on dark lava: 10% of the population, then 80% after 20 generations",
+     "answer": 0,
+     "explain": "Rising share: dark fur hides mice on dark rock."
+    },
+    {
+     "text": "Light pocket mice on dark lava: 90%, then 20% after 20 generations",
+     "answer": 1,
+     "explain": "Falling share: light mice stand out to predators on dark rock."
+    },
+    {
+     "text": "Antibiotic-resistant bacteria during treatment: 1%, then 90%",
+     "answer": 0,
+     "explain": "Rising share: resistance helps bacteria survive the antibiotic."
+    },
+    {
+     "text": "Shallow-beaked finches after a drought leaves only hard seeds: 40%, then 15%",
+     "answer": 1,
+     "explain": "Falling share: shallow beaks cannot crack hard seeds."
+    },
+    {
+     "text": "Light peppered moths on soot-darkened bark: common, then rare",
+     "answer": 1,
+     "explain": "Falling share: birds spot light moths on dark bark."
+    },
+    {
+     "text": "Insects that resist a pesticide after years of spraying: 5%, then 70%",
+     "answer": 0,
+     "explain": "Rising share: resistant insects survive the spraying and reproduce."
     }
    ]
   }
@@ -184,8 +180,8 @@ FieldGuide.registerQuestions(5, {
  "questions": [
   {
    "id": "w5q01",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "prompt": "Which statement best describes natural selection?",
    "options": [
     "Individuals with traits suited to their environment survive and reproduce more, so those traits become more common.",
@@ -199,8 +195,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q02",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "prompt": "When pollution darkened tree bark in England, dark peppered moths became more common. Why?",
    "options": [
     "Birds ate more of the easy-to-see light moths, so dark moths survived and reproduced more.",
@@ -214,8 +210,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q03",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "prompt": "In evolution, what does 'fitness' mean?",
    "options": [
     "how well an organism survives and reproduces in its environment",
@@ -229,8 +225,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q04",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "prompt": "A rabbit population has brown fur and white fur. Snow now covers the ground for longer each year. What is most likely to happen over many generations?",
    "options": [
     "The allele for white fur becomes more common.",
@@ -244,98 +240,38 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q05",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "prompt": "Why do we say populations evolve, not individuals?",
    "options": [
-    "An individual cannot change its genes; the population's allele frequencies change over generations.",
+    "An individual cannot change its genes; how common each allele is in the population changes over generations.",
     "Individuals evolve during their lifetime.",
     "Populations never change.",
     "Only one individual reproduces."
    ],
    "answer": 0,
    "hint": "Can one organism change its DNA on purpose?",
-   "explain": "Evolution is a change in a population's allele frequencies across generations."
-  },
-  {
-   "id": "w5q06",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
-   "prompt": "A few finches are blown to a new island and start a population whose allele frequencies differ from the mainland's. What is this called?",
-   "options": [
-    "the founder effect",
-    "gene flow",
-    "natural selection",
-    "a bottleneck"
-   ],
-   "answer": 0,
-   "hint": "A few 'founders' start the new group.",
-   "explain": "The founder effect: a small group starts a new population carrying only some of the original alleles."
-  },
-  {
-   "id": "w5q07",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
-   "prompt": "A flood randomly kills most of a small beetle population, no matter what traits they had. The change in allele frequency is an example of...",
-   "options": [
-    "genetic drift",
-    "natural selection",
-    "gene flow",
-    "artificial selection"
-   ],
-   "answer": 0,
-   "hint": "Survival was by chance, not by traits.",
-   "explain": "Genetic drift is a random change in allele frequencies, strongest in small populations."
+   "explain": "Evolution is a change in how common each allele is in a population across generations."
   },
   {
    "id": "w5q08",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
+   "code": "3.1.9-12.X",
+   "topic": "speciation",
    "prompt": "Squirrels on the north and south rims of the Grand Canyon cannot reach each other and have become different over time. What separated them?",
    "options": [
-    "geographic isolation",
-    "behavioral isolation",
-    "temporal isolation",
-    "gene flow"
+    "geographic isolation (the canyon)",
+    "competition for the same food",
+    "camouflage",
+    "a mutation in every squirrel"
    ],
    "answer": 0,
    "hint": "What is between the rims?",
-   "explain": "A physical barrier like a canyon causes geographic isolation."
-  },
-  {
-   "id": "w5q09",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
-   "prompt": "Two frog populations live in the same pond, but one breeds in early spring and the other in late spring. What keeps them from interbreeding?",
-   "options": [
-    "temporal isolation",
-    "geographic isolation",
-    "behavioral isolation",
-    "genetic drift"
-   ],
-   "answer": 0,
-   "hint": "'Tempo' is about time.",
-   "explain": "Breeding at different times is temporal isolation."
-  },
-  {
-   "id": "w5q10",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
-   "prompt": "Pollen from one wildflower population blows into another population and brings new alleles. What is this called?",
-   "options": [
-    "gene flow (migration)",
-    "genetic drift",
-    "the founder effect",
-    "speciation"
-   ],
-   "answer": 0,
-   "hint": "Alleles flow from one population into another.",
-   "explain": "Gene flow moves alleles between populations and makes them more alike."
+   "explain": "A physical barrier like a canyon keeps the populations apart: geographic isolation. Each side then changes on its own."
   },
   {
    "id": "w5q11",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
+   "code": "3.1.9-12.X",
+   "topic": "speciation",
    "prompt": "What usually has to happen for one species to split into two?",
    "options": [
     "The populations become reproductively isolated and change until they can no longer interbreed.",
@@ -349,23 +285,23 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q12",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.T",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
    "prompt": "What is the original source of all NEW alleles in a population?",
    "options": [
     "mutations in DNA",
     "natural selection",
     "the environment choosing traits",
-    "gene flow alone"
+    "competition alone"
    ],
    "answer": 0,
    "hint": "Selection can only choose among alleles that already exist.",
-   "explain": "Mutations create new alleles. Selection and drift then change how common they are."
+   "explain": "Mutations create new alleles. Natural selection then changes how common they are."
   },
   {
    "id": "w5q13",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.T",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
    "prompt": "A mutation makes a bacterium resistant to an antibiotic. What happens when the antibiotic is used?",
    "options": [
     "The resistant bacteria survive and reproduce, so resistance spreads.",
@@ -379,8 +315,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q14",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.T",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
    "prompt": "Which mutations can be passed to offspring and affect evolution?",
    "options": [
     "mutations in gametes (sperm or egg cells)",
@@ -394,13 +330,13 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q15",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.T",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
    "prompt": "Besides mutation, which process creates new combinations of alleles in offspring?",
    "options": [
     "crossing over and independent assortment in meiosis",
     "mitosis",
-    "cytokinesis",
+    "digestion",
     "photosynthesis"
    ],
    "answer": 0,
@@ -409,8 +345,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q16",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.T",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
    "prompt": "Which statement about mutations is true?",
    "options": [
     "Most are neutral or harmful, but a few are helpful in certain environments.",
@@ -424,8 +360,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q17",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "In undisturbed rock layers, where are the oldest fossils usually found?",
    "options": [
     "in the bottom layers",
@@ -439,8 +375,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q18",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "A human arm, a bat wing, and a whale flipper have the same set of bones. What does this suggest?",
    "options": [
     "They evolved from a common ancestor (homologous structures).",
@@ -454,8 +390,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q19",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "A bird's wing and a butterfly's wing do the same job but are built very differently. These are...",
    "options": [
     "analogous structures",
@@ -469,8 +405,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q20",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "Humans have a tailbone (coccyx) with little or no use. What is it, and what does it suggest?",
    "options": [
     "a vestigial structure; humans share ancestors with tailed animals",
@@ -484,8 +420,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q21",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "Human and chimpanzee cytochrome c proteins are identical, but yeast cytochrome c is very different. What does this suggest?",
    "options": [
     "Humans are more closely related to chimpanzees than to yeast.",
@@ -499,8 +435,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q22",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "Almost all living things use the same genetic code (the same codons for the same amino acids). Why is this evidence for evolution?",
    "options": [
     "It suggests all life shares a common ancestor.",
@@ -514,8 +450,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q23",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "Tiktaalik is a fossil with features of both fish and four-legged land animals. It is an example of...",
    "options": [
     "a transitional fossil",
@@ -528,84 +464,9 @@ FieldGuide.registerQuestions(5, {
    "explain": "Transitional fossils show features of both an ancestral group and its descendants."
   },
   {
-   "id": "w5q24",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "prompt": "Which is an OBSERVATION?",
-   "options": [
-    "The finch's beak is 11 millimeters deep.",
-    "The finch probably eats hard seeds.",
-    "Finches with deep beaks will survive a drought better.",
-    "Evolution explains finch beak shapes."
-   ],
-   "answer": 0,
-   "hint": "An observation is something measured or seen directly.",
-   "explain": "A measurement is an observation. The others are an inference, a hypothesis, and a theory."
-  },
-  {
-   "id": "w5q25",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "prompt": "Which is an INFERENCE?",
-   "options": [
-    "The fossil has fins, so the animal probably lived in water.",
-    "The fossil is 30 centimeters long.",
-    "The fossil was found in the bottom rock layer.",
-    "The fossil has 12 vertebrae."
-   ],
-   "answer": 0,
-   "hint": "An inference is a conclusion based on evidence.",
-   "explain": "Concluding that the animal lived in water is an inference from the observation of fins."
-  },
-  {
-   "id": "w5q26",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "prompt": "What is the difference between a scientific law and a scientific theory?",
-   "options": [
-    "A law describes WHAT happens; a theory explains WHY or HOW it happens.",
-    "A theory is a guess; a law is a proven fact.",
-    "A theory becomes a law after enough testing.",
-    "There is no difference."
-   ],
-   "answer": 0,
-   "hint": "Laws describe; theories explain.",
-   "explain": "Laws describe patterns in nature. Theories are well-tested explanations. A theory never 'graduates' into a law."
-  },
-  {
-   "id": "w5q27",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "prompt": "Which statement about a scientific HYPOTHESIS is true?",
-   "options": [
-    "It is a testable explanation or prediction.",
-    "It can never be tested.",
-    "It is the same as a theory.",
-    "It is a proven fact."
-   ],
-   "answer": 0,
-   "hint": "Scientists design experiments to test it.",
-   "explain": "A hypothesis must be testable. Evidence can support it or show it is wrong."
-  },
-  {
-   "id": "w5q28",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "prompt": "Why is evolution called a scientific THEORY?",
-   "options": [
-    "It is a well-tested explanation supported by many lines of evidence.",
-    "It is just a guess.",
-    "It has never been tested.",
-    "It describes one single experiment."
-   ],
-   "answer": 0,
-   "hint": "In science, 'theory' is a high level of confidence.",
-   "explain": "Fossils, anatomy, embryos, DNA, and direct observations all support the theory of evolution."
-  },
-  {
    "id": "w5q29",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "prompt": "Over many generations, giraffes with longer necks reached more food and had more offspring. Which statement is correct?",
    "options": [
     "The allele for longer necks became more common in the population.",
@@ -614,7 +475,7 @@ FieldGuide.registerQuestions(5, {
     "Neck length is not inherited."
    ],
    "answer": 0,
-   "hint": "Selection changes allele frequencies, not individuals.",
+   "hint": "Selection changes how common alleles are in a population, not individuals.",
    "explain": "Giraffes with long-neck alleles left more offspring, so those alleles became more common.",
    "tags": [
     "boss"
@@ -622,8 +483,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q30",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
+   "code": "3.1.9-12.X",
+   "topic": "speciation",
    "prompt": "Which situation is most likely to lead to a new species?",
    "options": [
     "A new river splits a population, and each group adapts to different conditions for thousands of years.",
@@ -640,8 +501,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q31",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "prompt": "Which is the strongest evidence that whales evolved from land mammals?",
    "options": [
     "Fossil whales with small back legs, and tiny hip bones in living whales",
@@ -658,8 +519,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "w5q32",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.T",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
    "prompt": "Why do brothers and sisters (except identical twins) look different from each other?",
    "options": [
     "Meiosis and fertilization create new combinations of alleles.",
@@ -675,37 +536,265 @@ FieldGuide.registerQuestions(5, {
    ]
   },
   {
-   "id": "w5q33",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "prompt": "A student says, 'Evolution is only a theory, so it is just a guess.' What is the best response?",
+   "id": "w5q34",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
+   "prompt": "Why does using antibiotics when they are not needed (for example, for a cold caused by a virus) speed up antibiotic resistance?",
    "options": [
-    "In science, a theory is a well-supported explanation backed by a large body of evidence.",
-    "The student is right: theories are guesses.",
-    "Theories turn into laws after enough tests.",
-    "Evolution is a law, not a theory."
+    "Each use kills bacteria that are not resistant, so resistant bacteria survive and multiply more often.",
+    "Antibiotics turn viruses into bacteria.",
+    "Bacteria decide to become resistant when they sense the drug.",
+    "Antibiotics make people's own cells resistant."
    ],
    "answer": 0,
-   "hint": "What does 'theory' mean in science?",
-   "explain": "A scientific theory, like cell theory or the theory of evolution, is a well-tested, evidence-based explanation.",
+   "hint": "Every dose is another round of selection.",
+   "explain": "Antibiotics do not work on viruses, but they still kill the bacteria in your body that are not resistant. The resistant ones survive and reproduce, so every unneeded use gives resistance another advantage.",
    "tags": [
     "boss"
    ]
   },
   {
-   "id": "w5q34",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
-   "prompt": "Why does finishing a full course of antibiotics help slow antibiotic resistance?",
+   "id": "w5q35",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "prompt": "A female cod can lay millions of eggs in one season, but only a few of her young live to be adults. Which factor of evolution does this show?",
    "options": [
-    "It kills even the somewhat resistant bacteria before they can multiply.",
-    "It makes bacteria mutate less.",
-    "It makes the bacteria choose not to resist.",
-    "It makes the bacteria stronger."
+    "Species can produce more offspring than can survive.",
+    "Individuals change their traits because they need to.",
+    "All of her offspring are exactly alike.",
+    "The ocean has unlimited food for every young fish."
    ],
    "answer": 0,
-   "hint": "Stopping early leaves the toughest survivors.",
-   "explain": "Stopping early lets the most resistant bacteria survive and reproduce, which selects for resistance.",
+   "hint": "Compare how many are born with how many survive.",
+   "explain": "Species can produce far more offspring than the environment can support, so many die before they can reproduce. That sets up a struggle to survive."
+  },
+  {
+   "id": "w5q36",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "prompt": "Two finch parents raise six chicks. Each chick's beak is slightly different. What best explains these differences?",
+   "options": [
+    "Sexual reproduction gave each chick a different mix of its parents' alleles.",
+    "Each chick chose the beak size it wanted.",
+    "The food the chicks ate changed their DNA.",
+    "Mitosis made each chick different from its parents."
+   ],
+   "answer": 0,
+   "hint": "Where do a chick's alleles come from?",
+   "explain": "In sexual reproduction, each offspring gets a new combination of its parents' alleles. That inherited variation is what natural selection acts on."
+  },
+  {
+   "id": "w5q37",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "prompt": "During a drought, seeds become scarce and the finches on an island compete for them. Why does this competition matter for evolution?",
+   "options": [
+    "Not all finches can survive, so those with traits that help them get food leave more offspring.",
+    "Competition makes every finch grow a bigger beak during its life.",
+    "Competition gives every finch the same chance to survive.",
+    "Competition stops finches from having any offspring at all."
+   ],
+   "answer": 0,
+   "hint": "If there is not enough food for all, who survives?",
+   "explain": "Limited resources mean not every individual survives. Individuals whose inherited traits help them compete leave more offspring, so those traits become more common."
+  },
+  {
+   "id": "w5q38",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "prompt": "A beetle population is 10% green and 90% brown. Birds spot green beetles more easily. If nothing else changes, what is the most likely result after many generations?",
+   "options": [
+    "Brown beetles make up even more than 90% of the population.",
+    "Green beetles rise to about 50% of the population.",
+    "The population stays exactly 10% green.",
+    "All of the beetles turn green."
+   ],
+   "answer": 0,
+   "hint": "Which color survives and reproduces more?",
+   "explain": "Brown beetles survive and reproduce more, so the share of brown beetles keeps growing over the generations."
+  },
+  {
+   "id": "w5q39",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "prompt": "Which list includes all FOUR factors that drive evolution?",
+   "options": [
+    "More offspring than can survive, inherited variation, competition for limited resources, and better-suited individuals reproducing more",
+    "Unlimited resources, identical offspring, no competition, and every individual reproducing equally",
+    "Individuals changing their genes on purpose, inherited variation, competition, and more offspring than can survive",
+    "Traits gained during life, competition, unlimited resources, and better-suited individuals reproducing more"
+   ],
+   "answer": 0,
+   "hint": "Look for the list with no myths in it.",
+   "explain": "Evolution mostly results from: (1) the potential to produce more offspring than can survive, (2) inherited variation, (3) competition for limited resources, and (4) better-suited individuals surviving and reproducing more."
+  },
+  {
+   "id": "w5q40",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "prompt": "A gardener plants 200 seeds that are all genetically identical. A very dry summer follows. Why can natural selection NOT make this group better at surviving drought?",
+   "options": [
+    "There is no inherited variation for selection to act on.",
+    "There are too many seeds.",
+    "Dry weather never affects plants.",
+    "The plants are competing for water."
+   ],
+   "answer": 0,
+   "hint": "What do the seeds lack?",
+   "explain": "Natural selection needs inherited variation. If every seed has the same alleles, no seed has a trait that helps it survive better and pass that trait on."
+  },
+  {
+   "id": "w5q47",
+   "code": "3.1.9-12.X",
+   "topic": "env-change",
+   "prompt": "A drought dries up most of the ponds in a region for many years. What is most likely to happen to frog species there that need ponds to lay their eggs?",
+   "options": [
+    "Their numbers drop, and some may go extinct in that region.",
+    "Their numbers grow quickly.",
+    "They stop needing water to reproduce.",
+    "Nothing changes for them."
+   ],
+   "answer": 0,
+   "hint": "What do these frogs need that the drought takes away?",
+   "explain": "When the environment changes, species that depend on what was lost can decline or go extinct."
+  },
+  {
+   "id": "w5q48",
+   "code": "3.1.9-12.X",
+   "topic": "env-change",
+   "prompt": "Fertilizer runoff adds nutrients to a lake. Algae grow quickly, and fish that need lots of oxygen become rare. What does this show?",
+   "options": [
+    "A change in the environment can make some species increase and others decrease.",
+    "Fertilizer has no effect on lake life.",
+    "Every species in the lake increases.",
+    "Fish can change their need for oxygen when they want to."
+   ],
+   "answer": 0,
+   "hint": "Compare what happened to the algae and to the fish.",
+   "explain": "Environmental changes help some species (the algae) and harm others (oxygen-loving fish), changing which species are common."
+  },
+  {
+   "id": "w5q49",
+   "code": "3.1.9-12.X",
+   "topic": "env-change",
+   "prompt": "Why is a very FAST change in the environment more likely to cause extinction than a slow change?",
+   "options": [
+    "A population may die out before helpful inherited traits can become common.",
+    "Fast changes always help every species.",
+    "Slow changes never affect species.",
+    "Animals can change their genes faster during fast changes."
+   ],
+   "answer": 0,
+   "hint": "Natural selection takes many generations.",
+   "explain": "Natural selection needs generations to make helpful traits common. If conditions change too fast, a species may go extinct first."
+  },
+  {
+   "id": "w5q50",
+   "code": "3.1.9-12.X",
+   "topic": "env-change",
+   "prompt": "Most of the trees in a forest are cut down and the land becomes open grassland. Which species is most likely to INCREASE in number?",
+   "options": [
+    "a bird that nests on open ground and eats grass seeds",
+    "an owl that nests in tree holes",
+    "a squirrel that eats acorns",
+    "a woodpecker that drills into tree bark"
+   ],
+   "answer": 0,
+   "hint": "Which species does the new grassland help?",
+   "explain": "Deforestation removes what forest species need, but species suited to open land can increase.",
+   "tags": [
+    "boss"
+   ]
+  },
+  {
+   "id": "w5q41",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "prompt": "On dark lava rock, dark-furred pocket mice made up 20% of a population at first and 80% after many generations. What best explains this change?",
+   "options": [
+    "Dark fur hid mice from predators on dark rock, so dark mice survived and reproduced more.",
+    "Light mice turned dark to match the rock.",
+    "The lava changed the color of the mice's fur directly.",
+    "Dark mice are always more common in every habitat."
+   ],
+   "answer": 0,
+   "hint": "Which mice are harder for owls to see on dark rock?",
+   "explain": "Dark fur is an advantage on dark rock. Dark mice survive and reproduce more, so the PROPORTION of dark mice rises over the generations."
+  },
+  {
+   "id": "w5q42",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "prompt": "Over four years, the percent of finches with deep beaks on an island was 20%, 30%, 45%, and then 60%. Which conclusion do these data support?",
+   "options": [
+    "Deep beaks are increasing in proportion, so they probably give an advantage there.",
+    "Deep beaks are becoming less common.",
+    "The proportion of deep beaks did not change.",
+    "Every finch on the island now has a deep beak."
+   ],
+   "answer": 0,
+   "hint": "Is the percent going up, down, or staying the same?",
+   "explain": "A trait that keeps rising as a share of the population is most likely an advantage in that environment."
+  },
+  {
+   "id": "w5q43",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "prompt": "Before a drought, the MEAN (average) beak depth of a finch population was 9.2 mm. Among the finches that survived the drought, the mean was 9.8 mm. What does this suggest?",
+   "options": [
+    "Finches with deeper beaks survived the drought better.",
+    "Every finch grew a deeper beak during the drought.",
+    "Beak depth had nothing to do with survival.",
+    "Finches with shallow beaks survived better."
+   ],
+   "answer": 0,
+   "hint": "Did the average go up or down among the survivors?",
+   "explain": "The survivors' average beak was deeper, so deeper-beaked finches were more likely to survive and pass on their beak depth."
+  },
+  {
+   "id": "w5q44",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "prompt": "Why do scientists track the PERCENT of a population that has a trait, instead of only counting how many individuals have it?",
+   "options": [
+    "The population size can change, so a percent shows whether the trait is becoming more common compared with the others.",
+    "Percents are always bigger numbers.",
+    "Counting individuals is never allowed in science.",
+    "A percent shows which individual is the strongest."
+   ],
+   "answer": 0,
+   "hint": "What if the whole population doubles?",
+   "explain": "If a population grows or shrinks, raw counts can mislead. The percent (proportion) shows whether the trait is gaining ground relative to the rest."
+  },
+  {
+   "id": "w5q45",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "prompt": "Near Manchester, England, dark peppered moths were very rare in the 1840s but made up about 98% of the moths by 1895, after soot darkened the tree bark. Which conclusion is best supported?",
+   "options": [
+    "Dark color became an advantage on sooty bark, so dark moths increased in proportion.",
+    "Soot painted the moths dark.",
+    "Light moths chose to stop reproducing.",
+    "The change happened by chance and has no link to the bark."
+   ],
+   "answer": 0,
+   "hint": "Which moths could birds see on dark bark?",
+   "explain": "On soot-darkened bark, dark moths were hidden from birds, survived and reproduced more, and rose from rare to most of the population."
+  },
+  {
+   "id": "w5q46",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "prompt": "Antibiotic-resistant bacteria made up 1% of a population before treatment and 90% after a week of treatment. Which statement is correct?",
+   "options": [
+    "The antibiotic killed most of the bacteria that were not resistant, so the resistant trait rose in proportion.",
+    "The antibiotic made the bacteria become resistant.",
+    "The resistant bacteria disappeared.",
+    "The proportion of resistant bacteria stayed the same."
+   ],
+   "answer": 0,
+   "hint": "Which bacteria survived the treatment?",
+   "explain": "Resistance already existed in a few bacteria. The antibiotic removed the others, so the resistant share rose from 1% to 90%.",
    "tags": [
     "boss"
    ]
@@ -735,35 +824,13 @@ FieldGuide.registerQuestions(5, {
      ]
     }
    ]
-  },
-  {
-   "name": "Genetic drift or natural selection?",
-   "explain": "Natural selection depends on traits that help survival. Genetic drift is random: survival by chance, not by traits.",
-   "members": [
-    {
-     "label": "Natural selection",
-     "level": "5-1",
-     "ids": [
-      "w5q02",
-      "w5q04"
-     ]
-    },
-    {
-     "label": "Genetic drift",
-     "level": "5-2",
-     "ids": [
-      "w5q07",
-      "w5q06"
-     ]
-    }
-   ]
   }
  ],
  "become": [
   {
    "id": "b-moth",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "you": "a peppered moth resting on soot-darkened tree bark in 1850s England",
    "short": "Moth",
    "color": "#5a5a5a",
@@ -790,38 +857,9 @@ FieldGuide.registerQuestions(5, {
    "explain": "Dark moths survived and reproduced more, so the dark allele became more common: natural selection."
   },
   {
-   "id": "b-bottleneck",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
-   "you": "a northern elephant seal. Hunting in the 1800s left only a few dozen seals alive",
-   "short": "Seal",
-   "color": "#8a7a6a",
-   "goal": "Go through the door that describes your population today, now that it has grown to over 100,000.",
-   "doors": [
-    {
-     "kind": "organelle",
-     "label": "Very little genetic variation",
-     "ok": true
-    },
-    {
-     "kind": "flow",
-     "label": "Lots of genetic variation",
-     "ok": false,
-     "why": "The few survivors carried only a few alleles. Growing back in number does not bring lost alleles back."
-    },
-    {
-     "kind": "vesicle",
-     "label": "Every seal is an exact clone",
-     "ok": false,
-     "why": "Sexual reproduction still mixes alleles, but there are far fewer different alleles to mix."
-    }
-   ],
-   "explain": "A bottleneck is a kind of genetic drift: a sudden crash in numbers leaves a population with little genetic variation."
-  },
-  {
    "id": "b-isolation",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
+   "code": "3.1.9-12.X",
+   "topic": "speciation",
    "you": "a Kaibab squirrel on the north rim of the Grand Canyon",
    "short": "Squirrel",
    "color": "#a8785a",
@@ -834,9 +872,9 @@ FieldGuide.registerQuestions(5, {
     },
     {
      "kind": "flow",
-     "label": "You breed in a different season",
+     "label": "Squirrels only mate with squirrels of the exact same color",
      "ok": false,
-     "why": "That would be temporal isolation. Here, a physical barrier separates the populations."
+     "why": "The two kinds of squirrel now look different, but color is not what keeps them apart. The canyon itself does."
     },
     {
      "kind": "vesicle",
@@ -849,8 +887,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "b-homolog",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "you": "a whale's flipper",
    "short": "Flipper",
    "color": "#62b6cb",
@@ -875,103 +913,88 @@ FieldGuide.registerQuestions(5, {
     }
    ],
    "explain": "A whale flipper and a human arm share the same bone pattern from a common mammal ancestor: homologous structures."
+  },
+  {
+   "id": "b-factors",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "you": "a sea turtle egg, one of about 100 laid in the same nest on a beach",
+   "short": "Egg",
+   "color": "#f4f0e4",
+   "goal": "Go through the door that best describes what will happen to your nest-mates.",
+   "doors": [
+    {
+     "kind": "organelle",
+     "label": "Most will not live to be adults: more are born than can survive",
+     "ok": true
+    },
+    {
+     "kind": "flow",
+     "label": "All 100 will grow up, because the sea has unlimited food",
+     "ok": false,
+     "why": "Food and safe places are limited. Predators and hunger mean only a few hatchlings grow up."
+    },
+    {
+     "kind": "vesicle",
+     "label": "Each hatchling will change its genes to fit the sea",
+     "ok": false,
+     "why": "Individuals cannot change their genes. Selection acts on the variation they are born with."
+    }
+   ],
+   "explain": "Species produce more offspring than can survive. Which ones survive depends partly on their inherited traits: one of the four factors of evolution."
   }
  ],
  "catches": [
   {
-   "id": "c-mechanism",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
-   "short": "Ways populations change",
-   "title": "Name the cause: grab the process that changed each population.",
+   "id": "c-factors",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "short": "Four factors",
+   "title": "Name the factor: grab the factor of evolution that matches each event.",
    "cueLabel": "Event",
    "builtLabel": "Named",
    "cueWord": "event",
-   "tokenWord": "process",
-   "rule": "Selection depends on traits; drift is random; gene flow moves alleles; mutation makes new ones.",
+   "tokenWord": "factor",
+   "rule": "More offspring than survive, inherited variation, competition, and better-suited individuals reproducing more.",
    "choices": [
-    "Genetic drift",
-    "Founder effect",
-    "Gene flow",
-    "Mutation",
+    "More offspring than can survive",
+    "Inherited variation",
+    "Competition for resources",
+    "Better-suited reproduce more",
     "Succession",
     "Photosynthesis"
    ],
    "steps": [
     {
-     "cue": "A storm randomly kills most beetles, no matter their traits",
-     "need": "Genetic drift"
+     "cue": "A salmon lays thousands of eggs, but few grow up",
+     "need": "More offspring than can survive"
     },
     {
-     "cue": "A few birds blown to a new island start a population",
-     "need": "Founder effect"
+     "cue": "Sibling finches are born with different beak sizes",
+     "need": "Inherited variation"
     },
     {
-     "cue": "Pollen blows from one meadow into another population",
-     "need": "Gene flow"
+     "cue": "Finches crowd around the last seeds after a drought",
+     "need": "Competition for resources"
     },
     {
-     "cue": "A copying error makes a brand-new allele",
-     "need": "Mutation"
+     "cue": "Deep-beaked finches raise the most chicks",
+     "need": "Better-suited reproduce more"
     }
    ],
-   "hint": "Random? Few founders? Alleles moving in? Brand-new allele?",
+   "hint": "Too many born? Born different? Not enough to go around? Who leaves more young?",
    "wrong": {
-    "Succession": "Succession is how a community changes after a disturbance, not how allele frequencies change.",
-    "Photosynthesis": "Photosynthesis makes glucose. It does not change allele frequencies."
+    "Succession": "Succession is how a community changes after a disturbance, not one of the four factors of evolution.",
+    "Photosynthesis": "Photosynthesis makes sugar from light. It is not one of the four factors of evolution."
    },
-   "explain": "Genetic drift, the founder effect, gene flow, and mutation all change a population's gene pool, along with natural selection."
-  },
-  {
-   "id": "c-science",
-   "code": "BIO.B.3.3.1",
-   "steels": "Nature of Science (STEELS Science and Engineering Practices)",
-   "short": "Science words",
-   "title": "Name the statement: grab the type of scientific statement for each.",
-   "cueLabel": "Statement",
-   "builtLabel": "Named",
-   "cueWord": "statement",
-   "tokenWord": "type",
-   "rule": "Observe, infer, predict, explain.",
-   "choices": [
-    "Observation",
-    "Inference",
-    "Hypothesis",
-    "Theory",
-    "Opinion",
-    "Guess"
-   ],
-   "steps": [
-    {
-     "cue": "The finch's beak is 11 mm deep",
-     "need": "Observation"
-    },
-    {
-     "cue": "This finch probably cracks hard seeds",
-     "need": "Inference"
-    },
-    {
-     "cue": "If the drought continues, beaks will get deeper",
-     "need": "Hypothesis"
-    },
-    {
-     "cue": "A well-tested explanation of how species change",
-     "need": "Theory"
-    }
-   ],
-   "hint": "Measured? Concluded? A testable prediction? A big, well-supported explanation?",
-   "wrong": {
-    "Opinion": "An opinion is a personal belief, not a scientific statement that evidence can test.",
-    "Guess": "Science statements are based on evidence. A scientific theory is never just a guess."
-   },
-   "explain": "Observations are measured; inferences are concluded; hypotheses are testable predictions; theories are well-supported explanations."
+   "explain": "Overproduction, inherited variation, competition for limited resources, and better-suited individuals reproducing more together drive evolution."
   }
  ],
  "data": [
   {
    "id": "d-finch",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "title": "Medium ground finches that survived a drought that left mostly large, hard seeds",
    "xlabel": "Beak depth",
    "ylabel": "Percent that survived",
@@ -1012,8 +1035,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "d-resistance",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.U",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
    "title": "Bacteria that resist an antibiotic, measured while the antibiotic is in use",
    "xlabel": "Day",
    "ylabel": "Percent resistant",
@@ -1054,8 +1077,8 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "d-cytochrome",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "title": "Amino acid differences between human cytochrome c and other organisms' cytochrome c",
    "xlabel": "Organism",
    "ylabel": "Number of differences",
@@ -1093,13 +1116,95 @@ FieldGuide.registerQuestions(5, {
      "explain": "The rhesus monkey differs by one amino acid: another close primate relative."
     }
    ]
+  },
+  {
+   "id": "d-overproduce",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "title": "What happened to 96 field mice born in one spring (illustrative numbers)",
+   "xlabel": "Stage",
+   "ylabel": "Mice alive",
+   "categories": [
+    "Born",
+    "After 1 month",
+    "After 3 months",
+    "Lived to breed"
+   ],
+   "values": [
+    96,
+    48,
+    24,
+    12
+   ],
+   "questions": [
+    {
+     "prompt": "At which stage were the MOST mice alive?",
+     "answer": 0,
+     "hint": "Find the tallest bar.",
+     "explain": "All 96 were alive at birth. Many more are born than the field can support."
+    },
+    {
+     "prompt": "At which stage were HALF of the mice born still alive?",
+     "answer": 1,
+     "hint": "Half of 96 is 48.",
+     "explain": "After 1 month only 48 of 96 (half) were alive: food, predators, and weather limit survival."
+    },
+    {
+     "prompt": "At which stage were the FEWEST mice alive?",
+     "answer": 3,
+     "hint": "Find the shortest bar.",
+     "explain": "Only 12 of 96 (1 in 8) lived to breed. The survivors pass their traits to the next generation."
+    }
+   ]
+  },
+  {
+   "id": "d-mice",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
+   "title": "Rock pocket mice with dark fur living on dark lava rock (illustrative numbers)",
+   "xlabel": "Generation",
+   "ylabel": "Percent with dark fur",
+   "categories": [
+    "Gen 1",
+    "Gen 5",
+    "Gen 10",
+    "Gen 15",
+    "Gen 20"
+   ],
+   "values": [
+    10,
+    25,
+    45,
+    65,
+    80
+   ],
+   "questions": [
+    {
+     "prompt": "In which generation were dark mice LEAST common?",
+     "answer": 0,
+     "hint": "Find the shortest bar.",
+     "explain": "At first only 10% of the mice had dark fur."
+    },
+    {
+     "prompt": "In which generation did dark mice FIRST make up more than half of the population?",
+     "answer": 3,
+     "hint": "Look for the first bar above 50.",
+     "explain": "By generation 15, 65% had dark fur: the proportion kept rising."
+    },
+    {
+     "prompt": "In which generation did 4 out of 5 mice have dark fur?",
+     "answer": 4,
+     "hint": "4 out of 5 is 80%.",
+     "explain": "By generation 20, 80% had dark fur. Dark fur is an advantage on dark rock, so it increased in proportion."
+    }
+   ]
   }
  ],
  "mazes": [
   {
    "id": "maze-speciation",
-   "code": "BIO.B.3.1.2",
-   "steels": "3.1.9-12.X",
+   "code": "3.1.9-12.X",
+   "topic": "speciation",
    "title": "How one species becomes two: go through the doorway for the next step",
    "start": "One squirrel population",
    "steps": [
@@ -1115,8 +1220,8 @@ FieldGuide.registerQuestions(5, {
     },
     {
      "label": "Allele frequencies change in each group",
-     "hint": "Selection, drift, and mutation act separately.",
-     "why": "Each group's gene pool changes on its own."
+     "hint": "Natural selection acts on each side separately.",
+     "why": "Each group's inherited traits change on their own, shaped by its own conditions."
     },
     {
      "label": "They can no longer interbreed: two species",
@@ -1128,14 +1233,14 @@ FieldGuide.registerQuestions(5, {
     "They blend back into one",
     "Nothing changes"
    ],
-   "explain": "Speciation: isolation, different pressures, changing allele frequencies, and finally reproductive isolation."
+   "explain": "Speciation: isolation, different conditions, separate changes in inherited traits, and finally the groups can no longer interbreed."
   }
  ],
  "sequences": [
   {
    "id": "s-selection",
-   "code": "BIO.B.3.1.1",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "title": "Put the steps of natural selection in order",
    "steps": [
     "Individuals vary, and much of that variation is inherited",
@@ -1144,12 +1249,12 @@ FieldGuide.registerQuestions(5, {
     "Over generations, the helpful alleles become more common"
    ],
    "hint": "It starts with variation.",
-   "explain": "Variation, overproduction, differential survival and reproduction, then a change in allele frequencies."
+   "explain": "Variation, overproduction, differential survival and reproduction, then a change in how common each allele is."
   },
   {
    "id": "s-resistance",
-   "code": "BIO.B.3.1.3",
-   "steels": "3.1.9-12.U",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
    "title": "How antibiotic resistance spreads",
    "steps": [
     "A random mutation makes a few bacteria resistant",
@@ -1162,149 +1267,166 @@ FieldGuide.registerQuestions(5, {
   },
   {
    "id": "s-layers",
-   "code": "BIO.B.3.2.1",
-   "steels": "3.1.9-12.S",
+   "code": "3.1.9-12.S",
+   "topic": "evidence",
    "title": "Order the fossils from OLDEST (bottom layer) to YOUNGEST (top layer)",
    "steps": [
     "Trilobites (bottom layer)",
-    "Early jawless fishes",
+    "Armored fishes",
     "Dinosaurs",
     "Woolly mammoths (top layer)"
    ],
    "hint": "Lower layers formed first.",
    "explain": "The law of superposition: in undisturbed layers, the deepest fossils are the oldest."
+  },
+  {
+   "id": "s-fourfactors",
+   "code": "3.1.9-12.T",
+   "topic": "four-factors",
+   "title": "Put the four factors in order, as they play out in a finch population",
+   "steps": [
+    "Finches lay more eggs than the island can support",
+    "The chicks vary, and their beak sizes are inherited",
+    "The chicks compete for a limited supply of seeds",
+    "Chicks with better-suited beaks survive and raise more young"
+   ],
+   "hint": "Start with how many are born.",
+   "explain": "More offspring than can survive, inherited variation, competition for limited resources, then better-suited individuals reproduce more."
   }
  ],
  "wordbanks": [
   {
    "id": "wb-selection",
-   "steels": "3.1.9-12.W",
+   "code": "3.1.9-12.W",
+   "topic": "selection",
    "words": [
     "variation",
     "adaptation",
     "fitness",
     "natural selection",
     "selection pressure",
-    "genetic drift"
+    "camouflage"
    ],
    "sentences": [
     {
      "text": "Differences among individuals in a population are called ___.",
      "answer": "variation",
-     "code": "BIO.B.3.1.3",
+     "code": "3.1.9-12.T",
      "explain": "Variation is the raw material for evolution."
     },
     {
      "text": "An inherited trait that helps an organism survive and reproduce is an ___.",
      "answer": "adaptation",
-     "code": "BIO.B.3.1.1",
+     "code": "3.1.9-12.W",
      "explain": "Adaptations, like camouflage, help organisms survive."
     },
     {
      "text": "How well an organism survives and reproduces is its ___.",
      "answer": "fitness",
-     "code": "BIO.B.3.1.1",
+     "code": "3.1.9-12.W",
      "explain": "Fitness is measured in offspring."
     },
     {
      "text": "Better-suited individuals leaving more offspring is ___.",
      "answer": "natural selection",
-     "code": "BIO.B.3.1.1",
-     "explain": "Natural selection changes allele frequencies over generations."
+     "code": "3.1.9-12.W",
+     "explain": "Natural selection changes how common each allele is over generations."
     },
     {
      "text": "A drought that makes hard seeds the only food is a ___.",
      "answer": "selection pressure",
-     "code": "BIO.B.3.1.1",
+     "code": "3.1.9-12.W",
      "explain": "Selection pressures decide which traits are helpful."
     }
    ]
   },
   {
    "id": "wb-speciation",
-   "steels": "3.1.9-12.X",
+   "code": "3.1.9-12.X",
+   "topic": "speciation",
    "words": [
     "species",
     "speciation",
-    "reproductive isolation",
+    "geographic isolation",
     "extinction",
-    "gene pool",
+    "environmental change",
     "mutation"
    ],
    "sentences": [
     {
      "text": "A group that can interbreed and have fertile offspring is a ___.",
      "answer": "species",
-     "code": "BIO.B.3.1.2",
+     "code": "3.1.9-12.X",
      "explain": "Members of a species can interbreed in nature."
     },
     {
      "text": "The formation of a new species is called ___.",
      "answer": "speciation",
-     "code": "BIO.B.3.1.2",
+     "code": "3.1.9-12.X",
      "explain": "Speciation often follows isolation."
     },
     {
-     "text": "When populations can no longer interbreed, there is ___.",
-     "answer": "reproductive isolation",
-     "code": "BIO.B.3.1.2",
-     "explain": "Barriers can be geographic, behavioral, or temporal."
+     "text": "When a canyon, river, or mountain keeps populations apart, there is ___.",
+     "answer": "geographic isolation",
+     "code": "3.1.9-12.X",
+     "explain": "Separated populations change on their own and can become new species."
     },
     {
      "text": "When every member of a species dies, the species has gone through ___.",
      "answer": "extinction",
-     "code": "BIO.B.3.1.2",
+     "code": "3.1.9-12.X",
      "explain": "Most species that ever lived are now extinct."
     },
     {
-     "text": "All the alleles in a population make up its ___.",
-     "answer": "gene pool",
-     "code": "BIO.B.3.1.2",
-     "explain": "Evolution changes the gene pool over time."
+     "text": "A drought, a flood, or cutting down a forest is an ___.",
+     "answer": "environmental change",
+     "code": "3.1.9-12.X",
+     "explain": "Environmental changes can make some species increase, lead to new species, or cause extinctions."
     }
    ]
   },
   {
-   "id": "wb-science",
-   "steels": "3.1.9-12.S",
+   "id": "wb-traits",
+   "code": "3.1.9-12.U",
+   "topic": "trait-stats",
    "words": [
-    "observation",
-    "inference",
-    "hypothesis",
-    "theory",
-    "law",
-    "adaptation"
+    "proportion",
+    "generation",
+    "advantage",
+    "mean",
+    "increase",
+    "percent"
    ],
    "sentences": [
     {
-     "text": "Measuring a beak with a ruler is an ___.",
-     "answer": "observation",
-     "code": "BIO.B.3.3.1",
-     "explain": "Observations come from the senses or instruments."
+     "text": "If 30 of 100 mice have dark fur, the ___ of dark mice is 30%.",
+     "answer": "proportion",
+     "code": "3.1.9-12.U",
+     "explain": "A proportion is the part of the whole, often written as a percent."
     },
     {
-     "text": "A conclusion based on evidence, like 'it probably swam', is an ___.",
-     "answer": "inference",
-     "code": "BIO.B.3.3.1",
-     "explain": "Inferences explain observations."
+     "text": "Parents, then their offspring, then their offspring's offspring: each step is one ___.",
+     "answer": "generation",
+     "code": "3.1.9-12.U",
+     "explain": "Natural selection shows up over many generations."
     },
     {
-     "text": "A testable prediction is a ___.",
-     "answer": "hypothesis",
-     "code": "BIO.B.3.3.1",
-     "explain": "Hypotheses can be supported or refuted by evidence."
+     "text": "A trait that helps an organism survive and reproduce gives it an ___.",
+     "answer": "advantage",
+     "code": "3.1.9-12.U",
+     "explain": "Advantageous traits are passed on more often."
     },
     {
-     "text": "A broad, well-tested explanation like cell theory or evolution is a scientific ___.",
-     "answer": "theory",
-     "code": "BIO.B.3.3.1",
-     "explain": "Theories explain WHY."
+     "text": "Adding up all the beak depths and dividing by the number of finches gives the ___.",
+     "answer": "mean",
+     "code": "3.1.9-12.U",
+     "explain": "The mean (average) can shift when some individuals survive better."
     },
     {
-     "text": "A statement that describes what always happens, like Mendel's law of segregation, is a ___.",
-     "answer": "law",
-     "code": "BIO.B.3.3.1",
-     "explain": "Laws describe WHAT happens."
+     "text": "Over generations, an advantageous inherited trait tends to ___ in proportion.",
+     "answer": "increase",
+     "code": "3.1.9-12.U",
+     "explain": "Organisms with the trait leave more offspring, so its share grows."
     }
    ]
   }
@@ -1317,21 +1439,21 @@ FieldGuide.registerQuestions(5, {
     {
      "prompt": "Clue 1: A cliff has 5 undisturbed rock layers. Counting from the TOP as layer 1, which layer holds the oldest fossils?",
      "answer": 5,
-     "code": "BIO.B.3.2.1",
+     "code": "3.1.9-12.S",
      "hint": "The deepest layer formed first.",
      "explain": "Layer 5, the bottom layer, is the oldest (law of superposition)."
     },
     {
      "prompt": "Clue 2: How many of these are homologous to a human arm? Bat wing, whale flipper, cat leg, butterfly wing.",
      "answer": 3,
-     "code": "BIO.B.3.2.1",
+     "code": "3.1.9-12.S",
      "hint": "Which ones have the same bones?",
      "explain": "Bat wing, whale flipper, and cat leg share our arm bones (3). Butterfly wings have no bones."
     },
     {
      "prompt": "Clue 3: How many organisms on the graph differ from humans by FEWER than 13 amino acids?",
      "answer": 3,
-     "code": "BIO.B.3.2.1",
+     "code": "3.1.9-12.S",
      "figure": {
       "type": "bars",
       "categories": [
@@ -1426,24 +1548,6 @@ FieldGuide.registerQuestions(5, {
    "note": "Tortoises differ from island to island. Darwin's 1835 visit to the Galápagos helped him reason that species share COMMON ANCESTORS."
   },
   {
-   "id": "s5-genepool",
-   "name": "Gene pool",
-   "look": "chain",
-   "color": "#c59cff",
-   "word": "Gene pool",
-   "def": "All the alleles of all the genes in a population.",
-   "note": "Evolution is a change in the GENE POOL: some alleles become more common, others rarer."
-  },
-  {
-   "id": "s5-frequency",
-   "name": "Allele counter",
-   "look": "stack",
-   "color": "#7fd4ff",
-   "word": "Allele frequency",
-   "def": "How common an allele is in a population, often written as a percent.",
-   "note": "If 30 of 100 alleles for beak size are 'deep', the ALLELE FREQUENCY of 'deep' is 30%."
-  },
-  {
    "id": "s5-newallele",
    "name": "Mutated DNA",
    "look": "helix",
@@ -1451,42 +1555,6 @@ FieldGuide.registerQuestions(5, {
    "word": "Mutation (source of variation)",
    "def": "A change in DNA; the original source of new alleles.",
    "note": "MUTATIONS are random. Most do little, but a few create alleles that selection can favor."
-  },
-  {
-   "id": "s5-drift",
-   "name": "Lucky survivors",
-   "look": "eggs",
-   "color": "#ffd166",
-   "word": "Genetic drift",
-   "def": "A random change in allele frequencies, strongest in small populations.",
-   "note": "When chance, not traits, decides who survives, that is GENETIC DRIFT."
-  },
-  {
-   "id": "s5-founder",
-   "name": "Island castaways",
-   "look": "turtle",
-   "color": "#a8c87a",
-   "word": "Founder effect",
-   "def": "Genetic drift that happens when a few individuals start a new population.",
-   "note": "A few animals rafting to a new island carry only some alleles: the FOUNDER EFFECT."
-  },
-  {
-   "id": "s5-bottleneck",
-   "name": "Elephant seal",
-   "look": "critter",
-   "color": "#8a7a6a",
-   "word": "Bottleneck effect",
-   "def": "Genetic drift that happens when a population is suddenly cut to a small number.",
-   "note": "Hunting cut northern elephant seals to a few dozen. Their gene pool still shows the BOTTLENECK."
-  },
-  {
-   "id": "s5-geneflow",
-   "name": "Traveling pollen",
-   "look": "sprout",
-   "color": "#ffd166",
-   "word": "Gene flow",
-   "def": "The movement of alleles between populations, through migration or carried pollen.",
-   "note": "GENE FLOW keeps populations alike. Stopping it is often the first step toward a new species."
   },
   {
    "id": "s5-resist",
@@ -1504,7 +1572,7 @@ FieldGuide.registerQuestions(5, {
    "color": "#a8785a",
    "word": "Species",
    "def": "A group of organisms that can interbreed in nature and produce fertile offspring.",
-   "note": "Kaibab and Abert's squirrels look alike, but the canyon keeps them apart. Are they becoming separate SPECIES?"
+   "note": "Kaibab and Abert's squirrels now look different, and the canyon keeps them apart. Are they becoming separate SPECIES?"
   },
   {
    "id": "s5-geographic",
@@ -1514,24 +1582,6 @@ FieldGuide.registerQuestions(5, {
    "word": "Geographic isolation",
    "def": "Separation of populations by a physical barrier, such as a canyon, river, or mountain.",
    "note": "The Grand Canyon is a barrier: GEOGRAPHIC ISOLATION."
-  },
-  {
-   "id": "s5-behavioral",
-   "name": "Singing meadowlark",
-   "look": "critter",
-   "color": "#ffd166",
-   "word": "Behavioral isolation",
-   "def": "Populations do not interbreed because of different courtship behaviors.",
-   "note": "Eastern and western meadowlarks look alike but sing different songs: BEHAVIORAL ISOLATION."
-  },
-  {
-   "id": "s5-temporal",
-   "name": "Spring blossoms",
-   "look": "sprout",
-   "color": "#ff9fbf",
-   "word": "Temporal isolation",
-   "def": "Populations do not interbreed because they reproduce at different times.",
-   "note": "Plants that flower in different months cannot pollinate each other: TEMPORAL ISOLATION."
   },
   {
    "id": "s5-speciation",
@@ -1639,7 +1689,7 @@ FieldGuide.registerQuestions(5, {
    "color": "#7be0ad",
    "word": "Universal genetic code",
    "def": "Nearly all organisms use the same codons for the same amino acids.",
-   "note": "The codon AUG means 'start' in bacteria, oak trees, and you. A UNIVERSAL GENETIC CODE points to one common ancestor."
+   "note": "The same three-base codes stand for the same amino acids in bacteria, oak trees, and you. A UNIVERSAL GENETIC CODE points to one common ancestor."
   },
   {
    "id": "s5r-mammoth",
@@ -1675,52 +1725,115 @@ FieldGuide.registerQuestions(5, {
    "color": "#7a8a9a",
    "word": "Oldest layer here",
    "def": "Trilobites were sea arthropods that lived from about 520 to 252 million years ago.",
-   "note": "Trilobites in the Burgess Shale (Canada) and the Grand Canyon are over 500 million years old. The bottom layer holds the OLDEST, simplest animals in this dig."
+   "note": "Trilobites in the Burgess Shale (Canada) and the Grand Canyon are over 500 million years old. The bottom layer holds the OLDEST animals in this dig."
   },
   {
-   "id": "s5-observation",
-   "name": "Field notebook",
-   "look": "stack",
-   "color": "#fff8e1",
-   "word": "Observation",
-   "def": "Information gathered with the senses or instruments.",
-   "note": "'The beak is 11 mm deep' is an OBSERVATION: it is measured, not guessed."
-  },
-  {
-   "id": "s5-inference",
-   "name": "Footprints",
+   "id": "s5-overproduce",
+   "name": "Turtle nest",
    "look": "eggs",
-   "color": "#c8a070",
-   "word": "Inference",
-   "def": "A logical conclusion based on observations and evidence.",
-   "note": "'A large animal walked here' is an INFERENCE from footprints."
+   "color": "#f4f0e4",
+   "word": "Overproduction",
+   "def": "Producing more offspring than the environment can support.",
+   "note": "A sea turtle lays about 100 eggs, but only a few hatchlings grow up. Species can make far more offspring than can survive: OVERPRODUCTION."
   },
   {
-   "id": "s5-hypothesis",
-   "name": "Experiment plan",
+   "id": "s5-shuffle",
+   "name": "Finch chicks",
+   "look": "critter",
+   "color": "#c8a078",
+   "word": "Variation from sexual reproduction",
+   "def": "Each offspring gets a new mix of its parents' alleles, so siblings differ.",
+   "note": "No two of these chicks are exactly alike. SEXUAL REPRODUCTION shuffles the parents' alleles into new combinations."
+  },
+  {
+   "id": "s5-competition",
+   "name": "Seed pile",
+   "look": "sprout",
+   "color": "#c8a050",
+   "word": "Competition",
+   "def": "When individuals struggle for the same limited resources, such as food, water, or space.",
+   "note": "After a drought, finches crowd around the last seeds. Not all of them can win this COMPETITION."
+  },
+  {
+   "id": "s5-limited",
+   "name": "Dry stream",
+   "look": "rock",
+   "color": "#c8b090",
+   "word": "Limited resources",
+   "def": "Food, water, space, and mates are in short supply, so not every individual can survive and reproduce.",
+   "note": "This stream ran dry. When RESOURCES ARE LIMITED, survival depends partly on inherited traits."
+  },
+  {
+   "id": "s5-heritable",
+   "name": "Beak family",
+   "look": "critter",
+   "color": "#a08060",
+   "word": "Heritable variation",
+   "def": "Differences among individuals that are coded in DNA and passed from parents to offspring.",
+   "note": "Parents with deep beaks tend to have chicks with deep beaks. Only HERITABLE VARIATION can be passed on and selected."
+  },
+  {
+   "id": "s5-morekids",
+   "name": "Busy nest",
+   "look": "eggs",
+   "color": "#ffe8b0",
+   "word": "Better-suited survivors",
+   "def": "Individuals whose traits fit the environment best survive and leave the most offspring.",
+   "note": "This finch's beak suits the hard seeds, so it raised a full nest. Its alleles show up in more of the next generation."
+  },
+  {
+   "id": "s5-envchange",
+   "name": "Flooded valley",
+   "look": "rock",
+   "color": "#7fa8c8",
+   "word": "Environmental change",
+   "def": "A change in conditions, such as drought, flood, deforestation, or fertilizer runoff.",
+   "note": "This valley flooded. An ENVIRONMENTAL CHANGE can make some species increase, lead to new species over time, or drive others extinct."
+  },
+  {
+   "id": "s5-ratechange",
+   "name": "Melting ice",
+   "look": "crystal",
+   "color": "#bfe8ff",
+   "word": "Rate of change",
+   "def": "How fast the environment changes.",
+   "note": "Slow changes give natural selection time to work. When the RATE OF CHANGE is very fast, species may go extinct before they can adapt."
+  },
+  {
+   "id": "s5-pocketmouse",
+   "name": "Rock pocket mouse",
+   "look": "critter",
+   "color": "#4a4440",
+   "word": "Advantageous trait",
+   "def": "An inherited trait that helps organisms survive and reproduce in a particular environment.",
+   "note": "On dark lava, dark fur hides these mice from owls. An ADVANTAGEOUS TRAIT tends to increase in proportion over the generations."
+  },
+  {
+   "id": "s5-proportion",
+   "name": "Mouse count",
+   "look": "stack",
+   "color": "#7fd4ff",
+   "word": "Proportion",
+   "def": "The part of a population that has a trait, often written as a percent.",
+   "note": "Here 45 of 100 mice are dark: a PROPORTION of 45%. Tracking the percent shows whether a trait is becoming more common."
+  },
+  {
+   "id": "s5-generation",
+   "name": "Three generations",
+   "look": "chain",
+   "color": "#c59cff",
+   "word": "Generation",
+   "def": "One step in a family line: parents, then their offspring, then their offspring's offspring.",
+   "note": "Natural selection is measured across GENERATIONS, not within one lifetime."
+  },
+  {
+   "id": "s5-mean",
+   "name": "Beak gauge",
    "look": "crystal",
    "color": "#ffd166",
-   "word": "Hypothesis",
-   "def": "A testable explanation or prediction.",
-   "note": "'If the drought continues, beaks will get deeper' is a HYPOTHESIS that can be tested."
-  },
-  {
-   "id": "s5-theory",
-   "name": "Big idea",
-   "look": "sun",
-   "color": "#ffd166",
-   "word": "Scientific theory",
-   "def": "A well-tested explanation of how or why something happens, supported by many lines of evidence.",
-   "note": "Cell theory and the theory of evolution are SCIENTIFIC THEORIES: the strongest kind of explanation in science."
-  },
-  {
-   "id": "s5-law",
-   "name": "Natural rule",
-   "look": "atom",
-   "color": "#7fd4ff",
-   "word": "Scientific law",
-   "def": "A statement that describes what always happens under certain conditions.",
-   "note": "A SCIENTIFIC LAW describes WHAT happens. A theory explains WHY. Theories do not turn into laws."
+   "word": "Mean (average)",
+   "def": "The sum of all the values divided by how many values there are.",
+   "note": "If the MEAN beak depth of survivors is deeper than before, deeper beaks helped finches survive."
   }
  ],
  "vocab": [
@@ -1753,32 +1866,8 @@ FieldGuide.registerQuestions(5, {
    "def": "The idea that all living things are related through shared ancestors."
   },
   {
-   "term": "Gene pool",
-   "def": "All the alleles of all the genes in a population."
-  },
-  {
-   "term": "Allele frequency",
-   "def": "How common an allele is in a population, often written as a percent."
-  },
-  {
    "term": "Mutation (source of variation)",
    "def": "A change in DNA; the original source of new alleles."
-  },
-  {
-   "term": "Genetic drift",
-   "def": "A random change in allele frequencies, strongest in small populations."
-  },
-  {
-   "term": "Founder effect",
-   "def": "Genetic drift that happens when a few individuals start a new population."
-  },
-  {
-   "term": "Bottleneck effect",
-   "def": "Genetic drift that happens when a population is suddenly cut to a small number."
-  },
-  {
-   "term": "Gene flow",
-   "def": "The movement of alleles between populations, through migration or carried pollen."
   },
   {
    "term": "Antibiotic resistance",
@@ -1791,14 +1880,6 @@ FieldGuide.registerQuestions(5, {
   {
    "term": "Geographic isolation",
    "def": "Separation of populations by a physical barrier, such as a canyon, river, or mountain."
-  },
-  {
-   "term": "Behavioral isolation",
-   "def": "Populations do not interbreed because of different courtship behaviors."
-  },
-  {
-   "term": "Temporal isolation",
-   "def": "Populations do not interbreed because they reproduce at different times."
   },
   {
    "term": "Speciation",
@@ -1865,24 +1946,52 @@ FieldGuide.registerQuestions(5, {
    "def": "Trilobites were sea arthropods that lived from about 520 to 252 million years ago."
   },
   {
-   "term": "Observation",
-   "def": "Information gathered with the senses or instruments."
+   "term": "Overproduction",
+   "def": "Producing more offspring than the environment can support."
   },
   {
-   "term": "Inference",
-   "def": "A logical conclusion based on observations and evidence."
+   "term": "Variation from sexual reproduction",
+   "def": "Each offspring gets a new mix of its parents' alleles, so siblings differ."
   },
   {
-   "term": "Hypothesis",
-   "def": "A testable explanation or prediction."
+   "term": "Competition",
+   "def": "When individuals struggle for the same limited resources, such as food, water, or space."
   },
   {
-   "term": "Scientific theory",
-   "def": "A well-tested explanation of how or why something happens, supported by many lines of evidence."
+   "term": "Limited resources",
+   "def": "Food, water, space, and mates are in short supply, so not every individual can survive and reproduce."
   },
   {
-   "term": "Scientific law",
-   "def": "A statement that describes what always happens under certain conditions."
+   "term": "Heritable variation",
+   "def": "Differences among individuals that are coded in DNA and passed from parents to offspring."
+  },
+  {
+   "term": "Better-suited survivors",
+   "def": "Individuals whose traits fit the environment best survive and leave the most offspring."
+  },
+  {
+   "term": "Environmental change",
+   "def": "A change in conditions, such as drought, flood, deforestation, or fertilizer runoff."
+  },
+  {
+   "term": "Rate of change",
+   "def": "How fast the environment changes."
+  },
+  {
+   "term": "Advantageous trait",
+   "def": "An inherited trait that helps organisms survive and reproduce in a particular environment."
+  },
+  {
+   "term": "Proportion",
+   "def": "The part of a population that has a trait, often written as a percent."
+  },
+  {
+   "term": "Generation",
+   "def": "One step in a family line: parents, then their offspring, then their offspring's offspring."
+  },
+  {
+   "term": "Mean (average)",
+   "def": "The sum of all the values divided by how many values there are."
   }
  ]
 });

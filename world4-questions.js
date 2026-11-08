@@ -1,6 +1,9 @@
 /* WORLD 4 QUESTION FILE: Inheritance and Variation of Traits
    Teachers: you can edit the words inside the quotation marks below.
-   - "code" is the Keystone Eligible Content code. "steels" is the PA STEELS standard.
+   - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.
+     World 4 uses D (mitosis and differentiation), P (DNA and chromosomes code traits),
+     Q (sources of inheritable variation), and R (statistics and probability of traits).
+   - "topic" groups questions that can rotate with each other at stations and clue terminals.
    - In "questions", "answer" is the position of the correct option, counting from 0
      (0 = first option). The game shuffles the options, so the right answer can always go first.
    - "hint" shows after a wrong try. "explain" shows after the right answer.
@@ -10,16 +13,16 @@ FieldGuide.registerQuestions(4, {
  "tokens": [
   {
    "id": "replication-facts",
-   "code": "BIO.B.1.2.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "Collect only TRUE facts about DNA replication",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
+   "prompt": "Collect only TRUE facts about copying DNA before a cell divides",
    "good": [
     "A pairs with T",
     "G pairs with C",
-    "Each new DNA keeps one old strand",
     "It happens before a cell divides",
-    "Enzymes unzip the double helix",
-    "It makes an exact copy of the DNA"
+    "Each new cell gets a complete copy",
+    "The copy is almost always exact",
+    "A rare uncorrected mistake is a mutation"
    ],
    "bad": [
     {
@@ -28,22 +31,22 @@ FieldGuide.registerQuestions(4, {
     },
     {
      "text": "It happens after the cell divides",
-     "explain": "DNA is copied during interphase, BEFORE division, so each new cell gets a full copy."
+     "explain": "DNA is copied BEFORE division, so each new cell gets a full copy."
     },
     {
-     "text": "Both strands of new DNA are brand new",
-     "explain": "Replication is semi-conservative: each new DNA molecule keeps one original strand."
+     "text": "Each new cell gets half the DNA",
+     "explain": "In mitosis each new cell gets ALL the DNA. Only gametes (made by meiosis) get half the chromosomes."
     },
     {
      "text": "It turns DNA into mRNA",
-     "explain": "Making mRNA from DNA is transcription, not replication."
+     "explain": "Copying a gene into mRNA is how a protein gets made. Copying DNA makes more DNA."
     }
    ]
   },
   {
    "id": "hetero",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
    "prompt": "Collect only HETEROZYGOUS genotypes (two different alleles)",
    "good": [
     "Aa",
@@ -72,33 +75,32 @@ FieldGuide.registerQuestions(4, {
    ]
   },
   {
-   "id": "biotech-uses",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "Collect only REAL uses of genetic engineering and biotechnology",
+   "id": "mutation-causes",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Collect only things that can cause MUTATIONS (changes in DNA)",
    "good": [
-    "Bacteria that make human insulin",
-    "Crops that resist insect pests",
-    "Gene therapy for inherited diseases",
-    "DNA fingerprinting to solve crimes",
-    "Cloning an animal from a body cell"
+    "Ultraviolet (UV) light",
+    "X-rays and other radiation",
+    "Chemicals in tobacco smoke",
+    "Uncorrected mistakes when DNA is copied"
    ],
    "bad": [
     {
-     "text": "Exercise changes the genes you pass on",
-     "explain": "Traits you gain during life, like muscles, are not written into your gametes' DNA."
+     "text": "Lifting weights",
+     "explain": "Exercise builds muscle, but it does not change the DNA you pass on."
     },
     {
-     "text": "Eating GMO food changes your DNA",
-     "explain": "Digestion breaks food's DNA into small pieces. It does not change your genes."
+     "text": "Wearing sunscreen",
+     "explain": "Sunscreen PROTECTS skin cells' DNA by blocking UV light."
     },
     {
-     "text": "A clone is born as an adult",
-     "explain": "A clone has the same DNA as its donor, but it is born as a baby and grows up normally."
+     "text": "Getting a haircut",
+     "explain": "Cutting hair does not touch the DNA in your cells."
     },
     {
-     "text": "Gene therapy works on viruses like the cold",
-     "explain": "Gene therapy targets a person's own faulty genes, not infections like colds."
+     "text": "Learning a new skill",
+     "explain": "Skills you learn are not written into your DNA."
     }
    ]
   }
@@ -106,8 +108,8 @@ FieldGuide.registerQuestions(4, {
  "sorts": [
   {
    "id": "mit-mei",
-   "code": "BIO.B.1.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "meiosis",
    "prompt": "Mitosis or meiosis?",
    "options": [
     "Mitosis",
@@ -138,7 +140,7 @@ FieldGuide.registerQuestions(4, {
     {
      "text": "Crossing over swaps pieces of chromosomes",
      "answer": 1,
-     "explain": "Crossing over happens in meiosis I."
+     "explain": "Crossing over happens only in meiosis, when partner chromosomes pair up."
     },
     {
      "text": "Keeps the chromosome number the same (46 to 46)",
@@ -148,10 +150,10 @@ FieldGuide.registerQuestions(4, {
     {
      "text": "Has two rounds of division",
      "answer": 1,
-     "explain": "Meiosis I and meiosis II."
+     "explain": "Meiosis divides twice, so one cell becomes four."
     },
     {
-     "text": "Lets a single-celled organism reproduce asexually",
+     "text": "Lets yeast or an amoeba reproduce asexually",
      "answer": 0,
      "explain": "Asexual reproduction of many single-celled eukaryotes uses mitosis."
     }
@@ -159,8 +161,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "pattern",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "prompt": "Which inheritance pattern is it?",
    "options": [
     "Incomplete dominance",
@@ -216,54 +218,9 @@ FieldGuide.registerQuestions(4, {
  ],
  "questions": [
   {
-   "id": "w4q01",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
-   "prompt": "During which part of the cell cycle does a cell copy its DNA?",
-   "options": [
-    "interphase (the S phase)",
-    "prophase",
-    "anaphase",
-    "cytokinesis"
-   ],
-   "answer": 0,
-   "hint": "It happens before mitosis begins.",
-   "explain": "DNA is copied during the S (synthesis) phase of interphase."
-  },
-  {
-   "id": "w4q02",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
-   "prompt": "What happens during cytokinesis?",
-   "options": [
-    "The cytoplasm divides, forming two separate cells.",
-    "The DNA is copied.",
-    "Chromosomes line up in the middle.",
-    "The nuclear membrane disappears."
-   ],
-   "answer": 0,
-   "hint": "'Cyto' means cell; 'kinesis' means movement or splitting.",
-   "explain": "Cytokinesis splits the cytoplasm, finishing the division into two cells."
-  },
-  {
-   "id": "w4q03",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
-   "prompt": "In which phase of mitosis do chromosomes line up across the middle of the cell?",
-   "options": [
-    "metaphase",
-    "prophase",
-    "anaphase",
-    "telophase"
-   ],
-   "answer": 0,
-   "hint": "M for middle.",
-   "explain": "In metaphase, chromosomes line up in the middle so each new cell can get one copy."
-  },
-  {
    "id": "w4q04",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
    "prompt": "Why do body cells go through mitosis?",
    "options": [
     "for growth and to repair or replace damaged cells",
@@ -276,24 +233,9 @@ FieldGuide.registerQuestions(4, {
    "explain": "Mitosis makes identical body cells for growth, repair, and replacement."
   },
   {
-   "id": "w4q05",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
-   "prompt": "Cancer can develop when cells...",
-   "options": [
-    "lose control of the cell cycle and divide without stopping",
-    "stop copying their DNA",
-    "finish meiosis",
-    "divide too slowly to heal a wound"
-   ],
-   "answer": 0,
-   "hint": "The cell cycle has checkpoints that act like brakes.",
-   "explain": "Cancer cells ignore the cell cycle's checkpoints and divide uncontrollably."
-  },
-  {
    "id": "w4q06",
-   "code": "BIO.B.1.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
    "prompt": "A human body cell has 46 chromosomes. How many chromosomes are in a human sperm cell?",
    "options": [
     "23",
@@ -307,8 +249,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q07",
-   "code": "BIO.B.1.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "gametes",
    "prompt": "Which statement compares mitosis and meiosis correctly?",
    "options": [
     "Mitosis makes 2 identical diploid cells; meiosis makes 4 genetically different haploid cells.",
@@ -322,8 +264,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q08",
-   "code": "BIO.B.1.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
    "prompt": "Why is it important that gametes are haploid?",
    "options": [
     "When sperm and egg join, the offspring gets the normal diploid number.",
@@ -337,8 +279,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q09",
-   "code": "BIO.B.1.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
    "prompt": "Which event happens in meiosis but NOT in mitosis?",
    "options": [
     "crossing over between homologous chromosomes",
@@ -348,12 +290,12 @@ FieldGuide.registerQuestions(4, {
    ],
    "answer": 0,
    "hint": "It mixes alleles between partner chromosomes.",
-   "explain": "Crossing over happens only in meiosis I, when homologous chromosomes pair up."
+   "explain": "Crossing over happens only in meiosis, when partner (homologous) chromosomes pair up and swap pieces."
   },
   {
    "id": "w4q10",
-   "code": "BIO.B.1.2.1",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
    "prompt": "One strand of DNA reads A-T-G-C-C-A. What complementary strand is made during replication?",
    "options": [
     "T-A-C-G-G-T",
@@ -366,24 +308,9 @@ FieldGuide.registerQuestions(4, {
    "explain": "Each base pairs with its partner: A-T and G-C. (U is found only in RNA.)"
   },
   {
-   "id": "w4q11",
-   "code": "BIO.B.1.2.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "DNA replication is called semi-conservative. What does that mean?",
-   "options": [
-    "Each new DNA molecule has one original strand and one new strand.",
-    "Half of the DNA is lost.",
-    "Only half of the genes are copied.",
-    "Each new DNA molecule has two new strands."
-   ],
-   "answer": 0,
-   "hint": "'Semi' means half. Half of what is kept?",
-   "explain": "Each new double helix keeps (conserves) one old strand and builds one new strand."
-  },
-  {
    "id": "w4q12",
-   "code": "BIO.B.1.2.1",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
    "prompt": "Why must DNA be copied before a cell divides?",
    "options": [
     "so each new cell gets a complete set of genetic instructions",
@@ -397,8 +324,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q13",
-   "code": "BIO.B.1.2.1",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
    "prompt": "Which bases pair together in DNA?",
    "options": [
     "adenine with thymine, and guanine with cytosine",
@@ -412,8 +339,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q14",
-   "code": "BIO.B.1.2.2",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
    "prompt": "What is a gene?",
    "options": [
     "a section of DNA that codes for a protein",
@@ -427,8 +354,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q15",
-   "code": "BIO.B.1.2.2",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
    "prompt": "What are alleles?",
    "options": [
     "different versions of the same gene",
@@ -442,8 +369,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q16",
-   "code": "BIO.B.1.2.2",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
    "prompt": "Which statement best describes how DNA, genes, and chromosomes are related?",
    "options": [
     "Chromosomes are made of DNA, and genes are sections of that DNA.",
@@ -457,8 +384,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q17",
-   "code": "BIO.B.1.2.2",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
    "prompt": "You inherit one chromosome of each pair from each parent. What does this mean for each of your genes?",
    "options": [
     "You have two alleles for each gene: one from each parent.",
@@ -472,8 +399,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q18",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
    "prompt": "In pea plants, purple flowers (P) are dominant over white flowers (p). What is the phenotype of a Pp plant?",
    "options": [
     "purple flowers",
@@ -487,8 +414,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q19",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
    "prompt": "Two Pp plants are crossed. What fraction of the offspring are expected to have white flowers (pp)?",
    "options": [
     "1/4",
@@ -502,8 +429,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q20",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "prompt": "A red snapdragon is crossed with a white snapdragon, and all the offspring are pink. What pattern is this?",
    "options": [
     "incomplete dominance",
@@ -517,8 +444,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q21",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "prompt": "A person with type AB blood has both A and B markers on their red blood cells. What pattern is this?",
    "options": [
     "codominance",
@@ -532,8 +459,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q22",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "prompt": "Why is red-green color blindness more common in males than in females?",
    "options": [
     "The gene is on the X chromosome, and males have only one X.",
@@ -547,8 +474,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q23",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "prompt": "Human height shows a smooth range from short to tall. This is because height is...",
    "options": [
     "controlled by many genes (polygenic)",
@@ -562,38 +489,23 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q24",
-   "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
    "prompt": "During meiosis, homologous chromosomes swap matching pieces. What is this called?",
    "options": [
     "crossing over, which makes new combinations of alleles",
-    "nondisjunction, which adds an extra chromosome",
+    "fertilization, which joins a sperm and an egg",
     "replication, which copies DNA",
-    "translocation, which destroys genes"
+    "mitosis, which makes identical body cells"
    ],
    "answer": 0,
    "hint": "The chromosomes cross and exchange segments.",
    "explain": "Crossing over shuffles alleles between homologous chromosomes, increasing genetic variation."
   },
   {
-   "id": "w4q25",
-   "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.Q",
-   "prompt": "Down syndrome is usually caused by an extra copy of chromosome 21. Which error causes this?",
-   "options": [
-    "nondisjunction",
-    "crossing over",
-    "independent assortment",
-    "translation"
-   ],
-   "answer": 0,
-   "hint": "The chromosomes did not separate properly.",
-   "explain": "Nondisjunction is when chromosomes fail to separate in meiosis, so a gamete gets an extra copy."
-  },
-  {
    "id": "w4q26",
-   "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
    "prompt": "In meiosis, each chromosome pair separates independently of the other pairs. What does this produce?",
    "options": [
     "many different combinations of chromosomes in gametes",
@@ -606,39 +518,24 @@ FieldGuide.registerQuestions(4, {
    "explain": "Independent assortment mixes which parent's chromosomes go into each gamete, creating variety."
   },
   {
-   "id": "w4q27",
-   "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.Q",
-   "prompt": "A piece of chromosome 9 breaks off and attaches to chromosome 22. What kind of change is this?",
-   "options": [
-    "translocation",
-    "deletion",
-    "duplication",
-    "nondisjunction"
-   ],
-   "answer": 0,
-   "hint": "The piece moved to a different chromosome.",
-   "explain": "A translocation moves a segment from one chromosome to a nonhomologous chromosome."
-  },
-  {
    "id": "w4q28",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
    "prompt": "A mutation changes one base, but the new codon still codes for the same amino acid. What happens to the protein?",
    "options": [
-    "Nothing changes: it is a silent mutation.",
-    "The reading frame shifts.",
+    "Nothing changes: the protein is the same.",
+    "Every codon after it is read differently.",
     "The protein stops early.",
     "Every amino acid changes."
    ],
    "answer": 0,
    "hint": "Several codons can code for the same amino acid.",
-   "explain": "A silent mutation changes the DNA but not the amino acid, so the protein is the same."
+   "explain": "Several codons code for the same amino acid, so this change in the DNA does not change the protein."
   },
   {
    "id": "w4q29",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
    "prompt": "Why is deleting one base usually more harmful than substituting one base?",
    "options": [
     "It shifts the reading frame, so every codon after it changes.",
@@ -652,23 +549,23 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q30",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
-   "prompt": "Sickle cell disease is caused by one base substitution that changes one amino acid in hemoglobin. What type of mutation is this?",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Sickle cell disease is caused by a change in ONE base of the hemoglobin gene. How can one base change cause a disease?",
    "options": [
-    "a missense (point) mutation",
-    "a frameshift mutation",
-    "a nonsense mutation",
-    "a chromosome duplication"
+    "It changes one amino acid, so hemoglobin molecules stick together into long fibers and red blood cells can bend into a sickle shape.",
+    "It removes the whole hemoglobin gene from every chromosome.",
+    "It adds an extra chromosome to every red blood cell.",
+    "It has no effect on the protein, only on the DNA."
    ],
    "answer": 0,
-   "hint": "One base swapped, one amino acid changed.",
-   "explain": "A substitution that changes one amino acid is a missense mutation."
+   "hint": "Base order sets amino acid order, and amino acid order sets protein shape.",
+   "explain": "One changed base changes one amino acid. The hemoglobin molecules stick together into long fibers, so red blood cells can become stiff and sickle-shaped."
   },
   {
    "id": "w4q31",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
    "prompt": "Which of these can cause mutations in DNA?",
    "options": [
     "ultraviolet (UV) light from the Sun",
@@ -682,8 +579,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q32",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
    "prompt": "A mutation in a skin cell will NOT be passed to a person's children. Why?",
    "options": [
     "Only mutations in gametes (sperm or egg) can be inherited.",
@@ -696,84 +593,9 @@ FieldGuide.registerQuestions(4, {
    "explain": "Only mutations in sperm or egg cells are passed to offspring."
   },
   {
-   "id": "w4q33",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "Scientists put the human insulin gene into bacteria. What is the main benefit?",
-   "options": [
-    "The bacteria make human insulin to treat diabetes.",
-    "The bacteria turn into human cells.",
-    "The bacteria stop reproducing.",
-    "People no longer need a pancreas."
-   ],
-   "answer": 0,
-   "hint": "Bacteria read the human gene and make its protein.",
-   "explain": "Because the genetic code is universal, bacteria can make human insulin for people with diabetes."
-  },
-  {
-   "id": "w4q34",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "Corn that carries a bacterial gene so it makes its own insect-killing protein is an example of...",
-   "options": [
-    "a genetically modified organism (GMO)",
-    "selective breeding",
-    "a clone",
-    "natural selection"
-   ],
-   "answer": 0,
-   "hint": "A gene was moved from one species into another.",
-   "explain": "A GMO has DNA changed by genetic engineering, such as a gene added from another species."
-  },
-  {
-   "id": "w4q35",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "Gene therapy tries to treat a genetic disease by...",
-   "options": [
-    "adding or fixing a working copy of a gene in the patient's cells",
-    "removing all of the patient's DNA",
-    "cloning the patient",
-    "giving antibiotics"
-   ],
-   "answer": 0,
-   "hint": "Fix the faulty instructions.",
-   "explain": "Gene therapy delivers a working gene, or edits a faulty one, in a patient's cells."
-  },
-  {
-   "id": "w4q36",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "How do forensic scientists use DNA fingerprinting?",
-   "options": [
-    "to compare DNA from a crime scene with DNA from suspects",
-    "to change a suspect's DNA",
-    "to clone a suspect",
-    "to find only a person's blood type"
-   ],
-   "answer": 0,
-   "hint": "Everyone's DNA pattern is unique (except identical twins).",
-   "explain": "DNA fingerprinting compares DNA patterns to identify people or show relationships."
-  },
-  {
-   "id": "w4q37",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "Breeders chose dogs with the traits they wanted and bred them for many generations. What is this called?",
-   "options": [
-    "selective breeding",
-    "gene therapy",
-    "genetic drift",
-    "cloning"
-   ],
-   "answer": 0,
-   "hint": "People, not nature, choose which animals reproduce.",
-   "explain": "Selective (artificial) breeding uses chosen parents to increase wanted traits over generations."
-  },
-  {
    "id": "w4q38",
-   "code": "BIO.B.2.2.1",
-   "steels": "3.1.9-12.A",
+   "code": "3.1.9-12.A",
+   "topic": "dna-review",
    "prompt": "Review: a gene's DNA reads TAC. Which mRNA codon is transcribed from it?",
    "options": [
     "AUG",
@@ -783,42 +605,27 @@ FieldGuide.registerQuestions(4, {
    ],
    "answer": 0,
    "hint": "In RNA, U replaces T. A pairs with U.",
-   "explain": "T→A, A→U, C→G, so DNA TAC becomes the mRNA codon AUG (the start codon)."
+   "explain": "T→A, A→U, C→G, so DNA TAC becomes the mRNA codon AUG."
   },
   {
    "id": "w4q39",
-   "code": "BIO.B.2.2.1",
-   "steels": "3.1.9-12.A",
-   "prompt": "Review: where in the cell does translation (building a protein) happen?",
+   "code": "3.1.9-12.A",
+   "topic": "dna-review",
+   "prompt": "Review: what determines the order of amino acids in a protein?",
    "options": [
-    "at a ribosome",
-    "in the nucleus",
-    "in the Golgi apparatus",
-    "in the cell membrane"
+    "the order of the bases in the gene's DNA, copied into mRNA",
+    "the size of the cell",
+    "the number of chromosomes in the cell",
+    "the order the amino acids happen to float by"
    ],
    "answer": 0,
-   "hint": "Which structure reads mRNA?",
-   "explain": "Ribosomes read mRNA codons and join amino acids into a protein."
-  },
-  {
-   "id": "w4q40",
-   "code": "BIO.B.2.2.1",
-   "steels": "3.1.9-12.A",
-   "prompt": "Review: what does tRNA do during translation?",
-   "options": [
-    "brings the matching amino acid to the ribosome by reading each codon",
-    "copies DNA into mRNA",
-    "carries mRNA out of the nucleus",
-    "joins the two strands of DNA"
-   ],
-   "answer": 0,
-   "hint": "Each tRNA carries one amino acid.",
-   "explain": "tRNA's anticodon matches an mRNA codon, and it delivers the right amino acid."
+   "hint": "The gene is the recipe.",
+   "explain": "The base sequence of a gene is copied into mRNA, and the mRNA sets the order in which amino acids are joined."
   },
   {
    "id": "w4q41",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
    "prompt": "A mutation inserts one extra base near the START of a gene. What is the most likely effect?",
    "options": [
     "Most of the protein's amino acids change (a frameshift).",
@@ -835,8 +642,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q42",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
    "prompt": "A homozygous tall pea plant (TT) is crossed with a short plant (tt). What percent of the offspring will be tall?",
    "options": [
     "100%",
@@ -853,14 +660,14 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q43",
-   "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
    "prompt": "Which processes make each gamete genetically unique?",
    "options": [
     "crossing over and independent assortment during meiosis",
     "mitosis",
     "DNA replication alone",
-    "cytokinesis"
+    "growth of the cell"
    ],
    "answer": 0,
    "hint": "They shuffle alleles during meiosis.",
@@ -870,33 +677,15 @@ FieldGuide.registerQuestions(4, {
    ]
   },
   {
-   "id": "w4q44",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "prompt": "A sheep is cloned from a body cell of an adult sheep. How does the clone's DNA compare with the donor's?",
-   "options": [
-    "It is identical.",
-    "It is half the same.",
-    "It is completely different.",
-    "The clone has no DNA."
-   ],
-   "answer": 0,
-   "hint": "A clone is a genetic copy.",
-   "explain": "A clone has the same DNA as the organism it was made from.",
-   "tags": [
-    "boss"
-   ]
-  },
-  {
    "id": "w4q45",
-   "code": "BIO.B.1.2.2",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.A",
+   "topic": "genes",
    "prompt": "A mutation changes one gene. Which molecule is most directly made differently?",
    "options": [
     "the protein that gene codes for",
-    "all of the cell's lipids",
+    "the cell's sugar",
     "the cell's water",
-    "the phospholipids in the membrane"
+    "the number of chromosomes in the cell"
    ],
    "answer": 0,
    "hint": "Genes are recipes for...",
@@ -907,8 +696,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "w4q46",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "prompt": "A woman who carries color blindness (XᴺXⁿ) has children with a man with normal vision (XᴺY). What is the chance that a SON is color-blind?",
    "options": [
     "1/2 (50%)",
@@ -922,6 +711,219 @@ FieldGuide.registerQuestions(4, {
    "tags": [
     "boss"
    ]
+  },
+  {
+   "id": "w4q47",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "A skin cell divides by mitosis. How does the DNA in each of the two new cells compare with the DNA in the original cell?",
+   "options": [
+    "Each new cell has an identical, complete copy of the DNA.",
+    "Each new cell has half of the DNA.",
+    "Each new cell has a new mix of DNA from two parents.",
+    "One new cell gets all the DNA and the other gets none."
+   ],
+   "answer": 0,
+   "hint": "The DNA was copied before the cell divided.",
+   "explain": "The cell copies all its DNA first, so mitosis gives each new cell the same complete set of instructions."
+  },
+  {
+   "id": "w4q48",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "prompt": "Your muscle cells and nerve cells came from the same fertilized egg and have the same DNA. Why do they look and work so differently?",
+   "options": [
+    "Each kind of cell uses a different set of its genes, so it makes different proteins (differentiation).",
+    "Muscle cells and nerve cells have different DNA.",
+    "Nerve cells lost most of their genes.",
+    "Muscle cells were made by meiosis."
+   ],
+   "answer": 0,
+   "hint": "Same instructions, but which ones does each cell use?",
+   "explain": "All body cells have the same DNA. As cells differentiate, each kind uses different genes and makes different proteins, which gives it its shape and job."
+  },
+  {
+   "id": "w4q49",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "prompt": "What is a stem cell?",
+   "options": [
+    "An unspecialized cell that can divide and develop into different kinds of cells",
+    "A cell that has finished specializing and can never divide",
+    "A sex cell with half the usual chromosomes",
+    "A plant cell found only in stems"
+   ],
+   "answer": 0,
+   "hint": "Think of a cell that has not picked its job yet.",
+   "explain": "Stem cells can divide by mitosis and differentiate into specialized cells such as skin, blood, or muscle cells."
+  },
+  {
+   "id": "w4q50",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "A lizard loses its tail and grows a new one. Which process makes all the new cells for the tail?",
+   "options": [
+    "mitosis",
+    "meiosis",
+    "fertilization",
+    "mutation"
+   ],
+   "answer": 0,
+   "hint": "The new cells need the same DNA as the rest of the lizard.",
+   "explain": "Mitosis makes new cells with the same DNA, and those cells differentiate into the tissues of the new tail."
+  },
+  {
+   "id": "w4q51",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "prompt": "A human grows from a single fertilized egg into a body with trillions of cells of many different kinds. Which two processes explain this?",
+   "options": [
+    "Mitosis makes more cells, and differentiation makes them specialized.",
+    "Meiosis makes more cells, and mutation makes them specialized.",
+    "Fertilization makes more cells, and meiosis makes them specialized.",
+    "Mutation makes more cells, and mitosis makes them specialized."
+   ],
+   "answer": 0,
+   "hint": "One process increases the number; the other gives cells different jobs.",
+   "explain": "Mitosis produces the huge number of cells, and differentiation turns them into specialized cells that form tissues and organs."
+  },
+  {
+   "id": "w4q52",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "A student builds a model of mitosis. Her parent cell has 4 chromosomes. What should each daughter cell in her model show?",
+   "options": [
+    "4 chromosomes, identical to the parent cell",
+    "2 chromosomes",
+    "8 chromosomes",
+    "4 chromosomes, each different from the parent cell"
+   ],
+   "answer": 0,
+   "hint": "Mitosis keeps the chromosome number the same.",
+   "explain": "Mitosis makes two daughter cells with the same number and kind of chromosomes as the parent cell."
+  },
+  {
+   "id": "w4q53",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "All your cells have the same DNA. Why does a scraped knee heal with new skin cells instead of bone cells?",
+   "options": [
+    "Skin cells and skin stem cells near the scrape divide by mitosis, and the new cells develop into skin cells.",
+    "Meiosis in the knee makes new skin cells.",
+    "The scrape changes the DNA in the knee to skin DNA.",
+    "Bone cells move up and turn into skin."
+   ],
+   "answer": 0,
+   "hint": "Which cells are right next to the scrape?",
+   "explain": "Cells in the skin divide by mitosis to fill the gap, and the new cells differentiate into skin cells, so the skin is repaired.",
+   "tags": [
+    "boss"
+   ]
+  },
+  {
+   "id": "w4q54",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "prompt": "Two brothers have the same parents but different eye colors. Which statement best explains this?",
+   "options": [
+    "Meiosis makes genetically different gametes, so each brother got a different combination of alleles.",
+    "One brother inherited genes from only one parent.",
+    "Their DNA changed after they were born.",
+    "Brothers always inherit opposite traits."
+   ],
+   "answer": 0,
+   "hint": "Every sperm and every egg is a little different.",
+   "explain": "Crossing over and independent assortment in meiosis make every gamete different, so siblings get different combinations of their parents' alleles."
+  },
+  {
+   "id": "w4q55",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
+   "prompt": "A sperm with 23 chromosomes joins an egg with 23 chromosomes. How many chromosomes does the fertilized egg have, and where do they come from?",
+   "options": [
+    "46: half from the mother and half from the father",
+    "23: all from the mother",
+    "46: all from the father",
+    "92: two full sets from each parent"
+   ],
+   "answer": 0,
+   "hint": "Add the two sets together.",
+   "explain": "Fertilization joins two haploid gametes, so the zygote has 46 chromosomes in 23 pairs: one of each pair from each parent."
+  },
+  {
+   "id": "w4q56",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Chemicals in tobacco smoke cause mutations in a smoker's lung cells. Can these mutations be passed to the smoker's children?",
+   "options": [
+    "No. Lung cells are body cells, and only mutations in sperm or egg cells are inherited.",
+    "Yes. Every mutation is passed to children.",
+    "Yes, but only to sons.",
+    "No, because lung cells have no DNA."
+   ],
+   "answer": 0,
+   "hint": "Which cells make the next generation?",
+   "explain": "Mutations in body cells can affect the person, but only mutations in gametes can be inherited."
+  },
+  {
+   "id": "w4q57",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Each time a cell divides it copies billions of DNA bases. Very rarely, a mistake is made and not fixed. What can these copying mistakes cause?",
+   "options": [
+    "mutations, which are a source of new genetic variation",
+    "new chromosomes made from protein",
+    "a change in the number of cells in the body",
+    "meiosis instead of mitosis"
+   ],
+   "answer": 0,
+   "hint": "A change in the base sequence has a name.",
+   "explain": "Uncorrected errors when DNA is copied change the base sequence. These mutations are one source of inheritable variation (if they happen in gametes)."
+  },
+  {
+   "id": "w4q58",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Most mutations have no effect or are harmful, but some are helpful. Which is an example of a HELPFUL mutation?",
+   "options": [
+    "A mutation that lets some adults keep digesting milk sugar (lactose)",
+    "A mutation that makes a protein stop working",
+    "A mutation in a skin cell caused by a bad sunburn",
+    "A mutation that does not change the protein at all"
+   ],
+   "answer": 0,
+   "hint": "Helpful means it gives an advantage.",
+   "explain": "In some human groups, a mutation keeps the lactase gene working into adulthood, so adults can digest milk. This helped people in places where milk was an important food."
+  },
+  {
+   "id": "w4q59",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Two dishes of the same bacteria are grown. Dish A gets UV light for one hour; dish B is kept in the dark. Dish A ends up with many more mutant colonies. What does this evidence support?",
+   "options": [
+    "UV light is an environmental factor that causes mutations.",
+    "Darkness causes mutations.",
+    "Bacteria cannot have mutations.",
+    "Mutations happen only during meiosis."
+   ],
+   "answer": 0,
+   "hint": "The only difference between the dishes was the UV light.",
+   "explain": "Since UV was the only variable changed and mutations increased, the data support the claim that UV light causes mutations."
+  },
+  {
+   "id": "w4q60",
+   "code": "3.1.9-12.A",
+   "topic": "dna-review",
+   "prompt": "Review: a change in a gene's base sequence changes one amino acid in its protein. What can happen next?",
+   "options": [
+    "The protein may fold into a different shape and not do its job the same way.",
+    "The cell will gain an extra chromosome.",
+    "Every gene in the cell will change.",
+    "Nothing can happen, because amino acids do not affect proteins."
+   ],
+   "answer": 0,
+   "hint": "Amino acid order sets protein shape; shape sets job.",
+   "explain": "The order of amino acids decides how a protein folds. A changed amino acid can change the shape, and so the job, of the protein."
   }
  ],
  "pairs": [
@@ -978,8 +980,8 @@ FieldGuide.registerQuestions(4, {
  "become": [
   {
    "id": "b-chromosomes",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
    "you": "a skin cell with 46 chromosomes, about to divide by mitosis",
    "short": "46",
    "color": "#ffb3a7",
@@ -1007,8 +1009,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "b-gamete",
-   "code": "BIO.B.1.1.2",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
    "you": "a human egg cell made by meiosis",
    "short": "Egg",
    "color": "#ff9fbf",
@@ -1036,8 +1038,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "b-punnett",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
    "you": "a pea seed whose parents are both Tt (tall)",
    "short": "Seed",
    "color": "#a8e07a",
@@ -1065,8 +1067,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "b-codominance",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "you": "a calf whose parents are a red bull (RR) and a white cow (WW). Coat color is codominant",
    "short": "Calf",
    "color": "#c8785a",
@@ -1094,8 +1096,8 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "b-frameshift",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
    "you": "a gene that reads THE CAT ATE THE RAT. One letter H is deleted",
    "short": "Gene",
    "color": "#c59cff",
@@ -1125,8 +1127,8 @@ FieldGuide.registerQuestions(4, {
  "catches": [
   {
    "id": "c-basepair",
-   "code": "BIO.B.1.2.1",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
    "short": "Base pairing",
    "title": "Copy the DNA: grab the base that pairs with each highlighted base.",
    "cueLabel": "Base",
@@ -1168,53 +1170,9 @@ FieldGuide.registerQuestions(4, {
    "explain": "Base pairing (A-T, G-C) lets each old strand serve as a template for an exact copy."
   },
   {
-   "id": "c-chromo",
-   "code": "BIO.B.2.1.2",
-   "steels": "3.1.9-12.Q",
-   "short": "Chromosome changes",
-   "title": "Name the chromosome change: grab the term that matches each event.",
-   "cueLabel": "Event",
-   "builtLabel": "Named",
-   "cueWord": "event",
-   "tokenWord": "term",
-   "rule": "Chromosomes can swap, lose, gain, or move pieces.",
-   "choices": [
-    "Crossing over",
-    "Nondisjunction",
-    "Deletion",
-    "Translocation",
-    "Replication",
-    "Cytokinesis"
-   ],
-   "steps": [
-    {
-     "cue": "Partner chromosomes swap matching pieces in meiosis",
-     "need": "Crossing over"
-    },
-    {
-     "cue": "Chromosomes fail to separate, so a gamete gets an extra copy",
-     "need": "Nondisjunction"
-    },
-    {
-     "cue": "A piece of a chromosome breaks off and is lost",
-     "need": "Deletion"
-    },
-    {
-     "cue": "A piece moves to a different, non-partner chromosome",
-     "need": "Translocation"
-    }
-   ],
-   "hint": "Was a piece swapped, lost, moved, or did whole chromosomes fail to separate?",
-   "wrong": {
-    "Replication": "Replication copies DNA. It does not change chromosome structure.",
-    "Cytokinesis": "Cytokinesis divides the cytoplasm after mitosis or meiosis."
-   },
-   "explain": "Crossing over adds variety. Nondisjunction, deletions, and translocations change chromosome number or structure."
-  },
-  {
    "id": "c-blood",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
    "short": "Blood types",
    "title": "Match each genotype to its ABO blood type.",
    "cueLabel": "Genotype",
@@ -1257,94 +1215,98 @@ FieldGuide.registerQuestions(4, {
   },
   {
    "id": "c-mutation",
-   "code": "BIO.B.2.3.1",
-   "steels": "3.1.9-12.Q",
-   "short": "Mutation types",
-   "title": "Name the mutation: grab the type that matches each change.",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "short": "Mutation effects",
+   "title": "What happens? Grab the result of each DNA change.",
    "cueLabel": "Change",
-   "builtLabel": "Named",
+   "builtLabel": "Result",
    "cueWord": "change",
-   "tokenWord": "type",
-   "rule": "Point mutations swap one base; insertions and deletions shift the reading frame.",
+   "tokenWord": "result",
+   "rule": "Bases are read in groups of three. The order of bases sets the order of amino acids.",
    "choices": [
-    "Silent",
-    "Missense",
-    "Nonsense",
-    "Frameshift",
+    "Same protein",
+    "One amino acid changes",
+    "Most amino acids after it change",
+    "Not passed to children",
+    "An extra chromosome",
+    "All DNA is lost"
+   ],
+   "steps": [
+    {
+     "cue": "One base swapped, but it still codes for the same amino acid",
+     "need": "Same protein"
+    },
+    {
+     "cue": "One base swapped, and it codes for a different amino acid",
+     "need": "One amino acid changes"
+    },
+    {
+     "cue": "One base deleted near the start of a gene",
+     "need": "Most amino acids after it change"
+    },
+    {
+     "cue": "A mutation happens in a skin cell",
+     "need": "Not passed to children"
+    }
+   ],
+   "hint": "Was one base swapped, or was one removed? Was it in a body cell or a gamete?",
+   "wrong": {
+    "An extra chromosome": "A change in a base does not add a chromosome.",
+    "All DNA is lost": "A mutation changes part of the DNA sequence; the rest of the DNA is still there."
+   },
+   "explain": "A swapped base may change nothing or one amino acid; a deleted base changes every group of three after it. Only mutations in gametes are inherited."
+  },
+  {
+   "id": "c-meiosis",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "short": "Making variety",
+   "title": "Where does the variety come from? Grab the event that matches each description.",
+   "cueLabel": "Event",
+   "builtLabel": "Named",
+   "cueWord": "event",
+   "tokenWord": "term",
+   "rule": "Meiosis makes haploid gametes that are all different; fertilization joins two of them.",
+   "choices": [
     "Crossing over",
+    "Independent assortment",
+    "Fertilization",
+    "Meiosis",
+    "Mitosis",
     "Replication"
    ],
    "steps": [
     {
-     "cue": "One base swapped; the same amino acid is made",
-     "need": "Silent"
+     "cue": "Partner chromosomes from mom and dad swap matching pieces",
+     "need": "Crossing over"
     },
     {
-     "cue": "One base swapped; a different amino acid is made",
-     "need": "Missense"
+     "cue": "Each chromosome pair separates on its own, mixing mom's and dad's chromosomes",
+     "need": "Independent assortment"
     },
     {
-     "cue": "One base swapped; an early STOP codon ends the protein",
-     "need": "Nonsense"
+     "cue": "A sperm (23) joins an egg (23)",
+     "need": "Fertilization"
     },
     {
-     "cue": "One base added or removed; every codon after it changes",
-     "need": "Frameshift"
+     "cue": "One cell makes four sex cells with half the chromosomes",
+     "need": "Meiosis"
     }
    ],
-   "hint": "Was one base swapped, or was a base added or removed?",
+   "hint": "Swapping pieces, shuffling whole chromosomes, joining gametes, or making gametes?",
    "wrong": {
-    "Crossing over": "Crossing over is a normal swap between chromosomes in meiosis, not a gene mutation.",
-    "Replication": "Replication copies DNA. Mistakes during it can cause mutations, but it is not a mutation type."
+    "Mitosis": "Mitosis makes identical body cells, so it does not add variety.",
+    "Replication": "Replication copies DNA; it does not mix alleles."
    },
-   "explain": "Silent (no change), missense (one amino acid changes), nonsense (early stop), frameshift (every codon after it changes)."
+   "explain": "Crossing over and independent assortment make every gamete different, and fertilization joins two of them, so offspring get new combinations of alleles."
   }
  ],
  "data": [
   {
-   "id": "d-cycle",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
-   "title": "Time a human cell spends in each part of a 24-hour cell cycle",
-   "xlabel": "Part of the cell cycle",
-   "ylabel": "Hours",
-   "categories": [
-    "G1 (growth)",
-    "S (DNA copied)",
-    "G2 (prepare)",
-    "M (mitosis)"
-   ],
-   "values": [
-    11,
-    8,
-    4,
-    1
-   ],
-   "questions": [
-    {
-     "prompt": "Which part of the cell cycle takes the longest?",
-     "answer": 0,
-     "hint": "Find the tallest bar.",
-     "explain": "G1 is the longest: the cell grows and does its normal work."
-    },
-    {
-     "prompt": "In which part is the cell's DNA copied?",
-     "answer": 1,
-     "hint": "S stands for synthesis.",
-     "explain": "DNA replication happens in the S phase of interphase."
-    },
-    {
-     "prompt": "Which part is the SHORTEST?",
-     "answer": 3,
-     "hint": "Find the smallest bar.",
-     "explain": "Mitosis takes only about an hour. Most of the cycle is interphase (G1, S, and G2)."
-    }
-   ]
-  },
-  {
    "id": "d-punnett",
-   "code": "BIO.B.2.1.1",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
    "title": "Offspring of two Pp pea plants (purple P is dominant over white p)",
    "xlabel": "Genotype",
    "ylabel": "Number of offspring",
@@ -1378,13 +1340,53 @@ FieldGuide.registerQuestions(4, {
      "explain": "PP has two dominant alleles: homozygous dominant."
     }
    ]
+  },
+  {
+   "id": "d-growth",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "title": "Cells counted in one small area of a healing skin scrape",
+   "xlabel": "Day after the scrape",
+   "ylabel": "Number of cells",
+   "categories": [
+    "Day 0",
+    "Day 2",
+    "Day 4",
+    "Day 6"
+   ],
+   "values": [
+    20,
+    45,
+    90,
+    100
+   ],
+   "questions": [
+    {
+     "prompt": "On which day were the MOST cells counted?",
+     "answer": 3,
+     "hint": "Find the tallest bar.",
+     "explain": "By Day 6 the area had about 100 cells: mitosis had filled the scrape with new skin cells."
+    },
+    {
+     "prompt": "Between which two days did the count jump the most? Pick the later day.",
+     "answer": 2,
+     "hint": "Look for the biggest jump between two bars next to each other.",
+     "explain": "From Day 2 to Day 4 the count doubled (45 to 90) as cells kept dividing by mitosis."
+    },
+    {
+     "prompt": "On which day were the FEWEST cells counted?",
+     "answer": 0,
+     "hint": "Find the shortest bar.",
+     "explain": "On Day 0 the scrape had just happened. Over the next days, mitosis made new cells to repair it."
+    }
+   ]
   }
  ],
  "mazes": [
   {
    "id": "maze-genes",
-   "code": "BIO.B.1.2.2",
-   "steels": "3.1.9-12.P",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
    "title": "Zoom in: go through the doorway for the next smaller level",
    "start": "Pea plant",
    "steps": [
@@ -1395,7 +1397,7 @@ FieldGuide.registerQuestions(4, {
     },
     {
      "label": "Nucleus",
-     "hint": "Where is the DNA kept in a eukaryotic cell?",
+     "hint": "Where is the DNA kept in a plant or animal cell?",
      "why": "The nucleus holds the cell's chromosomes."
     },
     {
@@ -1418,66 +1420,67 @@ FieldGuide.registerQuestions(4, {
  ],
  "sequences": [
   {
-   "id": "s-cellcycle",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
-   "title": "Put the cell cycle in order",
-   "steps": [
-    "G1: the cell grows and does its job",
-    "S: the cell copies its DNA",
-    "G2: the cell gets ready to divide",
-    "Mitosis and cytokinesis: the cell divides in two"
-   ],
-   "hint": "The DNA must be copied before the cell divides.",
-   "explain": "Interphase (G1, S, G2) comes before mitosis and cytokinesis."
-  },
-  {
-   "id": "s-mitosis",
-   "code": "BIO.B.1.1.1",
-   "steels": "3.1.9-12.D",
-   "title": "Put the phases of mitosis in order",
-   "steps": [
-    "Prophase: chromosomes coil up and the nuclear membrane breaks down",
-    "Metaphase: chromosomes line up in the middle",
-    "Anaphase: sister chromatids are pulled apart",
-    "Telophase: two new nuclei form"
-   ],
-   "hint": "Remember PMAT.",
-   "explain": "Prophase, metaphase, anaphase, telophase (PMAT). Then cytokinesis splits the cell."
-  },
-  {
    "id": "s-meiosis",
-   "code": "BIO.B.1.1.2",
-   "steels": "3.1.9-12.Q",
-   "title": "Put the main events of meiosis in order",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "title": "How meiosis and fertilization make every child different: put the ideas in order",
    "steps": [
-    "Homologous chromosomes pair up and cross over",
-    "Meiosis I: the homologous pairs separate",
-    "Meiosis II: sister chromatids separate",
-    "Four haploid gametes form, each one different"
+    "Each parent has two copies of every chromosome, one from each of their own parents",
+    "When gametes form, partner chromosomes swap matching pieces (crossing over)",
+    "Each gamete gets a different mix of chromosomes, so no two gametes are the same",
+    "Fertilization joins one gamete from each parent into a new, unique combination"
    ],
-   "hint": "The partner chromosomes separate before the sister chromatids do.",
-   "explain": "Meiosis I separates homologous pairs; meiosis II separates sister chromatids, making four haploid cells."
+   "hint": "Start with the parents' chromosomes and end with the new offspring.",
+   "explain": "Crossing over and the random mix of chromosomes make every gamete different, and fertilization joins two of them, so each offspring gets a new combination of alleles."
   },
   {
-   "id": "s-gmo",
-   "code": "BIO.B.2.4.1",
-   "steels": "3.1.9-12.P",
-   "title": "Engineer bacteria to make human insulin",
+   "id": "s-repair",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "title": "How your body repairs a scraped knee",
    "steps": [
-    "Cut the insulin gene out of human DNA with a restriction enzyme",
-    "Insert the gene into a bacterial plasmid",
-    "Bacteria take in the plasmid",
-    "The bacteria multiply and make human insulin"
+    "Skin cells at the edge of the scrape copy their DNA",
+    "Each cell divides by mitosis into two identical cells",
+    "The new cells fill in the gap",
+    "The skin is whole again and the cells stop dividing"
    ],
-   "hint": "First get the gene, then put it in the bacteria.",
-   "explain": "Genetic engineering moves a gene into a new organism. The universal genetic code lets bacteria read the human gene."
+   "hint": "Copy the DNA first, then divide.",
+   "explain": "Mitosis makes new, identical skin cells to repair damage, and then division slows down again."
+  },
+  {
+   "id": "s-differentiate",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "title": "From one fertilized egg to many kinds of cells",
+   "steps": [
+    "A fertilized egg divides by mitosis",
+    "The embryo becomes a ball of stem cells with the same DNA",
+    "Stem cells use different genes and specialize (differentiate)",
+    "Specialized cells form tissues such as muscle and nerve"
+   ],
+   "hint": "Make many cells first, then give them jobs.",
+   "explain": "Mitosis makes the cells and differentiation gives them their jobs, building a complex organism."
+  },
+  {
+   "id": "s-sunburn",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "title": "How UV light can lead to a mutation",
+   "steps": [
+    "UV light from the Sun reaches skin cells",
+    "The UV light damages a base in the DNA",
+    "The cell copies the damaged DNA and makes a mistake",
+    "Cells made from it carry the new base sequence: a mutation"
+   ],
+   "hint": "Damage first, then copying.",
+   "explain": "UV light is an environmental factor that damages DNA. If the damage is copied before it is fixed, the change becomes a mutation."
   }
  ],
  "wordbanks": [
   {
    "id": "wb-division",
-   "steels": "3.1.9-12.D",
+   "code": "3.1.9-12.Q",
+   "topic": "gametes",
    "words": [
     "mitosis",
     "meiosis",
@@ -1490,38 +1493,39 @@ FieldGuide.registerQuestions(4, {
     {
      "text": "Body cells divide by ___ to make two identical cells.",
      "answer": "mitosis",
-     "code": "BIO.B.1.1.2",
+     "code": "3.1.9-12.D",
      "explain": "Mitosis: growth and repair."
     },
     {
      "text": "Sperm and egg cells are made by ___.",
      "answer": "meiosis",
-     "code": "BIO.B.1.1.2",
+     "code": "3.1.9-12.Q",
      "explain": "Meiosis makes gametes."
     },
     {
      "text": "A cell with one set of chromosomes (23 in humans) is ___.",
      "answer": "haploid",
-     "code": "BIO.B.1.1.2",
+     "code": "3.1.9-12.P",
      "explain": "Haploid: one set."
     },
     {
      "text": "A body cell with two sets of chromosomes (46 in humans) is ___.",
      "answer": "diploid",
-     "code": "BIO.B.1.1.2",
+     "code": "3.1.9-12.P",
      "explain": "Diploid: two sets, one from each parent."
     },
     {
      "text": "Sperm and eggs are called ___.",
      "answer": "gametes",
-     "code": "BIO.B.1.1.2",
+     "code": "3.1.9-12.P",
      "explain": "Gametes are sex cells."
     }
    ]
   },
   {
    "id": "wb-genetics",
-   "steels": "3.1.9-12.R",
+   "code": "3.1.9-12.R",
+   "topic": "genes",
    "words": [
     "allele",
     "dominant",
@@ -1534,31 +1538,31 @@ FieldGuide.registerQuestions(4, {
     {
      "text": "A different version of a gene is an ___.",
      "answer": "allele",
-     "code": "BIO.B.1.2.2",
+     "code": "3.1.9-12.P",
      "explain": "Alleles are versions of the same gene."
     },
     {
      "text": "An allele that shows whenever it is present is ___.",
      "answer": "dominant",
-     "code": "BIO.B.2.1.1",
+     "code": "3.1.9-12.R",
      "explain": "Dominant alleles mask recessive ones."
     },
     {
      "text": "An allele that shows only when there are two copies is ___.",
      "answer": "recessive",
-     "code": "BIO.B.2.1.1",
+     "code": "3.1.9-12.R",
      "explain": "Recessive traits need two copies."
     },
     {
      "text": "The letters Pp describe an organism's ___.",
      "answer": "genotype",
-     "code": "BIO.B.2.1.1",
+     "code": "3.1.9-12.R",
      "explain": "Genotype: the alleles an organism has."
     },
     {
      "text": "Purple flowers describe a plant's ___.",
      "answer": "phenotype",
-     "code": "BIO.B.2.1.1",
+     "code": "3.1.9-12.R",
      "explain": "Phenotype: the trait you can observe."
     }
    ]
@@ -1572,21 +1576,21 @@ FieldGuide.registerQuestions(4, {
     {
      "prompt": "Clue 1: A Tt plant is crossed with a tt plant. Out of 4 offspring, how many are expected to be short (tt)?",
      "answer": 2,
-     "code": "BIO.B.2.1.1",
+     "code": "3.1.9-12.R",
      "hint": "Punnett square: Tt, Tt, tt, tt.",
      "explain": "Tt × tt gives 2 Tt and 2 tt, so 2 of 4 are expected to be short."
     },
     {
      "prompt": "Clue 2: How many different alleles does the human ABO blood type gene have?",
      "answer": 3,
-     "code": "BIO.B.2.1.1",
+     "code": "3.1.9-12.R",
      "hint": "Iᴬ, Iᴮ, and...",
      "explain": "Three alleles: Iᴬ, Iᴮ, and i. That is an example of multiple alleles."
     },
     {
      "prompt": "Clue 3: A cell with 4 chromosomes goes through meiosis. How many chromosomes are in each gamete?",
      "answer": 2,
-     "code": "BIO.B.1.1.2",
+     "code": "3.1.9-12.P",
      "hint": "Meiosis halves the number.",
      "explain": "Meiosis halves the chromosome number: 4 becomes 2."
     }
@@ -1599,15 +1603,6 @@ FieldGuide.registerQuestions(4, {
   }
  ],
  "scans": [
-  {
-   "id": "s4-interphase",
-   "name": "Growing cell",
-   "look": "cell",
-   "color": "#ffb3a7",
-   "word": "Interphase",
-   "def": "The part of the cell cycle when a cell grows, works, and copies its DNA.",
-   "note": "Most of a cell's life is INTERPHASE: it grows (G1), copies its DNA (S), and gets ready to divide (G2)."
-  },
   {
    "id": "s4-dna",
    "name": "Double helix",
@@ -1623,8 +1618,8 @@ FieldGuide.registerQuestions(4, {
    "look": "helix",
    "color": "#7be0ad",
    "word": "DNA replication",
-   "def": "The process of copying DNA before a cell divides.",
-   "note": "Enzymes unzip the helix and each strand is a template. Each new DNA keeps one old strand: semi-conservative REPLICATION."
+   "def": "Copying all of a cell's DNA before the cell divides.",
+   "note": "Each strand is a pattern for a new one: A pairs with T and G pairs with C. That is how each new cell gets the same DNA."
   },
   {
    "id": "s4-chromosome",
@@ -1636,31 +1631,13 @@ FieldGuide.registerQuestions(4, {
    "note": "Humans have 46 CHROMOSOMES in each body cell: 23 pairs."
   },
   {
-   "id": "s4-chromatid",
-   "name": "Copied chromosome",
-   "look": "rod",
-   "color": "#ff9fbf",
-   "word": "Sister chromatids",
-   "def": "The two identical copies of a chromosome, joined at the middle, after DNA is copied.",
-   "note": "After replication, each chromosome is an X of two SISTER CHROMATIDS. Mitosis pulls them apart."
-  },
-  {
    "id": "s4-mitosis",
    "name": "Dividing cell",
    "look": "cell",
    "color": "#ffd166",
    "word": "Mitosis",
-   "def": "Division of the nucleus that makes two identical nuclei, each with the same chromosome number.",
-   "note": "MITOSIS has four phases: prophase, metaphase, anaphase, and telophase (PMAT)."
-  },
-  {
-   "id": "s4-cytokinesis",
-   "name": "Pinching cell",
-   "look": "cell",
-   "color": "#7be0ad",
-   "word": "Cytokinesis",
-   "def": "The division of the cytoplasm that splits one cell into two.",
-   "note": "After mitosis, CYTOKINESIS pinches the cell in two. Plant cells build a new cell wall between them."
+   "def": "Cell division that makes two new cells with identical DNA and the same chromosome number.",
+   "note": "MITOSIS makes new cells for growth, for repair, and to replace old cells."
   },
   {
    "id": "s4-meiosis",
@@ -1724,15 +1701,6 @@ FieldGuide.registerQuestions(4, {
    "word": "Independent assortment",
    "def": "Chromosome pairs separate independently of each other during meiosis.",
    "note": "With 23 pairs lining up at random, INDEPENDENT ASSORTMENT can make over 8 million combinations."
-  },
-  {
-   "id": "s4-nondisjunction",
-   "name": "Extra chromosome",
-   "look": "rod",
-   "color": "#e85d5d",
-   "word": "Nondisjunction",
-   "def": "When chromosomes fail to separate during meiosis, so a gamete has too many or too few.",
-   "note": "NONDISJUNCTION of chromosome 21 can cause Down syndrome (three copies of chromosome 21)."
   },
   {
    "id": "s4-gene",
@@ -1876,7 +1844,7 @@ FieldGuide.registerQuestions(4, {
    "color": "#ffd166",
    "word": "Point mutation",
    "def": "A mutation that changes a single base.",
-   "note": "A POINT MUTATION swaps one base. It may be silent, missense, or nonsense."
+   "note": "A POINT MUTATION swaps one base. It may change nothing, change one amino acid, or stop the protein early."
   },
   {
    "id": "s4-frameshift",
@@ -1897,79 +1865,103 @@ FieldGuide.registerQuestions(4, {
    "note": "Sunscreen protects skin cells' DNA from UV light, a common MUTAGEN."
   },
   {
-   "id": "s4-gmo",
-   "name": "Pest-proof corn",
-   "look": "sprout",
-   "color": "#ffd166",
-   "word": "Genetically modified organism (GMO)",
-   "def": "An organism whose DNA has been changed using genetic engineering.",
-   "note": "This corn carries a bacterial gene that makes an insect-killing protein: a GMO."
+   "id": "s4-repair",
+   "name": "Healing scrape",
+   "look": "cell",
+   "color": "#ffb3a7",
+   "word": "Growth and repair",
+   "def": "Making new cells by mitosis so an organism can grow, heal, and replace worn-out cells.",
+   "note": "Your skin replaces its outer layer about every month or two: millions of new cells made by MITOSIS."
   },
   {
-   "id": "s4-genetherapy",
-   "name": "Repaired cell",
+   "id": "s4-stemcell",
+   "name": "Unspecialized cell",
    "look": "cell",
    "color": "#7be0ad",
-   "word": "Gene therapy",
-   "def": "A treatment that adds or fixes a gene in a patient's cells.",
-   "note": "GENE THERAPY delivers a working gene to treat some inherited diseases."
+   "word": "Stem cell",
+   "def": "An unspecialized cell that can divide and develop into different kinds of cells.",
+   "note": "An early embryo is a ball of STEM CELLS. Some stem cells stay in the body to replace blood and skin cells."
   },
   {
-   "id": "s4-clone",
-   "name": "Cloned sheep",
+   "id": "s4-differentiation",
+   "name": "Specialized cells",
+   "look": "stack",
+   "color": "#c59cff",
+   "word": "Differentiation",
+   "def": "The process by which a cell becomes specialized for one job, by using some of its genes and not others.",
+   "note": "Nerve, muscle, and skin cells have the same DNA. DIFFERENTIATION gives each its own shape and job."
+  },
+  {
+   "id": "s4-fertilization",
+   "name": "Sperm meets egg",
+   "look": "eggs",
+   "color": "#ff9fbf",
+   "word": "Fertilization",
+   "def": "The joining of a sperm and an egg to make a zygote with a full set of chromosomes.",
+   "note": "FERTILIZATION: 23 chromosomes from the sperm + 23 from the egg = 46 in the zygote."
+  },
+  {
+   "id": "s4-copyerror",
+   "name": "Copy mistake",
+   "look": "helix",
+   "color": "#ffd166",
+   "word": "Copying error",
+   "def": "A rare mistake made when DNA is copied that is not fixed, which changes the base sequence.",
+   "note": "Cells check and fix their DNA, but a few COPYING ERRORS slip through and become mutations."
+  },
+  {
+   "id": "s4-sickle",
+   "name": "Sickle-shaped cell",
+   "look": "drop",
+   "color": "#e85d5d",
+   "word": "Sickle cell mutation",
+   "def": "A one-base change in the hemoglobin gene that changes one amino acid in hemoglobin.",
+   "note": "One changed base, one changed amino acid: the hemoglobin clumps and red blood cells can bend into a SICKLE shape."
+  },
+  {
+   "id": "s4-bodycell",
+   "name": "Sunburned skin",
+   "look": "cell",
+   "color": "#ff9f6e",
+   "word": "Body-cell mutation",
+   "def": "A mutation in a body cell, such as a skin cell. It can affect the person but is not passed to children.",
+   "note": "A skin cell damaged by UV light can carry a BODY-CELL MUTATION, but your children inherit only gamete DNA."
+  },
+  {
+   "id": "s4-gametemut",
+   "name": "Changed egg",
+   "look": "eggs",
+   "color": "#c59cff",
+   "word": "Inherited mutation",
+   "def": "A mutation in a sperm or egg cell that can be passed to offspring.",
+   "note": "Only mutations in GAMETES are inherited. They add new variation to a population."
+  },
+  {
+   "id": "s4-helpful",
+   "name": "Milk drinker",
    "look": "critter",
    "color": "#f4f0e4",
-   "word": "Clone",
-   "def": "An organism with exactly the same DNA as the organism it was copied from.",
-   "note": "Dolly the sheep (1996) was the first mammal CLONED from an adult body cell."
-  },
-  {
-   "id": "s4-fingerprint",
-   "name": "DNA bands",
-   "look": "stack",
-   "color": "#7fd4ff",
-   "word": "DNA fingerprinting",
-   "def": "Comparing patterns in DNA to identify individuals.",
-   "note": "Forensic scientists use DNA FINGERPRINTING to match crime-scene DNA to a person."
-  },
-  {
-   "id": "s4-selective",
-   "name": "Dog breeds",
-   "look": "critter",
-   "color": "#c8a070",
-   "word": "Selective breeding",
-   "def": "Choosing parents with wanted traits to breed, generation after generation.",
-   "note": "Every dog breed came from SELECTIVE BREEDING of wolves' descendants."
+   "word": "Helpful mutation",
+   "def": "A mutation that gives an advantage in an environment.",
+   "note": "A mutation that keeps the lactase gene working lets some adults digest milk: a HELPFUL MUTATION."
   }
  ],
  "vocab": [
-  {
-   "term": "Interphase",
-   "def": "The part of the cell cycle when a cell grows, works, and copies its DNA."
-  },
   {
    "term": "DNA",
    "def": "The molecule that carries genetic information, shaped like a twisted ladder (double helix)."
   },
   {
    "term": "DNA replication",
-   "def": "The process of copying DNA before a cell divides."
+   "def": "Copying all of a cell's DNA before the cell divides."
   },
   {
    "term": "Chromosome",
    "def": "A long, coiled DNA molecule that carries many genes."
   },
   {
-   "term": "Sister chromatids",
-   "def": "The two identical copies of a chromosome, joined at the middle, after DNA is copied."
-  },
-  {
    "term": "Mitosis",
-   "def": "Division of the nucleus that makes two identical nuclei, each with the same chromosome number."
-  },
-  {
-   "term": "Cytokinesis",
-   "def": "The division of the cytoplasm that splits one cell into two."
+   "def": "Cell division that makes two new cells with identical DNA and the same chromosome number."
   },
   {
    "term": "Meiosis",
@@ -1998,10 +1990,6 @@ FieldGuide.registerQuestions(4, {
   {
    "term": "Independent assortment",
    "def": "Chromosome pairs separate independently of each other during meiosis."
-  },
-  {
-   "term": "Nondisjunction",
-   "def": "When chromosomes fail to separate during meiosis, so a gamete has too many or too few."
   },
   {
    "term": "Gene",
@@ -2076,24 +2064,40 @@ FieldGuide.registerQuestions(4, {
    "def": "Something that can cause mutations, such as UV light, X-rays, or certain chemicals."
   },
   {
-   "term": "Genetically modified organism (GMO)",
-   "def": "An organism whose DNA has been changed using genetic engineering."
+   "term": "Growth and repair",
+   "def": "Making new cells by mitosis so an organism can grow, heal, and replace worn-out cells."
   },
   {
-   "term": "Gene therapy",
-   "def": "A treatment that adds or fixes a gene in a patient's cells."
+   "term": "Stem cell",
+   "def": "An unspecialized cell that can divide and develop into different kinds of cells."
   },
   {
-   "term": "Clone",
-   "def": "An organism with exactly the same DNA as the organism it was copied from."
+   "term": "Differentiation",
+   "def": "The process by which a cell becomes specialized for one job, by using some of its genes and not others."
   },
   {
-   "term": "DNA fingerprinting",
-   "def": "Comparing patterns in DNA to identify individuals."
+   "term": "Fertilization",
+   "def": "The joining of a sperm and an egg to make a zygote with a full set of chromosomes."
   },
   {
-   "term": "Selective breeding",
-   "def": "Choosing parents with wanted traits to breed, generation after generation."
+   "term": "Copying error",
+   "def": "A rare mistake made when DNA is copied that is not fixed, which changes the base sequence."
+  },
+  {
+   "term": "Sickle cell mutation",
+   "def": "A one-base change in the hemoglobin gene that changes one amino acid in hemoglobin."
+  },
+  {
+   "term": "Body-cell mutation",
+   "def": "A mutation in a body cell, such as a skin cell. It can affect the person but is not passed to children."
+  },
+  {
+   "term": "Inherited mutation",
+   "def": "A mutation in a sperm or egg cell that can be passed to offspring."
+  },
+  {
+   "term": "Helpful mutation",
+   "def": "A mutation that gives an advantage in an environment."
   }
  ]
 });

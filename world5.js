@@ -1,4 +1,5 @@
 /* WORLD 5 GAME FILE: Environmental Pressure Drives Evolution (five levels).
+   PA STEELS standards practiced here: 3.1.9-12.S, T, U, W, X (Module 2: Natural Selection and Evolution).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world5-questions.js.
    The world is a changing island chain and a canyon full of fossils. The last level ends with a boss
    that mixes evolution questions with look-alike pairs from the whole world. */
@@ -24,47 +25,47 @@ FieldGuide.registerWorld({
           .become('b-moth')
           .wordbank('wb-selection')
           .bridge(11).hazard(4, 1.2, { ax: 1.6, sp: 1.3 }).ground(10)
-          .crumbleBridge(4, 'mix').mixed(2, ['BIO.B.2.1.1', 'BIO.B.2.3.1', 'BIO.B.4.2.5', 'BIO.B.3.1.1'])
+          .crumbleBridge(4, 'mix').mixed(2, ['3.1.9-12.R', '3.1.9-12.Q', '3.1.9-12.I', '3.1.9-12.W'])
           .virus(5, 2.4, 1.2).sparks(2, 3.2, 4).ground(12)
           .station(['w5q01', 'w5q04'])
           .goal();
       } },
-    { id: '5-2', title: 'Chance and Change', theme: 'island',
-      log: 'Mission log: A storm just blew a few birds onto a new island. Not every change in a population comes from natural selection. Track the other causes.',
-      outro: 'Report sent: mutations create new alleles, and meiosis shuffles them. Genetic drift (including the founder and bottleneck effects) changes populations by chance, and gene flow moves alleles between populations.',
+    { id: '5-2', title: 'Four Factors', theme: 'island',
+      log: 'Mission log: A storm hit the islands and food is scarce. Before I can explain how species change, I need the four factors that make evolution happen.',
+      outro: 'Report sent: evolution mostly results from four factors: species can produce more offspring than can survive, individuals carry inherited variation from mutation and sexual reproduction, they compete for limited resources, and the better-suited ones survive and reproduce more.',
       build: function (b) {
         b.sparks(4, 1.2, 4).virus(9, 2, 1).ground(12).review()
-          .scan(3, 's5-genepool').scan(8, 's5-frequency').scan(13, 's5-newallele').ground(16).hsparks(-10, 6.2, 4)
-          .scan(3, 's5-resist').ground(6)
-          .sequence('s-resistance')
-          .readData('d-resistance')
+          .scan(3, 's5-overproduce').scan(8, 's5-newallele').scan(13, 's5-shuffle').ground(16).hsparks(-10, 6.2, 4)
+          .scan(3, 's5-competition').ground(6)
+          .sequence('s-fourfactors')
+          .readData('d-overproduce')
           .squeeze(3, 4).snapper(11, 3.4, 0.6).ground(15)
-          .refuel().scan(3, 's5-drift').scan(8, 's5-founder').scan(13, 's5-bottleneck').scan(18, 's5-geneflow').ground(21)
-          .catchGame('c-mechanism')
-          .become('b-bottleneck')
+          .refuel().scan(3, 's5-limited').scan(8, 's5-heritable').scan(13, 's5-morekids').ground(21)
+          .catchGame('c-factors')
+          .become('b-factors')
           .bridge(11).virus(4, 2.5, 1.2).spikes(9, 1.8).qblock(13, 3.4, 'shield').ground(16)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .crumbleBridge(4, 'mix').mixed(2, ['BIO.B.1.1.2', 'BIO.B.2.1.2', 'BIO.B.3.1.1', 'BIO.B.3.1.3'])
-          .station(['w5q07', 'w5q12'])
+          .crumbleBridge(4, 'mix').mixed(2, ['3.1.9-12.Q', '3.1.9-12.R', '3.1.9-12.W', '3.1.9-12.T'])
+          .station(['w5q35', 'w5q37'])
           .goal();
       } },
     { id: '5-3', title: 'New Species', theme: 'canyon',
       log: 'Mission log: A giant canyon splits this land in two. The squirrels on each side look a little different. Is one species turning into two?',
-      outro: 'Report sent: when populations are isolated (by geography, behavior, or timing), they evolve separately and can become new species. Some species spread into many niches (adaptive radiation); others go extinct.',
+      outro: 'Report sent: when a barrier like a canyon keeps populations apart, each one adapts to its own conditions and can become a new species. Changes in the environment can make some species increase, lead to new species over time, or drive others to extinction.',
       build: function (b) {
         b.hint(5, 4.6, 'Two sides, two populations. Scan them.').sparks(9, 1.2, 4).ground(14).review()
           .scan(3, 's5-species').scan(8, 's5-geographic').ground(11).hsparks(-11, 6.2, 4)
           .become('b-isolation')
-          .scan(3, 's5-behavioral').scan(8, 's5-temporal').ground(11)
+          .scan(3, 's5-envchange').scan(8, 's5-ratechange').ground(11)
           .refuel().sparks(0.5, 8.5, 4).ground(6)
-          .station([{ sort: 'isolation', n: 4 }])
+          .station([{ sort: 'env-change', n: 4 }])
           .scan(3, 's5-speciation').scan(8, 's5-radiation').scan(13, 's5-extinct').ground(16)
           .maze('maze-speciation')
           .snapper(5, 3.6, 0).virus(10, 2.4, 1.2).ground(15)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
           .wordbank('wb-speciation')
-          .crumbleBridge(5, 'mix').mixed(2, ['BIO.B.4.1.1', 'BIO.B.4.2.4', 'BIO.B.3.1.1', 'BIO.B.3.1.2'])
-          .station(['w5q08', 'w5q11'])
+          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.I', '3.1.9-12.M', '3.1.9-12.W', '3.1.9-12.X'])
+          .station(['w5q08', 'w5q47'])
           .bridge(12, { ay: 1.4, sp: 1.1 }).ground(5)
           .goal();
       } },
@@ -95,7 +96,7 @@ FieldGuide.registerWorld({
           .digField({ color: '#8a7a6a', fossils: [[6, 3, 's5-transitional']], ores: [[2, 2, 'calcite'], [4, 5, 'pyrite']], boulders: [[3, 1, 0], [8, 2, 1], [1, 4, 0]] })
           .stratum({ name: 'Layer 4 · Fish with legs', sub: 'About 375 million years ago (Tiktaalik, Ellesmere Island, Canada)', color: '#8a7a6a' })
           .rockfall(9, 3.8, 1.2).capsule(13).ground(16)
-          .mixed(2, ['BIO.B.2.2.1', 'BIO.B.3.1.2', 'BIO.B.3.2.1', 'BIO.B.3.1.1'])
+          .mixed(2, ['3.1.9-12.A', '3.1.9-12.X', '3.1.9-12.S', '3.1.9-12.W'])
           .station(['w5q17', 'w5q22']).ground(4)
           .digField({ color: '#6a7a8a', fossils: [[3, 2, 's5r-trilobite']], ores: [[7, 3, 'pyrite'], [1, 5, 'calcite']], boulders: [[5, 2, 0], [6, 4, 1]],
             rare: [0, 6, { name: 'Hallucigenia fossil', fact: 'A tiny spiky Burgess Shale animal. Scientists first drew it upside down and back to front. New fossils showed them the mistake: science corrects itself with evidence.' }] })
@@ -105,23 +106,25 @@ FieldGuide.registerWorld({
           .caveEnd().ground(10)
           .goal();
       } },
-    { id: '5-5', title: 'How Science Knows', theme: 'island',
-      log: 'Mission log: Last stop. Before sending the full report home, sort what scientists see, what they conclude, and what they can prove. Then face the final storm.',
-      outro: 'Report sent: observations are measured, inferences are concluded from evidence, hypotheses are testable predictions, laws describe what happens, and theories, like evolution, are well-tested explanations of why.',
+    { id: '5-5', title: 'Counting Traits', theme: 'island',
+      log: 'Mission log: Last stop. I have counted these populations for many generations. Before sending the full report home, read the numbers: which traits are becoming more common, and why? Then face the final storm.',
+      outro: 'Report sent: when an inherited trait gives an advantage, the share of the population with that trait tends to rise, generation after generation. Percents, averages, and graphs show natural selection at work.',
       build: function (b) {
         b.sparks(4, 1.2, 4).virus(8, 2, 1).ground(12).review()
-          .scan(3, 's5-observation').scan(8, 's5-inference').scan(13, 's5-hypothesis').ground(16).hsparks(-12, 6.2, 4)
-          .catchGame('c-science')
-          .scan(3, 's5-theory').scan(8, 's5-law').ground(11)
-          .wordbank('wb-science')
+          .scan(3, 's5-pocketmouse').scan(8, 's5-proportion').scan(13, 's5-generation').ground(16).hsparks(-12, 6.2, 4)
+          .readData('d-mice')
+          .scan(3, 's5-resist').scan(8, 's5-mean').ground(11)
+          .sequence('s-resistance')
+          .readData('d-resistance')
+          .wordbank('wb-traits')
           .snapper(5, 3.6, 0).virus(10, 2.4, 1.2).ground(15)
           .refuel().sparks(0.5, 8.5, 4).ground(6)
-          .station([{ sort: 'science-terms', n: 4 }])
+          .station([{ sort: 'trait-trend', n: 4 }])
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .crumbleBridge(5, 'boom').mixed(2, ['BIO.B.3.1.1', 'BIO.B.3.1.2', 'BIO.B.3.1.3', 'BIO.B.3.2.1', 'BIO.B.3.3.1'])
+          .crumbleBridge(5, 'boom').mixed(2, ['3.1.9-12.W', '3.1.9-12.X', '3.1.9-12.T', '3.1.9-12.S', '3.1.9-12.U'])
           .qblock(3, 3.4, 'shield').hazard(8, 1.2, { ax: 2, sp: 1.3 }).ground(14)
           .hint(-3, 4.6, 'Boss ahead: The Selection Storm')
-          .boss('The Selection Storm', 'boss', 5, 2, ['BIO.B.3.1.1', 'BIO.B.3.1.2', 'BIO.B.3.2.1', 'BIO.B.3.3.1'])
+          .boss('The Selection Storm', 'boss', 5, 2, ['3.1.9-12.W', '3.1.9-12.T', '3.1.9-12.X', '3.1.9-12.S', '3.1.9-12.U'])
           .bridge(11).ground(5)
           .goal();
       } }
