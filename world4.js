@@ -125,6 +125,8 @@ FieldGuide.registerWorld({
         b.hint(4, 4.6, 'SPEED RUN! Grab coins, dodge obstacles, beat the time!').sparks(7, 1.2, 6).ground(14)
           .power(3, 1.4, 'glide').ground(8)
           .rise(4).ground(6).hint(-3, 4.6, 'Run off the edge and HOLD jump to glide across!').gap(17).sparks(-14, -1, 6).rise(-4).ground(12)
+          .hint(1, 4.6, 'SLED RUN! Ride down the hill and fly off the ski jump!').ground(4).sled(30, 7, { kick: true }).sparks(-14, 4.4, 5).gap(10).sparks(-8, 4, 6).ground(8)
+          .sled(24, 5).sparks(-14, 4.4, 4).sparks(-6, 2.4, 4).ground(4).sled(22, 6, { kick: true }).gap(11).sparks(-9, 4.5, 6).ground(10)
           .ground(16).virus(-13, 4.5, 1.1).virus(-5, 3.5, 1.4).sparks(-10, 1.2, 5)
           .snapper(4, 3.2, 0).snapper(9, 3.2, 1.2).sparks(2, 3.4, 6).ground(14)
           .gap(15).mover(-13.5, 0.4, 3, 2.2, 0, 1.2).mover(-7, 1.6, 3, 0, 1.6, 1.4).sparks(-7, 4.4, 3).ground(10)

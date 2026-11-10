@@ -297,7 +297,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 73 · November 10, 2026';
+const VERSION = 'Version 74 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 /* MOVES earned in the bonus speed runs (v71) */
@@ -537,14 +537,19 @@ function stackLabels(list, x, yTop, z, gap) {
 }
 /* the 8-bit alien for the retro bonus levels: a flat picture with crisp pixels, in place of the 3D body */
 function pixelAlien(P) { const PA = BQ.PIXEL_ALIEN; let tex; /* the teacher's drawing for her design, otherwise a pixel alien drawn from this student's choices */
-  if (BQ.makePixelAlien && BQ.isTeacherAlien && !BQ.isTeacherAlien(S.alien)) tex = new T.CanvasTexture(BQ.makePixelAlien(S.alien, COLORS[S.alien.color][1]));
+  if (BQ.makePixelAlien) { const sheet = BQ.makePixelAlien(S.alien, BQ.isTeacherAlien(S.alien) ? '#2a8ef0' : COLORS[S.alien.color][1]); tex = new T.CanvasTexture(sheet);
+    /* the teacher's design: her hand-drawn front pictures (standing, ducking, ground pound, hurt, win) with matching side views for moving */
+    if (BQ.isTeacherAlien(S.alien)) { const img = new Image(); img.onload = function () { const x = sheet.getContext('2d'); [0, 8, 10, 14, 15].forEach(function (i) { x.clearRect(i * PA.fw, 0, PA.fw, PA.fh); x.drawImage(img, i * PA.fw, 0, PA.fw, PA.fh, i * PA.fw, 0, PA.fw, PA.fh); }); tex.needsUpdate = true; }; img.src = PA.sheet; } }
   else { const img = new Image(); tex = new T.Texture(img); img.onload = function () { tex.needsUpdate = true; }; img.src = PA.sheet; }
   tex.magFilter = T.NearestFilter; tex.minFilter = T.NearestFilter; tex.generateMipmaps = false; tex.repeat.set(1 / PA.n, 1);
   const hgt = 2.2, sp = new T.Mesh(new T.PlaneGeometry(hgt * PA.fw / PA.fh, hgt), new T.MeshBasicMaterial({ map: tex, transparent: true, alphaTest: 0.5, side: T.DoubleSide }));
-  P.m.children.forEach(function (c) { c.visible = false; }); sp.position.y = 1.08; P.m.add(sp); P.sprite = sp; P.frames = PA.frames; }
+  P.m.children.forEach(function (c) { c.visible = false; }); sp.position.y = 1.08; P.m.add(sp); P.sprite = sp; P.frames = PA.frames;
+  { const c = document.createElement('canvas'); c.width = 40; c.height = 12; const x = c.getContext('2d'); x.fillStyle = '#121a3a'; x.fillRect(2, 2, 34, 6); x.fillStyle = '#e04a3a'; x.fillRect(3, 3, 32, 4); x.fillStyle = '#ff8a7a'; x.fillRect(4, 3, 28, 1);
+    x.fillStyle = '#121a3a'; x.fillRect(6, 8, 2, 2); x.fillRect(28, 8, 2, 2); x.fillRect(1, 10, 38, 2); x.fillRect(36, 6, 2, 4); x.fillStyle = '#c8d0d8'; x.fillRect(2, 10, 36, 1);
+    const t = new T.CanvasTexture(c); t.magFilter = t.minFilter = T.NearestFilter; const sm = new T.Mesh(new T.PlaneGeometry(1.9, 0.57), new T.MeshBasicMaterial({ map: t, transparent: true, alphaTest: 0.5, side: T.DoubleSide })); sm.position.set(0, 0.25, 0.05); sm.visible = false; P.m.add(sm); P.sledM = sm; } }
 /* which picture of the pixel alien to show for what it is doing (the sprite sheet in pixelalien.js) */
 function spriteFrame() { const f = P.frames, sp = Math.abs(P.vx), step = Math.floor((P.stride || 0) * 1.3) % 2; let n = 'idle';
-  if (P.inv > 0.9) n = 'hurt'; else if (P.spinT > 0) n = 'spin attack'; else if (P.pound > 0 || P.pounding) n = 'ground pound'; else if (P.slideT > 0) n = 'slide'; else if (P.duck) n = 'duck';
+  if (P.inv > 0.9) n = 'hurt'; else if (P.sledM && P.sledM.visible) n = 'duck'; else if (P.spinT > 0) n = 'spin attack'; else if (P.pound > 0 || P.pounding) n = 'ground pound'; else if (P.slideT > 0) n = 'slide'; else if (P.duck) n = 'duck';
   else if (!P.ground && P.wallT > 0 && hasA('wall')) n = 'wall slide'; else if (P.gliding) n = 'glide'; else if (!P.ground) n = P.vy > 0 ? (P.dbl === false ? 'double jump' : 'jump') : 'fall';
   else if (sp > SPEED * 1.15) n = step ? 'run 1' : 'run 2'; else if (sp > 0.6) n = step ? 'walk 1' : 'walk 2';
   const i = Math.max(0, f.indexOf(n)); P.sprite.material.map.offset.x = i / f.length; P.sprite.rotation.z = n === 'spin attack' ? -P.t * 25 : 0; }
@@ -885,6 +890,12 @@ function helpGlow(g) { if (L) L.helped = true; if (!g || g.userData.help) return
 function unhelp(g) { if (g && g.userData.help) { g.remove(g.userData.help); L.helps = L.helps.filter(function (h) { return h !== g.userData.help; }); g.userData.help = null; } }
 function breakBrick(s2) { if (s2.off) return; s2.off = true; L.group.remove(s2.brick); (s2.lines || []).forEach(function (l) { L.group.remove(l); }); L.score += 20; burst((s2.x0 + s2.x1) / 2, s2.y0 + 0.5, '#e8945a'); beep(180, 0.12, 'square', 'crack, brick broken'); hud(); }
 function bonusStep(dt) {
+  /* sled runs: ride down the slope, speed up, launch off the ski jump */
+  P.sledT = (P.sledT || 0) - dt; L.sleds.forEach(function (r) { if (P.x < r.x0 || P.x > r.x1 + 0.3) return; const n = Math.ceil((r.x1 - r.x0) / 0.5), i = Math.max(0, Math.min(n - 1, Math.floor((P.x - HW - r.x0) / (r.x1 - r.x0) * n))), surf = r.y0 - r.drop * i / n; /* the top of the step under the alien */
+    if (P.vy <= 0.5 && P.y - surf < 0.6 && P.y - surf > -0.6) { P.sledT = 0.25; if (P.vy <= 0) { P.y = surf; P.vy = 0; } if (!L.told.sled) { L.told.sled = 1; toast('🛷 Sled run! You speed up downhill. Press jump to hop over things.', 5); }
+      if (r.kick && P.x > r.x1 - 2.2 && !P.kicked) { P.kicked = true; P.vy = 17; P.sledT = 0; popup(P.x, P.y + 1, 'Ski jump!', '#7fd4ff'); beep(660, 0.2, 'triangle', 'whoosh, ski jump'); } } });
+  if (P.ground && !(P.sledT > 0)) P.kicked = false;
+  if (P.sledM) P.sledM.visible = P.sledT > 0 || (P.kicked && !P.ground);
   /* ground pound landing: shockwave */
   if (P.pounding && P.ground) { P.pounding = false; L.shake = 0.3; beep(90, 0.25, 'sawtooth', 'thud, ground pound');
     if (P.ground.brick) { breakBrick(P.ground); P.ground = null; P.pounding = true; }
@@ -1256,6 +1267,15 @@ function builder() {
     /* POWER ORB: grants a new move for the bonus levels (kept for all later bonus levels) */
     power: function (dx, dy, ab) { const x = b.x + dx, y = b.y + dy, g = new T.Group(), A = ABIL[ab]; const core = new T.Mesh(G.sph, emat(A.col, A.col)); core.scale.setScalar(0.45); g.add(core); g.add(glow(A.col, 3, 0.7));
       const lb = label(A.icon + ' ' + A.name, 1.5, { bd: A.col }); lb.position.y = 1.2; g.add(lb); g.position.set(x, y, 0.4); L.group.add(g); L.powers.push({ x: x, y: y, ab: ab, g: g, got: false }); return b; },
+    /* SLED RUN: a snowy downhill slope. On it the alien rides a sled and speeds up; jump to hop obstacles; with kick: true a ski-jump ramp at the bottom launches you */
+    sled: function (len, drop, o) { o = o || {}; const x0 = b.x, x1 = b.x + len, y0 = b.y, y1 = b.y - drop, n = Math.ceil(len / 0.5);
+      for (let i = 0; i < n; i++) { const xa = x0 + i * len / n, top = y0 - drop * i / n; addSolid(xa, xa + len / n + 0.01, top - 14, top); }
+      const sh = new T.Shape(); sh.moveTo(x0, y0); sh.lineTo(x1, y1); sh.lineTo(x1, y1 - 14); sh.lineTo(x0, y1 - 14); sh.closePath();
+      const eg = new T.ExtrudeGeometry(sh, { depth: 7, bevelEnabled: false }); eg.translate(0, 0, -3.5); L.group.add(new T.Mesh(eg, new T.MeshLambertMaterial({ color: '#6a7078', emissive: '#2a3038' })));
+      const ang = Math.atan2(drop, len), cap = new T.Mesh(G.box, new T.MeshLambertMaterial({ color: '#f4f8ff', emissive: '#a8b8c8' })); cap.scale.set(Math.hypot(len, drop), 0.35, 7.3); cap.rotation.z = -ang; cap.position.set((x0 + x1) / 2, (y0 + y1) / 2 - 0.12, 0); L.group.add(cap);
+      for (let k = 2; k < len - 2; k += 3) { const fl = new T.Mesh(G.box, basic(k % 6 < 3 ? '#e04a3a' : '#3a7ad8')); fl.scale.set(0.12, 1.2, 0.12); fl.position.set(x0 + k, y0 - drop * k / len + 0.6, -3); L.group.add(fl); } /* slalom flags */
+      if (o.kick) { const w = new T.Shape(); w.moveTo(x1 - 2.2, y1); w.lineTo(x1, y1); w.lineTo(x1, y1 + 0.9); w.closePath(); const wg = new T.ExtrudeGeometry(w, { depth: 7, bevelEnabled: false }); wg.translate(0, 0, -3.5); L.group.add(new T.Mesh(wg, new T.MeshLambertMaterial({ color: '#e8f4ff', emissive: '#90a8c0' }))); }
+      L.sleds.push({ x0: x0, x1: x1, y0: y0, drop: drop, kick: !!o.kick }); b.x = x1; b.y = y1; return b; },
     /* BOSS ARENA: a big enemy guards the exit; stomp it 3 times to open the gate */
     bigboss: function (len, look) { const x0 = b.x, x1 = b.x + len; this.ground(len); const gate = addSolid(x1 - 0.6, x1, b.y, b.y + 14), gm = box(x1 - 0.6, x1, b.y, b.y + 14, 3, '#e05a3a', 0.85); L.group.add(gm);
       const g = new T.Group(), core = new T.Mesh(G.ico, emat('#9be36b', '#2f5a10')); core.scale.setScalar(1.2); g.add(core);
@@ -2251,7 +2271,7 @@ function startLevel(w, lv) {
   teardown();
   const th = THEMES[lv.theme] || THEMES.cell;
   L = { world: w, lv: lv, th: th, group: new T.Group(), solids: [], tokens: [], sparks: [], stations: [], doors: [], cps: [{ x: 2, y: 0 }], anim: [], used: {}, scans: [], helps: [], models: [], flies: [], secrets: [], ghosts: [], crumbs: [], told: {}, temps: [], clues: [], portal: null,
-    refuels: [], waters: [], currents: [], airs: [], glowers: [], smokers: [], ores: [], boulders: [], capsules: [], bag: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], pillars: [], powers: [], bricks: [], bosses: [], towers: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
+    refuels: [], waters: [], currents: [], airs: [], glowers: [], smokers: [], ores: [], boulders: [], capsules: [], bag: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], pillars: [], powers: [], bricks: [], bosses: [], towers: [], sleds: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
   scene.add(L.group);
   if (lv.bonus) retroMode(true);
   const b = builder(); lv.build(b); closeSlab(b.x); L.len = b.x; if (L.waters.length) buildWater();
@@ -2498,7 +2518,7 @@ function step(dt) {
   if (wantDuck) P.duck = true;
   else if (P.duck) { PH = STAND; const blocked = L.solids.some(function (s) { return !s.off && !s.oneWay && hit(s); }); if (blocked) { PH = CROUCH; jumpBuf = 0; } else P.duck = false; }
   PH = P.duck ? CROUCH : STAND;
-  const running = keys.run && !P.duck; if (P.dashT > 0 || P.kickT > 0 || P.pound > 0) { /* a move is steering */ } else if (P.slideT > 0) P.vx = P.slideDir * Math.max(SPEED * 0.5, Math.abs(P.vx) - 9 * dt); else P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
+  const running = keys.run && !P.duck; if (P.sledT > 0) { P.vx = Math.min(18, Math.max(P.vx, 9) + (keys.left ? -10 : 9) * dt); } else if (P.kicked && !P.ground) { /* flying off the ski jump keeps its speed */ } else if (P.dashT > 0 || P.kickT > 0 || P.pound > 0) { /* a move is steering */ } else if (P.slideT > 0) P.vx = P.slideDir * Math.max(SPEED * 0.5, Math.abs(P.vx) - 9 * dt); else P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
   jumpBuf -= dt; coyote = P.ground ? 0.1 : coyote - dt;
   if (P.ground) P.dbl = true;
   if (inW) jumpBuf = 0; /* in water, jump means swim up (handled in swimStep) */
@@ -2508,7 +2528,7 @@ function step(dt) {
   P.wallT = (P.wallT || 0) - dt; P.kickT = (P.kickT || 0) - dt; if (P.kickT > 0) P.vx = -P.wallDir * 11 * Math.max(0.4, P.kickT / 0.22);
   if (jumpBuf > 0 && coyote > 0) { P.vy = JUMP * (bo ? 1.15 : 1); jumpBuf = 0; coyote = 0; beep(420, 0.08, 'triangle'); }
   else if (jumpBuf > 0 && !P.ground && P.dbl && P.vy < 10) { P.vy = JUMP * 1.05 * (bo ? 1.1 : 1); P.dbl = false; jumpBuf = 0; beep(620, 0.08, 'triangle'); burst(P.x, P.y + 0.2, '#ffffff'); }
-  if (!keys.jump && P.vy > 0 && !inW) P.vy -= 50 * dt; /* short hop when jump is let go (not in water: currents and plumes can lift you) */
+  if (!keys.jump && P.vy > 0 && !inW && !P.kicked) P.vy -= 50 * dt; /* short hop when jump is let go (not in water: currents and plumes can lift you) */
   /* bonus moves */
   if (hasA('dash') && keys.run && !P.runWas && !P.ground && !P.dashed && !inW) { P.dashed = true; P.dashT = 0.2; beep(700, 0.12, 'sawtooth', 'whoosh, air dash'); burst(P.x, P.y + 0.6, '#7fd4ff'); }
   P.runWas = keys.run; if (P.dashT > 0) { P.dashT -= dt; P.vx = P.face * 21; P.vy = 0.5; }
@@ -2680,7 +2700,7 @@ function step(dt) {
 
   P.m.position.set(P.x, P.y + (P.ground ? Math.abs(Math.sin(P.t * 11)) * 0.07 * Math.min(1, Math.abs(P.vx) / 3) : 0), 0);
   P.m.rotation.y += (P.face * 0.75 - P.m.rotation.y) * Math.min(1, dt * 10);
-  if (P.sprite) { P.sprite.rotation.y = -P.m.rotation.y; P.sprite.scale.x = (P.face < 0 ? -1 : 1) * (P.wallT > 0 && !P.ground && hasA('wall') ? -1 : 1); spriteFrame(); } /* the pixel alien always faces the camera; its picture changes with each move */
+  if (P.sprite) { P.sprite.rotation.y = -P.m.rotation.y; P.sprite.scale.x = (P.face < 0 ? -1 : 1) * (P.wallT > 0 && !P.ground && hasA('wall') ? -1 : 1); spriteFrame(); if (P.sledM) { P.sledM.rotation.y = -P.m.rotation.y; P.sledM.scale.x = P.face < 0 ? -1 : 1; } } /* the pixel alien always faces the camera; its picture changes with each move */
   { const sp = Math.abs(P.vx), u = P.m.userData; P.stride = (P.stride || 0) + dt * sp * 2.2; const amp = P.ground ? Math.min(1, sp / SPEED) * 0.75 : 0;
     if (u.legs) u.legs.forEach(function (h, i) { h.rotation.x = P.ground ? Math.sin(P.stride + i * Math.PI) * amp : -0.5; });
     if (u.tents) u.tents.forEach(function (t, i) { t.rotation.x = Math.sin(P.stride + i * 1.6) * (amp * 0.6 + 0.08); });

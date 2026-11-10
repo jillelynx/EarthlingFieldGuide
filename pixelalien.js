@@ -21,7 +21,7 @@ function shade(x, inside, cx, cy, sx, sy, base) { const lt = mix(base, [255, 255
     if (edge) { P(x, X, y, 1, 1, OUT); continue; } const nx = (X - cx) / sx, ny = (y - cy) / sy, v = -(nx * 0.55 + ny * 0.85) + (((X + y) & 1) ? 0.06 : -0.06);
     P(x, X, y, 1, 1, css(v > 0.55 ? lt : v > 0.1 ? ml : v > -0.5 ? base : v > -0.85 ? dk : dd)); }
   ell(x, cx - sx * 0.45, cy - sy * 0.55, Math.max(2, Math.round(sx * 0.12)), Math.max(2, Math.round(sy * 0.08)), 'rgba(255,255,255,0.85)'); }
-function body(a, col) { const c = cv(W, H), x = c.getContext('2d'), sh = a.shape || 0, base = hex(col);
+function body(a, col, side) { const c = cv(W, H), x = c.getContext('2d'), sh = a.shape || 0, base = hex(col);
   const B = [{ cx: 49, cy: 96, rx: 40, ry: 42 }, { cx: 49, cy: 90, rx: 32, ry: 49 }, { cx: 49, cy: 104, rx: 47, ry: 34 }, { cx: 49, cy: 96, rx: 42, ry: 42 }, { cx: 49, cy: 98, rx: 38, ry: 38 }][sh];
   let inside;
   if (sh === 4) inside = function (X, y) { const dx = Math.max(0, Math.abs(X - B.cx) - (B.rx - 9)), dy = Math.max(0, Math.abs(y - B.cy) - (B.ry - 9)); return dx * dx + dy * dy <= 81; };
@@ -29,36 +29,36 @@ function body(a, col) { const c = cv(W, H), x = c.getContext('2d'), sh = a.shape
   else inside = function (X, y) { return ((X - B.cx) * (X - B.cx)) / (B.rx * B.rx) + ((y - B.cy) * (y - B.cy)) / (B.ry * B.ry) <= 1; };
   const top = B.cy - B.ry;
   /* gear behind the body: explorer cape */
-  if (a.gear === 2) { const cp = cv(W, H), q = cp.getContext('2d'); shade(q, function (X, y) { return y > top + 20 && y < FY + 4 && Math.abs(X - 49) < 30 + (y - top) * 0.12; }, 49, top + 60, 40, 60, [200, 40, 50]); x.drawImage(cp, 0, 0); }
+  if (a.gear === 2) { const cp = cv(W, H), q = cp.getContext('2d'); shade(q, side ? function (X, y) { return y > top + 18 && y < FY && X < 40 && X > 6 - (y - top) * 0.05 && X > 40 - (y - top) * 0.6; } : function (X, y) { return y > top + 20 && y < FY + 4 && Math.abs(X - 49) < 30 + (y - top) * 0.12; }, 49, top + 60, 40, 60, [200, 40, 50]); x.drawImage(cp, 0, 0); }
   /* antennae */
-  const n = a.ant == null ? 2 : a.ant, ax = n === 1 ? [49] : n === 2 ? [34, 64] : [];
-  ax.forEach(function (X) { P(x, X - 3, 20, 7, top - 14, OUT); P(x, X - 1, 22, 3, top - 16, css(mix(base, [255, 255, 255], 0.2))); });
+  const n = a.ant == null ? 2 : a.ant, ax0 = n === 1 ? [49] : n === 2 ? [34, 64] : [], ax = side ? ax0.map(function (X) { return X - 6 - (X - 49) * 0.4; }) : ax0, lean = side ? -6 : 0;
+  ax.forEach(function (X, k) { const tx = X + lean - (side ? k * 2 : 0); for (let y = 20; y < top + 6; y++) { const u = (y - 20) / (top - 14), xx = tx + (X - tx) * u; P(x, xx - 3, y, 7, 1, OUT); if (y > 21) P(x, xx - 1, y, 3, 1, css(mix(base, [255, 255, 255], 0.2))); } });
   shade(x, inside, B.cx, B.cy, B.rx, B.ry, base);
-  ax.forEach(function (X) { const t = cv(W, H), q = t.getContext('2d'); shade(q, function (u, v) { return (u - X) * (u - X) + (v - 14) * (v - 14) <= 81; }, X, 14, 9, 9, [255, 220, 40]); x.drawImage(t, 0, 0); });
+  ax.forEach(function (X0, k) { const X = X0 + lean - (side ? k * 2 : 0), t = cv(W, H), q = t.getContext('2d'); shade(q, function (u, v) { return (u - X) * (u - X) + (v - 14) * (v - 14) <= 81; }, X, 14, 9, 9, [255, 220, 40]); x.drawImage(t, 0, 0); });
   /* face */
-  const ec = a.eyes || 2, er = ec === 1 ? 15 : ec === 2 ? 12 : 9, ey = B.cy - Math.round(B.ry * 0.18), ex = ec === 1 ? [49] : ec === 2 ? [49 - Math.min(16, B.rx * 0.4), 49 + Math.min(16, B.rx * 0.4)] : [49 - B.rx * 0.48, 49, 49 + B.rx * 0.48], st = a.estyle || 0;
+  const ec = a.eyes || 2, er = ec === 1 ? 15 : ec === 2 ? 12 : 9, ey = B.cy - Math.round(B.ry * 0.18), ex = side ? (ec === 1 ? [49 + B.rx * 0.42] : ec === 2 ? [49 + B.rx * 0.08, 49 + B.rx * 0.5] : [49 - B.rx * 0.12, 49 + B.rx * 0.22, 49 + B.rx * 0.55]) : ec === 1 ? [49] : ec === 2 ? [49 - Math.min(16, B.rx * 0.4), 49 + Math.min(16, B.rx * 0.4)] : [49 - B.rx * 0.48, 49, 49 + B.rx * 0.48], st = a.estyle || 0, esq = side ? 0.72 : 1;
   ex.forEach(function (X, i) { const yy = ec === 3 && i === 1 ? ey - 8 : ey;
     if (st === 3) { for (let k = -er; k <= er; k++) { const h = Math.round(Math.sqrt(Math.max(0, er * er - k * k)) * 0.5); P(x, X + k, yy - h, 1, 3, OUT); } return; } /* happy: ^ eyes */
     if (st === 4) { const r = Math.round(er * 0.55); ell(x, X - r * 0.8, yy - r * 0.3, r, r, OUT); ell(x, X + r * 0.8, yy - r * 0.3, r, r, OUT); for (let k = 0; k < er; k++) P(x, X - er + k, yy + k * 0.2 - 1, (er - k) * 2, 1, OUT);
       ell(x, X - r * 0.8, yy - r * 0.3, r - 2, r - 2, '#ff4a7a'); ell(x, X + r * 0.8, yy - r * 0.3, r - 2, r - 2, '#ff4a7a'); for (let k = 0; k < er - 3; k++) P(x, X - er + 3 + k, yy + k * 0.2, (er - 3 - k) * 2, 1, '#ff4a7a'); P(x, X - r, yy - r, 3, 2, '#ffd0e0'); return; } /* hearts */
-    const rx = Math.round(er * (st === 1 ? 1.05 : 0.85)), ry = Math.round(er * (st === 1 ? 1.1 : 1));
+    const sc = side && i < ex.length - 1 ? 0.8 : 1, rx = Math.round(er * (st === 1 ? 1.05 : 0.85) * esq * sc), ry = Math.round(er * (st === 1 ? 1.1 : 1) * sc);
     ell(x, X, yy, rx + 1, ry + 1, OUT); ell(x, X, yy, rx - 1, ry - 1, '#2a1650'); ell(x, X, yy + 2, rx - 3, ry - 4, '#3c2470'); if (st === 1) { ell(x, X, yy + ry - 4, rx - 4, 2, '#6a4ab0'); }
     ell(x, X + Math.round(rx * 0.3), yy - Math.round(ry * 0.35), Math.max(2, Math.round(er * 0.28)), Math.max(2, Math.round(er * 0.24)), '#ffffff'); P(x, X - Math.round(rx * 0.4), yy + Math.round(ry * 0.25), 3, 3, '#ffffff');
     if (st === 1) P(x, X - Math.round(rx * 0.1), yy - Math.round(ry * 0.6), 2, 2, '#ffffff');
     if (st === 2) { for (let y = yy - ry - 1; y < yy - 1; y++) for (let k = -rx - 1; k <= rx + 1; k++) if ((k * k) / ((rx + 1) * (rx + 1)) + ((y - yy) * (y - yy)) / ((ry + 1) * (ry + 1)) <= 1) P(x, X + k, y, 1, 1, css(base)); P(x, X - rx - 1, yy - 1, rx * 2 + 3, 2, OUT); } /* sleepy lid */
     else { for (let k = -rx + 2; k <= rx - 2; k++) P(x, X + k, yy - ry - 6 - Math.round((1 - (k * k) / (rx * rx)) * 3), 1, 2, OUT); } }); /* eyebrows */
   /* cheeks */
-  if (B.rx > 30) { ell(x, 49 - B.rx * 0.62, ey + er + 4, 5, 3, '#ff8fb8'); ell(x, 49 + B.rx * 0.62, ey + er + 4, 5, 3, '#ff8fb8'); }
+  if (side) ell(x, 49 + B.rx * 0.2, ey + er + 4, 4, 3, '#ff8fb8'); else if (B.rx > 30) { ell(x, 49 - B.rx * 0.62, ey + er + 4, 5, 3, '#ff8fb8'); ell(x, 49 + B.rx * 0.62, ey + er + 4, 5, 3, '#ff8fb8'); }
   /* mouth */
-  const my = ey + er + 10, m = a.mouth == null ? 1 : a.mouth;
-  if (m === 1 || m === 4 || m === 5) { for (let k = -10; k <= 10; k++) P(x, 49 + k, my + Math.round((1 - (k * k) / 100) * 5), 1, 2, OUT); if (m === 4) { P(x, 42, my + 4, 3, 4, '#ffffff'); P(x, 54, my + 4, 3, 4, '#ffffff'); } if (m === 5) ell(x, 52, my + 8, 4, 3, '#ff5a8a'); }
-  else if (m === 2) { ell(x, 49, my + 3, 8, 6, OUT); ell(x, 49, my + 3, 6, 4, '#6a1028'); ell(x, 49, my + 6, 4, 2, '#ff6a9a'); }
-  else if (m === 3) { for (let k = 0; k <= 6; k++) { P(x, 43 + k, my + Math.abs(3 - k) * 0.8, 1, 2, OUT); P(x, 49 + k, my + Math.abs(3 - k) * 0.8, 1, 2, OUT); } }
+  const my = ey + er + 10, m = a.mouth == null ? 1 : a.mouth, mx = side ? 49 + B.rx * 0.55 - 49 : 0, mw = side ? 6 : 10;
+  if (m === 1 || m === 4 || m === 5) { for (let k = -mw; k <= mw; k++) P(x, 49 + mx + k, my + Math.round((1 - (k * k) / (mw * mw)) * 5), 1, 2, OUT); if (m === 4) { P(x, 49 + mx - mw + 3, my + 4, 3, 4, '#ffffff'); if (!side) P(x, 54, my + 4, 3, 4, '#ffffff'); } if (m === 5) ell(x, 52 + mx, my + 8, 4, 3, '#ff5a8a'); }
+  else if (m === 2) { ell(x, 49 + mx, my + 3, side ? 6 : 8, 6, OUT); ell(x, 49 + mx, my + 3, side ? 4 : 6, 4, '#6a1028'); ell(x, 49 + mx, my + 6, 3, 2, '#ff6a9a'); }
+  else if (m === 3) { for (let k = 0; k <= 6; k++) { P(x, 43 + mx + k, my + Math.abs(3 - k) * 0.8, 1, 2, OUT); if (!side) P(x, 49 + k, my + Math.abs(3 - k) * 0.8, 1, 2, OUT); } }
   /* gear on the face or head */
-  if (a.gear === 1) { P(x, B.cx - B.rx + 3, ey - 2, B.rx * 2 - 6, 4, '#3a3a4a'); ex.forEach(function (X) { for (let k = 0; k < 360; k += 8) { const r = er + 3; P(x, X + Math.cos(k / 57.3) * r, ey + Math.sin(k / 57.3) * r, 2, 2, '#c8d0d8'); } }); }
+  if (a.gear === 1) { P(x, side ? B.cx - B.rx * 0.3 : B.cx - B.rx + 3, ey - 2, side ? B.rx * 1.25 : B.rx * 2 - 6, 4, '#3a3a4a'); ex.forEach(function (X) { for (let k = 0; k < 360; k += 8) { const r = er + 3; P(x, X + Math.cos(k / 57.3) * r, ey + Math.sin(k / 57.3) * r, 2, 2, '#c8d0d8'); } }); }
   if (a.gear === 3) { const t = cv(W, H), q = t.getContext('2d'); shade(q, function (u, v) { return ((u - 49) * (u - 49)) / 400 + ((v - top + 2) * (v - top + 2)) / 64 <= 1 || ((u - 49) * (u - 49)) / 196 + ((v - top + 12) * (v - top + 12)) / 49 <= 1; }, 49, top - 4, 20, 14, [140, 90, 220]); x.drawImage(t, 0, 0); }
   return c; }
-function feet(a, col) { const c = cv(W, H), x = c.getContext('2d'), base = mix(hex(col), [0, 0, 30], 0.08); [[30, 150], [68, 150]].forEach(function (f) { const t = cv(W, H), q = t.getContext('2d'); shade(q, function (u, v) { return ((u - f[0]) * (u - f[0])) / 225 + ((v - f[1]) * (v - f[1])) / 64 <= 1; }, f[0], f[1], 15, 8, base); x.drawImage(t, 0, 0); }); return c; }
+function feet(a, col, side) { const c = cv(W, H), x = c.getContext('2d'), base = mix(hex(col), [0, 0, 30], 0.08); (side ? [[38, 141], [62, 141]] : [[30, 144], [68, 144]]).forEach(function (f) { const t = cv(W, H), q = t.getContext('2d'); shade(q, function (u, v) { return ((u - f[0]) * (u - f[0])) / 225 + ((v - f[1]) * (v - f[1])) / 64 <= 1; }, f[0], f[1], 15, 8, base); x.drawImage(t, 0, 0); }); return c; }
 function half(img, left) { const c = cv(W, H), x = c.getContext('2d'); x.drawImage(img, left ? 0 : W / 2, 0, W / 2, H, left ? 0 : W / 2, 0, W / 2, H); return c; }
 function scale(img, sx, sy) { const c = cv(Math.max(1, Math.round(img.width * sx)), Math.max(1, Math.round(img.height * sy))); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); return c; }
 function rot(img, deg) { const r = deg * Math.PI / 180, w = Math.ceil(Math.abs(img.width * Math.cos(r)) + Math.abs(img.height * Math.sin(r))), h = Math.ceil(Math.abs(img.width * Math.sin(r)) + Math.abs(img.height * Math.cos(r))), c = cv(w, h), x = c.getContext('2d'); x.translate(w / 2, h / 2); x.rotate(-r); x.drawImage(img, -img.width / 2, -img.height / 2); return c; }
@@ -68,19 +68,22 @@ function cell() { return cv(CW, CH); }
 function place(c, img, dx, dy) { c.getContext('2d').drawImage(img, Math.round((CW - img.width) / 2 + (dx || 0)), Math.round(CH - 4 - img.height + (dy || 0))); }
 BQ.makePixelAlien = function (a, col) {
   const bd = body(a, col), ft = feet(a, col), LF = half(ft, true), RF = half(ft, false), full = cv(W, H); full.getContext('2d').drawImage(ft, 0, 0); full.getContext('2d').drawImage(bd, 0, 0);
+  /* side view (facing right) for every move that goes somewhere; front view for standing, ducking, hurt and win */
+  const sb = body(a, col, true), sf = feet(a, col, true), SL = half(sf, true), SR = half(sf, false), sfull = cv(W, H); sfull.getContext('2d').drawImage(sf, 0, 0); sfull.getContext('2d').drawImage(sb, 0, 0);
   const comp = function (bdx, bdy, lf, rf, bi) { const c = cell(); place(c, LF, lf[0], lf[1]); place(c, RF, rf[0], rf[1]); place(c, bi || bd, bdx, bdy); return c; };
+  const scomp = function (bdx, bdy, lf, rf, bi) { const c = cell(); place(c, SL, lf[0], lf[1]); place(c, bi || sb, bdx, bdy); place(c, SR, rf[0], rf[1]); return c; };
   const F = [];
-  F.push(comp(0, 0, [0, 0], [0, 0])); F.push(comp(0, -2, [3, -4], [-2, -1])); F.push(comp(0, -2, [-2, -1], [3, -4]));
-  F.push(comp(0, -3, [7, -6], [-6, -2], shear(bd, -0.08))); F.push(comp(0, -3, [-6, -2], [7, -6], shear(bd, -0.08)));
-  F.push(comp(0, -3, [2, -9], [-2, -9], scale(bd, 0.96, 1.04)));
-  let c = cell(); place(c, rot(scale(full, 0.8, 0.8), -35), 0, -6); F.push(c);
-  F.push(comp(0, -4, [-5, 0], [5, 0], scale(bd, 1.04, 0.97)));
+  F.push(comp(0, 0, [0, 0], [0, 0])); F.push(scomp(0, -2, [-9, -1], [9, -4])); F.push(scomp(0, -2, [9, -4], [-9, -1]));
+  F.push(scomp(2, -3, [-14, -2], [14, -7], shear(sb, -0.1))); F.push(scomp(2, -3, [14, -7], [-14, -2], shear(sb, -0.1)));
+  F.push(scomp(0, -3, [-6, -9], [8, -11], scale(sb, 0.96, 1.04)));
+  let c = cell(); place(c, rot(scale(sfull, 0.8, 0.8), -40), 0, -6); F.push(c);
+  F.push(scomp(0, -4, [-8, 0], [10, -2], scale(sb, 1.04, 0.97)));
   c = cell(); place(c, scale(full, 1.15, 0.62)); F.push(c);
-  c = cell(); place(c, rot(scale(full, 0.72, 0.72), -70), 2, 0); F.push(c);
+  c = cell(); place(c, rot(scale(sfull, 0.72, 0.72), -70), 2, 0); F.push(c);
   c = cell(); place(c, scale(full, 1.2, 0.72)); [30, 64, 98].forEach(function (X) { P(c.getContext('2d'), X, 8, 4, 32, 'rgba(255,255,255,0.8)'); }); F.push(c);
-  c = comp(0, 0, [0, 0], [0, 0]); { const x = c.getContext('2d'); for (let y = 0; y < 22; y++) { const w = Math.round(Math.sqrt(Math.max(0, 484 - (22 - y) * (22 - y))) * 1.9); P(x, 64 - w, y + 2, w * 2, 1, y < 20 ? '#5ab040' : '#3a8a2a'); } P(x, 63, 22, 2, 18, '#6a4428'); } F.push(c);
-  F.push(comp(-6, 0, [-4, -3], [-4, 0], shear(bd, 0.08)));
-  c = cell(); place(c, rot(scale(full, 0.78, 0.78), 90), 0, -10); { const x = c.getContext('2d'); x.strokeStyle = '#c59cff'; x.lineWidth = 4; x.beginPath(); x.ellipse(64, 110, 56, 60, 0, 3.5, 5.9); x.stroke(); x.beginPath(); x.ellipse(64, 110, 56, 60, 0, 0.35, 2.8); x.stroke(); } F.push(c);
+  c = scomp(0, 0, [-6, -3], [6, -3]); { const x = c.getContext('2d'); for (let y = 0; y < 22; y++) { const w = Math.round(Math.sqrt(Math.max(0, 484 - (22 - y) * (22 - y))) * 1.9); P(x, 64 - w, y + 2, w * 2, 1, y < 20 ? '#5ab040' : '#3a8a2a'); } P(x, 63, 22, 2, 18, '#6a4428'); } F.push(c);
+  F.push(scomp(-6, 0, [-8, -3], [0, -6], shear(sb, 0.08)));
+  c = cell(); place(c, rot(scale(sfull, 0.78, 0.78), 90), 0, -10); { const x = c.getContext('2d'); x.strokeStyle = '#c59cff'; x.lineWidth = 4; x.beginPath(); x.ellipse(64, 110, 56, 60, 0, 3.5, 5.9); x.stroke(); x.beginPath(); x.ellipse(64, 110, 56, 60, 0, 0.35, 2.8); x.stroke(); } F.push(c);
   c = cell(); place(c, rot(tint(scale(full, 0.92, 0.92), '#ff5050', 0.45), 12), -2, -2); F.push(c);
   c = comp(0, -4, [3, -10], [-3, -10]); { const x = c.getContext('2d'); [[14, 30], [112, 24], [16, 90], [112, 80]].forEach(function (s) { P(x, s[0] - 5, s[1] - 1, 11, 2, '#ffd84a'); P(x, s[0] - 1, s[1] - 5, 2, 11, '#ffd84a'); }); } F.push(c);
   const sheet = cv(CW * F.length, CH), sx = sheet.getContext('2d'); F.forEach(function (f, i) { sx.drawImage(f, i * CW, 0); });
