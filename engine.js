@@ -297,7 +297,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 69 · November 10, 2026';
+const VERSION = 'Version 70 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -306,6 +306,12 @@ const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gea
   'Ribosome hat: ribosomes build proteins! Press E in the air to build a protein platform under your feet (one each time you leave the ground).'];
 /* Each world's look: sky gradient, sun glow, layered ridges, haze, drifting lights, light beams. */
 const THEMES = {
+  /* PIXEL HABITATS for the bonus speed runs (v70), drawn by pixelscape.js; ground/top colors are unique so the pixel skins can find those blocks */
+  pxpond: { pixel: 'pond', skyTop: '#2c5a52', horizon: '#3d6e5a', skyBottom: '#24463e', sun: ['#fff0a0', 40, 18, 1], ridge: '#2f5a4c', ground: '#7a4e2d', top: '#6ac04b', rim: '#a8e870', mote: '#fff0a0', pal: ['#4f9a3a'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#88a888'], key: '#ffffff' },
+  pxdesert: { pixel: 'desert', skyTop: '#5aa8e8', horizon: '#a8d8f8', skyBottom: '#e8b878', sun: ['#fff8d0', 40, 18, 1], ridge: '#a86a6a', ground: '#c87a3b', top: '#f0c879', rim: '#fff0b8', mote: '#fff8d0', pal: ['#c87a3a'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#c8a878'], key: '#ffffff' },
+  pxrain: { pixel: 'rain', skyTop: '#1a3a2a', horizon: '#2a5a3a', skyBottom: '#183424', sun: ['#f0ffa0', 40, 18, 1], ridge: '#1e4030', ground: '#5a3a25', top: '#4aa83b', rim: '#8ae05a', mote: '#f0ffa0', pal: ['#2f7a2a'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#88a888'], key: '#ffffff' },
+  pxtundra: { pixel: 'tundra', skyTop: '#6aa8e8', horizon: '#c8e4f8', skyBottom: '#e8f4ff', sun: ['#ffffff', 40, 18, 1], ridge: '#7a8aa8', ground: '#6a7079', top: '#f4f8fe', rim: '#ffffff', mote: '#ffffff', pal: ['#7a8088'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#a8b8c8'], key: '#ffffff' },
+  pxreef: { pixel: 'reef', skyTop: '#2a9ac8', horizon: '#1a6a9a', skyBottom: '#0e3a5a', sun: ['#c8f8ff', 40, 18, 1], ridge: '#2a5a8a', ground: '#6a6a8b', top: '#e8d8a9', rim: '#fff4d0', mote: '#c8f8ff', pal: ['#6a6a8a'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#6a9ac8'], key: '#ffffff' },
   /* RETRO bonus levels (v68): a bright 8-bit palette; the screen is drawn at low resolution with chunky pixels (retroMode) */
   retro: { skyTop: '#2038ec', horizon: '#5c94fc', skyBottom: '#5c94fc', sun: ['#fcfcfc', 40, 18, 160], ridge: '#00a800', ground: '#c84c0c', top: '#00a800', rim: '#fcfcfc',
     mote: '#fcd8a8', pal: ['#00a800', '#58d854', '#b8f818'], shapes: ['tree'], density: 0.5, fogD: 0.004, hemi: ['#ffffff', '#5c94fc'], key: '#ffffff' },
@@ -417,7 +423,7 @@ function gate(x0, x1, y0, y1) {
   const core = new T.Mesh(G.box, basic(L.th.rim, 0.28, true)); core.scale.set(0.15, y1 - y0, 5.2); core.position.copy(m.position); g.add(core);
   return g;
 }
-let RIDGES = [];
+let RIDGES = [], PIX = null;
 function scenery(th, x0, x1, grp, anim) {
   RIDGES = [];
   const low = S.set.low, hz = new T.Color(th.horizon);
@@ -468,6 +474,7 @@ function scenery(th, x0, x1, grp, anim) {
   decor(th, x0, x1, grp, anim);
 }
 function sceneryTick(dt, t) {
+  if (PIX) PIX.tick(dt, t);
   if (SKY) {
     SKY.position.copy(cam.position);
     if (SKY.userData.pulse) { const b = (t * 112 / 60) % 1, p = 1 + 0.12 * Math.exp(-b * 9) + 0.06 * Math.exp(-Math.max(0, b - 0.2) * 9) * (b > 0.2 ? 1 : 0); SKY.userData.sun.scale.setScalar(SKY.userData.base * p); }
@@ -874,7 +881,7 @@ function teardown() {
   if (RETRO) retroMode(false); caveLight(false); ['hudBag', 'hudHeat'].forEach(function (id) { const e = $(id); if (e) e.hidden = true; });
   if (L) { scene.remove(L.group); disposeGroup(L.group); }
   if (menuGrp) { scene.remove(menuGrp); disposeGroup(menuGrp); menuGrp = null; }
-  SKY = null; MOTES = null;
+  SKY = null; MOTES = null; PIX = null;
   Object.keys(texCache).forEach(function (k) { texCache[k].dispose(); }); texCache = {};
   L = null;
 }
@@ -2181,7 +2188,10 @@ function startLevel(w, lv) {
   if (lv.bonus) retroMode(true);
   const b = builder(); lv.build(b); closeSlab(b.x); L.len = b.x; if (L.waters.length) buildWater();
   L.floor = Math.min(-16, L.solids.reduce(function (m, s) { return Math.min(m, s.y1); }, 0) - 14);
-  scenery(th, 0, L.len, L.group, L.anim);
+  if (th.pixel && BQ.pixelScape) { /* bonus speed runs: flat pixel-art habitat instead of the 3D scenery */
+    RIDGES = []; SKY = null; MOTES = null; scene.background = new T.Color(th.horizon); scene.fog = new T.FogExp2(th.horizon, 0.0001); HEMI.color.set('#ffffff'); HEMI.groundColor.set(th.hemi[1]); KEYL.color.set('#ffffff');
+    PIX = BQ.pixelScape(th.pixel, 0, L.len, L.group, L.solids); BQ.pixelSkin(th.pixel, L.group, mat(th.ground), mat(th.top)); }
+  else { PIX = null; scenery(th, 0, L.len, L.group, L.anim); }
   /* checkpoint flags: they light up when you pass them */
   L.cps.forEach(function (c, i) {
     if (!i) return; const g = new T.Group(), pole = mesh('cyl', '#d6e4ea'); pole.scale.set(0.06, 2.6, 0.06); pole.position.y = 1.3; g.add(pole);
@@ -2198,7 +2208,7 @@ function startLevel(w, lv) {
   toast(lv.log || '', 7); loadSupplies();
   /* beamed down from the mothership */
   { P.y = 6; P.vy = -1; const bm = new T.Mesh(new T.CylinderGeometry(0.6, 1.4, 9, 16, 1, true), new T.MeshBasicMaterial({ color: th.rim, transparent: true, opacity: 0.35, blending: T.AdditiveBlending, depthWrite: false }));
-    bm.position.set(2, 4.5, 0); L.group.add(bm); L.fx.push({ o: bm, t: 0, vx: 0, vy: 0, life: 1.4 }); } Music.setDuck(1); Music.play(SONGS[lv.theme] ? lv.theme : 'cell');
+    bm.position.set(2, 4.5, 0); L.group.add(bm); L.fx.push({ o: bm, t: 0, vx: 0, vy: 0, life: 1.4 }); } Music.setDuck(1); Music.play(lv.bonus ? 'retro' : SONGS[lv.theme] ? lv.theme : 'cell');
 }
 function hud() {
   let h = ''; for (let i = 0; i < 5; i++) h += i < L.hp ? '●' : '○';
@@ -2327,7 +2337,7 @@ function answer(i) {
       if (st.qi >= st.queue.length) { L.debrief = st.lock.debrief; st.lockLabel.visible = false; toast('✓ Lab Lock open. Code ' + dg + '. Read the debrief when you send your report.', 6); }
     }
     if (st.qi >= st.queue.length) {
-      st.done = true; st.wall.off = true; st.wallMesh.visible = false; if (st.boss) { st.boss.m.visible = false; Music.play(SONGS[L.lv.theme] ? L.lv.theme : 'cell'); }
+      st.done = true; st.wall.off = true; st.wallMesh.visible = false; if (st.boss) { st.boss.m.visible = false; Music.play(L.lv.bonus ? 'retro' : SONGS[L.lv.theme] ? L.lv.theme : 'cell'); }
       st.pads.forEach(function (p) { p.lb.visible = false; }); closeQ(); if (st.boss) toast('✓ ' + st.boss.name + ' is back in balance. ' + q.explain, 6);
     } else openQ(st);
   } else {
@@ -2609,8 +2619,9 @@ function step(dt) {
 let LAST = null, STTAB = 'report', PQ = null;
 function finish() {
   L.over = true; mode = 'done'; closeQ(); LAST = { w: L.world, lv: L.lv }; noteT = 0; $('note').hidden = true;
-  const acc = L.total ? L.first / L.total : 1, stars = acc >= 0.9 ? 3 : acc >= 0.7 ? 2 : 1;
-  const runT = L.time + L.pen, bonus = Math.max(0, Math.round(240 - runT)) * 2; L.score += bonus;
+  const runT0 = L.time + L.pen, acc = L.total ? L.first / L.total : 1, par = L.lv.par || 0;
+  const stars = par ? (runT0 <= par ? 3 : runT0 <= par * 1.4 ? 2 : 1) : acc >= 0.9 ? 3 : acc >= 0.7 ? 2 : 1; /* bonus speed runs: stars come from the time */
+  const runT = runT0, bonus = Math.max(0, Math.round(240 - runT)) * 2; L.score += bonus;
   const before = totalStars(), old = S.levels[L.lv.id] || { stars: 0, best: 0 };
   const tm = Math.round(runT * 10) / 10, newBestT = !old.time || tm < old.time;
   S.levels[L.lv.id] = { stars: Math.max(old.stars, stars), best: Math.max(old.best, L.score), time: newBestT ? tm : old.time }; save();
