@@ -637,3 +637,6 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
   - 2-2 Capturing Light: scan Chloroplast + station w2q110/w2q111. 2-3 Releasing Energy: scan Mitochondrion + station w2q112/w2q113.
 - Main menu: the alien options moved behind a "🎨 Customize your alien" button (its own view with Done buttons at the top and bottom), so the play modes and all menu buttons fit on screen without scrolling (checked at 1280x720, 1024x640 and phone 390x760). On phones the customize panel takes the lower half so the alien stays visible above it. cozy.js now places the language row correctly inside the new menu layout.
 - Checks: validator OK, levels 1-1, 1-3, 2-1, 2-2, 2-3 build cleanly, menu screenshots, no page errors.
+
+## v66 (Nov 10, 2026): stream bug sample buttons readable
+- Teacher: the kick-net "Stream bug sample" cards were hard to read. The two answer buttons had dark text on dark blue. Now "Needs clean water" is light blue and "Tolerates pollution" is light orange, both with bold dark text and a clear border; the "✓" result label is bold green.
