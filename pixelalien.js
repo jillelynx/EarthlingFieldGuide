@@ -36,8 +36,8 @@ function body(a, col, side) { const c = cv(W, H), x = c.getContext('2d'), sh = a
   shade(x, inside, B.cx, B.cy, B.rx, B.ry, base);
   ax.forEach(function (X0, k) { const X = X0 + lean - (side ? k * 2 : 0), t = cv(W, H), q = t.getContext('2d'); shade(q, function (u, v) { return (u - X) * (u - X) + (v - 14) * (v - 14) <= 81; }, X, 14, 9, 9, [255, 220, 40]); x.drawImage(t, 0, 0); });
   /* face */
-  const ec = a.eyes || 2, er = ec === 1 ? 15 : ec === 2 ? 12 : 9, ey = B.cy - Math.round(B.ry * 0.18), ex = side ? (ec === 1 ? [49 + B.rx * 0.42] : ec === 2 ? [49 + B.rx * 0.08, 49 + B.rx * 0.5] : [49 - B.rx * 0.12, 49 + B.rx * 0.22, 49 + B.rx * 0.55]) : ec === 1 ? [49] : ec === 2 ? [49 - Math.min(16, B.rx * 0.4), 49 + Math.min(16, B.rx * 0.4)] : [49 - B.rx * 0.48, 49, 49 + B.rx * 0.48], st = a.estyle || 0, esq = side ? 0.72 : 1;
-  ex.forEach(function (X, i) { const yy = ec === 3 && i === 1 ? ey - 8 : ey;
+  const ec = a.eyes || 2, er = ec === 1 ? 15 : (ec === 2 || side) ? 12 : 9, ey = B.cy - Math.round(B.ry * 0.18), ex = side ? [49 + B.rx * 0.42] /* from the side only the near eye shows */ : ec === 1 ? [49] : ec === 2 ? [49 - Math.min(16, B.rx * 0.4), 49 + Math.min(16, B.rx * 0.4)] : [49 - B.rx * 0.48, 49, 49 + B.rx * 0.48], st = a.estyle || 0, esq = side ? 0.72 : 1;
+  ex.forEach(function (X, i) { const yy = ec === 3 && i === 1 && !side ? ey - 8 : ey;
     if (st === 3) { for (let k = -er; k <= er; k++) { const h = Math.round(Math.sqrt(Math.max(0, er * er - k * k)) * 0.5); P(x, X + k, yy - h, 1, 3, OUT); } return; } /* happy: ^ eyes */
     if (st === 4) { const r = Math.round(er * 0.55); ell(x, X - r * 0.8, yy - r * 0.3, r, r, OUT); ell(x, X + r * 0.8, yy - r * 0.3, r, r, OUT); for (let k = 0; k < er; k++) P(x, X - er + k, yy + k * 0.2 - 1, (er - k) * 2, 1, OUT);
       ell(x, X - r * 0.8, yy - r * 0.3, r - 2, r - 2, '#ff4a7a'); ell(x, X + r * 0.8, yy - r * 0.3, r - 2, r - 2, '#ff4a7a'); for (let k = 0; k < er - 3; k++) P(x, X - er + 3 + k, yy + k * 0.2, (er - 3 - k) * 2, 1, '#ff4a7a'); P(x, X - r, yy - r, 3, 2, '#ffd0e0'); return; } /* hearts */
