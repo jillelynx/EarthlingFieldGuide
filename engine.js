@@ -297,7 +297,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 68 · November 10, 2026';
+const VERSION = 'Version 69 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -521,6 +521,11 @@ function stackLabels(list, x, yTop, z, gap) {
   let y = yTop; list.forEach(function (sp) { if (!sp) return; const h = sp.userData.lbl ? sp.userData.lbl.h : sp.scale.y; sp.position.set(x, y - h / 2, z); y -= h + (gap == null ? 0.15 : gap); });
   return y;
 }
+/* the 8-bit alien for the retro bonus levels: a flat picture with crisp pixels, in place of the 3D body */
+function pixelAlien(P) { const PA = BQ.PIXEL_ALIEN, img = new Image(), tex = new T.Texture(img); img.onload = function () { tex.needsUpdate = true; }; img.src = PA.src;
+  tex.magFilter = T.NearestFilter; tex.minFilter = T.NearestFilter; tex.generateMipmaps = false;
+  const hgt = 2.0, sp = new T.Mesh(new T.PlaneGeometry(hgt * PA.w / PA.h, hgt), new T.MeshBasicMaterial({ map: tex, transparent: true, alphaTest: 0.5, side: T.DoubleSide }));
+  P.m.children.forEach(function (c) { c.visible = false; }); sp.position.y = 1.0; P.m.add(sp); P.sprite = sp; }
 function buildAlien(a) {
   const g = new T.Group(), col = COLORS[a.color][1], shape = a.shape || 0;
   const sc = [[0.55, 0.6, 0.5], [0.44, 0.76, 0.42], [0.7, 0.48, 0.55], [0.6, 0.55, 0.52], [0.52, 0.55, 0.5]][shape] || [0.55, 0.6, 0.5];
@@ -2184,6 +2189,7 @@ function startLevel(w, lv) {
     g.position.set(c.x, c.y, -1.2); L.group.add(g); L.flags[i] = { fl: fl, g: g };
   });
   P = { x: 2, y: 0, vx: 0, vy: 0, ground: null, face: 1, m: buildAlien(S.alien), t: 0, atp: false, atpM: null, badge: null, inv: 0, boost: 0, boostM: null, shield: 0, shieldM: null, dbl: true, trail: [], hist: [] };
+  if (lv.bonus && BQ.PIXEL_ALIEN) pixelAlien(P); /* retro bonus levels: the alien becomes the teacher's 8-bit drawing */
   L.group.add(P.m);
   const sh = new T.Mesh(G.plane, new T.MeshBasicMaterial({ map: FX.glow, color: th.rim, transparent: true, opacity: 0.5, blending: T.AdditiveBlending, depthWrite: false })); sh.rotation.x = -Math.PI / 2; sh.scale.set(3.2, 3.2, 1); L.group.add(sh); P.shadow = sh;
   cam.position.set(P.x + 4, 5, camZ);
@@ -2584,6 +2590,7 @@ function step(dt) {
 
   P.m.position.set(P.x, P.y + (P.ground ? Math.abs(Math.sin(P.t * 11)) * 0.07 * Math.min(1, Math.abs(P.vx) / 3) : 0), 0);
   P.m.rotation.y += (P.face * 0.75 - P.m.rotation.y) * Math.min(1, dt * 10);
+  if (P.sprite) { P.sprite.rotation.y = -P.m.rotation.y; P.sprite.scale.x = P.face < 0 ? -1 : 1; P.sprite.position.y = 1.0 + (P.ground ? Math.abs(Math.sin(P.t * 11)) * 0.05 * Math.min(1, Math.abs(P.vx) / 3) : 0); } /* the pixel alien always faces the camera */
   { const sp = Math.abs(P.vx), u = P.m.userData; P.stride = (P.stride || 0) + dt * sp * 2.2; const amp = P.ground ? Math.min(1, sp / SPEED) * 0.75 : 0;
     if (u.legs) u.legs.forEach(function (h, i) { h.rotation.x = P.ground ? Math.sin(P.stride + i * Math.PI) * amp : -0.5; });
     if (u.tents) u.tents.forEach(function (t, i) { t.rotation.x = Math.sin(P.stride + i * 1.6) * (amp * 0.6 + 0.08); });
@@ -3470,7 +3477,7 @@ function retroMode(on) { const c = $('stage'); if (!c) return; c.classList.toggl
 let RETRO = false;
 function resize() {
   const c = $('stage'), w = c.clientWidth || 800, h = c.clientHeight || 450;
-  renderer.setPixelRatio(RETRO ? Math.max(0.2, 300 / Math.max(300, w)) : S.set.low ? 1 : Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false);
+  renderer.setPixelRatio(RETRO ? Math.max(0.3, 480 / Math.max(480, w)) : S.set.low ? 1 : Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false);
   cam.aspect = w / h; const half = Math.tan(cam.fov * Math.PI / 360); camZ = Math.max(22, 14 / (half * cam.aspect)); cam.updateProjectionMatrix();
 }
 function tick(t) {

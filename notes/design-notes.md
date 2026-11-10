@@ -656,3 +656,7 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 - Content: coins (sparks), ? blocks incl. an extra life, viruses, an amoeba, a rare collectible, and 3 mixed review gates (2 + 2 + 3 questions) drawn from that world's own STEELS standards (W1 A-C; W2 A, E-H, J, K; W3 I, L-O, V; W4 A, D, P-R; W5 S-U, W, X).
 - Optional: bonus levels do not count toward the silver/gold certificates (celebrate.js levels() skips lv.bonus). Map: bonus levels are square 👾 nodes; nodes spread a little wider when a world has 6 levels.
 - Teacher guide (Claude Doc "Earthling Field Guide: Teacher User Guide", https://claude.ai/artifact/DurniDAwWE3S28qVbzdyYs): update it with every new version.
+
+## v69 (Nov 10, 2026): the teacher's pixel-art alien in the bonus levels
+- The teacher shared her 8-bit drawing of the alien (blue, two yellow-tipped antennae, no side nub). In the retro bonus levels the player is now that picture (pixelalien.js: the drawing as a 99 x 160 PNG stored as text; crisp pixels, always faces the camera, flips left/right, bounces when running, squashes on jumps and ducks). The 3D alien is hidden only in bonus levels.
+- Retro screen resolution raised to about 480 pixels wide (was 300) so the drawing and signs stay readable.
