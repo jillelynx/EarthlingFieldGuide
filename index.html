@@ -45,6 +45,7 @@ button:disabled { opacity: .45; cursor: default; }
 @media (max-width: 700px) { #menu.custOn .card { max-height: 56dvh; } }
 #menu .btns button { padding: 6px 10px; font-size: .92em; } #menu #menuLang { margin: 0; } #menu .ver, #menuStars { margin: 0; }
 @media (max-height: 760px) { #menuMain > p.dim:first-child { display: none; } #menu h1 { font-size: calc(28px * var(--ts)); } }
+.pixprev { display: flex; align-items: center; gap: 10px; } .pixprev canvas { width: 48px; height: 66px; image-rendering: pixelated; background: #10202c; border-radius: 8px; border: 2px solid #2f5560; }
 .custb { font-family: var(--display); font-weight: 700; padding: 10px 16px; border-color: #ff9fd0; } .custh { margin: 0; }
 #levels, #progress, #settings, #pause, #done, #about { background: rgba(11, 29, 42, .82); }
 .btns { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -270,6 +271,7 @@ ul.slots { list-style: none; padding-left: 0; }
         <div class="custtop"><h2 class="custh">🎨 Customize your alien</h2><button type="button" id="btnCustDone2" class="primary">✓ Done</button></div>
         <p class="dim">Pick a body, color, eyes, and more. Your alien changes as you choose.</p>
         <div id="cust"></div>
+        <div class="pixprev"><canvas id="pixPrev" width="128" height="176" aria-label="Your 8-bit alien"></canvas><span class="dim">Your 8-bit alien for the bonus speed runs</span></div>
         <button type="button" id="btnCustDone" class="primary">✓ Done</button>
       </div>
     </div>

@@ -297,7 +297,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 71 · November 10, 2026';
+const VERSION = 'Version 72 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 /* MOVES earned in the bonus speed runs (v71) */
@@ -536,7 +536,9 @@ function stackLabels(list, x, yTop, z, gap) {
   return y;
 }
 /* the 8-bit alien for the retro bonus levels: a flat picture with crisp pixels, in place of the 3D body */
-function pixelAlien(P) { const PA = BQ.PIXEL_ALIEN, img = new Image(), tex = new T.Texture(img); img.onload = function () { tex.needsUpdate = true; }; img.src = PA.sheet;
+function pixelAlien(P) { const PA = BQ.PIXEL_ALIEN; let tex; /* the teacher's drawing for her design, otherwise a pixel alien drawn from this student's choices */
+  if (BQ.makePixelAlien && BQ.isTeacherAlien && !BQ.isTeacherAlien(S.alien)) tex = new T.CanvasTexture(BQ.makePixelAlien(S.alien, COLORS[S.alien.color][1]));
+  else { const img = new Image(); tex = new T.Texture(img); img.onload = function () { tex.needsUpdate = true; }; img.src = PA.sheet; }
   tex.magFilter = T.NearestFilter; tex.minFilter = T.NearestFilter; tex.generateMipmaps = false; tex.repeat.set(1 / PA.n, 1);
   const hgt = 2.2, sp = new T.Mesh(new T.PlaneGeometry(hgt * PA.fw / PA.fh, hgt), new T.MeshBasicMaterial({ map: tex, transparent: true, alphaTest: 0.5, side: T.DoubleSide }));
   P.m.children.forEach(function (c) { c.visible = false; }); sp.position.y = 1.08; P.m.add(sp); P.sprite = sp; P.frames = PA.frames; }
@@ -3394,9 +3396,12 @@ function custHTML() {
     }).join('') + '</span></div>';
   }).join('') + '<p class="dim gearinfo">' + GEARINFO[S.alien.gear || 0] + '</p>';
 }
-function custView(on) { $('menu').classList.toggle('custOn', on); $('menuMain').hidden = on; $('menuCust').hidden = !on; const f = on ? $('menuCust').querySelector('.chip') : $('btnCustom'); if (f && !$('menu').hidden) f.focus(); }
+function custView(on) { if (on) pixPreview(); $('menu').classList.toggle('custOn', on); $('menuMain').hidden = on; $('menuCust').hidden = !on; const f = on ? $('menuCust').querySelector('.chip') : $('btnCustom'); if (f && !$('menu').hidden) f.focus(); }
+function pixPreview() { const c = $('pixPrev'); if (!c || !BQ.PIXEL_ALIEN) return; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; x.clearRect(0, 0, c.width, c.height);
+  if (BQ.makePixelAlien && !BQ.isTeacherAlien(S.alien)) x.drawImage(BQ.makePixelAlien(S.alien, COLORS[S.alien.color][1]), 0, 0, 128, 176, 0, 0, 128, 176);
+  else { const im = new Image(); im.onload = function () { x.drawImage(im, 0, 0, 128, 176, 0, 0, 128, 176); }; im.src = BQ.PIXEL_ALIEN.sheet; } }
 function buildMenu() {
-  $('cust').innerHTML = custHTML();
+  $('cust').innerHTML = custHTML(); if (!$('menuCust').hidden) pixPreview();
   const stars = totalStars(), list = allLevels(), started = Object.keys(S.levels).length > 0;
   $('btnPlay').textContent = started ? '🎮 Platformer: continue' : '🎮 Platformer Adventure';
   $('menuStars').textContent = list.length ? stars + ' of ' + list.length * 3 + ' stars' : 'No world files found in this folder.';
