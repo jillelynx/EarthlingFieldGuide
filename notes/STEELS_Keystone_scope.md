@@ -50,11 +50,18 @@ Assessment Anchors and Eligible Content (BIO.A.x.x.x / BIO.B.x.x.x) are no longe
 - Supporting vocabulary that is needed to talk about a standard (cell/tissue/organ, population/community/ecosystem,
   producer/consumer, gene/allele, chromosome) is kept.
 - Protein synthesis: DNA sequence -> mRNA -> amino acid order -> protein shape -> job. No codon-chart decoding, no tRNA/anticodons, no ER -> Golgi path.
+- Middle school refreshers (added v65, Nov 10, 2026): cell parts (nucleus, ribosome, cell membrane, mitochondrion,
+  chloroplast) are middle-school STEELS 3.1.6-8.B ("the ways that parts of cells contribute to the function"), and the
+  four kinds of large carbon-based molecules support 3.1.9-12.F ("amino acids and/or other large carbon-based molecules").
+  Keystone items assume this background, so short review content is back in levels 1-3, 2-1, 2-2 and 2-3. Every review
+  item says "Refresher", carries the tag "review" (so it never appears in mixed gates or boss fights), and has topic
+  review-cell-parts, review-macromolecules, review-chloroplast or review-mitochondria. Codes: nucleus/ribosome items A,
+  other cell parts B, macromolecules F, chloroplast E, mitochondria G.
 - Exploration areas (Willow Creek, coves, falls, Biodome): cards stay as exploring flavor; only cards that clearly match a STEELS standard carry a tag.
 
-## Out of scope (removed from the platformer question banks)
-Characteristics of life; prokaryote/eukaryote and organelle identification; membrane structure and transport (diffusion,
-osmosis, active transport, endo/exocytosis); properties of water; macromolecule/monomer identification, dehydration
+## Out of scope (removed from the platformer question banks, except the tagged middle-school refreshers above)
+Characteristics of life; prokaryote/eukaryote and detailed organelle identification (ER, Golgi, lysosome, vacuole...); membrane structure and transport (diffusion,
+osmosis, active transport, endo/exocytosis); properties of water; macromolecule details beyond the refresher, dehydration
 synthesis/hydrolysis; enzymes; ATP-ADP cycle details; chloroplast/mitochondrion structure; water cycle and nitrogen cycle;
 types of symbiosis (mutualism, commensalism, parasitism as named categories); biome identification; names/order of the
 phases of mitosis and meiosis; DNA technology (genetic engineering, cloning, gel electrophoresis, gene therapy);

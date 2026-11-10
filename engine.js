@@ -296,7 +296,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 64 · November 8, 2026';
+const VERSION = 'Version 65 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -3276,7 +3276,7 @@ function menuScene() {
   menuGrp = new T.Group(); scene.add(menuGrp);
   const pad = mesh('cyl', th.ground); pad.scale.set(1.8, 0.3, 1.8); pad.position.y = -0.15; menuGrp.add(pad);
   const rim = mesh('tor', th.top); rim.scale.setScalar(1.75); rim.rotation.x = Math.PI / 2; rim.scale.z = 0.3; menuGrp.add(rim);
-  menuGrp.userData.anim = []; scenery(th, -10, 10, menuGrp, menuGrp.userData.anim); const halo = glow(th.rim, 5, 0.35); halo.position.y = 0.1; menuGrp.add(halo); refreshAlien(); show('menu'); buildMenu();
+  menuGrp.userData.anim = []; scenery(th, -10, 10, menuGrp, menuGrp.userData.anim); const halo = glow(th.rim, 5, 0.35); halo.position.y = 0.1; menuGrp.add(halo); refreshAlien(); show('menu'); custView(false); buildMenu();
 }
 function refreshAlien() { if (!menuGrp) return; if (menuAlien) menuGrp.remove(menuAlien); menuAlien = buildAlien(S.alien); menuAlien.scale.setScalar(1.5); menuGrp.add(menuAlien); }
 function custHTML() {
@@ -3292,6 +3292,7 @@ function custHTML() {
     }).join('') + '</span></div>';
   }).join('') + '<p class="dim gearinfo">' + GEARINFO[S.alien.gear || 0] + '</p>';
 }
+function custView(on) { $('menu').classList.toggle('custOn', on); $('menuMain').hidden = on; $('menuCust').hidden = !on; const f = on ? $('menuCust').querySelector('.chip') : $('btnCustom'); if (f && !$('menu').hidden) f.focus(); }
 function buildMenu() {
   $('cust').innerHTML = custHTML();
   const stars = totalStars(), list = allLevels(), started = Object.keys(S.levels).length > 0;
@@ -3544,6 +3545,7 @@ function wire() {
   $('menuVer').textContent = VERSION + ' · by J.E. Lynch' + (S.set.admin ? ' · ADMIN' : '');
   $('btnProgress').onclick = function () { buildProgress(); show('progress'); };
   $('btnSettings').onclick = function () { backTo = 'menu'; show('settings'); };
+  $('btnCustom').onclick = function () { custView(true); }; $('btnCustDone').onclick = $('btnCustDone2').onclick = function () { custView(false); };
   $('levelList').addEventListener('click', function (e) { const b = e.target.closest('.lvl'); if (!b) return; if (b.dataset.lock) { mapInfo(+b.dataset.i); return; } const en = allLevels()[+b.dataset.i]; startLevel(en.w, en.lv); });
   $('levelList').addEventListener('keydown', function (e) { const b = e.target.closest && e.target.closest('.lvl'); if (b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); b.dispatchEvent(new MouseEvent('click', { bubbles: true })); } });
   ['mouseover', 'focusin'].forEach(function (ev) { $('levelList').addEventListener(ev, function (e) { const b = e.target.closest && e.target.closest('.lvl'); if (b) mapInfo(+b.dataset.i); }); });

@@ -628,3 +628,12 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 - Word Lab: 25 out-of-scope words removed (prokaryote, osmosis, lysosome, monosaccharide, lipase, symbiosis, cytokinesis, allopatric, ...); added thermoregulation, aerobic, mutagen.
 - Field Guide tags in Sunset Cove / Hemlock Falls / Kelp Cove now show PA STEELS codes (only clear fits).
 - Checks: static validator (every content reference exists, every code is 3.1.9-12.A-X, no 2014 codes anywhere, mixed/boss pools big enough), all 25 levels load cleanly in a browser, Code Lab and golf tested; independent review of all 731 items for boundary and accuracy, and its findings fixed (sickle cell wording, van Helmont numbers, squirrel and trilobite facts, antibiotic-course claim, duplicates, codes).
+
+## v65 (Nov 10, 2026): middle school refreshers + simpler main menu
+- Teacher: there should be review of macromolecules and organelles if Keystone questions need them. Checked: cell parts are middle-school STEELS 3.1.6-8.B, and 3.1.9-12.F talks about amino acids and other large carbon-based molecules, so Keystone items assume this background (the boundary only says identification itself is not tested).
+- Added "Refresher" content (all tagged "review", so never in mixed gates or bosses):
+  - 1-3 The Protein Factory: scans Nucleus, Cell membrane, Mitochondrion (Ribosome was already there); station with sort "cell-parts" (8 items: nucleus, ribosome, membrane, mitochondrion, chloroplast) and questions w1q115-w1q119.
+  - 2-1 Carbon Builders: scans Glucose (monomer), Starch (polymer), Fat droplet (lipid), Folded protein; station with sort "macro" (carbohydrate/lipid/protein/nucleic acid, 8 items) and questions w2q105-w2q109 (incl. "which element must be added to sugar's C, H, O to build amino acids" = nitrogen, tied to F).
+  - 2-2 Capturing Light: scan Chloroplast + station w2q110/w2q111. 2-3 Releasing Energy: scan Mitochondrion + station w2q112/w2q113.
+- Main menu: the alien options moved behind a "🎨 Customize your alien" button (its own view with Done buttons at the top and bottom), so the play modes and all menu buttons fit on screen without scrolling (checked at 1280x720, 1024x640 and phone 390x760). On phones the customize panel takes the lower half so the alien stays visible above it. cozy.js now places the language row correctly inside the new menu layout.
+- Checks: validator OK, levels 1-1, 1-3, 2-1, 2-2, 2-3 build cleanly, menu screenshots, no page errors.

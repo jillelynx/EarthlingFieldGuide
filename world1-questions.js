@@ -101,6 +101,65 @@ FieldGuide.registerQuestions(1, {
   /* SORT sets: every item uses the same answer choices. "answer" counts from 0. */
   "sorts": [
     {
+      "id": "cell-parts",
+      "code": "3.1.9-12.B",
+      "topic": "review-cell-parts",
+      "tags": [
+        "review"
+      ],
+      "prompt": "Refresher: which cell part does this job?",
+      "options": [
+        "Nucleus",
+        "Ribosome",
+        "Cell membrane",
+        "Mitochondrion",
+        "Chloroplast"
+      ],
+      "hint": "Nucleus: holds DNA. Ribosome: builds proteins. Cell membrane: controls what goes in and out. Mitochondrion: releases energy from sugar. Chloroplast: captures light to make sugar.",
+      "items": [
+        {
+          "text": "Holds the DNA in a plant or animal cell",
+          "answer": 0,
+          "explain": "The nucleus holds the cell's DNA."
+        },
+        {
+          "text": "Where a gene is copied into mRNA in a plant or animal cell",
+          "answer": 0,
+          "explain": "In plant and animal cells, genes are copied into mRNA inside the nucleus."
+        },
+        {
+          "text": "Links amino acids in the order the mRNA spells out",
+          "answer": 1,
+          "explain": "Ribosomes read mRNA and link amino acids into a protein chain."
+        },
+        {
+          "text": "Found in every cell, even bacteria, to build proteins",
+          "answer": 1,
+          "explain": "Every cell needs proteins, so every cell has ribosomes."
+        },
+        {
+          "text": "Controls what enters and leaves the cell",
+          "answer": 2,
+          "explain": "The cell membrane surrounds the cell and controls what passes in and out."
+        },
+        {
+          "text": "Releases the energy stored in sugar, using oxygen",
+          "answer": 3,
+          "explain": "Mitochondria carry out cellular respiration."
+        },
+        {
+          "text": "Captures light energy to make sugar",
+          "answer": 4,
+          "explain": "Chloroplasts carry out photosynthesis."
+        },
+        {
+          "text": "Green part found in leaf cells but not in animal cells",
+          "answer": 4,
+          "explain": "Chloroplasts are green because of chlorophyll. Animal cells do not have them."
+        }
+      ]
+    },
+    {
       "id": "levels",
       "code": "3.1.9-12.B",
       "topic": "organization",
@@ -205,6 +264,96 @@ FieldGuide.registerQuestions(1, {
 
   /* QUESTIONS: Keystone-style multiple choice. "tags": ["boss"] marks boss-battle questions. */
   "questions": [
+    {
+      "id": "w1q115",
+      "code": "3.1.9-12.A",
+      "topic": "review-cell-parts",
+      "tags": [
+        "review"
+      ],
+      "prompt": "Refresher: what is the role of the nucleus in making a protein?",
+      "options": [
+        "It holds the DNA, and the gene is copied into mRNA there.",
+        "It links amino acids into a chain.",
+        "It releases energy from sugar.",
+        "It captures light energy."
+      ],
+      "answer": 0,
+      "hint": "The instructions start here.",
+      "explain": "The nucleus holds the DNA. The gene is copied into mRNA, which then moves out to a ribosome."
+    },
+    {
+      "id": "w1q116",
+      "code": "3.1.9-12.A",
+      "topic": "review-cell-parts",
+      "tags": [
+        "review"
+      ],
+      "prompt": "Refresher: a ribosome reads a strand of mRNA. What does the ribosome build?",
+      "options": [
+        "a chain of amino acids that folds into a protein",
+        "a new strand of DNA",
+        "sugar from carbon dioxide and water",
+        "a new cell membrane"
+      ],
+      "answer": 0,
+      "hint": "Ribosomes are where the mRNA message is used.",
+      "explain": "Ribosomes link amino acids in the order the mRNA spells out. The chain then folds into a protein."
+    },
+    {
+      "id": "w1q117",
+      "code": "3.1.9-12.B",
+      "topic": "review-cell-parts",
+      "tags": [
+        "review"
+      ],
+      "prompt": "Refresher: muscle cells use a lot of energy. Which cell part would you expect to find in large numbers in a muscle cell?",
+      "options": [
+        "mitochondria",
+        "chloroplasts",
+        "cell walls",
+        "large water vacuoles"
+      ],
+      "answer": 0,
+      "hint": "Which cell part releases energy from sugar?",
+      "explain": "Muscle cells need a lot of energy, so they have many mitochondria to release the energy stored in sugar."
+    },
+    {
+      "id": "w1q118",
+      "code": "3.1.9-12.B",
+      "topic": "review-cell-parts",
+      "tags": [
+        "review"
+      ],
+      "prompt": "Refresher: why can't a frog's skin cell make its own sugar from sunlight?",
+      "options": [
+        "It has no chloroplasts.",
+        "It has no mitochondria.",
+        "It has no cell membrane.",
+        "It has no DNA."
+      ],
+      "answer": 0,
+      "hint": "Which cell part captures light energy?",
+      "explain": "Only cells with chloroplasts, such as plant and algae cells, can capture light energy to make sugar. Animal cells do have mitochondria, membranes, and DNA."
+    },
+    {
+      "id": "w1q119",
+      "code": "3.1.9-12.B",
+      "topic": "review-cell-parts",
+      "tags": [
+        "review"
+      ],
+      "prompt": "Refresher: which statement about the cell membrane is true?",
+      "options": [
+        "It surrounds every cell and controls what enters and leaves.",
+        "Only plant cells have one.",
+        "It holds the cell's DNA.",
+        "It makes sugar using light energy."
+      ],
+      "answer": 0,
+      "hint": "Think of a gate around the cell.",
+      "explain": "Every cell has a cell membrane. It controls what passes in and out."
+    },
     {
       "id": "w1q22",
       "code": "3.1.9-12.B",
@@ -1899,6 +2048,33 @@ FieldGuide.registerQuestions(1, {
 
   /* SCAN: specimens to look at in the world (press E). Each teaches one word, saved to the Field Guide. */
   "scans": [
+    {
+      "id": "s1-nucleus",
+      "name": "Nucleus",
+      "look": "blob",
+      "color": "#8a5ac8",
+      "word": "Nucleus",
+      "def": "The cell part that holds the DNA in a plant or animal cell.",
+      "note": "MIDDLE SCHOOL REFRESHER: the NUCLEUS holds the cell's DNA. A gene is copied into mRNA here, and the mRNA then travels out to the ribosomes."
+    },
+    {
+      "id": "s1-membrane",
+      "name": "Cell membrane",
+      "look": "drop",
+      "color": "#7ec8e3",
+      "word": "Cell membrane",
+      "def": "The thin outer layer around every cell that controls what enters and leaves.",
+      "note": "MIDDLE SCHOOL REFRESHER: every cell, from bacteria to your own cells, has a CELL MEMBRANE. It controls what goes in and out."
+    },
+    {
+      "id": "s1-mito",
+      "name": "Mitochondrion",
+      "look": "rod",
+      "color": "#ff9f6e",
+      "word": "Mitochondrion",
+      "def": "The cell part where cellular respiration releases the energy stored in sugar.",
+      "note": "MIDDLE SCHOOL REFRESHER: MITOCHONDRIA release the energy stored in sugar (cellular respiration). Both plant and animal cells have them."
+    },
     {
       "id": "s-frog",
       "name": "Frog",

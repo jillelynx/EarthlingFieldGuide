@@ -131,6 +131,64 @@ FieldGuide.registerQuestions(2, {
  ],
  "sorts": [
   {
+   "id": "macro",
+   "code": "3.1.9-12.F",
+   "topic": "review-macromolecules",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: which type of large carbon-based molecule is it?",
+   "options": [
+    "Carbohydrate",
+    "Lipid",
+    "Protein",
+    "Nucleic acid"
+   ],
+   "hint": "Carbohydrates: sugars and starches. Lipids: fats, oils, membranes. Proteins: enzymes, hemoglobin, muscle. Nucleic acids: DNA and RNA.",
+   "items": [
+    {
+     "text": "Starch stored in a potato",
+     "answer": 0,
+     "explain": "Starch is a carbohydrate: a chain of glucose that stores energy."
+    },
+    {
+     "text": "Cellulose in plant cell walls",
+     "answer": 0,
+     "explain": "Cellulose is a carbohydrate that gives plant cell walls strength."
+    },
+    {
+     "text": "The main molecules of the cell membrane",
+     "answer": 1,
+     "explain": "Cell membranes are made mostly of lipids."
+    },
+    {
+     "text": "Butter and olive oil",
+     "answer": 1,
+     "explain": "Fats and oils are lipids that store a lot of energy."
+    },
+    {
+     "text": "An enzyme that speeds up digestion",
+     "answer": 2,
+     "explain": "Enzymes are proteins."
+    },
+    {
+     "text": "Hemoglobin that carries oxygen in blood",
+     "answer": 2,
+     "explain": "Hemoglobin is a protein."
+    },
+    {
+     "text": "DNA in the nucleus",
+     "answer": 3,
+     "explain": "DNA is a nucleic acid that stores genetic information."
+    },
+    {
+     "text": "mRNA that carries a gene's message",
+     "answer": 3,
+     "explain": "RNA is a nucleic acid."
+    }
+   ]
+  },
+  {
    "id": "e-io",
    "code": "3.1.9-12.E",
    "topic": "photosynthesis",
@@ -283,6 +341,168 @@ FieldGuide.registerQuestions(2, {
   }
  ],
  "questions": [
+  {
+   "id": "w2q105",
+   "code": "3.1.9-12.F",
+   "topic": "review-macromolecules",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: enzymes, hemoglobin, and muscle fibers are all made of which type of molecule?",
+   "options": [
+    "proteins",
+    "lipids",
+    "carbohydrates",
+    "nucleic acids"
+   ],
+   "answer": 0,
+   "hint": "These all do jobs that depend on their folded shape.",
+   "explain": "They are proteins: chains of amino acids folded into shapes that fit their jobs."
+  },
+  {
+   "id": "w2q106",
+   "code": "3.1.9-12.F",
+   "topic": "review-macromolecules",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: starch is a long chain of many glucose molecules joined together. What is glucose to starch?",
+   "options": [
+    "a building block (monomer)",
+    "an enzyme that digests it",
+    "a lipid that stores it",
+    "a nucleic acid that codes for it"
+   ],
+   "answer": 0,
+   "hint": "Think of beads on a necklace.",
+   "explain": "Glucose is the monomer. Many glucose monomers join to make the polymer starch."
+  },
+  {
+   "id": "w2q107",
+   "code": "3.1.9-12.F",
+   "topic": "review-macromolecules",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: sugar is made of carbon, hydrogen, and oxygen. To build amino acids and proteins from sugar, which other element must a cell add?",
+   "options": [
+    "nitrogen",
+    "carbon",
+    "hydrogen",
+    "oxygen"
+   ],
+   "answer": 0,
+   "hint": "Sugar already has the other three.",
+   "explain": "Amino acids contain nitrogen. Cells combine the carbon, hydrogen, and oxygen from sugar with nitrogen taken in from food, soil, or water."
+  },
+  {
+   "id": "w2q108",
+   "code": "3.1.9-12.F",
+   "topic": "review-macromolecules",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: which type of molecule stores the instructions for building proteins?",
+   "options": [
+    "nucleic acids such as DNA",
+    "lipids such as fats",
+    "carbohydrates such as starch",
+    "proteins such as enzymes"
+   ],
+   "answer": 0,
+   "hint": "Genes are made of it.",
+   "explain": "DNA is a nucleic acid. The order of its bases holds the instructions for proteins."
+  },
+  {
+   "id": "w2q109",
+   "code": "3.1.9-12.F",
+   "topic": "review-macromolecules",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: fats, oils, and most of the cell membrane belong to which group of molecules?",
+   "options": [
+    "lipids",
+    "proteins",
+    "nucleic acids",
+    "carbohydrates"
+   ],
+   "answer": 0,
+   "hint": "Think of butter and olive oil.",
+   "explain": "Lipids store a lot of energy (fats and oils) and make up most of the cell membrane."
+  },
+  {
+   "id": "w2q110",
+   "code": "3.1.9-12.E",
+   "topic": "review-chloroplast",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: in which cell part does photosynthesis happen?",
+   "options": [
+    "chloroplast",
+    "mitochondrion",
+    "nucleus",
+    "ribosome"
+   ],
+   "answer": 0,
+   "hint": "It contains the green pigment chlorophyll.",
+   "explain": "Chloroplasts capture light energy and store it in sugar."
+  },
+  {
+   "id": "w2q111",
+   "code": "3.1.9-12.E",
+   "topic": "review-chloroplast",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: a leaf cell has both chloroplasts and mitochondria. Why does it need both?",
+   "options": [
+    "Chloroplasts make sugar, and mitochondria release the sugar's energy.",
+    "Both cell parts do the same job.",
+    "Mitochondria make sugar for the chloroplasts.",
+    "Leaf cells use only chloroplasts."
+   ],
+   "answer": 0,
+   "hint": "One stores energy in sugar, the other releases it.",
+   "explain": "Plants make sugar in chloroplasts, then release its energy in mitochondria, just like animal cells do."
+  },
+  {
+   "id": "w2q112",
+   "code": "3.1.9-12.G",
+   "topic": "review-mitochondria",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: in which cell part does cellular respiration release the energy stored in sugar?",
+   "options": [
+    "mitochondrion",
+    "chloroplast",
+    "nucleus",
+    "cell wall"
+   ],
+   "answer": 0,
+   "hint": "Plant and animal cells both have it.",
+   "explain": "Mitochondria carry out cellular respiration, releasing the energy stored in sugar."
+  },
+  {
+   "id": "w2q113",
+   "code": "3.1.9-12.G",
+   "topic": "review-mitochondria",
+   "tags": [
+    "review"
+   ],
+   "prompt": "Refresher: an animal cell has mitochondria but no chloroplasts. Where does it get the sugar its mitochondria use?",
+   "options": [
+    "from the food the animal eats",
+    "by doing photosynthesis in its mitochondria",
+    "directly from sunlight",
+    "from its nucleus"
+   ],
+   "answer": 0,
+   "hint": "Animals are consumers.",
+   "explain": "Animals cannot do photosynthesis, so they get sugar from food. Their mitochondria then release its energy."
+  },
   {
    "id": "w2q06",
    "code": "3.1.9-12.F",
@@ -1709,6 +1929,60 @@ FieldGuide.registerQuestions(2, {
   }
  ],
  "scans": [
+  {
+   "id": "s2-monomer",
+   "name": "Glucose",
+   "look": "blob",
+   "color": "#ffd166",
+   "word": "Monomer",
+   "def": "A small building block that links with others to make a large molecule.",
+   "note": "MIDDLE SCHOOL REFRESHER: a MONOMER is one building block, like one bead. Glucose is a sugar monomer."
+  },
+  {
+   "id": "s2-polymer",
+   "name": "Starch",
+   "look": "chain",
+   "color": "#ffd166",
+   "word": "Polymer",
+   "def": "A large molecule made of many monomers joined together.",
+   "note": "REFRESHER: a POLYMER is a long chain of monomers, like a necklace of beads. Starch is a carbohydrate polymer made of many glucose molecules."
+  },
+  {
+   "id": "s2-lipid",
+   "name": "Fat droplet",
+   "look": "drop",
+   "color": "#f4d35e",
+   "word": "Lipid",
+   "def": "Fats, oils, and the main molecules of cell membranes.",
+   "note": "REFRESHER: LIPIDS are fats and oils. They store a lot of energy and make up most of the cell membrane."
+  },
+  {
+   "id": "s2-protein",
+   "name": "Folded protein",
+   "look": "chain",
+   "color": "#ff8fb1",
+   "word": "Protein",
+   "def": "A large molecule made of a folded chain of amino acids.",
+   "note": "REFRESHER: PROTEINS are chains of amino acids folded into a shape. Enzymes, hemoglobin, and muscle fibers are proteins."
+  },
+  {
+   "id": "s2-chloro",
+   "name": "Chloroplast",
+   "look": "stack",
+   "color": "#5fbf5a",
+   "word": "Chloroplast",
+   "def": "The cell part in plants and algae where photosynthesis happens.",
+   "note": "MIDDLE SCHOOL REFRESHER: CHLOROPLASTS are where photosynthesis happens. Their green pigment, chlorophyll, captures light energy."
+  },
+  {
+   "id": "s2-mito",
+   "name": "Mitochondrion",
+   "look": "rod",
+   "color": "#ff9f6e",
+   "word": "Mitochondrion",
+   "def": "The cell part where cellular respiration releases the energy stored in sugar.",
+   "note": "MIDDLE SCHOOL REFRESHER: MITOCHONDRIA are where cellular respiration happens. Plant and animal cells both have them."
+  },
   {
    "id": "s2-algae",
    "name": "Sea lettuce",

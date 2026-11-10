@@ -2289,7 +2289,7 @@ const cb = document.getElementById('btnCozy'); if (cb) cb.hidden = false;
 (function () { const card = document.querySelector('#menu .card'), modes = card && card.querySelector('.modes'); if (!card || document.getElementById('menuLang')) return;
   const d = document.createElement('div'); d.id = 'menuLang'; d.className = 'mlang'; d.setAttribute('role', 'group'); d.setAttribute('aria-label', 'Language / Idioma');
   d.innerHTML = '<span class="dim">🌐 Language / Idioma:</span> <button type="button" data-ml="en">English</button><button type="button" data-ml="es">Español</button>';
-  (modes ? modes.nextSibling : null) ? card.insertBefore(d, modes.nextSibling) : card.appendChild(d);
+  modes ? modes.parentNode.insertBefore(d, modes.nextSibling) : card.appendChild(d);
   const mark = function () { d.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.ml === (C.S.set.lang || 'en'))); }); };
   d.addEventListener('click', function (e) { const b = e.target.closest('button'); if (!b) return; C.S.set.lang = b.dataset.ml; C.save(); mark(); const wb = document.getElementById('btnIntro'); if (wb && C.tx) wb.textContent = C.tx('in.watch'); });
   mark(); const st0 = document.createElement('style'); st0.textContent = '#menuLang { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; margin: 8px 0; } #menuLang button[aria-pressed="true"] { border-color: #ffd166; box-shadow: inset 0 0 0 1px #ffd166; }'; document.head.appendChild(st0); })();

@@ -87,6 +87,8 @@ FieldGuide.registerWorld({
         /* adds: flying free radicals, more enemies together, faster moving platforms (DNA structure -> protein structure -> job, 3.1.9-12.A) */
         b.hint(7, 4.6, 'Free radicals damage cells. Jump on top of them!').hazard(11, 1.0, { ax: 2.2, ay: 0.15, sp: 1.1 }).sparks(3, 1.2, 3).ground(16)
           .review()
+          .hint(3, 4.8, 'Middle school refresher: scan the main parts of a cell!').scan(7, 's1-nucleus').scan(12, 's1-membrane').scan(17, 's1-mito').ground(20)
+          .station([{ sort: 'cell-parts', n: 3 }, 'w1q115'])
           .squeeze(2, 3.5).antibody(14, 8, 3).ground(16).hsparks(-5, 6.4, 4)
           .qblock(3, 3.4, 'boost').ground(6)
           .bridge(11)
