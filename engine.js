@@ -297,7 +297,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 72 · November 10, 2026';
+const VERSION = 'Version 73 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 /* MOVES earned in the bonus speed runs (v71) */
@@ -3568,11 +3568,18 @@ function pause(on) {
   }
 }
 /* RETRO MODE for the bonus levels: draw the 3D scene at about a quarter of the screen's resolution and scale it up without smoothing (chunky pixels), with fewer colors */
-function retroMode(on) { const c = $('stage'); if (!c) return; c.classList.toggle('retro', !!on); RETRO = !!on; if (renderer) resize(); }
+function retroMode(on) { RETRO = !!on; if (renderer) resize(); }
+/* the bonus levels draw the scene into a small picture (about 640 pixels wide) and then stretch it over the screen with hard pixel edges.
+   Doing the stretch inside the game (not with the browser's CSS) keeps it crisp on every browser, including Safari on Retina Macs. */
+let RT = null, RTQ = null;
+function retroRender() { const c = $('stage'), w = c.clientWidth || 800, h = c.clientHeight || 450, k = Math.min(1, 640 / w), rw = Math.max(64, Math.round(w * k)), rh = Math.max(36, Math.round(h * k));
+  if (!RT || RT.width !== rw || RT.height !== rh) { if (RT) RT.dispose(); RT = new T.WebGLRenderTarget(rw, rh, { minFilter: T.NearestFilter, magFilter: T.NearestFilter, generateMipmaps: false }); if (RTQ) RTQ.mesh.material.map = RT.texture; }
+  if (!RTQ) { RTQ = { scene: new T.Scene(), cam: new T.OrthographicCamera(-1, 1, 1, -1, 0, 1) }; RTQ.mesh = new T.Mesh(new T.PlaneGeometry(2, 2), new T.MeshBasicMaterial({ map: RT.texture, depthTest: false, depthWrite: false })); RTQ.scene.add(RTQ.mesh); }
+  renderer.setRenderTarget(RT); renderer.render(scene, cam); renderer.setRenderTarget(null); renderer.render(RTQ.scene, RTQ.cam); }
 let RETRO = false;
 function resize() {
   const c = $('stage'), w = c.clientWidth || 800, h = c.clientHeight || 450;
-  renderer.setPixelRatio(RETRO ? Math.max(0.3, 480 / Math.max(480, w)) : S.set.low ? 1 : Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false);
+  renderer.setPixelRatio(S.set.low ? 1 : Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false);
   cam.aspect = w / h; const half = Math.tan(cam.fov * Math.PI / 360); camZ = Math.max(22, 14 / (half * cam.aspect)); cam.updateProjectionMatrix();
 }
 function tick(t) {
@@ -3591,7 +3598,7 @@ function tick(t) {
     sceneryTick(1 / 60, t / 1000);
     menuGrp.userData.anim.forEach(function (a) { a.m.position.y = a.y + Math.sin(t / 1600 + a.ph) * a.amp; });
   }
-  renderer.render(scene, cam);
+  if (RETRO) retroRender(); else renderer.render(scene, cam);
 }
 
 /* ---------- controls ---------- */
