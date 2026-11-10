@@ -297,9 +297,16 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 70 · November 10, 2026';
+const VERSION = 'Version 71 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
+/* MOVES earned in the bonus speed runs (v71) */
+const ABIL = { pound: { name: 'Ground Pound', icon: '💥', col: '#ff8a4a', tip: 'New move: GROUND POUND! In the air, press down (down arrow or S) to slam down. It breaks bricks and squashes enemies.' },
+  dash: { name: 'Air Dash', icon: '💨', col: '#7fd4ff', tip: 'New move: AIR DASH! In the air, press Shift to zoom forward. One dash per jump.' },
+  wall: { name: 'Wall Jump', icon: '🧗', col: '#c8ff7a', tip: 'New move: WALL JUMP! Jump toward a wall, then press jump again while touching it to kick off and climb.' },
+  glide: { name: 'Glide', icon: '🪂', col: '#ffd166', tip: 'New move: GLIDE! While falling, hold jump to float down slowly across wide gaps.' },
+  spin: { name: 'Spin Attack', icon: '🌀', col: '#c59cff', tip: 'New move: SPIN ATTACK! Press E to spin. A spin knocks out enemies and gives a little lift in the air.' } };
+function hasA(n) { return !!(L && L.lv.bonus && S.abil && S.abil[n]); }
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
   'Lab goggles: see hidden platforms and secret paths that other players cannot see.',
   'Explorer cape: hold the jump key while falling to fly for a short time. Land to recharge.',
@@ -529,10 +536,16 @@ function stackLabels(list, x, yTop, z, gap) {
   return y;
 }
 /* the 8-bit alien for the retro bonus levels: a flat picture with crisp pixels, in place of the 3D body */
-function pixelAlien(P) { const PA = BQ.PIXEL_ALIEN, img = new Image(), tex = new T.Texture(img); img.onload = function () { tex.needsUpdate = true; }; img.src = PA.src;
-  tex.magFilter = T.NearestFilter; tex.minFilter = T.NearestFilter; tex.generateMipmaps = false;
-  const hgt = 2.0, sp = new T.Mesh(new T.PlaneGeometry(hgt * PA.w / PA.h, hgt), new T.MeshBasicMaterial({ map: tex, transparent: true, alphaTest: 0.5, side: T.DoubleSide }));
-  P.m.children.forEach(function (c) { c.visible = false; }); sp.position.y = 1.0; P.m.add(sp); P.sprite = sp; }
+function pixelAlien(P) { const PA = BQ.PIXEL_ALIEN, img = new Image(), tex = new T.Texture(img); img.onload = function () { tex.needsUpdate = true; }; img.src = PA.sheet;
+  tex.magFilter = T.NearestFilter; tex.minFilter = T.NearestFilter; tex.generateMipmaps = false; tex.repeat.set(1 / PA.n, 1);
+  const hgt = 2.2, sp = new T.Mesh(new T.PlaneGeometry(hgt * PA.fw / PA.fh, hgt), new T.MeshBasicMaterial({ map: tex, transparent: true, alphaTest: 0.5, side: T.DoubleSide }));
+  P.m.children.forEach(function (c) { c.visible = false; }); sp.position.y = 1.08; P.m.add(sp); P.sprite = sp; P.frames = PA.frames; }
+/* which picture of the pixel alien to show for what it is doing (the sprite sheet in pixelalien.js) */
+function spriteFrame() { const f = P.frames, sp = Math.abs(P.vx), step = Math.floor((P.stride || 0) * 1.3) % 2; let n = 'idle';
+  if (P.inv > 0.9) n = 'hurt'; else if (P.spinT > 0) n = 'spin attack'; else if (P.pound > 0 || P.pounding) n = 'ground pound'; else if (P.slideT > 0) n = 'slide'; else if (P.duck) n = 'duck';
+  else if (!P.ground && P.wallT > 0 && hasA('wall')) n = 'wall slide'; else if (P.gliding) n = 'glide'; else if (!P.ground) n = P.vy > 0 ? (P.dbl === false ? 'double jump' : 'jump') : 'fall';
+  else if (sp > SPEED * 1.15) n = step ? 'run 1' : 'run 2'; else if (sp > 0.6) n = step ? 'walk 1' : 'walk 2';
+  const i = Math.max(0, f.indexOf(n)); P.sprite.material.map.offset.x = i / f.length; P.sprite.rotation.z = n === 'spin attack' ? -P.t * 25 : 0; }
 function buildAlien(a) {
   const g = new T.Group(), col = COLORS[a.color][1], shape = a.shape || 0;
   const sc = [[0.55, 0.6, 0.5], [0.44, 0.76, 0.42], [0.7, 0.48, 0.55], [0.6, 0.55, 0.52], [0.52, 0.55, 0.5]][shape] || [0.55, 0.6, 0.5];
@@ -868,6 +881,34 @@ function checkBig() {
 /* no getting stuck: after two wrong tries, the right choice glows gold */
 function helpGlow(g) { if (L) L.helped = true; if (!g || g.userData.help) return; const h = glow('#ffd700', 3.4, 0.8); g.add(h); g.userData.help = h; L.helps.push(h); }
 function unhelp(g) { if (g && g.userData.help) { g.remove(g.userData.help); L.helps = L.helps.filter(function (h) { return h !== g.userData.help; }); g.userData.help = null; } }
+function breakBrick(s2) { if (s2.off) return; s2.off = true; L.group.remove(s2.brick); (s2.lines || []).forEach(function (l) { L.group.remove(l); }); L.score += 20; burst((s2.x0 + s2.x1) / 2, s2.y0 + 0.5, '#e8945a'); beep(180, 0.12, 'square', 'crack, brick broken'); hud(); }
+function bonusStep(dt) {
+  /* ground pound landing: shockwave */
+  if (P.pounding && P.ground) { P.pounding = false; L.shake = 0.3; beep(90, 0.25, 'sawtooth', 'thud, ground pound');
+    if (P.ground.brick) { breakBrick(P.ground); P.ground = null; P.pounding = true; }
+    L.hazards.forEach(function (h) { if (h.alive && h.kind === 'virus' && Math.abs(h.x - P.x) < 3 && Math.abs(h.y - P.y) < 2) { h.alive = false; h.m.visible = false; L.score += 50; popup(h.x, h.y, '+50', '#ffd166'); burst(h.x, h.y, '#9be36b'); } }); hud(); }
+  /* power orbs */
+  L.powers.forEach(function (o) { if (o.got) return; o.g.position.y = o.y + Math.sin(P.t * 3) * 0.2; o.g.rotation.y += dt * 2;
+    if (Math.abs(P.x - o.x) < 1 && Math.abs(P.y + 0.7 - o.y) < 1.4) { o.got = true; o.g.visible = false; S.abil = S.abil || {}; const isNew = !S.abil[o.ab]; S.abil[o.ab] = 1; save(); toast(ABIL[o.ab].tip, 8); popup(o.x, o.y, ABIL[o.ab].icon + ' ' + ABIL[o.ab].name + '!', ABIL[o.ab].col); burst(o.x, o.y, ABIL[o.ab].col);
+      [523, 659, 784].forEach(function (f, k) { setTimeout(function () { beep(f, 0.15, 'square', k ? null : 'power up'); }, k * 90); }); if (isNew) L.score += 100; hud(); } });
+  /* wobbly columns */
+  L.pillars.forEach(function (c) {
+    if (c.fall) { c.fall += dt; c.vy -= GRAV * 0.5 * dt; c.g.position.y += c.vy * dt; c.g.position.x = 0; c.s.off = true;
+      if (c.fall > 4.5 && !(P.x + HW > c.s.x0 && P.x - HW < c.s.x1 && P.y < c.y1 + 2 && P.y > c.y0)) { c.fall = 0; c.t = 0; c.vy = 0; c.g.position.y = 0; c.s.off = false; } return; }
+    if (P.ground === c.s) { c.t += dt; c.g.position.x = Math.sin(P.t * 45) * 0.08 * Math.min(1, c.t / 0.9); if (c.t > 0.9) { c.fall = 0.001; c.vy = 0; beep(140, 0.3, 'sawtooth', 'rumble, column collapsing'); } }
+    else { c.t = Math.max(0, c.t - dt); c.g.position.x = c.t > 0 ? Math.sin(P.t * 45) * 0.04 : 0; } });
+  /* bosses */
+  L.bosses.forEach(function (bs) { if (!bs.alive) return; bs.t += dt; bs.inv -= dt;
+    if (!bs.seen && P.x > bs.x0 - 4) { bs.seen = true; toast('BOSS! A giant virus guards the exit. Stomp it 3 times!', 5); Music.play('boss'); }
+    if (!bs.seen) return; const sp = 2.6 + (3 - bs.hp) * 1.2; bs.x += bs.dir * sp * dt; if (bs.x < bs.x0) { bs.x = bs.x0; bs.dir = 1; } if (bs.x > bs.x1) { bs.x = bs.x1; bs.dir = -1; }
+    if (bs.y <= bs.gy && Math.random() < dt * 0.5) bs.vy = 11; bs.vy -= GRAV * 0.7 * dt; bs.y += bs.vy * dt; if (bs.y < bs.gy) { bs.y = bs.gy; bs.vy = 0; }
+    bs.g.position.set(bs.x, bs.y, 0); bs.g.rotation.z += dt * bs.dir * -2; bs.g.visible = !(bs.inv > 0 && Math.floor(bs.t * 14) % 2);
+    const dx = P.x - bs.x, dy = P.y + 0.7 - bs.y; if (Math.abs(dx) > 1.9 || Math.abs(dy) > 2) return;
+    if ((P.vy < -1 && P.y > bs.y + 0.4) || P.pounding || P.spinT > 0) { if (bs.inv > 0) return; bs.hp--; bs.inv = 1.2; P.vy = 15; P.pounding = false; L.score += 150; popup(bs.x, bs.y + 2, bs.hp ? 'Hit! ' + bs.hp + ' more' : 'Boss defeated!', '#ffd166'); burst(bs.x, bs.y, '#9be36b'); beep(300, 0.2, 'square', 'boss hit'); L.shake = 0.3;
+      if (bs.hp <= 0) { bs.alive = false; bs.g.visible = false; bs.gate.off = true; bs.gm.visible = false; L.score += 500; toast('Boss defeated! The gate is open. Run to the finish!', 4); Music.play('retro'); [523, 659, 784, 1047].forEach(function (f, k) { setTimeout(function () { beep(f, 0.18, 'square'); }, k * 110); }); }
+      hud(); return; }
+    if (P.inv > 0 || P.shield > 0) return; P.inv = 1.3; P.vx = dx >= 0 ? 10 : -10; P.vy = 8; toast('Ouch! Jump on top of the boss, not into its side.', 3); hurt(true); });
+}
 function bumpBlock(qb) {
   qb.used = true; qb.m.material = emat('#8a6a40', '#2a1a08'); qb.q.visible = false; qb.gl.visible = false; qb.m.position.y += 0.25; setTimeout(function () { qb.m.position.y -= 0.25; }, 120);
   if (qb.reward === 'sparks') { L.coins += 5; L.score += 50; popup(qb.x, qb.y, '+5 sparks', '#ffd166'); burst(qb.x, qb.y + 0.5, '#ffd166'); beep(1200, 0.12, 'square', 'ding, sparks'); hud(); }
@@ -881,7 +922,7 @@ function teardown() {
   if (RETRO) retroMode(false); caveLight(false); ['hudBag', 'hudHeat'].forEach(function (id) { const e = $(id); if (e) e.hidden = true; });
   if (L) { scene.remove(L.group); disposeGroup(L.group); }
   if (menuGrp) { scene.remove(menuGrp); disposeGroup(menuGrp); menuGrp = null; }
-  SKY = null; MOTES = null; PIX = null;
+  SKY = null; MOTES = null; PIX = null; if (P) { P.pound = 0; P.pounding = false; P.dashT = 0; P.kickT = 0; P.spinT = 0; }
   Object.keys(texCache).forEach(function (k) { texCache[k].dispose(); }); texCache = {};
   L = null;
 }
@@ -1196,6 +1237,31 @@ function builder() {
       L.movers.push({ s: sl, m: m, bx: sl.x0, by: sl.y1, ax: o.ay ? 0 : (len - w) / 2 - 0.3, ay: o.ay || 0, sp: o.sp || 1.1, t: o.ph || 0 });
       b.x += len; return b;
     },
+    /* ---------- BONUS SPEED-RUN PARTS (v71) ---------- */
+    /* MOVING PLATFORM: rides side to side (ax) and/or up and down (ay) */
+    mover: function (dx, dy, w, ax, ay, sp) { const x0 = b.x + dx, y1 = b.y + dy, sl = addSolid(x0, x0 + w, y1 - 0.4, y1, { oneWay: true }), m = new T.Group(); m.add(box(sl.x0, sl.x1, sl.y0, sl.y1, 3, L.th.top)); L.group.add(m);
+      L.movers.push({ s: sl, m: m, bx: sl.x0, by: sl.y1, ax: ax || 0, ay: ay || 0, sp: sp || 1, t: Math.random() * 3 }); return b; },
+    /* WOBBLY COLUMN: a stone column; stand on it and it wiggles, then collapses into the pit and rises again later */
+    pillar: function (dx, top, depth) { const x0 = b.x + dx - 0.85, x1 = x0 + 1.7, y1 = b.y + top, y0 = y1 - (depth || 9), s2 = addSolid(x0, x1, y0, y1), g = new T.Group();
+      g.add(box(x0, x1, y0, y1 - 0.35, 2.4, L.th.ground)); g.add(box(x0 - 0.15, x1 + 0.15, y1 - 0.35, y1, 2.8, L.th.top)); L.group.add(g);
+      L.pillars.push({ s: s2, g: g, t: 0, fall: 0, vy: 0, y0: s2.y0, y1: s2.y1 }); return b; },
+    /* BRICKS: break them by bumping from below or with a Ground Pound from above */
+    brick: function (dx, dy, n) { for (let i = 0; i < (n || 1); i++) { const x0 = b.x + dx + i * 1.1, y1 = b.y + dy, s2 = addSolid(x0, x0 + 1.1, y1 - 1.1, y1), m = box(x0 + 0.03, x0 + 1.07, y1 - 1.07, y1 - 0.03, 2.4, '#b8643a');
+        const ln = basic('#6a3018'); [[0, 0.27], [0, -0.27]].forEach(function (o) { const l = new T.Mesh(G.box, ln); l.scale.set(1.06, 0.06, 0.05); l.position.set(x0 + 0.55, y1 - 0.55 + o[1], 1.23); L.group.add(l); s2.lines = (s2.lines || []).concat(l); });
+        L.group.add(m); s2.brick = m; L.bricks.push(s2); } return b; },
+    /* TALL WALL: for wall jumps */
+    tower: function (dx, h, w, base) { w = w || 1.4; const x0 = b.x + dx, y0 = b.y + (base || 0), s2 = addSolid(x0, x0 + w, y0, y0 + h); L.group.add(box(x0, x0 + w, y0, y0 + h - 0.35, 3, L.th.ground)); L.group.add(box(x0 - 0.1, x0 + w + 0.1, y0 + h - 0.35, y0 + h, 3.2, L.th.top)); L.towers.push(s2); return b; },
+    /* POWER ORB: grants a new move for the bonus levels (kept for all later bonus levels) */
+    power: function (dx, dy, ab) { const x = b.x + dx, y = b.y + dy, g = new T.Group(), A = ABIL[ab]; const core = new T.Mesh(G.sph, emat(A.col, A.col)); core.scale.setScalar(0.45); g.add(core); g.add(glow(A.col, 3, 0.7));
+      const lb = label(A.icon + ' ' + A.name, 1.5, { bd: A.col }); lb.position.y = 1.2; g.add(lb); g.position.set(x, y, 0.4); L.group.add(g); L.powers.push({ x: x, y: y, ab: ab, g: g, got: false }); return b; },
+    /* BOSS ARENA: a big enemy guards the exit; stomp it 3 times to open the gate */
+    bigboss: function (len, look) { const x0 = b.x, x1 = b.x + len; this.ground(len); const gate = addSolid(x1 - 0.6, x1, b.y, b.y + 14), gm = box(x1 - 0.6, x1, b.y, b.y + 14, 3, '#e05a3a', 0.85); L.group.add(gm);
+      const g = new T.Group(), core = new T.Mesh(G.ico, emat('#9be36b', '#2f5a10')); core.scale.setScalar(1.2); g.add(core);
+      for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2, k = new T.Mesh(G.sph, emat('#d8ff9a', '#4a7a20')); k.scale.setScalar(0.28); k.position.set(Math.cos(a) * 1.5, Math.sin(a) * 1.5, 0); g.add(k); }
+      [-0.42, 0.42].forEach(function (ex, j) { const e = mesh('sph', '#ffffff'); e.scale.setScalar(0.3); e.position.set(ex, 0.25, 1.05); g.add(e); const pp = mesh('sph', '#10202c'); pp.scale.setScalar(0.15); pp.position.set(ex, 0.2, 1.3); g.add(pp);
+        const brow = mesh('box', '#2a4a10'); brow.scale.set(0.45, 0.1, 0.1); brow.position.set(ex, 0.62, 1.25); brow.rotation.z = j ? 0.4 : -0.4; g.add(brow); });
+      g.add(glow('#9be36b', 5, 0.4)); const y = b.y + 1.55; g.position.set(x1 - 5, y, 0); L.group.add(g);
+      L.bosses.push({ g: g, x: x1 - 5, y: y, gy: y, vy: 0, x0: x0 + 2, x1: x1 - 2, dir: -1, hp: 3, inv: 0, t: 0, gate: gate, gm: gm, alive: true, seen: false }); return b; },
     /* VIRUS: walks back and forth over a stretch of ground. Jump on it or over it. */
     virus: function (dx, range, sp) {
       const g = new T.Group(), core = new T.Mesh(G.ico, emat('#9be36b', '#2f5a10')); core.scale.setScalar(0.5); g.add(core);
@@ -2183,7 +2249,7 @@ function startLevel(w, lv) {
   teardown();
   const th = THEMES[lv.theme] || THEMES.cell;
   L = { world: w, lv: lv, th: th, group: new T.Group(), solids: [], tokens: [], sparks: [], stations: [], doors: [], cps: [{ x: 2, y: 0 }], anim: [], used: {}, scans: [], helps: [], models: [], flies: [], secrets: [], ghosts: [], crumbs: [], told: {}, temps: [], clues: [], portal: null,
-    refuels: [], waters: [], currents: [], airs: [], glowers: [], smokers: [], ores: [], boulders: [], capsules: [], bag: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
+    refuels: [], waters: [], currents: [], airs: [], glowers: [], smokers: [], ores: [], boulders: [], capsules: [], bag: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], pillars: [], powers: [], bricks: [], bosses: [], towers: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
   scene.add(L.group);
   if (lv.bonus) retroMode(true);
   const b = builder(); lv.build(b); closeSlab(b.x); L.len = b.x; if (L.waters.length) buildWater();
@@ -2355,14 +2421,14 @@ function answer(i) {
 function hit(s) { return P.x + HW > s.x0 && P.x - HW < s.x1 && P.y + PH > s.y0 && P.y < s.y1; }
 function moveX(dx) {
   P.x += dx; if (P.x < HW) P.x = HW;
-  L.solids.forEach(function (s) { if (!s.off && !s.oneWay && hit(s)) { P.x = dx > 0 ? s.x0 - HW : s.x1 + HW; P.vx = 0; } });
+  L.solids.forEach(function (s) { if (!s.off && !s.oneWay && hit(s)) { P.x = dx > 0 ? s.x0 - HW : s.x1 + HW; P.vx = 0; if (!P.ground) { P.wallDir = dx > 0 ? 1 : -1; P.wallT = 0.15; } } });
 }
 function moveY(dy) {
   const prev = P.y; P.y += dy; P.ground = null;
   L.solids.forEach(function (s) {
     if (s.off || !hit(s)) return;
     if (s.oneWay) { if (dy <= 0 && prev >= s.y1 - 0.001) { P.y = s.y1; P.vy = 0; P.ground = s; } }
-    else if (dy <= 0) { P.y = s.y1; P.vy = 0; P.ground = s; } else { P.y = s.y0 - PH; P.vy = 0; if (s.qb && !s.qb.used) bumpBlock(s.qb); }
+    else if (dy <= 0) { P.y = s.y1; P.vy = 0; P.ground = s; } else { P.y = s.y0 - PH; P.vy = 0; if (s.qb && !s.qb.used) bumpBlock(s.qb); if (s.brick) breakBrick(s); }
   });
 }
 function crumbStep(dt) {
@@ -2420,7 +2486,7 @@ function step(dt) {
     mv.s.x0 += dx; mv.s.x1 += dx; mv.s.y0 += dy; mv.s.y1 += dy; mv.m.position.x += dx; mv.m.position.y += dy;
     if (P.ground === mv.s) { P.x += dx; P.y += dy; }
   });
-  crumbStep(dt);
+  crumbStep(dt); bonusStep(dt);
   /* duck: crouch low while on the ground; stay crouched under a low ceiling */
   const wantDuck = keys.duck && !L.active && P.ground && !(jumpBuf > 0);
   /* duck slide: duck while running fast and the alien slides low on its belly, keeping its speed for a moment (great for sliding under low ceilings and swinging hazards) */
@@ -2430,13 +2496,25 @@ function step(dt) {
   if (wantDuck) P.duck = true;
   else if (P.duck) { PH = STAND; const blocked = L.solids.some(function (s) { return !s.off && !s.oneWay && hit(s); }); if (blocked) { PH = CROUCH; jumpBuf = 0; } else P.duck = false; }
   PH = P.duck ? CROUCH : STAND;
-  const running = keys.run && !P.duck; if (P.slideT > 0) P.vx = P.slideDir * Math.max(SPEED * 0.5, Math.abs(P.vx) - 9 * dt); else P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
+  const running = keys.run && !P.duck; if (P.dashT > 0 || P.kickT > 0 || P.pound > 0) { /* a move is steering */ } else if (P.slideT > 0) P.vx = P.slideDir * Math.max(SPEED * 0.5, Math.abs(P.vx) - 9 * dt); else P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
   jumpBuf -= dt; coyote = P.ground ? 0.1 : coyote - dt;
   if (P.ground) P.dbl = true;
   if (inW) jumpBuf = 0; /* in water, jump means swim up (handled in swimStep) */
+  if (P.ground) { P.dashed = false; P.spun = false; if (!P.pounding) P.pound = 0; }
+  if (hasA('wall') && P.wallT > 0 && !P.ground && !inW) { if (ax === P.wallDir && P.vy < -3) P.vy = -3; /* wall slide */
+    if (jumpBuf > 0) { P.vy = JUMP * 0.95; P.vx = -P.wallDir * 11; P.kickT = 0.22; P.face = -P.wallDir; P.wallT = 0; jumpBuf = 0; P.dbl = true; beep(560, 0.08, 'triangle', 'wall kick'); burst(P.x + P.wallDir * 0.4, P.y + 0.6, '#ffffff'); } }
+  P.wallT = (P.wallT || 0) - dt; P.kickT = (P.kickT || 0) - dt; if (P.kickT > 0) P.vx = -P.wallDir * 11 * Math.max(0.4, P.kickT / 0.22);
   if (jumpBuf > 0 && coyote > 0) { P.vy = JUMP * (bo ? 1.15 : 1); jumpBuf = 0; coyote = 0; beep(420, 0.08, 'triangle'); }
   else if (jumpBuf > 0 && !P.ground && P.dbl && P.vy < 10) { P.vy = JUMP * 1.05 * (bo ? 1.1 : 1); P.dbl = false; jumpBuf = 0; beep(620, 0.08, 'triangle'); burst(P.x, P.y + 0.2, '#ffffff'); }
   if (!keys.jump && P.vy > 0 && !inW) P.vy -= 50 * dt; /* short hop when jump is let go (not in water: currents and plumes can lift you) */
+  /* bonus moves */
+  if (hasA('dash') && keys.run && !P.runWas && !P.ground && !P.dashed && !inW) { P.dashed = true; P.dashT = 0.2; beep(700, 0.12, 'sawtooth', 'whoosh, air dash'); burst(P.x, P.y + 0.6, '#7fd4ff'); }
+  P.runWas = keys.run; if (P.dashT > 0) { P.dashT -= dt; P.vx = P.face * 21; P.vy = 0.5; }
+  if (hasA('pound') && keys.duck && !P.ground && !P.pound && !inW && !L.active) { P.pound = 0.14; beep(240, 0.15, 'square', 'ground pound'); }
+  if (P.pound > 0) { P.pound -= dt; P.vx = 0; P.vy = P.pound > 0 ? 0 : -34; P.pounding = P.pound <= 0; }
+  if (hasA('glide') && keys.jump && !P.ground && P.vy < -2.5 && !inW && !P.pounding) { P.vy = -2.5 + GRAV * dt; P.gliding = true; } else P.gliding = false;
+  if (hasA('spin') && keys.act && !P.actWas && !P.spinT && !L.active) { P.spinT = 0.4; if (!P.ground && !P.spun) { P.vy = Math.max(P.vy, 6); P.spun = true; } beep(820, 0.12, 'triangle', 'spin'); }
+  P.actWas = keys.act; if (P.spinT > 0) { P.spinT -= dt; if (P.spinT <= 0) P.spinT = 0; }
   if (S.alien.gear === 2 && !(P.fly > 0) && !inW) { /* Explorer cape: hold jump while falling to fly a little */
     if (P.cape == null) P.cape = 1.5;
     if (P.ground) P.cape = Math.min(1.5, P.cape + dt * 1.5);
@@ -2503,8 +2581,8 @@ function step(dt) {
     const dx = P.x - h.x, dy = P.y + PH * 0.52 - h.y;
     if (Math.abs(dx) > 0.85 || Math.abs(dy) > PH * 0.52 + 0.3) return;
     const foe = h.look ? FOES[h.look] : null, name = foe ? foe.name : h.kind === 'virus' ? 'virus' : 'free radical';
-    if (foe && !foe.stomp) { if (P.inv > 0 || P.shield > 0) return; P.inv = 1.3; P.vx = dx >= 0 ? 7 : -7; P.vy = 5; toast(foe.msg, 3.5); hurt(true); return; } /* real wildlife is never stomped: you just get bumped */
-    if ((P.vy < -1 && P.y > h.y - 0.25) || P.shield > 0) { h.alive = false; h.m.visible = false; if (P.shield <= 0) P.vy = 12; L.score += 50; popup(h.x, h.y, '+50', '#ffd166'); burst(h.x, h.y, h.kind === 'virus' ? '#9be36b' : '#ff6b4a'); beep(900, 0.12, 'square', 'pop, ' + name + ' stopped'); hud(); return; }
+    if (foe && !foe.stomp) { if (P.inv > 0 || P.shield > 0 || P.spinT > 0) return; P.inv = 1.3; P.vx = dx >= 0 ? 7 : -7; P.vy = 5; toast(foe.msg, 3.5); hurt(true); return; } /* real wildlife is never stomped: you just get bumped */
+    if ((P.vy < -1 && P.y > h.y - 0.25) || P.shield > 0 || P.spinT > 0 || P.pounding) { h.alive = false; h.m.visible = false; if (P.shield <= 0) P.vy = 12; L.score += 50; popup(h.x, h.y, '+50', '#ffd166'); burst(h.x, h.y, h.kind === 'virus' ? '#9be36b' : '#ff6b4a'); beep(900, 0.12, 'square', 'pop, ' + name + ' stopped'); hud(); return; }
     if (P.inv > 0) return;
     P.inv = 1.3; P.vx = dx >= 0 ? 9 : -9; P.vy = 7; toast(h.kind === 'virus' ? 'Ouch! A virus got you. Jump on top of it, or jump over it.' : 'Ouch! Free radicals damage cells. Jump on top of them instead.', 3); hurt(true);
   });
@@ -2600,13 +2678,14 @@ function step(dt) {
 
   P.m.position.set(P.x, P.y + (P.ground ? Math.abs(Math.sin(P.t * 11)) * 0.07 * Math.min(1, Math.abs(P.vx) / 3) : 0), 0);
   P.m.rotation.y += (P.face * 0.75 - P.m.rotation.y) * Math.min(1, dt * 10);
-  if (P.sprite) { P.sprite.rotation.y = -P.m.rotation.y; P.sprite.scale.x = P.face < 0 ? -1 : 1; P.sprite.position.y = 1.0 + (P.ground ? Math.abs(Math.sin(P.t * 11)) * 0.05 * Math.min(1, Math.abs(P.vx) / 3) : 0); } /* the pixel alien always faces the camera */
+  if (P.sprite) { P.sprite.rotation.y = -P.m.rotation.y; P.sprite.scale.x = (P.face < 0 ? -1 : 1) * (P.wallT > 0 && !P.ground && hasA('wall') ? -1 : 1); spriteFrame(); } /* the pixel alien always faces the camera; its picture changes with each move */
   { const sp = Math.abs(P.vx), u = P.m.userData; P.stride = (P.stride || 0) + dt * sp * 2.2; const amp = P.ground ? Math.min(1, sp / SPEED) * 0.75 : 0;
     if (u.legs) u.legs.forEach(function (h, i) { h.rotation.x = P.ground ? Math.sin(P.stride + i * Math.PI) * amp : -0.5; });
     if (u.tents) u.tents.forEach(function (t, i) { t.rotation.x = Math.sin(P.stride + i * 1.6) * (amp * 0.6 + 0.08); });
     if (P.ground && sp > SPEED * 1.2 && (P.dustT = (P.dustT || 0) - dt) < 0 && !S.set.low) { P.dustT = 0.1; const d = glow('#e8dcc8', 0.7, 0.6); d.position.set(P.x - P.face * 0.45, P.y + 0.15, 0.4); L.group.add(d); L.fx.push({ o: d, t: 0, vx: -P.face * 1.5, vy: 0.8, life: 0.35 }); } }
   P.m.visible = !(P.inv > 0 && Math.floor(P.t * 12) % 2);
   const sq = P.duck ? 0.58 : P.ground ? 1 : 1 + Math.min(0.18, Math.abs(P.vy) * 0.012); P.m.scale.set(P.duck ? 1.2 : 1 / sq, sq, P.duck ? 1.2 : 1 / sq); P.m.rotation.z += ((P.slideT > 0 ? -P.slideDir * 0.3 : 0) - P.m.rotation.z) * Math.min(1, dt * 12); /* leans into the slide */
+  if (P.sprite) { P.m.scale.set(1, 1, 1); P.m.rotation.z = 0; } /* the sprite sheet already shows ducking, sliding and squashing */
   P.shadow.position.set(P.x, (P.ground ? P.y : P.y - 0.5) + 0.04, 0); P.shadow.visible = !!P.ground;
   cam.position.x += (P.x + P.face * 2.5 - cam.position.x) * Math.min(1, dt * 4);
   const lift = L.active && L.active.chart ? 2.4 : L.inCave ? -1.8 : 0;

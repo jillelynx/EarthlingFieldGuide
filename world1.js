@@ -166,23 +166,24 @@ FieldGuide.registerWorld({
           .balance('bal-temp')
           .goal();
       } },
-    { id: '1-6', title: 'Bonus: Pond Edge', theme: 'pxpond', bonus: true, par: 55,
+    { id: '1-6', title: 'Bonus: Pond Edge', theme: 'pxpond', bonus: true, par: 65,
       log: 'BONUS SPEED RUN! Hop the stepping stones and dodge the viruses on the way around the pond. Just for fun: no science questions. Grab the coins, dodge the obstacles and beat the time for 3 stars.',
       outro: 'Bonus speed run cleared! Beat the par time for 3 stars, then try again for a faster time.',
       build: function (b) {
         /* PIXEL BONUS SPEED RUN (v70): a fun 8-bit course in the Pond Edge habitat (pixelscape.js). No questions; stars come from the time (par = 3 stars). Optional: not needed for the certificates. */
-        b.hint(4, 4.6, 'SPEED RUN! Grab coins, dodge obstacles, beat the time!').sparks(7, 1.2, 6).ground(18).hsparks(-12, 6.2, 5)
-          .qblock(4, 3.4, 'sparks').gap(3).sparks(2, 2.6, 4).ground(10).virus(-5, 2.4, 0.9)
-          .hplat(-6, 2.4, 3).hplat(-3.5, 4.8, 3).hplat(-1, 7.6, 2.6).hsparks(-1, 9, 3).ground(6)
-          .gap(2.6).ground(5).gap(2.8).sparks(1, 1.2, 3).ground(6).virus(-3, 2.2, 1.2)
-          .spikes(4, 1.8).sparks(2, 3.4, 5).snapper(10, 3.4, 0.5).ground(15)
-          .qblock(3, 3.4, 'boost').rise(1.5).ground(6).rise(1.5).sparks(1, 1.2, 4).ground(6).rise(-3).gap(3).ground(8)
-          .hazard(5, 1.2, { ax: 2, sp: 1.4 }).virus(10, 2.4, 1.3).sparks(2, 3.2, 6).ground(14)
-          .crumbleBridge(4, 'crumble').sparks(1, 1.2, 5).ground(10).spikes(3, 1.6).virus(8, 2.4, 1.4).ground(12)
-          .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .bridge(10).ground(4).hazard(4, 1.0, { ax: 1.8, sp: 1.6 }).hazard(9, 3.0, { ax: 1.6, sp: 1.4, ay: 0.8 }).sparks(2, 1.2, 6).ground(14)
-          .qblock(3, 3.4, 'life').gap(3.2).ground(6).gap(3.4).ground(6).snapper(4, 3.0, 0.8).virus(10, 2.4, 1.5).ground(14)
-          .sparks(3, 1.2, 8).hsparks(0, 6, 6).ground(16)
+        b.hint(4, 4.6, 'SPEED RUN! Grab coins, dodge obstacles, beat the time!').sparks(7, 1.2, 6).ground(14)
+          .power(3, 1.4, 'pound').ground(8)
+          .hint(1, 4.6, 'Jump on the brick stack, then press DOWN in the air to Ground Pound through it!').brick(3, 1.1, 2).brick(3, 2.2, 2).brick(3, 3.3, 2).sparks(7, 1.2, 3).ground(12)
+          .ground(16).virus(-13, 4.5, 1.1).virus(-5, 3.5, 1.4).sparks(-10, 1.2, 5)
+          .snapper(4, 3.2, 0).snapper(9, 3.2, 1.2).sparks(2, 3.4, 6).ground(14)
+          .gap(15).mover(-13.5, 0.4, 3, 2.2, 0, 1.2).mover(-7, 1.6, 3, 0, 1.6, 1.4).sparks(-7, 4.4, 3).ground(10)
+          .brick(-8, 3.4, 5).sparks(-7.5, 4.8, 5).hazard(-3, 1.4, { ax: 1.8, sp: 1.5 })
+          .gap(12).pillar(-10.2, 0).pillar(-6.6, 0.9).pillar(-3, 0.3).ground(10).virus(-6, 3, 1.6)
+          .spikes(3, 1.8).sparks(2, 3.2, 4).ground(10).rise(2).ground(6).rise(-2).gap(3).ground(6)
+          .crumbleBridge(4, 'crumble').ground(8).hazard(4, 1.2, { ax: 2, sp: 1.4 }).hazard(9, 3, { ax: 1.6, sp: 1.3, ay: 0.8 }).ground(12)
+          .qblock(3, 3.4, 'life').checkpoint().ground(6)
+          .hint(1, 4.6, 'BOSS AHEAD! Stomp it 3 times to open the gate.').bigboss(24)
+          .sparks(2, 1.2, 6).ground(10)
           .goal();
       } }
   ]
