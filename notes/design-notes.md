@@ -649,3 +649,10 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 - Map: brown signposts mark the trails to Sunset Cove, Aurora Lake and Hemlock Falls, with names, plus a legend entry "Trails to other places". (Teacher could not find the cove on the map.)
 - Sunset Cove: the palms are now wind-bent black pines like the Japanese black pines planted on Delaware's dunes (twisting dark trunks, crooked branches, flat cloud-like needle pads).
 - Sound: the stream sound is softer (lower pitch, quieter) and only plays right beside a creek (within about 6 m), not across most of the reserve; the still pond is silent; waterfall and wind quieter. Willow Creek's nature sounds now switch off when you hike to another place (they used to keep playing there).
+
+## v68 (Nov 10, 2026): retro pixel bonus levels
+- Teacher asked for a retro pixel twist: a short fun bonus level after each world. New levels 1-6 to 5-6 ("Bonus: Pixel Cells / Pixel Power / Pixel Planet / Pixel Genes / Pixel Fossils"), each the 6th level of its world (opens after N-5).
+- Look: theme 'retro' (bright 8-bit palette); while a bonus level runs, the screen is drawn at about 300 pixels wide and scaled up without smoothing (retroMode, CSS image-rendering: pixelated) with a 4-level-per-channel color filter (#retroPal SVG filter). Back to normal on leaving the level. Music: '8-bit bonus theme' (square-wave lead and arpeggio, song.chip).
+- Content: coins (sparks), ? blocks incl. an extra life, viruses, an amoeba, a rare collectible, and 3 mixed review gates (2 + 2 + 3 questions) drawn from that world's own STEELS standards (W1 A-C; W2 A, E-H, J, K; W3 I, L-O, V; W4 A, D, P-R; W5 S-U, W, X).
+- Optional: bonus levels do not count toward the silver/gold certificates (celebrate.js levels() skips lv.bonus). Map: bonus levels are square 👾 nodes; nodes spread a little wider when a world has 6 levels.
+- Teacher guide (Claude Doc "Earthling Field Guide: Teacher User Guide", https://claude.ai/artifact/DurniDAwWE3S28qVbzdyYs): update it with every new version.

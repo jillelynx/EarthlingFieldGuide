@@ -165,6 +165,25 @@ FieldGuide.registerWorld({
           .hint(-1, 7.4, 'Boss ahead: The Imbalance')
           .balance('bal-temp')
           .goal();
+      } },
+    { id: '1-6', title: 'Bonus: Pixel Cells', theme: 'retro', bonus: true,
+      log: 'BONUS LEVEL! The ship\'s screen glitched into 8-bit mode. Grab the coins, bop the viruses, and clear the review gates.',
+      outro: 'Bonus cleared! Retro review of Structure and Function complete.',
+      build: function (b) {
+        /* RETRO BONUS (v68): a short 8-bit style run after the world, with mixed review gates from this world's standards. Optional: not needed for the certificates. */
+        b.hint(5, 4.6, 'BONUS LEVEL! Retro mode. Grab the coins!').sparks(8, 1.2, 6).ground(18).hsparks(-12, 6.2, 5)
+          .qblock(4, 3.4, 'sparks').gap(3).sparks(2, 2.6, 4).ground(10).virus(-5, 2.4, 0.9)
+          .hplat(-6, 2.4, 3).hplat(-3.5, 4.8, 3).hplat(-1, 7.6, 2.6).hsparks(-1, 9, 3).ground(6)
+          .crumbleBridge(4, 'mix').mixed(2, ['3.1.9-12.A', '3.1.9-12.B', '3.1.9-12.C'])
+          .virus(5, 2.4, 1.1).snapper(11, 3.4, 0.5).sparks(3, 1.2, 5).ground(15)
+          .qblock(3, 3.4, 'life').rise(1.5).ground(6).rise(1.5).sparks(1, 1.2, 4).ground(6).rise(-3).gap(3).ground(8)
+          .mixed(2, ['3.1.9-12.A', '3.1.9-12.B', '3.1.9-12.C'])
+          .hazard(5, 1.2, { ax: 2, sp: 1.4 }).virus(10, 2.4, 1.3).sparks(2, 3.2, 6).ground(14)
+          .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
+          .bridge(10).ground(4)
+          .mixed(3, ['3.1.9-12.A', '3.1.9-12.B', '3.1.9-12.C'])
+          .sparks(3, 1.2, 8).ground(14)
+          .goal();
       } }
   ]
 });

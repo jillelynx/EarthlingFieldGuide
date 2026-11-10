@@ -28,7 +28,7 @@ if (C.ACH && !C.ACH.some(function (a) { return a.id === 'worlds'; })) C.ACH.push
 if (C.ACH && !C.ACH.some(function (a) { return a.id === 'complete'; })) C.ACH.push({ id: 'complete', ic: '🏆', tier: 'long' });
 C.I18N.en['a.worlds'] = 'Field Biologist'; C.I18N.en['a.worlds.d'] = 'Finish every level in every world.'; C.I18N.es['a.worlds'] = 'Bióloga o biólogo de campo'; C.I18N.es['a.worlds.d'] = 'Termina todos los niveles de todos los mundos.';
 C.I18N.en['a.complete'] = 'Master Biologist'; C.I18N.en['a.complete.d'] = 'Finish every level and balance the Biodome.'; C.I18N.es['a.complete'] = 'Gran bióloga o biólogo'; C.I18N.es['a.complete.d'] = 'Termina todos los niveles y equilibra el Biodomo.';
-function levels() { const out = []; Object.keys(BQ.worlds || {}).sort().forEach(function (k) { BQ.worlds[k].levels.forEach(function (lv) { out.push(lv); }); }); return out; }
+function levels() { const out = []; Object.keys(BQ.worlds || {}).sort().forEach(function (k) { BQ.worlds[k].levels.forEach(function (lv) { if (!lv.bonus) out.push(lv); }); }); return out; } /* bonus levels are optional */
 function worldsDone() { const S = C.S, L = levels(); return L.length > 0 && L.every(function (lv) { return S.levels[lv.id] && S.levels[lv.id].stars; }); }
 function tier() { return worldsDone() ? (C.S.dome && C.S.dome.done ? 2 : 1) : 0; } /* 0 = not yet, 1 = silver, 2 = gold */
 function gameDone() { return tier() === 2; }

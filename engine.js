@@ -236,7 +236,8 @@ const SONGS = {
   garden: { name: 'pea garden theme', bpm: 108, root: 60, scale: 'major', prog: [0, 4, 3, 4], seed: 43, drums: 1, lead: 'square' },
   island: { name: 'island breeze theme', bpm: 96, root: 64, scale: 'mixo', prog: [0, 4, 3, 4], seed: 47, drums: 1, lead: 'square' },
   canyon: { name: 'canyon dig theme', bpm: 90, root: 57, scale: 'dorian', prog: [0, 4, 3, 4], seed: 53, drums: 1, lead: 'square' },
-  boss: { name: 'boss battle theme', bpm: 138, root: 55, scale: 'minor', prog: [0, 0, 5, 4], seed: 17, drums: 3, lead: 'square' }
+  boss: { name: 'boss battle theme', bpm: 138, root: 55, scale: 'minor', prog: [0, 0, 5, 4], seed: 17, drums: 3, lead: 'square' },
+  retro: { name: '8-bit bonus theme', bpm: 140, root: 60, scale: 'major', prog: [0, 5, 3, 4], seed: 21, drums: 3, lead: 'square', chip: 1 }
 };
 const Music = { want: null, cur: null, song: null, mel: null, step: 0, next: 0, timer: 0, gain: null, duck: 1, gesture: false, noise: null };
 function mtof(m) { return 440 * Math.pow(2, (m - 69) / 12); }
@@ -266,10 +267,10 @@ function schedule() {
   const sp = 60 / song.bpm / 4;
   while (Music.next < AC.currentTime + 0.25) {
     const i = Music.step, bar = Math.floor(i / 16) % 4, st = i % 16, t = Music.next, ch = song.prog[bar], dr = song.drums;
-    if (st === 0) [0, 2, 4].forEach(function (k) { voice(mtof(noteOf(song, ch + k, 0)), t, sp * 15, 'sine', 0.03); });
+    if (st === 0 && !song.chip) [0, 2, 4].forEach(function (k) { voice(mtof(noteOf(song, ch + k, 0)), t, sp * 15, 'sine', 0.03); });
     if (st === 0 || st === 8) voice(mtof(noteOf(song, ch, -1)), t, sp * 3, 'triangle', 0.15);
     if (st === 6 || st === 14) voice(mtof(noteOf(song, ch + 4, -1)), t, sp * 1.5, 'triangle', 0.09);
-    if (st % 2 === 0) voice(mtof(noteOf(song, ch + [0, 2, 4, 7][(st / 2) % 4], 1)), t, sp * 1.2, 'sine', 0.03);
+    if (st % 2 === 0) voice(mtof(noteOf(song, ch + [0, 2, 4, 7][(st / 2) % 4], 1)), t, sp * (song.chip ? 0.6 : 1.2), song.chip ? 'square' : 'sine', song.chip ? 0.018 : 0.03); /* chip songs: a buzzy 8-bit arpeggio */
     if (Math.floor(i / 64) % 3 !== 2) Music.mel[bar].forEach(function (n) { if (n.st === st) voice(mtof(noteOf(song, ch + n.d, 1)), t, sp * n.len * 0.9, song.lead, song.lead === 'square' ? 0.03 : 0.07); });
     if (dr === 1 || dr === 3) { if (st === 0 || st === 8 || (dr === 3 && (st === 6 || st === 14))) drum(t, 'kick'); if (dr === 3 ? st % 2 === 0 : (st === 4 || st === 12)) drum(t, 'hat'); }
     if (dr === 2 && (st === 0 || st === 3 || st === 8 || st === 11)) drum(t, 'kick');
@@ -296,7 +297,7 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 67 · November 10, 2026';
+const VERSION = 'Version 68 · November 10, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gear.',
@@ -305,6 +306,9 @@ const GEARINFO = ['Gear gives you a special power. Earn stars to unlock more gea
   'Ribosome hat: ribosomes build proteins! Press E in the air to build a protein platform under your feet (one each time you leave the ground).'];
 /* Each world's look: sky gradient, sun glow, layered ridges, haze, drifting lights, light beams. */
 const THEMES = {
+  /* RETRO bonus levels (v68): a bright 8-bit palette; the screen is drawn at low resolution with chunky pixels (retroMode) */
+  retro: { skyTop: '#2038ec', horizon: '#5c94fc', skyBottom: '#5c94fc', sun: ['#fcfcfc', 40, 18, 160], ridge: '#00a800', ground: '#c84c0c', top: '#00a800', rim: '#fcfcfc',
+    mote: '#fcd8a8', pal: ['#00a800', '#58d854', '#b8f818'], shapes: ['tree'], density: 0.5, fogD: 0.004, hemi: ['#ffffff', '#5c94fc'], key: '#ffffff' },
   space: { skyTop: '#040a1c', horizon: '#1f3f73', skyBottom: '#08142c', sun: ['#7fb8ff', 70, 30, 200], ridge: '#0c1c36', ground: '#14304a', top: '#2c5f80', rim: '#9fe8ff',
     mote: '#bfe6ff', stars: true, pal: ['#2f7f9a', '#5fd0c5', '#8a7fd6'], shapes: ['blob', 'ring'], density: 0.35, fogD: 0.012, hemi: ['#9fc8ff', '#1a2238'], key: '#cfe6ff' },
   pond: { skyTop: '#1d3466', horizon: '#f4ad78', skyBottom: '#d9806a', sun: ['#ffcf8a', -40, 9, 230], ridge: '#3b3d6c', ground: '#253830', top: '#4f7448', rim: '#ffe2a8',
@@ -862,7 +866,7 @@ function disposeGroup(g) {
   g.traverse(function (o) { if (o.geometry && shared.indexOf(o.geometry) < 0) o.geometry.dispose(); });
 }
 function teardown() {
-  caveLight(false); ['hudBag', 'hudHeat'].forEach(function (id) { const e = $(id); if (e) e.hidden = true; });
+  if (RETRO) retroMode(false); caveLight(false); ['hudBag', 'hudHeat'].forEach(function (id) { const e = $(id); if (e) e.hidden = true; });
   if (L) { scene.remove(L.group); disposeGroup(L.group); }
   if (menuGrp) { scene.remove(menuGrp); disposeGroup(menuGrp); menuGrp = null; }
   SKY = null; MOTES = null;
@@ -2169,6 +2173,7 @@ function startLevel(w, lv) {
   L = { world: w, lv: lv, th: th, group: new T.Group(), solids: [], tokens: [], sparks: [], stations: [], doors: [], cps: [{ x: 2, y: 0 }], anim: [], used: {}, scans: [], helps: [], models: [], flies: [], secrets: [], ghosts: [], crumbs: [], told: {}, temps: [], clues: [], portal: null,
     refuels: [], waters: [], currents: [], airs: [], glowers: [], smokers: [], ores: [], boulders: [], capsules: [], bag: [], score: 0, streak: 0, hp: 5, time: 0, started: false, pen: 0, wrongs: 0, first: 0, total: 0, active: null, cp: 0, goal: null, over: false, zones: [], zone: null, atps: [], spin: [], hazards: [], movers: [], boosts: [], spikes: [], fx: [], flags: [], rare: null, lives: 3, coins: 0, shake: 0, debrief: null };
   scene.add(L.group);
+  if (lv.bonus) retroMode(true);
   const b = builder(); lv.build(b); closeSlab(b.x); L.len = b.x; if (L.waters.length) buildWater();
   L.floor = Math.min(-16, L.solids.reduce(function (m, s) { return Math.min(m, s.y1); }, 0) - 14);
   scenery(th, 0, L.len, L.group, L.anim);
@@ -3318,7 +3323,7 @@ function buildLevels() {
   for (let w = 1; w <= MAPLANDS.length; w++) {
     const ld = MAPLANDS[w - 1], lvls = BQ.worlds[w] ? BQ.worlds[w].levels : [0, 1, 2, 3, 4], n = lvls.length, dir = w <= 3 ? 1 : -1;
     lvls.forEach(function (lv, k) {
-      const u = n > 1 ? k / (n - 1) : 0.5, x = ld.cx + dir * (u - 0.5) * ld.rx * 1.45, y = ld.cy + Math.sin(u * Math.PI * 2 + w) * ld.ry * 0.22 + 32;
+      const u = n > 1 ? k / (n - 1) : 0.5, x = ld.cx + dir * (u - 0.5) * ld.rx * (n > 5 ? 1.62 : 1.45), y = ld.cy + Math.sin(u * Math.PI * 2 + w) * ld.ry * 0.22 + 32;
       const i = BQ.worlds[w] ? list.findIndex(function (e) { return e.lv === lv; }) : -1;
       nodes.push({ w: w, x: x, y: y, i: i, lv: BQ.worlds[w] ? lv : null, k: k });
     });
@@ -3347,8 +3352,9 @@ function buildLevels() {
     const lab = nd.lv.id + ' ' + nd.lv.title + (open ? (stars ? ', conquered with ' + stars + ' of 3 stars' : ', open') : ', locked');
     svg += '<g class="lvl mnode' + (open ? '' : ' locked') + (cur ? ' cur' : '') + '" data-i="' + nd.i + '"' + (open ? '' : ' data-lock="1"') + ' tabindex="0" role="button" aria-label="' + esc(lab) + '" transform="translate(' + nd.x.toFixed(1) + ' ' + nd.y.toFixed(1) + ')">' +
       (cur ? '<circle r="27" class="pulse" fill="none" stroke="#ffd166" stroke-width="3"/>' : '') +
-      '<circle r="20" fill="' + (stars ? '#ffd166' : open ? '#e8f4ff' : '#4a5560') + '" stroke="' + (stars ? '#7a5a00' : open ? '#2a5a7a' : '#2a3440') + '" stroke-width="3"/>' +
-      '<text y="5" text-anchor="middle" class="mid">' + (open ? nd.lv.id : '🔒') + '</text>' +
+      (nd.lv.bonus ? '<rect x="-19" y="-19" width="38" height="38" rx="3" fill="' + (stars ? '#ffd166' : open ? '#5c94fc' : '#4a5560') + '" stroke="' + (stars ? '#7a5a00' : open ? '#fcfcfc' : '#2a3440') + '" stroke-width="3"/>' :
+      '<circle r="20" fill="' + (stars ? '#ffd166' : open ? '#e8f4ff' : '#4a5560') + '" stroke="' + (stars ? '#7a5a00' : open ? '#2a5a7a' : '#2a3440') + '" stroke-width="3"/>') +
+      '<text y="5" text-anchor="middle" class="mid">' + (open ? (nd.lv.bonus ? '👾' : nd.lv.id) : '🔒') + '</text>' +
       (stars ? '<text y="-27" text-anchor="middle" class="mflag">🚩</text>' : '') +
       '<text y="36" text-anchor="middle" class="mstar">' + (open ? '★'.repeat(stars) + '☆'.repeat(3 - stars) : '') + '</text>' +
       (rare ? '<text x="20" y="-14" class="mrare">💎</text>' : '') +
@@ -3459,9 +3465,12 @@ function pause(on) {
     $('btnResume').focus();
   }
 }
+/* RETRO MODE for the bonus levels: draw the 3D scene at about a quarter of the screen's resolution and scale it up without smoothing (chunky pixels), with fewer colors */
+function retroMode(on) { const c = $('stage'); if (!c) return; c.classList.toggle('retro', !!on); RETRO = !!on; if (renderer) resize(); }
+let RETRO = false;
 function resize() {
   const c = $('stage'), w = c.clientWidth || 800, h = c.clientHeight || 450;
-  renderer.setPixelRatio(S.set.low ? 1 : Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false);
+  renderer.setPixelRatio(RETRO ? Math.max(0.2, 300 / Math.max(300, w)) : S.set.low ? 1 : Math.min(window.devicePixelRatio || 1, 2)); renderer.setSize(w, h, false);
   cam.aspect = w / h; const half = Math.tan(cam.fov * Math.PI / 360); camZ = Math.max(22, 14 / (half * cam.aspect)); cam.updateProjectionMatrix();
 }
 function tick(t) {

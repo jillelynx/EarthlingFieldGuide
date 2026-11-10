@@ -200,6 +200,7 @@ ul.slots { list-style: none; padding-left: 0; }
 #touch { position: absolute; left: 0; right: 0; bottom: env(safe-area-inset-bottom, 0px); display: flex; justify-content: space-between; padding: 12px; pointer-events: none; }
 #touch div { display: flex; gap: 10px; pointer-events: auto; }
 #touch button { width: 64px; height: 64px; border-radius: 50%; font-family: var(--display); font-size: 18px; background: rgba(18, 48, 63, .75); touch-action: none; user-select: none; -webkit-user-select: none; }
+#stage.retro { image-rendering: pixelated; image-rendering: crisp-edges; filter: url(#retroPal) saturate(1.25) contrast(1.08); }
 #err { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; background: var(--deep); }
 @media (max-width: 700px) {
   #menu { align-items: flex-end; background: linear-gradient(180deg, transparent 20%, rgba(11, 29, 42, .8)); }
@@ -231,6 +232,7 @@ ul.slots { list-style: none; padding-left: 0; }
 <body>
 <div id="app">
   <canvas id="stage" aria-label="Earthling Field Guide game view"></canvas>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="retroPal"><feComponentTransfer><feFuncR type="discrete" tableValues="0 .33 .66 1"/><feFuncG type="discrete" tableValues="0 .33 .66 1"/><feFuncB type="discrete" tableValues="0 .33 .66 1"/></feComponentTransfer></filter></svg>
 
   <div id="hud" hidden>
     <span id="hudHp"></span><span id="hudScore">0</span><span id="hudStreak"></span><span id="hudTime"></span>
