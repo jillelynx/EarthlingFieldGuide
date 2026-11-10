@@ -640,3 +640,12 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 
 ## v66 (Nov 10, 2026): stream bug sample buttons readable
 - Teacher: the kick-net "Stream bug sample" cards were hard to read. The two answer buttons had dark text on dark blue. Now "Needs clean water" is light blue and "Tolerates pollution" is light orange, both with bold dark text and a clear border; the "✓" result label is bold green.
+
+## v67 (Nov 10, 2026): Willow Creek looks like the newer places; trail signs on the map; black pines; quieter water
+- Teacher: Aurora Lake and Hemlock Falls look much better than Willow Creek. Willow Creek now uses the same tools:
+  - Pond: the reflective water shader from coast.js (waterMat): sky and sun reflections that follow the time of day, ripples, soft shoreline foam. Before the mystery is solved it is murky green (new uMurk uniform); planting the seedlings blends it to clear blue-green (pondTint). Moving light patterns (caustics) on the pond floor only (causticify now takes an optional circle and its own clock).
+  - Creeks: a new flowing-water shader (creekMat): streaks drift downstream, sky reflection, sun glints, soft banks. The river's lake uses the reflective water too. Water darkens at night (uLit).
+  - Light: the stepped cartoon shading (toonify) is gone, so light and shade are smooth like the other areas. Haze is now FogExp2 (thicker with distance).
+- Map: brown signposts mark the trails to Sunset Cove, Aurora Lake and Hemlock Falls, with names, plus a legend entry "Trails to other places". (Teacher could not find the cove on the map.)
+- Sunset Cove: the palms are now wind-bent black pines like the Japanese black pines planted on Delaware's dunes (twisting dark trunks, crooked branches, flat cloud-like needle pads).
+- Sound: the stream sound is softer (lower pitch, quieter) and only plays right beside a creek (within about 6 m), not across most of the reserve; the still pond is silent; waterfall and wind quieter. Willow Creek's nature sounds now switch off when you hike to another place (they used to keep playing there).

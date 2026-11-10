@@ -1,6 +1,6 @@
 /* Earthling Field Guide: SUNSET COVE (part of cozy mode).
    A small, polished seaside area at the bottom of the valley below Willow Creek: a valley trail beside a stream, a wildflower
-   meadow with a campfire, pines and fallen logs to hide behind, a palm-lined beach, and a shallow lagoon with a coral reef to swim over.
+   meadow with a campfire, pines and fallen logs to hide behind, a beach backed by wind-bent black pines, and a shallow lagoon with a coral reef to swim over.
    It is built and shown only while you are here (Willow Creek is hidden, not destroyed), so each place stays fast on Chromebooks.
    Plain JavaScript + three.js r128. Everything is made from code (no image files). */
 (function () {
@@ -108,11 +108,11 @@ function frondGeo(len, wid, rise, droop, seg, c0, c1, out) {
 function waterMat(far, o) { o = o || {}; const V = function (c, d) { const q = new T.Color(c || d); return new T.Vector3(q.r, q.g, q.b); };
   return new T.ShaderMaterial({ transparent: true, depthWrite: false, side: T.DoubleSide, fog: true,
     uniforms: T.UniformsUtils.merge([T.UniformsLib.fog, { uT: { value: 0 }, uSun: { value: (o.sun || SUN).clone() }, uHole: { value: new T.Vector4(-130, 130, -30, 190) }, uFar: { value: far ? 1 : 0 },
-      uShal: { value: V(o.shallow, '#54e0d1') }, uDeep: { value: V(o.deep, '#084d80') }, uSkyH: { value: V(o.skyH, '#ff9e6b') }, uSkyM: { value: V(o.skyM, '#d17a94') }, uSkyT: { value: V(o.skyT, '#384085') }, uSunC: { value: V(o.sunC, '#ffc780') }, uFoam: { value: o.foam == null ? 1 : o.foam } }]),
+      uShal: { value: V(o.shallow, '#54e0d1') }, uDeep: { value: V(o.deep, '#084d80') }, uSkyH: { value: V(o.skyH, '#ff9e6b') }, uSkyM: { value: V(o.skyM, '#d17a94') }, uSkyT: { value: V(o.skyT, '#384085') }, uSunC: { value: V(o.sunC, '#ffc780') }, uFoam: { value: o.foam == null ? 1 : o.foam }, uMurk: { value: o.murk || 0 } }]),
     vertexShader: 'attribute float aDepth; uniform float uT; varying vec3 vW; varying float vD;\n#include <fog_pars_vertex>\nvoid main() { vec3 p = position; float k = clamp(aDepth * 0.7, 0.0, 1.0);\n' +
       ' p.y += (sin(p.x * 0.35 + uT * 1.2) * 0.05 + sin(p.z * 0.5 - uT * 1.5) * 0.045 + sin((p.x + p.z) * 0.9 + uT * 2.1) * 0.02) * k;\n' +
       ' vec4 wp = modelMatrix * vec4(p, 1.0); vW = wp.xyz; vD = aDepth; vec4 mvPosition = viewMatrix * wp; gl_Position = projectionMatrix * mvPosition;\n#include <fog_vertex>\n}',
-    fragmentShader: 'uniform float uT; uniform vec3 uSun; uniform vec4 uHole; uniform float uFar; uniform vec3 uShal, uDeep, uSkyH, uSkyM, uSkyT, uSunC; uniform float uFoam; varying vec3 vW; varying float vD;\n#include <common>\n#include <fog_pars_fragment>\n' +
+    fragmentShader: 'uniform float uT; uniform vec3 uSun; uniform vec4 uHole; uniform float uFar; uniform vec3 uShal, uDeep, uSkyH, uSkyM, uSkyT, uSunC; uniform float uFoam; uniform float uMurk; varying vec3 vW; varying float vD;\n#include <common>\n#include <fog_pars_fragment>\n' +
       'vec2 grad(vec2 p, float t) { vec2 g = vec2(0.0);\n' +
       ' g.x += 0.0175 * cos(p.x * 0.35 + t * 1.2); g.y += 0.0225 * cos(p.y * 0.5 - t * 1.5); float a = cos((p.x + p.y) * 0.9 + t * 2.1) * 0.018; g += vec2(a, a);\n' +
       ' vec2 d1 = vec2(0.8, 0.6), d2 = vec2(-0.5, 0.86), d3 = vec2(0.2, -0.98);\n' +
@@ -129,16 +129,16 @@ function waterMat(far, o) { o = o || {}; const V = function (c, d) { const q = n
       ' float wave = sin(vD * 9.0 - uT * 1.6 + sin(vW.x * 0.3) * 1.5); float fn = sin(vW.x * 1.7 + uT * 1.3 + sin(vW.z * 2.1)) * sin(vW.z * 1.3 - uT * 0.9);\n' +
       ' float foam = smoothstep(0.45, 0.0, vD) * smoothstep(0.2, 0.75, fn * 0.5 + 0.5 + smoothstep(0.25, 0.0, vD) * 0.6) + smoothstep(0.92, 1.0, wave) * smoothstep(1.4, 0.2, vD) * 0.6;\n' +
       ' foam *= uFoam; col = mix(col, vec3(1.0, 0.97, 0.92), clamp(foam, 0.0, 1.0) * 0.85);\n' +
-      ' float a = mix(0.42, 0.95, smoothstep(0.0, 5.0, vD)); a = max(a, foam); a = mix(a, 1.0, fres * 0.45); if (vD < 0.02) a *= smoothstep(-0.02, 0.02, vD);\n' +
+      ' float a = mix(0.42, 0.95, smoothstep(0.0, 5.0, vD)); a = max(a, foam); a = mix(a, 1.0, fres * 0.45); a = mix(a, 0.97, uMurk * smoothstep(0.0, 1.2, vD)); if (vD < 0.02) a *= smoothstep(-0.02, 0.02, vD);\n' +
       ' gl_FragColor = vec4(col, a);\n#include <fog_fragment>\n}' });
 }
 /* CAUSTICS: the moving net of light on anything under the water (ground, rocks, corals, animals) */
 const CAUST = 'float causticLine(vec2 p, float t) { vec2 i = p; float c = 1.0, inten = 0.005;\n for (int n = 0; n < 4; n++) { float tt = t * (1.0 - (3.5 / float(n + 1))); i = p + vec2(cos(tt - i.x) + sin(tt + i.y), sin(tt - i.y) + cos(tt + i.x));\n  c += 1.0 / length(vec2(p.x / (sin(i.x + tt) / inten), p.y / (cos(i.y + tt) / inten))); }\n c /= 4.0; c = 1.17 - pow(c, 1.4); return clamp(pow(abs(c), 8.0), 0.0, 1.0); }\n';
-function causticify(mat, key, wl) { const prev = mat.onBeforeCompile; mat.onBeforeCompile = function (sh, r) { if (prev && prev !== T.Material.prototype.onBeforeCompile) prev(sh, r); sh.uniforms.uT = UT; sh.uniforms.uWL = { value: wl || 0 };
+function causticify(mat, key, wl, circ) { const prev = mat.onBeforeCompile; mat.onBeforeCompile = function (sh, r) { if (prev && prev !== T.Material.prototype.onBeforeCompile) prev(sh, r); sh.uniforms.uT = (circ && circ.uT) || UT; sh.uniforms.uWL = { value: wl || 0 }; sh.uniforms.uCirc = { value: circ ? new T.Vector3(circ.x, circ.z, circ.r) : new T.Vector3(0, 0, 1e6) };
     sh.vertexShader = 'varying vec3 vWPos;\n' + sh.vertexShader.replace('#include <project_vertex>', '#include <project_vertex>\nvec4 cwp = vec4(transformed, 1.0);\n#ifdef USE_INSTANCING\ncwp = instanceMatrix * cwp;\n#endif\nvWPos = (modelMatrix * cwp).xyz;');
-    sh.fragmentShader = (sh.fragmentShader.indexOf('uniform float uT;') >= 0 ? '' : 'uniform float uT;\n') + 'uniform float uWL; varying vec3 vWPos;\n' + CAUST + sh.fragmentShader.replace('gl_FragColor = vec4( outgoingLight, diffuseColor.a );',
-      'float uw = smoothstep(uWL + 0.05, uWL - 0.35, vWPos.y); float dpt = clamp((uWL - vWPos.y) / 7.0, 0.0, 1.0);\n outgoingLight += causticLine(vWPos.xz * 0.55, uT * 0.5) * uw * (1.0 - dpt * 0.75) * vec3(0.6, 0.9, 0.95) * 0.35 * (0.4 + 0.6 * outgoingLight);\n outgoingLight = mix(outgoingLight, outgoingLight * vec3(0.55, 0.85, 0.95), uw * (0.1 + dpt * 0.4));\ngl_FragColor = vec4( outgoingLight, diffuseColor.a );'); };
-  mat.customProgramCacheKey = function () { return 'caus' + key; }; return mat; }
+    sh.fragmentShader = (sh.fragmentShader.indexOf('uniform float uT;') >= 0 ? '' : 'uniform float uT;\n') + 'uniform float uWL; uniform vec3 uCirc; varying vec3 vWPos;\n' + CAUST + sh.fragmentShader.replace('gl_FragColor = vec4( outgoingLight, diffuseColor.a );',
+      'float uw = smoothstep(uWL + 0.05, uWL - 0.35, vWPos.y) * smoothstep(uCirc.z, uCirc.z - 2.0, length(vWPos.xz - uCirc.xy)); float dpt = clamp((uWL - vWPos.y) / 7.0, 0.0, 1.0);\n outgoingLight += causticLine(vWPos.xz * 0.55, uT * 0.5) * uw * (1.0 - dpt * 0.75) * vec3(0.6, 0.9, 0.95) * 0.35 * (0.4 + 0.6 * outgoingLight);\n outgoingLight = mix(outgoingLight, outgoingLight * vec3(0.55, 0.85, 0.95), uw * (0.1 + dpt * 0.4));\ngl_FragColor = vec4( outgoingLight, diffuseColor.a );'); };
+  mat.customProgramCacheKey = function () { return 'caus' + key; }; mat.userData.keepShader = 1; return mat; }
 /* WATERFALL: a ribbon that hugs the rock from the top of the cliff down into the pool, with streaks that always move DOWN */
 const VNOISE = 'float hs(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\nfloat vn(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(hs(i), hs(i + vec2(1.0, 0.0)), f.x), mix(hs(i + vec2(0.0, 1.0)), hs(i + vec2(1.0, 1.0)), f.x), f.y); }\n';
 function fallRibbon(H, top, pool, wl, n, w0, w1) { n = n || 26; w0 = w0 == null ? 1.15 : w0; w1 = w1 == null ? 0.9 : w1; const P = [], UV = [], I = [], dx = pool[0] - top[0], dz = pool[1] - top[1], L = Math.hypot(dx, dz), nx = -dz / L, nz = dx / L; let last = 1e9;
@@ -247,24 +247,27 @@ function build() {
       for (let k = 0; k < 3; k++) { CN.push([x, y + hgt * (0.18 + k * 0.22), z, rad * (1 - k * 0.24), hgt * (0.42 - k * 0.06), rad * (1 - k * 0.24), R() * 6]); CC.push(greens[(i + k) % 4]); }
       K.colliders.push({ x: x, z: z, r: 0.55, top: y + hgt }); }
     g.add(K.trunkIM = inst(trunk, new T.MeshLambertMaterial({ color: '#6a4a32' }), TR)); g.add(K.pineIM = inst(cone, windy(new T.MeshLambertMaterial({ color: '#ffffff' }), 0.05, 0.9, 'y', 'pine'), CN, CC)); }
-  /* palms along the back of the beach and on the headlands: curved, ringed trunks with drooping fronds */
-  { const trunks = [], fronds = [], nuts = [], spotsP = [];
+  /* black pines along the back of the beach and on the headlands, like the Japanese black pines planted on Delaware's dunes:
+     a leaning, twisting dark trunk, a few crooked branches, and flat, cloud-like pads of dark needles that make an uneven, windswept crown */
+  { const trunks = [], pads = [], spotsP = [];
     for (let i = 0; i < 46 && spotsP.length < (LO ? 12 : 20); i++) { const x = -66 + R() * 132, s = -3.5 - R() * 9; let z = shoreZ(x) + s; if (pathD(x, z) < 2.2 || Math.abs(x - riverX(z)) < 3) continue; if (spotsP.some(function (q) { return Math.hypot(q[0] - x, q[1] - z) < 4.5; })) continue; spotsP.push([x, z]); }
     HEADS.forEach(function (k, j) { spotsP.push([k.x + (j ? 2 : -3), k.z + 1]); spotsP.push([k.x + (j ? -4 : 3), k.z - 3]); });
-    spotsP.forEach(function (sp, i) { const x = sp[0], z = sp[1], y = Hc(x, z) - 0.2, L = 6 + R() * 3.5, lean = 0.35 + R() * 0.35, la = Math.atan2(SUN.x, SUN.z) + (R() - 0.5) * 2.2, lx = Math.sin(la) * lean * L, lz = Math.cos(la) * lean * L;
-      const curve = new T.QuadraticBezierCurve3(new T.Vector3(x, y, z), new T.Vector3(x + lx * 0.15, y + L * 0.55, z + lz * 0.15), new T.Vector3(x + lx, y + L, z + lz));
-      const tg = new T.TubeGeometry(curve, 12, 0.3, 6, false), tp = tg.attributes.position; for (let si = 0; si <= 12; si++) { const P = curve.getPointAt(si / 12); for (let j = 0; j <= 6; j++) { const k = si * 7 + j, v = new T.Vector3(tp.getX(k), tp.getY(k), tp.getZ(k)).sub(P).multiplyScalar(1.1 - 0.4 * si / 12); tp.setXYZ(k, P.x + v.x, P.y + v.y, P.z + v.z); } }
-      tg.computeVertexNormals(); colorize(tg, function (xx, yy, zz, ny, o, k) { const si = Math.floor(k / 7), c0 = new T.Color(si % 2 ? '#8a6a48' : '#a0805a'); o[0] = c0.r; o[1] = c0.g; o[2] = c0.b; }); trunks.push(tg);
-      const top = curve.getPointAt(1); (K.camBalls = K.camBalls || []).push({ x: top.x, y: top.y, z: top.z, r: 3.6 }); nuts.push([top.x + 0.2, top.y - 0.3, top.z, 0.22, 0.25, 0.22], [top.x - 0.15, top.y - 0.35, top.z + 0.18, 0.22, 0.25, 0.22], [top.x, top.y - 0.32, top.z - 0.22, 0.2, 0.23, 0.2]);
-      const nf = 9; for (let f = 0; f < nf; f++) { const a = f / nf * 6.283 + R() * 0.3, len = 3.4 + R() * 1.2, dx = Math.cos(a), dz = Math.sin(a), nx = -dz, nz = dx, seg = 10, P = [], N = [], CO = [], FX = [], I = [];
-        for (let s0 = 0; s0 <= seg; s0++) { const t = s0 / seg, cx = top.x + dx * t * len, cz = top.z + dz * t * len, cy = top.y + 0.25 + Math.sin(t * Math.PI * 0.55) * 1.0 - t * t * 2.0, w = (0.75 * Math.pow(Math.sin(Math.PI * Math.min(1, t * 1.15)), 0.6) + 0.06) * (s0 % 2 ? 1 : 0.72);
-          P.push(cx - nx * w, cy - 0.12 * w, cz - nz * w, cx, cy + 0.06, cz, cx + nx * w, cy - 0.12 * w, cz + nz * w); for (let q = 0; q < 3; q++) { N.push(0, 1, 0); const c0 = new T.Color('#2f6a2a').lerp(new T.Color('#7ab23c'), t * 0.8 + (q === 1 ? 0 : 0.1)); CO.push(c0.r, c0.g, c0.b); FX.push(t * 0.9); }
-          if (s0 < seg) { const b = s0 * 3; I.push(b, b + 3, b + 1, b + 1, b + 3, b + 4, b + 1, b + 4, b + 2, b + 2, b + 4, b + 5); } }
-        const fg = new T.BufferGeometry(); fg.setAttribute('position', new T.Float32BufferAttribute(P, 3)); fg.setAttribute('normal', new T.Float32BufferAttribute(N, 3)); fg.setAttribute('color', new T.Float32BufferAttribute(CO, 3)); fg.setAttribute('aFlex', new T.Float32BufferAttribute(FX, 1)); fg.setIndex(I); fronds.push(fg); }
+    const padG = new T.DodecahedronGeometry(1, 1);
+    spotsP.forEach(function (sp, i) { const x = sp[0], z = sp[1], y = Hc(x, z) - 0.2, L = 5.5 + R() * 3, lean = 0.25 + R() * 0.3, la = Math.atan2(SUN.x, SUN.z) + Math.PI + (R() - 0.5) * 1.6, lx = Math.sin(la) * lean * L, lz = Math.cos(la) * lean * L;
+      const wob = (R() - 0.5) * 1.6, curve = new T.CatmullRomCurve3([new T.Vector3(x, y, z), new T.Vector3(x + lx * 0.25 + wob * 0.4, y + L * 0.35, z + lz * 0.25 - wob * 0.3), new T.Vector3(x + lx * 0.6 - wob * 0.5, y + L * 0.7, z + lz * 0.6 + wob * 0.4), new T.Vector3(x + lx, y + L, z + lz)]);
+      const branch = function (cv, r0, r1) { const tg = new T.TubeGeometry(cv, 10, r0, 6, false), tp = tg.attributes.position; for (let si = 0; si <= 10; si++) { const P = cv.getPointAt(si / 10), sc = 1 - (1 - r1 / r0) * si / 10; for (let j = 0; j <= 6; j++) { const k = si * 7 + j, v = new T.Vector3(tp.getX(k), tp.getY(k), tp.getZ(k)).sub(P).multiplyScalar(sc); tp.setXYZ(k, P.x + v.x, P.y + v.y, P.z + v.z); } }
+        tg.computeVertexNormals(); colorize(tg, function (xx, yy, zz, ny, o, k) { const c0 = new T.Color(k % 3 ? '#4a3a30' : '#3a2e28'); o[0] = c0.r; o[1] = c0.g; o[2] = c0.b; }); trunks.push(tg); };
+      branch(curve, 0.34, 0.14);
+      const pad = function (px, py, pz, w) { const n0 = 2 + Math.floor(R() * 2); for (let q = 0; q < n0; q++) { const g0 = padG.clone(); g0.scale(w * (0.8 + R() * 0.4), w * 0.42, w * (0.8 + R() * 0.4)); g0.translate(px + (R() - 0.5) * w, py + q * 0.18 * w, pz + (R() - 0.5) * w);
+          colorize(g0, function (xx, yy, zz, ny, o) { const c0 = new T.Color(ny > 0.3 ? '#4f7a42' : '#26442e'); o[0] = c0.r; o[1] = c0.g; o[2] = c0.b; }); g0.setAttribute('aFlex', new T.Float32BufferAttribute(new Array(g0.attributes.position.count).fill(0.3), 1)); pads.push(g0); } };
+      const top = curve.getPointAt(1); pad(top.x, top.y + 0.2, top.z, 1.9);
+      const nb = 3 + Math.floor(R() * 2); for (let k = 0; k < nb; k++) { const t0 = 0.5 + k / nb * 0.45, P0 = curve.getPointAt(t0), ba = la + (k % 2 ? 1 : -1) * (0.9 + R() * 0.9) + (R() - 0.5) * 0.6, bl = 1.8 + R() * 1.8;
+        const P2 = new T.Vector3(P0.x + Math.sin(ba) * bl, P0.y + 0.6 + R() * 0.8, P0.z + Math.cos(ba) * bl), P1 = new T.Vector3((P0.x + P2.x) / 2 + (R() - 0.5) * 0.6, (P0.y + P2.y) / 2 - 0.25, (P0.z + P2.z) / 2 + (R() - 0.5) * 0.6);
+        branch(new T.QuadraticBezierCurve3(P0, P1, P2), 0.13, 0.06); pad(P2.x, P2.y + 0.1, P2.z, 1.1 + R() * 0.5); }
+      (K.camBalls = K.camBalls || []).push({ x: top.x, y: top.y, z: top.z, r: 3.2 });
       K.colliders.push({ x: x, z: z, r: 0.45, top: y + L }); });
     g.add(new T.Mesh(merge(trunks), new T.MeshLambertMaterial({ vertexColors: true })));
-    g.add(new T.Mesh(merge(fronds), windy(new T.MeshLambertMaterial({ vertexColors: true, side: T.DoubleSide }), 0.35, 1.3, 'attr', 'palm')));
-    g.add(inst(new T.SphereGeometry(1, 7, 5), new T.MeshLambertMaterial({ color: '#6a4a2a' }), nuts)); }
+    g.add(new T.Mesh(merge(pads), windy(new T.MeshLambertMaterial({ vertexColors: true }), 0.12, 0.9, 'attr', 'bpine'))); }
   /* fallen logs (mossy on top) and big boulders */
   { const parts = []; const LOGS = [[FIRE.x - 2.6, FIRE.z + 0.4, 0.1, 3.4, 0.36], [FIRE.x + 2.3, FIRE.z - 1.6, 1.2, 3, 0.34], [-2, -46, 0.5, 6, 0.55], [18, -34, 2.2, 7, 0.6], [-34, -30, 1.4, 6.5, 0.5], [30, -58, 0.2, 7, 0.65], [-8, -70, 2.6, 6, 0.55], [-40, -4, 0.9, 5, 0.45]];
     LOGS.forEach(function (l) { if (l[0] !== FIRE.x - 2.6 && l[0] !== FIRE.x + 2.3 && pathD(l[0], l[1]) < l[3] / 2 + 2) return; /* never across the trail */ const x = l[0], z = l[1], a = l[2], len = l[3], r = l[4], y = Math.min(Hc(x - Math.cos(a) * len / 2, z + Math.sin(a) * len / 2), Hc(x + Math.cos(a) * len / 2, z - Math.sin(a) * len / 2), Hc(x, z)) + r * 0.8;
@@ -374,6 +377,7 @@ function setup(W, A, at) {
       save: { bg: C.scene.background, fog: C.scene.fog, light: [C.HEMI.intensity, C.HEMI.color.clone(), C.HEMI.groundColor.clone(), C.KEYL.intensity, C.KEYL.color.clone(), C.KEYL.position.clone()], fov: C.cam.fov } };
     K.A = A; K.yaw = Math.atan2(START.x - A.look[0], START.z - A.look[1]); K.face = K.yaw + Math.PI; K.pitch = 0.3; K.snap = true; W.coast = true; /* arrive looking toward the best view */ W.g.visible = false; $('cozyUI').hidden = true; build(K); K.py = Hc(K.px, K.pz);
     $('coUI').hidden = false; refreshText(); counter(); amb('mood', A.mood, 2); amb('underwater', false);
+    ['water', 'falls', 'wind', 'birds', 'crickets', 'frogs', 'owl', 'fire'].forEach(function (n) { amb('env', n, 0); }); /* Willow Creek's stream and other sounds do not follow you here */
     (A.links || []).forEach(function (l) { linkSign(K.g, Hc, l); });
     const s = BQ.cozy._s(); if (!s.f[A.flag]) { s.f[A.flag] = 1; C.save(); setTimeout(function () { if (K) card(tx(A.welcome), 14); }, 900); } }
 }

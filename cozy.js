@@ -345,7 +345,7 @@ Object.assign(C.I18N.es, {
 Object.assign(C.I18N.en, {
   'cz.keys': 'Controls', 'cz.map': 'Map', 'cz.hint': 'Hint', 'cz.close': 'Close', 'cz.mapTitle': 'Map of Willow Creek Reserve', 'cz.mapHelp': 'Drag to move · wheel or + / − to zoom · click a mark to read about it · M or Esc to close',
   'cz.mapMe': 'Center on me', 'cz.mapLegend': 'Legend', 'cz.unexplored': 'Not explored yet',
-  'cz.lg.you': 'You', 'cz.lg.find': 'Your discoveries', 'cz.lg.person': 'People', 'cz.lg.view': 'Lookouts', 'cz.lg.water': 'Water', 'cz.lg.forest': 'Forest', 'cz.lg.meadow': 'Meadow', 'cz.lg.farm': 'Farm', 'cz.lg.path': 'Trail', 'cz.lg.target': 'Hint target',
+  'cz.lg.you': 'You', 'cz.lg.find': 'Your discoveries', 'cz.lg.person': 'People', 'cz.lg.view': 'Lookouts', 'cz.lg.water': 'Water', 'cz.lg.forest': 'Forest', 'cz.lg.meadow': 'Meadow', 'cz.lg.farm': 'Farm', 'cz.lg.path': 'Trail', 'cz.lg.trail': 'Trails to other places', 'cz.lg.target': 'Hint target',
   'cz.ar.pond': 'Willow Pond', 'cz.ar.station': 'Research Station', 'cz.ar.farm': 'Lu\'s Farm', 'cz.ar.spring': 'Spring and Waterfall', 'cz.ar.hill': 'Hilltop Overlook', 'cz.ar.hollow': 'Hidden Hollow', 'cz.ar.orchard': 'Orchard', 'cz.ar.forest': 'Old Forest', 'cz.ar.meadow': 'Wildflower Meadow',
   'cz.ar.sea': 'Sea Cliffs', 'cz.ar.valley': 'Valley Lookout', 'cz.ar.canyon': 'Canyon Lookout', 'cz.ar.stream': 'Willow Creek', 'cz.ar.dock': 'Dock',
   'cz.hb.pond': 'the pond', 'cz.hb.stream': 'the creek', 'cz.hb.forest': 'the forest', 'cz.hb.farm': 'the farm', 'cz.hb.hill': 'the hilltop', 'cz.hb.orchard': 'the orchard', 'cz.hb.spring': 'the spring', 'cz.hb.lookout': 'the cliff edge', 'cz.hb.meadow': 'the meadow', 'cz.hb.hollow': 'the hollow',
@@ -353,7 +353,7 @@ Object.assign(C.I18N.en, {
   'cz.dir.n': 'north', 'cz.dir.ne': 'north-east', 'cz.dir.e': 'east', 'cz.dir.se': 'south-east', 'cz.dir.s': 'south', 'cz.dir.sw': 'south-west', 'cz.dir.w': 'west', 'cz.dir.nw': 'north-west', 'cz.dir.here': 'right here',
   'cz.h.title': 'Hint', 'cz.h.more': 'Press Hint again for a bigger clue.', 'cz.h.last': 'That is the biggest clue. You can always explore somewhere else instead!',
   'cz.h.under': 'You are underwater. Let go of C and you float up. Hold Space to rise faster. Swim toward the shore and press Space to climb out.',
-  'cz.h.lost': 'Feeling lost? Open the map (M). It shows where you have been, the trails, and everything you have discovered.',
+  'cz.h.lost': 'Feeling lost? Open the map (M). It shows where you have been, the trails, the brown signposts that lead to other places, and everything you have discovered.',
   'cz.h.find1': 'Look around {hab} to the {dir}. Something there is worth a closer look.',
   'cz.h.leaf1': 'One discovery can only be made with the microscope. Start by collecting a leaf from the big oak tree next to the research station.', 'cz.h.leaf2': 'Head {dir} about {n} steps to the big oak by the station and press E to collect a leaf.',
   'cz.h.pondS1': 'Pond water hides tiny living things. Fill your jar at the pond, then look at it under the microscope.', 'cz.h.pondS2': 'Head {dir} about {n} steps to the pond and press E to fill your jar.',
@@ -373,7 +373,7 @@ Object.assign(C.I18N.en, {
 Object.assign(C.I18N.es, {
   'cz.keys': 'Controles', 'cz.map': 'Mapa', 'cz.hint': 'Pista', 'cz.close': 'Cerrar', 'cz.mapTitle': 'Mapa de la Reserva Arroyo de los Sauces', 'cz.mapHelp': 'Arrastra para mover · rueda o + / − para el zoom · haz clic en una marca para leer sobre ella · M o Esc para cerrar',
   'cz.mapMe': 'Centrar en mí', 'cz.mapLegend': 'Leyenda', 'cz.unexplored': 'Sin explorar',
-  'cz.lg.you': 'Tú', 'cz.lg.find': 'Tus descubrimientos', 'cz.lg.person': 'Personas', 'cz.lg.view': 'Miradores', 'cz.lg.water': 'Agua', 'cz.lg.forest': 'Bosque', 'cz.lg.meadow': 'Pradera', 'cz.lg.farm': 'Granja', 'cz.lg.path': 'Sendero', 'cz.lg.target': 'Objetivo de la pista',
+  'cz.lg.you': 'Tú', 'cz.lg.find': 'Tus descubrimientos', 'cz.lg.person': 'Personas', 'cz.lg.view': 'Miradores', 'cz.lg.water': 'Agua', 'cz.lg.forest': 'Bosque', 'cz.lg.meadow': 'Pradera', 'cz.lg.farm': 'Granja', 'cz.lg.path': 'Sendero', 'cz.lg.trail': 'Senderos a otros lugares', 'cz.lg.target': 'Objetivo de la pista',
   'cz.ar.pond': 'Estanque de los Sauces', 'cz.ar.station': 'Estación de investigación', 'cz.ar.farm': 'Granja de Lu', 'cz.ar.spring': 'Manantial y cascada', 'cz.ar.hill': 'Mirador de la colina', 'cz.ar.hollow': 'Hondonada escondida', 'cz.ar.orchard': 'Huerto', 'cz.ar.forest': 'Bosque viejo', 'cz.ar.meadow': 'Pradera de flores',
   'cz.ar.sea': 'Acantilados del mar', 'cz.ar.valley': 'Mirador del valle', 'cz.ar.canyon': 'Mirador del cañón', 'cz.ar.stream': 'Arroyo de los Sauces', 'cz.ar.dock': 'Muelle',
   'cz.hb.pond': 'el estanque', 'cz.hb.stream': 'el arroyo', 'cz.hb.forest': 'el bosque', 'cz.hb.farm': 'la granja', 'cz.hb.hill': 'la colina', 'cz.hb.orchard': 'el huerto', 'cz.hb.spring': 'el manantial', 'cz.hb.lookout': 'el borde del acantilado', 'cz.hb.meadow': 'la pradera', 'cz.hb.hollow': 'la hondonada',
@@ -381,7 +381,7 @@ Object.assign(C.I18N.es, {
   'cz.dir.n': 'norte', 'cz.dir.ne': 'noreste', 'cz.dir.e': 'este', 'cz.dir.se': 'sureste', 'cz.dir.s': 'sur', 'cz.dir.sw': 'suroeste', 'cz.dir.w': 'oeste', 'cz.dir.nw': 'noroeste', 'cz.dir.here': 'aquí mismo',
   'cz.h.title': 'Pista', 'cz.h.more': 'Pulsa Pista otra vez para una pista más clara.', 'cz.h.last': 'Esa es la pista más clara. ¡También puedes explorar otro lugar!',
   'cz.h.under': 'Estás bajo el agua. Suelta C y subirás flotando. Mantén Espacio para subir más rápido. Nada hacia la orilla y pulsa Espacio para salir.',
-  'cz.h.lost': '¿Te sientes perdido? Abre el mapa (M). Muestra dónde has estado, los senderos y todo lo que has descubierto.',
+  'cz.h.lost': '¿Te sientes perdido? Abre el mapa (M). Muestra dónde has estado, los senderos, los letreros marrones que llevan a otros lugares y todo lo que has descubierto.',
   'cz.h.find1': 'Mira alrededor de {hab}, hacia el {dir}. Ahí hay algo que vale la pena observar de cerca.',
   'cz.h.leaf1': 'Hay un descubrimiento que solo se puede hacer con el microscopio. Empieza por tomar una hoja del gran roble que está junto a la estación de investigación.', 'cz.h.leaf2': 'Camina hacia el {dir} unos {n} pasos hasta el gran roble junto a la estación y pulsa E para tomar una hoja.',
   'cz.h.pondS1': 'El agua del estanque esconde seres vivos diminutos. Llena tu frasco en el estanque y obsérvala con el microscopio.', 'cz.h.pondS2': 'Camina hacia el {dir} unos {n} pasos hasta el estanque y pulsa E para llenar tu frasco.',
@@ -859,7 +859,7 @@ function refreshText() {
   { const tw = $('czTime'), tr = $('czTimeR'); tw.hidden = !C.S.set.admin; tr.value = W.tod; timeLabel();
     tr.oninput = function () { if (!W) return; W.tod = +tr.value % 24; st().tod = W.tod; W.todLast = null; dayLight(); timeLabel(); W.moodNow = moodNow(); }; }
   $('czKeys').textContent = '⌨️ ' + tx('cz.keys'); $('czMapB').textContent = '🗺️ ' + tx('cz.map'); $('czHintB').textContent = '💡 ' + tx('cz.hint'); $('czMapT').textContent = '🗺️ ' + tx('cz.mapTitle'); $('czMapClose').textContent = tx('cz.close') + ' (M)'; $('czMapMe').textContent = '⌖ ' + tx('cz.mapMe'); $('czMapH').textContent = tx('cz.mapHelp');
-  $('czMapLeg').innerHTML = [['#e0403a', 'cz.lg.you'], ['#ffd166', 'cz.lg.find'], ['#5fb8ff', 'cz.lg.person'], ['#c59cff', 'cz.lg.view'], ['#3aa8c0', 'cz.lg.water'], ['#4a7a3a', 'cz.lg.forest'], ['#8cbc52', 'cz.lg.meadow'], ['#c8a050', 'cz.lg.farm'], ['#d8a060', 'cz.lg.path'], ['#e9dfc4', 'cz.unexplored']].map(function (l) { return '<span><i style="background:' + l[0] + '"></i>' + C.esc(tx(l[1])) + '</span>'; }).join('');
+  $('czMapLeg').innerHTML = [['#e0403a', 'cz.lg.you'], ['#ffd166', 'cz.lg.find'], ['#5fb8ff', 'cz.lg.person'], ['#c59cff', 'cz.lg.view'], ['#3aa8c0', 'cz.lg.water'], ['#4a7a3a', 'cz.lg.forest'], ['#8cbc52', 'cz.lg.meadow'], ['#c8a050', 'cz.lg.farm'], ['#d8a060', 'cz.lg.path'], ['#a0602a', 'cz.lg.trail'], ['#e9dfc4', 'cz.unexplored']].map(function (l) { return '<span><i style="background:' + l[0] + '"></i>' + C.esc(tx(l[1])) + '</span>'; }).join('');
   if (W.ui === 'map') drawMap();
   $('czMvL').textContent = '🎵 ' + tx('cz.musicVol'); $('czSvL').textContent = '🐦 ' + tx('cz.soundVol'); $('czMv').value = C.S.set.music ? C.S.set.vol : 0; $('czSv').value = C.S.set.sound ? (C.S.set.svol == null ? 100 : C.S.set.svol) : 0;
   $('czSensL').textContent = tx('cz.camSpeed'); $('czInvL').textContent = tx('cz.camInv'); $('czSens').value = C.S.set.camSens || 1; $('czInv').checked = !!C.S.set.camInv; $('czFly').title = tx('cz.energy');
@@ -949,6 +949,34 @@ function buildBog(g, LP) {
   /* dragonflies over the pond */
   if (!low) for (let i = 0; i < 3; i++) { const d0 = C.glow('#7fd4ff', 0.6, 0.8); d0.position.set(p.x + i, p.y + 1.2, p.z - i); g.add(d0); W.anim.push({ m: d0, ph: i * 2, fly: true, y: p.y + 1.2, x: p.x + i, z: p.z - i }); }
 }
+/* ---------- WATER LOOK (v67): the pond and the lake use the same reflective water as the newer places; the creeks flow ---------- */
+const CREEK_FS = 'uniform float uT; uniform float uLit; uniform vec3 uSkyH, uSkyM, uSkyT, uSun, uSunC; varying vec2 vUv; varying vec3 vW;\n#include <common>\n#include <fog_pars_fragment>\n' +
+  'float hs(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\nfloat vn(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(hs(i), hs(i + vec2(1.0, 0.0)), f.x), mix(hs(i + vec2(0.0, 1.0)), hs(i + vec2(1.0, 1.0)), f.x), f.y); }\n' +
+  'void main() { float x = vUv.x, v = vUv.y * 4.0; float mid = 1.0 - abs(x - 0.5) * 2.0;\n' +
+  ' float f1 = vn(vec2(x * 3.0, v * 0.9 - uT * 0.9)), f2 = vn(vec2(x * 5.0 + 3.0, v * 1.6 - uT * 1.5)), f3 = vn(vec2(x * 2.0 + 7.0, v * 0.5 - uT * 0.6));\n' +
+  ' vec3 n = normalize(vec3((f1 - 0.5) * 0.35 + (f2 - 0.5) * 0.2, 1.0, (f3 - 0.5) * 0.35 + (f2 - 0.5) * 0.2)); vec3 vd = normalize(cameraPosition - vW);\n' +
+  ' float fres = pow(1.0 - max(dot(n, vd), 0.0), 3.0); vec3 r = reflect(-vd, n); float el = clamp(r.y, 0.0, 1.0);\n' +
+  ' vec3 sky = mix(uSkyH, mix(uSkyM, uSkyT, smoothstep(0.15, 0.6, el)), smoothstep(0.0, 0.18, el));\n' +
+  ' vec3 body = mix(vec3(0.42, 0.74, 0.70), vec3(0.10, 0.42, 0.55), smoothstep(0.0, 0.8, mid)) * uLit;\n' +
+  ' float sd = max(dot(r, uSun), 0.0); float glit = pow(sd, 200.0) * 5.0 + pow(sd, 16.0) * 0.35;\n' +
+  ' float streak = smoothstep(0.55, 0.85, f2 * 0.55 + f1 * 0.45) * 0.35 * (0.4 + 0.6 * mid); float rif = 0.0;\n' +
+  ' vec3 col = mix(body, sky, fres * 0.55 + 0.08) + uSunC * glit + vec3(0.9, 0.97, 1.0) * (streak + rif) * uLit;\n' +
+  ' float edge = smoothstep(0.0, 0.16, x) * smoothstep(1.0, 0.84, x); float a = edge * (0.72 + 0.2 * mid + streak * 0.2);\n' +
+  ' gl_FragColor = vec4(col, a);\n#include <fog_fragment>\n}';
+function creekMat() { const V = function (c) { const q = new T.Color(c); return new T.Vector3(q.r, q.g, q.b); };
+  const m = new T.ShaderMaterial({ transparent: true, depthWrite: false, side: T.DoubleSide, fog: true,
+    uniforms: T.UniformsUtils.merge([T.UniformsLib.fog, { uSkyH: { value: V('#d8ecf6') }, uSkyM: { value: V('#a8d0ec') }, uSkyT: { value: V('#6aa0d8') }, uSun: { value: new T.Vector3(0.5, 0.7, 0.3).normalize() }, uSunC: { value: V('#fff4d8') }, uLit: { value: 1 } }]),
+    vertexShader: 'varying vec2 vUv; varying vec3 vW;\n#include <fog_pars_vertex>\nvoid main() { vUv = uv; vec4 wp = modelMatrix * vec4(position, 1.0); vW = wp.xyz; vec4 mvPosition = viewMatrix * wp; gl_Position = projectionMatrix * mvPosition;\n#include <fog_vertex>\n}',
+    fragmentShader: CREEK_FS }); m.uniforms.uT = W.wT; return m; }
+/* the pond's color: u = 0 green and cloudy (the mystery), 1 clear and blue (solved) */
+function pondTint(u) { if (!W || !W.water || !W.water.material.uniforms) return; if (u == null) u = W.pondU || 0; W.pondU = u; const lit = W.wLit == null ? 1 : W.wLit, U = W.water.material.uniforms, lerp = function (a, b) { const c = new T.Color(a).lerp(new T.Color(b), u).multiplyScalar(lit); return new T.Vector3(c.r, c.g, c.b); };
+  U.uShal.value.copy(lerp('#9ab04a', '#5ec0b4')); U.uDeep.value.copy(lerp('#2e4a1a', '#0e4a66')); if (U.uMurk) U.uMurk.value = (1 - u) * 0.7; }
+/* every water surface reflects the sky and the sun (or moon) of the time of day */
+function waterSky(top, hor, sunDir, sunCol, lit) { W.wLit = lit; pondTint(); if (W.creekM) W.creekM.uniforms.uLit.value = lit;
+  (W.wMats || []).forEach(function (m) { const b = m.userData.base || (m.userData.base = [m.uniforms.uShal.value.clone(), m.uniforms.uDeep.value.clone()]); m.uniforms.uShal.value.copy(b[0]).multiplyScalar(lit); m.uniforms.uDeep.value.copy(b[1]).multiplyScalar(lit); });
+  const mats = [W.water && W.water.material, W.creekM].concat(W.wMats || []);
+  const mid = hor.clone().lerp(top, 0.5); mats.forEach(function (m) { if (!m || !m.uniforms || !m.uniforms.uSkyH) return; const U = m.uniforms;
+    U.uSkyH.value.set(hor.r, hor.g, hor.b); U.uSkyM.value.set(mid.r, mid.g, mid.b); U.uSkyT.value.set(top.r, top.g, top.b); U.uSun.value.copy(sunDir); U.uSunC.value.set(sunCol.r, sunCol.g, sunCol.b); }); }
 /* ---------- BUILD THE RESERVE ---------- */
 function build() {
   const g = new T.Group(), G = C.G, scene = C.scene;
@@ -958,8 +986,8 @@ function build() {
   const GX = detailGeos();
   W = { g: g, tod: st().tod != null ? st().tod : 9, colliders: [], tops: [], spots: [], npcs: [], anim: [], t: 0, k: {}, yaw: Math.PI * 0.75, pitch: 0.42, dist: 11, distT: 11, vx: 0, vz: 0, flyE: 1, drag: null, talk: null, card: null, cardT: 0, saveT: 0, birdT: 3, pause: false,
     bg: scene.background, fog: scene.fog, light: [C.HEMI.intensity, C.KEYL.intensity, C.KEYL.position.clone()] };
-  scene.add(g);
-  scene.background = new T.Color('#cfe9f7'); scene.fog = new T.Fog('#d0eaf6', 70, 260);
+  scene.add(g); W.wT = { value: 0 }; /* one clock for every water shader in Willow Creek */
+  scene.background = new T.Color('#cfe9f7'); scene.fog = new T.FogExp2('#d0eaf6', 0.0052); /* soft haze that thickens with distance, like the newer places */
   C.HEMI.color.set('#fff2d8'); C.HEMI.groundColor.set('#4a5a2a'); C.HEMI.intensity = 0.5; C.KEYL.color.set('#ffeccc'); C.KEYL.position.set(60, 55, 40); C.KEYL.intensity = 0.85;
   /* terrain with colors by place */
   const N = S0low() ? 110 : 140, geo = new T.PlaneGeometry(320, 320, N, N); GRID_N = N; geo.rotateX(-Math.PI / 2);
@@ -977,7 +1005,7 @@ function build() {
   }
   geo.setAttribute('color', new T.BufferAttribute(cols, 3)); geo.computeVertexNormals();
   W.groundTex = groundTex(); W.groundTex.repeat.set(48, 48);
-  g.add(new T.Mesh(geo, new T.MeshLambertMaterial({ vertexColors: true, map: W.groundTex })));
+  g.add(new T.Mesh(geo, BQ.coast.lib.causticify(new T.MeshLambertMaterial({ vertexColors: true, map: W.groundTex }), 'wcground', WL0, { x: POND.x, z: POND.z, r: 17, uT: W.wT }))); /* moving light on the pond floor */
   /* far ground beyond the reserve (coarser), with a hole where the detailed ground already is */
   { const FG = new T.PlaneGeometry(900, 900, 90, 90); FG.rotateX(-Math.PI / 2); const fp = FG.attributes.position, fcl = new Float32Array(fp.count * 3);
     for (let i = 0; i < fp.count; i++) { const x = fp.getX(i), z = fp.getZ(i), inside = Math.abs(x) < 159.9 && Math.abs(z) < 159.9, y = H(x, z); fp.setY(i, inside ? -60 : y - 0.15);
@@ -1045,14 +1073,12 @@ function build() {
   g.add(inst(LP.cone8, new T.MeshLambertMaterial({ color: '#ffffff', emissive: '#304050' }), mts, mcol)); g.add(inst(LP.cone8, C.emat('#f4f8ff', '#8090a0'), caps));
   /* pond water (green and cloudy until the mystery is solved) and the stream */
   /* the pond surface: a disc with many rings of points, shaded lighter over the shallows and darker over the deep middle */
-  const wgeo = new T.RingGeometry(0.01, 15.8, 72, 16), wpos = wgeo.attributes.position, wcol = new Float32Array(wpos.count * 3);
-  for (let i = 0; i < wpos.count; i++) { const dep = Math.max(0, WL0 - GH(POND.x + wpos.getX(i), POND.z - wpos.getY(i))), f = 0.72 + 0.62 * Math.exp(-dep / 1.4); wcol[i * 3] = f; wcol[i * 3 + 1] = f * 1.02; wcol[i * 3 + 2] = f * 0.98; }
-  wgeo.setAttribute('color', new T.BufferAttribute(wcol, 3));
-  W.water = new T.Mesh(wgeo, new T.MeshLambertMaterial({ color: '#5a8a3a', transparent: true, opacity: 0.85, emissive: '#102a10', side: T.DoubleSide, vertexColors: true }));
-  W.water.rotation.x = -Math.PI / 2; W.water.position.set(POND.x, WL0, POND.z); g.add(W.water);
-  { const cv = document.createElement('canvas'); cv.width = cv.height = 256; const x0 = cv.getContext('2d'); x0.fillStyle = '#ffffff'; x0.fillRect(0, 0, 256, 256);
-    x0.strokeStyle = 'rgba(255,255,255,0.0)'; for (let k = 0; k < 22; k++) { const cx0 = (k * 97) % 256, cy0 = (k * 57 + 31) % 256, r0 = 6 + (k * 13) % 14; x0.strokeStyle = 'rgba(200,235,240,0.9)'; x0.lineWidth = 2; x0.beginPath(); x0.ellipse(cx0, cy0, r0, r0 * 0.55, 0, 0, 6.283); x0.stroke(); x0.globalAlpha = 0.5; x0.beginPath(); x0.ellipse(cx0, cy0, r0 * 1.6, r0 * 0.9, 0, 0.4, 2.6); x0.stroke(); x0.globalAlpha = 1; }
-    W.pondTex = new T.CanvasTexture(cv); W.pondTex.wrapS = W.pondTex.wrapT = T.RepeatWrapping; W.pondTex.repeat.set(3, 3); W.water.material.map = W.pondTex; W.water.material.needsUpdate = true;
+  const wgeo = new T.RingGeometry(0.01, 15.8, 72, 16); wgeo.rotateX(-Math.PI / 2); const wpos = wgeo.attributes.position, wdep = new Float32Array(wpos.count);
+  for (let i = 0; i < wpos.count; i++) wdep[i] = Math.max(0, WL0 - GH(POND.x + wpos.getX(i), POND.z + wpos.getZ(i)));
+  wgeo.setAttribute('aDepth', new T.BufferAttribute(wdep, 1));
+  W.water = new T.Mesh(wgeo, BQ.coast.lib.waterMat(false, { foam: 0.35 })); W.water.material.uniforms.uT = W.wT; W.water.renderOrder = 2;
+  W.water.position.set(POND.x, WL0, POND.z); g.add(W.water); pondTint(0);
+  {
     /* a soft line of ripples that follows the real shoreline (where the ground meets the water), not a perfect circle */
     const rimGeo = (function () { const n = 120, P = new Float32Array((n + 1) * 2 * 3), U = new Float32Array((n + 1) * 2 * 2), I = [];
       for (let k = 0; k <= n; k++) { const a = k / n * Math.PI * 2, ca = Math.cos(a), sa = Math.sin(a); let rs = 15.8; for (let r = 4; r <= 15.8; r += 0.1) { if (GH(POND.x + ca * r, POND.z - sa * r) >= WL0 - 0.02) { rs = r; break; } }
@@ -1068,7 +1094,7 @@ function build() {
     /* soft, slightly wavy banks instead of hard straight edges */
     x0.globalCompositeOperation = 'destination-in'; const em = x0.createLinearGradient(0, 0, 64, 0); em.addColorStop(0, 'rgba(0,0,0,0)'); em.addColorStop(0.14, 'rgba(0,0,0,0.85)'); em.addColorStop(0.24, 'rgba(0,0,0,1)'); em.addColorStop(0.76, 'rgba(0,0,0,1)'); em.addColorStop(0.86, 'rgba(0,0,0,0.85)'); em.addColorStop(1, 'rgba(0,0,0,0)'); x0.fillStyle = em; x0.fillRect(0, 0, 64, 256); x0.globalCompositeOperation = 'source-over';
     W.creekTex = new T.CanvasTexture(cv0); W.creekTex.wrapS = W.creekTex.wrapT = T.RepeatWrapping;
-    const cmat = new T.MeshLambertMaterial({ map: W.creekTex, transparent: true, opacity: 0.95, emissive: '#0a2a3a', depthWrite: false });
+    const cmat = creekMat(); W.creekM = cmat;
     CREEKS.forEach(function (c) {
       const P = c.pts, n = P.length, pos = new Float32Array(n * 2 * 3), uv = new Float32Array(n * 2 * 2), idx = []; let along = 0; const ys = [];
       /* the ground is drawn as a grid of triangles: find how high the drawn ground is, so the water never hides under it */
@@ -1089,8 +1115,8 @@ function build() {
         if (i < n - 1) idx.push(i * 2, i * 2 + 1, i * 2 + 2, i * 2 + 1, i * 2 + 3, i * 2 + 2);
       }
       const geo = new T.BufferGeometry(); geo.setAttribute('position', new T.BufferAttribute(pos, 3)); geo.setAttribute('uv', new T.BufferAttribute(uv, 2)); geo.setIndex(idx); geo.computeVertexNormals();
-      const m = new T.Mesh(geo, cmat); m.material.side = T.DoubleSide; g.add(m);
-      if (c.id === 'river') { const lk = new T.Mesh(new T.CircleGeometry(LAKE.r + 0.6, 28), new T.MeshLambertMaterial({ color: '#3a9ab8', emissive: '#0a2a3a', transparent: true, opacity: 0.92 })); lk.rotation.x = -Math.PI / 2; lk.position.set(LAKE.x, ys[n - 1] - 0.02, LAKE.z); g.add(lk); } /* the river flows into a lake */
+      const m = new T.Mesh(geo, cmat); m.renderOrder = 2; g.add(m);
+      if (c.id === 'river') { const lg = new T.CircleGeometry(LAKE.r + 0.6, 28); lg.rotateX(-Math.PI / 2); lg.setAttribute('aDepth', new T.BufferAttribute(new Float32Array(lg.attributes.position.count).fill(3), 1)); const lk = new T.Mesh(lg, BQ.coast.lib.waterMat(false, { foam: 0, shallow: '#4ab0b8', deep: '#12506a' })); lk.material.uniforms.uT = W.wT; (W.wMats = W.wMats || []).push(lk.material); lk.renderOrder = 2; lk.position.set(LAKE.x, ys[n - 1] - 0.02, LAKE.z); g.add(lk); } /* the river flows into a lake */
       /* little white riffles where the water runs over stones */
       for (let i = 6; i < n - 4; i += 9) { const st1 = new T.Mesh(LP.sph, C.emat('#9a9a8a', '#1a1a18')); st1.scale.set(0.35, 0.18, 0.3); st1.position.set(P[i][0] + Math.sin(i) * 0.5, ys[i] - 0.05, P[i][1] + Math.cos(i) * 0.4); g.add(st1); }
     }); }
@@ -1378,7 +1404,7 @@ function build() {
   /* sparkles mark things you can interact with */
   W.marks = []; spots().forEach(function (sp) { if (sp.noMark) return; const mk = C.glow('#ffffff', 1.1, 0.8); mk.position.set(sp.x, H(sp.x, sp.z) + (sp.my || 2), sp.z); g.add(mk); W.marks.push({ sp: sp, m: mk }); });
   applyFixed(true);
-  if (!S0low()) toonify(g);
+  /* v67: smooth light and shade like the newer places (the stepped cartoon shading is gone) */
 }
 /* cartoon 'stepped' shading like a picture book: every lit material gets 3 flat tones */
 /* grass sways in the wind: a tiny vertex-shader tweak, no extra cost per blade */
@@ -1573,7 +1599,7 @@ function plant(p) {
 function applyFixed(instant) {
   const s = st();
   W.plants.forEach(function (p) { if (s.f['p' + p.i]) { p.pl.visible = true; p.pl.scale.setScalar(1); } });
-  if (s.f.fixed && instant) { W.water.material.color.set('#3a8ac0'); W.water.material.emissive.set('#0a1a2a'); W.scum.visible = false; W.fish.visible = true; }
+  if (s.f.fixed && instant) { pondTint(1); W.scum.visible = false; W.fish.visible = true; }
 }
 /* ---------- CONVERSATIONS ---------- */
 function talk(lines, done) { W.talk = { lines: lines, i: 0, done: done, fb: '' }; drawTalk();
@@ -1790,6 +1816,12 @@ function drawMap() {
   /* area names */
   g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round';
   AREAS.forEach(function (a) { if (a[3] && !st().found[a[3]]) return; if (!isSeen(a[1], a[2])) return; const p0 = mapS(a[1], a[2]); g.font = '700 ' + Math.round(13 * dpr) + 'px sans-serif'; g.strokeStyle = 'rgba(255,250,235,0.9)'; g.lineWidth = 4 * dpr; const t0 = tx('cz.ar.' + a[0]); g.strokeText(t0, p0[0], p0[1]); g.fillStyle = '#3a2a1a'; g.fillText(t0, p0[0], p0[1]); });
+  /* trailheads: the signposts where trails lead out of Willow Creek to the other places */
+  if (BQ.coast && BQ.coast.areas) { const AR = BQ.coast.areas; Object.keys(AR).forEach(function (id) { const A = AR[id]; if (A.from || !A.trail) return;
+    const a = A.trail.a * Math.PI / 180, p0 = mapS(Math.cos(a) * A.trail.r, Math.sin(a) * A.trail.r), r = 12 * dpr;
+    g.beginPath(); g.arc(p0[0], p0[1], r, 0, 6.283); g.fillStyle = '#a0602a'; g.fill(); g.lineWidth = 2.5 * dpr; g.strokeStyle = '#fff6dc'; g.stroke();
+    g.font = Math.round(13 * dpr) + 'px sans-serif'; g.fillStyle = '#ffffff'; g.fillText(A.icon || '➜', p0[0], p0[1] + dpr);
+    const t0 = tx(A.title); g.font = '700 ' + Math.round(12 * dpr) + 'px sans-serif'; g.strokeStyle = 'rgba(255,250,235,0.95)'; g.lineWidth = 4 * dpr; g.strokeText(t0, p0[0], p0[1] + r + 10 * dpr); g.fillStyle = '#6a3a12'; g.fillText(t0, p0[0], p0[1] + r + 10 * dpr); }); }
   /* marks */
   W.mapHits = [];
   mapMarks().forEach(function (m) { const p0 = mapS(m.x, m.z), r = 9 * dpr;
@@ -1887,6 +1919,9 @@ function dayLight() {
   const sp = W.skyG.attributes.position, col = W.skyG.attributes.color, tmp = new T.Color();
   for (let i = 0; i < sp.count; i++) { const u = Math.max(0, sp.getY(i) / 520); tmp.copy(hor).lerp(top, Math.pow(u, 0.6)); col.setXYZ(i, tmp.r, tmp.g, tmp.b); } col.needsUpdate = true;
   if (!W.camUnder) { scene.fog.color.copy(hor).lerp(top, 0.25); scene.background.copy(hor); }
+  { const sd = el > -0.08 ? new T.Vector3(Math.cos(a) * 80, Math.max(4, el * 80), 40).normalize() : new T.Vector3(-Math.cos(a) * 60, 50, -40).normalize();
+    const sc2 = el > -0.08 ? new T.Color('#fff4d8').lerp(new T.Color('#ffa060'), dusk * 0.85).multiplyScalar(0.25 + 0.75 * Math.min(1, day + dusk)) : new T.Color('#9ab0ff').multiplyScalar(0.35);
+    waterSky(top, hor, sd, sc2, 0.28 + 0.72 * Math.min(1, day + dusk * 0.6)); }
   W.sun.position.set(Math.cos(a) * 400, Math.max(-60, el * 300), 160); W.sun.material.opacity = el > -0.05 ? 0.9 : 0; W.sun.material.color.set(el < 0.25 ? '#ffb070' : '#fff4c8');
   W.moon.position.set(-Math.cos(a) * 380, Math.max(-60, -el * 280 + 40), -140); W.moon.visible = el < 0.15;
   W.stars.material.opacity = Math.max(0, Math.min(0.95, -el * 3));
@@ -1930,9 +1965,9 @@ function soundscape(dt) {
   W.envT = (W.envT || 0) - dt; if (W.envT > 0) return; W.envT = 0.5;
   const night = isNight(), el = Math.sin((W.tod - 6) / 12 * Math.PI), dS = streamDist(W.px, W.pz), dP = Math.max(0, Math.hypot(W.px - POND.x, W.pz - POND.z) - 14), dF = Math.min(Math.hypot(W.px - SPRING.x, W.pz + 64), Math.hypot(W.px + 2.5, W.pz - 70));
   const near = function (d, r) { return Math.max(0, 1 - d / r); };
-  amb('env', 'water', Math.min(0.9, near(dS, 18) * 0.8 + near(dP, 16) * 0.25));
-  amb('env', 'falls', near(dF, 30) * 0.9);
-  amb('env', 'wind', 0.12 + (W.flying ? 0.35 : 0) + (habitatAt(W.px, W.pz) === 'hill' || Math.hypot(W.px, W.pz) > EDGE - 6 ? 0.25 : 0));
+  amb('env', 'water', Math.min(0.5, near(dS, 6) * 0.5)); /* only right beside a creek; the still pond is quiet */
+  amb('env', 'falls', near(dF, 16) * 0.55);
+  amb('env', 'wind', 0.05 + (W.flying ? 0.35 : 0) + (habitatAt(W.px, W.pz) === 'hill' || Math.hypot(W.px, W.pz) > EDGE - 6 ? 0.25 : 0));
   amb('env', 'birds', night ? 0 : el > 0 ? 0.55 : 0.2);
   amb('env', 'crickets', night ? 0.5 : el < 0.15 ? 0.25 : 0);
   amb('env', 'frogs', (night || el < 0.2) ? near(dP, 30) * 0.8 : 0);
@@ -1979,7 +2014,7 @@ function svPanel() {
 function svTally() { const v = W.sv; if (!v || !v.on) return; v.n++; amb('sfx', 'step', 0.6); const b = $('czSurvey').querySelector('.svn b'); if (b) b.textContent = v.n; }
 function svEvent(v) {
   const site = v.site, a = Math.random() * 6.283, r = 1 + Math.random() * 3.5, x = site.cx + Math.cos(a) * r, z = site.cz + Math.sin(a) * r * 0.6, g = new T.Group();
-  if (site.what === 'frog') { const fm = BQ.creatures.makeFrog(), f = fm.g; f.scale.setScalar(1.2); f.rotation.y = Math.random() * 6.28; BQ.creatures.poseFrog(fm, 0.3, 0, true); g.add(f); toonify(f); const ring = new T.Mesh(new T.RingGeometry(0.4, 0.55, 20), C.basic('#e8fbff', 0.7)); ring.rotation.x = -Math.PI / 2; ring.position.y = 0.05; g.add(ring); g.position.set(x, Math.max(H(x, z), WL0 - 0.15), z); if (v.rid === 'frog.night') { amb('env', 'frogs', 0.9); C.beep(140 + Math.random() * 40, 0.12, 'square'); } }
+  if (site.what === 'frog') { const fm = BQ.creatures.makeFrog(), f = fm.g; f.scale.setScalar(1.2); f.rotation.y = Math.random() * 6.28; BQ.creatures.poseFrog(fm, 0.3, 0, true); g.add(f); const ring = new T.Mesh(new T.RingGeometry(0.4, 0.55, 20), C.basic('#e8fbff', 0.7)); ring.rotation.x = -Math.PI / 2; ring.position.y = 0.05; g.add(ring); g.position.set(x, Math.max(H(x, z), WL0 - 0.15), z); if (v.rid === 'frog.night') { amb('env', 'frogs', 0.9); C.beep(140 + Math.random() * 40, 0.12, 'square'); } }
   else { const CRT = BQ.creatures, isBee = Math.random() < 0.5, b = isBee ? CRT.makeBee() : CRT.makeButterfly(['monarch', 'cabbage', 'azure', 'swallowtail'][Math.floor(Math.random() * 4)]); if (isBee) { b.g.scale.setScalar(1.3); CRT.poseBee(b, 0.1, true); } else CRT.poseButterfly(b, 0.3, 'rest'); b.g.rotation.y = Math.random() * 6.28; g.add(b.g); toonify(b.g); g.add(C.glow('#fff4b0', 1, 0.7)); g.position.set(x, H(x, z) + 0.45, z); }
   W.g.add(g); v.ev.push({ g: g, t: site.what === 'frog' ? 2.2 : 1.8 }); v.m++;
 }
@@ -2077,7 +2112,7 @@ function step(dt) {
     if (alert) W.deer.rotation.y += (((Math.atan2(W.px - W.dr.x, W.pz - W.dr.z) - W.deer.rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI) * Math.min(1, dt * 2); }
   if (W.owlLook > 0) W.owlLook -= dt; BQ.creatures.poseOwl(W.owlM, dt, W.owlLook > 0 ? Math.sin(W.owlLook * 3) * 1.6 : (Math.hypot(W.px - W.owl.position.x, W.pz - W.owl.position.z) < 25 ? ((Math.atan2(W.px - W.owl.position.x, W.pz - W.owl.position.z) - W.owl.rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI : Math.sin(W.t * 0.2) * 1.2));
   if (W.grow) W.grow.forEach(function (p) { if (p.scale.x < 1) p.scale.setScalar(Math.min(1, p.scale.x + dt * 0.8)); });
-  if (W.clearT != null) { W.clearT += dt; const u = Math.min(1, W.clearT / 6); W.water.material.color.set('#5a8a3a').lerp(new T.Color('#3a8ac0'), u); W.scum.children.forEach(function (m) { m.scale.setScalar(Math.max(0.01, 1 - u)); });
+  if (W.clearT != null) { W.clearT += dt; const u = Math.min(1, W.clearT / 6); pondTint(u); W.scum.children.forEach(function (m) { m.scale.setScalar(Math.max(0.01, 1 - u)); });
     if (u >= 1) { W.scum.visible = false; W.fish.visible = true; W.clearT = null; } }
   W.marks.forEach(function (mk) { const done = mk.sp.id && st().found[mk.sp.id]; mk.m.visible = !done && (!mk.sp.when || mk.sp.when()); mk.m.material.opacity = 0.5 + Math.sin(W.t * 4) * 0.3; mk.m.position.y = H(mk.sp.x, mk.sp.z) + (mk.sp.my || 2) + Math.sin(W.t * 2) * 0.15; });
   W.npcs.forEach(function (n) { n.mark.material.opacity = 0.6 + Math.sin(W.t * 5) * 0.3; n.m.rotation.y = Math.atan2(W.px - n.x, W.pz - n.z) * 0.6; });
@@ -2151,7 +2186,7 @@ function step(dt) {
   WIND.value = W.t; if (W.keysT != null) { W.keysT -= dt; if (W.keysT <= 0) { W.keysT = null; showKeys(false); } }
   if (W.shadows) W.shadows.forEach(function (q) { const p = q.get ? q.get() : [q.o.position.x, q.o.position.z, q.o.position.y]; const gy0 = groundAt(p[0], p[1]), up = Math.max(0, p[2] - gy0), k = Math.max(0.25, 1 - up / 6);
     q.m.visible = q.o.visible !== false && !(W.camUnder) && gy0 > WL0 - 0.05 - (Math.hypot(p[0] - POND.x, p[1] - POND.z) < 15.6 ? -99 : 99); q.m.position.set(p[0], gy0 + 0.05, p[1]); q.m.scale.set(q.r * 2 * k, 1, q.r * 2 * k); q.m.material.opacity = 1; });
-  if (W.pondTex) { W.pondTex.offset.x = Math.sin(W.t * 0.05) * 0.3; W.pondTex.offset.y = W.t * 0.012; W.rim.material.opacity = 0.28 + Math.sin(W.t * 0.9) * 0.08; }
+  if (W.rim) W.rim.material.opacity = 0.16 + Math.sin(W.t * 0.9) * 0.05; if (W.wT) W.wT.value = W.t;
   W.me.position.set(W.px, W.py, W.pz); W.me.rotation.y += (((W.face - W.me.rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI) * Math.min(1, dt * 10);
   const spd = Math.hypot(W.vx, W.vz), b0 = W.stride || 0; W.stride = b0 + dt * spd * (k.run ? 1.1 : 1.5);
   if (W.me.userData.legs && W.ground && spd > 1 && Math.floor(b0 / Math.PI) !== Math.floor(W.stride / Math.PI)) amb('sfx', 'step', k.run ? 1 : 0.6);

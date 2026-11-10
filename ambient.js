@@ -147,11 +147,11 @@ function bed(name) {
   const g = AC.createGain(); g.gain.value = 0; g.connect(envBus); const e = { g: g, lv: 0, next: 0 };
   if (name === 'water' || name === 'falls' || name === 'wind' || name === 'surf') {
     const src = AC.createBufferSource(); src.buffer = noiseBuf; src.loop = true; const f = AC.createBiquadFilter();
-    if (name === 'water') { f.type = 'bandpass'; f.frequency.value = 1400; f.Q.value = 0.6; }
+    if (name === 'water') { f.type = 'bandpass'; f.frequency.value = 850; f.Q.value = 0.9; } /* a soft trickle, not a rush */
     if (name === 'falls') { f.type = 'lowpass'; f.frequency.value = 900; }
     if (name === 'wind') { f.type = 'lowpass'; f.frequency.value = 380; const l = AC.createOscillator(), lg = AC.createGain(); l.frequency.value = 0.13; lg.gain.value = 160; l.connect(lg); lg.connect(f.frequency); l.start(); }
     if (name === 'surf') { f.type = 'lowpass'; f.frequency.value = 500; }
-    const sg = AC.createGain(); sg.gain.value = name === 'water' ? 0.5 : name === 'falls' ? 0.9 : 0.6;
+    const sg = AC.createGain(); sg.gain.value = name === 'water' ? 0.3 : name === 'falls' ? 0.6 : 0.6;
     if (name === 'water') { const l = AC.createOscillator(), lg = AC.createGain(); l.frequency.value = 0.7; lg.gain.value = 0.15; l.connect(lg); lg.connect(sg.gain); l.start(); }
     src.connect(f); f.connect(sg); sg.connect(g); src.start();
   }
