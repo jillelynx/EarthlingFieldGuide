@@ -37,7 +37,7 @@ Object.assign(C.I18N.en, {
   'bd.d.wetland': 'Cattails and reeds soak up extra nutrients before they reach the pond, which helps stop algal blooms.',
   'bd.d.seedbank': 'Grass seeds with lots of genetic variation. Some plants carry alleles that resist disease, so a blight cannot wipe them all out.',
   'bd.d.hardy': 'Seeds collected from plants that survived a drought. Natural selection already favored their heat-tolerant traits.',
-  'bd.rq.l32': 'Platformer World 3, level 2: Living Together.', 'bd.rq.l35': 'Platformer World 3, level 5: Human Footprints.', 'bd.rq.l42': 'Platformer World 4, level 2: Making Gametes.', 'bd.rq.l51': 'Platformer World 5, level 1: Survival of the Fittest.',
+  'bd.rq.l32': 'Platformer World 3, level 2: Predators and Prey.', 'bd.rq.l35': 'Platformer World 4, level 1: Human Footprints.', 'bd.rq.l42': 'Platformer World 5, level 2: Making Gametes.', 'bd.rq.l51': 'Platformer World 6, level 1: Survival of the Fittest.',
   'bd.n.wetland': 'The wetland plants soaked up extra nutrients, so the pond stayed clear.', 'bd.n.seedbank': 'Some grass plants in the seed bank had alleles that resist the blight. Genetic variation helped the population survive.',
   'bd.n.hardy': 'Your hardy seeds came from drought survivors, so the grass was already adapted to the heat.',
   'bd.rq.w1': 'Platformer World 1: finish all 5 levels.', 'bd.rq.l24': 'Platformer World 2, level 4: Energy in Cells.', 'bd.rq.l25': 'Platformer World 2, level 5: Food Webs and Cycles.',
@@ -113,7 +113,7 @@ Object.assign(C.I18N.es, {
   'bd.d.wetland': 'Las espadañas y los juncos absorben el exceso de nutrientes antes de que lleguen al estanque, lo que ayuda a evitar la proliferación de algas.',
   'bd.d.seedbank': 'Semillas de pasto con mucha variación genética. Algunas plantas tienen alelos que resisten enfermedades, así que un tizón no puede acabar con todas.',
   'bd.d.hardy': 'Semillas de plantas que sobrevivieron a una sequía. La selección natural ya favoreció sus rasgos resistentes al calor.',
-  'bd.rq.l32': 'Plataformas, Mundo 3, nivel 2: Living Together.', 'bd.rq.l35': 'Plataformas, Mundo 3, nivel 5: Human Footprints.', 'bd.rq.l42': 'Plataformas, Mundo 4, nivel 2: Making Gametes.', 'bd.rq.l51': 'Plataformas, Mundo 5, nivel 1: Survival of the Fittest.',
+  'bd.rq.l32': 'Plataformas, Mundo 3, nivel 2: Predators and Prey.', 'bd.rq.l35': 'Plataformas, Mundo 4, nivel 1: Human Footprints.', 'bd.rq.l42': 'Plataformas, Mundo 5, nivel 2: Making Gametes.', 'bd.rq.l51': 'Plataformas, Mundo 6, nivel 1: Survival of the Fittest.',
   'bd.n.wetland': 'Las plantas del humedal absorbieron el exceso de nutrientes y el estanque se mantuvo limpio.', 'bd.n.seedbank': 'Algunas plantas del banco de semillas tenían alelos que resisten el tizón. La variación genética ayudó a la población a sobrevivir.',
   'bd.n.hardy': 'Tus semillas resistentes venían de sobrevivientes de la sequía, así que el pasto ya estaba adaptado al calor.',
   'bd.rq.w1': 'Plataformas, Mundo 1: termina los 5 niveles.', 'bd.rq.l24': 'Plataformas, Mundo 2, nivel 4: Energy in Cells.', 'bd.rq.l25': 'Plataformas, Mundo 2, nivel 5: Food Webs and Cycles.',
@@ -181,8 +181,9 @@ function lvDone(id) { const L0 = C.S.levels[id]; return !!(L0 && L0.stars); }
 function cz() { return C.S.cozy || {}; }
 const REQ = {
   pond: function () { return !!(cz().f && cz().f.solved); }, l21: function () { return lvDone('2-1'); }, l22: function () { return lvDone('2-2'); }, l24: function () { return lvDone('2-4'); }, l25: function () { return lvDone('2-5'); },
-  /* predators are earned where predation is taught (World 3); students who already finished the biodome with hawks keep them */
-  l32: function () { return lvDone('3-2') || (!!sv().done && lvDone('2-5')); }, l35: function () { return lvDone('3-5'); }, l42: function () { return lvDone('4-2'); }, l51: function () { return lvDone('5-1'); },
+  /* predators are earned where predation is taught (3-2 Predators and Prey; 4-2 Living Together, the old 3-2, also counts);
+     students who already finished the biodome with hawks keep them. Level numbers follow the 6-unit order (Version 76). */
+  l32: function () { return lvDone('3-2') || lvDone('4-2') || (!!sv().done && lvDone('2-5')); }, l35: function () { return lvDone('4-1'); }, l42: function () { return lvDone('5-2'); }, l51: function () { return lvDone('6-1'); },
   w1: function () { return ['1-1', '1-2', '1-3', '1-4', '1-5'].every(lvDone); }, soil: function () { const f = cz().found || {}; return !!(f.worms && f.log); },
   poll: function () { const s = cz().surveys || {}; return Object.keys(s).some(function (k) { return k.indexOf('poll') === 0; }); },
   pondlife: function () { const s = cz().surveys || {}; return Object.keys(s).some(function (k) { return k.indexOf('frog') === 0 || k.indexOf('kick') === 0; }); } };

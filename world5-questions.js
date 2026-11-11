@@ -1,826 +1,977 @@
-/* WORLD 5 QUESTION FILE: Natural Selection and Evolution
+/* WORLD 5 QUESTION FILE: Inheritance and Variation of Traits
    Teachers: you can edit the words inside the quotation marks below.
    - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.
-     World 5 uses S (evidence for common ancestry), T (the four factors of evolution), U (statistics of advantageous traits),
-     W (natural selection leads to adaptation) and X (environmental change: increases, new species, extinction).
+     World 5 uses D (mitosis and differentiation), P (DNA and chromosomes code traits),
+     Q (sources of inheritable variation), and R (statistics and probability of traits).
    - "topic" groups questions that can rotate with each other at stations and clue terminals.
    - In "questions", "answer" is the position of the correct option, counting from 0
      (0 = first option). The game shuffles the options, so the right answer can always go first.
    - "hint" shows after a wrong try. "explain" shows after the right answer.
    - "tags": ["boss"] marks boss-battle questions.
-   - "Read the Data" numbers are illustrative, modeled on classroom examples; they are not real measurements.
    - Keep every comma, bracket, and quotation mark in place. */
 FieldGuide.registerQuestions(5, {
  "tokens": [
   {
-   "id": "selection-needs",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "Collect only what natural selection NEEDS in order to work",
+   "id": "replication-facts",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
+   "prompt": "Collect only TRUE facts about copying DNA before a cell divides",
    "good": [
-    "Variation in a trait",
-    "Variation that is inherited",
-    "More offspring than can survive",
-    "Some traits help survival or reproduction",
-    "Many generations of time"
+    "A pairs with T",
+    "G pairs with C",
+    "It happens before a cell divides",
+    "Each new cell gets a complete copy",
+    "The copy is almost always exact",
+    "A rare uncorrected mistake is a mutation"
    ],
    "bad": [
     {
-     "text": "Animals choosing to change their genes",
-     "explain": "Individuals cannot choose their genes. Selection acts on variation that already exists."
+     "text": "A pairs with C",
+     "explain": "In DNA, A always pairs with T, and G always pairs with C."
     },
     {
-     "text": "Traits gained during life, like big muscles",
-     "explain": "Acquired traits are not in the DNA of gametes, so they are not inherited."
+     "text": "It happens after the cell divides",
+     "explain": "DNA is copied BEFORE division, so each new cell gets a full copy."
     },
     {
-     "text": "Every individual exactly alike",
-     "explain": "With no variation, there is nothing for selection to act on."
+     "text": "Each new cell gets half the DNA",
+     "explain": "In mitosis each new cell gets ALL the DNA. Only gametes (made by meiosis) get half the chromosomes."
     },
     {
-     "text": "One animal evolving during its lifetime",
-     "explain": "Individuals do not evolve. Populations evolve over generations."
+     "text": "It turns DNA into mRNA",
+     "explain": "Copying a gene into mRNA is how a protein gets made. Copying DNA makes more DNA."
+    }
+   ]
+  },
+  {
+   "id": "hetero",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
+   "prompt": "Collect only HETEROZYGOUS genotypes (two different alleles)",
+   "good": [
+    "Aa",
+    "Bb",
+    "Tt",
+    "Pp",
+    "Rr"
+   ],
+   "bad": [
+    {
+     "text": "AA",
+     "explain": "AA has two identical dominant alleles: homozygous dominant."
+    },
+    {
+     "text": "bb",
+     "explain": "bb has two identical recessive alleles: homozygous recessive."
+    },
+    {
+     "text": "TT",
+     "explain": "TT is homozygous dominant: both alleles are the same."
+    },
+    {
+     "text": "pp",
+     "explain": "pp is homozygous recessive: both alleles are the same."
+    }
+   ]
+  },
+  {
+   "id": "mutation-causes",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Collect only things that can cause MUTATIONS (changes in DNA)",
+   "good": [
+    "Ultraviolet (UV) light",
+    "X-rays and other radiation",
+    "Chemicals in tobacco smoke",
+    "Uncorrected mistakes when DNA is copied"
+   ],
+   "bad": [
+    {
+     "text": "Lifting weights",
+     "explain": "Exercise builds muscle, but it does not change the DNA you pass on."
+    },
+    {
+     "text": "Wearing sunscreen",
+     "explain": "Sunscreen PROTECTS skin cells' DNA by blocking UV light."
+    },
+    {
+     "text": "Getting a haircut",
+     "explain": "Cutting hair does not touch the DNA in your cells."
+    },
+    {
+     "text": "Learning a new skill",
+     "explain": "Skills you learn are not written into your DNA."
     }
    ]
   }
  ],
  "sorts": [
   {
-   "id": "structures",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "What kind of structure is it?",
+   "id": "mit-mei",
+   "code": "3.1.9-12.Q",
+   "topic": "meiosis",
+   "prompt": "Mitosis or meiosis?",
    "options": [
-    "Homologous structure",
-    "Analogous structure",
-    "Vestigial structure"
+    "Mitosis",
+    "Meiosis"
    ],
-   "hint": "Homologous: same bones, shared ancestor. Analogous: same job, different origins. Vestigial: reduced, with little or no use now.",
+   "hint": "Mitosis: one division, two identical body cells. Meiosis: two divisions, four different gametes with half the chromosomes.",
    "items": [
     {
-     "text": "A human arm and a whale flipper",
+     "text": "Makes new skin cells to heal a cut",
      "answer": 0,
-     "explain": "Same bones arranged the same way: homologous."
+     "explain": "Growth and repair use mitosis."
     },
     {
-     "text": "A bird's wing and a butterfly's wing",
+     "text": "Makes sperm and egg cells",
      "answer": 1,
-     "explain": "Both are for flying but are built completely differently: analogous."
+     "explain": "Gametes are made by meiosis."
     },
     {
-     "text": "The human tailbone (coccyx)",
-     "answer": 2,
-     "explain": "A reduced tail with little use: vestigial."
-    },
-    {
-     "text": "A bat's wing and a cat's front leg",
+     "text": "Daughter cells are identical to the parent cell",
      "answer": 0,
-     "explain": "Same bone pattern from a shared mammal ancestor: homologous."
+     "explain": "Mitosis makes identical copies."
     },
     {
-     "text": "A shark's fin and a dolphin's flipper",
+     "text": "Makes four haploid cells",
      "answer": 1,
-     "explain": "Similar shape for swimming, but a shark is a fish and a dolphin is a mammal: analogous."
+     "explain": "Meiosis ends with four haploid cells."
     },
     {
-     "text": "Tiny hip bones inside a whale",
-     "answer": 2,
-     "explain": "Leftover pelvis bones from land-living ancestors: vestigial."
+     "text": "Crossing over swaps pieces of chromosomes",
+     "answer": 1,
+     "explain": "Crossing over happens only in meiosis, when partner chromosomes pair up."
+    },
+    {
+     "text": "Keeps the chromosome number the same (46 to 46)",
+     "answer": 0,
+     "explain": "Mitosis keeps cells diploid."
+    },
+    {
+     "text": "Has two rounds of division",
+     "answer": 1,
+     "explain": "Meiosis divides twice, so one cell becomes four."
+    },
+    {
+     "text": "Lets yeast or an amoeba reproduce asexually",
+     "answer": 0,
+     "explain": "Asexual reproduction of many single-celled eukaryotes uses mitosis."
     }
    ]
   },
   {
-   "id": "env-change",
-   "code": "3.1.9-12.X",
-   "topic": "env-change",
-   "prompt": "What is the most likely result of this change?",
+   "id": "pattern",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "prompt": "Which inheritance pattern is it?",
    "options": [
-    "Some species increase",
-    "A new species forms over time",
-    "A species goes extinct"
+    "Incomplete dominance",
+    "Codominance",
+    "Multiple alleles",
+    "Sex-linked",
+    "Polygenic"
    ],
-   "hint": "More of something? Two groups split and change for a very long time? A species loses everything it needs?",
+   "hint": "Blend? Incomplete. Both show? Codominance. More than two alleles? Multiple. On the X chromosome? Sex-linked. Many genes? Polygenic.",
    "items": [
     {
-     "text": "Overfishing removes most cod, the main predator of a small shrimp",
+     "text": "Red and white four-o'clock flowers make pink offspring",
      "answer": 0,
-     "explain": "With fewer predators, the shrimp population can increase."
+     "explain": "A blended, in-between phenotype is incomplete dominance."
     },
     {
-     "text": "A new river splits a beetle population, and each side adapts differently for thousands of years",
+     "text": "A roan cow has both red hairs and white hairs",
      "answer": 1,
-     "explain": "Isolated populations that change separately can become new species."
+     "explain": "Both alleles show fully at the same time: codominance."
     },
     {
-     "text": "A volcano destroys the only island where a flightless bird lives",
+     "text": "The ABO blood type gene has three alleles: Iᴬ, Iᴮ, and i",
      "answer": 2,
-     "explain": "The bird has nowhere else to live, so the species goes extinct."
+     "explain": "More than two alleles exist in the population: multiple alleles."
     },
     {
-     "text": "A rainy decade gives a mosquito species many new puddles to breed in",
-     "answer": 0,
-     "explain": "More breeding sites let the mosquito population increase."
+     "text": "Hemophilia is passed from a carrier mother to her sons",
+     "answer": 3,
+     "explain": "The gene is on the X chromosome: sex-linked."
     },
     {
-     "text": "Mountains slowly rise and split a plant population; after a long time the two groups cannot interbreed",
+     "text": "Human skin color shows a smooth range of shades",
+     "answer": 4,
+     "explain": "Many genes add together: polygenic inheritance."
+    },
+    {
+     "text": "A chicken has both black and white feathers (erminette)",
      "answer": 1,
-     "explain": "Long isolation can lead to two separate species."
+     "explain": "Both colors show: codominance."
     },
     {
-     "text": "A forest is cleared for farms, removing all the habitat of a frog found nowhere else",
-     "answer": 2,
-     "explain": "Losing all of its habitat can drive a species to extinction."
-    }
-   ]
-  },
-  {
-   "id": "trait-trend",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "prompt": "Is this trait most likely an advantage in this environment?",
-   "options": [
-    "Advantage: rising in proportion",
-    "Disadvantage: falling in proportion"
-   ],
-   "hint": "Is the share of the population with the trait going up or down?",
-   "items": [
-    {
-     "text": "Dark pocket mice on dark lava: 10% of the population, then 80% after 20 generations",
-     "answer": 0,
-     "explain": "Rising share: dark fur hides mice on dark rock."
+     "text": "Red-green color blindness is far more common in males",
+     "answer": 3,
+     "explain": "Males have one X, so one recessive allele shows: sex-linked."
     },
     {
-     "text": "Light pocket mice on dark lava: 90%, then 20% after 20 generations",
-     "answer": 1,
-     "explain": "Falling share: light mice stand out to predators on dark rock."
-    },
-    {
-     "text": "Antibiotic-resistant bacteria during treatment: 1%, then 90%",
-     "answer": 0,
-     "explain": "Rising share: resistance helps bacteria survive the antibiotic."
-    },
-    {
-     "text": "Shallow-beaked finches after a drought leaves only hard seeds: 40%, then 15%",
-     "answer": 1,
-     "explain": "Falling share: shallow beaks cannot crack hard seeds."
-    },
-    {
-     "text": "Light peppered moths on soot-darkened bark: common, then rare",
-     "answer": 1,
-     "explain": "Falling share: birds spot light moths on dark bark."
-    },
-    {
-     "text": "Insects that resist a pesticide after years of spraying: 5%, then 70%",
-     "answer": 0,
-     "explain": "Rising share: resistant insects survive the spraying and reproduce."
+     "text": "Human height varies from short to tall in tiny steps",
+     "answer": 4,
+     "explain": "Many genes (plus environment) affect height: polygenic."
     }
    ]
   }
  ],
  "questions": [
   {
-   "id": "w5q01",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "Which statement best describes natural selection?",
+   "id": "w4q04",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "Why do body cells go through mitosis?",
    "options": [
-    "Individuals with traits suited to their environment survive and reproduce more, so those traits become more common.",
-    "Organisms change their traits because they need to.",
-    "Every individual has the same chance of surviving.",
-    "Traits gained during life are passed to offspring."
+    "for growth and to repair or replace damaged cells",
+    "to make sperm and egg cells",
+    "to create genetic variation",
+    "to cut the chromosome number in half"
    ],
    "answer": 0,
-   "hint": "Who leaves the most offspring?",
-   "explain": "Natural selection: inherited traits that help survival and reproduction become more common over generations."
+   "hint": "Think of healing a scraped knee.",
+   "explain": "Mitosis makes identical body cells for growth, repair, and replacement."
   },
   {
-   "id": "w5q02",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "When pollution darkened tree bark in England, dark peppered moths became more common. Why?",
+   "id": "w4q06",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
+   "prompt": "A human body cell has 46 chromosomes. How many chromosomes are in a human sperm cell?",
    "options": [
-    "Birds ate more of the easy-to-see light moths, so dark moths survived and reproduced more.",
-    "Light moths turned dark to hide.",
-    "Pollution changed the moths' DNA directly.",
-    "Dark moths moved in from another country."
+    "23",
+    "46",
+    "92",
+    "12"
    ],
    "answer": 0,
-   "hint": "Which moths could birds see?",
-   "explain": "Dark moths were camouflaged on dark bark, so they survived and passed on the dark allele."
+   "hint": "Meiosis halves the number.",
+   "explain": "Gametes are haploid: half of 46 is 23."
   },
   {
-   "id": "w5q03",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "In evolution, what does 'fitness' mean?",
+   "id": "w4q07",
+   "code": "3.1.9-12.Q",
+   "topic": "gametes",
+   "prompt": "Which statement compares mitosis and meiosis correctly?",
    "options": [
-    "how well an organism survives and reproduces in its environment",
-    "how strong or fast an organism is",
-    "how much exercise an organism gets",
-    "how big an organism is"
+    "Mitosis makes 2 identical diploid cells; meiosis makes 4 genetically different haploid cells.",
+    "Both make gametes.",
+    "Mitosis makes 4 cells; meiosis makes 2 cells.",
+    "Both make cells that are different from the parent."
    ],
    "answer": 0,
-   "hint": "Fitness is measured in offspring.",
-   "explain": "Evolutionary fitness is about passing on alleles: surviving and reproducing."
+   "hint": "Count the cells and check the chromosome number.",
+   "explain": "Mitosis: 2 identical diploid body cells. Meiosis: 4 different haploid gametes."
   },
   {
-   "id": "w5q04",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "A rabbit population has brown fur and white fur. Snow now covers the ground for longer each year. What is most likely to happen over many generations?",
+   "id": "w4q08",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
+   "prompt": "Why is it important that gametes are haploid?",
    "options": [
-    "The allele for white fur becomes more common.",
-    "All the rabbits become brown.",
-    "The rabbits choose to turn white.",
-    "Allele frequencies stay exactly the same."
+    "When sperm and egg join, the offspring gets the normal diploid number.",
+    "So gametes can divide by mitosis.",
+    "So offspring are identical to one parent.",
+    "So cells can grow larger."
    ],
    "answer": 0,
-   "hint": "Which rabbits are hidden from predators in snow?",
-   "explain": "White rabbits are better camouflaged in snow, survive more, and pass on the white allele."
+   "hint": "23 + 23 = ?",
+   "explain": "Two haploid gametes (23 + 23) join to make a diploid zygote with 46 chromosomes."
   },
   {
-   "id": "w5q05",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "Why do we say populations evolve, not individuals?",
+   "id": "w4q09",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "prompt": "Which event happens in meiosis but NOT in mitosis?",
    "options": [
-    "An individual cannot change its genes; how common each allele is in the population changes over generations.",
-    "Individuals evolve during their lifetime.",
-    "Populations never change.",
-    "Only one individual reproduces."
+    "crossing over between homologous chromosomes",
+    "copying DNA before division",
+    "splitting of the cytoplasm",
+    "chromosomes lining up in the cell"
    ],
    "answer": 0,
-   "hint": "Can one organism change its DNA on purpose?",
-   "explain": "Evolution is a change in how common each allele is in a population across generations."
+   "hint": "It mixes alleles between partner chromosomes.",
+   "explain": "Crossing over happens only in meiosis, when partner (homologous) chromosomes pair up and swap pieces."
   },
   {
-   "id": "w5q08",
-   "code": "3.1.9-12.X",
-   "topic": "speciation",
-   "prompt": "Squirrels on the north and south rims of the Grand Canyon cannot reach each other and have become different over time. What separated them?",
+   "id": "w4q10",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
+   "prompt": "One strand of DNA reads A-T-G-C-C-A. What complementary strand is made during replication?",
    "options": [
-    "geographic isolation (the canyon)",
-    "competition for the same food",
-    "camouflage",
-    "a mutation in every squirrel"
+    "T-A-C-G-G-T",
+    "A-T-G-C-C-A",
+    "U-A-C-G-G-U",
+    "G-C-A-T-T-G"
    ],
    "answer": 0,
-   "hint": "What is between the rims?",
-   "explain": "A physical barrier like a canyon keeps the populations apart: geographic isolation. Each side then changes on its own."
+   "hint": "A pairs with T; G pairs with C.",
+   "explain": "Each base pairs with its partner: A-T and G-C. (U is found only in RNA.)"
   },
   {
-   "id": "w5q11",
-   "code": "3.1.9-12.X",
-   "topic": "speciation",
-   "prompt": "What usually has to happen for one species to split into two?",
+   "id": "w4q12",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
+   "prompt": "Why must DNA be copied before a cell divides?",
    "options": [
-    "The populations become reproductively isolated and change until they can no longer interbreed.",
-    "The populations share more genes.",
-    "One population goes extinct.",
-    "Individuals decide to become a new species."
+    "so each new cell gets a complete set of genetic instructions",
+    "so the cell can make more ribosomes",
+    "so each new cell gets half the DNA",
+    "so mRNA can leave the nucleus"
    ],
    "answer": 0,
-   "hint": "Isolation first, then change.",
-   "explain": "Speciation happens when isolated populations evolve differences that stop them from interbreeding."
+   "hint": "Both new cells need all the instructions.",
+   "explain": "Replication makes two full copies, one for each daughter cell."
   },
   {
-   "id": "w5q12",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "What is the original source of all NEW alleles in a population?",
+   "id": "w4q13",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
+   "prompt": "Which bases pair together in DNA?",
    "options": [
-    "mutations in DNA",
-    "natural selection",
-    "the environment choosing traits",
-    "competition alone"
+    "adenine with thymine, and guanine with cytosine",
+    "adenine with guanine, and cytosine with thymine",
+    "adenine with uracil, and guanine with cytosine",
+    "any base can pair with any other"
    ],
    "answer": 0,
-   "hint": "Selection can only choose among alleles that already exist.",
-   "explain": "Mutations create new alleles. Natural selection then changes how common they are."
+   "hint": "Remember A-T and G-C.",
+   "explain": "A pairs with T and G pairs with C. This base pairing makes exact copying possible."
   },
   {
-   "id": "w5q13",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "A mutation makes a bacterium resistant to an antibiotic. What happens when the antibiotic is used?",
+   "id": "w4q14",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
+   "prompt": "What is a gene?",
    "options": [
-    "The resistant bacteria survive and reproduce, so resistance spreads.",
-    "All the bacteria die.",
-    "The antibiotic makes every bacterium mutate.",
-    "Resistance disappears."
+    "a section of DNA that codes for a protein",
+    "a whole chromosome",
+    "a type of cell",
+    "a sugar in DNA"
    ],
    "answer": 0,
-   "hint": "The antibiotic removes the bacteria that are NOT resistant.",
-   "explain": "The mutation already existed. The antibiotic selects for it, so resistant bacteria take over."
+   "hint": "Genes are pieces of something bigger.",
+   "explain": "A gene is a segment of DNA on a chromosome that codes for a protein, which affects a trait."
   },
   {
-   "id": "w5q14",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "Which mutations can be passed to offspring and affect evolution?",
+   "id": "w4q15",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
+   "prompt": "What are alleles?",
    "options": [
-    "mutations in gametes (sperm or egg cells)",
-    "mutations in skin cells",
-    "mutations in muscle cells",
-    "any mutation in any cell"
+    "different versions of the same gene",
+    "two different chromosomes",
+    "the proteins a gene makes",
+    "cells made by meiosis"
    ],
    "answer": 0,
-   "hint": "Which cells carry DNA to the next generation?",
-   "explain": "Only mutations in gametes are inherited."
+   "hint": "Think of flavors of one gene.",
+   "explain": "Alleles are different forms of the same gene, such as purple or white flower color."
   },
   {
-   "id": "w5q15",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "Besides mutation, which process creates new combinations of alleles in offspring?",
+   "id": "w4q16",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
+   "prompt": "Which statement best describes how DNA, genes, and chromosomes are related?",
    "options": [
-    "crossing over and independent assortment in meiosis",
+    "Chromosomes are made of DNA, and genes are sections of that DNA.",
+    "Genes are made of chromosomes.",
+    "DNA is made of genes and proteins only.",
+    "Chromosomes are found inside genes."
+   ],
+   "answer": 0,
+   "hint": "Biggest to smallest: chromosome, gene, base.",
+   "explain": "A chromosome is one long DNA molecule. Genes are sections along it."
+  },
+  {
+   "id": "w4q17",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
+   "prompt": "You inherit one chromosome of each pair from each parent. What does this mean for each of your genes?",
+   "options": [
+    "You have two alleles for each gene: one from each parent.",
+    "You have one allele, from one parent only.",
+    "You have four alleles for each gene.",
+    "All your alleles come from your mother."
+   ],
+   "answer": 0,
+   "hint": "Chromosomes come in pairs.",
+   "explain": "Each chromosome pair carries two copies of each gene, one from each parent."
+  },
+  {
+   "id": "w4q18",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
+   "prompt": "In pea plants, purple flowers (P) are dominant over white flowers (p). What is the phenotype of a Pp plant?",
+   "options": [
+    "purple flowers",
+    "white flowers",
+    "pink flowers",
+    "purple and white spotted flowers"
+   ],
+   "answer": 0,
+   "hint": "A dominant allele shows whenever it is present.",
+   "explain": "One dominant P is enough, so the Pp plant has purple flowers."
+  },
+  {
+   "id": "w4q19",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
+   "prompt": "Two Pp plants are crossed. What fraction of the offspring are expected to have white flowers (pp)?",
+   "options": [
+    "1/4",
+    "1/2",
+    "3/4",
+    "0"
+   ],
+   "answer": 0,
+   "hint": "Draw the Punnett square: PP, Pp, Pp, pp.",
+   "explain": "Only one of the four boxes is pp, so 1/4 (25%) are expected to be white."
+  },
+  {
+   "id": "w4q20",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "prompt": "A red snapdragon is crossed with a white snapdragon, and all the offspring are pink. What pattern is this?",
+   "options": [
+    "incomplete dominance",
+    "codominance",
+    "sex-linked inheritance",
+    "complete dominance"
+   ],
+   "answer": 0,
+   "hint": "The phenotype is a blend.",
+   "explain": "In incomplete dominance, heterozygotes show an in-between phenotype, like pink."
+  },
+  {
+   "id": "w4q21",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "prompt": "A person with type AB blood has both A and B markers on their red blood cells. What pattern is this?",
+   "options": [
+    "codominance",
+    "incomplete dominance",
+    "polygenic inheritance",
+    "sex-linked inheritance"
+   ],
+   "answer": 0,
+   "hint": "Both alleles show fully.",
+   "explain": "In codominance, both alleles are expressed at the same time, so A and B markers both appear."
+  },
+  {
+   "id": "w4q22",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "prompt": "Why is red-green color blindness more common in males than in females?",
+   "options": [
+    "The gene is on the X chromosome, and males have only one X.",
+    "The gene is on the Y chromosome only.",
+    "Females cannot inherit recessive alleles.",
+    "It is caused by a virus."
+   ],
+   "answer": 0,
+   "hint": "Males are XY; females are XX.",
+   "explain": "With only one X, a male shows a recessive X-linked allele. A female needs two copies."
+  },
+  {
+   "id": "w4q23",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "prompt": "Human height shows a smooth range from short to tall. This is because height is...",
+   "options": [
+    "controlled by many genes (polygenic)",
+    "controlled by one dominant allele",
+    "sex-linked",
+    "codominant"
+   ],
+   "answer": 0,
+   "hint": "A smooth range means many small effects added together.",
+   "explain": "Polygenic traits are controlled by many genes, giving a continuous range of phenotypes."
+  },
+  {
+   "id": "w4q24",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "prompt": "During meiosis, homologous chromosomes swap matching pieces. What is this called?",
+   "options": [
+    "crossing over, which makes new combinations of alleles",
+    "fertilization, which joins a sperm and an egg",
+    "replication, which copies DNA",
+    "mitosis, which makes identical body cells"
+   ],
+   "answer": 0,
+   "hint": "The chromosomes cross and exchange segments.",
+   "explain": "Crossing over shuffles alleles between homologous chromosomes, increasing genetic variation."
+  },
+  {
+   "id": "w4q26",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "prompt": "In meiosis, each chromosome pair separates independently of the other pairs. What does this produce?",
+   "options": [
+    "many different combinations of chromosomes in gametes",
+    "identical gametes",
+    "cells with no chromosomes",
+    "an extra chromosome in every cell"
+   ],
+   "answer": 0,
+   "hint": "This is called independent assortment.",
+   "explain": "Independent assortment mixes which parent's chromosomes go into each gamete, creating variety."
+  },
+  {
+   "id": "w4q28",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "A mutation changes one base, but the new codon still codes for the same amino acid. What happens to the protein?",
+   "options": [
+    "Nothing changes: the protein is the same.",
+    "Every codon after it is read differently.",
+    "The protein stops early.",
+    "Every amino acid changes."
+   ],
+   "answer": 0,
+   "hint": "Several codons can code for the same amino acid.",
+   "explain": "Several codons code for the same amino acid, so this change in the DNA does not change the protein."
+  },
+  {
+   "id": "w4q29",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Why is deleting one base usually more harmful than substituting one base?",
+   "options": [
+    "It shifts the reading frame, so every codon after it changes.",
+    "It changes only one amino acid.",
+    "It never affects the protein.",
+    "It adds an extra chromosome."
+   ],
+   "answer": 0,
+   "hint": "Codons are read three bases at a time.",
+   "explain": "A deletion causes a frameshift: every codon after it is read wrong."
+  },
+  {
+   "id": "w4q30",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Sickle cell disease is caused by a change in ONE base of the hemoglobin gene. How can one base change cause a disease?",
+   "options": [
+    "It changes one amino acid, so hemoglobin molecules stick together into long fibers and red blood cells can bend into a sickle shape.",
+    "It removes the whole hemoglobin gene from every chromosome.",
+    "It adds an extra chromosome to every red blood cell.",
+    "It has no effect on the protein, only on the DNA."
+   ],
+   "answer": 0,
+   "hint": "Base order sets amino acid order, and amino acid order sets protein shape.",
+   "explain": "One changed base changes one amino acid. The hemoglobin molecules stick together into long fibers, so red blood cells can become stiff and sickle-shaped."
+  },
+  {
+   "id": "w4q31",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Which of these can cause mutations in DNA?",
+   "options": [
+    "ultraviolet (UV) light from the Sun",
+    "drinking water",
+    "exercising",
+    "sleeping"
+   ],
+   "answer": 0,
+   "hint": "Mutagens damage DNA.",
+   "explain": "UV light, X-rays, and some chemicals are mutagens that can damage DNA."
+  },
+  {
+   "id": "w4q32",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "A mutation in a skin cell will NOT be passed to a person's children. Why?",
+   "options": [
+    "Only mutations in gametes (sperm or egg) can be inherited.",
+    "Skin cells have no DNA.",
+    "Mutations always fix themselves.",
+    "Children inherit only their mother's DNA."
+   ],
+   "answer": 0,
+   "hint": "Which cells pass DNA to the next generation?",
+   "explain": "Only mutations in sperm or egg cells are passed to offspring."
+  },
+  {
+   "id": "w4q38",
+   "code": "3.1.9-12.A",
+   "topic": "dna-review",
+   "prompt": "Review: a gene's DNA reads TAC. Which mRNA codon is transcribed from it?",
+   "options": [
+    "AUG",
+    "ATG",
+    "TAC",
+    "UAC"
+   ],
+   "answer": 0,
+   "hint": "In RNA, U replaces T. A pairs with U.",
+   "explain": "T→A, A→U, C→G, so DNA TAC becomes the mRNA codon AUG."
+  },
+  {
+   "id": "w4q39",
+   "code": "3.1.9-12.A",
+   "topic": "dna-review",
+   "prompt": "Review: what determines the order of amino acids in a protein?",
+   "options": [
+    "the order of the bases in the gene's DNA, copied into mRNA",
+    "the size of the cell",
+    "the number of chromosomes in the cell",
+    "the order the amino acids happen to float by"
+   ],
+   "answer": 0,
+   "hint": "The gene is the recipe.",
+   "explain": "The base sequence of a gene is copied into mRNA, and the mRNA sets the order in which amino acids are joined."
+  },
+  {
+   "id": "w4q41",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "A mutation inserts one extra base near the START of a gene. What is the most likely effect?",
+   "options": [
+    "Most of the protein's amino acids change (a frameshift).",
+    "Only one amino acid changes.",
+    "The protein is unchanged.",
+    "The cell gains a chromosome."
+   ],
+   "answer": 0,
+   "hint": "Every codon after the insertion is read in a new frame.",
+   "explain": "An insertion shifts the reading frame, so almost every amino acid after it changes.",
+   "tags": [
+    "boss"
+   ]
+  },
+  {
+   "id": "w4q42",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
+   "prompt": "A homozygous tall pea plant (TT) is crossed with a short plant (tt). What percent of the offspring will be tall?",
+   "options": [
+    "100%",
+    "75%",
+    "50%",
+    "25%"
+   ],
+   "answer": 0,
+   "hint": "Every offspring gets T from one parent and t from the other.",
+   "explain": "All offspring are Tt, and tall is dominant, so 100% are tall.",
+   "tags": [
+    "boss"
+   ]
+  },
+  {
+   "id": "w4q43",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "prompt": "Which processes make each gamete genetically unique?",
+   "options": [
+    "crossing over and independent assortment during meiosis",
     "mitosis",
-    "digestion",
-    "photosynthesis"
+    "DNA replication alone",
+    "growth of the cell"
    ],
    "answer": 0,
-   "hint": "It shuffles alleles when gametes form.",
-   "explain": "Meiosis shuffles alleles into new combinations, adding variation for selection to act on."
-  },
-  {
-   "id": "w5q16",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "Which statement about mutations is true?",
-   "options": [
-    "Most are neutral or harmful, but a few are helpful in certain environments.",
-    "They are always helpful.",
-    "They are always deadly.",
-    "They happen because an organism needs them."
-   ],
-   "answer": 0,
-   "hint": "Mutations are random.",
-   "explain": "Mutations are random changes. Whether one helps depends on the environment."
-  },
-  {
-   "id": "w5q17",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "In undisturbed rock layers, where are the oldest fossils usually found?",
-   "options": [
-    "in the bottom layers",
-    "in the top layers",
-    "only in the middle layer",
-    "anywhere: layer order means nothing"
-   ],
-   "answer": 0,
-   "hint": "Layers pile up over time.",
-   "explain": "The law of superposition: lower layers formed first, so they hold older fossils."
-  },
-  {
-   "id": "w5q18",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "A human arm, a bat wing, and a whale flipper have the same set of bones. What does this suggest?",
-   "options": [
-    "They evolved from a common ancestor (homologous structures).",
-    "They all do the same job.",
-    "They evolved separately with no relationship.",
-    "Bones never change."
-   ],
-   "answer": 0,
-   "hint": "Same bones, different jobs.",
-   "explain": "Homologous structures share a bone pattern inherited from a common ancestor."
-  },
-  {
-   "id": "w5q19",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "A bird's wing and a butterfly's wing do the same job but are built very differently. These are...",
-   "options": [
-    "analogous structures",
-    "homologous structures",
-    "vestigial structures",
-    "transitional fossils"
-   ],
-   "answer": 0,
-   "hint": "Same job, different origins.",
-   "explain": "Analogous structures have similar functions but evolved separately."
-  },
-  {
-   "id": "w5q20",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "Humans have a tailbone (coccyx) with little or no use. What is it, and what does it suggest?",
-   "options": [
-    "a vestigial structure; humans share ancestors with tailed animals",
-    "a homologous structure that is fully functional",
-    "an analogous structure; humans never had tails",
-    "a brand-new structure that is still forming"
-   ],
-   "answer": 0,
-   "hint": "A leftover from ancestors.",
-   "explain": "Vestigial structures are reduced remnants of structures that were useful in ancestors."
-  },
-  {
-   "id": "w5q21",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "Human and chimpanzee cytochrome c proteins are identical, but yeast cytochrome c is very different. What does this suggest?",
-   "options": [
-    "Humans are more closely related to chimpanzees than to yeast.",
-    "Humans and yeast are closely related.",
-    "Proteins are not evidence of evolution.",
-    "Chimpanzees came directly from yeast."
-   ],
-   "answer": 0,
-   "hint": "Fewer differences means a more recent common ancestor.",
-   "explain": "The more similar two species' DNA and proteins are, the more closely related they are."
-  },
-  {
-   "id": "w5q22",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "Almost all living things use the same genetic code (the same codons for the same amino acids). Why is this evidence for evolution?",
-   "options": [
-    "It suggests all life shares a common ancestor.",
-    "It shows all organisms are identical.",
-    "It proves DNA never mutates.",
-    "It means every organism makes the same proteins."
-   ],
-   "answer": 0,
-   "hint": "Why would bacteria and humans share one code?",
-   "explain": "A universal genetic code is best explained by descent from a common ancestor."
-  },
-  {
-   "id": "w5q23",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "Tiktaalik is a fossil with features of both fish and four-legged land animals. It is an example of...",
-   "options": [
-    "a transitional fossil",
-    "a vestigial structure",
-    "an analogous structure",
-    "a modern species"
-   ],
-   "answer": 0,
-   "hint": "It is in between two groups.",
-   "explain": "Transitional fossils show features of both an ancestral group and its descendants."
-  },
-  {
-   "id": "w5q29",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "Over many generations, giraffes with longer necks reached more food and had more offspring. Which statement is correct?",
-   "options": [
-    "The allele for longer necks became more common in the population.",
-    "Each giraffe stretched its neck and passed the longer neck on.",
-    "Giraffes grew longer necks because they wanted to.",
-    "Neck length is not inherited."
-   ],
-   "answer": 0,
-   "hint": "Selection changes how common alleles are in a population, not individuals.",
-   "explain": "Giraffes with long-neck alleles left more offspring, so those alleles became more common.",
+   "hint": "They shuffle alleles during meiosis.",
+   "explain": "Crossing over and independent assortment mix alleles, so every gamete is different.",
    "tags": [
     "boss"
    ]
   },
   {
-   "id": "w5q30",
-   "code": "3.1.9-12.X",
-   "topic": "speciation",
-   "prompt": "Which situation is most likely to lead to a new species?",
+   "id": "w4q45",
+   "code": "3.1.9-12.A",
+   "topic": "genes",
+   "prompt": "A mutation changes one gene. Which molecule is most directly made differently?",
    "options": [
-    "A new river splits a population, and each group adapts to different conditions for thousands of years.",
-    "Two populations keep interbreeding freely.",
-    "One animal learns a new trick.",
-    "A population stays in one unchanging place."
+    "the protein that gene codes for",
+    "the cell's sugar",
+    "the cell's water",
+    "the number of chromosomes in the cell"
    ],
    "answer": 0,
-   "hint": "Isolation plus time plus different pressures.",
-   "explain": "Isolated populations under different pressures can evolve until they can no longer interbreed.",
+   "hint": "Genes are recipes for...",
+   "explain": "A gene codes for a protein, so a mutation can change that protein and the trait it affects.",
    "tags": [
     "boss"
    ]
   },
   {
-   "id": "w5q31",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "prompt": "Which is the strongest evidence that whales evolved from land mammals?",
+   "id": "w4q46",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "prompt": "A woman who carries color blindness (XᴺXⁿ) has children with a man with normal vision (XᴺY). What is the chance that a SON is color-blind?",
    "options": [
-    "Fossil whales with small back legs, and tiny hip bones in living whales",
-    "Whales live in the ocean",
-    "Whales and sharks both have fins",
-    "Whales are very large"
+    "1/2 (50%)",
+    "0%",
+    "1/4 (25%)",
+    "100%"
    ],
    "answer": 0,
-   "hint": "Look for leftovers from land ancestors.",
-   "explain": "Transitional fossils and vestigial hip bones point to four-legged ancestors.",
+   "hint": "Sons get their X chromosome from their mother.",
+   "explain": "Each son gets either Xᴺ or Xⁿ from his mother, so half of the sons are expected to be color-blind.",
    "tags": [
     "boss"
    ]
   },
   {
-   "id": "w5q32",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "Why do brothers and sisters (except identical twins) look different from each other?",
+   "id": "w4q47",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "A skin cell divides by mitosis. How does the DNA in each of the two new cells compare with the DNA in the original cell?",
    "options": [
-    "Meiosis and fertilization create new combinations of alleles.",
-    "They have completely different genes from their parents.",
-    "Mitosis makes each child different.",
-    "Children choose their traits."
+    "Each new cell has an identical, complete copy of the DNA.",
+    "Each new cell has half of the DNA.",
+    "Each new cell has a new mix of DNA from two parents.",
+    "One new cell gets all the DNA and the other gets none."
    ],
    "answer": 0,
-   "hint": "Each gamete gets a different mix.",
-   "explain": "Crossing over, independent assortment, and random fertilization make each child's allele combination unique.",
+   "hint": "The DNA was copied before the cell divided.",
+   "explain": "The cell copies all its DNA first, so mitosis gives each new cell the same complete set of instructions."
+  },
+  {
+   "id": "w4q48",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "prompt": "Your muscle cells and nerve cells came from the same fertilized egg and have the same DNA. Why do they look and work so differently?",
+   "options": [
+    "Each kind of cell uses a different set of its genes, so it makes different proteins (differentiation).",
+    "Muscle cells and nerve cells have different DNA.",
+    "Nerve cells lost most of their genes.",
+    "Muscle cells were made by meiosis."
+   ],
+   "answer": 0,
+   "hint": "Same instructions, but which ones does each cell use?",
+   "explain": "All body cells have the same DNA. As cells differentiate, each kind uses different genes and makes different proteins, which gives it its shape and job."
+  },
+  {
+   "id": "w4q49",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "prompt": "What is a stem cell?",
+   "options": [
+    "An unspecialized cell that can divide and develop into different kinds of cells",
+    "A cell that has finished specializing and can never divide",
+    "A sex cell with half the usual chromosomes",
+    "A plant cell found only in stems"
+   ],
+   "answer": 0,
+   "hint": "Think of a cell that has not picked its job yet.",
+   "explain": "Stem cells can divide by mitosis and differentiate into specialized cells such as skin, blood, or muscle cells."
+  },
+  {
+   "id": "w4q50",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "A lizard loses its tail and grows a new one. Which process makes all the new cells for the tail?",
+   "options": [
+    "mitosis",
+    "meiosis",
+    "fertilization",
+    "mutation"
+   ],
+   "answer": 0,
+   "hint": "The new cells need the same DNA as the rest of the lizard.",
+   "explain": "Mitosis makes new cells with the same DNA, and those cells differentiate into the tissues of the new tail."
+  },
+  {
+   "id": "w4q51",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "prompt": "A human grows from a single fertilized egg into a body with trillions of cells of many different kinds. Which two processes explain this?",
+   "options": [
+    "Mitosis makes more cells, and differentiation makes them specialized.",
+    "Meiosis makes more cells, and mutation makes them specialized.",
+    "Fertilization makes more cells, and meiosis makes them specialized.",
+    "Mutation makes more cells, and mitosis makes them specialized."
+   ],
+   "answer": 0,
+   "hint": "One process increases the number; the other gives cells different jobs.",
+   "explain": "Mitosis produces the huge number of cells, and differentiation turns them into specialized cells that form tissues and organs."
+  },
+  {
+   "id": "w4q52",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "A student builds a model of mitosis. Her parent cell has 4 chromosomes. What should each daughter cell in her model show?",
+   "options": [
+    "4 chromosomes, identical to the parent cell",
+    "2 chromosomes",
+    "8 chromosomes",
+    "4 chromosomes, each different from the parent cell"
+   ],
+   "answer": 0,
+   "hint": "Mitosis keeps the chromosome number the same.",
+   "explain": "Mitosis makes two daughter cells with the same number and kind of chromosomes as the parent cell."
+  },
+  {
+   "id": "w4q53",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "prompt": "All your cells have the same DNA. Why does a scraped knee heal with new skin cells instead of bone cells?",
+   "options": [
+    "Skin cells and skin stem cells near the scrape divide by mitosis, and the new cells develop into skin cells.",
+    "Meiosis in the knee makes new skin cells.",
+    "The scrape changes the DNA in the knee to skin DNA.",
+    "Bone cells move up and turn into skin."
+   ],
+   "answer": 0,
+   "hint": "Which cells are right next to the scrape?",
+   "explain": "Cells in the skin divide by mitosis to fill the gap, and the new cells differentiate into skin cells, so the skin is repaired.",
    "tags": [
     "boss"
    ]
   },
   {
-   "id": "w5q34",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "prompt": "Why does using antibiotics when they are not needed (for example, for a cold caused by a virus) speed up antibiotic resistance?",
+   "id": "w4q54",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "prompt": "Two brothers have the same parents but different eye colors. Which statement best explains this?",
    "options": [
-    "Each use kills bacteria that are not resistant, so resistant bacteria survive and multiply more often.",
-    "Antibiotics turn viruses into bacteria.",
-    "Bacteria decide to become resistant when they sense the drug.",
-    "Antibiotics make people's own cells resistant."
+    "Meiosis makes genetically different gametes, so each brother got a different combination of alleles.",
+    "One brother inherited genes from only one parent.",
+    "Their DNA changed after they were born.",
+    "Brothers always inherit opposite traits."
    ],
    "answer": 0,
-   "hint": "Every dose is another round of selection.",
-   "explain": "Antibiotics do not work on viruses, but they still kill the bacteria in your body that are not resistant. The resistant ones survive and reproduce, so every unneeded use gives resistance another advantage.",
-   "tags": [
-    "boss"
-   ]
+   "hint": "Every sperm and every egg is a little different.",
+   "explain": "Crossing over and independent assortment in meiosis make every gamete different, so siblings get different combinations of their parents' alleles."
   },
   {
-   "id": "w5q35",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "A female cod can lay millions of eggs in one season, but only a few of her young live to be adults. Which factor of evolution does this show?",
+   "id": "w4q55",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
+   "prompt": "A sperm with 23 chromosomes joins an egg with 23 chromosomes. How many chromosomes does the fertilized egg have, and where do they come from?",
    "options": [
-    "Species can produce more offspring than can survive.",
-    "Individuals change their traits because they need to.",
-    "All of her offspring are exactly alike.",
-    "The ocean has unlimited food for every young fish."
+    "46: half from the mother and half from the father",
+    "23: all from the mother",
+    "46: all from the father",
+    "92: two full sets from each parent"
    ],
    "answer": 0,
-   "hint": "Compare how many are born with how many survive.",
-   "explain": "Species can produce far more offspring than the environment can support, so many die before they can reproduce. That sets up a struggle to survive."
+   "hint": "Add the two sets together.",
+   "explain": "Fertilization joins two haploid gametes, so the zygote has 46 chromosomes in 23 pairs: one of each pair from each parent."
   },
   {
-   "id": "w5q36",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "Two finch parents raise six chicks. Each chick's beak is slightly different. What best explains these differences?",
+   "id": "w4q56",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Chemicals in tobacco smoke cause mutations in a smoker's lung cells. Can these mutations be passed to the smoker's children?",
    "options": [
-    "Sexual reproduction gave each chick a different mix of its parents' alleles.",
-    "Each chick chose the beak size it wanted.",
-    "The food the chicks ate changed their DNA.",
-    "Mitosis made each chick different from its parents."
+    "No. Lung cells are body cells, and only mutations in sperm or egg cells are inherited.",
+    "Yes. Every mutation is passed to children.",
+    "Yes, but only to sons.",
+    "No, because lung cells have no DNA."
    ],
    "answer": 0,
-   "hint": "Where do a chick's alleles come from?",
-   "explain": "In sexual reproduction, each offspring gets a new combination of its parents' alleles. That inherited variation is what natural selection acts on."
+   "hint": "Which cells make the next generation?",
+   "explain": "Mutations in body cells can affect the person, but only mutations in gametes can be inherited."
   },
   {
-   "id": "w5q37",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "During a drought, seeds become scarce and the finches on an island compete for them. Why does this competition matter for evolution?",
+   "id": "w4q57",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Each time a cell divides it copies billions of DNA bases. Very rarely, a mistake is made and not fixed. What can these copying mistakes cause?",
    "options": [
-    "Not all finches can survive, so those with traits that help them get food leave more offspring.",
-    "Competition makes every finch grow a bigger beak during its life.",
-    "Competition gives every finch the same chance to survive.",
-    "Competition stops finches from having any offspring at all."
+    "mutations, which are a source of new genetic variation",
+    "new chromosomes made from protein",
+    "a change in the number of cells in the body",
+    "meiosis instead of mitosis"
    ],
    "answer": 0,
-   "hint": "If there is not enough food for all, who survives?",
-   "explain": "Limited resources mean not every individual survives. Individuals whose inherited traits help them compete leave more offspring, so those traits become more common."
+   "hint": "A change in the base sequence has a name.",
+   "explain": "Uncorrected errors when DNA is copied change the base sequence. These mutations are one source of inheritable variation (if they happen in gametes)."
   },
   {
-   "id": "w5q38",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "A beetle population is 10% green and 90% brown. Birds spot green beetles more easily. If nothing else changes, what is the most likely result after many generations?",
+   "id": "w4q58",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Most mutations have no effect or are harmful, but some are helpful. Which is an example of a HELPFUL mutation?",
    "options": [
-    "Brown beetles make up even more than 90% of the population.",
-    "Green beetles rise to about 50% of the population.",
-    "The population stays exactly 10% green.",
-    "All of the beetles turn green."
+    "A mutation that lets some adults keep digesting milk sugar (lactose)",
+    "A mutation that makes a protein stop working",
+    "A mutation in a skin cell caused by a bad sunburn",
+    "A mutation that does not change the protein at all"
    ],
    "answer": 0,
-   "hint": "Which color survives and reproduces more?",
-   "explain": "Brown beetles survive and reproduce more, so the share of brown beetles keeps growing over the generations."
+   "hint": "Helpful means it gives an advantage.",
+   "explain": "In some human groups, a mutation keeps the lactase gene working into adulthood, so adults can digest milk. This helped people in places where milk was an important food."
   },
   {
-   "id": "w5q39",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "Which list includes all FOUR factors that drive evolution?",
+   "id": "w4q59",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "prompt": "Two dishes of the same bacteria are grown. Dish A gets UV light for one hour; dish B is kept in the dark. Dish A ends up with many more mutant colonies. What does this evidence support?",
    "options": [
-    "More offspring than can survive, inherited variation, competition for limited resources, and better-suited individuals reproducing more",
-    "Unlimited resources, identical offspring, no competition, and every individual reproducing equally",
-    "Individuals changing their genes on purpose, inherited variation, competition, and more offspring than can survive",
-    "Traits gained during life, competition, unlimited resources, and better-suited individuals reproducing more"
+    "UV light is an environmental factor that causes mutations.",
+    "Darkness causes mutations.",
+    "Bacteria cannot have mutations.",
+    "Mutations happen only during meiosis."
    ],
    "answer": 0,
-   "hint": "Look for the list with no myths in it.",
-   "explain": "Evolution mostly results from: (1) the potential to produce more offspring than can survive, (2) inherited variation, (3) competition for limited resources, and (4) better-suited individuals surviving and reproducing more."
+   "hint": "The only difference between the dishes was the UV light.",
+   "explain": "Since UV was the only variable changed and mutations increased, the data support the claim that UV light causes mutations."
   },
   {
-   "id": "w5q40",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "prompt": "A gardener plants 200 seeds that are all genetically identical. A very dry summer follows. Why can natural selection NOT make this group better at surviving drought?",
+   "id": "w4q60",
+   "code": "3.1.9-12.A",
+   "topic": "dna-review",
+   "prompt": "Review: a change in a gene's base sequence changes one amino acid in its protein. What can happen next?",
    "options": [
-    "There is no inherited variation for selection to act on.",
-    "There are too many seeds.",
-    "Dry weather never affects plants.",
-    "The plants are competing for water."
+    "The protein may fold into a different shape and not do its job the same way.",
+    "The cell will gain an extra chromosome.",
+    "Every gene in the cell will change.",
+    "Nothing can happen, because amino acids do not affect proteins."
    ],
    "answer": 0,
-   "hint": "What do the seeds lack?",
-   "explain": "Natural selection needs inherited variation. If every seed has the same alleles, no seed has a trait that helps it survive better and pass that trait on."
-  },
-  {
-   "id": "w5q47",
-   "code": "3.1.9-12.X",
-   "topic": "env-change",
-   "prompt": "A drought dries up most of the ponds in a region for many years. What is most likely to happen to frog species there that need ponds to lay their eggs?",
-   "options": [
-    "Their numbers drop, and some may go extinct in that region.",
-    "Their numbers grow quickly.",
-    "They stop needing water to reproduce.",
-    "Nothing changes for them."
-   ],
-   "answer": 0,
-   "hint": "What do these frogs need that the drought takes away?",
-   "explain": "When the environment changes, species that depend on what was lost can decline or go extinct."
-  },
-  {
-   "id": "w5q48",
-   "code": "3.1.9-12.X",
-   "topic": "env-change",
-   "prompt": "Fertilizer runoff adds nutrients to a lake. Algae grow quickly, and fish that need lots of oxygen become rare. What does this show?",
-   "options": [
-    "A change in the environment can make some species increase and others decrease.",
-    "Fertilizer has no effect on lake life.",
-    "Every species in the lake increases.",
-    "Fish can change their need for oxygen when they want to."
-   ],
-   "answer": 0,
-   "hint": "Compare what happened to the algae and to the fish.",
-   "explain": "Environmental changes help some species (the algae) and harm others (oxygen-loving fish), changing which species are common."
-  },
-  {
-   "id": "w5q49",
-   "code": "3.1.9-12.X",
-   "topic": "env-change",
-   "prompt": "Why is a very FAST change in the environment more likely to cause extinction than a slow change?",
-   "options": [
-    "A population may die out before helpful inherited traits can become common.",
-    "Fast changes always help every species.",
-    "Slow changes never affect species.",
-    "Animals can change their genes faster during fast changes."
-   ],
-   "answer": 0,
-   "hint": "Natural selection takes many generations.",
-   "explain": "Natural selection needs generations to make helpful traits common. If conditions change too fast, a species may go extinct first."
-  },
-  {
-   "id": "w5q50",
-   "code": "3.1.9-12.X",
-   "topic": "env-change",
-   "prompt": "Most of the trees in a forest are cut down and the land becomes open grassland. Which species is most likely to INCREASE in number?",
-   "options": [
-    "a bird that nests on open ground and eats grass seeds",
-    "an owl that nests in tree holes",
-    "a squirrel that eats acorns",
-    "a woodpecker that drills into tree bark"
-   ],
-   "answer": 0,
-   "hint": "Which species does the new grassland help?",
-   "explain": "Deforestation removes what forest species need, but species suited to open land can increase.",
-   "tags": [
-    "boss"
-   ]
-  },
-  {
-   "id": "w5q41",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "prompt": "On dark lava rock, dark-furred pocket mice made up 20% of a population at first and 80% after many generations. What best explains this change?",
-   "options": [
-    "Dark fur hid mice from predators on dark rock, so dark mice survived and reproduced more.",
-    "Light mice turned dark to match the rock.",
-    "The lava changed the color of the mice's fur directly.",
-    "Dark mice are always more common in every habitat."
-   ],
-   "answer": 0,
-   "hint": "Which mice are harder for owls to see on dark rock?",
-   "explain": "Dark fur is an advantage on dark rock. Dark mice survive and reproduce more, so the PROPORTION of dark mice rises over the generations."
-  },
-  {
-   "id": "w5q42",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "prompt": "Over four years, the percent of finches with deep beaks on an island was 20%, 30%, 45%, and then 60%. Which conclusion do these data support?",
-   "options": [
-    "Deep beaks are increasing in proportion, so they probably give an advantage there.",
-    "Deep beaks are becoming less common.",
-    "The proportion of deep beaks did not change.",
-    "Every finch on the island now has a deep beak."
-   ],
-   "answer": 0,
-   "hint": "Is the percent going up, down, or staying the same?",
-   "explain": "A trait that keeps rising as a share of the population is most likely an advantage in that environment."
-  },
-  {
-   "id": "w5q43",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "prompt": "Before a drought, the MEAN (average) beak depth of a finch population was 9.2 mm. Among the finches that survived the drought, the mean was 9.8 mm. What does this suggest?",
-   "options": [
-    "Finches with deeper beaks survived the drought better.",
-    "Every finch grew a deeper beak during the drought.",
-    "Beak depth had nothing to do with survival.",
-    "Finches with shallow beaks survived better."
-   ],
-   "answer": 0,
-   "hint": "Did the average go up or down among the survivors?",
-   "explain": "The survivors' average beak was deeper, so deeper-beaked finches were more likely to survive and pass on their beak depth."
-  },
-  {
-   "id": "w5q44",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "prompt": "Why do scientists track the PERCENT of a population that has a trait, instead of only counting how many individuals have it?",
-   "options": [
-    "The population size can change, so a percent shows whether the trait is becoming more common compared with the others.",
-    "Percents are always bigger numbers.",
-    "Counting individuals is never allowed in science.",
-    "A percent shows which individual is the strongest."
-   ],
-   "answer": 0,
-   "hint": "What if the whole population doubles?",
-   "explain": "If a population grows or shrinks, raw counts can mislead. The percent (proportion) shows whether the trait is gaining ground relative to the rest."
-  },
-  {
-   "id": "w5q45",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "prompt": "Near Manchester, England, dark peppered moths were very rare in the 1840s but made up about 98% of the moths by 1895, after soot darkened the tree bark. Which conclusion is best supported?",
-   "options": [
-    "Dark color became an advantage on sooty bark, so dark moths increased in proportion.",
-    "Soot painted the moths dark.",
-    "Light moths chose to stop reproducing.",
-    "The change happened by chance and has no link to the bark."
-   ],
-   "answer": 0,
-   "hint": "Which moths could birds see on dark bark?",
-   "explain": "On soot-darkened bark, dark moths were hidden from birds, survived and reproduced more, and rose from rare to most of the population."
-  },
-  {
-   "id": "w5q46",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "prompt": "Antibiotic-resistant bacteria made up 1% of a population before treatment and 90% after a week of treatment. Which statement is correct?",
-   "options": [
-    "The antibiotic killed most of the bacteria that were not resistant, so the resistant trait rose in proportion.",
-    "The antibiotic made the bacteria become resistant.",
-    "The resistant bacteria disappeared.",
-    "The proportion of resistant bacteria stayed the same."
-   ],
-   "answer": 0,
-   "hint": "Which bacteria survived the treatment?",
-   "explain": "Resistance already existed in a few bacteria. The antibiotic removed the others, so the resistant share rose from 1% to 90%.",
-   "tags": [
-    "boss"
-   ]
+   "hint": "Amino acid order sets protein shape; shape sets job.",
+   "explain": "The order of amino acids decides how a protein folds. A changed amino acid can change the shape, and so the job, of the protein."
   }
  ],
  "pairs": [
   {
-   "name": "Homologous or analogous?",
-   "explain": "Homologous structures share bones from a common ancestor but may do different jobs. Analogous structures do the same job but evolved separately.",
+   "name": "Mitosis or meiosis?",
+   "explain": "Mitosis makes two identical diploid body cells. Meiosis makes four genetically different haploid gametes.",
    "members": [
     {
-     "label": "Homologous",
-     "level": "5-4",
+     "label": "Mitosis",
+     "level": "5-1",
      "ids": [
-      "structures.0",
-      "structures.3",
-      "w5q18"
+      "mit-mei.0",
+      "mit-mei.2",
+      "mit-mei.5",
+      "w4q04"
      ]
     },
     {
-     "label": "Analogous",
+     "label": "Meiosis",
+     "level": "5-2",
+     "ids": [
+      "mit-mei.1",
+      "mit-mei.3",
+      "mit-mei.4",
+      "w4q09"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Incomplete dominance or codominance?",
+   "explain": "Incomplete dominance BLENDS (red + white = pink). Codominance shows BOTH (red and white hairs together).",
+   "members": [
+    {
+     "label": "Incomplete dominance",
      "level": "5-4",
      "ids": [
-      "structures.1",
-      "structures.4",
-      "w5q19"
+      "pattern.0",
+      "w4q20"
+     ]
+    },
+    {
+     "label": "Codominance",
+     "level": "5-4",
+     "ids": [
+      "pattern.1",
+      "pattern.5",
+      "w4q21"
      ]
     }
    ]
@@ -828,1170 +979,1125 @@ FieldGuide.registerQuestions(5, {
  ],
  "become": [
   {
-   "id": "b-moth",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "you": "a peppered moth resting on soot-darkened tree bark in 1850s England",
-   "short": "Moth",
-   "color": "#5a5a5a",
-   "goal": "Go through the door of the moth most likely to survive and have offspring.",
+   "id": "b-chromosomes",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "you": "a skin cell with 46 chromosomes, about to divide by mitosis",
+   "short": "46",
+   "color": "#ffb3a7",
+   "goal": "Go through the door that shows your daughter cells.",
    "doors": [
     {
      "kind": "organelle",
-     "label": "Dark moth: hidden from birds on dark bark",
+     "label": "Two cells, each with 46 chromosomes",
      "ok": true
     },
     {
      "kind": "flow",
-     "label": "Light moth: easy for birds to spot",
+     "label": "Two cells, each with 23 chromosomes",
      "ok": false,
-     "why": "On dark bark, light moths stand out, and birds eat them first."
+     "why": "Mitosis does not halve the chromosome number. Each new body cell keeps all 46."
     },
     {
      "kind": "vesicle",
-     "label": "A moth that turns dark by trying hard",
+     "label": "Four cells, each with 23 chromosomes",
      "ok": false,
-     "why": "Moths cannot change their genes by effort. Selection acts on traits they already have."
+     "why": "Four haploid cells come from meiosis, which makes gametes, not skin cells."
     }
    ],
-   "explain": "Dark moths survived and reproduced more, so the dark allele became more common: natural selection."
+   "explain": "Mitosis makes two identical diploid cells with the same 46 chromosomes as the parent cell."
   },
   {
-   "id": "b-isolation",
-   "code": "3.1.9-12.X",
-   "topic": "speciation",
-   "you": "a Kaibab squirrel on the north rim of the Grand Canyon",
-   "short": "Squirrel",
-   "color": "#a8785a",
-   "goal": "Go through the door that explains why you never mate with the Abert's squirrels on the south rim.",
-   "doors": [
-    {
-     "kind": "organelle",
-     "label": "The canyon keeps the two populations apart",
-     "ok": true
-    },
-    {
-     "kind": "flow",
-     "label": "Squirrels only mate with squirrels of the exact same color",
-     "ok": false,
-     "why": "The two kinds of squirrel now look different, but color is not what keeps them apart. The canyon itself does."
-    },
-    {
-     "kind": "vesicle",
-     "label": "Squirrels never mate with other squirrels",
-     "ok": false,
-     "why": "Squirrels mate within their own population. The canyon stops the two populations from meeting."
-    }
-   ],
-   "explain": "The canyon is a geographic barrier. Isolated populations evolve separately, which can lead to new species."
-  },
-  {
-   "id": "b-homolog",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "you": "a whale's flipper",
-   "short": "Flipper",
-   "color": "#62b6cb",
-   "goal": "Find the structure built from the same bones as you.",
-   "doors": [
-    {
-     "kind": "organelle",
-     "label": "A human arm",
-     "ok": true
-    },
-    {
-     "kind": "flow",
-     "label": "A shark's fin",
-     "ok": false,
-     "why": "A shark's fin has a similar shape for swimming, but different structure: analogous, not homologous."
-    },
-    {
-     "kind": "vesicle",
-     "label": "A butterfly's wing",
-     "ok": false,
-     "why": "Insect wings have no bones at all. They are not homologous to a flipper."
-    }
-   ],
-   "explain": "A whale flipper and a human arm share the same bone pattern from a common mammal ancestor: homologous structures."
-  },
-  {
-   "id": "b-factors",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "you": "a sea turtle egg, one of about 100 laid in the same nest on a beach",
+   "id": "b-gamete",
+   "code": "3.1.9-12.P",
+   "topic": "gametes",
+   "you": "a human egg cell made by meiosis",
    "short": "Egg",
-   "color": "#f4f0e4",
-   "goal": "Go through the door that best describes what will happen to your nest-mates.",
+   "color": "#ff9fbf",
+   "goal": "Go through the door with your correct chromosome number.",
    "doors": [
     {
      "kind": "organelle",
-     "label": "Most will not live to be adults: more are born than can survive",
+     "label": "23 chromosomes (haploid)",
      "ok": true
     },
     {
      "kind": "flow",
-     "label": "All 100 will grow up, because the sea has unlimited food",
+     "label": "46 chromosomes (diploid)",
      "ok": false,
-     "why": "Food and safe places are limited. Predators and hunger mean only a few hatchlings grow up."
+     "why": "If eggs had 46, the baby would have 92 after fertilization. Gametes are haploid."
     },
     {
      "kind": "vesicle",
-     "label": "Each hatchling will change its genes to fit the sea",
+     "label": "92 chromosomes",
      "ok": false,
-     "why": "Individuals cannot change their genes. Selection acts on the variation they are born with."
+     "why": "Meiosis halves the chromosome number; it never doubles it."
     }
    ],
-   "explain": "Species produce more offspring than can survive. Which ones survive depends partly on their inherited traits: one of the four factors of evolution."
+   "explain": "Meiosis halves the chromosome number, so human gametes have 23. Fertilization restores 46."
+  },
+  {
+   "id": "b-punnett",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
+   "you": "a pea seed whose parents are both Tt (tall)",
+   "short": "Seed",
+   "color": "#a8e07a",
+   "goal": "Go through the door that shows your chance of being short (tt).",
+   "doors": [
+    {
+     "kind": "flow",
+     "label": "1 in 4 (25%)",
+     "ok": true
+    },
+    {
+     "kind": "organelle",
+     "label": "1 in 2 (50%)",
+     "ok": false,
+     "why": "The Punnett square for Tt × Tt gives TT, Tt, Tt, tt. Only 1 of 4 boxes is tt."
+    },
+    {
+     "kind": "vesicle",
+     "label": "0%: tall parents only have tall offspring",
+     "ok": false,
+     "why": "Both parents carry a hidden t allele, so a tt offspring is possible."
+    }
+   ],
+   "explain": "Tt × Tt gives 1 TT : 2 Tt : 1 tt, so each offspring has a 1 in 4 chance of being short."
+  },
+  {
+   "id": "b-codominance",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "you": "a calf whose parents are a red bull (RR) and a white cow (WW). Coat color is codominant",
+   "short": "Calf",
+   "color": "#c8785a",
+   "goal": "Go through the door that shows your coat.",
+   "doors": [
+    {
+     "kind": "organelle",
+     "label": "Roan: red and white hairs mixed together",
+     "ok": true
+    },
+    {
+     "kind": "flow",
+     "label": "Pink: a blend of red and white",
+     "ok": false,
+     "why": "A blend is incomplete dominance. In codominance BOTH colors show."
+    },
+    {
+     "kind": "vesicle",
+     "label": "All red",
+     "ok": false,
+     "why": "Neither allele hides the other in codominance."
+    }
+   ],
+   "explain": "In codominance both alleles are fully expressed, so an RW calf is roan: red and white hairs."
+  },
+  {
+   "id": "b-frameshift",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "you": "a gene that reads THE CAT ATE THE RAT. One letter H is deleted",
+   "short": "Gene",
+   "color": "#c59cff",
+   "goal": "Go through the door that shows what happens to the message.",
+   "doors": [
+    {
+     "kind": "organelle",
+     "label": "TEC ATA TET HER AT: every word after it is scrambled",
+     "ok": true
+    },
+    {
+     "kind": "flow",
+     "label": "Only one word changes",
+     "ok": false,
+     "why": "That is a substitution. A deletion shifts every three-letter word after it."
+    },
+    {
+     "kind": "vesicle",
+     "label": "Nothing changes",
+     "ok": false,
+     "why": "Removing a base changes how every codon after it is read."
+    }
+   ],
+   "explain": "Deleting (or inserting) one base causes a frameshift: every codon after the mutation is read differently."
   }
  ],
  "catches": [
   {
-   "id": "c-factors",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "short": "Four factors",
-   "title": "Name the factor: grab the factor of evolution that matches each event.",
-   "cueLabel": "Event",
-   "builtLabel": "Named",
-   "cueWord": "event",
-   "tokenWord": "factor",
-   "rule": "More offspring than survive, inherited variation, competition, and better-suited individuals reproducing more.",
+   "id": "c-basepair",
+   "code": "3.1.9-12.D",
+   "topic": "dna-copy",
+   "short": "Base pairing",
+   "title": "Copy the DNA: grab the base that pairs with each highlighted base.",
+   "cueLabel": "Base",
+   "builtLabel": "New strand",
+   "cueWord": "base",
+   "tokenWord": "partner",
+   "rule": "In DNA, A pairs with T and G pairs with C.",
    "choices": [
-    "More offspring than can survive",
-    "Inherited variation",
-    "Competition for resources",
-    "Better-suited reproduce more",
-    "Succession",
-    "Photosynthesis"
+    "T",
+    "A",
+    "C",
+    "G",
+    "U",
+    "Ribose"
    ],
    "steps": [
     {
-     "cue": "A salmon lays thousands of eggs, but few grow up",
-     "need": "More offspring than can survive"
+     "cue": "A",
+     "need": "T"
     },
     {
-     "cue": "Sibling finches are born with different beak sizes",
-     "need": "Inherited variation"
+     "cue": "G",
+     "need": "C"
     },
     {
-     "cue": "Finches crowd around the last seeds after a drought",
-     "need": "Competition for resources"
+     "cue": "T",
+     "need": "A"
     },
     {
-     "cue": "Deep-beaked finches raise the most chicks",
-     "need": "Better-suited reproduce more"
+     "cue": "C",
+     "need": "G"
     }
    ],
-   "hint": "Too many born? Born different? Not enough to go around? Who leaves more young?",
+   "hint": "A goes with T. G goes with C.",
    "wrong": {
-    "Succession": "Succession is how a community changes after a disturbance, not one of the four factors of evolution.",
-    "Photosynthesis": "Photosynthesis makes sugar from light. It is not one of the four factors of evolution."
+    "U": "Uracil (U) is found in RNA, not DNA.",
+    "Ribose": "Ribose is the sugar in RNA. DNA's sugar is deoxyribose, and it is not a base."
    },
-   "explain": "Overproduction, inherited variation, competition for limited resources, and better-suited individuals reproducing more together drive evolution."
+   "explain": "Base pairing (A-T, G-C) lets each old strand serve as a template for an exact copy."
+  },
+  {
+   "id": "c-blood",
+   "code": "3.1.9-12.R",
+   "topic": "patterns",
+   "short": "Blood types",
+   "title": "Match each genotype to its ABO blood type.",
+   "cueLabel": "Genotype",
+   "builtLabel": "Typed",
+   "cueWord": "genotype",
+   "tokenWord": "blood type",
+   "rule": "Iᴬ and Iᴮ are codominant; both are dominant over i.",
+   "choices": [
+    "Type A",
+    "Type B",
+    "Type AB",
+    "Type O",
+    "Type C",
+    "Type AO"
+   ],
+   "steps": [
+    {
+     "cue": "Iᴬi",
+     "need": "Type A"
+    },
+    {
+     "cue": "IᴮIᴮ",
+     "need": "Type B"
+    },
+    {
+     "cue": "IᴬIᴮ",
+     "need": "Type AB"
+    },
+    {
+     "cue": "ii",
+     "need": "Type O"
+    }
+   ],
+   "hint": "Iᴬ and Iᴮ both show if present. i shows only when there are two of it.",
+   "wrong": {
+    "Type C": "There is no type C. The ABO gene has three alleles: Iᴬ, Iᴮ, and i.",
+    "Type AO": "AO is a genotype idea, not a blood type. Iᴬi is type A because i is recessive."
+   },
+   "explain": "ABO blood type shows multiple alleles and codominance: Iᴬ and Iᴮ both show, and i is recessive."
+  },
+  {
+   "id": "c-mutation",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "short": "Mutation effects",
+   "title": "What happens? Grab the result of each DNA change.",
+   "cueLabel": "Change",
+   "builtLabel": "Result",
+   "cueWord": "change",
+   "tokenWord": "result",
+   "rule": "Bases are read in groups of three. The order of bases sets the order of amino acids.",
+   "choices": [
+    "Same protein",
+    "One amino acid changes",
+    "Most amino acids after it change",
+    "Not passed to children",
+    "An extra chromosome",
+    "All DNA is lost"
+   ],
+   "steps": [
+    {
+     "cue": "One base swapped, but it still codes for the same amino acid",
+     "need": "Same protein"
+    },
+    {
+     "cue": "One base swapped, and it codes for a different amino acid",
+     "need": "One amino acid changes"
+    },
+    {
+     "cue": "One base deleted near the start of a gene",
+     "need": "Most amino acids after it change"
+    },
+    {
+     "cue": "A mutation happens in a skin cell",
+     "need": "Not passed to children"
+    }
+   ],
+   "hint": "Was one base swapped, or was one removed? Was it in a body cell or a gamete?",
+   "wrong": {
+    "An extra chromosome": "A change in a base does not add a chromosome.",
+    "All DNA is lost": "A mutation changes part of the DNA sequence; the rest of the DNA is still there."
+   },
+   "explain": "A swapped base may change nothing or one amino acid; a deleted base changes every group of three after it. Only mutations in gametes are inherited."
+  },
+  {
+   "id": "c-meiosis",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "short": "Making variety",
+   "title": "Where does the variety come from? Grab the event that matches each description.",
+   "cueLabel": "Event",
+   "builtLabel": "Named",
+   "cueWord": "event",
+   "tokenWord": "term",
+   "rule": "Meiosis makes haploid gametes that are all different; fertilization joins two of them.",
+   "choices": [
+    "Crossing over",
+    "Independent assortment",
+    "Fertilization",
+    "Meiosis",
+    "Mitosis",
+    "Replication"
+   ],
+   "steps": [
+    {
+     "cue": "Partner chromosomes from mom and dad swap matching pieces",
+     "need": "Crossing over"
+    },
+    {
+     "cue": "Each chromosome pair separates on its own, mixing mom's and dad's chromosomes",
+     "need": "Independent assortment"
+    },
+    {
+     "cue": "A sperm (23) joins an egg (23)",
+     "need": "Fertilization"
+    },
+    {
+     "cue": "One cell makes four sex cells with half the chromosomes",
+     "need": "Meiosis"
+    }
+   ],
+   "hint": "Swapping pieces, shuffling whole chromosomes, joining gametes, or making gametes?",
+   "wrong": {
+    "Mitosis": "Mitosis makes identical body cells, so it does not add variety.",
+    "Replication": "Replication copies DNA; it does not mix alleles."
+   },
+   "explain": "Crossing over and independent assortment make every gamete different, and fertilization joins two of them, so offspring get new combinations of alleles."
   }
  ],
  "data": [
   {
-   "id": "d-finch",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "title": "Medium ground finches that survived a drought that left mostly large, hard seeds",
-   "xlabel": "Beak depth",
-   "ylabel": "Percent that survived",
+   "id": "d-punnett",
+   "code": "3.1.9-12.R",
+   "topic": "punnett",
+   "title": "Offspring of two Pp pea plants (purple P is dominant over white p)",
+   "xlabel": "Genotype",
+   "ylabel": "Number of offspring",
    "categories": [
-    "8 mm",
-    "9 mm",
-    "10 mm",
-    "11 mm",
-    "12 mm"
+    "PP",
+    "Pp",
+    "pp"
    ],
    "values": [
-    10,
-    20,
-    35,
-    55,
-    70
+    26,
+    49,
+    25
    ],
    "questions": [
     {
-     "prompt": "Which beak depth had the HIGHEST survival?",
-     "answer": 4,
+     "prompt": "Which genotype was most common?",
+     "answer": 1,
      "hint": "Find the tallest bar.",
-     "explain": "Deep beaks crack large, hard seeds, so 12 mm finches survived best."
+     "explain": "About half the offspring were Pp, matching the 1:2:1 Punnett square prediction."
     },
     {
-     "prompt": "Which beak depth had the LOWEST survival?",
+     "prompt": "Which genotype has WHITE flowers?",
+     "answer": 2,
+     "hint": "White shows only when there is no dominant P.",
+     "explain": "Only pp plants are white: two recessive alleles."
+    },
+    {
+     "prompt": "Which genotype is homozygous DOMINANT?",
      "answer": 0,
-     "hint": "Find the shortest bar.",
-     "explain": "Shallow beaks could not crack the hard seeds left after the drought."
-    },
-    {
-     "prompt": "In which group did a little more than half of the finches survive?",
-     "answer": 3,
-     "hint": "Look for a bar just above 50.",
-     "explain": "About 55% of 11 mm finches survived. Over generations, deeper beaks became more common."
+     "hint": "Homozygous means two of the same allele.",
+     "explain": "PP has two dominant alleles: homozygous dominant."
     }
    ]
   },
   {
-   "id": "d-resistance",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "title": "Bacteria that resist an antibiotic, measured while the antibiotic is in use",
-   "xlabel": "Day",
-   "ylabel": "Percent resistant",
+   "id": "d-growth",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "title": "Cells counted in one small area of a healing skin scrape",
+   "xlabel": "Day after the scrape",
+   "ylabel": "Number of cells",
    "categories": [
-    "Day 1",
+    "Day 0",
     "Day 2",
-    "Day 3",
     "Day 4",
-    "Day 5"
+    "Day 6"
    ],
    "values": [
-    2,
-    10,
-    35,
-    70,
-    95
-   ],
-   "questions": [
-    {
-     "prompt": "On which day were resistant bacteria the RAREST?",
-     "answer": 0,
-     "hint": "Find the shortest bar.",
-     "explain": "At first only a few bacteria carried the resistance mutation."
-    },
-    {
-     "prompt": "On which day did resistant bacteria first become MORE than half of the population?",
-     "answer": 3,
-     "hint": "Look for the first bar above 50.",
-     "explain": "By Day 4, 70% were resistant: the antibiotic kept removing the others."
-    },
-    {
-     "prompt": "On which day was the population almost entirely resistant?",
-     "answer": 4,
-     "hint": "Find the tallest bar.",
-     "explain": "By Day 5, 95% were resistant. Natural selection favored the mutation."
-    }
-   ]
-  },
-  {
-   "id": "d-cytochrome",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "title": "Amino acid differences between human cytochrome c and other organisms' cytochrome c",
-   "xlabel": "Organism",
-   "ylabel": "Number of differences",
-   "categories": [
-    "Chimpanzee",
-    "Rhesus monkey",
-    "Horse",
-    "Chicken",
-    "Yeast"
-   ],
-   "values": [
-    0,
-    1,
-    12,
-    13,
-    44
-   ],
-   "questions": [
-    {
-     "prompt": "Which organism is MOST closely related to humans?",
-     "answer": 0,
-     "hint": "Fewest differences.",
-     "explain": "Chimpanzee cytochrome c is identical to ours: we share a recent common ancestor."
-    },
-    {
-     "prompt": "Which organism is LEAST closely related to humans?",
-     "answer": 4,
-     "hint": "Most differences.",
-     "explain": "Yeast (a fungus) has 44 differences: our common ancestor lived very long ago."
-    },
-    {
-     "prompt": "Which organism differs from humans by just one amino acid?",
-     "answer": 1,
-     "hint": "Look for the bar at 1.",
-     "explain": "The rhesus monkey differs by one amino acid: another close primate relative."
-    }
-   ]
-  },
-  {
-   "id": "d-overproduce",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "title": "What happened to 96 field mice born in one spring (illustrative numbers)",
-   "xlabel": "Stage",
-   "ylabel": "Mice alive",
-   "categories": [
-    "Born",
-    "After 1 month",
-    "After 3 months",
-    "Lived to breed"
-   ],
-   "values": [
-    96,
-    48,
-    24,
-    12
-   ],
-   "questions": [
-    {
-     "prompt": "At which stage were the MOST mice alive?",
-     "answer": 0,
-     "hint": "Find the tallest bar.",
-     "explain": "All 96 were alive at birth. Many more are born than the field can support."
-    },
-    {
-     "prompt": "At which stage were HALF of the mice born still alive?",
-     "answer": 1,
-     "hint": "Half of 96 is 48.",
-     "explain": "After 1 month only 48 of 96 (half) were alive: food, predators, and weather limit survival."
-    },
-    {
-     "prompt": "At which stage were the FEWEST mice alive?",
-     "answer": 3,
-     "hint": "Find the shortest bar.",
-     "explain": "Only 12 of 96 (1 in 8) lived to breed. The survivors pass their traits to the next generation."
-    }
-   ]
-  },
-  {
-   "id": "d-mice",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "title": "Rock pocket mice with dark fur living on dark lava rock (illustrative numbers)",
-   "xlabel": "Generation",
-   "ylabel": "Percent with dark fur",
-   "categories": [
-    "Gen 1",
-    "Gen 5",
-    "Gen 10",
-    "Gen 15",
-    "Gen 20"
-   ],
-   "values": [
-    10,
-    25,
+    20,
     45,
-    65,
-    80
+    90,
+    100
    ],
    "questions": [
     {
-     "prompt": "In which generation were dark mice LEAST common?",
+     "prompt": "On which day were the MOST cells counted?",
+     "answer": 3,
+     "hint": "Find the tallest bar.",
+     "explain": "By Day 6 the area had about 100 cells: mitosis had filled the scrape with new skin cells."
+    },
+    {
+     "prompt": "Between which two days did the count jump the most? Pick the later day.",
+     "answer": 2,
+     "hint": "Look for the biggest jump between two bars next to each other.",
+     "explain": "From Day 2 to Day 4 the count doubled (45 to 90) as cells kept dividing by mitosis."
+    },
+    {
+     "prompt": "On which day were the FEWEST cells counted?",
      "answer": 0,
      "hint": "Find the shortest bar.",
-     "explain": "At first only 10% of the mice had dark fur."
-    },
-    {
-     "prompt": "In which generation did dark mice FIRST make up more than half of the population?",
-     "answer": 3,
-     "hint": "Look for the first bar above 50.",
-     "explain": "By generation 15, 65% had dark fur: the proportion kept rising."
-    },
-    {
-     "prompt": "In which generation did 4 out of 5 mice have dark fur?",
-     "answer": 4,
-     "hint": "4 out of 5 is 80%.",
-     "explain": "By generation 20, 80% had dark fur. Dark fur is an advantage on dark rock, so it increased in proportion."
+     "explain": "On Day 0 the scrape had just happened. Over the next days, mitosis made new cells to repair it."
     }
    ]
   }
  ],
  "mazes": [
   {
-   "id": "maze-speciation",
-   "code": "3.1.9-12.X",
-   "topic": "speciation",
-   "title": "How one species becomes two: go through the doorway for the next step",
-   "start": "One squirrel population",
+   "id": "maze-genes",
+   "code": "3.1.9-12.P",
+   "topic": "genes",
+   "title": "Zoom in: go through the doorway for the next smaller level",
+   "start": "Pea plant",
    "steps": [
     {
-     "label": "A canyon splits the population",
-     "hint": "What separates them first?",
-     "why": "A geographic barrier separates the population into two groups."
+     "label": "Cell",
+     "hint": "The plant is made of these.",
+     "why": "Every organism is made of cells."
     },
     {
-     "label": "Each group faces different conditions",
-     "hint": "Are both sides exactly the same?",
-     "why": "Different food, predators, or climate on each side mean different selection pressures."
+     "label": "Nucleus",
+     "hint": "Where is the DNA kept in a plant or animal cell?",
+     "why": "The nucleus holds the cell's chromosomes."
     },
     {
-     "label": "Allele frequencies change in each group",
-     "hint": "Natural selection acts on each side separately.",
-     "why": "Each group's inherited traits change on their own, shaped by its own conditions."
+     "label": "Chromosome",
+     "hint": "A long, coiled DNA molecule.",
+     "why": "Each chromosome is one long DNA molecule wrapped around proteins."
     },
     {
-     "label": "They can no longer interbreed: two species",
-     "hint": "What finally makes them separate species?",
-     "why": "When they can no longer interbreed and produce fertile offspring, they are separate species."
+     "label": "Gene",
+     "hint": "A section of DNA that codes for a protein.",
+     "why": "Genes are sections of DNA along a chromosome."
     }
    ],
    "extra": [
-    "They blend back into one",
-    "Nothing changes"
+    "Ribosome",
+    "Protein"
    ],
-   "explain": "Speciation: isolation, different conditions, separate changes in inherited traits, and finally the groups can no longer interbreed."
+   "explain": "Organism, cell, nucleus, chromosome, gene: genes are sections of the DNA inside chromosomes."
   }
  ],
  "sequences": [
   {
-   "id": "s-selection",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
-   "title": "Put the steps of natural selection in order",
+   "id": "s-meiosis",
+   "code": "3.1.9-12.Q",
+   "topic": "variation",
+   "title": "How meiosis and fertilization make every child different: put the ideas in order",
    "steps": [
-    "Individuals vary, and much of that variation is inherited",
-    "More offspring are born than can survive",
-    "Individuals with helpful traits survive and reproduce more",
-    "Over generations, the helpful alleles become more common"
+    "Each parent has two copies of every chromosome, one from each of their own parents",
+    "When gametes form, partner chromosomes swap matching pieces (crossing over)",
+    "Each gamete gets a different mix of chromosomes, so no two gametes are the same",
+    "Fertilization joins one gamete from each parent into a new, unique combination"
    ],
-   "hint": "It starts with variation.",
-   "explain": "Variation, overproduction, differential survival and reproduction, then a change in how common each allele is."
+   "hint": "Start with the parents' chromosomes and end with the new offspring.",
+   "explain": "Crossing over and the random mix of chromosomes make every gamete different, and fertilization joins two of them, so each offspring gets a new combination of alleles."
   },
   {
-   "id": "s-resistance",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "title": "How antibiotic resistance spreads",
+   "id": "s-repair",
+   "code": "3.1.9-12.D",
+   "topic": "mitosis",
+   "title": "How your body repairs a scraped knee",
    "steps": [
-    "A random mutation makes a few bacteria resistant",
-    "The antibiotic kills most bacteria that are not resistant",
-    "The resistant bacteria survive and reproduce",
-    "Soon most of the population is resistant"
+    "Skin cells at the edge of the scrape copy their DNA",
+    "Each cell divides by mitosis into two identical cells",
+    "The new cells fill in the gap",
+    "The skin is whole again and the cells stop dividing"
    ],
-   "hint": "The mutation comes first, before the antibiotic.",
-   "explain": "The antibiotic does not cause the mutation. It selects for resistant bacteria that already existed."
+   "hint": "Copy the DNA first, then divide.",
+   "explain": "Mitosis makes new, identical skin cells to repair damage, and then division slows down again."
   },
   {
-   "id": "s-layers",
-   "code": "3.1.9-12.S",
-   "topic": "evidence",
-   "title": "Order the fossils from OLDEST (bottom layer) to YOUNGEST (top layer)",
+   "id": "s-differentiate",
+   "code": "3.1.9-12.D",
+   "topic": "differentiation",
+   "title": "From one fertilized egg to many kinds of cells",
    "steps": [
-    "Trilobites (bottom layer)",
-    "Armored fishes",
-    "Dinosaurs",
-    "Woolly mammoths (top layer)"
+    "A fertilized egg divides by mitosis",
+    "The embryo becomes a ball of stem cells with the same DNA",
+    "Stem cells use different genes and specialize (differentiate)",
+    "Specialized cells form tissues such as muscle and nerve"
    ],
-   "hint": "Lower layers formed first.",
-   "explain": "The law of superposition: in undisturbed layers, the deepest fossils are the oldest."
+   "hint": "Make many cells first, then give them jobs.",
+   "explain": "Mitosis makes the cells and differentiation gives them their jobs, building a complex organism."
   },
   {
-   "id": "s-fourfactors",
-   "code": "3.1.9-12.T",
-   "topic": "four-factors",
-   "title": "Put the four factors in order, as they play out in a finch population",
+   "id": "s-sunburn",
+   "code": "3.1.9-12.Q",
+   "topic": "mutation",
+   "title": "How UV light can lead to a mutation",
    "steps": [
-    "Finches lay more eggs than the island can support",
-    "The chicks vary, and their beak sizes are inherited",
-    "The chicks compete for a limited supply of seeds",
-    "Chicks with better-suited beaks survive and raise more young"
+    "UV light from the Sun reaches skin cells",
+    "The UV light damages a base in the DNA",
+    "The cell copies the damaged DNA and makes a mistake",
+    "Cells made from it carry the new base sequence: a mutation"
    ],
-   "hint": "Start with how many are born.",
-   "explain": "More offspring than can survive, inherited variation, competition for limited resources, then better-suited individuals reproduce more."
+   "hint": "Damage first, then copying.",
+   "explain": "UV light is an environmental factor that damages DNA. If the damage is copied before it is fixed, the change becomes a mutation."
   }
  ],
  "wordbanks": [
   {
-   "id": "wb-selection",
-   "code": "3.1.9-12.W",
-   "topic": "selection",
+   "id": "wb-division",
+   "code": "3.1.9-12.Q",
+   "topic": "gametes",
    "words": [
-    "variation",
-    "adaptation",
-    "fitness",
-    "natural selection",
-    "selection pressure",
-    "camouflage"
+    "mitosis",
+    "meiosis",
+    "haploid",
+    "diploid",
+    "gametes",
+    "allele"
    ],
    "sentences": [
     {
-     "text": "Differences among individuals in a population are called ___.",
-     "answer": "variation",
-     "code": "3.1.9-12.T",
-     "explain": "Variation is the raw material for evolution."
+     "text": "Body cells divide by ___ to make two identical cells.",
+     "answer": "mitosis",
+     "code": "3.1.9-12.D",
+     "explain": "Mitosis: growth and repair."
     },
     {
-     "text": "An inherited trait that helps an organism survive and reproduce is an ___.",
-     "answer": "adaptation",
-     "code": "3.1.9-12.W",
-     "explain": "Adaptations, like camouflage, help organisms survive."
+     "text": "Sperm and egg cells are made by ___.",
+     "answer": "meiosis",
+     "code": "3.1.9-12.Q",
+     "explain": "Meiosis makes gametes."
     },
     {
-     "text": "How well an organism survives and reproduces is its ___.",
-     "answer": "fitness",
-     "code": "3.1.9-12.W",
-     "explain": "Fitness is measured in offspring."
+     "text": "A cell with one set of chromosomes (23 in humans) is ___.",
+     "answer": "haploid",
+     "code": "3.1.9-12.P",
+     "explain": "Haploid: one set."
     },
     {
-     "text": "Better-suited individuals leaving more offspring is ___.",
-     "answer": "natural selection",
-     "code": "3.1.9-12.W",
-     "explain": "Natural selection changes how common each allele is over generations."
+     "text": "A body cell with two sets of chromosomes (46 in humans) is ___.",
+     "answer": "diploid",
+     "code": "3.1.9-12.P",
+     "explain": "Diploid: two sets, one from each parent."
     },
     {
-     "text": "A drought that makes hard seeds the only food is a ___.",
-     "answer": "selection pressure",
-     "code": "3.1.9-12.W",
-     "explain": "Selection pressures decide which traits are helpful."
+     "text": "Sperm and eggs are called ___.",
+     "answer": "gametes",
+     "code": "3.1.9-12.P",
+     "explain": "Gametes are sex cells."
     }
    ]
   },
   {
-   "id": "wb-speciation",
-   "code": "3.1.9-12.X",
-   "topic": "speciation",
+   "id": "wb-genetics",
+   "code": "3.1.9-12.R",
+   "topic": "genes",
    "words": [
-    "species",
-    "speciation",
-    "geographic isolation",
-    "extinction",
-    "environmental change",
-    "mutation"
+    "allele",
+    "dominant",
+    "recessive",
+    "genotype",
+    "phenotype",
+    "mitosis"
    ],
    "sentences": [
     {
-     "text": "A group that can interbreed and have fertile offspring is a ___.",
-     "answer": "species",
-     "code": "3.1.9-12.X",
-     "explain": "Members of a species can interbreed in nature."
+     "text": "A different version of a gene is an ___.",
+     "answer": "allele",
+     "code": "3.1.9-12.P",
+     "explain": "Alleles are versions of the same gene."
     },
     {
-     "text": "The formation of a new species is called ___.",
-     "answer": "speciation",
-     "code": "3.1.9-12.X",
-     "explain": "Speciation often follows isolation."
+     "text": "An allele that shows whenever it is present is ___.",
+     "answer": "dominant",
+     "code": "3.1.9-12.R",
+     "explain": "Dominant alleles mask recessive ones."
     },
     {
-     "text": "When a canyon, river, or mountain keeps populations apart, there is ___.",
-     "answer": "geographic isolation",
-     "code": "3.1.9-12.X",
-     "explain": "Separated populations change on their own and can become new species."
+     "text": "An allele that shows only when there are two copies is ___.",
+     "answer": "recessive",
+     "code": "3.1.9-12.R",
+     "explain": "Recessive traits need two copies."
     },
     {
-     "text": "When every member of a species dies, the species has gone through ___.",
-     "answer": "extinction",
-     "code": "3.1.9-12.X",
-     "explain": "Most species that ever lived are now extinct."
+     "text": "The letters Pp describe an organism's ___.",
+     "answer": "genotype",
+     "code": "3.1.9-12.R",
+     "explain": "Genotype: the alleles an organism has."
     },
     {
-     "text": "A drought, a flood, or cutting down a forest is an ___.",
-     "answer": "environmental change",
-     "code": "3.1.9-12.X",
-     "explain": "Environmental changes can make some species increase, lead to new species, or cause extinctions."
-    }
-   ]
-  },
-  {
-   "id": "wb-traits",
-   "code": "3.1.9-12.U",
-   "topic": "trait-stats",
-   "words": [
-    "proportion",
-    "generation",
-    "advantage",
-    "mean",
-    "increase",
-    "percent"
-   ],
-   "sentences": [
-    {
-     "text": "If 30 of 100 mice have dark fur, the ___ of dark mice is 30%.",
-     "answer": "proportion",
-     "code": "3.1.9-12.U",
-     "explain": "A proportion is the part of the whole, often written as a percent."
-    },
-    {
-     "text": "Parents, then their offspring, then their offspring's offspring: each step is one ___.",
-     "answer": "generation",
-     "code": "3.1.9-12.U",
-     "explain": "Natural selection shows up over many generations."
-    },
-    {
-     "text": "A trait that helps an organism survive and reproduce gives it an ___.",
-     "answer": "advantage",
-     "code": "3.1.9-12.U",
-     "explain": "Advantageous traits are passed on more often."
-    },
-    {
-     "text": "Adding up all the beak depths and dividing by the number of finches gives the ___.",
-     "answer": "mean",
-     "code": "3.1.9-12.U",
-     "explain": "The mean (average) can shift when some individuals survive better."
-    },
-    {
-     "text": "Over generations, an advantageous inherited trait tends to ___ in proportion.",
-     "answer": "increase",
-     "code": "3.1.9-12.U",
-     "explain": "Organisms with the trait leave more offspring, so its share grows."
+     "text": "Purple flowers describe a plant's ___.",
+     "answer": "phenotype",
+     "code": "3.1.9-12.R",
+     "explain": "Phenotype: the trait you can observe."
     }
    ]
   }
  ],
  "lablocks": [
   {
-   "id": "lock-5-4",
+   "id": "lock-5-3",
    "title": "Lab Lock",
    "clues": [
     {
-     "prompt": "Clue 1: A cliff has 5 undisturbed rock layers. Counting from the TOP as layer 1, which layer holds the oldest fossils?",
-     "answer": 5,
-     "code": "3.1.9-12.S",
-     "hint": "The deepest layer formed first.",
-     "explain": "Layer 5, the bottom layer, is the oldest (law of superposition)."
+     "prompt": "Clue 1: A Tt plant is crossed with a tt plant. Out of 4 offspring, how many are expected to be short (tt)?",
+     "answer": 2,
+     "code": "3.1.9-12.R",
+     "hint": "Punnett square: Tt, Tt, tt, tt.",
+     "explain": "Tt × tt gives 2 Tt and 2 tt, so 2 of 4 are expected to be short."
     },
     {
-     "prompt": "Clue 2: How many of these are homologous to a human arm? Bat wing, whale flipper, cat leg, butterfly wing.",
+     "prompt": "Clue 2: How many different alleles does the human ABO blood type gene have?",
      "answer": 3,
-     "code": "3.1.9-12.S",
-     "hint": "Which ones have the same bones?",
-     "explain": "Bat wing, whale flipper, and cat leg share our arm bones (3). Butterfly wings have no bones."
+     "code": "3.1.9-12.R",
+     "hint": "Iᴬ, Iᴮ, and...",
+     "explain": "Three alleles: Iᴬ, Iᴮ, and i. That is an example of multiple alleles."
     },
     {
-     "prompt": "Clue 3: How many organisms on the graph differ from humans by FEWER than 13 amino acids?",
-     "answer": 3,
-     "code": "3.1.9-12.S",
-     "figure": {
-      "type": "bars",
-      "categories": [
-       "Chimp",
-       "Rhesus",
-       "Horse",
-       "Chicken",
-       "Yeast"
-      ],
-      "values": [
-       0,
-       1,
-       12,
-       13,
-       44
-      ],
-      "ylabel": "Differences"
-     },
-     "hint": "Count the bars below 13.",
-     "explain": "Chimpanzee (0), rhesus monkey (1), and horse (12): 3 organisms."
+     "prompt": "Clue 3: A cell with 4 chromosomes goes through meiosis. How many chromosomes are in each gamete?",
+     "answer": 2,
+     "code": "3.1.9-12.P",
+     "hint": "Meiosis halves the number.",
+     "explain": "Meiosis halves the chromosome number: 4 becomes 2."
     }
    ],
    "debrief": [
-    "Clue 1 linked fossils to time: deeper layers are older.",
-    "Clue 2 linked anatomy to ancestry: homologous structures share bones from a common ancestor.",
-    "Clue 3 linked biochemistry to relationships: fewer protein differences means closer relatives."
+    "Clue 1 linked Punnett squares to probability: Tt × tt gives a 1:1 ratio.",
+    "Clue 2 linked multiple alleles: a gene can have more than two versions in a population.",
+    "Clue 3 linked meiosis: gametes have half the chromosome number."
    ]
   }
  ],
  "scans": [
   {
-   "id": "s5-variation",
-   "name": "Finch flock",
-   "look": "critter",
-   "color": "#a08060",
-   "word": "Variation",
-   "def": "Differences in traits among individuals of the same species.",
-   "note": "These finches' beaks differ in size and shape. Without VARIATION, natural selection would have nothing to act on."
+   "id": "s4-dna",
+   "name": "Double helix",
+   "look": "helix",
+   "color": "#7fd4ff",
+   "word": "DNA",
+   "def": "The molecule that carries genetic information, shaped like a twisted ladder (double helix).",
+   "note": "DNA's rungs are base pairs: A with T and G with C. Its order of bases spells out genes."
   },
   {
-   "id": "s5-adaptation",
-   "name": "Cactus finch",
-   "look": "critter",
-   "color": "#7a5a3a",
-   "word": "Adaptation",
-   "def": "An inherited trait that helps an organism survive and reproduce in its environment.",
-   "note": "This finch's long, pointed beak reaches into cactus flowers: an ADAPTATION for its food."
+   "id": "s4-replication",
+   "name": "Unzipping DNA",
+   "look": "helix",
+   "color": "#7be0ad",
+   "word": "DNA replication",
+   "def": "Copying all of a cell's DNA before the cell divides.",
+   "note": "Each strand is a pattern for a new one: A pairs with T and G pairs with C. That is how each new cell gets the same DNA."
   },
   {
-   "id": "s5-fitness",
-   "name": "Nest of chicks",
+   "id": "s4-chromosome",
+   "name": "Chromosome",
+   "look": "rod",
+   "color": "#c59cff",
+   "word": "Chromosome",
+   "def": "A long, coiled DNA molecule that carries many genes.",
+   "note": "Humans have 46 CHROMOSOMES in each body cell: 23 pairs."
+  },
+  {
+   "id": "s4-mitosis",
+   "name": "Dividing cell",
+   "look": "cell",
+   "color": "#ffd166",
+   "word": "Mitosis",
+   "def": "Cell division that makes two new cells with identical DNA and the same chromosome number.",
+   "note": "MITOSIS makes new cells for growth, for repair, and to replace old cells."
+  },
+  {
+   "id": "s4-meiosis",
+   "name": "Gamete factory",
+   "look": "cell",
+   "color": "#c59cff",
+   "word": "Meiosis",
+   "def": "Cell division that makes four haploid gametes, each genetically different.",
+   "note": "MEIOSIS divides twice and halves the chromosome number, from 46 to 23 in humans."
+  },
+  {
+   "id": "s4-gamete",
+   "name": "Egg and sperm",
    "look": "eggs",
-   "color": "#f4f0e4",
-   "word": "Fitness",
-   "def": "An organism's ability to survive and reproduce in its environment.",
-   "note": "FITNESS is counted in offspring: the parent of this nest is passing on its alleles."
+   "color": "#ff9fbf",
+   "word": "Gamete",
+   "def": "A sex cell (sperm or egg) with half the usual chromosome number.",
+   "note": "Two GAMETES join at fertilization to make a zygote with a full set of chromosomes."
   },
   {
-   "id": "s5-pressure",
-   "name": "Dry season",
-   "look": "sun",
-   "color": "#ffb070",
-   "word": "Selection pressure",
-   "def": "A factor in the environment, like drought or predators, that affects which individuals survive.",
-   "note": "A drought is a SELECTION PRESSURE: only finches that can crack the remaining hard seeds survive."
+   "id": "s4-diploid",
+   "name": "Paired set",
+   "look": "rod",
+   "color": "#7fd4ff",
+   "word": "Diploid",
+   "def": "Having two sets of chromosomes, one from each parent (2n).",
+   "note": "Human body cells are DIPLOID: 46 chromosomes in 23 pairs."
   },
   {
-   "id": "s5-selection",
-   "name": "Survivors",
+   "id": "s4-haploid",
+   "name": "Single set",
+   "look": "rod",
+   "color": "#ffd166",
+   "word": "Haploid",
+   "def": "Having one set of chromosomes (n).",
+   "note": "Human gametes are HAPLOID: 23 chromosomes, one from each pair."
+  },
+  {
+   "id": "s4-homolog",
+   "name": "Chromosome partners",
+   "look": "rod",
+   "color": "#a8e07a",
+   "word": "Homologous chromosomes",
+   "def": "A pair of chromosomes, one from each parent, that carry the same genes.",
+   "note": "HOMOLOGOUS CHROMOSOMES carry the same genes, but may carry different alleles."
+  },
+  {
+   "id": "s4-crossover",
+   "name": "Swapping arms",
+   "look": "chain",
+   "color": "#ff9f6e",
+   "word": "Crossing over",
+   "def": "The exchange of matching pieces between homologous chromosomes during meiosis.",
+   "note": "CROSSING OVER makes new combinations of alleles, so every gamete is unique."
+  },
+  {
+   "id": "s4-assort",
+   "name": "Shuffled pairs",
+   "look": "stack",
+   "color": "#c59cff",
+   "word": "Independent assortment",
+   "def": "Chromosome pairs separate independently of each other during meiosis.",
+   "note": "With 23 pairs lining up at random, INDEPENDENT ASSORTMENT can make over 8 million combinations."
+  },
+  {
+   "id": "s4-gene",
+   "name": "Gene",
+   "look": "helix",
+   "color": "#ffd166",
+   "word": "Gene",
+   "def": "A section of DNA that codes for a protein, which affects a trait.",
+   "note": "A GENE is a stretch of DNA on a chromosome. The protein it codes for helps build a trait."
+  },
+  {
+   "id": "s4-allele",
+   "name": "Purple or white",
+   "look": "stack",
+   "color": "#c59cff",
+   "word": "Allele",
+   "def": "A different version of the same gene.",
+   "note": "The flower-color gene in peas has two ALLELES: purple (P) and white (p)."
+  },
+  {
+   "id": "s4-dominant",
+   "name": "Purple pea flower",
+   "look": "sprout",
+   "color": "#a070e0",
+   "word": "Dominant allele",
+   "def": "An allele that shows its trait whenever it is present.",
+   "note": "Purple (P) is DOMINANT: PP and Pp plants both have purple flowers."
+  },
+  {
+   "id": "s4-recessive",
+   "name": "White pea flower",
+   "look": "sprout",
+   "color": "#ffffff",
+   "word": "Recessive allele",
+   "def": "An allele that shows its trait only when two copies are present.",
+   "note": "White (p) is RECESSIVE: only pp plants have white flowers."
+  },
+  {
+   "id": "s4-genotype",
+   "name": "Allele letters",
+   "look": "chain",
+   "color": "#7fd4ff",
+   "word": "Genotype",
+   "def": "The combination of alleles an organism has, such as Pp.",
+   "note": "The GENOTYPE is the allele letters: PP, Pp, or pp."
+  },
+  {
+   "id": "s4-phenotype",
+   "name": "Flower color",
+   "look": "sprout",
+   "color": "#ff9fbf",
+   "word": "Phenotype",
+   "def": "The trait you can observe, such as purple flowers.",
+   "note": "The PHENOTYPE is what shows: purple or white."
+  },
+  {
+   "id": "s4-homozygous",
+   "name": "Matching alleles",
    "look": "stack",
    "color": "#7be0ad",
-   "word": "Natural selection",
-   "def": "The process by which individuals with helpful inherited traits survive and reproduce more.",
-   "note": "NATURAL SELECTION was explained by Charles Darwin and Alfred Russel Wallace in 1858."
+   "word": "Homozygous",
+   "def": "Having two identical alleles for a gene, such as PP or pp.",
+   "note": "HOMO means same: PP and pp are HOMOZYGOUS."
   },
   {
-   "id": "s5-camouflage",
-   "name": "Peppered moth",
+   "id": "s4-heterozygous",
+   "name": "Mixed alleles",
+   "look": "stack",
+   "color": "#ffd166",
+   "word": "Heterozygous",
+   "def": "Having two different alleles for a gene, such as Pp.",
+   "note": "HETERO means different: Pp is HETEROZYGOUS (a carrier of the recessive allele)."
+  },
+  {
+   "id": "s4-punnett",
+   "name": "Punnett square",
+   "look": "crystal",
+   "color": "#7fd4ff",
+   "word": "Punnett square",
+   "def": "A grid used to predict the possible genotypes of offspring.",
+   "note": "A PUNNETT SQUARE crossing Pp × Pp predicts 1 PP : 2 Pp : 1 pp."
+  },
+  {
+   "id": "s4-incomplete",
+   "name": "Pink snapdragon",
+   "look": "sprout",
+   "color": "#ff9fbf",
+   "word": "Incomplete dominance",
+   "def": "A pattern where the heterozygote shows a blend of the two traits.",
+   "note": "Red × white snapdragons give pink offspring: INCOMPLETE DOMINANCE."
+  },
+  {
+   "id": "s4-codominance",
+   "name": "Roan calf",
    "look": "critter",
-   "color": "#5a5a5a",
-   "word": "Camouflage",
-   "def": "Coloring or shape that helps an organism blend into its surroundings.",
-   "note": "Dark moths hid on soot-darkened bark. CAMOUFLAGE is an adaptation that protects prey from predators."
+   "color": "#c8785a",
+   "word": "Codominance",
+   "def": "A pattern where both alleles are fully shown at the same time.",
+   "note": "A roan calf has red hairs AND white hairs: CODOMINANCE."
   },
   {
-   "id": "s5-darwin",
-   "name": "Giant tortoise",
-   "look": "turtle",
-   "color": "#7a6a4a",
-   "word": "Common descent",
-   "def": "The idea that all living things are related through shared ancestors.",
-   "note": "Tortoises differ from island to island. Darwin's 1835 visit to the Galápagos helped him reason that species share COMMON ANCESTORS."
+   "id": "s4-multiple",
+   "name": "Blood sample",
+   "look": "drop",
+   "color": "#e85d5d",
+   "word": "Multiple alleles",
+   "def": "A gene that has more than two alleles in a population.",
+   "note": "The ABO blood type gene has three alleles (Iᴬ, Iᴮ, i): MULTIPLE ALLELES."
   },
   {
-   "id": "s5-newallele",
-   "name": "Mutated DNA",
+   "id": "s4-sexlinked",
+   "name": "X chromosome",
+   "look": "rod",
+   "color": "#7fd4ff",
+   "word": "Sex-linked trait",
+   "def": "A trait whose gene is on a sex chromosome, usually the X.",
+   "note": "Color blindness is SEX-LINKED: males (XY) show it with just one recessive allele."
+  },
+  {
+   "id": "s4-polygenic",
+   "name": "Range of heights",
+   "look": "stack",
+   "color": "#a8e07a",
+   "word": "Polygenic trait",
+   "def": "A trait controlled by many genes, showing a smooth range of phenotypes.",
+   "note": "Height and skin color are POLYGENIC: many genes add up to a range of shades and sizes."
+  },
+  {
+   "id": "s4-mutation",
+   "name": "Changed DNA",
    "look": "helix",
    "color": "#e85d5d",
-   "word": "Mutation (source of variation)",
-   "def": "A change in DNA; the original source of new alleles.",
-   "note": "MUTATIONS are random. Most do little, but a few create alleles that selection can favor."
+   "word": "Mutation",
+   "def": "A change in the DNA sequence.",
+   "note": "A MUTATION can be harmful, helpful, or have no effect, depending on how it changes the protein."
   },
   {
-   "id": "s5-resist",
-   "name": "Resistant bacteria",
+   "id": "s4-substitution",
+   "name": "Swapped base",
+   "look": "helix",
+   "color": "#ffd166",
+   "word": "Point mutation",
+   "def": "A mutation that changes a single base.",
+   "note": "A POINT MUTATION swaps one base. It may change nothing, change one amino acid, or stop the protein early."
+  },
+  {
+   "id": "s4-frameshift",
+   "name": "Shifted code",
+   "look": "chain",
+   "color": "#ff9f6e",
+   "word": "Frameshift mutation",
+   "def": "An insertion or deletion of bases that shifts how every codon after it is read.",
+   "note": "Codons are read in threes, so adding or removing one base causes a FRAMESHIFT."
+  },
+  {
+   "id": "s4-mutagen",
+   "name": "Ultraviolet light",
+   "look": "sun",
+   "color": "#c59cff",
+   "word": "Mutagen",
+   "def": "Something that can cause mutations, such as UV light, X-rays, or certain chemicals.",
+   "note": "Sunscreen protects skin cells' DNA from UV light, a common MUTAGEN."
+  },
+  {
+   "id": "s4-repair",
+   "name": "Healing scrape",
+   "look": "cell",
+   "color": "#ffb3a7",
+   "word": "Growth and repair",
+   "def": "Making new cells by mitosis so an organism can grow, heal, and replace worn-out cells.",
+   "note": "Your skin replaces its outer layer about every month or two: millions of new cells made by MITOSIS."
+  },
+  {
+   "id": "s4-stemcell",
+   "name": "Unspecialized cell",
+   "look": "cell",
+   "color": "#7be0ad",
+   "word": "Stem cell",
+   "def": "An unspecialized cell that can divide and develop into different kinds of cells.",
+   "note": "An early embryo is a ball of STEM CELLS. Some stem cells stay in the body to replace blood and skin cells."
+  },
+  {
+   "id": "s4-differentiation",
+   "name": "Specialized cells",
+   "look": "stack",
+   "color": "#c59cff",
+   "word": "Differentiation",
+   "def": "The process by which a cell becomes specialized for one job, by using some of its genes and not others.",
+   "note": "Nerve, muscle, and skin cells have the same DNA. DIFFERENTIATION gives each its own shape and job."
+  },
+  {
+   "id": "s4-fertilization",
+   "name": "Sperm meets egg",
+   "look": "eggs",
+   "color": "#ff9fbf",
+   "word": "Fertilization",
+   "def": "The joining of a sperm and an egg to make a zygote with a full set of chromosomes.",
+   "note": "FERTILIZATION: 23 chromosomes from the sperm + 23 from the egg = 46 in the zygote."
+  },
+  {
+   "id": "s4-copyerror",
+   "name": "Copy mistake",
+   "look": "helix",
+   "color": "#ffd166",
+   "word": "Copying error",
+   "def": "A rare mistake made when DNA is copied that is not fixed, which changes the base sequence.",
+   "note": "Cells check and fix their DNA, but a few COPYING ERRORS slip through and become mutations."
+  },
+  {
+   "id": "s4-sickle",
+   "name": "Sickle-shaped cell",
+   "look": "drop",
+   "color": "#e85d5d",
+   "word": "Sickle cell mutation",
+   "def": "A one-base change in the hemoglobin gene that changes one amino acid in hemoglobin.",
+   "note": "One changed base, one changed amino acid: the hemoglobin clumps and red blood cells can bend into a SICKLE shape."
+  },
+  {
+   "id": "s4-bodycell",
+   "name": "Sunburned skin",
    "look": "cell",
    "color": "#ff9f6e",
-   "word": "Antibiotic resistance",
-   "def": "The ability of some bacteria to survive an antibiotic, spread by natural selection.",
-   "note": "Overusing antibiotics selects for RESISTANT bacteria. That is evolution happening right now."
+   "word": "Body-cell mutation",
+   "def": "A mutation in a body cell, such as a skin cell. It can affect the person but is not passed to children.",
+   "note": "A skin cell damaged by UV light can carry a BODY-CELL MUTATION, but your children inherit only gamete DNA."
   },
   {
-   "id": "s5-species",
-   "name": "Two squirrels",
-   "look": "critter",
-   "color": "#a8785a",
-   "word": "Species",
-   "def": "A group of organisms that can interbreed in nature and produce fertile offspring.",
-   "note": "Kaibab and Abert's squirrels now look different, and the canyon keeps them apart. Are they becoming separate SPECIES?"
+   "id": "s4-gametemut",
+   "name": "Changed egg",
+   "look": "eggs",
+   "color": "#c59cff",
+   "word": "Inherited mutation",
+   "def": "A mutation in a sperm or egg cell that can be passed to offspring.",
+   "note": "Only mutations in GAMETES are inherited. They add new variation to a population."
   },
   {
-   "id": "s5-geographic",
-   "name": "Canyon wall",
-   "look": "rock",
-   "color": "#c8784a",
-   "word": "Geographic isolation",
-   "def": "Separation of populations by a physical barrier, such as a canyon, river, or mountain.",
-   "note": "The Grand Canyon is a barrier: GEOGRAPHIC ISOLATION."
-  },
-  {
-   "id": "s5-speciation",
-   "name": "Branching tree",
-   "look": "stack",
-   "color": "#7be0ad",
-   "word": "Speciation",
-   "def": "The formation of a new species.",
-   "note": "SPECIATION happens when isolated populations evolve until they can no longer interbreed."
-  },
-  {
-   "id": "s5-radiation",
-   "name": "Many finches",
-   "look": "critter",
-   "color": "#a08060",
-   "word": "Adaptive radiation",
-   "def": "One ancestral species evolving into many species that fill different niches.",
-   "note": "Darwin's finches spread into many niches: seed-crackers, insect-eaters, cactus-feeders. That is ADAPTIVE RADIATION."
-  },
-  {
-   "id": "s5-extinct",
-   "name": "Mammoth tusk",
-   "look": "rock",
-   "color": "#e8e0c8",
-   "word": "Extinction",
-   "def": "The death of every member of a species.",
-   "note": "Woolly mammoths are EXTINCT. Most species that ever lived on Earth are now extinct."
-  },
-  {
-   "id": "s5-fossil",
-   "name": "Ammonite fossil",
-   "look": "rock",
-   "color": "#c8a070",
-   "word": "Fossil",
-   "def": "The preserved remains or traces of an organism that lived long ago.",
-   "note": "FOSSILS show what ancient life looked like and how it changed over time."
-  },
-  {
-   "id": "s5-layers",
-   "name": "Rock layers",
-   "look": "stack",
-   "color": "#c8784a",
-   "word": "Law of superposition",
-   "def": "In undisturbed rock layers, lower layers are older than the layers above them.",
-   "note": "Read the cliff from the bottom up: older to younger. That is the LAW OF SUPERPOSITION."
-  },
-  {
-   "id": "s5-transitional",
-   "name": "Tiktaalik",
-   "look": "rock",
-   "color": "#8a9a7a",
-   "word": "Transitional fossil",
-   "def": "A fossil with features of both an ancestral group and its descendants.",
-   "note": "Tiktaalik had gills and scales like a fish, but a neck and sturdy fins like early four-legged animals: a TRANSITIONAL FOSSIL."
-  },
-  {
-   "id": "s5-homologous",
-   "name": "Forelimb bones",
+   "id": "s4-helpful",
+   "name": "Milk drinker",
    "look": "critter",
    "color": "#f4f0e4",
-   "word": "Homologous structures",
-   "def": "Structures with the same basic bones, inherited from a common ancestor, even if they do different jobs.",
-   "note": "Your arm, a bat's wing, and a whale's flipper have the same bones: HOMOLOGOUS STRUCTURES."
-  },
-  {
-   "id": "s5-analogous",
-   "name": "Insect wing",
-   "look": "critter",
-   "color": "#7fd4ff",
-   "word": "Analogous structures",
-   "def": "Structures that do the same job but evolved separately and are built differently.",
-   "note": "Butterfly wings and bird wings both fly, but are built differently: ANALOGOUS STRUCTURES."
-  },
-  {
-   "id": "s5-vestigial",
-   "name": "Whale hip bones",
-   "look": "rock",
-   "color": "#e8e0c8",
-   "word": "Vestigial structure",
-   "def": "A reduced structure with little or no use that was useful in an ancestor.",
-   "note": "Whales have tiny hip bones left over from land-walking ancestors: a VESTIGIAL STRUCTURE."
-  },
-  {
-   "id": "s5-embryo",
-   "name": "Early embryos",
-   "look": "eggs",
-   "color": "#ffb3a7",
-   "word": "Embryology",
-   "def": "The study of how organisms develop before birth; similar early stages suggest shared ancestry.",
-   "note": "Early fish, chicken, and human embryos all have a tail and throat pouches. EMBRYOLOGY reveals shared ancestry."
-  },
-  {
-   "id": "s5-molecular",
-   "name": "DNA comparison",
-   "look": "helix",
-   "color": "#c59cff",
-   "word": "Molecular evidence",
-   "def": "Similarities in DNA and protein sequences that show how closely species are related.",
-   "note": "Human and chimpanzee DNA are about 98% alike. MOLECULAR EVIDENCE shows we share a recent ancestor."
-  },
-  {
-   "id": "s5-code",
-   "name": "Universal code",
-   "look": "chain",
-   "color": "#7be0ad",
-   "word": "Universal genetic code",
-   "def": "Nearly all organisms use the same codons for the same amino acids.",
-   "note": "The same three-base codes stand for the same amino acids in bacteria, oak trees, and you. A UNIVERSAL GENETIC CODE points to one common ancestor."
-  },
-  {
-   "id": "s5r-mammoth",
-   "name": "Woolly mammoth tusk",
-   "look": "rock",
-   "color": "#f0e6d0",
-   "word": "Youngest layer",
-   "def": "Rock and ice near the top hold the most recent fossils.",
-   "note": "Woolly mammoths lived in the last Ice Age. Some have been found frozen in Siberian permafrost. Near the top means YOUNG: only thousands of years old."
-  },
-  {
-   "id": "s5r-ambulo",
-   "name": "Ambulocetus fossil",
-   "look": "critter",
-   "color": "#c8b08a",
-   "word": "Walking whale",
-   "def": "Ambulocetus, about 49 million years old, found in Pakistan.",
-   "note": "Ambulocetus had legs and webbed feet but a whale-like skull and ears. It is a TRANSITIONAL FOSSIL between land mammals and whales."
-  },
-  {
-   "id": "s5r-dino",
-   "name": "T. rex skull",
-   "look": "rock",
-   "color": "#9a7a5a",
-   "word": "Deeper means older",
-   "def": "T. rex lived about 68 to 66 million years ago. Many were dug up in Montana's Hell Creek rocks.",
-   "note": "No human or mammoth fossil is ever found in the same layer as T. rex. The deeper the layer, the OLDER the fossils."
-  },
-  {
-   "id": "s5r-trilobite",
-   "name": "Trilobite fossil",
-   "look": "critter",
-   "color": "#7a8a9a",
-   "word": "Oldest layer here",
-   "def": "Trilobites were sea arthropods that lived from about 520 to 252 million years ago.",
-   "note": "Trilobites in the Burgess Shale (Canada) and the Grand Canyon are over 500 million years old. The bottom layer holds the OLDEST animals in this dig."
-  },
-  {
-   "id": "s5-overproduce",
-   "name": "Turtle nest",
-   "look": "eggs",
-   "color": "#f4f0e4",
-   "word": "Overproduction",
-   "def": "Producing more offspring than the environment can support.",
-   "note": "A sea turtle lays about 100 eggs, but only a few hatchlings grow up. Species can make far more offspring than can survive: OVERPRODUCTION."
-  },
-  {
-   "id": "s5-shuffle",
-   "name": "Finch chicks",
-   "look": "critter",
-   "color": "#c8a078",
-   "word": "Variation from sexual reproduction",
-   "def": "Each offspring gets a new mix of its parents' alleles, so siblings differ.",
-   "note": "No two of these chicks are exactly alike. SEXUAL REPRODUCTION shuffles the parents' alleles into new combinations."
-  },
-  {
-   "id": "s5-competition",
-   "name": "Seed pile",
-   "look": "sprout",
-   "color": "#c8a050",
-   "word": "Competition",
-   "def": "When individuals struggle for the same limited resources, such as food, water, or space.",
-   "note": "After a drought, finches crowd around the last seeds. Not all of them can win this COMPETITION."
-  },
-  {
-   "id": "s5-limited",
-   "name": "Dry stream",
-   "look": "rock",
-   "color": "#c8b090",
-   "word": "Limited resources",
-   "def": "Food, water, space, and mates are in short supply, so not every individual can survive and reproduce.",
-   "note": "This stream ran dry. When RESOURCES ARE LIMITED, survival depends partly on inherited traits."
-  },
-  {
-   "id": "s5-heritable",
-   "name": "Beak family",
-   "look": "critter",
-   "color": "#a08060",
-   "word": "Heritable variation",
-   "def": "Differences among individuals that are coded in DNA and passed from parents to offspring.",
-   "note": "Parents with deep beaks tend to have chicks with deep beaks. Only HERITABLE VARIATION can be passed on and selected."
-  },
-  {
-   "id": "s5-morekids",
-   "name": "Busy nest",
-   "look": "eggs",
-   "color": "#ffe8b0",
-   "word": "Better-suited survivors",
-   "def": "Individuals whose traits fit the environment best survive and leave the most offspring.",
-   "note": "This finch's beak suits the hard seeds, so it raised a full nest. Its alleles show up in more of the next generation."
-  },
-  {
-   "id": "s5-envchange",
-   "name": "Flooded valley",
-   "look": "rock",
-   "color": "#7fa8c8",
-   "word": "Environmental change",
-   "def": "A change in conditions, such as drought, flood, deforestation, or fertilizer runoff.",
-   "note": "This valley flooded. An ENVIRONMENTAL CHANGE can make some species increase, lead to new species over time, or drive others extinct."
-  },
-  {
-   "id": "s5-ratechange",
-   "name": "Melting ice",
-   "look": "crystal",
-   "color": "#bfe8ff",
-   "word": "Rate of change",
-   "def": "How fast the environment changes.",
-   "note": "Slow changes give natural selection time to work. When the RATE OF CHANGE is very fast, species may go extinct before they can adapt."
-  },
-  {
-   "id": "s5-pocketmouse",
-   "name": "Rock pocket mouse",
-   "look": "critter",
-   "color": "#4a4440",
-   "word": "Advantageous trait",
-   "def": "An inherited trait that helps organisms survive and reproduce in a particular environment.",
-   "note": "On dark lava, dark fur hides these mice from owls. An ADVANTAGEOUS TRAIT tends to increase in proportion over the generations."
-  },
-  {
-   "id": "s5-proportion",
-   "name": "Mouse count",
-   "look": "stack",
-   "color": "#7fd4ff",
-   "word": "Proportion",
-   "def": "The part of a population that has a trait, often written as a percent.",
-   "note": "Here 45 of 100 mice are dark: a PROPORTION of 45%. Tracking the percent shows whether a trait is becoming more common."
-  },
-  {
-   "id": "s5-generation",
-   "name": "Three generations",
-   "look": "chain",
-   "color": "#c59cff",
-   "word": "Generation",
-   "def": "One step in a family line: parents, then their offspring, then their offspring's offspring.",
-   "note": "Natural selection is measured across GENERATIONS, not within one lifetime."
-  },
-  {
-   "id": "s5-mean",
-   "name": "Beak gauge",
-   "look": "crystal",
-   "color": "#ffd166",
-   "word": "Mean (average)",
-   "def": "The sum of all the values divided by how many values there are.",
-   "note": "If the MEAN beak depth of survivors is deeper than before, deeper beaks helped finches survive."
+   "word": "Helpful mutation",
+   "def": "A mutation that gives an advantage in an environment.",
+   "note": "A mutation that keeps the lactase gene working lets some adults digest milk: a HELPFUL MUTATION."
   }
  ],
  "vocab": [
   {
-   "term": "Variation",
-   "def": "Differences in traits among individuals of the same species."
+   "term": "DNA",
+   "def": "The molecule that carries genetic information, shaped like a twisted ladder (double helix)."
   },
   {
-   "term": "Adaptation",
-   "def": "An inherited trait that helps an organism survive and reproduce in its environment."
+   "term": "DNA replication",
+   "def": "Copying all of a cell's DNA before the cell divides."
   },
   {
-   "term": "Fitness",
-   "def": "An organism's ability to survive and reproduce in its environment."
+   "term": "Chromosome",
+   "def": "A long, coiled DNA molecule that carries many genes."
   },
   {
-   "term": "Selection pressure",
-   "def": "A factor in the environment, like drought or predators, that affects which individuals survive."
+   "term": "Mitosis",
+   "def": "Cell division that makes two new cells with identical DNA and the same chromosome number."
   },
   {
-   "term": "Natural selection",
-   "def": "The process by which individuals with helpful inherited traits survive and reproduce more."
+   "term": "Meiosis",
+   "def": "Cell division that makes four haploid gametes, each genetically different."
   },
   {
-   "term": "Camouflage",
-   "def": "Coloring or shape that helps an organism blend into its surroundings."
+   "term": "Gamete",
+   "def": "A sex cell (sperm or egg) with half the usual chromosome number."
   },
   {
-   "term": "Common descent",
-   "def": "The idea that all living things are related through shared ancestors."
+   "term": "Diploid",
+   "def": "Having two sets of chromosomes, one from each parent (2n)."
   },
   {
-   "term": "Mutation (source of variation)",
-   "def": "A change in DNA; the original source of new alleles."
+   "term": "Haploid",
+   "def": "Having one set of chromosomes (n)."
   },
   {
-   "term": "Antibiotic resistance",
-   "def": "The ability of some bacteria to survive an antibiotic, spread by natural selection."
+   "term": "Homologous chromosomes",
+   "def": "A pair of chromosomes, one from each parent, that carry the same genes."
   },
   {
-   "term": "Species",
-   "def": "A group of organisms that can interbreed in nature and produce fertile offspring."
+   "term": "Crossing over",
+   "def": "The exchange of matching pieces between homologous chromosomes during meiosis."
   },
   {
-   "term": "Geographic isolation",
-   "def": "Separation of populations by a physical barrier, such as a canyon, river, or mountain."
+   "term": "Independent assortment",
+   "def": "Chromosome pairs separate independently of each other during meiosis."
   },
   {
-   "term": "Speciation",
-   "def": "The formation of a new species."
+   "term": "Gene",
+   "def": "A section of DNA that codes for a protein, which affects a trait."
   },
   {
-   "term": "Adaptive radiation",
-   "def": "One ancestral species evolving into many species that fill different niches."
+   "term": "Allele",
+   "def": "A different version of the same gene."
   },
   {
-   "term": "Extinction",
-   "def": "The death of every member of a species."
+   "term": "Dominant allele",
+   "def": "An allele that shows its trait whenever it is present."
   },
   {
-   "term": "Fossil",
-   "def": "The preserved remains or traces of an organism that lived long ago."
+   "term": "Recessive allele",
+   "def": "An allele that shows its trait only when two copies are present."
   },
   {
-   "term": "Law of superposition",
-   "def": "In undisturbed rock layers, lower layers are older than the layers above them."
+   "term": "Genotype",
+   "def": "The combination of alleles an organism has, such as Pp."
   },
   {
-   "term": "Transitional fossil",
-   "def": "A fossil with features of both an ancestral group and its descendants."
+   "term": "Phenotype",
+   "def": "The trait you can observe, such as purple flowers."
   },
   {
-   "term": "Homologous structures",
-   "def": "Structures with the same basic bones, inherited from a common ancestor, even if they do different jobs."
+   "term": "Homozygous",
+   "def": "Having two identical alleles for a gene, such as PP or pp."
   },
   {
-   "term": "Analogous structures",
-   "def": "Structures that do the same job but evolved separately and are built differently."
+   "term": "Heterozygous",
+   "def": "Having two different alleles for a gene, such as Pp."
   },
   {
-   "term": "Vestigial structure",
-   "def": "A reduced structure with little or no use that was useful in an ancestor."
+   "term": "Punnett square",
+   "def": "A grid used to predict the possible genotypes of offspring."
   },
   {
-   "term": "Embryology",
-   "def": "The study of how organisms develop before birth; similar early stages suggest shared ancestry."
+   "term": "Incomplete dominance",
+   "def": "A pattern where the heterozygote shows a blend of the two traits."
   },
   {
-   "term": "Molecular evidence",
-   "def": "Similarities in DNA and protein sequences that show how closely species are related."
+   "term": "Codominance",
+   "def": "A pattern where both alleles are fully shown at the same time."
   },
   {
-   "term": "Universal genetic code",
-   "def": "Nearly all organisms use the same codons for the same amino acids."
+   "term": "Multiple alleles",
+   "def": "A gene that has more than two alleles in a population."
   },
   {
-   "term": "Youngest layer",
-   "def": "Rock and ice near the top hold the most recent fossils."
+   "term": "Sex-linked trait",
+   "def": "A trait whose gene is on a sex chromosome, usually the X."
   },
   {
-   "term": "Walking whale",
-   "def": "Ambulocetus, about 49 million years old, found in Pakistan."
+   "term": "Polygenic trait",
+   "def": "A trait controlled by many genes, showing a smooth range of phenotypes."
   },
   {
-   "term": "Deeper means older",
-   "def": "T. rex lived about 68 to 66 million years ago. Many were dug up in Montana's Hell Creek rocks."
+   "term": "Mutation",
+   "def": "A change in the DNA sequence."
   },
   {
-   "term": "Oldest layer here",
-   "def": "Trilobites were sea arthropods that lived from about 520 to 252 million years ago."
+   "term": "Point mutation",
+   "def": "A mutation that changes a single base."
   },
   {
-   "term": "Overproduction",
-   "def": "Producing more offspring than the environment can support."
+   "term": "Frameshift mutation",
+   "def": "An insertion or deletion of bases that shifts how every codon after it is read."
   },
   {
-   "term": "Variation from sexual reproduction",
-   "def": "Each offspring gets a new mix of its parents' alleles, so siblings differ."
+   "term": "Mutagen",
+   "def": "Something that can cause mutations, such as UV light, X-rays, or certain chemicals."
   },
   {
-   "term": "Competition",
-   "def": "When individuals struggle for the same limited resources, such as food, water, or space."
+   "term": "Growth and repair",
+   "def": "Making new cells by mitosis so an organism can grow, heal, and replace worn-out cells."
   },
   {
-   "term": "Limited resources",
-   "def": "Food, water, space, and mates are in short supply, so not every individual can survive and reproduce."
+   "term": "Stem cell",
+   "def": "An unspecialized cell that can divide and develop into different kinds of cells."
   },
   {
-   "term": "Heritable variation",
-   "def": "Differences among individuals that are coded in DNA and passed from parents to offspring."
+   "term": "Differentiation",
+   "def": "The process by which a cell becomes specialized for one job, by using some of its genes and not others."
   },
   {
-   "term": "Better-suited survivors",
-   "def": "Individuals whose traits fit the environment best survive and leave the most offspring."
+   "term": "Fertilization",
+   "def": "The joining of a sperm and an egg to make a zygote with a full set of chromosomes."
   },
   {
-   "term": "Environmental change",
-   "def": "A change in conditions, such as drought, flood, deforestation, or fertilizer runoff."
+   "term": "Copying error",
+   "def": "A rare mistake made when DNA is copied that is not fixed, which changes the base sequence."
   },
   {
-   "term": "Rate of change",
-   "def": "How fast the environment changes."
+   "term": "Sickle cell mutation",
+   "def": "A one-base change in the hemoglobin gene that changes one amino acid in hemoglobin."
   },
   {
-   "term": "Advantageous trait",
-   "def": "An inherited trait that helps organisms survive and reproduce in a particular environment."
+   "term": "Body-cell mutation",
+   "def": "A mutation in a body cell, such as a skin cell. It can affect the person but is not passed to children."
   },
   {
-   "term": "Proportion",
-   "def": "The part of a population that has a trait, often written as a percent."
+   "term": "Inherited mutation",
+   "def": "A mutation in a sperm or egg cell that can be passed to offspring."
   },
   {
-   "term": "Generation",
-   "def": "One step in a family line: parents, then their offspring, then their offspring's offspring."
-  },
-  {
-   "term": "Mean (average)",
-   "def": "The sum of all the values divided by how many values there are."
+   "term": "Helpful mutation",
+   "def": "A mutation that gives an advantage in an environment."
   }
  ]
 });

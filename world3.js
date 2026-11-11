@@ -1,16 +1,17 @@
-/* WORLD 3 GAME FILE: Ecosystems: Interdependence and Disruptions (five levels).
+/* WORLD 3 GAME FILE: Ecological Relations (five levels and a bonus speed run).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world3-questions.js.
+   Standards (PA STEELS): I (carrying capacity), L (biodiversity and populations), M (stable ecosystems and change).
    Each level teaches first (scan specimens), then lets players use what they learned (hunts, catches,
    doors, data, mazes, balances), with only a few question stations. Mixed review gates pull in earlier topics. */
 FieldGuide.registerWorld({
   id: 3,
-  title: 'Ecosystems',
+  title: 'Ecological Relations',
   levels: [
     { id: '3-1', title: 'Counting Life', theme: 'forest',
       log: 'Mission log: New world! Landed in a Pennsylvania forest. How many kinds of living things share it? Count them, compare the numbers, and find out what makes them go up or down.',
       outro: 'Report sent: a population is one species in one area, a community is all the species, and an ecosystem adds the nonliving surroundings. Counting samples, finding averages, and comparing trends shows that large, connected habitats with plenty of resources hold more species (higher biodiversity).',
       build: function (b) {
-        b.hint(5, 4.6, 'World 3: Ecosystems. Scan everything you see!').sparks(9, 1.2, 4).ground(16).review()
+        b.hint(5, 4.6, 'World 3: Ecological Relations. Scan everything you see!').sparks(9, 1.2, 4).ground(16).review()
           .scan(4, 's3-organism').scan(9, 's3-population').scan(14, 's3-community').ground(18).hsparks(-11, 6.2, 4)
           .gap(3.2).virus(5, 2.5, 1).qblock(10, 3.4, 'sparks').ground(14)
           .scan(3, 's3-ecosystem').scan(8, 's3-richness').scan(13, 's3-sample').ground(16)
@@ -30,31 +31,28 @@ FieldGuide.registerWorld({
           .station(['w3q01', 'w3q28'])
           .goal();
       } },
-    { id: '3-2', title: 'Living Together', theme: 'reef',
-      log: 'Mission log: A coral reef, the busiest neighborhood on Earth. Put on the bubble helmet and dive in. Who hunts whom, who competes, and why do so many animals stick together in groups?',
-      outro: 'Report sent: predators and competition for limited resources keep populations in check. Many animals live in groups (schools, pods, packs, colonies): groups find food, spot danger, and raise young better, but crowding also brings more competition and disease.',
+    { id: '3-2', title: 'Predators and Prey', theme: 'taiga',
+      log: 'Mission log: A snowy northern forest in Canada. Lynx hunt snowshoe hares here, and their numbers rise and fall together. Find out what keeps each population in check.',
+      outro: 'Report sent: predators, prey, and food supply limit each other. Hare and lynx numbers rise and fall in a cycle about every 10 years, and on Isle Royale wolves and moose have stayed within a range for over 60 years. In stable conditions, these interactions keep numbers relatively consistent.',
       build: function (b) {
-        /* REEF LEVEL: a short dock, then everything happens under water (swim with jump and duck). Air bubbles mark refill spots. */
-        b.hint(5, 4.6, 'The coral reef! Your bubble helmet lets you swim anywhere. Jump in!').sparks(8, 1.2, 3).ground(13).review()
-          .sea(-0.6).gap(1).rise(-8)
-          .bubbles(2).scan(5, 's3r-shark').scan(10, 's3r-prey').scan(15, 's3r-compete').hazard(12, 4.6, { look: 'shark', ax: 7, ay: 0.4, sp: 0.35 }).ground(19)
-          .plat(2, 2.6, 4).plat(8, 4.6, 3).sparks(8.5, 5.6, 3).ground(13)
-          .catchGame('c-behavior')
-          .bubbles(2).scan(5, 's3r-school').scan(10, 's3r-pod').scan(15, 's3r-spawn').ground(19)
-          .become('b-school')
-          .snapper(6, 4, 0, 'eel').hazard(13, 3, { look: 'jelly', ax: 0.5, ay: 1.6, sp: 0.6 }).ground(18)
-          .current(0, 24, 0.4, 6.8, 3.2, 0).bubbles(12).sparks(4, 3.5, 6).ground(24)
-          .refuel().bubbles(1).ground(5)
-          .station([{ sort: 'behavior', n: 4 }])
-          .bubbles(2).scan(5, 's3r-cost').scan(10, 's3r-alone').hazard(14, 2.8, { look: 'jelly', ax: 1.2, ay: 1.2, sp: 0.5 }).ground(17)
-          .ground(3).rise(-3).bubbles(2).rare(4, 0.9, { name: 'Pygmy seahorse', fact: 'It is about 2 cm long and lives on one kind of sea fan, matching its color and bumps: camouflage.' }).ground(6).rise(3)
-          .squeeze(2, 6).snapper(11, 3.5, 1.5, 'eel').ground(14)
-          .wordbank('wb-relations')
-          .mixed(2, ['3.1.9-12.L', '3.1.9-12.H', '3.1.9-12.E'])
-          .bubbles(2).hazard(9, 4.6, { look: 'shark', ax: 5, ay: 0.3, sp: 0.45 }).ground(14)
-          .station(['w3q32', 'w3q15'])
-          .current(0, 10, 0.2, 9, 0, 4).ground(10).rise(8).shore()
-          .hint(3, 4.6, 'Back on the beach. Mothership ahead!').ground(10)
+        b.hint(5, 4.6, 'Predators and prey! Scan everything you see.').sparks(9, 1.2, 4).ground(16).review()
+          .scan(3, 's3-lynx').scan(8, 's3-hare').scan(13, 's3-browse').ground(16).hsparks(-11, 6.2, 4)
+          .hunt('hare-limits')
+          .scan(3, 's3-cycle').scan(8, 's3-owl').scan(13, 's3-compete').ground(16)
+          .readData('d-hare')
+          .sequence('s-cycle')
+          .snapper(5, 3.6, 0).virus(10, 2.4, 1.2).ground(15)
+          .refuel().scan(3, 's3-moose').scan(8, 's3-isle').scan(13, 's3-range').ground(16)
+          .become('b-hare')
+          .wordbank('wb-predation')
+          .bridge(11).hazard(4, 1.2, { ax: 1.6, sp: 1.3 }).ground(10)
+          .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7, { name: 'Wolverine', fact: 'Wolverines roam huge areas of the northern forest and can climb, dig, and swim. They are rarely seen, so scientists often study them from tracks and camera traps.' })
+          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.I', '3.1.9-12.L', '3.1.9-12.H'])
+          .station(['w3q41', 'w3q42'])
+          .virus(5, 2.4, 1.2).sparks(2, 3.2, 4).ground(12)
+          .station(['w3q43', 'w3q15'])
+          .balance('bal-moose')
+          .bridge(12, { ay: 1.4, sp: 1.1 }).ground(5)
           .goal();
       } },
     { id: '3-3', title: 'Limits to Growth', theme: 'pond',
@@ -71,7 +69,7 @@ FieldGuide.registerWorld({
           .wordbank('wb-growth')
           .snapper(5, 3.6, 0).virus(10, 2.4, 1.2).ground(15)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.L', '3.1.9-12.O', '3.1.9-12.H'])
+          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.L', '3.1.9-12.I', '3.1.9-12.H'])
           .balance('bal-deer')
           .bridge(12, { ay: 1.4, sp: 1.1 }).ground(5)
           .goal();
@@ -91,33 +89,31 @@ FieldGuide.registerWorld({
           .station([{ sort: 'succession', n: 4 }])
           .squeeze(3, 4).antibody(15, 8, 3.2, 0.5).ground(16)
           .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.I', '3.1.9-12.O', '3.1.9-12.L'])
+          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.I', '3.1.9-12.M', '3.1.9-12.L'])
           .station(['w3q16', 'w3q17'])
           .bridge(11).ground(5)
           .goal();
       } },
-    { id: '3-5', title: 'Human Footprints', theme: 'shore',
-      log: 'Mission log: The coast is busy with humans. Some of their actions harm ecosystems, and some help them heal. Find out which.',
-      outro: 'Report sent: habitat loss, pollution, invasive species, overharvesting, and climate change disrupt ecosystems. Biodiversity makes ecosystems more stable. People can design solutions, test them in simulations, and revise them to help ecosystems recover.',
+    { id: '3-5', title: 'Ripple Effects', theme: 'valley',
+      log: 'Mission log: Yellowstone National Park. Wolves came back in 1995, beavers are building dams, and the rivers are changing. Do the evidence and reasoning really support the claims people make?',
+      outro: 'Report sent: complex interactions keep an ecosystem\'s numbers and types of organisms relatively steady while conditions are stable. When conditions change a lot (a new top predator, a beaver dam, water that stays too warm), a new ecosystem can form. Good scientists weigh the claim, the evidence, and the reasoning, and check other possible causes.',
       build: function (b) {
-        b.sparks(4, 1.2, 4).virus(8, 2, 1).ground(12).review()
-          .scan(3, 's3-biodiv').scan(8, 's3-services').scan(13, 's3-invasive').ground(16).hsparks(-12, 6.2, 4)
-          .hunt('invasive-traits')
-          .scan(3, 's3-habloss').scan(8, 's3-pollution').scan(13, 's3-bloom').ground(16)
-          .sequence('s-bloom')
-          .readData('d-oxygen')
-          .sequence('s-sim')
-          .snapper(5, 3.6, 0).virus(10, 2.4, 1.2).ground(15)
-          .refuel().scan(3, 's3-climate').scan(8, 's3-overharvest').scan(13, 's3-conserve').ground(16)
-          .catchGame('c-impact')
-          .become('b-solution')
-          .station(['w3q37', 'w3q40'])
-          .lablock('lock-3-5')
-          .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7)
-          .crumbleBridge(5, 'boom').mixed(2, ['3.1.9-12.I', '3.1.9-12.M', '3.1.9-12.O', '3.1.9-12.K'])
+        b.hint(5, 4.6, 'One change can ripple through a whole ecosystem. Scan to find out how.').sparks(9, 1.2, 4).ground(16).review()
+          .scan(3, 's3-wolfpack').scan(8, 's3-elk').scan(13, 's3-claim').ground(16).hsparks(-11, 6.2, 4)
+          .readData('d-elk')
+          .scan(3, 's3-evidence').scan(8, 's3-reasoning').ground(11)
+          .station([{ sort: 'cer', n: 4 }])
+          .snapper(5, 3.6, 0).spikes(10, 1.8).ground(15)
+          .refuel().scan(3, 's3-beaver').scan(8, 's3-wetland').scan(13, 's3-bleach').ground(16)
+          .sequence('s-beaver')
+          .become('b-beaver')
+          .wordbank('wb-ripple')
+          .hplat(-7, 2.4, 3).hplat(-4.5, 4.8, 3).hplat(-2, 8.4, 2.6).rare(-0.7, 9.7, { name: 'American pika', fact: 'This small cousin of rabbits lives on rocky mountain slopes. All summer it gathers grass into haypiles to eat in winter. Pikas overheat easily, so warming summers are a changing condition for them.' })
+          .crumbleBridge(5, 'mix').mixed(2, ['3.1.9-12.M', '3.1.9-12.I', '3.1.9-12.L'])
+          .station(['w3q45', 'w3q46'])
           .qblock(3, 3.4, 'shield').hazard(8, 1.2, { ax: 2, sp: 1.3 }).ground(14)
-          .hint(-3, 4.6, 'Boss ahead: The Algal Bloom')
-          .balance('bal-bloom')
+          .hint(-3, 4.6, 'Boss ahead: The Overgrazers')
+          .balance('bal-elk')
           .goal();
       } },
     { id: '3-6', title: 'Bonus: Rainforest Run', theme: 'pxrain', bonus: true, par: 65,

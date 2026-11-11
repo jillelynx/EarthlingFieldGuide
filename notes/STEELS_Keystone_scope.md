@@ -46,6 +46,9 @@ Assessment Anchors and Eligible Content (BIO.A.x.x.x / BIO.B.x.x.x) are no longe
 - U: "Assessment is limited to basic statistical and graphical analysis. Assessment does not include allele frequency calculations."
 
 ## Teacher decisions (Nov 2026)
+- Course order (v76, Nov 11, 2026): six worlds that match the teacher's six course units. Units 3 and 4 both belong to
+  "Interdependent Relationships in Ecosystems": Unit 3 Ecological Relations = I, L, M (Module 1); Unit 4 Ecosystem
+  Disrupters = N, O, V (Module 2).
 - Levels whose whole topic was outside STEELS are REBUILT around an in-scope standard (same place, biome and platforming).
 - Supporting vocabulary that is needed to talk about a standard (cell/tissue/organ, population/community/ecosystem,
   producer/consumer, gene/allele, chromosome) is kept.

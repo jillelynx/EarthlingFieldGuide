@@ -5,10 +5,11 @@
 const T = window.THREE;
 const BQ = window.FieldGuide = {
   worlds: {}, data: {},
-  /* the course order (updated October 2026): Units 3 and 5 of the old sequence are now one ecosystems unit */
-  UNITS: ['Structure and Function', 'Matter and Energy in Organisms and Ecosystems',
-    'Ecosystems: Interdependence and Disruptions', 'Inheritance and Variation of Traits',
-    'Environmental Pressure Drives Evolution']
+  /* the course order (Version 76, November 2026): the teacher's six course units, so the game matches the class packets,
+     study guides, and flashcards. Units 3 and 4 both fall under the Keystone's "Interdependent Relationships in Ecosystems"
+     (Unit 3 = I, L, M in Module 1; Unit 4 = N, O, V in Module 2). */
+  UNITS: ['Structure & Function', 'Molecules to Organisms', 'Ecological Relations', 'Ecosystem Disrupters',
+    'Inheritance & Variation of Traits', 'Environmental Pressure Drives Evolution']
 };
 const QMAP = {};
 BQ.registerWorld = function (w) { BQ.worlds[w.id] = w; };
@@ -52,11 +53,22 @@ BQ.loadWorlds = function (max) {
 const KEY = 'bioquest-save-v1';
 function fresh() {
   return { alien: { shape: 0, color: 0, eyes: 2, ant: 2, gear: 0, estyle: 0, mouth: 1 }, levels: {}, missed: {}, codes: {}, seen: {}, rare: {}, words: {}, found: {}, ach: {}, colDone: {}, stat: {}, bank: 0, inv: { life: 0, shield: 0, fly: 0, lens: 0 }, owned: {},
-    set: { text: 1, low: false, sound: true, music: true, vol: 50, cap: true, unlock: false }, nick: '', board: [] };
+    set: { text: 1, low: false, sound: true, music: true, vol: 50, cap: true, unlock: false }, nick: '', board: [], units6: 1 };
 }
 let S = fresh();
+/* Version 76: the game went from 5 worlds to the teacher's 6 course units. Old saves are moved to the new level numbers:
+   3-2 Living Together is now 4-2, 3-5 Human Footprints is now 4-1, World 4 is now World 5, and World 5 is now World 6. */
+function migrateUnits6(raw) {
+  const mv = function (id) { const m = /^(\d)-(\d)$/.exec(id); if (!m) return id; const w = +m[1], k = m[2];
+    if (id === '3-2') return '4-2'; if (id === '3-5') return '4-1'; if (w === 4) return '5-' + k; if (w === 5) return '6-' + k; return id; };
+  ['levels', 'rare', 'colDone'].forEach(function (key) { const o = raw[key]; if (!o) return; const n = {}; Object.keys(o).forEach(function (k) { n[mv(k)] = o[k]; }); raw[key] = n; });
+  const UW = { A: 1, B: 1, C: 1, E: 2, F: 2, G: 2, H: 2, J: 2, K: 2, I: 3, L: 3, M: 3, N: 4, O: 4, V: 4, D: 5, P: 5, Q: 5, R: 5, S: 6, T: 6, U: 6, W: 6, X: 6 };
+  Object.keys(raw.codes || {}).forEach(function (k) { const u = UW[k.slice(-1)]; if (u) raw.codes[k].world = u; });
+  raw.units6 = 1;
+}
 try {
   const raw = JSON.parse(localStorage.getItem(KEY) || 'null');
+  if (raw && !raw.units6) migrateUnits6(raw);
   if (raw) { const f = fresh(); S = Object.assign(f, raw); S.inv = Object.assign(fresh().inv, raw.inv); S.alien = Object.assign(fresh().alien, raw.alien); S.set = Object.assign(fresh().set, raw.set); }
 } catch (e) { /* play without saving */ }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* ignore */ } }
@@ -198,7 +210,7 @@ function totalScore() { return Object.keys(S.levels).reduce(function (n, k) { re
 const TEACH = /teacher|level-/i.test(location.hash || '');
 function played(id) { return TEACH || S.set.unlock || !!(S.levels[id] && S.levels[id].stars); }
 /* the first level of EVERY world is always open, so students can start any world in any order; inside a world, levels open one after another */
-function unlocked(i, list) { return i === 0 || (list[i - 1] && list[i - 1].w !== list[i].w) || S.set.unlock || TEACH || !!(S.levels[list[i - 1].lv.id] && S.levels[list[i - 1].lv.id].stars); }
+function unlocked(i, list) { return i === 0 || (list[i - 1] && list[i - 1].w !== list[i].w) || S.set.unlock || TEACH || !!(S.levels[list[i - 1].lv.id] && S.levels[list[i - 1].lv.id].stars) || !!(list[i] && S.levels[list[i].lv.id] && S.levels[list[i].lv.id].stars); } /* a level already conquered stays open (v76: new levels were added before some conquered ones) */
 
 /* ---------- sound with captions ---------- */
 let AC = null, capTimer = 0;
@@ -297,13 +309,14 @@ Music.setDuck = function (d) { Music.duck = d; musicLevel(); };
 /* ---------- 3D building blocks ---------- */
 let renderer, scene, cam, camZ = 22, G = {}, mats = {}, texCache = {};
 /* Change this line each time a new version is uploaded. */
-const VERSION = 'Version 75 · November 10, 2026';
+const VERSION = 'Version 76 · November 11, 2026';
 const COLORS = [['Sky blue', '#56B4E9'], ['Orange', '#E69F00'], ['Green', '#009E73'], ['Pink', '#CC79A7'], ['Yellow', '#F0E442'], ['Red-orange', '#D55E00'], ['Turquoise', '#2EC4B6'], ['Purple', '#8E5CE6'], ['Helix gold', '#E8B730', 'helix']];
 const GEAR = [['None', 0], ['Lab goggles', 3], ['Explorer cape', 8], ['Ribosome hat', 12]];
 /* MOVES earned in the bonus speed runs (v71) */
 const ABIL = { pound: { name: 'Ground Pound', icon: '💥', col: '#ff8a4a', tip: 'New move: GROUND POUND! In the air, press down (down arrow or S) to slam down. It breaks bricks and squashes enemies.' },
   dash: { name: 'Air Dash', icon: '💨', col: '#7fd4ff', tip: 'New move: AIR DASH! In the air, press Shift to zoom forward. One dash per jump.' },
   wall: { name: 'Wall Jump', icon: '🧗', col: '#c8ff7a', tip: 'New move: WALL JUMP! Jump toward a wall, then press jump again while touching it to kick off and climb.' },
+  super: { name: 'Super Jump', icon: '🦘', col: '#ff9fd0', tip: 'New move: SUPER JUMP! Stand still and hold down (down arrow or S) until you sparkle, then press jump to leap extra high.' },
   glide: { name: 'Glide', icon: '🪂', col: '#ffd166', tip: 'New move: GLIDE! While falling, hold jump to float down slowly across wide gaps.' },
   spin: { name: 'Spin Attack', icon: '🌀', col: '#c59cff', tip: 'New move: SPIN ATTACK! Press E to spin. A spin knocks out enemies and gives a little lift in the air.' } };
 function hasA(n) { return !!(L && L.lv.bonus && S.abil && S.abil[n]); }
@@ -318,6 +331,7 @@ const THEMES = {
   pxdesert: { pixel: 'desert', skyTop: '#5aa8e8', horizon: '#a8d8f8', skyBottom: '#e8b878', sun: ['#fff8d0', 40, 18, 1], ridge: '#a86a6a', ground: '#c87a3b', top: '#f0c879', rim: '#fff0b8', mote: '#fff8d0', pal: ['#c87a3a'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#c8a878'], key: '#ffffff' },
   pxrain: { pixel: 'rain', skyTop: '#1a3a2a', horizon: '#2a5a3a', skyBottom: '#183424', sun: ['#f0ffa0', 40, 18, 1], ridge: '#1e4030', ground: '#5a3a25', top: '#4aa83b', rim: '#8ae05a', mote: '#f0ffa0', pal: ['#2f7a2a'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#88a888'], key: '#ffffff' },
   pxtundra: { pixel: 'tundra', skyTop: '#6aa8e8', horizon: '#c8e4f8', skyBottom: '#e8f4ff', sun: ['#ffffff', 40, 18, 1], ridge: '#7a8aa8', ground: '#6a7079', top: '#f4f8fe', rim: '#ffffff', mote: '#ffffff', pal: ['#7a8088'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#a8b8c8'], key: '#ffffff' },
+  pxridge: { pixel: 'ridge', skyTop: '#4a88d8', horizon: '#9ac8f0', skyBottom: '#d8c0a0', sun: ['#fff4c8', 40, 18, 1], ridge: '#5a78a0', ground: '#6a5a49', top: '#4a8a3b', rim: '#7ab85a', mote: '#fff4c8', pal: ['#6a5a48'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#8ac0e8'], key: '#ffffff' },
   pxreef: { pixel: 'reef', skyTop: '#2a9ac8', horizon: '#1a6a9a', skyBottom: '#0e3a5a', sun: ['#c8f8ff', 40, 18, 1], ridge: '#2a5a8a', ground: '#6a6a8b', top: '#e8d8a9', rim: '#fff4d0', mote: '#c8f8ff', pal: ['#6a6a8a'], shapes: [], density: 0, fogD: 0.0001, hemi: ['#ffffff', '#6a9ac8'], key: '#ffffff' },
   /* RETRO bonus levels (v68): a bright 8-bit palette; the screen is drawn at low resolution with chunky pixels (retroMode) */
   retro: { skyTop: '#2038ec', horizon: '#5c94fc', skyBottom: '#5c94fc', sun: ['#fcfcfc', 40, 18, 160], ridge: '#00a800', ground: '#c84c0c', top: '#00a800', rim: '#fcfcfc',
@@ -349,6 +363,17 @@ const THEMES = {
     mote: '#cfefff', shafts: '#bfe8ff', pal: ['#bfe8ff', '#9fd8ff', '#d8c8ff'], shapes: ['blob'], density: 0.001, fogD: 0.012, hemi: ['#cfe8ff', '#10202c'], key: '#e8f4ff', doorWall: '#4a4c58' },
   forest: { skyTop: '#123a2a', horizon: '#f0c878', skyBottom: '#6a8a4a', sun: ['#fff0b0', 35, 16, 230], ridge: '#1f4a2a', ground: '#2e3a1e', top: '#5f8a3a', rim: '#fff0c0',
     mote: '#fff6c0', shafts: '#ffe8a0', pal: ['#1f4a2a', '#2f6a34', '#4a8a3a'], shapes: ['tree', 'tree', 'hill'], density: 0.85, fogD: 0.011, hemi: ['#f0f8d0', '#1a2a12'], key: '#fff0c8' },
+  /* Version 76 (6-unit order): new real-Earth places for levels 3-2, 3-5, 4-3, 4-4 and 4-5 */
+  taiga: { skyTop: '#1a2a4a', horizon: '#c8d8f0', skyBottom: '#7a9ac0', sun: ['#fff4e0', 30, 12, 220], ridge: '#2a3a4a', ground: '#3a3a40', top: '#eef4fa', rim: '#ffffff',
+    mote: '#ffffff', shafts: '#e8f0ff', pal: ['#1a3a2a', '#24482f', '#2f5a3a'], shapes: ['tree', 'tree', 'hill'], density: 0.85, fogD: 0.011, hemi: ['#e8f0ff', '#1a2030'], key: '#f4f8ff' },
+  valley: { skyTop: '#2a5aa8', horizon: '#c8d8e0', skyBottom: '#7aa8d0', sun: ['#fff4c8', 35, 16, 240], ridge: '#4a5a4a', ground: '#4a3a26', top: '#8a9a48', rim: '#fff4c8',
+    mote: '#fff8d8', shafts: '#fff0c8', pal: ['#2a4a2f', '#3f6a3a', '#5a7a40'], shapes: ['tree', 'tree', 'hill'], density: 0.8, fogD: 0.010, hemi: ['#e8f0ff', '#2a3020'], key: '#fff4d8' },
+  ice: { skyTop: '#0a1a3a', horizon: '#8ac8e8', skyBottom: '#3a6a9a', sun: ['#e8f8ff', -30, 10, 200], ridge: '#5a7a9a', ground: '#4a6a8a', top: '#e8f4ff', rim: '#ffffff',
+    mote: '#ffffff', shafts: '#cfeeff', pal: ['#bfe0f8', '#9fc8e8', '#e8f4ff'], shapes: ['hill', 'pillar', 'hill'], density: 0.6, fogD: 0.010, hemi: ['#dff0ff', '#1a2a3a'], key: '#eaf6ff' },
+  autumn: { skyTop: '#2a4a8a', horizon: '#ffd8a0', skyBottom: '#a8c8e8', sun: ['#fff0c0', -35, 14, 230], ridge: '#5a4a3a', ground: '#3a2a1a', top: '#a86a2a', rim: '#ffe0a0',
+    mote: '#ffb060', shafts: '#ffe0a0', pal: ['#c8502a', '#e8902a', '#d8b03a', '#2f5a3a'], shapes: ['tree', 'tree', 'hill'], density: 0.85, fogD: 0.010, hemi: ['#ffe8c8', '#2a1a10'], key: '#ffe8c0' },
+  marsh: { skyTop: '#1f4a8a', horizon: '#d8c8a8', skyBottom: '#6a9ac0', sun: ['#fff0c8', 30, 12, 230], ridge: '#3a5a5a', ground: '#4a3e2a', top: '#8a9a4a', rim: '#fff4c8',
+    mote: '#f0f8ff', shafts: '#fff0c8', pal: ['#3f5a3a', '#5a6a3a', '#2f4a4a'], shapes: ['hill', 'tree', 'hill'], density: 0.6, fogD: 0.011, hemi: ['#e0ecff', '#20281a'], key: '#fff4d8' },
   garden: { skyTop: '#3a6ad0', horizon: '#ffe6c0', skyBottom: '#a8d0f0', sun: ['#fff6d0', -35, 16, 240], ridge: '#6a9a4a', ground: '#4a3a22', top: '#8ab84a', rim: '#fff6d0',
     mote: '#ffffff', shafts: '#fff6d0', pal: ['#6aaa4a', '#c59cff', '#ffffff', '#ff9fbf'], shapes: ['tree', 'blob', 'hill'], density: 0.7, fogD: 0.008, hemi: ['#f0f8ff', '#3a4a2a'], key: '#fff6e0' },
   island: { skyTop: '#0a4a8a', horizon: '#ffe0a0', skyBottom: '#4ab0d8', sun: ['#fff4c0', 25, 14, 240], ridge: '#2a6a5a', ground: '#4a3a2a', top: '#d8c08a', rim: '#fff4d0',
@@ -2509,6 +2534,8 @@ function step(dt) {
     if (P.ground === mv.s) { P.x += dx; P.y += dy; }
   });
   crumbStep(dt); bonusStep(dt);
+  /* Super Jump (bonus move, v76): charged by standing still while ducking */
+  const superReady = hasA('super') && (P.charge || 0) >= 0.4;
   /* duck: crouch low while on the ground; stay crouched under a low ceiling */
   const wantDuck = keys.duck && !L.active && P.ground && !(jumpBuf > 0);
   /* duck slide: duck while running fast and the alien slides low on its belly, keeping its speed for a moment (great for sliding under low ceilings and swinging hazards) */
@@ -2518,6 +2545,9 @@ function step(dt) {
   if (wantDuck) P.duck = true;
   else if (P.duck) { PH = STAND; const blocked = L.solids.some(function (s) { return !s.off && !s.oneWay && hit(s); }); if (blocked) { PH = CROUCH; jumpBuf = 0; } else P.duck = false; }
   PH = P.duck ? CROUCH : STAND;
+  if (hasA('super') && P.duck && P.ground && Math.abs(P.vx) < 2.5 && !(P.slideT > 0)) { P.charge = Math.min(0.8, (P.charge || 0) + dt);
+    if (P.charge >= 0.4 && !P.chargeFx) { P.chargeFx = true; beep(880, 0.1, 'triangle', 'charged, super jump ready'); burst(P.x, P.y + 0.4, '#ff9fd0'); } }
+  else if (!(jumpBuf > 0)) { P.charge = 0; P.chargeFx = false; }
   const running = keys.run && !P.duck; if (P.sledT > 0) { P.vx = Math.min(18, Math.max(P.vx, 9) + (keys.left ? -10 : 9) * dt); } else if (P.kicked && !P.ground) { /* flying off the ski jump keeps its speed */ } else if (P.dashT > 0 || P.kickT > 0 || P.pound > 0) { /* a move is steering */ } else if (P.slideT > 0) P.vx = P.slideDir * Math.max(SPEED * 0.5, Math.abs(P.vx) - 9 * dt); else P.vx += (ax * SPEED * (bo ? 1.45 : 1) * (P.duck ? 0.5 : running ? 1.6 : 1) - P.vx) * Math.min(1, dt * (running ? 10 : 14));
   jumpBuf -= dt; coyote = P.ground ? 0.1 : coyote - dt;
   if (P.ground) P.dbl = true;
@@ -2526,9 +2556,11 @@ function step(dt) {
   if (hasA('wall') && P.wallT > 0 && !P.ground && !inW) { if (ax === P.wallDir && P.vy < -3) P.vy = -3; /* wall slide */
     if (jumpBuf > 0) { P.vy = JUMP * 0.95; P.vx = -P.wallDir * 11; P.kickT = 0.22; P.face = -P.wallDir; P.wallT = 0; jumpBuf = 0; P.dbl = true; beep(560, 0.08, 'triangle', 'wall kick'); burst(P.x + P.wallDir * 0.4, P.y + 0.6, '#ffffff'); } }
   P.wallT = (P.wallT || 0) - dt; P.kickT = (P.kickT || 0) - dt; if (P.kickT > 0) P.vx = -P.wallDir * 11 * Math.max(0.4, P.kickT / 0.22);
-  if (jumpBuf > 0 && coyote > 0) { P.vy = JUMP * (bo ? 1.15 : 1); jumpBuf = 0; coyote = 0; beep(420, 0.08, 'triangle'); }
+  if (jumpBuf > 0 && coyote > 0) { P.vy = JUMP * (bo ? 1.15 : 1) * (superReady ? 1.5 : 1); jumpBuf = 0; coyote = 0; P.superJ = superReady; P.charge = 0; P.chargeFx = false;
+    if (superReady) { beep(300, 0.25, 'square', 'boing, super jump'); burst(P.x, P.y, '#ff9fd0'); } else beep(420, 0.08, 'triangle'); }
+  if (P.vy <= 0) P.superJ = false;
   else if (jumpBuf > 0 && !P.ground && P.dbl && P.vy < 10) { P.vy = JUMP * 1.05 * (bo ? 1.1 : 1); P.dbl = false; jumpBuf = 0; beep(620, 0.08, 'triangle'); burst(P.x, P.y + 0.2, '#ffffff'); }
-  if (!keys.jump && P.vy > 0 && !inW && !P.kicked) P.vy -= 50 * dt; /* short hop when jump is let go (not in water: currents and plumes can lift you) */
+  if (!keys.jump && P.vy > 0 && !inW && !P.kicked && !P.superJ) P.vy -= 50 * dt; /* short hop when jump is let go (not in water: currents and plumes can lift you) */
   /* bonus moves */
   if (hasA('dash') && keys.run && !P.runWas && !P.ground && !P.dashed && !inW) { P.dashed = true; P.dashT = 0.2; beep(700, 0.12, 'sawtooth', 'whoosh, air dash'); burst(P.x, P.y + 0.6, '#7fd4ff'); }
   P.runWas = keys.run; if (P.dashT > 0) { P.dashT -= dt; P.vx = P.face * 21; P.vy = 0.5; }
@@ -3432,20 +3464,21 @@ function nextUp() {
   const list = allLevels(); let i = list.findIndex(function (e) { return !(S.levels[e.lv.id] && S.levels[e.lv.id].stars); });
   if (i < 0) i = list.length - 1; return list[i];
 }
-/* MISSION MAP: like a Mario world map. Five lands in course order, a dotted trail through every level,
+/* MISSION MAP: like a Mario world map. Six lands in course order, a dotted trail through every level,
    gold flags on conquered levels, a lock on levels not open yet, and the alien standing on the next one. */
 const MAPLANDS = [
   { cx: 175, cy: 165, rx: 150, ry: 112, fill: '#1f5f6a', edge: '#7fe0d8', icon: '🧫' },
   { cx: 500, cy: 140, rx: 150, ry: 105, fill: '#4a6a28', edge: '#c8ff7a', icon: '🌿' },
-  { cx: 825, cy: 170, rx: 150, ry: 112, fill: '#7a6a2a', edge: '#ffd98a', icon: '🦁' },
-  { cx: 690, cy: 430, rx: 165, ry: 108, fill: '#4a3a7a', edge: '#c59cff', icon: '🧬' },
-  { cx: 310, cy: 430, rx: 165, ry: 108, fill: '#6a5a4a', edge: '#e8d0b0', icon: '🦴' }];
+  { cx: 825, cy: 170, rx: 150, ry: 112, fill: '#7a6a2a', edge: '#ffd98a', icon: '🐺' },
+  { cx: 825, cy: 430, rx: 150, ry: 108, fill: '#6a3a3a', edge: '#ff9f8a', icon: '🌎' },
+  { cx: 500, cy: 430, rx: 150, ry: 108, fill: '#4a3a7a', edge: '#c59cff', icon: '🧬' },
+  { cx: 175, cy: 430, rx: 150, ry: 108, fill: '#6a5a4a', edge: '#e8d0b0', icon: '🦴' }];
 function buildLevels() {
   const list = allLevels(), next = nextUp(), nodes = [];
   for (let w = 1; w <= MAPLANDS.length; w++) {
     const ld = MAPLANDS[w - 1], lvls = BQ.worlds[w] ? BQ.worlds[w].levels : [0, 1, 2, 3, 4], n = lvls.length, dir = w <= 3 ? 1 : -1;
     lvls.forEach(function (lv, k) {
-      const u = n > 1 ? k / (n - 1) : 0.5, x = ld.cx + dir * (u - 0.5) * ld.rx * (n > 5 ? 1.62 : 1.45), y = ld.cy + Math.sin(u * Math.PI * 2 + w) * ld.ry * 0.22 + 32;
+      const u = n > 1 ? k / (n - 1) : 0.5, x = ld.cx + dir * (u - 0.5) * ld.rx * (n > 5 ? 1.62 : 1.45), y = ld.cy + Math.sin(u * Math.PI * 2 + w) * ld.ry * 0.16 + 24;
       const i = BQ.worlds[w] ? list.findIndex(function (e) { return e.lv === lv; }) : -1;
       nodes.push({ w: w, x: x, y: y, i: i, lv: BQ.worlds[w] ? lv : null, k: k });
     });
@@ -3461,7 +3494,7 @@ function buildLevels() {
       '<ellipse cx="' + ld.cx + '" cy="' + ld.cy + '" rx="' + ld.rx + '" ry="' + ld.ry + '" fill="' + ld.fill + '" stroke="' + ld.edge + '" stroke-width="3"/>' +
       '<text x="' + ld.cx + '" y="' + (ld.cy - ld.ry + 30) + '" text-anchor="middle" class="mapw">' + ld.icon + ' World ' + w + '</text>' +
       '<text x="' + ld.cx + '" y="' + (ld.cy - ld.ry + 50) + '" text-anchor="middle" class="mapu">' + esc(BQ.UNITS[wi]) + '</text>' +
-      '<text x="' + ld.cx + '" y="' + (ld.cy + ld.ry - 14) + '" text-anchor="middle" class="maps">' + (built ? '★ ' + got + ' of ' + max : 'Coming soon') + '</text></g>';
+      '<text x="' + ld.cx + '" y="' + (ld.cy + ld.ry - 8) + '" text-anchor="middle" class="maps">' + (built ? '★ ' + got + ' of ' + max : 'Coming soon') + '</text></g>';
   });
   /* the trail */
   for (let k = 1; k < nodes.length; k++) {

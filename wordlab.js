@@ -60,7 +60,7 @@ const PARTS = {
 const WORDS = [
   [1, 'thermoregulation', ['thermo', 'regul', '-ation'], 'the process of controlling body temperature', 'el proceso de controlar la temperatura del cuerpo', 'termorregulación'],
   [2, 'aerobic', ['aero', '-bic'], 'living or working with oxygen', 'que vive o funciona con oxígeno', 'aeróbico'],
-  [4, 'mutagen', ['muta', 'gen'], 'something that causes changes in DNA, such as UV light', 'algo que causa cambios en el ADN, como la luz UV', 'mutágeno'],
+  [5, 'mutagen', ['muta', 'gen'], 'something that causes changes in DNA, such as UV light', 'algo que causa cambios en el ADN, como la luz UV', 'mutágeno'],
   [1, 'homeostasis', ['homeo-', '-stasis'], 'keeping conditions inside the body steady', 'mantener estables las condiciones dentro del cuerpo', 'homeostasis'],
   [1, 'transcription', ['trans-', '-cription'], 'copying (writing across) DNA into mRNA', 'copiar (escribir) el ADN en ARNm', 'transcripción'],
   [1, 'translation', ['trans-', '-lation'], 'carrying the mRNA message across into a protein', 'llevar el mensaje del ARNm a una proteína', 'traducción'],
@@ -75,21 +75,21 @@ const WORDS = [
   [3, 'abiotic', ['a-', 'bio', '-tic'], 'non-living parts of an ecosystem (water, sunlight, rocks)', 'las partes sin vida de un ecosistema (agua, luz, rocas)', 'abiótico'],
   [3, 'biotic', ['bio', '-tic'], 'living parts of an ecosystem', 'las partes vivas de un ecosistema', 'biótico'],
   [3, 'ecology', ['eco', '-logy'], 'the study of living things and their surroundings', 'el estudio de los seres vivos y su entorno', 'ecología'],
-  [3, 'pesticide', ['pesti', '-cide'], 'a chemical that kills pests', 'una sustancia que mata plagas', 'pesticida'],
-  [3, 'eutrophication', ['eutro', '-phication'], 'too many nutrients in water, so algae grow out of control', 'demasiados nutrientes en el agua, y las algas crecen sin control', 'eutrofización'],
-  [3, 'deforestation', ['de-', 'forest', '-ation'], 'removing (cutting down) forests', 'quitar (talar) los bosques', 'deforestación'],
+  [4, 'pesticide', ['pesti', '-cide'], 'a chemical that kills pests', 'una sustancia que mata plagas', 'pesticida'],
+  [4, 'eutrophication', ['eutro', '-phication'], 'too many nutrients in water, so algae grow out of control', 'demasiados nutrientes en el agua, y las algas crecen sin control', 'eutrofización'],
+  [4, 'deforestation', ['de-', 'forest', '-ation'], 'removing (cutting down) forests', 'quitar (talar) los bosques', 'deforestación'],
   [3, 'biodiversity', ['bio-', 'diversity'], 'the variety of life in an area', 'la variedad de vida en un lugar', 'biodiversidad'],
   [3, 'overpopulation', ['over-', 'popul', '-ation'], 'too many individuals for the resources an area has', 'demasiados individuos para los recursos de un lugar', 'sobrepoblación'],
-  [4, 'homozygous', ['homo-', '-zygous'], 'having two of the SAME allele for a gene', 'tener dos alelos IGUALES para un gen', 'homocigoto'],
-  [4, 'heterozygous', ['hetero-', '-zygous'], 'having two DIFFERENT alleles for a gene', 'tener dos alelos DIFERENTES para un gen', 'heterocigoto'],
-  [4, 'haploid', ['haplo', '-oid'], 'a cell with a single set of chromosomes (like a sperm or egg)', 'una célula con un solo juego de cromosomas (como un óvulo)', 'haploide'],
-  [4, 'diploid', ['diplo', '-oid'], 'a cell with two sets of chromosomes', 'una célula con dos juegos de cromosomas', 'diploide'],
-  [4, 'genotype', ['geno', '-type'], 'the alleles an organism has', 'los alelos que tiene un organismo', 'genotipo'],
-  [4, 'phenotype', ['pheno', '-type'], 'the trait you can see (how the genes show)', 'el rasgo que se ve (cómo se muestran los genes)', 'fenotipo'],
-  [4, 'polygenic', ['poly-', 'gen', '-ic'], 'a trait controlled by many genes (like height)', 'un rasgo controlado por muchos genes (como la estatura)', 'poligénico'],
-  [5, 'phylogeny', ['phylo', '-geny'], 'the history of how groups of living things are related', 'la historia de cómo se relacionan los grupos de seres vivos', 'filogenia'],
-  [5, 'paleontology', ['paleo', 'onto', '-logy'], 'the study of ancient life from fossils', 'el estudio de la vida antigua a partir de fósiles', 'paleontología'],
-  [5, 'speciation', ['speci', '-ation'], 'the process of forming new species', 'el proceso de formación de nuevas especies', 'especiación'],
+  [5, 'homozygous', ['homo-', '-zygous'], 'having two of the SAME allele for a gene', 'tener dos alelos IGUALES para un gen', 'homocigoto'],
+  [5, 'heterozygous', ['hetero-', '-zygous'], 'having two DIFFERENT alleles for a gene', 'tener dos alelos DIFERENTES para un gen', 'heterocigoto'],
+  [5, 'haploid', ['haplo', '-oid'], 'a cell with a single set of chromosomes (like a sperm or egg)', 'una célula con un solo juego de cromosomas (como un óvulo)', 'haploide'],
+  [5, 'diploid', ['diplo', '-oid'], 'a cell with two sets of chromosomes', 'una célula con dos juegos de cromosomas', 'diploide'],
+  [5, 'genotype', ['geno', '-type'], 'the alleles an organism has', 'los alelos que tiene un organismo', 'genotipo'],
+  [5, 'phenotype', ['pheno', '-type'], 'the trait you can see (how the genes show)', 'el rasgo que se ve (cómo se muestran los genes)', 'fenotipo'],
+  [5, 'polygenic', ['poly-', 'gen', '-ic'], 'a trait controlled by many genes (like height)', 'un rasgo controlado por muchos genes (como la estatura)', 'poligénico'],
+  [6, 'phylogeny', ['phylo', '-geny'], 'the history of how groups of living things are related', 'la historia de cómo se relacionan los grupos de seres vivos', 'filogenia'],
+  [6, 'paleontology', ['paleo', 'onto', '-logy'], 'the study of ancient life from fossils', 'el estudio de la vida antigua a partir de fósiles', 'paleontología'],
+  [6, 'speciation', ['speci', '-ation'], 'the process of forming new species', 'el proceso de formación de nuevas especies', 'especiación'],
 ].map(function (r) { return { u: r[0], w: r[1], p: r[2], en: r[3], es: r[4], sp: r[5] }; });
 const ROUND = 8;
 let L = null;
@@ -126,7 +126,7 @@ function esc(s) { return C.esc(s); }
 function head(title) { const d = sv(); return '<div class="wlTop"><h2>🔤 ' + esc(title || tx('wl.title')) + '</h2><span class="sp"></span>' + (L.mode && L.mode !== 'home' ? '<span>' + esc(tx('wl.score')) + ': <b>' + L.score + '</b> · ' + esc(tx('wl.streak')) + ': <b>' + L.streak + '</b></span>' : '<span>' + esc(tx('wl.best')) + ': <b>' + (d.best || 0) + '</b></span>') +
   '<span class="btns"><button type="button" data-lang="en" aria-pressed="' + !es() + '">English</button><button type="button" data-lang="es" aria-pressed="' + es() + '">Español</button></span><button type="button" data-a="' + (L.mode === 'home' ? 'close' : 'home') + '">' + esc(tx(L.mode === 'home' ? 'wl.menuB' : 'wl.back')) + '</button></div>'; }
 function home() {
-  L.mode = 'home'; const d = sv(), units = [0, 1, 2, 3, 4, 5];
+  L.mode = 'home'; const d = sv(), units = [0, 1, 2, 3, 4, 5, 6];
   card(head() + '<p>' + esc(tx('wl.sub')) + '</p><p><b>' + esc(tx('wl.unit')) + ':</b> ' + units.map(function (u) { return '<button type="button" data-a="unit" data-u="' + u + '" aria-pressed="' + (L.unit === u) + '">' + esc(u ? tx('wl.u') + ' ' + u : tx('wl.all')) + '</button>'; }).join(' ') + '</p>' +
     '<p class="dim">' + esc((BQ.UNITS || [])[L.unit - 1] || '') + '</p>' +
     '<div class="wlModes"><button type="button" class="primary" data-a="build">' + esc(tx('wl.build')) + '<small>' + esc(tx('wl.buildD')) + '</small></button><button type="button" class="primary" data-a="crack">' + esc(tx('wl.crack')) + '<small>' + esc(tx('wl.crackD')) + '</small></button>' +

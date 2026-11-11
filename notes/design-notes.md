@@ -689,3 +689,34 @@ New files: domesim.js (the living-system model, no graphics, tested on its own) 
 ## v75 — Side view shows one eye (Nov 10, 2026)
 - In the pixel alien's side-profile frames (walking, running, jumping, etc.), only the near eye is drawn, whatever the eye count chosen in the menu. Front-facing frames still show all the chosen eyes.
 - Regenerated sprites/alien-moves.png and alien-moves-labeled.png.
+
+## v76 — Six course units (Nov 11, 2026)
+The teacher went back to her six teaching units (how her packets, covers, study guides and flashcards are organized), so the
+platformer now has 6 worlds that match them:
+1. Structure & Function  2. Molecules to Organisms  3. Ecological Relations  4. Ecosystem Disrupters
+5. Inheritance & Variation of Traits  6. Environmental Pressure Drives Evolution
+- Why 6 when the Keystone has 5 content areas: Units 3 and 4 both fall under "Interdependent Relationships in Ecosystems".
+  Unit 3 = I, L, M (Keystone Module 1); Unit 4 = N, O, V (Keystone Module 2). Checked against notes/STEELS_Keystone_scope.md
+  (PDE test design and the PDESAS module list). Standard wording for I, L, M, N, O, V re-checked in K-12_STEELS_Standards_UA_3.pdf.
+- World 3 Ecological Relations: 3-1 Counting Life, 3-2 Predators and Prey (NEW: snowy boreal forest, lynx and hare cycle,
+  Isle Royale wolves and moose), 3-3 Limits to Growth, 3-4 After the Fire, 3-5 Ripple Effects (NEW: Yellowstone wolves,
+  beavers, coral bleaching; claim/evidence/reasoning; boss The Overgrazers), 3-6 Bonus: Rainforest Run.
+- World 4 Ecosystem Disrupters: 4-1 Human Footprints (was 3-5), 4-2 Living Together (was 3-2, the group-behavior reef level),
+  4-3 Huddle Up (NEW: Antarctica, emperor penguins, Adélie colonies, krill swarms, orca pods), 4-4 Invaders in Penn's Woods
+  (NEW: spotted lanternfly, tree-of-heaven, hemlock woolly adelgid; criteria, constraints, refine; circle traps),
+  4-5 Test It First (NEW: Chesapeake Bay simulation, Susquehanna watershed, tree buffers, oyster reefs; boss The Dead Zone),
+  4-6 Bonus: Ridge Run (NEW pixel habitat: Pennsylvania's Ridge and Valley with hemlocks, mountain laurel, ruffed grouse,
+  hawks; new move SUPER JUMP: stand still, hold down to charge, then jump; two walls need it).
+- Old World 4 is now World 5 (5-1 to 5-6), old World 5 is now World 6 (6-1 to 6-6). Question ids did not change.
+- O items left the Unit 3 mixed gates (3-3 and 3-4 now mix I/L/H and I/M/L). Unit 4 keeps a few M-coded items about how
+  disruptions change ecosystems (zebra mussels, algal blooms, invasive traits), because they belong to its levels.
+- New question ids: w3q41 to w3q49, u4q01 to u4q13; new activities d-hare, d-elk, d-huddle, d-sim, s-cycle, s-beaver,
+  s-design, s-simtest, b-hare, b-beaver, b-penguin, b-trap, sorts cer, crit-con, group-evidence, tokens hare-limits, good-fix,
+  wordbanks wb-predation, wb-ripple, wb-groups, wb-design, catch c-groups, balances bal-moose, bal-elk, bal-bay, lab lock lock-4-4.
+  Example data in the new graphs is labeled "example data" or "simulated numbers".
+- Saved progress moves automatically (engine migrateUnits6): 3-2 -> 4-2, 3-5 -> 4-1, 4-x -> 5-x, 5-x -> 6-x, for stars,
+  rare specimens and collections; mastery-by-unit records are re-sorted into the 6 units. A level that already has stars
+  stays open even if a new level before it is not finished yet.
+- Mission Map has 6 lands (3 on top, 3 below). Biodome supply requirements follow the new numbers (hawks: 3-2 or 4-2;
+  wetland: 4-1; seed bank: 5-2; hardy plants: 6-1). Word Lab has Units 1 to 6.
+- New 3D themes: taiga, valley, ice, autumn, marsh.

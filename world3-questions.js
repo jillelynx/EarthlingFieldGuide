@@ -1,7 +1,7 @@
-/* WORLD 3 QUESTION FILE: Ecosystems: Interdependence and Disruptions
+/* WORLD 3 QUESTION FILE: Ecological Relations
    Teachers: you can edit the words inside the quotation marks below.
    - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.
-     World 3 uses I, L, M, N, O, and V.
+     World 3 uses I (carrying capacity), L (biodiversity and populations), and M (stable ecosystems and change).
    - "topic" groups questions that can rotate with each other at stations and clues.
    - In "questions", "answer" is the position of the correct option, counting from 0
      (0 = first option). The game shuffles the options, so the right answer can always go first.
@@ -43,37 +43,6 @@ FieldGuide.registerQuestions(3, {
    ]
   },
   {
-   "id": "invasive-traits",
-   "code": "3.1.9-12.M",
-   "topic": "impacts",
-   "prompt": "Collect the traits that help an INVASIVE species take over a new ecosystem",
-   "good": [
-    "Reproduces quickly",
-    "No natural predators in its new home",
-    "Eats many kinds of food",
-    "Spreads easily to new places",
-    "Out-competes native species"
-   ],
-   "bad": [
-    {
-     "text": "Has many predators in its new home",
-     "explain": "Predators would keep it in check. Invasive species usually escape their natural predators."
-    },
-    {
-     "text": "Can eat only one rare food",
-     "explain": "A picky eater spreads slowly. Invaders usually eat many foods."
-    },
-    {
-     "text": "Reproduces once every few years",
-     "explain": "Slow reproduction keeps numbers low. Invaders usually reproduce fast."
-    },
-    {
-     "text": "Has lived here for thousands of years",
-     "explain": "That describes a native species, not an invasive one."
-    }
-   ]
-  },
-  {
    "id": "biodiversity-up",
    "code": "3.1.9-12.L",
    "topic": "counting",
@@ -101,6 +70,33 @@ FieldGuide.registerQuestions(3, {
     {
      "text": "Draining the wetland in the forest",
      "explain": "Draining the wetland removes habitat for frogs, insects, and birds, so species are lost."
+    }
+   ]
+  },
+  {
+   "id": "hare-limits",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "prompt": "Collect the things that can LIMIT a snowshoe hare population",
+   "good": [
+    "Lynx hunting hares",
+    "Owls hunting hares",
+    "Twigs running short in winter",
+    "Disease spreading in a crowded population",
+    "A very deep, icy snow crust"
+   ],
+   "bad": [
+    {
+     "text": "Fewer lynx in the forest",
+     "explain": "Fewer predators lets the hare population GROW. It removes a limit."
+    },
+    {
+     "text": "Lots of willow shrubs",
+     "explain": "Plenty of food helps hares grow in number. A SHORTAGE of food is a limit."
+    },
+    {
+     "text": "More hares born each summer",
+     "explain": "More births make the population grow, not shrink."
     }
    ]
   }
@@ -150,55 +146,46 @@ FieldGuide.registerQuestions(3, {
    ]
   },
   {
-   "id": "behavior",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "prompt": "Group behavior or individual behavior?",
+   "id": "cer",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "prompt": "Claim, evidence, or reasoning?",
    "options": [
-    "Group behavior",
-    "Individual behavior"
+    "Claim",
+    "Evidence",
+    "Reasoning"
    ],
-   "hint": "Group behavior: animals of the same species act TOGETHER. Individual behavior: one animal acts on its own.",
+   "hint": "Claim: the answer. Evidence: the data or observations. Reasoning: the science idea that connects them.",
    "items": [
     {
-     "text": "A school of sardines swirls into a tight ball when a dolphin appears",
+     "text": "Returning wolves helped some willows in Yellowstone grow back.",
      "answer": 0,
-     "explain": "The sardines move together as a group, which makes it hard for the dolphin to catch any one fish."
+     "explain": "This statement answers the question \"What did the wolves do?\": a claim."
     },
     {
-     "text": "A lone octopus hunts crabs at night by itself",
+     "text": "Willows near streams grew taller after 1995 than they had in the years before.",
      "answer": 1,
-     "explain": "The octopus hunts alone: individual behavior."
+     "explain": "This is a measurement: evidence."
     },
     {
-     "text": "Wolves take turns chasing an elk until it tires",
+     "text": "Wolves eat elk, and elk eat young willows, so fewer elk browsing means more young willows survive.",
+     "answer": 2,
+     "explain": "This uses the food web to explain why the evidence supports the claim: reasoning."
+    },
+    {
+     "text": "Beaver dams create ponds that more kinds of birds use.",
      "answer": 0,
-     "explain": "The pack works together to catch prey larger than one wolf could take down: group behavior."
+     "explain": "This answers a question about what beavers do: a claim."
     },
     {
-     "text": "A hawk circles a field alone, looking for mice",
+     "text": "A survey counted 12 bird species before the dams and 21 after.",
      "answer": 1,
-     "explain": "The hawk hunts on its own: individual behavior."
+     "explain": "Counts from a survey are evidence."
     },
     {
-     "text": "Meerkats take turns standing guard while the others dig for food",
-     "answer": 0,
-     "explain": "Guards warn the whole group of danger: group behavior."
-    },
-    {
-     "text": "A box turtle digs a nest, lays her eggs, and leaves alone",
-     "answer": 1,
-     "explain": "The turtle nests by herself and does not stay with a group: individual behavior."
-    },
-    {
-     "text": "Emperor penguins huddle together to stay warm in winter storms",
-     "answer": 0,
-     "explain": "Huddling together saves body heat for every penguin in the group: group behavior."
-    },
-    {
-     "text": "A spider builds a web and waits by itself for insects",
-     "answer": 1,
-     "explain": "The spider hunts alone: individual behavior."
+     "text": "A pond adds new habitat, such as open water and wetland plants, so species that need water can now live there.",
+     "answer": 2,
+     "explain": "This explains WHY the data support the claim: reasoning."
     }
    ]
   }
@@ -323,51 +310,6 @@ FieldGuide.registerQuestions(3, {
    "answer": 0,
    "hint": "Pioneers must survive with no soil at all.",
    "explain": "Lichens and mosses can grow on bare rock and slowly break it down to start forming soil."
-  },
-  {
-   "id": "w3q18",
-   "code": "3.1.9-12.M",
-   "topic": "impacts",
-   "prompt": "Zebra mussels, carried to the Great Lakes in ships' ballast water, now crowd out native mussels. What are zebra mussels there?",
-   "options": [
-    "an invasive species",
-    "a keystone species",
-    "a native species",
-    "a pioneer species"
-   ],
-   "answer": 0,
-   "hint": "They come from somewhere else and cause harm.",
-   "explain": "An invasive species is a nonnative species that spreads and harms the ecosystem it moves into."
-  },
-  {
-   "id": "w3q19",
-   "code": "3.1.9-12.M",
-   "topic": "impacts",
-   "prompt": "Fertilizer runoff causes an algal bloom in a lake. Why do many fish die afterward?",
-   "options": [
-    "Decomposers breaking down the dead algae use up the dissolved oxygen.",
-    "The algae eat the fish.",
-    "The fertilizer makes the water too cold.",
-    "The algae block all the water from moving."
-   ],
-   "answer": 0,
-   "hint": "What do decomposers use up as they work?",
-   "explain": "When the algae die, decomposers break them down and use up oxygen in the water. Fish suffocate (eutrophication)."
-  },
-  {
-   "id": "w3q20",
-   "code": "3.1.9-12.N",
-   "topic": "solutions",
-   "prompt": "Which action would most help a stream recover from erosion and fertilizer runoff?",
-   "options": [
-    "planting native trees and shrubs along the banks",
-    "clearing all plants from the banks",
-    "adding more fertilizer to nearby fields",
-    "paving the land next to the stream"
-   ],
-   "answer": 0,
-   "hint": "Roots hold soil and soak up extra nutrients.",
-   "explain": "A buffer of native plants holds soil in place and absorbs runoff before it reaches the water."
   },
   {
    "id": "w3q21",
@@ -535,167 +477,142 @@ FieldGuide.registerQuestions(3, {
    "explain": "Both ponds have 15 frogs, but Pond B has more kinds of frogs, so its biodiversity is higher."
   },
   {
-   "id": "w3q32",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "prompt": "Which is an example of GROUP behavior?",
+   "id": "w3q41",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "prompt": "Snowshoe hares have plenty of food, but their numbers start to fall after the lynx population grows. Which factor is MOST likely limiting the hares now?",
    "options": [
-    "Wolves surround an elk together during a hunt",
-    "A lone spider waits in its web",
-    "A frog flicks out its tongue to catch a fly",
-    "A bear eats berries by itself"
+    "Predation by lynx",
+    "A shortage of willow twigs",
+    "Too much space",
+    "More hares being born"
    ],
    "answer": 0,
-   "hint": "Look for animals of the same species acting together.",
-   "explain": "The wolves cooperate as a pack. The other animals act on their own."
+   "hint": "What changed? The lynx population grew.",
+   "explain": "Food is plentiful, so the limiting factor is predation. More lynx eat more hares, which keeps the hare population below what the food alone could support."
   },
   {
-   "id": "w3q33",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "prompt": "Sardines swim in huge, tightly packed schools. How does this behavior most help an individual sardine survive?",
+   "id": "w3q42",
+   "code": "3.1.9-12.L",
+   "topic": "predation",
+   "prompt": "Records show hare numbers peak first, and lynx numbers peak a year or two later. Which explanation fits this evidence BEST?",
    "options": [
-    "A predator has a harder time singling out any one fish.",
-    "Each sardine gets more food than it would alone.",
-    "Swimming in a school makes each sardine grow bigger.",
-    "The school keeps the water warmer."
+    "Lynx have more food when hares are plentiful, so more lynx kittens survive",
+    "Lynx eat willow twigs, so they grow when the plants grow",
+    "Hares hunt lynx when hare numbers are high",
+    "The two populations are not connected at all"
    ],
    "answer": 0,
-   "hint": "Think about a predator trying to catch one fish in a swirling crowd.",
-   "explain": "In a large moving school, predators get confused and have trouble picking out one fish, so each fish is safer."
+   "hint": "What do lynx eat?",
+   "explain": "Lynx depend on hares for food. Lots of hares means more lynx kittens survive, so the lynx peak comes after the hare peak."
   },
   {
-   "id": "w3q34",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "prompt": "Emperor penguins huddle together through the Antarctic winter. Which evidence BEST shows that huddling helps them survive?",
+   "id": "w3q43",
+   "code": "3.1.9-12.M",
+   "topic": "predation",
+   "prompt": "On an island, wolf and moose numbers have gone up and down for over 60 years, but both stayed within a range in stable conditions. Which claim does this evidence support?",
    "options": [
-    "Penguins in a huddle lose less body heat than penguins standing alone.",
-    "All the penguins in a huddle look alike.",
-    "Penguins form huddles only in summer.",
-    "Each penguin lays only one egg."
+    "Interactions between predators and prey keep numbers relatively consistent when conditions are stable",
+    "Predators always wipe out their prey",
+    "Prey populations grow forever on islands",
+    "Moose numbers are not affected by wolves"
    ],
    "answer": 0,
-   "hint": "Evidence should connect the behavior to survival.",
-   "explain": "Measurements show huddling penguins lose much less heat, which helps them survive the cold and save energy."
+   "hint": "Both went up and down but stayed within a range.",
+   "explain": "The ups and downs stayed within a range. In stable conditions, predator-prey interactions keep numbers relatively consistent (a dynamic equilibrium)."
   },
   {
-   "id": "w3q35",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "prompt": "Living in a large group has benefits, but also costs. Which is a COST of group living?",
+   "id": "w3q44",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "prompt": "When the island's wolves almost died out, the moose population grew quickly and then ate most of the young balsam fir. What will most likely happen to the moose next if no wolves return?",
    "options": [
-    "Disease spreads more easily between crowded group members.",
-    "Members can warn each other about predators.",
-    "Members can share the work of finding food.",
-    "Predators have trouble picking out one member."
+    "Food runs short, so many moose starve and the population drops",
+    "The moose population keeps growing forever",
+    "The moose switch to eating wolves",
+    "The balsam fir grows faster because more moose eat it"
    ],
    "answer": 0,
-   "hint": "A cost is a disadvantage.",
-   "explain": "Crowding helps disease spread and increases competition for food inside the group. The other choices are benefits."
+   "hint": "What happens when a population eats its food faster than it grows back?",
+   "explain": "Without predators, the moose overshoot the carrying capacity. Then food runs short, and the population crashes."
   },
   {
-   "id": "w3q36",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "prompt": "Honeybee workers do not lay eggs, but they defend the hive and feed the queen's young. How does this group behavior help the species survive?",
+   "id": "w3q45",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "prompt": "A beaver builds a dam, and a dry meadow becomes a pond. Meadow mice leave, and frogs and ducks move in. What does this show?",
    "options": [
-    "The colony survives and reproduces better, and the young share the workers' genes.",
-    "Each worker lives longer because it never works.",
-    "The workers become queens later.",
-    "It keeps the hive from ever needing food."
+    "Changing conditions can result in a new ecosystem",
+    "Ecosystems never change",
+    "Beavers only affect other beavers",
+    "The meadow will have more meadow mice than before"
    ],
    "answer": 0,
-   "hint": "Think about the colony as a team that shares genes.",
-   "explain": "By working together, workers help their close relatives (the queen's young) survive and reproduce, so the colony's genes are passed on."
+   "hint": "The conditions changed from dry land to water.",
+   "explain": "The dam changed the conditions so much that a different set of organisms now lives there: a new ecosystem."
   },
   {
-   "id": "w3q37",
-   "code": "3.1.9-12.V",
-   "topic": "simulation",
-   "prompt": "A team uses a computer simulation to test two plans for helping a threatened salamander cross a busy road. In the simulation, 20% of salamanders survive with Plan A (warning signs) and 80% survive with Plan B (a tunnel under the road). What should the team conclude?",
+   "id": "w3q46",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "prompt": "Claim: \"Wolves alone caused the willows in Yellowstone to grow back.\" Which evidence would make you question this claim the MOST?",
    "options": [
-    "Plan B is the better solution to try in the real world.",
-    "Plan A is the better solution to try.",
-    "Both plans work equally well.",
-    "Simulations cannot be used to compare plans."
+    "Willows also grew back in places that wolves rarely visit, after people hunted more elk there",
+    "Wolves eat elk",
+    "Elk eat young willows",
+    "Willows grew taller in some places after 1995"
    ],
    "answer": 0,
-   "hint": "Compare the survival percentages.",
-   "explain": "Plan B kept four times as many salamanders alive in the simulation, so it is the stronger plan to test in the real ecosystem."
+   "hint": "Look for evidence that another cause could explain the change.",
+   "explain": "If willows grew back where wolves were rare, something else (such as human hunting of elk) may have helped. Strong claims account for other possible causes."
   },
   {
-   "id": "w3q38",
-   "code": "3.1.9-12.V",
-   "topic": "simulation",
-   "prompt": "Why do scientists often test a plan to protect a species in a simulation before trying it in a real ecosystem?",
+   "id": "w3q47",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "prompt": "A coral reef stays healthy for hundreds of years. Then the water stays too warm for several summers, the corals die, and seaweed covers the reef. Which statement BEST explains this?",
    "options": [
-    "They can compare many solutions quickly without harming the real ecosystem.",
-    "Simulations always give the exact same results as nature.",
-    "Real ecosystems are never affected by human plans.",
-    "It means the plan never needs to be changed."
+    "In stable conditions the reef stayed about the same, but lasting changes in conditions created a new ecosystem",
+    "Seaweed always replaces coral after a few years",
+    "Warm water helps corals grow",
+    "Coral reefs are not ecosystems"
    ],
    "answer": 0,
-   "hint": "Think about risk, time, and cost.",
-   "explain": "A simulation lets scientists test and revise solutions safely and cheaply before using them on real populations."
+   "hint": "Compare what happened in stable conditions with what happened after the change.",
+   "explain": "Complex interactions kept the reef stable for a long time. The lasting warm water changed the conditions, and a different ecosystem formed."
   },
   {
-   "id": "w3q39",
-   "code": "3.1.9-12.V",
-   "topic": "simulation",
-   "prompt": "A simulation of a lake shows that removing invasive carp raises the number of native fish, but only if the carp are removed every year. How should the team revise its plan?",
+   "id": "w3q48",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "prompt": "Which piece of REASONING best connects wolves to more willows?",
    "options": [
-    "Remove carp every year instead of just once.",
-    "Remove carp once and stop.",
-    "Add more carp to the lake.",
-    "Stop removing carp because the plan failed."
+    "Wolves eat elk, and elk eat young willows, so fewer elk means more willows survive",
+    "Wolves eat willows, so willows grow faster",
+    "Willows grow wherever wolves sleep",
+    "Elk eat wolves, so wolves protect willows"
    ],
    "answer": 0,
-   "hint": "Use what the simulation showed about timing.",
-   "explain": "The simulation showed the solution only works with yearly removal, so the plan should be revised to include it."
+   "hint": "Follow the food web: who eats whom?",
+   "explain": "Reasoning uses a science idea, here the food web, to explain why the evidence supports the claim."
   },
   {
-   "id": "w3q40",
-   "code": "3.1.9-12.N",
-   "topic": "solutions",
-   "prompt": "A new highway will cut through the only forest where a rare turtle lives. Which design change would BEST reduce the impact on the turtles?",
+   "id": "w3q49",
+   "code": "3.1.9-12.L",
+   "topic": "change",
+   "prompt": "Students counted bird species along a stream before and after beavers built dams. Before: 12 species. After: 21 species. By how many species did the count increase?",
    "options": [
-    "Build tunnels under the highway with fences that guide turtles to them.",
-    "Make the highway wider.",
-    "Remove all the trees along the highway.",
-    "Raise the speed limit so cars pass quickly."
+    "9",
+    "12",
+    "21",
+    "33"
    ],
    "answer": 0,
-   "hint": "Which choice lets turtles reach both sides safely?",
-   "explain": "Wildlife tunnels with guide fences reconnect the habitat and keep turtles off the road, reducing deaths."
+   "hint": "Subtract: 21 − 12.",
+   "explain": "21 − 12 = 9 more species. The new pond and wetland gave more kinds of birds a place to live."
   }
  ],
  "pairs": [
-  {
-   "name": "Group or individual behavior?",
-   "explain": "Group behavior is animals of the same species acting together (schools, packs, huddles). Individual behavior is one animal acting on its own.",
-   "members": [
-    {
-     "label": "Group behavior",
-     "level": "3-2",
-     "ids": [
-      "behavior.0",
-      "behavior.2",
-      "behavior.4",
-      "w3q32"
-     ]
-    },
-    {
-     "label": "Individual behavior",
-     "level": "3-2",
-     "ids": [
-      "behavior.1",
-      "behavior.3",
-      "behavior.5"
-     ]
-    }
-   ]
-  },
   {
    "name": "Primary or secondary succession?",
    "explain": "Primary succession starts on bare rock with no soil. Secondary succession starts where soil survived a disturbance.",
@@ -783,62 +700,62 @@ FieldGuide.registerQuestions(3, {
    "explain": "Primary succession starts on bare rock with no soil. Lichens are pioneer species that begin breaking rock into soil."
   },
   {
-   "id": "b-solution",
-   "code": "3.1.9-12.N",
-   "topic": "solutions",
-   "you": "a conservation biologist",
-   "short": "You",
-   "color": "#7be0ad",
-   "goal": "Choose the action that best protects the lake from algal blooms.",
+   "id": "b-hare",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "you": "a snowshoe hare in a winter with very few lynx and lots of hares",
+   "short": "Hare",
+   "color": "#f4f0e8",
+   "goal": "Go through the door that shows what limits your population next.",
    "doors": [
     {
      "kind": "flow",
-     "label": "Plant native plants along the shore",
+     "label": "So many hares eat the twigs that food runs short",
      "ok": true
     },
     {
      "kind": "pump",
-     "label": "Spread more fertilizer on nearby lawns",
+     "label": "Nothing limits us, so we grow forever",
      "ok": false,
-     "why": "Extra fertilizer washes into the lake and feeds MORE algae."
+     "why": "No population grows forever. With few predators, food becomes the limiting factor."
     },
     {
      "kind": "organelle",
-     "label": "Drain the wetland to build houses",
+     "label": "The willows grow faster the more we eat them",
      "ok": false,
-     "why": "Wetlands filter nutrients out of runoff. Draining them makes blooms worse."
+     "why": "Heavy browsing slows the shrubs. They cannot keep up with a huge hare population."
     }
    ],
-   "explain": "Plant buffers and wetlands soak up nutrients before they reach the water, which helps prevent algal blooms."
+   "explain": "When predators are few, food supply becomes the limiting factor for the hare population."
   },
   {
-   "id": "b-school",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "you": "a young sardine on the reef",
-   "short": "Sardine",
-   "color": "#9fd8ff",
-   "goal": "A reef shark is coming! Swim through the door that gives you the best chance to survive.",
+   "id": "b-beaver",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "you": "a beaver choosing where to build",
+   "short": "Beaver",
+   "color": "#7a5030",
+   "goal": "Go through the door that shows what your dam does to the valley.",
    "doors": [
     {
      "kind": "flow",
-     "label": "Join the big, tight school of sardines",
+     "label": "Floods the meadow and creates a pond that new species move into",
      "ok": true
     },
     {
      "kind": "pump",
-     "label": "Swim off alone into open water",
+     "label": "Changes nothing, because one animal cannot change an ecosystem",
      "ok": false,
-     "why": "A fish alone is easy for the shark to single out and catch."
+     "why": "Beavers are ecosystem engineers. One dam can change a whole valley."
     },
     {
-     "kind": "organelle",
-     "label": "Stay alone and keep eating algae",
+     "kind": "vesicle",
+     "label": "Dries up the stream so fewer species live there",
      "ok": false,
-     "why": "Alone and not watching, you are the easiest target on the reef."
+     "why": "A dam holds water back, so the area gets wetter, not drier."
     }
    ],
-   "explain": "Schooling is group behavior: many eyes spot danger sooner, and a predator has trouble picking out one fish in a swirling crowd."
+   "explain": "By changing the conditions (more water), a beaver creates a new ecosystem: a pond and wetland."
   }
  ],
  "catches": [
@@ -885,94 +802,6 @@ FieldGuide.registerQuestions(3, {
     "Organ": "An organ is part of one organism. Ecology starts at the organism level."
    },
    "explain": "Organism, population (one species), community (many species), ecosystem (community plus nonliving factors like water, soil, and sunlight)."
-  },
-  {
-   "id": "c-impact",
-   "code": "3.1.9-12.N",
-   "topic": "impacts",
-   "short": "Human impacts",
-   "title": "Name the human impact: grab the term that matches each event.",
-   "cueLabel": "Event",
-   "builtLabel": "Impacts named",
-   "cueWord": "event",
-   "tokenWord": "impact",
-   "rule": "Humans change ecosystems in several different ways.",
-   "choices": [
-    "Invasive species",
-    "Nutrient pollution",
-    "Habitat loss",
-    "Overharvesting",
-    "Succession",
-    "Carrying capacity"
-   ],
-   "steps": [
-    {
-     "cue": "Zebra mussels arrive in ships' ballast water",
-     "need": "Invasive species"
-    },
-    {
-     "cue": "Fertilizer washes from farms into a lake",
-     "need": "Nutrient pollution"
-    },
-    {
-     "cue": "A forest is cleared to build a shopping mall",
-     "need": "Habitat loss"
-    },
-    {
-     "cue": "Boats catch cod faster than cod reproduce",
-     "need": "Overharvesting"
-    }
-   ],
-   "hint": "What is causing the harm in the highlighted event?",
-   "wrong": {
-    "Succession": "Succession is the natural change of a community over time.",
-    "Carrying capacity": "Carrying capacity is the largest population an environment can support, not a human impact."
-   },
-   "explain": "Invasive species, nutrient pollution, habitat loss, and overharvesting are major ways humans disrupt ecosystems."
-  },
-  {
-   "id": "c-behavior",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "short": "Group benefits",
-   "title": "Why live in a group? Grab the benefit each group behavior gives its members.",
-   "cueLabel": "Behavior",
-   "builtLabel": "Benefits found",
-   "cueWord": "behavior",
-   "tokenWord": "benefit",
-   "rule": "Each group behavior helps members survive or reproduce in a different way.",
-   "choices": [
-    "Hard to catch one fish",
-    "Catch bigger prey",
-    "Early warning of danger",
-    "Saves body heat",
-    "Makes its own food",
-    "Breaks rock into soil"
-   ],
-   "steps": [
-    {
-     "cue": "Fish swim in a tight, swirling school",
-     "need": "Hard to catch one fish"
-    },
-    {
-     "cue": "Wolves hunt an elk as a pack",
-     "need": "Catch bigger prey"
-    },
-    {
-     "cue": "One meerkat stands guard while the others feed",
-     "need": "Early warning of danger"
-    },
-    {
-     "cue": "Emperor penguins huddle in a winter storm",
-     "need": "Saves body heat"
-    }
-   ],
-   "hint": "Ask: how does acting together help each animal survive?",
-   "wrong": {
-    "Makes its own food": "Making food from sunlight is what producers do, not a benefit of group behavior.",
-    "Breaks rock into soil": "Breaking rock into soil is what pioneer species like lichens do."
-   },
-   "explain": "Group behaviors such as schooling, pack hunting, keeping watch, and huddling raise each member's chances to survive and reproduce."
   }
  ],
  "data": [
@@ -1019,48 +848,6 @@ FieldGuide.registerQuestions(3, {
    ]
   },
   {
-   "id": "d-oxygen",
-   "code": "3.1.9-12.M",
-   "topic": "impacts",
-   "title": "Dissolved oxygen along a stream that flows past a farm",
-   "xlabel": "Sampling site",
-   "ylabel": "Dissolved oxygen (mg/L)",
-   "categories": [
-    "Upstream",
-    "Above farm",
-    "Beside farm",
-    "Below farm",
-    "Far downstream"
-   ],
-   "values": [
-    9,
-    8,
-    3,
-    5,
-    8
-   ],
-   "questions": [
-    {
-     "prompt": "Where was the dissolved oxygen LOWEST?",
-     "answer": 2,
-     "hint": "Find the shortest bar.",
-     "explain": "Oxygen dropped to 3 mg/L beside the farm, where fertilizer runoff enters the stream."
-    },
-    {
-     "prompt": "Trout need at least 6 mg/L of oxygen. Which site is the FIRST place downstream of the farm where trout could live again?",
-     "answer": 4,
-     "hint": "Look after the farm for a bar at 6 or more.",
-     "explain": "Far downstream the oxygen recovered to 8 mg/L, enough for trout."
-    },
-    {
-     "prompt": "Based on the data, where does fertilizer runoff seem to enter the stream?",
-     "answer": 2,
-     "hint": "Look for the site where the oxygen first drops sharply.",
-     "explain": "The oxygen drops sharply beside the farm, a sign that fertilizer enters there. Algae grow fast, die, and decomposers use up the oxygen."
-    }
-   ]
-  },
-  {
    "id": "d-patch",
    "code": "3.1.9-12.L",
    "topic": "counting",
@@ -1097,6 +884,92 @@ FieldGuide.registerQuestions(3, {
      "answer": 0,
      "hint": "Match the new piece size to the data.",
      "explain": "Each piece will be about 1 hectare, and 1-hectare patches had only about 6 species. Fragmentation lowers biodiversity."
+    }
+   ]
+  },
+  {
+   "id": "d-hare",
+   "code": "3.1.9-12.L",
+   "topic": "predation",
+   "title": "Snowshoe hares counted in one forest (example data that follows the real 10-year cycle)",
+   "xlabel": "Year",
+   "ylabel": "Hares per square kilometer",
+   "categories": [
+    "Year 0",
+    "Year 2",
+    "Year 4",
+    "Year 6",
+    "Year 8",
+    "Year 10"
+   ],
+   "values": [
+    20,
+    120,
+    250,
+    60,
+    15,
+    110
+   ],
+   "questions": [
+    {
+     "prompt": "In which year were hares MOST common?",
+     "answer": 2,
+     "hint": "Find the tallest bar.",
+     "explain": "Year 4 had 250 hares per square kilometer, the peak of the cycle."
+    },
+    {
+     "prompt": "Lynx numbers peak a little AFTER the hares do. Which year is the most likely lynx peak?",
+     "answer": 3,
+     "hint": "Look for the bar just after the hare peak.",
+     "explain": "Lynx peak soon after the hare peak, around Year 6. By then the hares are already falling because so many lynx are hunting them."
+    },
+    {
+     "prompt": "After the crash, in which year were the hares back above 100 and rising again?",
+     "answer": 5,
+     "hint": "Look after the shortest bar.",
+     "explain": "By Year 10 the hares were back to 110 and rising. The cycle repeats, about every 10 years in the real fur-trading records."
+    }
+   ]
+  },
+  {
+   "id": "d-elk",
+   "code": "3.1.9-12.I",
+   "topic": "change",
+   "title": "Elk counted in a Yellowstone valley each winter (example data)",
+   "xlabel": "Year",
+   "ylabel": "Number of elk",
+   "categories": [
+    "1990",
+    "1995",
+    "2000",
+    "2005",
+    "2010"
+   ],
+   "values": [
+    16000,
+    17000,
+    12000,
+    9000,
+    5000
+   ],
+   "questions": [
+    {
+     "prompt": "Wolves returned in 1995. In which year shown were the elk MOST numerous?",
+     "answer": 1,
+     "hint": "Find the tallest bar.",
+     "explain": "1995 had about 17,000 elk, the highest count, just as the wolves came back."
+    },
+    {
+     "prompt": "In which year was the elk herd the SMALLEST?",
+     "answer": 4,
+     "hint": "Find the shortest bar.",
+     "explain": "2010 had about 5,000 elk, the smallest count shown, 12,000 fewer than in 1995."
+    },
+    {
+     "prompt": "Between which two years did the herd shrink the MOST? Choose the LATER year.",
+     "answer": 2,
+     "hint": "Compare the drop between each pair of bars.",
+     "explain": "From 1995 to 2000 the herd dropped by 5,000 (17,000 to 12,000), the biggest drop. Wolves, bears, human hunting, and dry years all played a part."
     }
    ]
   }
@@ -1167,32 +1040,33 @@ FieldGuide.registerQuestions(3, {
    "explain": "Because soil remains, secondary succession is faster than primary: grasses, then shrubs, then a forest."
   },
   {
-   "id": "s-bloom",
-   "code": "3.1.9-12.M",
-   "topic": "impacts",
-   "title": "How fertilizer runoff kills fish",
+   "id": "s-cycle",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "title": "Put the hare and lynx cycle in order",
    "steps": [
-    "Fertilizer runoff adds extra nutrients to a lake",
-    "Algae grow fast and form a bloom",
-    "The algae die and decomposers break them down",
-    "Decomposers use up the oxygen, so fish die"
+    "Plenty of twigs: the hare population grows",
+    "With so many hares to eat, more lynx kittens survive",
+    "Many lynx and too little food: the hare population falls",
+    "With few hares left, many lynx starve and their numbers fall",
+    "With few lynx and shrubs growing back, the hares grow again"
    ],
-   "hint": "It starts with extra nutrients.",
-   "explain": "This chain of events is called eutrophication. Reducing nutrient runoff prevents it."
+   "hint": "Start when hares have plenty of food.",
+   "explain": "Food and predators both limit the hares, and the hares limit the lynx. Their numbers rise and fall in a repeating cycle."
   },
   {
-   "id": "s-sim",
-   "code": "3.1.9-12.V",
-   "topic": "simulation",
-   "title": "Test a solution with a simulation: help sea turtle hatchlings reach the ocean",
+   "id": "s-beaver",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "title": "How a beaver turns a stream into a new ecosystem",
    "steps": [
-    "Name the problem: bright beach lights lead hatchlings away from the sea",
-    "Build a simulation of the beach, the lights, and the hatchlings",
-    "Run it with the old lights, then with turtle-safe lights",
-    "Compare how many hatchlings reach the sea, then revise the plan"
+    "A beaver builds a dam across a small stream",
+    "Water backs up and floods the meadow",
+    "Meadow plants die, and water plants and willows grow",
+    "Frogs, ducks, fish, and insects move into the new pond and wetland"
    ],
-   "hint": "Start with the problem, end by improving the solution.",
-   "explain": "Scientists use simulations to test and revise solutions that reduce human impacts on biodiversity before changing the real beach."
+   "hint": "It starts with the dam.",
+   "explain": "The dam changes the conditions (water level), and a new ecosystem forms. Beavers are ecosystem engineers."
   }
  ],
  "balances": [
@@ -1241,14 +1115,58 @@ FieldGuide.registerQuestions(3, {
    "explain": "Predators, food supply, and other limiting factors keep a population near its carrying capacity."
   },
   {
-   "id": "bal-bloom",
+   "id": "bal-moose",
+   "kind": "elevator",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "title": "Island moose: keep the herd near what the island's balsam fir can feed. The platform rises and falls with the herd.",
+   "what": "Moose on the island",
+   "unit": "moose",
+   "start": 1000,
+   "min": 300,
+   "max": 2000,
+   "band": [
+    850,
+    1150
+   ],
+   "danger": [
+    500,
+    1600
+   ],
+   "hold": 10,
+   "drift": 8,
+   "event": {
+    "every": 6,
+    "delta": 140,
+    "msg": "A mild winter! More moose calves survive than usual."
+   },
+   "controls": [
+    {
+     "label": "Bring new wolves to the island",
+     "delta": -120
+    },
+    {
+     "label": "A hard winter with deep snow",
+     "delta": -90
+    },
+    {
+     "label": "Young fir trees grow back",
+     "delta": 100
+    }
+   ],
+   "tooHigh": "Too many moose! They are eating the young fir trees faster than they can grow.",
+   "tooLow": "Too few moose! The wolves are running out of food.",
+   "explain": "Predators, food supply, and weather keep a population near its carrying capacity."
+  },
+  {
+   "id": "bal-elk",
    "kind": "boss",
-   "name": "The Algal Bloom",
-   "code": "3.1.9-12.N",
-   "topic": "solutions",
-   "title": "The Algal Bloom keeps changing the nutrients in the lake. Too few starve the producers; too many feed a bloom that uses up the oxygen. Hold the lake in balance.",
-   "what": "Nutrients in the lake",
-   "unit": "units",
+   "name": "The Overgrazers",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "title": "The Overgrazers are elk eating every young willow along the river. Too many elk strip the willows; too few starve the wolves and bears. Keep the valley in balance.",
+   "what": "Elk in the valley",
+   "unit": "elk",
    "start": 50,
    "min": 0,
    "max": 100,
@@ -1266,27 +1184,27 @@ FieldGuide.registerQuestions(3, {
    "set": 50,
    "controls": [
     {
-     "label": "Plant a buffer strip of native plants",
+     "label": "A wolf pack moves into the valley",
      "delta": -11
     },
     {
-     "label": "Restore the wetland filter",
+     "label": "Bears hunt elk calves in spring",
      "delta": -8
     },
     {
-     "label": "Let leaves and dead plants decompose in the lake",
+     "label": "Willows and grasses grow back",
      "delta": 8
     },
     {
-     "label": "Let a natural stream bring in nutrients",
+     "label": "A mild winter with little snow",
      "delta": 11
     }
    ],
-   "wrongHot": "There are already too many nutrients. That adds even more and feeds the algae.",
-   "wrongCold": "There are already too few nutrients. That removes even more and starves the producers.",
-   "tooHigh": "Too many nutrients! Algae are blooming. Use something that soaks up nutrients.",
-   "tooLow": "Too few nutrients! The water plants are starving. Let some nutrients back in.",
-   "explain": "Producers need some nutrients, but too many cause algal blooms and dead zones. Wetlands and plant buffers keep the balance."
+   "wrongHot": "There are already too many elk. That adds even more.",
+   "wrongCold": "There are already too few elk. That removes even more.",
+   "tooHigh": "Too many elk! The young willows are being eaten. Use a predator to bring the numbers down.",
+   "tooLow": "Too few elk! The predators will go hungry. Let the herd recover.",
+   "explain": "Predators, food, and weather interact to keep elk numbers within a range. When the conditions stay stable, so does the valley."
   }
  ],
  "wordbanks": [
@@ -1336,51 +1254,6 @@ FieldGuide.registerQuestions(3, {
    ]
   },
   {
-   "id": "wb-relations",
-   "code": "3.1.9-12.O",
-   "topic": "group",
-   "words": [
-    "school",
-    "pack",
-    "sentinel",
-    "predator",
-    "competition",
-    "pioneer"
-   ],
-   "sentences": [
-    {
-     "text": "Fish swimming together in a tight group form a ___.",
-     "answer": "school",
-     "code": "3.1.9-12.O",
-     "explain": "A school of fish moves as one group."
-    },
-    {
-     "text": "Wolves that live and hunt together as a group are a ___.",
-     "answer": "pack",
-     "code": "3.1.9-12.O",
-     "explain": "A pack can catch prey bigger than one wolf could."
-    },
-    {
-     "text": "A meerkat that keeps watch for danger while the others feed is a ___.",
-     "answer": "sentinel",
-     "code": "3.1.9-12.O",
-     "explain": "A sentinel warns the group, so everyone is safer."
-    },
-    {
-     "text": "A shark that hunts reef fish is a ___.",
-     "answer": "predator",
-     "code": "3.1.9-12.I",
-     "explain": "Predators help keep prey populations from growing too large."
-    },
-    {
-     "text": "Two corals growing toward the same patch of sunlight are in ___.",
-     "answer": "competition",
-     "code": "3.1.9-12.I",
-     "explain": "Competition for limited resources limits population size."
-    }
-   ]
-  },
-  {
    "id": "wb-growth",
    "code": "3.1.9-12.I",
    "topic": "limits",
@@ -1424,60 +1297,97 @@ FieldGuide.registerQuestions(3, {
      "explain": "Weather and natural disasters are density-independent."
     }
    ]
-  }
- ],
- "lablocks": [
+  },
   {
-   "id": "lock-3-5",
-   "title": "Lab Lock",
-   "clues": [
-    {
-     "prompt": "Clue 1: A simulation tests four plans to protect a sea turtle nesting beach. Nests saved: Plan 1 = 20, Plan 2 = 35, Plan 3 = 15, Plan 4 = 28. Which plan number saved the MOST nests?",
-     "answer": 2,
-     "code": "3.1.9-12.V",
-     "hint": "Find the largest number of nests saved.",
-     "explain": "Plan 2 saved 35 nests, the most, so it is the best plan to try on the real beach."
-    },
-    {
-     "prompt": "Clue 2: How many of these actions REDUCE human impact on a river? Planting native trees on the banks, adding more lawn fertilizer, building a fish ladder at a dam, paving the floodplain, restoring a wetland.",
-     "answer": 3,
-     "code": "3.1.9-12.N",
-     "hint": "Fertilizer and paving make things worse.",
-     "explain": "Native trees, a fish ladder, and a restored wetland reduce impacts (3). Extra fertilizer and paving increase them."
-    },
-    {
-     "prompt": "Clue 3: Trout need at least 6 mg/L of oxygen. At how many sites was the oxygen too LOW for trout?",
-     "answer": 2,
-     "code": "3.1.9-12.M",
-     "figure": {
-      "type": "bars",
-      "categories": [
-       "Upstream",
-       "Above farm",
-       "Beside farm",
-       "Below farm",
-       "Far down"
-      ],
-      "values": [
-       9,
-       8,
-       3,
-       5,
-       8
-      ],
-      "ylabel": "Dissolved oxygen (mg/L)"
-     },
-     "hint": "Count the bars below 6.",
-     "explain": "Beside the farm (3) and below the farm (5) were too low: 2 sites."
-    }
+   "id": "wb-predation",
+   "code": "3.1.9-12.I",
+   "topic": "predation",
+   "words": [
+    "predator",
+    "prey",
+    "competition",
+    "cycle",
+    "limiting"
    ],
-   "debrief": [
-    "Clue 1 linked simulations to solutions: compare plans in a model before changing a real ecosystem.",
-    "Clue 2 linked human actions to impacts: some actions harm a river and some help it recover.",
-    "Clue 3 linked human impact to data: fertilizer runoff lowered the oxygen near the farm."
+   "sentences": [
+    {
+     "text": "A lynx that hunts hares is a ___.",
+     "answer": "predator",
+     "code": "3.1.9-12.I",
+     "explain": "Predators hunt and eat other animals."
+    },
+    {
+     "text": "The snowshoe hare is the lynx's ___.",
+     "answer": "prey",
+     "code": "3.1.9-12.I",
+     "explain": "Prey is the animal that gets eaten."
+    },
+    {
+     "text": "Owls and lynx both need hares, so they are in ___.",
+     "answer": "competition",
+     "code": "3.1.9-12.I",
+     "explain": "Competition happens when organisms need the same limited resource."
+    },
+    {
+     "text": "Hare numbers rise and fall about every 10 years in a population ___.",
+     "answer": "cycle",
+     "code": "3.1.9-12.L",
+     "explain": "A regular rise and fall is a population cycle."
+    },
+    {
+     "text": "When twigs run short, food becomes the ___ factor.",
+     "answer": "limiting",
+     "code": "3.1.9-12.I",
+     "explain": "A limiting factor keeps a population from growing."
+    }
+   ]
+  },
+  {
+   "id": "wb-ripple",
+   "code": "3.1.9-12.M",
+   "topic": "change",
+   "words": [
+    "claim",
+    "evidence",
+    "reasoning",
+    "engineer",
+    "cascade"
+   ],
+   "sentences": [
+    {
+     "text": "\"Beavers increase bird diversity\" is a ___.",
+     "answer": "claim",
+     "code": "3.1.9-12.M",
+     "explain": "A claim answers a question."
+    },
+    {
+     "text": "Bird counts before and after the dams are ___.",
+     "answer": "evidence",
+     "code": "3.1.9-12.M",
+     "explain": "Evidence is data or observations."
+    },
+    {
+     "text": "Explaining that ponds add new habitat is the ___.",
+     "answer": "reasoning",
+     "code": "3.1.9-12.M",
+     "explain": "Reasoning uses a science idea to connect the evidence to the claim."
+    },
+    {
+     "text": "A beaver changes its habitat so much that it is called an ecosystem ___.",
+     "answer": "engineer",
+     "code": "3.1.9-12.M",
+     "explain": "Ecosystem engineers create conditions other species depend on."
+    },
+    {
+     "text": "Effects that spread down a food web from a top predator are a trophic ___.",
+     "answer": "cascade",
+     "code": "3.1.9-12.M",
+     "explain": "A trophic cascade starts at the top of the food web and spreads down."
+    }
    ]
   }
  ],
+ "lablocks": [],
  "scans": [
   {
    "id": "s3-organism",
@@ -1660,114 +1570,6 @@ FieldGuide.registerQuestions(3, {
    "note": "Beaver dams create ponds and wetlands for many other species. Beavers are a KEYSTONE SPECIES."
   },
   {
-   "id": "s3-biodiv",
-   "name": "Tide pool",
-   "look": "eggs",
-   "color": "#ff9f6e",
-   "word": "Biodiversity",
-   "def": "The variety of living things in an area.",
-   "note": "This tide pool holds snails, crabs, algae, and sea stars. High BIODIVERSITY makes ecosystems more stable."
-  },
-  {
-   "id": "s3-services",
-   "name": "Salt marsh",
-   "look": "grass",
-   "color": "#9ab86a",
-   "word": "Ecosystem services",
-   "def": "Benefits that people get from healthy ecosystems, such as clean water, pollination, and food.",
-   "note": "The marsh filters water and protects the coast from storms. Those are ECOSYSTEM SERVICES."
-  },
-  {
-   "id": "s3-invasive",
-   "name": "Zebra mussel",
-   "look": "rock",
-   "color": "#d0c0a0",
-   "word": "Invasive species",
-   "def": "A nonnative species that spreads and harms the ecosystem it moves into.",
-   "note": "Zebra mussels arrived in ships' ballast water and crowd out native mussels: an INVASIVE SPECIES."
-  },
-  {
-   "id": "s3-habloss",
-   "name": "Cleared land",
-   "look": "rock",
-   "color": "#a8763c",
-   "word": "Habitat loss",
-   "def": "The destruction or breaking up of the places where organisms live.",
-   "note": "Clearing land for buildings and roads causes HABITAT LOSS, the biggest threat to biodiversity."
-  },
-  {
-   "id": "s3-pollution",
-   "name": "Oily water",
-   "look": "drop",
-   "color": "#5a6470",
-   "word": "Pollution",
-   "def": "Harmful substances added to the environment.",
-   "note": "Oil, plastic, pesticides, and extra nutrients are all forms of POLLUTION."
-  },
-  {
-   "id": "s3-bloom",
-   "name": "Green scum",
-   "look": "lily",
-   "color": "#7ab040",
-   "word": "Eutrophication",
-   "def": "Extra nutrients in water cause an algal bloom; decomposing algae then use up the oxygen.",
-   "note": "Fertilizer runoff fed this bloom. When it dies, oxygen drops and fish die: EUTROPHICATION."
-  },
-  {
-   "id": "s3-climate",
-   "name": "Warming coastline",
-   "look": "sun",
-   "color": "#ffb070",
-   "word": "Climate change",
-   "def": "A long-term change in Earth's temperature and weather patterns.",
-   "note": "Warmer water and rising seas are shifting where species can live: CLIMATE CHANGE."
-  },
-  {
-   "id": "s3-overharvest",
-   "name": "Empty fishing net",
-   "look": "stack",
-   "color": "#62b6cb",
-   "word": "Overharvesting",
-   "def": "Taking organisms from the wild faster than they can reproduce.",
-   "note": "Catching fish faster than they reproduce is OVERHARVESTING. It can make a population collapse."
-  },
-  {
-   "id": "s3-conserve",
-   "name": "Restored dune",
-   "look": "sprout",
-   "color": "#7be0ad",
-   "word": "Conservation",
-   "def": "Protecting, restoring, and wisely using natural resources and ecosystems.",
-   "note": "Replanting dune grass and protecting nesting areas is CONSERVATION in action."
-  },
-  {
-   "id": "s3r-shark",
-   "name": "Whitetip reef shark",
-   "look": "critter",
-   "color": "#8a9aa8",
-   "word": "Predator",
-   "def": "An organism that hunts and eats other organisms.",
-   "note": "This reef shark is a PREDATOR. It hunts fish at night and helps keep prey populations in balance."
-  },
-  {
-   "id": "s3r-prey",
-   "name": "School of damselfish",
-   "look": "eggs",
-   "color": "#5fd0ff",
-   "word": "Prey",
-   "def": "An organism that is hunted and eaten by a predator.",
-   "note": "Damselfish are PREY for sharks, groupers, and eels. Swimming in a school helps them avoid being eaten."
-  },
-  {
-   "id": "s3r-compete",
-   "name": "Two corals touching",
-   "look": "rock",
-   "color": "#ffb070",
-   "word": "Competition",
-   "def": "A relationship in which organisms struggle for the same limited resource.",
-   "note": "Corals COMPETE for space and sunlight. Some even sting their neighbors to win room to grow."
-  },
-  {
    "id": "s3-richness",
    "name": "Spring wildflowers",
    "look": "sprout",
@@ -1813,49 +1615,148 @@ FieldGuide.registerQuestions(3, {
    "note": "Bird counts here dropped a little each year: a downward TREND. Trends show how populations change."
   },
   {
-   "id": "s3r-school",
-   "name": "School of bigeye scad",
-   "look": "eggs",
-   "color": "#9fd8ff",
-   "word": "School",
-   "def": "A large group of fish swimming together.",
-   "note": "Thousands of fish move as one. Many eyes spot danger sooner, and a predator has trouble picking out one fish."
-  },
-  {
-   "id": "s3r-pod",
-   "name": "Spinner dolphin pod",
+   "id": "s3-lynx",
+   "name": "Canada lynx",
    "look": "critter",
-   "color": "#8aa8c8",
-   "word": "Pod",
-   "def": "A group of dolphins or whales that live and travel together.",
-   "note": "Spinner dolphins rest together in calm water by day, swimming slowly in a tight group so many eyes can watch for sharks. At night the pod hunts together."
+   "color": "#b89a7a",
+   "word": "Predator",
+   "def": "An animal that hunts and eats other animals.",
+   "note": "A Canada lynx is a PREDATOR. Its big furry paws work like snowshoes, and most of what it eats is one prey species: the snowshoe hare."
   },
   {
-   "id": "s3r-spawn",
-   "name": "Grouper gathering",
+   "id": "s3-hare",
+   "name": "Snowshoe hare",
    "look": "critter",
-   "color": "#c8a070",
-   "word": "Spawning aggregation",
-   "def": "A large gathering of fish that meet in one place to reproduce.",
-   "note": "Each winter, Nassau groupers gather by the thousands to spawn. Meeting in a group helps more eggs get fertilized, but it also makes the fish easy for fishing boats to catch."
+   "color": "#f4f0e8",
+   "word": "Prey",
+   "def": "An animal that is hunted and eaten by another animal.",
+   "note": "The snowshoe hare is PREY. Its fur turns white in winter and brown in summer, which helps it hide from lynx, owls, and foxes."
   },
   {
-   "id": "s3r-cost",
-   "name": "Crowded damselfish colony",
-   "look": "eggs",
-   "color": "#5fd0ff",
-   "word": "Cost of group living",
-   "def": "A downside of living in a group, such as more competition for food or faster spread of disease.",
-   "note": "These damselfish live close together and fight over the best patches of algae. In a crowd, disease also spreads easily."
+   "id": "s3-browse",
+   "name": "Willow twigs",
+   "look": "sprout",
+   "color": "#8a6a3a",
+   "word": "Food supply",
+   "def": "The amount of food available to a population.",
+   "note": "In winter, hares eat twigs and bark. When there are too many hares, they eat the twigs faster than the shrubs can grow back, and the FOOD SUPPLY runs short."
   },
   {
-   "id": "s3r-alone",
-   "name": "Day octopus",
+   "id": "s3-cycle",
+   "name": "Hare and lynx tracks",
+   "look": "rock",
+   "color": "#d8e4f0",
+   "word": "Population cycle",
+   "def": "A regular rise and fall in a population's size over time.",
+   "note": "Fur-trading records from Canada show hare and lynx numbers rising and falling in a POPULATION CYCLE about every 10 years. Lynx numbers peak a little after hare numbers do."
+  },
+  {
+   "id": "s3-owl",
+   "name": "Great horned owl",
    "look": "critter",
-   "color": "#d8a070",
-   "word": "Individual behavior",
-   "def": "Something one animal does on its own, not as part of a group.",
-   "note": "This octopus hunts crabs alone and does not cooperate with other octopuses: INDIVIDUAL BEHAVIOR."
+   "color": "#8a6a4a",
+   "word": "Competition",
+   "def": "When organisms need the same limited resource, such as food or space.",
+   "note": "Great horned owls and lynx both hunt snowshoe hares. When hares are scarce, the two predators are in COMPETITION for the same food."
+  },
+  {
+   "id": "s3-moose",
+   "name": "Moose",
+   "look": "critter",
+   "color": "#5a4030",
+   "word": "Herbivore population",
+   "def": "All the plant-eating animals of one species in an area.",
+   "note": "On Isle Royale, an island in Lake Superior, scientists have counted the moose and their wolf predators every winter since 1958. It is the longest-running study of a predator and its prey."
+  },
+  {
+   "id": "s3-isle",
+   "name": "Isle Royale wolf",
+   "look": "critter",
+   "color": "#8a8a90",
+   "word": "Predator-prey balance",
+   "def": "Predators and prey affect each other's numbers, so both stay within a range over time.",
+   "note": "When the island's wolves nearly died out, the moose population grew quickly and ate many of the balsam fir trees. In 2018 and 2019, new wolves were brought to the island to help restore the PREDATOR-PREY BALANCE."
+  },
+  {
+   "id": "s3-range",
+   "name": "Balsam fir",
+   "look": "sprout",
+   "color": "#2f5a3a",
+   "word": "Dynamic equilibrium",
+   "def": "Numbers keep changing but stay within a range, so the ecosystem stays about the same overall.",
+   "note": "Predators, prey, and plants keep changing in number, but in stable conditions they stay within a range. Ecologists call this a DYNAMIC EQUILIBRIUM."
+  },
+  {
+   "id": "s3-wolfpack",
+   "name": "Gray wolf",
+   "look": "critter",
+   "color": "#7a7a80",
+   "word": "Top predator",
+   "def": "A predator at the top of a food web that no other animal hunts.",
+   "note": "Gray wolves were brought back to Yellowstone National Park in 1995 and 1996, about 70 years after the last ones were killed. They are a TOP PREDATOR there."
+  },
+  {
+   "id": "s3-elk",
+   "name": "Elk herd",
+   "look": "critter",
+   "color": "#a87a4a",
+   "word": "Trophic cascade",
+   "def": "A chain of effects that spreads down a food web when a predator's numbers change.",
+   "note": "After wolves returned, elk numbers dropped and elk moved around more. In some places, willows and aspens grew back. A change at the top that spreads down a food web is a TROPHIC CASCADE."
+  },
+  {
+   "id": "s3-claim",
+   "name": "Field notebook",
+   "look": "stack",
+   "color": "#e8d8a8",
+   "word": "Claim",
+   "def": "A statement that answers a question.",
+   "note": "CLAIM: \"Wolves caused the willows to grow back.\" A claim is only as strong as the evidence and reasoning that support it."
+  },
+  {
+   "id": "s3-evidence",
+   "name": "Willow measurements",
+   "look": "grass",
+   "color": "#7aa84a",
+   "word": "Evidence",
+   "def": "Data or observations that support or refute a claim.",
+   "note": "EVIDENCE: measurements of how tall willows grew before and after wolves came back. Scientists still debate how much of the change came from wolves and how much from other causes, such as human hunting, bears, and drought."
+  },
+  {
+   "id": "s3-reasoning",
+   "name": "Food web sketch",
+   "look": "chain",
+   "color": "#c8e0ff",
+   "word": "Reasoning",
+   "def": "The science idea that explains why the evidence supports the claim.",
+   "note": "REASONING: wolves eat elk, elk eat young willows, so fewer elk can mean more willows. Good reasoning connects the evidence to the claim with a science idea."
+  },
+  {
+   "id": "s3-beaver",
+   "name": "Beaver",
+   "look": "critter",
+   "color": "#7a5030",
+   "word": "Ecosystem engineer",
+   "def": "An organism that greatly changes its habitat, creating conditions other species depend on.",
+   "note": "A beaver dam turns a fast stream into a pond. A beaver is an ECOSYSTEM ENGINEER: frogs, ducks, fish, and wetland plants move into the pond it builds."
+  },
+  {
+   "id": "s3-wetland",
+   "name": "Beaver pond",
+   "look": "lily",
+   "color": "#5fa8a0",
+   "word": "New ecosystem",
+   "def": "A different set of organisms that forms when conditions change a lot.",
+   "note": "When the dam floods a meadow, meadow plants die and pond life moves in. Changing conditions can turn one ecosystem into a NEW ECOSYSTEM."
+  },
+  {
+   "id": "s3-bleach",
+   "name": "Bleached coral",
+   "look": "crystal",
+   "color": "#f4f4f0",
+   "word": "Changing conditions",
+   "def": "Lasting changes in an ecosystem, such as warmer water or less rain.",
+   "note": "When ocean water stays too warm for too long, corals lose the algae that live inside them and turn white (bleaching). If the CHANGING CONDITIONS last, seaweed can take over and the reef becomes a different ecosystem."
   }
  ],
  "vocab": [
@@ -1940,42 +1841,6 @@ FieldGuide.registerQuestions(3, {
    "def": "A species that has a very large effect on its ecosystem compared with its numbers."
   },
   {
-   "term": "Biodiversity",
-   "def": "The variety of living things in an area."
-  },
-  {
-   "term": "Ecosystem services",
-   "def": "Benefits that people get from healthy ecosystems, such as clean water, pollination, and food."
-  },
-  {
-   "term": "Invasive species",
-   "def": "A nonnative species that spreads and harms the ecosystem it moves into."
-  },
-  {
-   "term": "Habitat loss",
-   "def": "The destruction or breaking up of the places where organisms live."
-  },
-  {
-   "term": "Pollution",
-   "def": "Harmful substances added to the environment."
-  },
-  {
-   "term": "Eutrophication",
-   "def": "Extra nutrients in water cause an algal bloom; decomposing algae then use up the oxygen."
-  },
-  {
-   "term": "Climate change",
-   "def": "A long-term change in Earth's temperature and weather patterns."
-  },
-  {
-   "term": "Overharvesting",
-   "def": "Taking organisms from the wild faster than they can reproduce."
-  },
-  {
-   "term": "Conservation",
-   "def": "Protecting, restoring, and wisely using natural resources and ecosystems."
-  },
-  {
    "term": "Species richness",
    "def": "The number of different species living in an area."
   },
@@ -1996,32 +1861,56 @@ FieldGuide.registerQuestions(3, {
    "def": "The general direction that data change over time, such as going up or down."
   },
   {
-   "term": "School",
-   "def": "A large group of fish swimming together."
+   "term": "Food supply",
+   "def": "The amount of food available to a population."
   },
   {
-   "term": "Pod",
-   "def": "A group of dolphins or whales that live and travel together."
+   "term": "Population cycle",
+   "def": "A regular rise and fall in a population's size over time."
   },
   {
-   "term": "Spawning aggregation",
-   "def": "A large gathering of fish that meet in one place to reproduce."
+   "term": "Herbivore population",
+   "def": "All the plant-eating animals of one species in an area."
   },
   {
-   "term": "Cost of group living",
-   "def": "A downside of living in a group, such as more competition for food or faster spread of disease."
+   "term": "Predator-prey balance",
+   "def": "Predators and prey affect each other's numbers, so both stay within a range over time."
   },
   {
-   "term": "Individual behavior",
-   "def": "Something one animal does on its own, not as part of a group."
+   "term": "Dynamic equilibrium",
+   "def": "Numbers keep changing but stay within a range, so the ecosystem stays about the same overall."
   },
   {
-   "term": "Group behavior",
-   "def": "Behavior in which animals of the same species act together, such as schooling, herding, huddling, or hunting in packs."
+   "term": "Top predator",
+   "def": "A predator at the top of a food web that no other animal hunts."
   },
   {
-   "term": "Simulation",
-   "def": "A model, often on a computer, used to test what would happen under different conditions."
+   "term": "Trophic cascade",
+   "def": "A chain of effects that spreads down a food web when a predator's numbers change."
+  },
+  {
+   "term": "Claim",
+   "def": "A statement that answers a question."
+  },
+  {
+   "term": "Evidence",
+   "def": "Data or observations that support or refute a claim."
+  },
+  {
+   "term": "Reasoning",
+   "def": "The science idea that explains why the evidence supports the claim."
+  },
+  {
+   "term": "Ecosystem engineer",
+   "def": "An organism that greatly changes its habitat, creating conditions other species depend on."
+  },
+  {
+   "term": "New ecosystem",
+   "def": "A different set of organisms that forms when conditions change a lot."
+  },
+  {
+   "term": "Changing conditions",
+   "def": "Lasting changes in an ecosystem, such as warmer water or less rain."
   }
  ]
 });

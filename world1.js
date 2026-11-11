@@ -24,7 +24,7 @@
    balance = keep a body measurement in its normal range with switches (an elevator, or the 1-5 boss). */
 FieldGuide.registerWorld({
   id: 1,
-  title: 'Structure and Function',
+  title: 'Structure & Function',
   levels: [
     { id: '1-1', title: 'Levels of Organization', theme: 'pond',
       log: 'Mission log: Landed beside a pond on Earth. First question for the report home: how is a living thing built?',

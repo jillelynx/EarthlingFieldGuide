@@ -1,6 +1,6 @@
 /* Earthling Field Guide: PIXEL HABITATS for the retro bonus speed runs (v70).
    Five flat, 8-bit style landscapes inspired by the teacher's "Earth Expedition" art:
-   pond edge (World 1), desert (World 2), rainforest (World 3), tundra (World 4), coral reef (World 5).
+   pond edge (World 1), desert (World 2), rainforest (World 3), Pennsylvania ridge (World 4), tundra (World 5), coral reef (World 6).
    Everything is drawn by code on small canvases and shown with crisp pixels (no image files):
    - backdrop layers (sky, far land, near trees) on big flat panels behind the course, so they slide past at different speeds
    - the ground and ledges get pixel textures (dirt, sandstone, moss, snowy rock, reef rock) and a grassy, sandy or snowy lip
@@ -122,10 +122,29 @@ kawaabbbaaaaak
   star: function () { const c = cv(10, 10), x = c.getContext('2d'); [[5, 1], [5, 3], [1, 4], [3, 4], [7, 4], [9, 4], [5, 5], [3, 7], [7, 7], [2, 9], [8, 9]].forEach(function (p) { P(x, p[0], p[1], 1, 1, '#ff7a3a'); }); P(x, 4, 4, 3, 3, '#ff9a4a'); return c; },
   tube: function () { const c = cv(14, 18), x = c.getContext('2d'); [[2, 6], [6, 2], [10, 8]].forEach(function (s) { P(x, s[0], s[1], 3, 18 - s[1], '#9ac83a'); P(x, s[0], s[1], 3, 1, '#4a6a1a'); P(x, s[0] + 2, s[1] + 1, 1, 17 - s[1], '#c8e86a'); }); return c; },
   shell: function () { const c = cv(10, 7), x = c.getContext('2d'); oval(x, 5, 4, 4, 3, '#f4d8c0'); for (let k = 2; k < 9; k += 2) P(x, k, 2, 1, 5, '#c8a088'); return c; },
+  /* Pennsylvania ridge (Version 76): eastern hemlock (state tree), mountain laurel (state flower), ruffed grouse (state bird) */
+  hemlock: function () { const c = cv(30, 56), x = c.getContext('2d'); P(x, 14, 40, 3, 16, '#5a3a24'); P(x, 16, 40, 1, 16, '#7a5234');
+    for (let t = 0; t < 7; t++) { const y = 4 + t * 6, hw = 3 + t * 2; for (let k = -hw; k <= hw; k++) { const droop = Math.round(Math.abs(k) * Math.abs(k) / (hw * 2.2)); P(x, 15 + k, y + droop, 1, 4, (k + t) % 3 ? '#24503a' : '#2f6a48'); P(x, 15 + k, y + droop + 4, 1, 1, '#18382a'); } }
+    P(x, 15, 0, 1, 5, '#2f6a48'); return c; },
+  laurel: function () { const c = cv(22, 14), x = c.getContext('2d'); seed = 19; for (let i = 0; i < 10; i++) blob(x, 2 + R() * 18, 6 + R() * 6, 2 + R() * 2, R() < 0.5 ? '#2f6a3a' : '#3f7a44', true);
+    for (let i = 0; i < 9; i++) { const X = 2 + R() * 18, Y = 2 + R() * 7; blob(x, X, Y, 1, '#f8d8e8', false); P(x, X, Y, 1, 1, '#e86aa0'); } return c; },
+  grouse: function () { return sprite(`
+.....bb.........
+....bbbb........
+....bkbbb.......
+...obbbbb.......
+....bbBBBbb.....
+....bBBBBBbbb...
+...bBwBwBBBbbbb.
+...bBBBBBBBbbbbb
+....bBBBBBBBbbb.
+.....bBBBBBbb...
+......bbbbb.....
+.......o..o.....`, { b: '#7a5234', B: '#a8784a', w: '#e8d8b8', k: '#101010', o: '#c8903a' }); },
   rock: function (col, top) { const c = cv(20, 12), x = c.getContext('2d'); oval(x, 10, 7, 9, 5, col || '#7a8282'); oval(x, 9, 5, 6, 2, '#9aa0a0'); if (top) P(x, 3, 2, 14, 2, top); return c; }
 };
 
-/* ---------- the five habitats ---------- */
+/* ---------- the six habitats ---------- */
 const HAB = {
   pond: { bg: '#2c5a52',
     sky: function (x, w, h) { grad(x, w, h, [[0, '#2c5a52'], [0.6, '#3d6e5a'], [1, '#24463e']]); },
@@ -166,6 +185,19 @@ const HAB = {
     lip: function (x, w, h) { P(x, 0, 0, w, 5, '#f4f8ff'); P(x, 0, 5, w, 1, '#c8d8e8'); for (let i = 0; i < w; i++) { if ((i * 7) % 6 === 0) { const L = 2 + ((i * 3) % 6); for (let k = 0; k < L; k++) P(x, i, 6 + k, 1, 1, k > L - 2 ? '#a8d8f8' : '#d8f0ff'); } } },
     deco: [['hare', 0.1, 1.5, -2.6, 'hop'], ['redshrub', 0.35, 1.3, -2.7], ['rock', 0.25, 1.8, -2.8, ['#7a8088', '#f4f8ff']], ['shrub', 0.2, 1.2, -2.8, ['#c8a050', '#7a5a3a']]],
     fly: 'snow' },
+  /* Pennsylvania's Ridge and Valley: rows of long blue ridges, hemlock and oak forest, mountain laurel, a trout brook, and hawks
+     riding the wind along the ridges in fall migration (as at Hawk Mountain Sanctuary) */
+  ridge: { bg: '#8ac0e8',
+    sky: function (x, w, h) { grad(x, w, h, [[0, '#4a88d8'], [0.55, '#9ac8f0'], [0.8, '#f0e0c0'], [1, '#d8c0a0']]); seed = 71; for (let i = 0; i < 4; i++) { const X = R() * w, Y = 8 + R() * 20; for (let k = 0; k < 4; k++) oval(x, X + k * 6, Y + (k % 2), 6, 3, '#ffffff'); } },
+    far: function (x, w, h) { [[0.38, '#6a8ab8', 3], [0.5, '#5a78a0', 7], [0.62, '#4a6888', 11]].forEach(function (r) { for (let X = 0; X < w; X++) { const y = h * r[0] + Math.sin(X * 0.02 + r[2]) * 3 + Math.sin(X * 0.07 + r[2]) * 1.2; P(x, X, y, 1, h - y, r[1]); } }); },
+    mid: function (x, w, h) { seed = 73; for (let X = 0; X < w; X++) { const y = h * 0.55 + Math.sin(X * 0.03) * 5; P(x, X, y, 1, h - y, '#2f5a3a'); }
+      for (let i = 0; i < 34; i++) { const X = R() * w, y = h * 0.5 + R() * 14; const col = ['#24503a', '#3a6a3a', '#c8783a', '#d8a83a', '#2f6a48'][i % 5]; blob(x, X, y, 4 + R() * 3, col, true); }
+      for (let X = 0; X < w; X++) { const y = h * 0.88 + Math.sin(X * 0.05) * 1.5; P(x, X, y, 1, 2, (X % 6) ? '#6ab0d8' : '#d8f0ff'); } },
+    rays: '#fff4c8',
+    dirt: function (x, w, h) { P(x, 0, 0, w, h, '#6a5a48'); seed = 75; for (let i = 0; i < 18; i++) { const X = R() * w, Y = R() * h; oval(x, X, Y, 4, 2, R() < 0.5 ? '#7a6a58' : '#5a4a3a'); P(x, X - 2, Y - 1, 3, 1, '#8a7a68'); } for (let i = 0; i < 6; i++) P(x, R() * w, R() * h, 2, 1, '#4a7a3a'); },
+    lip: function (x, w, h) { P(x, 0, 0, w, 5, '#4a8a3a'); P(x, 0, 0, w, 1, '#7ab85a'); for (let i = 0; i < w; i++) { if ((i * 5) % 7 === 0) P(x, i, 5, 1, 2 + ((i * 3) % 4), '#3a6a2a'); if ((i * 13) % 11 === 0) P(x, i, 0, 1, 1, '#c8783a'); } },
+    deco: [['hemlock', 0.16, 9, -9], ['laurel', 0.35, 1.8, -2.8], ['grouse', 0.08, 1.3, -2.5, 'scurry'], ['fern', 0.3, 1.8, -2.9, '#3a8a3a'], ['rock', 0.25, 1.6, -2.7, ['#8a8a80', '#4a8a3a']], ['fungus', 0.08, 1.2, -3]],
+    fly: 'hawk' },
   reef: { bg: '#1a6a9a', under: true,
     sky: function (x, w, h) { grad(x, w, h, [[0, '#5ac8e8'], [0.15, '#2a9ac8'], [0.6, '#1a6a9a'], [1, '#0e3a5a']]); for (let X = 0; X < w; X++) P(x, X, 4 + Math.round(Math.sin(X * 0.2) * 1.5), 1, 1, '#c8f8ff'); },
     far: function (x, w, h) { seed = 53; for (let i = 0; i < 16; i++) { const X = R() * w, y = h * 0.6 + R() * 16; blob(x, X, y, 6 + R() * 6, '#2a5a8a', true); P(x, X - 3, y, 6, h - y, '#2a5a8a'); } for (let i = 0; i < 3; i++) { const X = R() * w, Y = h * 0.3 + R() * 20; for (let k = 0; k < 14; k++) P(x, X + (k % 5) * 4, Y + Math.floor(k / 5) * 3, 2, 1, '#6ab0d8'); } },
@@ -208,6 +240,8 @@ BQ.pixelScape = function (name, x0, x1, grp, solids) {
     const bx = m.position.x, by = m.position.y, sp = 0.6 + R() * 0.8, ph = R() * 9; TICK.push(function (dt, t) { m.position.x = bx + Math.sin(t * 0.08 * sp + ph) * s[2]; m.scale.x = Math.cos(t * 0.08 * sp + ph) > 0 ? 1 : -1; m.position.y = by + Math.sin(t * sp + ph) * 0.4; }); } });
   if (H.fly === 'dragonfly') { for (let n = 0; n < Math.round((x1 - x0) / 40); n++) { const c = cv(14, 6), x = c.getContext('2d'); P(x, 0, 3, 11, 1, '#3a7ad8'); P(x, 11, 2, 2, 2, '#ffd84a'); P(x, 3, 0, 3, 2, '#d8f0ff'); P(x, 7, 0, 3, 2, '#d8f0ff'); P(x, 3, 4, 3, 2, '#b8d8f0'); P(x, 7, 4, 3, 2, '#b8d8f0');
     const m = plane(c, 1.4, 0.6, x0 + R() * (x1 - x0), 5, -2, 1, 1); grp.add(m); const bx = m.position.x, ph = R() * 9; TICK.push(function (dt, t) { m.position.x = bx + Math.sin(t * 0.5 + ph) * 5; m.position.y = 5 + Math.sin(t * 1.7 + ph) * 0.8; m.scale.x = Math.cos(t * 0.5 + ph) > 0 ? -1 : 1; }); } }
+  if (H.fly === 'hawk') { for (let n = 0; n < Math.max(3, Math.round((x1 - x0) / 45)); n++) { const c = cv(16, 7), x = c.getContext('2d'); P(x, 0, 2, 6, 1, '#4a3424'); P(x, 1, 1, 4, 1, '#6a4a30'); P(x, 10, 2, 6, 1, '#4a3424'); P(x, 11, 1, 4, 1, '#6a4a30'); P(x, 6, 2, 4, 3, '#5a3a24'); P(x, 7, 5, 2, 2, '#b8582a'); P(x, 7, 1, 2, 1, '#e8d8b8');
+    const m = plane(c, 2.2, 1, x0 + R() * (x1 - x0), 11 + R() * 4, -6 - R() * 4, 1, 1); grp.add(m); const bx = m.position.x, by = m.position.y, ph = R() * 9; TICK.push(function (dt, t) { m.position.x = bx + Math.sin(t * 0.12 + ph) * 9; m.position.y = by + Math.sin(t * 0.5 + ph) * 0.7; m.scale.x = Math.cos(t * 0.12 + ph) > 0 ? 1 : -1; }); } }
   if (H.fly === 'snow' || H.fly === 'bubble' || H.fly === 'drip') { const n = 160, pos = new Float32Array(n * 3); for (let i = 0; i < n; i++) pos.set([x0 + R() * (x1 - x0), R() * 16 - 2, -1 - R() * 8], i * 3);
     const g = new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(pos, 3)); const pts = new T.Points(g, new T.PointsMaterial({ color: H.fly === 'snow' ? '#ffffff' : H.fly === 'drip' ? '#c8f0ff' : '#d8faff', size: H.fly === 'drip' ? 0.12 : 0.2, transparent: true, opacity: 0.85, fog: false })); grp.add(pts);
     const dir = H.fly === 'bubble' ? 1 : -1, spd = H.fly === 'drip' ? 5 : 1; TICK.push(function (dt, t) { for (let i = 0; i < n; i++) { let y = pos[i * 3 + 1] + dir * dt * spd * (0.6 + (i % 5) * 0.2); if (y > 14) y = -2; if (y < -2) y = 14; pos[i * 3 + 1] = y; if (H.fly !== 'drip') pos[i * 3] += Math.sin(t + i) * dt * 0.3; } g.attributes.position.needsUpdate = true; }); }
