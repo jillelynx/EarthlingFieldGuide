@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: WORD LAB (side game)
    Biology words are built from small parts: prefixes, roots and suffixes (photo + synthesis, hetero + troph).
    Two ways to play, no timer:

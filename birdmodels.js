@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: ANIMATED BIRD MODELS
    Stork.glb and Flamingo.glb from the three.js examples ("ro.me" project by mirada), three.js MIT License, (c) 2010-2021 three.js authors.
    Stored here as text so the game needs no extra downloads. In the reserve they are recolored as a great blue heron and a great egret. */

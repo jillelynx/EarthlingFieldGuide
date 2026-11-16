@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* WORLD 4 GAME FILE: Ecosystem Disrupters (five levels and a bonus speed run).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world4-questions.js.
    Standards (PA STEELS): N (design, evaluate, and refine solutions to human impacts), O (group behavior and survival),

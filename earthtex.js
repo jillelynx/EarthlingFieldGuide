@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: EARTH PICTURES FOR THE OPENING STORY
    Earth day map and cloud layer from the three.js examples (textures/planets, MIT License repository);
    the day map is based on NASA Blue Marble imagery (public domain). Stored as text so the game also works from plain files. */

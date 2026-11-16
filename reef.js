@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: THE CORAL REEF in Sunset Cove (uses the hiking system in coast.js).
    Corals, sea fans, sponges, starfish and seagrass, and real reef animals that behave like the real ones:
    schools of yellow tang, blue tang and chromis, grazing parrotfish, clownfish that hide in their anemone, a cleaner shrimp,

@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: THE BIG CELEBRATION, in two certificate levels (v57).
    Level 1 (silver, "Field Biologist")  = every platformer level finished (at least one star each).
    Level 2 (gold, "Master Biologist")   = level 1 AND a balanced Biodome (the final mission).

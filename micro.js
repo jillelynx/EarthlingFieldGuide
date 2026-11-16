@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: THE MICROSCOPE VIEW (Willow Creek research station).
    When the alien uses the microscope, the screen becomes the round view through the eyepiece: it comes into focus,
    the sample drifts gently, living things move, and labels point out the parts named on the discovery card.

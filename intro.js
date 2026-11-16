@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: OPENING STORY
    A short cinematic that plays the first time the game starts, told by the alien biologist in the first person:
    the long search across the Milky Way, our solar system and its habitable zone, Earth and a Moon flyby, then the

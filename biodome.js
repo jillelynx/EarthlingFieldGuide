@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: FINAL MISSION, THE BIODOME
    The alien flies home to its dry, empty planet and builds a sealed dome where Earth life can keep itself going.
    1. PACK the ship: limited cargo space. Supplies are earned on Earth (platformer worlds and the Willow Creek

@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: HEMLOCK FALLS (part of cozy mode, uses the hiking system in coast.js).
    A Pennsylvania old-growth hemlock gorge, like the falls at Ricketts Glen: a spring pond on a rock shelf feeds a little creek
    that runs to the edge and pours down two rock ledges into a round plunge pool, then flows away down the gorge.

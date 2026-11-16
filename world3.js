@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* WORLD 3 GAME FILE: Ecological Relations (five levels and a bonus speed run).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world3-questions.js.
    Standards (PA STEELS): I (carrying capacity), L (biodiversity and populations), M (stable ecosystems and change).

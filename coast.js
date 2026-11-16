@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: SUNSET COVE (part of cozy mode).
    A small, polished seaside area at the bottom of the valley below Willow Creek: a valley trail beside a stream, a wildflower
    meadow with a campfire, pines and fallen logs to hide behind, a beach backed by wind-bent black pines, and a shallow lagoon with a coral reef to swim over.

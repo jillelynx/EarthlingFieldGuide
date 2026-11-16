@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* WORLD 6 GAME FILE: Environmental Pressure Drives Evolution (five levels).
    PA STEELS standards practiced here: 3.1.9-12.S, T, U, W, X (Module 2: Natural Selection and Evolution).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world6-questions.js.

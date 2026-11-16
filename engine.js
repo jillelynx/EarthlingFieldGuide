@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide shared game file: movement, 3D scenery, scoring, menus, saving.
    World files plug in through FieldGuide.registerWorld and FieldGuide.registerQuestions. */
 (function () {
@@ -3804,3 +3805,6 @@ function boot() {
   BQ._debug = { state: function () { return { mode: mode, L: L, P: P, S: S }; }, answer: answer, p1: { openRefuel: openRefuel, refuelNav: refuelNav, nearRefuel: nearRefuel, huntPick: huntPick, deliver: deliver, finish: finish, miss: miss }, start: startLevel, mini: function () { return M; }, miniStepX: function (dt) { miniStep(dt); }, enterMini: enterMini, miniStart: function () { miniStart(); }, miniSel: function (i) { miniSel(i); }, miniFire: function () { miniFire(); }, cam: function () { return cam; } };
 }
 })();
+
+/* Author signature: J.E. Lynch, 2026. */
+try { Object.defineProperty(window.FieldGuide, "_sig", { value: "EFG-JEL-VWZSHV | Earthling Field Guide by J.E. Lynch, 2026", enumerable: false }); } catch (e) {}

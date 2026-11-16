@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* WORLD 2 GAME FILE: Matter and Energy in Organisms and Ecosystems (five levels).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world2-questions.js.
    Each level teaches first (scan specimens), then lets players use what they learned (hunts, builds,

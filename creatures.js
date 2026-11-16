@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: CREATURES
    Custom 3-D wildlife built in code (no downloads): birds with shaped bodies, two-part wings that bend at the wrist,
    fanned tails and real markings; butterflies with true wing outlines and painted patterns. Each animal moves with

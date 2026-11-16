@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: AMBIENT MUSIC AND NATURE SOUNDS
    Used by the opening story and the Cozy Exploration mode (not by the platformer, which keeps its own music).
    Everything is composed and synthesized in code: soft piano, warm pads, bells, a breathy flute, plucked strings,

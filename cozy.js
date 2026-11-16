@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* COZY EXPLORATION ADVENTURE (second game mode)
    A relaxed third-person 3-D nature reserve: no lives, no timers, no enemies.
    Explore, observe (E), collect samples, use the microscope and test kit, and solve "The Quiet Pond" mystery.

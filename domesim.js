@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: BIODOME MODEL
    The living system inside the biodome, one season at a time. No graphics here, so it can be tested on its own.
    Everything is a simple "amount" (about 0 to 10 for living things). Each season:

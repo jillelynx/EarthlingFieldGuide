@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* WORLD 1 GAME FILE: Structure and Function (five levels).
    Each level is a list of building steps, read left to right:
    ground = floor, gap = pit to jump, rise = step up or down, plat = floating platform,

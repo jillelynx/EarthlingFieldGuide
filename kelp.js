@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: KELP COVE (part of cozy mode, uses the hiking system in coast.js).
    A cold, foggy, rocky shore reached by the cliff trail at the east end of Sunset Cove's beach.
    Out in the water: a forest of giant kelp (stalks from the rocky floor up to a floating canopy at the surface),

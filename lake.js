@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: AURORA LAKE (part of cozy mode, uses the hiking system in coast.js).
    A mountain lake at night: a campfire on the shore with logs to sit on, fireflies, pines all around, a little dock,
    snowy peaks across the water, a sky full of stars and the Milky Way, shooting stars, and the northern lights (aurora)

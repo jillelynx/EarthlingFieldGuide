@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: PIXEL HABITATS for the retro bonus speed runs (v70).
    Five flat, 8-bit style landscapes inspired by the teacher's "Earth Expedition" art:
    pond edge (World 1), desert (World 2), rainforest (World 3), Pennsylvania ridge (World 4), tundra (World 5), coral reef (World 6).

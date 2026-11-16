@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: HIGH-SCORE NAME FILTER
    Checks a player's nickname before it goes on the High Scores list (English and Spanish).
    - Word lists are kept in separate CATEGORIES (profanity, sexual, school slang, Spanish, harassment, hate,

@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* EARTHLING FIELD GUIDE: MORE WILDLIFE
    Frogs, sunfish, bumblebees, dragonflies, cottontail rabbits, a white-tailed deer, a barred owl and a great blue heron,
    all built in code (no downloads) from smooth shapes painted with their real field marks.

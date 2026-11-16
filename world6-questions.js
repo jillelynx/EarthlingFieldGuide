@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* WORLD 6 QUESTION FILE: Natural Selection and Evolution
    Teachers: you can edit the words inside the quotation marks below.
    - "code" is the PA STEELS standard (3.1.9-12.A to X) tested on the Keystone Biology exam.

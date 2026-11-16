@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* Earthling Field Guide: the alien as 8-bit pixel art (the teacher's own drawing), used as the player in the bonus speed runs.
    v71: a sprite sheet of every move, made from that drawing: idle, walk 1, walk 2, run 1, run 2, jump, double jump, fall, duck, slide, ground pound, glide, wall slide, spin attack, hurt, win.
    Each frame is 128 x 176 pixels; the sheet is stored as text (a data address) so no extra image file is needed. A copy is in sprites/alien-moves.png. */

@@ -1,3 +1,4 @@
+/*! Earthling Field Guide | (c) 2026 J.E. Lynch | All rights reserved | EFG-JEL-VWZSHV */
 /* WORLD 5 GAME FILE: Inheritance and Variation of Traits (five levels).
    Same building steps as World 1 (see world1.js for the full list). Content lives in world5-questions.js.
    Standards (PA STEELS, tested on the Keystone Biology exam): 5-1 D (mitosis and differentiation), 5-2 Q and P (meiosis,
